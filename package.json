@@ -1,0 +1,42 @@
+{
+  "name": "denali",
+  "version": "0.0.0",
+  "description": "An opinionated Node framework for building robust JSON APIs",
+  "homepage": "https://github.com/davewasmer/denali",
+  "repository": "davewasmer/denali",
+  "author": {
+    "name": "Dave Wasmer",
+    "email": "davewasmer@gmail.com",
+    "url": "davewasmer.com"
+  },
+  "files": [
+    "dist",
+    "bin"
+  ],
+  "main": "dist/index.js",
+  "keywords": [
+    "jsonapi",
+    "framework",
+    "resources",
+    "opinionated",
+    "denali"
+  ],
+  "devDependencies": {
+    "babel-core": "^5.5.0",
+    "chai": "^3.2.0",
+    "gulp": "^3.6.0",
+    "gulp-babel": "^5.1.0",
+    "gulp-coveralls": "^0.1.0",
+    "gulp-eslint": "^0.15.0",
+    "gulp-exclude-gitignore": "^1.0.0",
+    "gulp-istanbul": "^0.9.0",
+    "gulp-mocha": "^2.0.0",
+    "gulp-nsp": "^0.4.5",
+    "gulp-plumber": "^1.0.0"
+  },
+  "scripts": {
+    "prepublish": "gulp prepublish",
+    "test": "gulp"
+  },
+  "license": "MIT"
+}
