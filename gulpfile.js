@@ -21,12 +21,8 @@ gulp.task('static', function() {
     .pipe(eslint.failAfterError());
 });
 
-gulp.task('nsp', function(cb) {
-  nsp('package.json', cb);
-});
-
-gulp.task('pre-test', function() {
-  return gulp.src('lib/**/*.js')
+gulp.task('pre-test', [ 'compile' ], function() {
+  return gulp.src([ 'dist/lib/**/*.js', 'dist/generators/*/index.js' ])
     .pipe(babel())
     .pipe(istanbul({includeUntested: true}))
     .pipe(istanbul.hookRequire());
@@ -34,21 +30,17 @@ gulp.task('pre-test', function() {
 
 gulp.task('test', [ 'pre-test' ], function() {
   gulp.src('test/**/*.js')
+    .pipe(babel())
     .pipe(plumber())
     .pipe(mocha({reporter: 'spec'}))
     .on('error', function() {})
     .pipe(istanbul.writeReports());
 });
 
-gulp.task('test-server', [ 'test' ], function() {
-  gulp.watch([ 'test/**/*.js', 'lib/**/*.js' ], [ 'test' ]);
-});
-
 gulp.task('coveralls', [ 'test' ], function() {
   if (!process.env.CI) {
     return;
   }
-
   return gulp.src(path.join(__dirname, 'coverage/lcov.info'))
     .pipe(coveralls());
 });
@@ -56,8 +48,16 @@ gulp.task('coveralls', [ 'test' ], function() {
 gulp.task('babel', function() {
   return gulp.src('lib/**/*.js')
     .pipe(babel())
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('dist/lib'));
 });
 
-gulp.task('prepublish', [ 'nsp', 'babel' ]);
+gulp.task('test-server', [ 'test' ], function() {
+  gulp.watch([ 'test/**/*.js', 'lib/**/*.js' ], [ 'test' ]);
+});
+
+gulp.task('compile', [ 'babel' ], function() {
+  gulp.watch([ 'lib/**/*.js' ], [ 'babel' ]);
+});
+
+gulp.task('prepublish', [ 'babel' ]);
 gulp.task('default', [ 'static', 'test', 'coveralls' ]);
