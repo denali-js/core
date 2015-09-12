@@ -1,0 +1,21 @@
+#!/usr/bin/env node
+
+var Liftoff = require('liftoff');
+
+var Denali = new Liftoff({
+  name: 'denali',
+  moduleName: 'denali/dist/lib/cli'
+});
+
+Denali.launch({
+  cwd: process.cwd()
+}, function(env) {
+  if (!env.modulePath) {
+    var pkg = require('../package');
+    console.log('denali v' + pkg.version + ' [global]');
+    require('../dist/lib/cli');
+  } else {
+    console.log('denali v' + env.modulePackage.version);
+    require(env.modulePath);
+  }
+});
