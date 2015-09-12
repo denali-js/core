@@ -11,8 +11,12 @@
   },
   "files": [
     "dist",
-    "bin"
+    "bin",
+    "generators"
   ],
+  "bin": {
+    "denali": "bin/denali"
+  },
   "main": "dist/index.js",
   "keywords": [
     "jsonapi",
@@ -38,5 +42,18 @@
     "prepublish": "gulp prepublish",
     "test": "gulp"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^1.1.1",
+    "commander": "^2.8.1",
+    "findup-sync": "^0.2.1",
+    "foraker": "0.0.1",
+    "glob": "^5.0.14",
+    "inflection": "^1.7.1",
+    "liftoff": "^2.1.0",
+    "lodash-node": "^3.10.1",
+    "mkdirp": "^0.5.1",
+    "trash": "^2.0.0",
+    "walk-sync": "^0.2.0"
+  }
 }
