@@ -41,13 +41,13 @@ gulp.task('coveralls', [ 'test' ], function() {
     .pipe(coveralls());
 });
 
-gulp.task('babel', function() {
+gulp.task('babel', [ 'clean' ], function() {
   return gulp.src([ 'lib/**/*.js', '!lib/cli/blueprints/*/files/**/*' ])
     .pipe(babel())
     .pipe(gulp.dest('dist/lib'));
 });
 
-gulp.task('blueprints', function() {
+gulp.task('blueprints', [ 'clean' ], function() {
   return gulp.src('lib/cli/blueprints/*/files/**/*', { dot: true })
     .pipe(gulp.dest('dist/lib/cli/blueprints'));
 });
@@ -57,7 +57,7 @@ gulp.task('test-server', [ 'test' ], function() {
 });
 
 gulp.task('compile', [ 'clean', 'babel', 'blueprints' ], function() {
-  gulp.watch([ 'lib/**/*.js' ], [ 'babel', 'blueprints' ]);
+  gulp.watch([ 'lib/**/*.js' ], [ 'clean', 'babel', 'blueprints' ]);
 });
 
 gulp.task('clean', function() {
