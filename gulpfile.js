@@ -1,17 +1,13 @@
 var path = require('path');
+var del = require('del');
 var gulp = require('gulp');
 var eslint = require('gulp-eslint');
 var excludeGitignore = require('gulp-exclude-gitignore');
 var mocha = require('gulp-mocha');
 var istanbul = require('gulp-istanbul');
-var nsp = require('gulp-nsp');
 var plumber = require('gulp-plumber');
 var coveralls = require('gulp-coveralls');
 var babel = require('gulp-babel');
-
-// Initialize the babel transpiler so ES2015 files gets compiled
-// when they're loaded
-require('babel-core/register');
 
 gulp.task('static', function() {
   return gulp.src('**/*.js')
@@ -46,18 +42,27 @@ gulp.task('coveralls', [ 'test' ], function() {
 });
 
 gulp.task('babel', function() {
-  return gulp.src('lib/**/*.js')
+  return gulp.src([ 'lib/**/*.js', '!lib/cli/blueprints/*/files/**/*' ])
     .pipe(babel())
     .pipe(gulp.dest('dist/lib'));
+});
+
+gulp.task('blueprints', function() {
+  return gulp.src('lib/cli/blueprints/*/files/**/*', { dot: true })
+    .pipe(gulp.dest('dist/lib/cli/blueprints'));
 });
 
 gulp.task('test-server', [ 'test' ], function() {
   gulp.watch([ 'test/**/*.js', 'lib/**/*.js' ], [ 'test' ]);
 });
 
-gulp.task('compile', [ 'babel' ], function() {
-  gulp.watch([ 'lib/**/*.js' ], [ 'babel' ]);
+gulp.task('compile', [ 'clean', 'babel', 'blueprints' ], function() {
+  gulp.watch([ 'lib/**/*.js' ], [ 'babel', 'blueprints' ]);
 });
 
-gulp.task('prepublish', [ 'babel' ]);
+gulp.task('clean', function() {
+  return del([ 'dist/**/*' ]);
+});
+
+gulp.task('prepublish', [ 'clean', 'babel', 'blueprints' ]);
 gulp.task('default', [ 'static', 'test', 'coveralls' ]);

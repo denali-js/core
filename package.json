@@ -11,8 +11,7 @@
   },
   "files": [
     "dist",
-    "bin",
-    "generators"
+    "bin"
   ],
   "bin": {
     "denali": "bin/denali"
@@ -28,6 +27,7 @@
   "devDependencies": {
     "babel-core": "^5.5.0",
     "chai": "^3.2.0",
+    "del": "^2.0.2",
     "gulp": "^3.6.0",
     "gulp-babel": "^5.1.0",
     "gulp-coveralls": "^0.1.0",
@@ -35,7 +35,6 @@
     "gulp-exclude-gitignore": "^1.0.0",
     "gulp-istanbul": "^0.9.0",
     "gulp-mocha": "^2.0.0",
-    "gulp-nsp": "^0.4.5",
     "gulp-plumber": "^1.0.0"
   },
   "scripts": {
@@ -46,6 +45,7 @@
   "dependencies": {
     "chalk": "^1.1.1",
     "commander": "^2.8.1",
+    "diveSync": "^0.3.0",
     "findup-sync": "^0.2.1",
     "foraker": "0.0.1",
     "glob": "^5.0.14",
@@ -53,7 +53,7 @@
     "liftoff": "^2.1.0",
     "lodash-node": "^3.10.1",
     "mkdirp": "^0.5.1",
-    "trash": "^2.0.0",
-    "walk-sync": "^0.2.0"
+    "nodemon": "^1.4.1",
+    "trash": "^2.0.0"
   }
 }
