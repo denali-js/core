@@ -1,7 +1,8 @@
 # denali [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
 
-An opinionated Node framework for building robust JSON APIs
+[ALPHA] An opinionated Node framework for building robust JSON APIs
 
+> **Note:** this is alpha software, and still undergoing changes. Contributions welcome, consumers beware :wink:
 
 ## Install
 
