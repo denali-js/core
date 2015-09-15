@@ -1,0 +1,184 @@
+@import 'normalize';
+@import 'code';
+
+$monospace: 'Inconsolata', 'Monaco', 'Anonymous', monospace;
+$sans: 'Open Sans', 'Helvetica Neue', Helvetica, sans-serif;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: #444;
+  font-family: $sans;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 1.3em;
+  margin-bottom: 0.8em;
+  font-family: 'Raleway';
+  font-weight: 800;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 22rem;
+  padding: 3rem;
+
+  .project-name a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .project-description {
+    font-size: 0.8rem;
+  }
+
+  .repo-link {
+    display: block;
+    margin-bottom: 3rem;
+    font-size: 0.8rem;
+  }
+
+  .nav-header {
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    color: #777;
+    font-size: 0.8rem;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+  }
+
+  .nav-link {
+    display: block;
+    margin: 0.5em 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .api-nav-module-file {
+    font-family: $monospace;
+    opacity: 0.5;
+  }
+}
+
+.container {
+  max-width: 40rem;
+  margin-bottom: 5rem;
+  margin-left: 22rem;
+  padding: 2rem;
+}
+
+pre {
+  padding: 0.8rem;
+  border-radius: 2px;
+  background-color: #333;
+
+  > code {
+    border: none;
+    background: transparent;
+    color: #ddd;
+    font-size: 0.9em;
+  }
+}
+
+code {
+  display: inline-block;
+  border: 1px solid #efefef;
+  background-color: #f7f7f7;
+  color: #666;
+  font-size: 0.9em;
+}
+
+blockquote {
+  margin: 2em 1em;
+  padding: 0.1em 1.2em;
+  border-radius: 2px;
+  background-color: #ededff;
+}
+
+.file-path {
+  display: block;
+  margin: 0.3em 0;
+  color: #888;
+  font-family: 'Open Sans';
+  font-size: 0.9rem;
+  font-weight: normal;
+
+  a {
+    color: inherit;
+    font-family: $monospace;
+  }
+}
+
+.context {
+  margin: 2rem -0.75em 0;
+  padding: 0.5em 0.75em;
+  background-color: #f4f4f9;
+}
+
+.method-name {
+  margin-top: 0;
+  margin-bottom: 0;
+
+  .arguments {
+    color: #777;
+    font-family: $monospace;
+    font-size: 0.8em;
+    font-weight: 600;
+  }
+
+  .argument {
+    &::after {
+      content: ', ';
+    }
+
+    &:last-child::after {
+      display: none;
+    }
+  }
+}
+
+.defined-in {
+  margin-top: 0.2em;
+  float: right;
+  color: #888;
+  font-size: 0.75em;
+
+  a {
+    color: inherit;
+  }
+}
+
+.argument {
+  font-size: 0.9em;
+
+  .argument-name {
+    font-family: $monospace;
+    font-weight: bold;
+  }
+
+  .argument-types {
+    color: #888;
+    font-family: $monospace;
+  }
+
+  .argument-description p {
+    display: inline;
+    margin: 0;
+  }
+}
+
+.return-types {
+  color: #888;
+  font-family: $monospace;
+}
+
+.return-description p {
+  display: inline;
+  margin: 0;
+}

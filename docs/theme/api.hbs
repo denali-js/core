@@ -1,0 +1,97 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>{{#if api.name}}{{api.name}} | {{/if}}{{project.name}}</title>
+        {{#if build.ghPages}}
+          <base href="/{{project.name}}/">
+        {{else}}
+          <base href="/">
+        {{/if}}
+        <meta name="description" content="{{project.description}}">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+        <link href='http://fonts.googleapis.com/css?family=Raleway:400,800,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="styles.css">
+
+        <!--[if lt IE 9]>
+            <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+            <script>window.html5 || document.write('<script src="js/vendor/html5shiv.js"><\/script>')</script>
+        <![endif]-->
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        {{>header}}
+        <div class='container'>
+          <h1 class='file-name'>
+            {{api.name}}
+            <small class='file-path'>
+              Defined in
+              <a href='https://github.com/{{project.repository}}/blob/master/{{api.path}}'>{{api.path}}</a>
+            </small>
+          </h1>
+
+          {{#each api.blocks as |block|}}
+
+            {{#if block.ctx}}
+              <div class='context'>
+                <div class='defined-in'>
+                  Defined in <a href='https://github.com/{{../project.repository}}/blob/master/{{../api.path}}#L{{line}}'>{{../api.path}}, Line {{block.line}}</a>
+                </div>
+                <h3 class='method-name'>
+                  {{block.ctx.name}}
+                  <span class='arguments'>
+                    ({{#each block.tags.param as |argument|}}{{#unless argument.isNested}}<span class='argument'>{{argument.name}}</span>{{/unless}}{{/each}})
+                  </span>
+                </h3>
+              </div>
+            {{/if}}
+
+            <p class='method-description'>{{{block.description.full}}}</p>
+
+            {{#if block.tags.example}}
+              <h4>Example</h4>
+              {{{block.tags.example.string}}}
+            {{/if}}
+
+            {{#if block.tags.param}}
+              <h4>Arguments</h4>
+              <ul class='arguments'>
+                {{#each block.tags.param as |argument|}}
+                  <li class='argument'>
+                    <span class='argument-name'>{{argument.name}}</span>
+                    <span class='argument-types'>({{argument.types}}): </span>
+                    <span class='argument-description'>{{{argument.description}}}</span>
+                  </li>
+                {{/each}}
+              </ul>
+            {{/if}}
+            {{#if tags.return}}
+              <h4>Returns</h4>
+              <div class='return'>
+                <span class='return-types'>({{block.tags.return.types}})</span>
+                <span class='return-description'>{{{block.tags.return.description}}}</span>
+              </div>
+            {{/if}}
+          {{/each}}
+        </div>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+        </script>
+    </body>
+</html>
