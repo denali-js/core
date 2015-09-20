@@ -43,6 +43,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "babel": "^5.8.23",
     "bluebird": "^2.10.0",
     "chalk": "^1.1.1",
     "commander": "^2.8.1",
@@ -58,8 +59,12 @@
     "liftoff": "^2.1.0",
     "lodash-node": "^3.10.1",
     "mkdirp": "^0.5.1",
+    "mocha": "^2.3.2",
     "nodemon": "^1.4.1",
     "require-all": "^1.1.0",
+    "require-dir": "^0.3.0",
+    "supertest": "^1.1.0",
+    "supertest-as-promised": "^2.0.2",
     "trash": "^2.0.0"
   }
 }
