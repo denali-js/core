@@ -21,12 +21,27 @@
             <script>window.html5 || document.write('<script src="js/vendor/html5shiv.js"><\/script>')</script>
         <![endif]-->
     </head>
-    <body>
+    <body class='homepage'>
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        {{>nav}}
+        {{> nav}}
+        <div class='hero'>
+          <div class='hero-container'>
+            <div class='project'>
+              <img src='images/logo.png' alt='' class='logo' />
+              <h1 class='project-name'>Denali</h1>
+              <h2 class='subhead'>
+                An opinionated framework for building robust JSON APIs.
+              </h2>
+              <div class='links'>
+                <a href='get-started'>Get Started</a>
+                <a href='https://github.com/davewasmer/denali/' title='davewasmer/denali'>Github Repo</a>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class='container'>
           {{{html}}}
         </div>
