@@ -2,8 +2,8 @@
   "name": "<%= name %>",
   "version": "0.0.1",
   "scripts": {
-    "start": "index.js",
-    "test": "./node_modules/.bin/denali test"
+    "start": "denali server",
+    "test": "denali test"
   },
   "private": true,
   "dependencies": {
