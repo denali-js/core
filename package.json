@@ -1,6 +1,6 @@
 {
   "name": "denali",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "An opinionated Node framework for building robust JSON APIs",
   "homepage": "https://github.com/davewasmer/denali",
   "repository": "davewasmer/denali",
