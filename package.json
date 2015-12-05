@@ -25,20 +25,28 @@
     "denali"
   ],
   "devDependencies": {
-    "babel-core": "^5.5.0",
-    "gulp": "^3.6.0",
-    "gulp-babel": "^5.1.0",
-    "gulp-coveralls": "^0.1.0",
-    "gulp-eslint": "^0.15.0",
-    "gulp-exclude-gitignore": "^1.0.0",
-    "gulp-istanbul": "^0.9.0",
-    "gulp-mocha": "^2.0.0",
-    "gulp-plumber": "^1.0.0",
-    "must": "^0.13.1"
+    "babel-cli": "^6.3.15",
+    "babel-core": "^6.2.1",
+    "babel-eslint": "^4.1.6",
+    "coveralls": "^2.11.4",
+    "eslint-config-airbnb": "^1.0.2",
+    "eslint": "^1.10.1",
+    "in-publish": "2.0.0",
+    "isparta": "^4.0.0",
+    "mocha": "^2.3.4",
+    "must": "^0.13.1",
+    "rimraf": "^2.4.2",
+    "watch": "^0.16.0"
   },
   "scripts": {
-    "prepublish": "gulp prepublish",
-    "test": "gulp"
+    "prepublish": "in-publish && npm run lint && npm test && npm run coverage && npm run compile || echo ''",
+    "test": "NODE_ENV=test mocha --compilers js:babel-core/register",
+    "lint": "eslint lib test",
+    "build": "npm run clean && babel lib --out-dir dist",
+    "coverage": "babel-node isparta cover _mocha && coveralls < coverage/lcov.info",
+    "postcoverage": "rimraf coverage",
+    "watch": "watch 'npm run build && npm run test' lib test",
+    "clean": "rimraf dist/*"
   },
   "license": "MIT",
   "dependencies": {

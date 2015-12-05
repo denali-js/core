@@ -1,4 +1,10 @@
-# denali [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
+# denali
+
+[![NPM version][npm-image]][npm-url]
+[![Build Status][travis-image]][travis-url]
+[![Coveralls Status][coveralls-image]][coveralls-url]
+[![Dependency Status][depstat-image]][depstat-url]
+[![Downloads][download-badge]][npm-url]
 
 [ALPHA] An opinionated Node framework for building robust JSON APIs
 
@@ -22,11 +28,16 @@ var denali = require('denali');
 MIT © [Dave Wasmer](http://davewasmer.com)
 
 
-[npm-image]: https://badge.fury.io/js/denali.svg
-[npm-url]: https://npmjs.org/package/denali
-[travis-image]: https://travis-ci.org/davewasmer/denali.svg?branch=master
-[travis-url]: https://travis-ci.org/davewasmer/denali
-[daviddm-image]: https://david-dm.org/davewasmer/denali.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org/davewasmer/denali
-[coveralls-image]: https://coveralls.io/repos/davewasmer/denali/badge.svg
-[coveralls-url]: https://coveralls.io/r/davewasmer/denali
+[npm-url]: https://npmjs.org/package/<%= moduleName %>
+[npm-image]: https://img.shields.io/npm/v/<%= moduleName %>.svg?style=flat-square
+
+[travis-url]: https://travis-ci.org/davewasmer/<%= moduleName %>
+[travis-image]: https://img.shields.io/travis/davewasmer/<%= moduleName %>.svg?style=flat-square
+
+[coveralls-url]: https://coveralls.io/r/davewasmer/<%= moduleName %>
+[coveralls-image]: https://img.shields.io/coveralls/davewasmer/<%= moduleName %>.svg?style=flat-square
+
+[depstat-url]: https://david-dm.org/davewasmer/<%= moduleName %>
+[depstat-image]: https://david-dm.org/davewasmer/<%= moduleName %>.svg?style=flat-square
+
+[download-badge]: http://img.shields.io/npm/dm/<%= moduleName %>.svg?style=flat-square
