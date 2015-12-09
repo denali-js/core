@@ -1,29 +1,28 @@
-import { Controller, Errors } from 'denali';
+'use strict';
 
-export default Controller.extend({
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-  filters() {
+var _denali = require('denali');
+
+exports.default = _denali.Controller.extend({
+  filters: function filters() {
     // this.before('someActionName');
   },
-
-  list(req, res) {
-    res.render(new Errors.NotImplemented());
+  list: function list(req, res) {
+    res.render(new _denali.Errors.NotImplemented());
   },
-
-  create(req, res) {
-    res.render(new Errors.NotImplemented());
+  create: function create(req, res) {
+    res.render(new _denali.Errors.NotImplemented());
   },
-
-  show(req, res) {
-    res.render(new Errors.NotImplemented());
+  show: function show(req, res) {
+    res.render(new _denali.Errors.NotImplemented());
   },
-
-  update(req, res) {
-    res.render(new Errors.NotImplemented());
+  update: function update(req, res) {
+    res.render(new _denali.Errors.NotImplemented());
   },
-
-  destroy(req, res) {
-    res.render(new Errors.NotImplemented());
+  destroy: function destroy(req, res) {
+    res.render(new _denali.Errors.NotImplemented());
   }
-
 });

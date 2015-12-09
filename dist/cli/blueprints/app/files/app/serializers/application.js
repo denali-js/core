@@ -1,3 +1,9 @@
-import { FlatSerializer } from 'denali';
+'use strict';
 
-export default FlatSerializer;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _denali = require('denali');
+
+exports.default = _denali.FlatSerializer;

@@ -1,4 +1,10 @@
-export default function drawRoutes() {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = drawRoutes;
+function drawRoutes() {
 
   this.get('/', 'application.index');
 

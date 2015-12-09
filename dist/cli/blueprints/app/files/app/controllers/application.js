@@ -1,9 +1,13 @@
-import { Controller, version } from 'denali';
+'use strict';
 
-export default Controller.extend({
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-  index(req, res) {
-    res.json({ denaliVersion: version, message: 'Welcome to Denali!' });
+var _denali = require('denali');
+
+exports.default = _denali.Controller.extend({
+  index: function index(req, res) {
+    res.json({ denaliVersion: _denali.version, message: 'Welcome to Denali!' });
   }
-
 });

@@ -1,10 +1,38 @@
-import assert from 'assert';
-import express from 'express';
-import Promise from 'bluebird';
-import { log } from '../utils';
-import Error from './error';
-import Engine from './engine';
-import blackburn from 'blackburn';
+'use strict';
+
+var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; })();
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _assert = require('assert');
+
+var _assert2 = _interopRequireDefault(_assert);
+
+var _express = require('express');
+
+var _express2 = _interopRequireDefault(_express);
+
+var _bluebird = require('bluebird');
+
+var _bluebird2 = _interopRequireDefault(_bluebird);
+
+var _utils = require('../utils');
+
+var _error = require('./error');
+
+var _error2 = _interopRequireDefault(_error);
+
+var _engine = require('./engine');
+
+var _engine2 = _interopRequireDefault(_engine);
+
+var _blackburn = require('blackburn');
+
+var _blackburn2 = _interopRequireDefault(_blackburn);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * Application instances are little more than specialized Engines, designed to
@@ -12,7 +40,7 @@ import blackburn from 'blackburn';
  *
  * @title Application
  */
-export default Engine.extend({
+exports.default = _engine2.default.extend({
 
   /**
    * There are three stages involved when booting up a Denali application:
@@ -36,10 +64,11 @@ export default Engine.extend({
    *
    * @constructor
    */
-  init(options) {
+
+  init: function init(options) {
     options.environment = options.environment || process.env.DENALI_ENV || process.env.NODE_ENV || 'development';
     this._super.call(this, options);
-    this.router = new express.Router();
+    this.router = new _express2.default.Router();
   },
 
   /**
@@ -52,13 +81,15 @@ export default Engine.extend({
    * @return {Promise} resolves when the server has successfully bound to it's
    * port and is accepting connections
    */
-  start() {
+  start: function start() {
+    var _this = this;
+
     this.load();
 
-    return Promise.resolve(this.initializers).each(initializer => {
-      return initializer(this);
-    }).then(() => {
-      return this.launchServer();
+    return _bluebird2.default.resolve(this.initializers).each(function (initializer) {
+      return initializer(_this);
+    }).then(function () {
+      return _this.launchServer();
     });
   },
 
@@ -72,15 +103,17 @@ export default Engine.extend({
    * @return {Promise} resolves when the server has successfully bound to it's
    * port and is accepting connections
    */
-  launchServer() {
-    return new Promise(resolve => {
-      this.server = express();
-      this.injectBlackburnPlusForaker(this.server);
-      this.server.use(this.router);
-      this.server.use(this.handleErrors.bind(this));
-      this.server.listen(this.port, resolve);
-    }).then(() => {
-      this.log(`${ this.pkg.name }@${ this.pkg.version } server up on port ${ this.port }`);
+  launchServer: function launchServer() {
+    var _this2 = this;
+
+    return new _bluebird2.default(function (resolve) {
+      _this2.server = (0, _express2.default)();
+      _this2.injectBlackburnPlusForaker(_this2.server);
+      _this2.server.use(_this2.router);
+      _this2.server.use(_this2.handleErrors.bind(_this2));
+      _this2.server.listen(_this2.port, resolve);
+    }).then(function () {
+      _this2.log(_this2.pkg.name + '@' + _this2.pkg.version + ' server up on port ' + _this2.port);
     });
   },
 
@@ -90,50 +123,55 @@ export default Engine.extend({
    *
    * @method log
    */
-  log(level) {
+  log: function log(level) {
     if (this.env !== 'test' || level === 'error') {
-      log.apply(this, arguments);
+      _utils.log.apply(this, arguments);
     }
   },
 
   /*eslint-disable no-unused-vars*/
-  handleErrors(err, req, res, next) {
+  handleErrors: function handleErrors(err, req, res, next) {
     if (!res._rendered) {
       if (!err.status) {
-        err = new Error.InternalServerError(err.stack);
+        err = new _error2.default.InternalServerError(err.stack);
         this.log('error', err.stack);
       }
       err.code = err.code || err.name;
       return res.render(err);
     }
   },
+
   /*eslint-enable no-unused-vars*/
 
-  injectBlackburnPlusForaker(server) {
+  injectBlackburnPlusForaker: function injectBlackburnPlusForaker(server) {
     // Setup vanilla blackburn installation
-    server.use(blackburn({
+    server.use((0, _blackburn2.default)({
       adapters: this.adapters,
       serializers: this.serializers
     }));
     // Now wrap blackburn's render method with one which picks the corresponding
     // serializer for that controller. This is the glue that joins the blackburn
     // serialization with foraker's controllers.
-    server.use((req, res, next) => {
+    server.use(function (req, res, next) {
       // This controller property is injected into the context below, in the
       // handle method
-      let render = res.render;
-      res.render = (...args) => {
+      var render = res.render;
+      res.render = function () {
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+          args[_key] = arguments[_key];
+        }
+
         // We need to identify options arg, which can be second or third.
         // It's only second when no status is supplied. It can be omitted as
         // well, so if it is, default it to an empty object.
-        let options;
+        var options = undefined;
         if (typeof args[0] !== 'number' && !args[2]) {
           options = args[1] = args[1] || {};
         } else {
           options = args[2] = args[2] || {};
         }
 
-        let controller = req.context && req.context.controller;
+        var controller = req.context && req.context.controller;
         options.serializer = options.serializer || controller && controller.serializer || controller && controller.name;
         options.adapter = options.adapter || controller && controller.adapter || controller && controller.name;
         return render.apply(res, args);
@@ -157,17 +195,22 @@ export default Engine.extend({
    *
    * @return {Function} an express-compatible route handler function
    */
-  handle(controllerAction) {
-    let [controllerName, actionName] = controllerAction.split('.');
-    let controller = this.controllers[controllerName];
-    assert(controller, `Attempted to route to ${ controllerAction }, but ${ controllerName } controller not found.`);
-    let action = controller.action(actionName);
+  handle: function handle(controllerAction) {
+    var _controllerAction$spl = controllerAction.split('.');
+
+    var _controllerAction$spl2 = _slicedToArray(_controllerAction$spl, 2);
+
+    var controllerName = _controllerAction$spl2[0];
+    var actionName = _controllerAction$spl2[1];
+
+    var controller = this.controllers[controllerName];
+    (0, _assert2.default)(controller, 'Attempted to route to ' + controllerAction + ', but ' + controllerName + ' controller not found.');
+    var action = controller.action(actionName);
     return function (req, res, next) {
       // Inject the controller into the incoming request (it's context object).
-      let context = req.context = req.context || {};
+      var context = req.context = req.context || {};
       context.controller = context.controller || controller;
       action(req, res, next);
     };
   }
-
 });

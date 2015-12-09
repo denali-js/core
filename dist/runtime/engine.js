@@ -1,22 +1,75 @@
-import path from 'path';
-import fs from 'fs';
-import CoreObject from 'core-object';
-import DAG from 'dag-map';
-import { tryRequire } from '../utils';
-import forIn from 'lodash/object/forIn';
-import merge from 'lodash/object/merge';
-import contains from 'lodash/collection/contains';
-import values from 'lodash/object/values';
-import mapValues from 'lodash/object/mapValues';
-import forEach from 'lodash/collection/forEach';
-import omit from 'lodash/object/omit';
-import set from 'lodash/object/set';
-import invoke from 'lodash/collection/invoke';
-import requireAll from 'require-all';
-import routerDSL from './router-dsl';
+'use strict';
 
-const NON_JSON_EXTENSION = /(.+)\.(?!json).+$/;
-const JSON_EXTENSION = /(.+)\.json$/;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _path = require('path');
+
+var _path2 = _interopRequireDefault(_path);
+
+var _fs = require('fs');
+
+var _fs2 = _interopRequireDefault(_fs);
+
+var _coreObject = require('core-object');
+
+var _coreObject2 = _interopRequireDefault(_coreObject);
+
+var _dagMap = require('dag-map');
+
+var _dagMap2 = _interopRequireDefault(_dagMap);
+
+var _utils = require('../utils');
+
+var _forIn = require('lodash/object/forIn');
+
+var _forIn2 = _interopRequireDefault(_forIn);
+
+var _merge = require('lodash/object/merge');
+
+var _merge2 = _interopRequireDefault(_merge);
+
+var _contains = require('lodash/collection/contains');
+
+var _contains2 = _interopRequireDefault(_contains);
+
+var _values = require('lodash/object/values');
+
+var _values2 = _interopRequireDefault(_values);
+
+var _mapValues = require('lodash/object/mapValues');
+
+var _mapValues2 = _interopRequireDefault(_mapValues);
+
+var _forEach = require('lodash/collection/forEach');
+
+var _forEach2 = _interopRequireDefault(_forEach);
+
+var _omit = require('lodash/object/omit');
+
+var _omit2 = _interopRequireDefault(_omit);
+
+var _set = require('lodash/object/set');
+
+var _set2 = _interopRequireDefault(_set);
+
+var _invoke = require('lodash/collection/invoke');
+
+var _invoke2 = _interopRequireDefault(_invoke);
+
+var _requireAll = require('require-all');
+
+var _requireAll2 = _interopRequireDefault(_requireAll);
+
+var _routerDsl = require('./router-dsl');
+
+var _routerDsl2 = _interopRequireDefault(_routerDsl);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var NON_JSON_EXTENSION = /(.+)\.(?!json).+$/;
+var JSON_EXTENSION = /(.+)\.json$/;
 
 /**
  * Engines form the foundation of Denali, and are built with extensibility as a
@@ -27,7 +80,7 @@ const JSON_EXTENSION = /(.+)\.json$/;
  * @title Engine
  */
 
-export default CoreObject.extend({
+exports.default = _coreObject2.default.extend({
 
   /**
    * Create a new Engine. Upon creation, the Engine instance will search for any
@@ -43,17 +96,18 @@ export default CoreObject.extend({
    *
    * @return {Engine}
    */
-  init(options) {
+
+  init: function init(options) {
     this._super.apply(this, arguments);
 
     this.env = options.environment || 'development';
     this.port = options.port || 3000;
 
     this.rootDir = options.rootDir;
-    this.appDir = options.appDir || path.join(this.rootDir, 'app');
-    this.configDir = options.configDir || path.join(this.rootDir, 'config');
+    this.appDir = options.appDir || _path2.default.join(this.rootDir, 'app');
+    this.configDir = options.configDir || _path2.default.join(this.rootDir, 'config');
 
-    this.pkg = tryRequire(path.join(this.rootDir, 'package.json'));
+    this.pkg = (0, _utils.tryRequire)(_path2.default.join(this.rootDir, 'package.json'));
 
     this.discoverEngines();
   },
@@ -64,30 +118,35 @@ export default CoreObject.extend({
    * @method discoverEngines
    * @private
    */
-  discoverEngines() {
+  discoverEngines: function discoverEngines() {
+    var _this = this;
+
     this.engines = [];
-    let engineGraph = new DAG();
-    forIn(this.pkg.dependencies, (version, pkgName) => {
-      let root = path.join(this.rootDir, 'node_modules', pkgName);
-      let pkg = require(path.join(root, 'package.json'));
-      let config = pkg.denali || {};
-      if (pkg.keywords && contains(pkg.keywords, 'denali-engine')) {
-        let Engine = require(root);
-        let engine = new Engine({
+    var engineGraph = new _dagMap2.default();
+    (0, _forIn2.default)(this.pkg.dependencies, function (version, pkgName) {
+      var root = _path2.default.join(_this.rootDir, 'node_modules', pkgName);
+      var pkg = require(_path2.default.join(root, 'package.json'));
+      var config = pkg.denali || {};
+      if (pkg.keywords && (0, _contains2.default)(pkg.keywords, 'denali-engine')) {
+        var Engine = require(root);
+        var engine = new Engine({
           rootDir: root,
-          environment: this.env,
-          parent: this
+          environment: _this.env,
+          parent: _this
         });
         engineGraph.addEdges(pkg.name, engine, config.before, config.after);
       }
     });
-    engineGraph.topsort(({ value }) => {
-      this.engines.push(value);
+    engineGraph.topsort(function (_ref) {
+      var value = _ref.value;
+
+      _this.engines.push(value);
     });
   },
+  load: function load() {
+    var application = arguments.length <= 0 || arguments[0] === undefined ? this : arguments[0];
 
-  load(application = this) {
-    this.engines.forEach(engine => {
+    this.engines.forEach(function (engine) {
       engine.load(application);
     });
     this.loadConfig(application);
@@ -137,38 +196,40 @@ export default CoreObject.extend({
    *
    * @param {Application} application  the root application engine to mount to
    */
-  loadConfig(application) {
-    let executableConfigs = requireAll({
+  loadConfig: function loadConfig(application) {
+    var _this2 = this;
+
+    var executableConfigs = (0, _requireAll2.default)({
       dirname: this.configDir,
       filter: NON_JSON_EXTENSION,
       recursive: false
     });
-    executableConfigs = omit(executableConfigs, 'routes', 'middleware');
-    executableConfigs = invoke(executableConfigs, 'call', null, this.env);
+    executableConfigs = (0, _omit2.default)(executableConfigs, 'routes', 'middleware');
+    executableConfigs = (0, _invoke2.default)(executableConfigs, 'call', null, this.env);
 
-    let jsonConfigs = requireAll({
+    var jsonConfigs = (0, _requireAll2.default)({
       dirname: this.configDir,
       filter: JSON_EXTENSION,
       recursive: false
     });
-    jsonConfigs = mapValues(jsonConfigs, this.env);
+    jsonConfigs = (0, _mapValues2.default)(jsonConfigs, this.env);
 
     this.config = this.config || {};
-    merge(this.config, executableConfigs, jsonConfigs);
+    (0, _merge2.default)(this.config, executableConfigs, jsonConfigs);
 
-    forIn(process.env, (value, key) => {
-      let isEngineConfig = key.indexOf(this.pkg.name.toUpperCase() + '_') === 0;
-      let isApplicationConfig = key.indexOf(application.pkg.name.toUpperCase() + '_') === 0;
-      let isDenaliConfig = key.indexOf('DENALI_') === 0;
+    (0, _forIn2.default)(process.env, function (value, key) {
+      var isEngineConfig = key.indexOf(_this2.pkg.name.toUpperCase() + '_') === 0;
+      var isApplicationConfig = key.indexOf(application.pkg.name.toUpperCase() + '_') === 0;
+      var isDenaliConfig = key.indexOf('DENALI_') === 0;
 
-      if (isEngineConfig && application !== this || application === this && (isApplicationConfig || isDenaliConfig)) {
+      if (isEngineConfig && application !== _this2 || application === _this2 && (isApplicationConfig || isDenaliConfig)) {
         key = key.replace('__', '.').split('_').slice(1).join('_');
-        set(this.config, key, value);
+        (0, _set2.default)(_this2.config, key, value);
       }
     });
 
     if (application !== this) {
-      merge(application.config, this.config);
+      (0, _merge2.default)(application.config, this.config);
     }
   },
 
@@ -187,9 +248,9 @@ export default CoreObject.extend({
    *
    * @param {Application} application  the root application engine to mount to
    */
-  loadInitializers(application) {
-    let initializersDir = path.join(this.configDir, 'initializers');
-    this.initializers = values(requireAll(initializersDir));
+  loadInitializers: function loadInitializers(application) {
+    var initializersDir = _path2.default.join(this.configDir, 'initializers');
+    this.initializers = (0, _values2.default)((0, _requireAll2.default)(initializersDir));
     if (application !== this) {
       application.initializers = application.initializers.concat(this.initializers);
     }
@@ -210,8 +271,8 @@ export default CoreObject.extend({
    *
    * @param {Application} application  the root application engine to mount to
    */
-  loadMiddleware(application) {
-    this.middleware = require(path.join(this.configDir, 'middleware'));
+  loadMiddleware: function loadMiddleware(application) {
+    this.middleware = require(_path2.default.join(this.configDir, 'middleware'));
     this.middleware(application.router, application);
   },
 
@@ -224,35 +285,35 @@ export default CoreObject.extend({
    *
    * @param  {Application} application
    */
-  loadApp(application) {
-    ['adapters', 'controllers', 'jobs', 'serializers'].forEach(type => {
-      let dir = path.join(this.appDir, type);
-      if (fs.existsSync(dir) && fs.statSync(dir).isDirectory()) {
-        this[type] = requireAll({
+  loadApp: function loadApp(application) {
+    var _this3 = this;
+
+    ['adapters', 'controllers', 'jobs', 'serializers'].forEach(function (type) {
+      var dir = _path2.default.join(_this3.appDir, type);
+      if (_fs2.default.existsSync(dir) && _fs2.default.statSync(dir).isDirectory()) {
+        _this3[type] = (0, _requireAll2.default)({
           dirname: dir,
           recursive: false
         });
-        if (application !== this) {
-          merge(application[type], this[type]);
+        if (application !== _this3) {
+          (0, _merge2.default)(application[type], _this3[type]);
         }
       }
     });
 
     // Adapters, controllers, and serializers are singletons
-    ['adapters', 'controllers', 'serializers'].forEach(type => {
-      this[type] = mapValues(this[type], (Klass, name) => {
-        return new Klass({ name });
+    ['adapters', 'controllers', 'serializers'].forEach(function (type) {
+      _this3[type] = (0, _mapValues2.default)(_this3[type], function (Klass, name) {
+        return new Klass({ name: name });
       });
     });
     // Serializers need the other serializers as well
-    forEach(this.serializers, serializer => {
-      serializer.serializers = this.serializers;
+    (0, _forEach2.default)(this.serializers, function (serializer) {
+      serializer.serializers = _this3.serializers;
     });
   },
-
-  loadRoutes(application) {
-    this.routes = require(path.join(this.configDir, 'routes'));
-    this.routes.call(routerDSL(application));
+  loadRoutes: function loadRoutes(application) {
+    this.routes = require(_path2.default.join(this.configDir, 'routes'));
+    this.routes.call((0, _routerDsl2.default)(application));
   }
-
 });

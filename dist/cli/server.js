@@ -1,56 +1,86 @@
-import path from 'path';
-import chalk from 'chalk';
-import cp from 'child_process';
-import assign from 'lodash/object/assign';
-import not from 'lodash/function/negate';
-import filter from 'lodash/collection/filter';
-import isEmpty from 'lodash/lang/isEmpty';
-import program from 'commander';
-import nodemon from 'nodemon';
+'use strict';
 
-program.option('-e --environment <environment>', 'The environment to run under, i.e. "production"', String).option('-d --debug', 'Runs the server with the node --debug flag, and launches node-inspector').option('-p, --port <port>', 'Sets the port that the server will listen on').parse(process.argv);
+var _path = require('path');
 
-let serverPath = path.join(process.cwd(), 'index.js');
+var _path2 = _interopRequireDefault(_path);
 
-if (program.environment === 'development' || !program.environment) {
+var _chalk = require('chalk');
 
-  if (program.debug) {
-    cp.exec('node-inspector');
-    cp.exec('open http://127.0.0.1:8080/debug?port=5858');
+var _chalk2 = _interopRequireDefault(_chalk);
+
+var _child_process = require('child_process');
+
+var _child_process2 = _interopRequireDefault(_child_process);
+
+var _assign = require('lodash/object/assign');
+
+var _assign2 = _interopRequireDefault(_assign);
+
+var _negate = require('lodash/function/negate');
+
+var _negate2 = _interopRequireDefault(_negate);
+
+var _filter = require('lodash/collection/filter');
+
+var _filter2 = _interopRequireDefault(_filter);
+
+var _isEmpty = require('lodash/lang/isEmpty');
+
+var _isEmpty2 = _interopRequireDefault(_isEmpty);
+
+var _commander = require('commander');
+
+var _commander2 = _interopRequireDefault(_commander);
+
+var _nodemon = require('nodemon');
+
+var _nodemon2 = _interopRequireDefault(_nodemon);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_commander2.default.option('-e --environment <environment>', 'The environment to run under, i.e. "production"', String).option('-d --debug', 'Runs the server with the node --debug flag, and launches node-inspector').option('-p, --port <port>', 'Sets the port that the server will listen on').parse(process.argv);
+
+var serverPath = _path2.default.join(process.cwd(), 'index.js');
+
+if (_commander2.default.environment === 'development' || !_commander2.default.environment) {
+
+  if (_commander2.default.debug) {
+    _child_process2.default.exec('node-inspector');
+    _child_process2.default.exec('open http://127.0.0.1:8080/debug?port=5858');
   }
 
-  let env = process.env;
-  env = assign({
-    DENALI_ENV: program.environment,
-    PORT: program.port
+  var env = process.env;
+  env = (0, _assign2.default)({
+    DENALI_ENV: _commander2.default.environment,
+    PORT: _commander2.default.port
   }, env);
-  env = filter(env, not(isEmpty));
+  env = (0, _filter2.default)(env, (0, _negate2.default)(_isEmpty2.default));
 
-  nodemon({
+  (0, _nodemon2.default)({
     script: serverPath,
     ignore: ['node_modules\/(?!denali)', 'node_modules/denali/node_modules'],
-    debug: program.debug,
+    debug: _commander2.default.debug,
     env: env
   });
 
-  nodemon.on('quit', function () {
+  _nodemon2.default.on('quit', function () {
     console.log('Goodbye!');
   });
-  nodemon.on('restart', function (files) {
-    console.log(`\nFiles changed:\n  ${ files.join('\n  ') }\nrestarting ...\n`);
+  _nodemon2.default.on('restart', function (files) {
+    console.log('\nFiles changed:\n  ' + files.join('\n  ') + '\nrestarting ...\n');
   });
-  nodemon.on('crash', function () {
-    console.log(chalk.red.bold(`Server crashed! Waiting for file changes to restart ...`));
+  _nodemon2.default.on('crash', function () {
+    console.log(_chalk2.default.red.bold('Server crashed! Waiting for file changes to restart ...'));
   });
 } else {
 
-  let spawnOptions = {
+  var spawnOptions = {
     stdio: 'inherit',
-    env: assign({
-      DENALI_ENV: program.environment,
-      PORT: program.port
+    env: (0, _assign2.default)({
+      DENALI_ENV: _commander2.default.environment,
+      PORT: _commander2.default.port
     }, process.env)
   };
 
-  cp.spawn('node', [serverPath], spawnOptions);
+  _child_process2.default.spawn('node', [serverPath], spawnOptions);
 }
