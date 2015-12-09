@@ -1,2 +1,2 @@
 #!/usr/bin/env node
-require('../dist/lib/cli/test');
+require('../dist/cli/test');

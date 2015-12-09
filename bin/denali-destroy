@@ -1,2 +1,2 @@
 #!/usr/bin/env node
-require('../dist/lib/cli/destroy');
+require('../dist/cli/destroy');

@@ -20,9 +20,9 @@ var _negate = require('lodash/function/negate');
 
 var _negate2 = _interopRequireDefault(_negate);
 
-var _filter = require('lodash/collection/filter');
+var _pick = require('lodash/object/pick');
 
-var _filter2 = _interopRequireDefault(_filter);
+var _pick2 = _interopRequireDefault(_pick);
 
 var _isEmpty = require('lodash/lang/isEmpty');
 
@@ -54,7 +54,7 @@ if (_commander2.default.environment === 'development' || !_commander2.default.en
     DENALI_ENV: _commander2.default.environment,
     PORT: _commander2.default.port
   }, env);
-  env = (0, _filter2.default)(env, (0, _negate2.default)(_isEmpty2.default));
+  env = (0, _pick2.default)(env, (0, _negate2.default)(_isEmpty2.default));
 
   (0, _nodemon2.default)({
     script: serverPath,
