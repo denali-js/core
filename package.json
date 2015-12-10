@@ -16,7 +16,7 @@
   "bin": {
     "denali": "bin/denali"
   },
-  "main": "dist/lib/index.js",
+  "main": "dist/index.js",
   "keywords": [
     "jsonapi",
     "framework",

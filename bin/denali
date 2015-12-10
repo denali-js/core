@@ -4,7 +4,7 @@ var Liftoff = require('liftoff');
 
 var Denali = new Liftoff({
   name: 'denali',
-  moduleName: 'denali/dist/cli'
+  moduleName: 'denali/dist/cli/commands'
 });
 
 Denali.launch({
@@ -13,7 +13,7 @@ Denali.launch({
   if (!env.modulePath) {
     var pkg = require('../package');
     console.log('denali v' + pkg.version + ' [global]');
-    require('../dist/cli');
+    require('../dist/cli/commands');
   } else {
     console.log('denali v' + env.modulePackage.version);
     require(env.modulePath);

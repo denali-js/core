@@ -24,7 +24,7 @@ var _foraker2 = _interopRequireDefault(_foraker);
 
 var _blackburn = require('blackburn');
 
-var _package = require('../../package.json');
+var _package = require('../package.json');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
