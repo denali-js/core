@@ -10,8 +10,7 @@ function tryRequire(path) {
   } catch (e) {
     if (e.message === "Cannot find module '" + path + "'") {
       return false;
-    } else {
-      throw e;
     }
+    throw e;
   }
 }

@@ -4,6 +4,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _assert = require('assert');
+
+var _assert2 = _interopRequireDefault(_assert);
+
 var _path = require('path');
 
 var _path2 = _interopRequireDefault(_path);
@@ -97,8 +101,11 @@ exports.default = _coreObject2.default.extend({
    * @return {Engine}
    */
 
-  init: function init(options) {
+  init: function init() {
+    var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
     this._super.apply(this, arguments);
+    (0, _assert2.default)(options.rootDir, 'You must supply a rootDir to an Engine instance');
 
     this.env = options.environment || 'development';
     this.port = options.port || 3000;

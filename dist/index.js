@@ -96,7 +96,7 @@ exports.Error = _error2.default;
 function start() {
   var applicationDir = arguments.length <= 0 || arguments[0] === undefined ? process.cwd() : arguments[0];
 
-  var ApplicationClass = require(_path2.default.join(applicationDir, 'app/application'));
+  var ApplicationClass = require(_path2.default.join(applicationDir, 'app/application')).default;
   var application = new ApplicationClass({ rootDir: applicationDir });
   return application.start();
 }

@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.write = exports.withoutExt = exports.tryRequire = exports.read = exports.log = exports.isFile = exports.isDir = exports.isDenaliApp = exports.ensureArray = undefined;
 
 var _ensureArray = require('./ensure-array');
 
@@ -53,3 +54,12 @@ exports.default = {
   withoutExt: _withoutExt2.default,
   write: _write2.default
 };
+exports.ensureArray = _ensureArray2.default;
+exports.isDenaliApp = _isDenaliApp2.default;
+exports.isDir = _isDir2.default;
+exports.isFile = _isFile2.default;
+exports.log = _log2.default;
+exports.read = _read2.default;
+exports.tryRequire = _tryRequire2.default;
+exports.withoutExt = _withoutExt2.default;
+exports.write = _write2.default;

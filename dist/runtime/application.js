@@ -65,7 +65,9 @@ exports.default = _engine2.default.extend({
    * @constructor
    */
 
-  init: function init(options) {
+  init: function init() {
+    var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
     options.environment = options.environment || process.env.DENALI_ENV || process.env.NODE_ENV || 'development';
     this._super.call(this, options);
     this.router = new _express2.default.Router();
