@@ -230,13 +230,20 @@ exports.default = _coreObject2.default.extend({
       var isDenaliConfig = key.indexOf('DENALI_') === 0;
 
       if (isEngineConfig && application !== _this2 || application === _this2 && (isApplicationConfig || isDenaliConfig)) {
-        key = key.replace('__', '.').split('_').slice(1).join('_');
-        (0, _set2.default)(_this2.config, key, value);
+        var normalizedKey = key.replace('__', '.').split('_').slice(1).join('_');
+        (0, _set2.default)(_this2.config, normalizedKey, value);
       }
     });
 
     if (application !== this) {
       (0, _merge2.default)(application.config, this.config);
+    } else {
+      // Make the config statically available on the class itself for any
+      // lib code that needs it statically. Since this code runs before any
+      // initializers, it effectively ensures that the user can import their
+      // application class statically (i.e. `import App from '../app'`) and
+      // access the config.
+      application.constructor.config = application.config;
     }
   },
 
@@ -257,7 +264,12 @@ exports.default = _coreObject2.default.extend({
    */
   loadInitializers: function loadInitializers(application) {
     var initializersDir = _path2.default.join(this.configDir, 'initializers');
-    this.initializers = (0, _values2.default)((0, _requireAll2.default)(initializersDir));
+    this.initializers = (0, _values2.default)((0, _requireAll2.default)({
+      dirname: initializersDir,
+      resolve: function resolve(initializerModule) {
+        return initializerModule.default || initializerModule;
+      }
+    }));
     if (application !== this) {
       application.initializers = application.initializers.concat(this.initializers);
     }
@@ -279,7 +291,8 @@ exports.default = _coreObject2.default.extend({
    * @param {Application} application  the root application engine to mount to
    */
   loadMiddleware: function loadMiddleware(application) {
-    this.middleware = require(_path2.default.join(this.configDir, 'middleware'));
+    var middleware = require(_path2.default.join(this.configDir, 'middleware'));
+    this.middleware = middleware.default || middleware;
     this.middleware(application.router, application);
   },
 
@@ -310,7 +323,8 @@ exports.default = _coreObject2.default.extend({
 
     // Adapters, controllers, and serializers are singletons
     ['adapters', 'controllers', 'serializers'].forEach(function (type) {
-      _this3[type] = (0, _mapValues2.default)(_this3[type], function (Klass, name) {
+      _this3[type] = (0, _mapValues2.default)(_this3[type], function (classModule, name) {
+        var Klass = classModule.default;
         return new Klass({ name: name });
       });
     });
@@ -320,7 +334,8 @@ exports.default = _coreObject2.default.extend({
     });
   },
   loadRoutes: function loadRoutes(application) {
-    this.routes = require(_path2.default.join(this.configDir, 'routes'));
+    var routes = require(_path2.default.join(this.configDir, 'routes'));
+    this.routes = routes.default || routes;
     this.routes.call((0, _routerDsl2.default)(application));
   }
 });

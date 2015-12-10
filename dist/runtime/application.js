@@ -131,19 +131,20 @@ exports.default = _engine2.default.extend({
     }
   },
 
-  /*eslint-disable no-unused-vars*/
+  /* eslint-disable no-unused-vars */
   handleErrors: function handleErrors(err, req, res, next) {
+    var error = err;
     if (!res._rendered) {
-      if (!err.status) {
-        err = new _error2.default.InternalServerError(err.stack);
-        this.log('error', err.stack);
+      if (!error.status) {
+        error = new _error2.default.InternalServerError(err.stack);
+        this.log('error', error.stack);
       }
-      err.code = err.code || err.name;
-      return res.render(err);
+      error.code = error.code || error.name;
+      return res.render(error);
     }
   },
 
-  /*eslint-enable no-unused-vars*/
+  /* eslint-enable no-unused-vars */
 
   injectBlackburnPlusForaker: function injectBlackburnPlusForaker(server) {
     // Setup vanilla blackburn installation
@@ -208,7 +209,7 @@ exports.default = _engine2.default.extend({
     var controller = this.controllers[controllerName];
     (0, _assert2.default)(controller, 'Attempted to route to ' + controllerAction + ', but ' + controllerName + ' controller not found.');
     var action = controller.action(actionName);
-    return function (req, res, next) {
+    return function invokeActionForRoute(req, res, next) {
       // Inject the controller into the incoming request (it's context object).
       var context = req.context = req.context || {};
       context.controller = context.controller || controller;
