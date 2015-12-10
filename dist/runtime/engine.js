@@ -230,7 +230,7 @@ exports.default = _coreObject2.default.extend({
       var isDenaliConfig = key.indexOf('DENALI_') === 0;
 
       if (isEngineConfig && application !== _this2 || application === _this2 && (isApplicationConfig || isDenaliConfig)) {
-        var normalizedKey = key.replace('__', '.').split('_').slice(1).join('_');
+        var normalizedKey = key.replace(/__/g, '.').split('_').slice(1).join('_');
         (0, _set2.default)(_this2.config, normalizedKey, value);
       }
     });
