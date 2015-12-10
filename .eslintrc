@@ -5,5 +5,10 @@
     "node": true,
     "es6": true,
     "mocha": true
+  },
+  "rules": {
+    "padded-blocks": 0,
+    "comma-dangle": 0,
+    "no-console": 0
   }
 }
