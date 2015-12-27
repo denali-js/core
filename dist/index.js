@@ -1,32 +1,15 @@
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.Error = exports.version = exports.RootSerializer = exports.FlatSerializer = exports.JSONAPISerializer = exports.Serializer = exports.RawAdapter = exports.Adapter = exports.Controller = exports.Application = undefined;
-exports.start = start;
-
-var _path = require('path');
-
-var _path2 = _interopRequireDefault(_path);
-
-var _application = require('./runtime/application');
-
-var _application2 = _interopRequireDefault(_application);
-
-var _error = require('./runtime/error');
-
-var _error2 = _interopRequireDefault(_error);
-
-var _foraker = require('foraker');
-
-var _foraker2 = _interopRequireDefault(_foraker);
-
-var _blackburn = require('blackburn');
-
-var _package = require('../package.json');
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+import Application from './runtime/application';
+import Error from './runtime/error';
+import Action from './runtime/action';
+import {
+  Serializer,
+  FlatSerializer,
+  RootSerializer,
+  JSONAPISerializer,
+  Adapter,
+  RawAdapter
+} from 'blackburn';
+import { version } from '../package.json';
 
 /**
  * This is the main module exported by Denali when it is loaded via
@@ -47,13 +30,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *
  * ## Exports
  *
- * ### `Controller`
- *
- * The [foraker](https://github.com/davewasmer/foraker) Controller class.
- * Controllers are responsible for responding to requests to the Denali app.
- * Check out the [guides](controllers) or
- * [foraker](http://davewasmer.github.io/foraker) docs for details.
- *
  * ### `Serializer`
  *
  * The [blackburn](https://github.com/davewasmer/blackburn) Serializer class.
@@ -72,31 +48,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @title Denali
  */
 
-exports.Application = _application2.default;
-exports.Controller = _foraker2.default;
-exports.Adapter = _blackburn.Adapter;
-exports.RawAdapter = _blackburn.RawAdapter;
-exports.Serializer = _blackburn.Serializer;
-exports.JSONAPISerializer = _blackburn.JSONAPISerializer;
-exports.FlatSerializer = _blackburn.FlatSerializer;
-exports.RootSerializer = _blackburn.RootSerializer;
-exports.version = _package.version;
-exports.Error = _error2.default;
-
-/**
- * Starts the server found at the specified directory. If no directory is given,
- * defaults to the current working directory.
- *
- * @method start
- *
- * @param  {String} applicationDir The root directory that contains the Denali
- * app. (Defaults to `process.cwd()`)
- */
-
-function start() {
-  var applicationDir = arguments.length <= 0 || arguments[0] === undefined ? process.cwd() : arguments[0];
-
-  var ApplicationClass = require(_path2.default.join(applicationDir, 'app/application')).default;
-  var application = new ApplicationClass({ rootDir: applicationDir });
-  return application.start();
-}
+export {
+  Application,
+  Action,
+  Adapter,
+  RawAdapter,
+  Serializer,
+  JSONAPISerializer,
+  FlatSerializer,
+  RootSerializer,
+  version,
+  Error
+};

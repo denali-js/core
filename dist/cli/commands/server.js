@@ -1,93 +1,85 @@
-'use strict';
+import path from 'path';
+import chalk from 'chalk';
+import { spawn } from 'child_process';
+import program from 'commander';
+import nsp from 'nsp';
+import DenaliApp from '../broccoli/denali-app';
+import { sync as copyDereferenceSync } from 'copy-dereference';
 
-var _path = require('path');
+/**
+ * The server command is responsible for launching the Denali app. It will
+ * compile the app via broccoli and run the result.
+ *
+ * The app itself is launched as a child process. The app is started by reaching
+ * into it's installation of denali (inside node_modules/denali) and running the
+ * bootstrap.js script.
+ *
+ * This script then loads the compiled app (whose location is specified by the
+ * server command process as an arg to the bootstrap script). From there, an
+ * Application is instantiated and the runtime takes over.
+ */
 
-var _path2 = _interopRequireDefault(_path);
+program
+.option('-e --environment <environment>', 'The environment to run under, i.e. "production"', String)
+.option('-d --debug', 'Runs the server with the node --debug flag, and launches node-inspector')
+.option('-w --watch', 'Watches the source files and restarts the server on changes (enabled by default in development)')
+.option('-p, --port <port>', 'Sets the port that the server will listen on')
+.parse(process.argv);
 
-var _chalk = require('chalk');
+let environment = program.environment || process.env.NODE_ENV || process.env.DENALI_ENV || 'development';
+let watch = environment === 'development' || program.watch;
 
-var _chalk2 = _interopRequireDefault(_chalk);
+let command = 'node';
+let args = [ 'node_modules/denali/dist/bootstrap.js', 'dist' ];
+let options = {
+  stdio: [ 'pipe', process.stdout, process.stderr ],
+  cwd: process.cwd()
+};
 
-var _child_process = require('child_process');
-
-var _child_process2 = _interopRequireDefault(_child_process);
-
-var _assign = require('lodash/object/assign');
-
-var _assign2 = _interopRequireDefault(_assign);
-
-var _negate = require('lodash/function/negate');
-
-var _negate2 = _interopRequireDefault(_negate);
-
-var _pick = require('lodash/object/pick');
-
-var _pick2 = _interopRequireDefault(_pick);
-
-var _isEmpty = require('lodash/lang/isEmpty');
-
-var _isEmpty2 = _interopRequireDefault(_isEmpty);
-
-var _commander = require('commander');
-
-var _commander2 = _interopRequireDefault(_commander);
-
-var _nodemon = require('nodemon');
-
-var _nodemon2 = _interopRequireDefault(_nodemon);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-_commander2.default.option('-e --environment <environment>', 'The environment to run under, i.e. "production"', String).option('-d --debug', 'Runs the server with the node --debug flag, and launches node-inspector').option('-p, --port <port>', 'Sets the port that the server will listen on').parse(process.argv);
-
-var serverPath = _path2.default.join(process.cwd(), 'index.js');
-
-if (_commander2.default.environment === 'development' || !_commander2.default.environment) {
-
-  if (_commander2.default.debug) {
-    _child_process2.default.exec('node-inspector');
-    _child_process2.default.exec('open http://127.0.0.1:8080/debug?port=5858');
-  }
-
-  var env = process.env;
-  env = (0, _assign2.default)({
-    DENALI_ENV: _commander2.default.environment,
-    PORT: _commander2.default.port
-  }, env);
-  env = (0, _pick2.default)(env, (0, _negate2.default)(_isEmpty2.default));
-
-  (0, _nodemon2.default)({
-    script: serverPath,
-    ignore: ['node_modules\/(?!denali)', 'node_modules/denali/node_modules'],
-    debug: _commander2.default.debug,
-    env: env
-  });
-
-  _nodemon2.default.on('quit', function onQuit() {
-    console.log('Goodbye!');
-  });
-  _nodemon2.default.on('restart', function onRestart(files) {
-    console.log('\nFiles changed:\n  ' + files.join('\n  ') + '\nrestarting ...\n');
-  });
-  _nodemon2.default.on('crash', function onCrash() {
-    console.log(_chalk2.default.red.bold('Server crashed! Waiting for file changes to restart ...'));
-  });
-
-  process.once('SIGINT', function onSIGINT() {
-    _nodemon2.default.once('exit', function exitAfterNodemonCloses() {
-      process.exit();
-    });
-    _nodemon2.default.emit('exit');
-  });
-} else {
-
-  var spawnOptions = {
-    stdio: 'inherit',
-    env: (0, _assign2.default)({
-      DENALI_ENV: _commander2.default.environment,
-      PORT: _commander2.default.port
-    }, process.env)
-  };
-
-  _child_process2.default.spawn('node', [serverPath], spawnOptions);
+if (program.debug) {
+  args.unshift('--debug-brk');
+  console.log('Starting in debug mode. You can access the debugger at http://127.0.0.1:8080/?port=5858');
 }
+
+let server;
+
+let buildFile = require(path.join(process.cwd(), './denali-build.js'));
+
+const App = DenaliApp.extend(buildFile);
+
+let app = new App({
+  src: process.cwd(),
+  environment,
+  watch,
+  pkg: require(path.join(process.cwd(), 'package.json')),
+  afterBuild(destDir) {
+    copyDereferenceSync(destDir, 'dist');
+    if (server) {
+      let oldServer = server;
+      oldServer.removeAllListeners('exit');
+      oldServer.kill();
+    }
+    server = spawn(command, args, options);
+    if (watch) {
+      server.on('exit', (code) => {
+        console.log(chalk.red.bold(`Server ${ code === 0 ? 'exited' : 'crashed' }! Waiting for changes to restart ...`));
+      });
+    }
+  }
+});
+
+nsp.check({ 'package': path.join(process.cwd(), 'package.json') }, function(err, results) {
+  if (err && [ 'ENOTFOUND', 'ECONNRESET' ].indexOf(err.code) > -1) {
+    console.log(chalk.bold.yellow('Error trying to scan package dependencies for vulnerabilities with nsp, skipping scan ...'));
+    console.log(err);
+  }
+  if (results && results.length > 0) {
+    console.log(chalk.red.bold('Vulnerable dependencies found:'));
+    results.forEach((result) => {
+      console.log(result);
+    });
+    return;
+  }
+});
+
+app.build('dist');

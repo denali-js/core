@@ -1,0 +1,21 @@
+{
+  "extends": "airbnb/base",
+  "parser": "babel-eslint",
+  "env": {
+    "node": true,
+    "es6": true,
+    "mocha": true
+  },
+  "rules": {
+    "padded-blocks": 0,
+    "comma-dangle": 0,
+    "no-console": 0,
+    "prefer-const": 0,
+    "no-use-before-define": 0,
+    "no-cond-assign": 0,
+    "array-bracket-spacing": [ 2, "always" ],
+    "new-cap": 0,
+    "space-before-function-paren": 0,
+    "func-names": 0
+  }
+}

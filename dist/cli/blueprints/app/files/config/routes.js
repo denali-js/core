@@ -1,10 +1,5 @@
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = drawRoutes;
-function drawRoutes() {
+// TODO update with new routing DSL (if any)
+export default function drawRoutes() {
 
   this.get('/', 'application.index');
 
@@ -48,4 +43,5 @@ function drawRoutes() {
    * DELETE  | /books/:book_id/relationships/:relationship_name  | remove[relationshipName]Relationship
    *
    */
+
 }

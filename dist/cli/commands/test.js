@@ -1,52 +1,79 @@
-'use strict';
+import path from 'path';
+import chalk from 'chalk';
+import { exec, spawn } from 'child_process';
+import assign from 'lodash/object/assign';
+import remove from 'lodash/array/remove';
+import program from 'commander';
+import DenaliApp from '../broccoli/denali-app';
 
-var _path = require('path');
+let children = [];
 
-var _path2 = _interopRequireDefault(_path);
+program
+  .option('-e --environment <environment>', 'The environment to run in; defaults to "test"', 'test')
+  .option('-d --debug', 'Runs the server with the node --debug flag, and launches node-inspector')
+  .option('-w --watch', 'Watches the source files and restarts the server on changes (enabled by default in development)')
+  .option('-p, --port <port>', 'Sets the port that the server will listen on')
+  .option('-g --grep <regex filter>', 'Filter tests based on a regex pattern')
+  .parse(process.argv);
 
-var _chalk = require('chalk');
+let environment = program.environment || process.env.NODE_ENV || process.env.DENALI_ENV || 'test';
 
-var _chalk2 = _interopRequireDefault(_chalk);
+let command = 'mocha';
+let args = [];
+let options = {
+  stdio: 'inherit',
+  cwd: process.cwd(),
+  env: assign({
+    DENALI_ENV: program.environment,
+    PORT: program.port
+  }, process.env)
+};
 
-var _commander = require('commander');
-
-var _commander2 = _interopRequireDefault(_commander);
-
-var _nodemon = require('nodemon');
-
-var _nodemon2 = _interopRequireDefault(_nodemon);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-_commander2.default.option('-g --grep <regex filter>', 'Filter tests based on a regex pattern').option('-e --environment <environment>', 'The environment to run in; defaults to "test"', 'test').parse(process.argv);
-
-var testsCommand = 'node ' + _path2.default.join(__dirname, 'tasks', 'test.js');
-
-if (_commander2.default.grep) {
-  testsCommand += ' --grep "' + _commander2.default.grep + '"';
+if (program.grep) {
+  args.push('--grep');
+  args.push(program.grep);
 }
 
-(0, _nodemon2.default)({
-  exec: testsCommand,
-  env: { NODE_ENV: _commander2.default.environment },
-  ignore: ['node_modules\/(?!denali)', 'node_modules/denali/node_modules']
+if (program.debug) {
+  args.unshift('--debug-brk');
+  children.push(exec('node-inspector'));
+  console.log('Starting in debug mode. You can access the debugger at http://127.0.0.1:8080/?port=5858');
+}
+
+let server;
+
+process.on('SIGINT', () => {
+  let quit = after(children.length, process.exit.bind(process));
+  children.forEach((child) => {
+    child.kill();
+    child.once('exit', quit);
+  });
 });
 
-_nodemon2.default.on('restart', function (files) {
-  if (files) {
-    if (files.length > 1) {
-      console.log('\n' + files.length + ' files changed');
-    } else {
-      console.log('\n' + files[0] + ' changed');
+let buildFile = require('./denali-build.js');
+
+const App = DenaliApp.extend(buildFile);
+
+let app = new App({
+  src: process.cwd(),
+  environment,
+  watch: program.watch,
+  afterBuild(destDir) {
+    if (server) {
+      let oldServer = server;
+      oldServer.kill();
+      oldServer.once('exit', () => { remove(children, oldServer); });
     }
-    console.log('Re-running tests ...\n');
-  } else {
-    console.log('\nRe-running ...\n');
+    let instanceArgs = args.slice(0);
+    instanceArgs.push(path.join(destDir));
+    server = spawn(command, instanceArgs, options);
+    children.push(server);
+    if (program.watch) {
+      server.on('exit', (code) => {
+        console.log(chalk.red.bold(`Server ${ code ? 'exited' : 'crashed' }! Waiting for changes to restart ...`));
+      });
+    }
   }
 });
-_nodemon2.default.on('crash', function () {
-  console.log(_chalk2.default.red.bold('Tests crashed! Waiting for file changes to restart ...'));
-});
-_nodemon2.default.on('quit', function () {
-  console.log('Goodbye!');
-});
+
+app.build('dist');

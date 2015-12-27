@@ -37,3 +37,4 @@ exports.default = {
     console.log('');
   }
 };
+module.exports = exports['default'];

@@ -1,76 +1,70 @@
-# CLI Spec
+Draft
+- [x] preprocessor support w/ sourcemap support
+- [x] precompile & minify prod builds
+- [x] default logger with swappable interface
+- [x] addon loading & config
+- [x] content negotiation for actions
+- [x] default CSP, CORS, frame-jacking headers and config
 
-## Commands
-
-`new` - create new project
-`install` - install an addon
-`generate` - scaffold a blueprint
-`serve` - run the server
-  * should be suitable for production in prod mode (cluster?)
-  * should be suitable for dev (rebuild on changes)
-  * should avoid port binding in test mode (simulate requests with helpers)
-  * should support running a docs server as well (default in dev, optional in prod)
-  * should have debugger options
-    * can we start debugging on demand? In prod?
-    * can we use some kind of GUI here?
-`test` - run the test suite
-  * should support pluggable testing frameworks
-`deploy` - deploy to a target environment
-  * should support pluggable deploy steps
-`docs` - generate documentation for your API
-  * should allow addons to add to docs (i.e. a validation addon)
-
-## Build
-
-* support preprocessors & minification/uglification
-
-
-
-
-
-# Runtime Spec
-
-## Accessories
-
-* logging should be pluggable with decent default
-  * how does Rails/Phoenix do it?
-
-
-## Config
-
-* needs to support ENV vars in a sane way (i.e. ENV var name may not == config var name, don't want to do out-of-band mapping)
-* what's the load order? Most ORMs require static config (or at least, config defined before the models are)
+Delayed
+* jobs
+* allow additional debug options (via REPL?)
+  * allow it to start in debug mode, or to send a SIG to the process to trigger
+    debug mode
+  * use blessed to create gui/admin style interface in terminal
+    * can trigger it on stdio (for dev mode) or via telnet (for staging/prod)
+* add normalization to blackburn
+  * support hydrating into ORM instances
+  * normalize keys
+* find heroku addons, build addons for those saas services
+* testing framework
+  * database mock?
+  * mocking services
+  * test helpers
+  * generate tests from action classes
+  * addon testing
+* error handling
+  * special error actions? per folder, app wide?
+  * most errors should result in output, not crashing, ideally
+  * serve html error page to browsers, with additional details in dev
+* docs command
+  * swagger-like (or actually swagger) generation?
+  * show API browser / console for text/html requests (i.e. in browser) via addon
+* install command
+* extract eslint styles to preset dependency
+* support arbitrary blueprint sources (i.e. local folders, git urls)
+* containers lookup in child engines if not found
+   * add default lookups for error route
 
 
-## Blackburn
-
-* needs normalization hooks
-  * hooks to hydrate into ORM model instances if wanted
-  * at a minimum, normalize keys
 
 
-## Controllers? Endpoints? Actions?
 
-* Action files seems good, but how to model the filters?
-  * Is it purely based on inheritance (i.e. you define base actions at each layer needed, and just extend from those), or do actions traverse the tree to find applicable actions from higher levels?
+Application
+  bootstraps everything
+  global aspects:
+    transports (once a transport is included, it's there for everyone)
 
-## Pod structure?
+Engine
+  loading
+  addons/engines
+  local routes
+  local builds/compiling
 
-* It would be cool to be able to drop in new "types" of files on a specific endpoint/action, or group of endpoints/actions. I.e. a schema file could sit alongside the action it validates and automagically be applied. Or even something like logging (turn on verbose logging for this one endpoint) or caching (define a cache policy for this action only)
-  * Nope, no reason for the separate files. Addon couldn't merge without know route structure. But if we export Action classes, we could add config on those, which turns opaque middleware functions into introspection-enabled constructs - we can apply convention and leverage that.
+Transport
+  communication, request / response
 
-## Services?
+Service
+  external dependencies (database, email sending service, bug reporting)
 
-* I.e. database, email sending, cache?
+Action
+  performs a logical unit of work against a resource
 
-## Error handling
+Serializer
+  transform hydrated ORM instances into JSON representations over the wire, and vice versa
 
-* by default, errors and exceptions should be rendered out in the response in dev
-  * use content-negotiation to render html for browser requests
+Adapter
+  tell the serializers how to interrogate your ORM instances
 
-## Security
-
-* secure by default
-* CSP, CORS, frame-jacking headers
-* review OWASP, node security
-  * runtime vulnerabilities as well as compile time - scan for package vulnerabilities?
+Filters
+  mixed in to run before or after an Action

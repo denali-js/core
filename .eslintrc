@@ -16,6 +16,7 @@
     "array-bracket-spacing": [ 2, "always" ],
     "new-cap": 0,
     "space-before-function-paren": 0,
-    "func-names": 0
+    "func-names": 0,
+    "no-param-reassign": 0
   }
 }
