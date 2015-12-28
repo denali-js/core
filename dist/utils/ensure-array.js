@@ -1,4 +1,15 @@
-import isArray from 'lodash/lang/isArray';
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = ensureArray;
+
+var _isArray = require('lodash/lang/isArray');
+
+var _isArray2 = _interopRequireDefault(_isArray);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * Takes the provided argument and ensures that the return value is an array.
@@ -12,12 +23,13 @@ import isArray from 'lodash/lang/isArray';
  *
  * @return {Array}
  */
-export default function ensureArray(value) {
-  if (isArray(value)) {
+function ensureArray(value) {
+  if ((0, _isArray2.default)(value)) {
     return value;
   } else if (value != null) {
-    return [ value ];
+    return [value];
   } else {
     return [];
   }
 }
+module.exports = exports['default'];

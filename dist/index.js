@@ -1,15 +1,27 @@
-import Application from './runtime/application';
-import Error from './runtime/error';
-import Action from './runtime/action';
-import {
-  Serializer,
-  FlatSerializer,
-  RootSerializer,
-  JSONAPISerializer,
-  Adapter,
-  RawAdapter
-} from 'blackburn';
-import { version } from '../package.json';
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Errors = exports.version = exports.RootSerializer = exports.FlatSerializer = exports.JSONAPISerializer = exports.Serializer = exports.RawAdapter = exports.Adapter = exports.Action = exports.Application = undefined;
+
+var _application = require('./runtime/application');
+
+var _application2 = _interopRequireDefault(_application);
+
+var _errors = require('./runtime/errors');
+
+var _errors2 = _interopRequireDefault(_errors);
+
+var _action = require('./runtime/action');
+
+var _action2 = _interopRequireDefault(_action);
+
+var _blackburn = require('blackburn');
+
+var _package = require('../package.json');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * This is the main module exported by Denali when it is loaded via
@@ -48,15 +60,13 @@ import { version } from '../package.json';
  * @title Denali
  */
 
-export {
-  Application,
-  Action,
-  Adapter,
-  RawAdapter,
-  Serializer,
-  JSONAPISerializer,
-  FlatSerializer,
-  RootSerializer,
-  version,
-  Error
-};
+exports.Application = _application2.default;
+exports.Action = _action2.default;
+exports.Adapter = _blackburn.Adapter;
+exports.RawAdapter = _blackburn.RawAdapter;
+exports.Serializer = _blackburn.Serializer;
+exports.JSONAPISerializer = _blackburn.JSONAPISerializer;
+exports.FlatSerializer = _blackburn.FlatSerializer;
+exports.RootSerializer = _blackburn.RootSerializer;
+exports.version = _package.version;
+exports.Errors = _errors2.default;

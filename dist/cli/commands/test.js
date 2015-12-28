@@ -1,76 +1,96 @@
-import path from 'path';
-import chalk from 'chalk';
-import { exec, spawn } from 'child_process';
-import assign from 'lodash/object/assign';
-import remove from 'lodash/array/remove';
-import program from 'commander';
-import DenaliApp from '../broccoli/denali-app';
+'use strict';
 
-let children = [];
+var _path = require('path');
 
-program
-  .option('-e --environment <environment>', 'The environment to run in; defaults to "test"', 'test')
-  .option('-d --debug', 'Runs the server with the node --debug flag, and launches node-inspector')
-  .option('-w --watch', 'Watches the source files and restarts the server on changes (enabled by default in development)')
-  .option('-p, --port <port>', 'Sets the port that the server will listen on')
-  .option('-g --grep <regex filter>', 'Filter tests based on a regex pattern')
-  .parse(process.argv);
+var _path2 = _interopRequireDefault(_path);
 
-let environment = program.environment || process.env.NODE_ENV || process.env.DENALI_ENV || 'test';
+var _chalk = require('chalk');
 
-let command = 'mocha';
-let args = [];
-let options = {
+var _chalk2 = _interopRequireDefault(_chalk);
+
+var _child_process = require('child_process');
+
+var _assign = require('lodash/object/assign');
+
+var _assign2 = _interopRequireDefault(_assign);
+
+var _remove = require('lodash/array/remove');
+
+var _remove2 = _interopRequireDefault(_remove);
+
+var _commander = require('commander');
+
+var _commander2 = _interopRequireDefault(_commander);
+
+var _denaliApp = require('../broccoli/denali-app');
+
+var _denaliApp2 = _interopRequireDefault(_denaliApp);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var children = [];
+
+_commander2.default.option('-e --environment <environment>', 'The environment to run in; defaults to "test"', 'test').option('-d --debug', 'Runs the server with the node --debug flag, and launches node-inspector').option('-w --watch', 'Watches the source files and restarts the server on changes (enabled by default in development)').option('-p, --port <port>', 'Sets the port that the server will listen on').option('-g --grep <regex filter>', 'Filter tests based on a regex pattern').parse(process.argv);
+
+var environment = _commander2.default.environment || process.env.NODE_ENV || process.env.DENALI_ENV || 'test';
+
+var command = 'mocha';
+var args = [];
+var options = {
   stdio: 'inherit',
   cwd: process.cwd(),
-  env: assign({
-    DENALI_ENV: program.environment,
-    PORT: program.port
+  env: (0, _assign2.default)({
+    DENALI_ENV: _commander2.default.environment,
+    PORT: _commander2.default.port
   }, process.env)
 };
 
-if (program.grep) {
+if (_commander2.default.grep) {
   args.push('--grep');
-  args.push(program.grep);
+  args.push(_commander2.default.grep);
 }
 
-if (program.debug) {
+if (_commander2.default.debug) {
   args.unshift('--debug-brk');
-  children.push(exec('node-inspector'));
+  children.push((0, _child_process.exec)('node-inspector'));
   console.log('Starting in debug mode. You can access the debugger at http://127.0.0.1:8080/?port=5858');
 }
 
-let server;
+var server = undefined;
 
-process.on('SIGINT', () => {
-  let quit = after(children.length, process.exit.bind(process));
-  children.forEach((child) => {
+process.on('SIGINT', function () {
+  var quit = after(children.length, process.exit.bind(process));
+  children.forEach(function (child) {
     child.kill();
     child.once('exit', quit);
   });
 });
 
-let buildFile = require('./denali-build.js');
+var buildFile = require('./denali-build.js');
 
-const App = DenaliApp.extend(buildFile);
+var App = _denaliApp2.default.extend(buildFile);
 
-let app = new App({
+var app = new App({
   src: process.cwd(),
-  environment,
-  watch: program.watch,
-  afterBuild(destDir) {
+  environment: environment,
+  watch: _commander2.default.watch,
+  afterBuild: function afterBuild(destDir) {
     if (server) {
-      let oldServer = server;
-      oldServer.kill();
-      oldServer.once('exit', () => { remove(children, oldServer); });
+      (function () {
+        var oldServer = server;
+        oldServer.kill();
+        oldServer.once('exit', function () {
+          (0, _remove2.default)(children, oldServer);
+        });
+      })();
     }
-    let instanceArgs = args.slice(0);
-    instanceArgs.push(path.join(destDir));
-    server = spawn(command, instanceArgs, options);
+    var instanceArgs = args.slice(0);
+    instanceArgs.push(_path2.default.join(destDir));
+    server = (0, _child_process.spawn)(command, instanceArgs, options);
     children.push(server);
-    if (program.watch) {
-      server.on('exit', (code) => {
-        console.log(chalk.red.bold(`Server ${ code ? 'exited' : 'crashed' }! Waiting for changes to restart ...`));
+    if (_commander2.default.watch) {
+      server.on('exit', function (code) {
+        console.log(_chalk2.default.red.bold('Server ' + (code ? 'exited' : 'crashed') + '! Waiting for changes to restart ...'));
       });
     }
   }

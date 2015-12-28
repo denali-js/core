@@ -1,20 +1,78 @@
-import assert from 'assert';
-import path from 'path';
-import fs from 'fs';
-import CoreObject from 'core-object';
-import DAG from 'dag-map';
-import express from 'express';
-import findup from 'findup';
-import resolve from 'resolve';
-import routerDSL from './router-dsl';
-import Container from './container';
-import log from '../utils/log';
-import eachDir from '../utils/each-dir';
-import requireDir from '../utils/require-dir';
-import tryRequire from '../utils/try-require';
-import forIn from 'lodash/object/forIn';
-import contains from 'lodash/collection/contains';
-import values from 'lodash/object/values';
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _assert = require('assert');
+
+var _assert2 = _interopRequireDefault(_assert);
+
+var _path = require('path');
+
+var _path2 = _interopRequireDefault(_path);
+
+var _fs = require('fs');
+
+var _fs2 = _interopRequireDefault(_fs);
+
+var _coreObject = require('core-object');
+
+var _coreObject2 = _interopRequireDefault(_coreObject);
+
+var _dagMap = require('dag-map');
+
+var _dagMap2 = _interopRequireDefault(_dagMap);
+
+var _express = require('express');
+
+var _express2 = _interopRequireDefault(_express);
+
+var _findup = require('findup');
+
+var _findup2 = _interopRequireDefault(_findup);
+
+var _resolve = require('resolve');
+
+var _resolve2 = _interopRequireDefault(_resolve);
+
+var _routerDsl = require('./router-dsl');
+
+var _routerDsl2 = _interopRequireDefault(_routerDsl);
+
+var _container = require('./container');
+
+var _container2 = _interopRequireDefault(_container);
+
+var _log2 = require('../utils/log');
+
+var _log3 = _interopRequireDefault(_log2);
+
+var _eachDir = require('../utils/each-dir');
+
+var _eachDir2 = _interopRequireDefault(_eachDir);
+
+var _requireDir = require('../utils/require-dir');
+
+var _requireDir2 = _interopRequireDefault(_requireDir);
+
+var _tryRequire = require('../utils/try-require');
+
+var _tryRequire2 = _interopRequireDefault(_tryRequire);
+
+var _forIn = require('lodash/object/forIn');
+
+var _forIn2 = _interopRequireDefault(_forIn);
+
+var _contains = require('lodash/collection/contains');
+
+var _contains2 = _interopRequireDefault(_contains);
+
+var _values = require('lodash/object/values');
+
+var _values2 = _interopRequireDefault(_values);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * Engines form the foundation of Denali, and are built with extensibility as a
@@ -25,7 +83,7 @@ import values from 'lodash/object/values';
  * @title Engine
  */
 
-export default CoreObject.extend({
+exports.default = _coreObject2.default.extend({
 
   /**
    * Create a new Engine. Upon creation, the Engine instance will search for any
@@ -41,54 +99,54 @@ export default CoreObject.extend({
    *
    * @return {Engine}
    */
-  init() {
-    this._super(...arguments);
-    assert(this.dir, 'You must supply a dir to an Engine instance');
-    assert(this.environment, 'You must supply an environment to an Engine instance');
 
-    this.appDir = path.join(this.dir, 'app');
-    this.configDir = path.join(this.dir, 'config');
-    this.pkg = tryRequire(path.join(this.dir, 'package.json'));
+  init: function init() {
+    this._super.apply(this, arguments);
+    (0, _assert2.default)(this.dir, 'You must supply a dir to an Engine instance');
+    (0, _assert2.default)(this.environment, 'You must supply an environment to an Engine instance');
+
+    this.appDir = _path2.default.join(this.dir, 'app');
+    this.configDir = _path2.default.join(this.dir, 'config');
+    this.pkg = (0, _tryRequire2.default)(_path2.default.join(this.dir, 'package.json'));
     this.name = this.pkg.name;
 
-    this.router = express.Router();
+    this.router = _express2.default.Router();
     this._engineMounts = {};
-    this.container = new Container();
+    this.container = this.container || new _container2.default();
+    if (this.parent) {
+      this.parent.container.addChildContainer(this.container);
+    }
 
     this.load();
     this.discoverEngines();
   },
-
-  load() {
+  load: function load() {
     this.loadConfig();
     this.loadInitializers();
     this.loadMiddleware();
-    this.loadRoutes();
     this.loadApp();
+    this.loadRoutes();
   },
-
-  loadConfig() {
+  loadConfig: function loadConfig() {
     this._config = this.loadConfigFile('environment');
   },
-
-  loadInitializers() {
-    let initializersDir = path.join(this.configDir, 'initializers');
-    this._initializers = values(requireDir(initializersDir));
+  loadInitializers: function loadInitializers() {
+    var initializersDir = _path2.default.join(this.configDir, 'initializers');
+    this._initializers = (0, _values2.default)((0, _requireDir2.default)(initializersDir));
   },
-
-  loadMiddleware() {
+  loadMiddleware: function loadMiddleware() {
     this._middleware = this.loadConfigFile('environment');
     this._middleware(this.router);
   },
-
-  loadRoutes() {
+  loadRoutes: function loadRoutes() {
     this._routes = this.loadConfigFile('routes');
-    this._routes.call(routerDSL(this));
+    this._routes.call((0, _routerDsl2.default)(this));
   },
+  loadApp: function loadApp() {
+    var _this = this;
 
-  loadApp() {
-    eachDir(this.appDir, (dir) => {
-      this.container.registerDir(path.join(this.appDir, dir), dir);
+    (0, _eachDir2.default)(this.appDir, function (dir) {
+      _this.container.registerDir(_path2.default.join(_this.appDir, dir), dir);
     });
   },
 
@@ -98,40 +156,44 @@ export default CoreObject.extend({
    * @method discoverEngines
    * @private
    */
-  discoverEngines() {
-    this.engineGraph = new DAG();
-    forIn(this.pkg.dependencies, (version, pkgName) => {
-      let pkgMainPath = resolve.sync(pkgName, { basedir: this.dir });
-      let pkgPath = findup.sync(pkgMainPath, 'package.json');
-      let pkgJSONPath = path.join(pkgPath, 'package.json');
-      let pkg = require(pkgJSONPath);
-      let isDenaliEngine = pkg.keywords && contains(pkg.keywords, 'denali-engine');
+  discoverEngines: function discoverEngines() {
+    var _this2 = this;
+
+    this.engineGraph = new _dagMap2.default();
+    (0, _forIn2.default)(this.pkg.dependencies, function (version, pkgName) {
+      var pkgMainPath = _resolve2.default.sync(pkgName, { basedir: _this2.dir });
+      var pkgPath = _findup2.default.sync(pkgMainPath, 'package.json');
+      var pkgJSONPath = _path2.default.join(pkgPath, 'package.json');
+      var pkg = require(pkgJSONPath);
+      var isDenaliEngine = pkg.keywords && (0, _contains2.default)(pkg.keywords, 'denali-engine');
 
       if (isDenaliEngine) {
-        console.log(pkgJSONPath, 'is an engine');
-        let config = pkg.denali || {};
+        var config = pkg.denali || {};
 
-        let EngineClass;
-        let customEngineClass = path.join(root, 'app', 'engine.js');
-        if (fs.existsSync(customEngineClass)) {
+        var EngineClass = undefined;
+        var customEngineClass = _path2.default.join(root, 'app', 'engine.js');
+        if (_fs2.default.existsSync(customEngineClass)) {
           EngineClass = require(customEngineClass);
         } else {
           EngineClass = module.exports;
         }
 
-        let engine = new EngineClass({
+        var engine = new EngineClass({
           dir: pkgPath,
-          environment: this.environment,
-          parent: this
+          environment: _this2.environment,
+          parent: _this2
         });
-        this.engineGraph.addEdges(pkg.name, engine, config.before, config.after);
+        _this2.engineGraph.addEdges(pkg.name, engine, config.before, config.after);
       }
     });
   },
+  eachEngine: function eachEngine(fn) {
+    var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
 
-  eachEngine(fn, options = {}) {
-    let childrenFirst = options.childrenFirst;
-    return this.engineGraph.topsort(({ value }) => {
+    var childrenFirst = options.childrenFirst;
+    return this.engineGraph.topsort(function (_ref) {
+      var value = _ref.value;
+
       if (childrenFirst) {
         value.eachEngine(fn, options);
         fn(value);
@@ -141,18 +203,20 @@ export default CoreObject.extend({
       }
     });
   },
-
-  loadConfigFile(filename) {
-    return require(path.join(this.configDir, filename + '.js'));
+  loadConfigFile: function loadConfigFile(filename) {
+    return require(_path2.default.join(this.configDir, filename + '.js'));
   },
-
-  log(level, ...msg) {
+  log: function log(level) {
     if (this.environment !== 'test' || level === 'error') {
-      if (!this.isApplication) {
-        msg.unshift(`[${ this.name }]`);
+      for (var _len = arguments.length, msg = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        msg[_key - 1] = arguments[_key];
       }
-      log.call(this, level, ...msg);
-    }
-  },
 
+      if (!this.isApplication) {
+        msg.unshift('[' + this.name + ']');
+      }
+      _log3.default.call.apply(_log3.default, [this, level].concat(msg));
+    }
+  }
 });
+module.exports = exports['default'];
