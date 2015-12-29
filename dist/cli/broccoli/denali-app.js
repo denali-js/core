@@ -4,13 +4,17 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _fs = require('fs');
+
+var _fs2 = _interopRequireDefault(_fs);
+
 var _broccoliBabelTranspiler = require('broccoli-babel-transpiler');
 
 var _broccoliBabelTranspiler2 = _interopRequireDefault(_broccoliBabelTranspiler);
 
-var _coreObject = require('core-object');
+var _object = require('../../runtime/object');
 
-var _coreObject2 = _interopRequireDefault(_coreObject);
+var _object2 = _interopRequireDefault(_object);
 
 var _broccoli = require('broccoli');
 
@@ -48,7 +52,7 @@ var _log2 = _interopRequireDefault(_log);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _coreObject2.default.extend({
+exports.default = _object2.default.extend({
 
   firstBuild: true,
 
@@ -56,6 +60,9 @@ exports.default = _coreObject2.default.extend({
     var _this = this;
 
     var tree = this.toTree();
+    if (!_fs2.default.existsSync('tmp')) {
+      _fs2.default.mkdirSync('tmp');
+    }
     var builder = new _broccoli2.default.Builder(tree, { tmpdir: './tmp' });
     if (this.watch) {
       var watcher = new _broccoli2.default.Watcher(builder);

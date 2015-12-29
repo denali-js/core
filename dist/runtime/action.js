@@ -4,9 +4,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _coreObject = require('core-object');
+var _object = require('./object');
 
-var _coreObject2 = _interopRequireDefault(_coreObject);
+var _object2 = _interopRequireDefault(_object);
 
 var _bluebird = require('bluebird');
 
@@ -16,9 +16,17 @@ var _assign = require('lodash/object/assign');
 
 var _assign2 = _interopRequireDefault(_assign);
 
+var _capitalize = require('lodash/string/capitalize');
+
+var _capitalize2 = _interopRequireDefault(_capitalize);
+
+var _assert = require('assert');
+
+var _assert2 = _interopRequireDefault(_assert);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _coreObject2.default.extend({
+exports.default = _object2.default.extend({
   render: function render() {
     var _response;
 
@@ -28,18 +36,26 @@ exports.default = _coreObject2.default.extend({
   run: function run() {
     var _this = this;
 
-    (0, _assign2.default)(this, this.services);
     var params = (0, _assign2.default)({}, this.request.query, this.request.body);
     var responder = this.respond;
-    Object.keys(this).filter(function (key) {
-      return (/^respondWith/.test(key)
-      );
-    }).forEach(function (key) {
-      var format = key.match(/respondWith(.+)/)[1];
-      if (_this.request.accepts(format.toLowerCase())) {
-        responder = _this[key];
+    (0, _assert2.default)(typeof responder === 'function', 'Your \'' + this.name + '\' must define a respond method!');
+    if (this.request.get('accept') !== '*/*') {
+      var availableFormats = [];
+      /* eslint-disable guard-for-in */
+      for (var key in this) {
+        if (/^respondWith/.test(key)) {
+          var format = key.match(/respondWith(.+)/)[1].toLowerCase();
+          availableFormats.push(format);
+        }
       }
-    });
+      /* eslint-enable guard-for-in */
+      if (availableFormats.length > 0) {
+        var bestFormat = this.request.accepts(availableFormats);
+        if (bestFormat) {
+          responder = this['respondWith' + (0, _capitalize2.default)(bestFormat)];
+        }
+      }
+    }
     responder = _bluebird2.default.method(responder.bind(this));
     return responder(params).then(function () {
       if (!(_this._rendered || _this.response.headersSent)) {

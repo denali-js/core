@@ -23,12 +23,13 @@ var _template2 = _interopRequireDefault(_template);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var errorHTML = _fs2.default.readFileSync(_path2.default.join(__dirname, 'error-template.html'), 'utf-8');
-var errorHTMLTemplate = (0, _template2.default)(errorHTML, { variable: 'error' });
+var errorHTMLTemplate = (0, _template2.default)(errorHTML, { variable: 'data' });
 
 exports.default = _action2.default.extend({
   respond: function respond() {
+    this.error.action = this.request.originalAction;
     try {
-      return this.respondWithHTML();
+      return this.respondWithJson();
     } catch (error) {
       this.log('error', 'Error encountered while rendering the error action response:');
       this.log('error', error.stack || error);
@@ -39,11 +40,18 @@ exports.default = _action2.default.extend({
       }
     }
   },
-  respondWithHTML: function respondWithHTML() {
-    return this.response.status(this.error.status || 500).send(errorHTMLTemplate(this.error));
+  respondWithHtml: function respondWithHtml() {
+    this.error.action = this.request.originalAction;
+    var html = errorHTMLTemplate({ error: this.error });
+    return this.response.status(this.error.status || 500).send(html);
   },
-  respondWithJSON: function respondWithJSON() {
-    return this.response.status(this.error.status || 500).json(this.error);
+  respondWithJson: function respondWithJson() {
+    this.error.action = this.request.originalAction;
+    return this.response.status(this.error.status || 500).send(JSON.stringify({
+      message: this.error.message,
+      stacktrace: this.error.stack,
+      source: this.error.action
+    }, null, 2));
   }
 });
 module.exports = exports['default'];

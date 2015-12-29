@@ -1,6 +1,8 @@
 import expect from 'must';
-import mockFS from 'mock-fs';
+import path from 'path';
 import Container from '../../lib/runtime/container';
+
+const fixturesDir = path.join(__dirname, '..', 'fixtures');
 
 describe('Container', function() {
   describe('registering', function() {
@@ -10,22 +12,9 @@ describe('Container', function() {
       expect(container._registry.get('foo')).to.be.true();
     });
     describe('registerDir', function() {
-      before(function() {
-        mockFS({
-          'foo': {
-            'one.js': 'exports.test = true',
-            'two.js': 'exports.test = true',
-            'three.js': 'exports.test = true'
-          }
-        });
-      });
-      after(function() {
-        mockFS.restore();
-      });
-
       it('should register a directory of files under their basenames and the supplied type', function() {
         let container = new Container();
-        container.registerDir('foo', 'tests');
+        container.registerDir(path.join(fixturesDir, 'container'), 'tests');
         expect(container._registry.get('tests/one').test).to.be.true();
         expect(container._registry.get('tests/two').test).to.be.true();
         expect(container._registry.get('tests/three').test).to.be.true();

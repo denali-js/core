@@ -1,5 +1,19 @@
 import expect from 'must';
 import Action from '../../lib/runtime/action';
+import merge from 'lodash/object/merge';
+
+function mockReqRes(overrides) {
+  return merge({
+    request: {
+      query: {},
+      body: {}
+    },
+    response: {
+      render() {}
+    },
+    next() {}
+  }, overrides);
+}
 
 describe('actions', function() {
   it('should invoke respond() with params', function() {
@@ -9,16 +23,13 @@ describe('actions', function() {
         expect(params.body).to.be.true();
       }
     });
-    let action = new TestAction({
+    let action = new TestAction(mockReqRes({
       request: {
         query: { query: true },
         body: { body: true }
-      },
-      response: {
-        render() {}
       }
-    });
-    action._run();
+    }))
+    action.run();
   });
 
   it('should proxy this.render() to response.render()', function() {
@@ -27,14 +38,13 @@ describe('actions', function() {
         this.render(true);
       }
     });
-    let action = new TestAction({
-      request: { query: {}, body: {} },
+    let action = new TestAction(mockReqRes({
       response: {
         render(value) {
           expect(value).to.be.true();
         }
       }
-    });
-    action._run();
+    }));
+    action.run();
   });
 });

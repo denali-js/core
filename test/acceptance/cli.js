@@ -14,10 +14,10 @@ function dirExists(filepath) {
   return fs.existSync(filepath) && fs.statSync(filepath).isDirectory();
 }
 
-describe('cli', function() {
+xdescribe('cli', function() {
   before(function() {
     process.chdir(path.join(dummyDir, '..'));
-    run('denali new dummy');
+    run('denali new dummy --skip-npm');
   });
 
   describe('new', function() {

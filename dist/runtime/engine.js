@@ -16,9 +16,9 @@ var _fs = require('fs');
 
 var _fs2 = _interopRequireDefault(_fs);
 
-var _coreObject = require('core-object');
+var _object = require('./object');
 
-var _coreObject2 = _interopRequireDefault(_coreObject);
+var _object2 = _interopRequireDefault(_object);
 
 var _dagMap = require('dag-map');
 
@@ -83,7 +83,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @title Engine
  */
 
-exports.default = _coreObject2.default.extend({
+exports.default = _object2.default.extend({
 
   /**
    * Create a new Engine. Upon creation, the Engine instance will search for any

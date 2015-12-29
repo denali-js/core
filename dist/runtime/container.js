@@ -6,9 +6,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _coreObject = require('core-object');
+var _object = require('./object');
 
-var _coreObject2 = _interopRequireDefault(_coreObject);
+var _object2 = _interopRequireDefault(_object);
+
+var _assert = require('assert');
+
+var _assert2 = _interopRequireDefault(_assert);
 
 var _walkSync = require('walk-sync');
 
@@ -26,6 +30,10 @@ var _assign = require('lodash/object/assign');
 
 var _assign2 = _interopRequireDefault(_assign);
 
+var _forEach = require('lodash/collection/forEach');
+
+var _forEach2 = _interopRequireDefault(_forEach);
+
 var _find = require('lodash/collection/find');
 
 var _find2 = _interopRequireDefault(_find);
@@ -36,15 +44,17 @@ function _toArray(arr) { return Array.isArray(arr) ? arr : Array.from(arr); }
 
 var JS_EXT = /\.js$/;
 
-exports.default = _coreObject2.default.extend({
+exports.default = _object2.default.extend({
   init: function init() {
     this._super.apply(this, arguments);
     this._registry = new Map();
     this._typeMaps = new Map();
+    this._singletons = new Map();
     this._children = [];
   },
   addChildContainer: function addChildContainer(child) {
     this._children.push(child);
+    child._parent = this;
   },
   register: function register(fullName, value) {
     var _parseFullName = this.parseFullName(fullName);
@@ -55,9 +65,9 @@ exports.default = _coreObject2.default.extend({
     var name = _parseFullName2[1];
 
     if (!this._typeMaps.has(type)) {
-      this._typeMaps.set(type, new Map());
+      this._typeMaps.set(type, {});
     }
-    this._typeMaps.get(type).set(name, value);
+    this._typeMaps.get(type)[name] = value;
     this._registry.set(fullName, value);
   },
   registerDir: function registerDir(dirpath, typeName) {
@@ -73,6 +83,9 @@ exports.default = _coreObject2.default.extend({
     });
   },
   lookup: function lookup(fullName) {
+    if (typeof fullName !== 'string') {
+      fullName = this.compileFullName(fullName);
+    }
     var result = this._registry.get(fullName);
     if (!result) {
       (0, _find2.default)(this._children, function (child) {
@@ -81,10 +94,25 @@ exports.default = _coreObject2.default.extend({
         return childResult;
       });
     }
+    if (result && result._instantiate) {
+      if (result._singleton) {
+        if (!this._singletons.get(fullName)) {
+          this._singletons.set(fullName, new result({ container: this }));
+        }
+        return this._singletons.get(fullName);
+      }
+      return new result({ container: this });
+    }
     return result;
   },
   lookupType: function lookupType(type) {
-    var result = (0, _assign2.default)({}, this._typeMaps.get(type));
+    var _this2 = this;
+
+    var result = {};
+    (0, _forEach2.default)(this._typeMaps.get(type), function (value, name) {
+      var fullName = _this2.compileFullName({ type: type, name: name });
+      result[name] = _this2.lookup(fullName);
+    });
     this._children.forEach(function (child) {
       (0, _assign2.default)(result, child.lookupType(type));
     });
@@ -100,6 +128,12 @@ exports.default = _coreObject2.default.extend({
     var name = _fullName$split2.slice(1);
 
     return [type, name.join('/')];
+  },
+  compileFullName: function compileFullName(_ref) {
+    var type = _ref.type;
+    var name = _ref.name;
+
+    return type + '/' + name;
   }
 });
 module.exports = exports['default'];

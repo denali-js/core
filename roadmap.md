@@ -1,10 +1,31 @@
-Draft
 - [x] preprocessor support w/ sourcemap support
 - [x] precompile & minify prod builds
 - [x] default logger with swappable interface
 - [x] addon loading & config
 - [x] content negotiation for actions
 - [x] default CSP, CORS, frame-jacking headers and config
+- [x] containers lookup in child engines if not found
+   - [x] add default lookups for error route
+
+
+* add normalization to blackburn
+  * support hydrating into ORM instances
+  * normalize keys
+* testing framework
+  * database mock?
+  * mocking services
+  * test helpers
+  * generate tests from action classes
+  * addon testing
+* engine blueprints
+  * settle on engine vs addon
+  * create stack trace link engine
+
+* find heroku addons, build addons for those saas services
+* error handling
+  * special error actions? per folder, app wide?
+  * most errors should result in output, not crashing, ideally
+  * serve html error page to browsers, with additional details in dev
 
 Delayed
 * jobs
@@ -13,28 +34,14 @@ Delayed
     debug mode
   * use blessed to create gui/admin style interface in terminal
     * can trigger it on stdio (for dev mode) or via telnet (for staging/prod)
-* add normalization to blackburn
-  * support hydrating into ORM instances
-  * normalize keys
-* find heroku addons, build addons for those saas services
-* testing framework
-  * database mock?
-  * mocking services
-  * test helpers
-  * generate tests from action classes
-  * addon testing
-* error handling
-  * special error actions? per folder, app wide?
-  * most errors should result in output, not crashing, ideally
-  * serve html error page to browsers, with additional details in dev
+  * instead of terminal UI, serve a browser UI on an out-of-band server in dev
+    mode that shows an API console, debug options, etc interface
 * docs command
   * swagger-like (or actually swagger) generation?
   * show API browser / console for text/html requests (i.e. in browser) via addon
 * install command
 * extract eslint styles to preset dependency
 * support arbitrary blueprint sources (i.e. local folders, git urls)
-* containers lookup in child engines if not found
-   * add default lookups for error route
 
 
 

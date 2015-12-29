@@ -86,6 +86,7 @@ exports.default = _engine2.default.extend({
     var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 
     options.container = new _container2.default();
+    options.container.register('application/main', this);
     options.container.addChildContainer(this._createDefaultContainer());
     this._super.apply(this, arguments);
     this.mount();
@@ -107,6 +108,7 @@ exports.default = _engine2.default.extend({
     this.eachEngine(function (engine) {
       engine._config(_this.environment, _this.config);
     }, { childrenFirst: false });
+    this.container.register('config/environment', this.config);
   },
   sortInitializers: function sortInitializers() {
     var _this2 = this;
@@ -117,7 +119,7 @@ exports.default = _engine2.default.extend({
     });
     var initializerGraph = new _dagMap2.default();
     initializers.forEach(function (initializer) {
-      initializerGraph.addEdges(initializer.name, initializer.initializer, initializer.before, initializer.after);
+      initializerGraph.addEdges(initializer.name, initializer.initialize, initializer.before, initializer.after);
     });
     this.initializers = [];
     initializerGraph.topsort(function (_ref) {
@@ -138,6 +140,7 @@ exports.default = _engine2.default.extend({
     var _this4 = this;
 
     var port = this.config.server.port;
+    this.instantiateServices();
     return this.runInitializers().then(function () {
       return _this4.startServer(port);
     }).then(function () {
@@ -146,6 +149,9 @@ exports.default = _engine2.default.extend({
       _this4.log('error', 'Problem starting app ...');
       _this4.log('error', err.stack || err);
     });
+  },
+  instantiateServices: function instantiateServices() {
+    this.container.lookupType('services');
   },
   runInitializers: function runInitializers() {
     var _this5 = this;
@@ -196,7 +202,11 @@ exports.default = _engine2.default.extend({
     }));
 
     if (securityConfig.requireSSL) {
-      router.use((0, _expressForceSsl2.default)({ enable301Redirects: securityConfig.redirectToSSL }));
+      router.use(function (req, res, next) {
+        res.locals = res.locals || {};
+        res.locals.forceSSLOptions = { enable301Redirects: securityConfig.redirectToSSL };
+        (0, _expressForceSsl2.default)(req, res, next);
+      });
     }
 
     return router;
@@ -217,17 +227,16 @@ exports.default = _engine2.default.extend({
   errorMiddleware: function errorMiddleware() {
     var application = this;
     var ErrorAction = this.container.lookup('actions/error');
-    var services = this.container.lookupType('services');
     return function errorHandler(err, req, res, next) {
       var errorAction = new ErrorAction({
+        container: application.container,
         name: 'error',
         request: req,
         response: res,
         application: application,
         error: err,
         originalAction: req._originalAction,
-        next: next,
-        services: services
+        next: next
       });
       errorAction.run();
     };
@@ -235,17 +244,16 @@ exports.default = _engine2.default.extend({
   handlerForAction: function handlerForAction(actionPath) {
     var application = this;
     var Action = this.container.lookup('actions/' + actionPath);
-    var services = this.container.lookupType('services');
-    (0, _assert2.default)(Action, 'You tried to map a route to the \'' + actionPath + '\' action, but no such action was found!');
+    (0, _assert2.default)(Action, 'You tried to map a route to the \'' + actionPath + '\' action, but no such action was found!\nAvailable actions: ' + Object.keys(this.container.lookupType('actions')).join(', '));
     return function invokeActionForRoute(req, res, next) {
       req._originalAction = actionPath;
       var action = new Action({
+        container: application.container,
         name: actionPath,
         request: req,
         response: res,
         application: application,
-        next: next,
-        services: services
+        next: next
       });
       action.run();
     };

@@ -78,6 +78,10 @@ function _default(_engine) {
       var relationship = resource + '/relationships/:relation';
       var related = resource + '/:relation';
 
+      if (options.related === false) {
+        options.except = ['related', 'fetch-related', 'replace-related', 'add-related', 'remove-related'].concat(options.except);
+      }
+
       var hasWhitelist = Boolean(options.only);
       options.only = (0, _ensureArray2.default)(options.only);
       options.except = (0, _ensureArray2.default)(options.except);
@@ -90,46 +94,46 @@ function _default(_engine) {
 
       // Fetch the list of books as the primary data
       if (include('list')) {
-        this.get(collection, plural + '.list');
+        this.get(collection, plural + '/list');
       }
       // Create a new book
       if (include('create')) {
-        this.post(collection, plural + '.create');
+        this.post(collection, plural + '/create');
       }
 
       // Fetch a single book as the primary data
       if (include('show')) {
-        this.get(resource, plural + '.show');
+        this.get(resource, plural + '/show');
       }
       // Update (patch) a single book
       if (include('update')) {
-        this.patch(resource, plural + '.update');
+        this.patch(resource, plural + '/update');
       }
       // Destroy a single book
       if (include('destroy')) {
-        this.delete(resource, plural + '.destroy');
+        this.delete(resource, plural + '/destroy');
       }
 
       // Fetch the reviews for a single book as the primary data
       if (include('related')) {
-        this.get(related, plural + '.related');
+        this.get(related, plural + '/related');
       }
 
       // Fetch the ids of the reviews for a single book
-      if (include('fetchRelated')) {
-        this.get(relationship, plural + '.fetchRelated');
+      if (include('fetch-related')) {
+        this.get(relationship, plural + '/fetch-related');
       }
       // Replace the related reviews for a single book (via ids)
-      if (include('replaceRelated')) {
-        this.patch(relationship, plural + '.replaceRelated');
+      if (include('replace-related')) {
+        this.patch(relationship, plural + '/replace-related');
       }
       // Add a new review related to a single book (via id)
-      if (include('addRelated')) {
-        this.post(relationship, plural + '.addRelated');
+      if (include('add-related')) {
+        this.post(relationship, plural + '/add-related');
       }
       // Remove a review related to a single book (via id)
-      if (include('removeRelated')) {
-        this.delete(relationship, plural + '.removeRelated');
+      if (include('remove-related')) {
+        this.delete(relationship, plural + '/remove-related');
       }
     }
   };

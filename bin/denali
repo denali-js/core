@@ -12,10 +12,8 @@ Denali.launch({
 }, function(env) {
   if (!env.modulePath) {
     var pkg = require('../package');
-    console.log('denali v' + pkg.version + ' [global]');
     require('../dist/cli/commands');
   } else {
-    console.log('denali v' + env.modulePackage.version);
     require(env.modulePath);
   }
 });

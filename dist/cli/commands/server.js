@@ -22,6 +22,10 @@ var _denaliApp = require('../broccoli/denali-app');
 
 var _denaliApp2 = _interopRequireDefault(_denaliApp);
 
+var _tryRequire = require('../../utils/try-require');
+
+var _tryRequire2 = _interopRequireDefault(_tryRequire);
+
 var _rimraf = require('rimraf');
 
 var _rimraf2 = _interopRequireDefault(_rimraf);
@@ -63,7 +67,7 @@ if (_commander2.default.debug) {
 
 var server = undefined;
 
-var buildFile = require(_path2.default.join(process.cwd(), './denali-build.js'));
+var buildFile = (0, _tryRequire2.default)(_path2.default.join(process.cwd(), './denali-build.js')) || {};
 
 var App = _denaliApp2.default.extend(buildFile);
 
