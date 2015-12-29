@@ -114,11 +114,12 @@ exports.default = _object2.default.extend({
     return configTree;
   },
   processJS: function processJS(tree) {
+    // Avoid uglify and lint for now, since they aren't broccoli 1.x compatible yet
     // tree = this.lintTree(tree);
     tree = (0, _broccoliBabelTranspiler2.default)(tree, { browserPolyfill: true });
     var shouldMinify = 'minify' in this && this.minify || this.environment === 'production';
     if (shouldMinify) {
-      tree = (0, _broccoliUglifySourcemap2.default)(tree);
+      // tree = uglify(tree);
     }
     return tree;
   }

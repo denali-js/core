@@ -24,7 +24,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function findInjections(object, fn) {
   return (0, _mapValues2.default)(object, function (value, key) {
-    if (value._injection === Symbol.for('denali:injection-flag')) {
+    if (value && value._injection === Symbol.for('denali:injection-flag')) {
       return fn(value, key);
     }
     return value;
