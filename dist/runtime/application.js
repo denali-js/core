@@ -1,76 +1,20 @@
-'use strict';
+import assert from 'assert';
+import express from 'express';
+import Promise from 'bluebird';
+import DAG from 'dag-map';
+import Addon from './addon';
+import Container from './container';
+import blackburn from 'blackburn';
+import morgan from 'morgan';
+import merge from 'lodash/object/merge';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _assert = require('assert');
-
-var _assert2 = _interopRequireDefault(_assert);
-
-var _express = require('express');
-
-var _express2 = _interopRequireDefault(_express);
-
-var _bluebird = require('bluebird');
-
-var _bluebird2 = _interopRequireDefault(_bluebird);
-
-var _dagMap = require('dag-map');
-
-var _dagMap2 = _interopRequireDefault(_dagMap);
-
-var _addon = require('./addon');
-
-var _addon2 = _interopRequireDefault(_addon);
-
-var _container = require('./container');
-
-var _container2 = _interopRequireDefault(_container);
-
-var _blackburn = require('blackburn');
-
-var _blackburn2 = _interopRequireDefault(_blackburn);
-
-var _morgan = require('morgan');
-
-var _morgan2 = _interopRequireDefault(_morgan);
-
-var _merge = require('lodash/object/merge');
-
-var _merge2 = _interopRequireDefault(_merge);
-
-var _responseTime = require('response-time');
-
-var _responseTime2 = _interopRequireDefault(_responseTime);
-
-var _compression = require('compression');
-
-var _compression2 = _interopRequireDefault(_compression);
-
-var _cookieParser = require('cookie-parser');
-
-var _cookieParser2 = _interopRequireDefault(_cookieParser);
-
-var _cors = require('cors');
-
-var _cors2 = _interopRequireDefault(_cors);
-
-var _helmet = require('helmet');
-
-var _helmet2 = _interopRequireDefault(_helmet);
-
-var _expressRequestId = require('express-request-id');
-
-var _expressRequestId2 = _interopRequireDefault(_expressRequestId);
-
-var _expressForceSsl = require('express-force-ssl');
-
-var _expressForceSsl2 = _interopRequireDefault(_expressForceSsl);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+import timing from 'response-time';
+import compression from 'compression';
+import cookies from 'cookie-parser';
+import cors from 'cors';
+import helmet from 'helmet';
+import requestid from 'express-request-id';
+import forceSSL from 'express-force-ssl';
 
 /**
  * Application instances are little more than specialized Addons, designed to
@@ -78,185 +22,178 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
  *
  * @title Application
  */
-exports.default = _addon2.default.extend({
+export default Addon.extend({
 
   isApplication: true,
 
-  init: function init() {
-    var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-
-    options.container = new _container2.default();
+  init(options = {}) {
+    options.container = new Container();
     options.container.register('application/main', this);
     options.container.addChildContainer(this._createDefaultContainer());
-    this._super.apply(this, arguments);
+    this._super(...arguments);
     this.mount();
   },
-  _createDefaultContainer: function _createDefaultContainer() {
-    var defaultContainer = new _container2.default();
+
+  _createDefaultContainer() {
+    let defaultContainer = new Container();
     defaultContainer.register('actions/error', require('./default-container/error-action'));
     return defaultContainer;
   },
-  mount: function mount() {
+
+  mount() {
     this.mountConfig();
     this.sortInitializers();
     this.mountAddonRouters();
   },
-  mountConfig: function mountConfig() {
-    var _this = this;
 
+  mountConfig() {
     this.config = this._config(this.environment);
-    this.eachAddon(function (addon) {
-      addon._config(_this.environment, _this.config);
+    this.eachAddon((addon) => {
+      addon._config(this.environment, this.config);
     }, { childrenFirst: false });
     this.container.register('config/environment', this.config);
   },
-  sortInitializers: function sortInitializers() {
-    var _this2 = this;
 
-    var initializers = this._initializers;
-    this.eachAddon(function (addon) {
-      initializers.push.apply(initializers, _toConsumableArray(addon._initializers));
+  sortInitializers() {
+    let initializers = this._initializers;
+    this.eachAddon((addon) => {
+      initializers.push(...addon._initializers);
     });
-    var initializerGraph = new _dagMap2.default();
-    initializers.forEach(function (initializer) {
+    let initializerGraph = new DAG();
+    initializers.forEach((initializer) => {
       initializerGraph.addEdges(initializer.name, initializer.initialize, initializer.before, initializer.after);
     });
     this.initializers = [];
-    initializerGraph.topsort(function (_ref) {
-      var value = _ref.value;
-
-      _this2.initializers.push(value);
+    initializerGraph.topsort(({ value }) => {
+      this.initializers.push(value);
     });
   },
-  mountAddonRouters: function mountAddonRouters() {
-    var _this3 = this;
 
-    this.eachAddon(function (addon) {
-      var namespace = _this3._addonMounts[addon.name] || addon.defaultNamespace || '/';
-      _this3.router.use(namespace, addon.router);
+  mountAddonRouters() {
+    this.eachAddon((addon) => {
+      let namespace = this._addonMounts[addon.name] || addon.defaultNamespace || '/';
+      this.router.use(namespace, addon.router);
     });
   },
-  start: function start() {
-    var _this4 = this;
 
-    var port = this.config.server.port;
+  start() {
+    let port = this.config.server.port;
     this.instantiateServices();
-    return this.runInitializers().then(function () {
-      return _this4.startServer(port);
-    }).then(function () {
-      _this4.log('info', _this4.pkg.name + '@' + _this4.pkg.version + ' server up on port ' + port);
-    }).catch(function (err) {
-      _this4.log('error', 'Problem starting app ...');
-      _this4.log('error', err.stack || err);
-    });
+    return this.runInitializers()
+      .then(() => {
+        return this.startServer(port);
+      }).then(() => {
+        this.log('info', `${ this.pkg.name }@${ this.pkg.version } server up on port ${ port }`);
+      }).catch((err) => {
+        this.log('error', 'Problem starting app ...');
+        this.log('error', err.stack || err);
+      });
   },
-  instantiateServices: function instantiateServices() {
+
+  instantiateServices() {
     this.container.lookupType('services');
   },
-  runInitializers: function runInitializers() {
-    var _this5 = this;
 
-    return _bluebird2.default.resolve(this.initializers).each(function (initializer) {
-      return initializer(_this5);
+  runInitializers() {
+    return Promise.resolve(this.initializers)
+      .each((initializer) => {
+        return initializer(this);
+      });
+  },
+
+  startServer(port) {
+    return new Promise((resolve) => {
+      this.server = express();
+      this.server.use(this.defaultMiddleware());
+      this.server.use(this.router);
+      this.server.use(this.errorMiddleware());
+      this.server.listen(port, resolve);
     });
   },
-  startServer: function startServer(port) {
-    var _this6 = this;
 
-    return new _bluebird2.default(function (resolve) {
-      _this6.server = (0, _express2.default)();
-      _this6.server.use(_this6.defaultMiddleware());
-      _this6.server.use(_this6.router);
-      _this6.server.use(_this6.errorMiddleware());
-      _this6.server.listen(port, resolve);
-    });
-  },
-  defaultMiddleware: function defaultMiddleware() {
-    var router = _express2.default.Router();
+  defaultMiddleware() {
+    let router = express.Router();
     router.use(this.errorMiddleware());
-    router.use((0, _responseTime2.default)());
-    router.use((0, _expressRequestId2.default)());
+    router.use(timing());
+    router.use(requestid());
     router.use(this.loggerMiddleware());
-    var securityConfig = this.config.security || {};
-    router.use(_helmet2.default.csp({
-      directives: (0, _merge2.default)({ reportUri: '/_report-csp-violations' }, securityConfig && securityConfig.csp),
+    let securityConfig = this.config.security || {};
+    router.use(helmet.csp({
+      directives: merge({ reportUri: '/_report-csp-violations' }, securityConfig && securityConfig.csp),
       reportOnly: this.environment === 'development',
       disableAndroid: true
     }));
     if (this.environment === 'development') {
-      router.post('/_report-csp-violations', function (req, res) {
-        res.sendStatus(200);
-      });
+      router.post('/_report-csp-violations', (req, res) => { res.sendStatus(200); });
     }
-    router.use(_helmet2.default.xssFilter());
-    router.use(_helmet2.default.frameguard());
-    router.use(_helmet2.default.hidePoweredBy());
-    router.use(_helmet2.default.ieNoOpen());
-    router.use(_helmet2.default.noSniff());
-    router.use((0, _compression2.default)());
-    router.use((0, _cors2.default)(securityConfig.cors));
-    router.use((0, _cookieParser2.default)());
-    router.use((0, _blackburn2.default)({
+    router.use(helmet.xssFilter());
+    router.use(helmet.frameguard());
+    router.use(helmet.hidePoweredBy());
+    router.use(helmet.ieNoOpen());
+    router.use(helmet.noSniff());
+    router.use(compression());
+    router.use(cors(securityConfig.cors));
+    router.use(cookies());
+    router.use(blackburn({
       adapters: this.container.lookupType('adapters'),
       serializers: this.container.lookupType('serializers')
     }));
 
     if (securityConfig.requireSSL) {
-      router.use(function (req, res, next) {
+      router.use((req, res, next) => {
         res.locals = res.locals || {};
         res.locals.forceSSLOptions = { enable301Redirects: securityConfig.redirectToSSL };
-        (0, _expressForceSsl2.default)(req, res, next);
+        forceSSL(req, res, next);
       });
     }
 
     return router;
   },
-  loggerMiddleware: function loggerMiddleware() {
-    var _this7 = this;
 
-    var loggerFormats = {
+  loggerMiddleware() {
+    const loggerFormats = {
       'development': 'dev',
       'production': 'combined'
     };
-    return (0, _morgan2.default)(loggerFormats[this.environment] || 'dev', {
-      skip: function skip() {
-        return _this7.enviroment !== 'test';
-      }
+    return morgan(loggerFormats[this.environment] || 'dev', {
+      skip: () => { return this.enviroment !== 'test'; }
     });
   },
-  errorMiddleware: function errorMiddleware() {
-    var application = this;
-    var ErrorAction = this.container.lookup('actions/error');
+
+  errorMiddleware() {
+    let application = this;
+    let ErrorAction = this.container.lookup('actions/error');
     return function errorHandler(err, req, res, next) {
-      var errorAction = new ErrorAction({
+      let errorAction = new ErrorAction({
         container: application.container,
         name: 'error',
         request: req,
         response: res,
-        application: application,
+        application,
         error: err,
         originalAction: req._originalAction,
-        next: next
+        next
       });
       errorAction.run();
     };
   },
-  handlerForAction: function handlerForAction(actionPath) {
-    var application = this;
-    var Action = this.container.lookup('actions/' + actionPath);
-    (0, _assert2.default)(Action, 'You tried to map a route to the \'' + actionPath + '\' action, but no such action was found!\nAvailable actions: ' + Object.keys(this.container.lookupType('actions')).join(', '));
+
+  handlerForAction(actionPath) {
+    let application = this;
+    let Action = this.container.lookup('actions/' + actionPath);
+    assert(Action, `You tried to map a route to the '${ actionPath }' action, but no such action was found!\nAvailable actions: ${ Object.keys(this.container.lookupType('actions')).join(', ') }`);
     return function invokeActionForRoute(req, res, next) {
       req._originalAction = actionPath;
-      var action = new Action({
+      let action = new Action({
         container: application.container,
         name: actionPath,
         request: req,
         response: res,
-        application: application,
-        next: next
+        application,
+        next
       });
       action.run();
     };
   }
+
 });
-module.exports = exports['default'];

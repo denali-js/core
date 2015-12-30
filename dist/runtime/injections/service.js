@@ -1,16 +1,9 @@
-'use strict';
+const injectionFlag = Symbol.for('denali:injection-flag');
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = injectService;
-var injectionFlag = Symbol.for('denali:injection-flag');
-
-function injectService(serviceName) {
+export default function injectService(serviceName) {
   return {
     _injection: injectionFlag,
     type: 'services',
     value: serviceName
   };
 }
-module.exports = exports['default'];

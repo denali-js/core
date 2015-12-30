@@ -1,40 +1,3 @@
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.version = exports.RawAdapter = exports.Adapter = exports.JSONAPISerializer = exports.RootSerializer = exports.FlatSerializer = exports.Serializer = exports.service = exports.Service = exports.Filter = exports.Action = exports.Errors = exports.Application = undefined;
-
-var _application = require('./runtime/application');
-
-var _application2 = _interopRequireDefault(_application);
-
-var _errors = require('./runtime/errors');
-
-var _errors2 = _interopRequireDefault(_errors);
-
-var _action = require('./runtime/action');
-
-var _action2 = _interopRequireDefault(_action);
-
-var _filter = require('./runtime/filter');
-
-var _filter2 = _interopRequireDefault(_filter);
-
-var _service = require('./runtime/service');
-
-var _service2 = _interopRequireDefault(_service);
-
-var _service3 = require('./runtime/injections/service');
-
-var _service4 = _interopRequireDefault(_service3);
-
-var _blackburn = require('blackburn');
-
-var _package = require('../package.json');
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 /**
  * This is the main module exported by Denali when it is loaded via
  * `require/import`.
@@ -72,16 +35,27 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @title Denali
  */
 
-exports.Application = _application2.default;
-exports.Errors = _errors2.default;
-exports.Action = _action2.default;
-exports.Filter = _filter2.default;
-exports.Service = _service2.default;
-exports.service = _service4.default;
-exports.Serializer = _blackburn.Serializer;
-exports.FlatSerializer = _blackburn.FlatSerializer;
-exports.RootSerializer = _blackburn.RootSerializer;
-exports.JSONAPISerializer = _blackburn.JSONAPISerializer;
-exports.Adapter = _blackburn.Adapter;
-exports.RawAdapter = _blackburn.RawAdapter;
-exports.version = _package.version;
+import Application from './runtime/application';
+import Errors from './runtime/errors';
+import Action from './runtime/action';
+import Filter from './runtime/filter';
+import Service from './runtime/service';
+import service from './runtime/injections/service';
+import { Serializer, FlatSerializer, RootSerializer, JSONAPISerializer, Adapter, RawAdapter } from 'blackburn';
+import { version } from '../package.json';
+
+export {
+  Application,
+  Errors,
+  Action,
+  Filter,
+  Service,
+  service,
+  Serializer,
+  FlatSerializer,
+  RootSerializer,
+  JSONAPISerializer,
+  Adapter,
+  RawAdapter,
+  version
+};
