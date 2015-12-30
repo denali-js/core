@@ -37,7 +37,7 @@
     "must": "^0.13.1"
   },
   "scripts": {
-    "prepublish": "in-publish && npm run lint && npm test && npm run coverage && npm run compile || echo ''",
+    "prepublish": "in-publish && npm run lint && npm test && npm run coverage && npm run compile || npm run build",
     "test": "NODE_ENV=test mocha --compilers js:babel-core/register",
     "lint": "eslint lib test",
     "build": "which babel && npm run clean && cp -r lib/ dist && babel lib --out-dir dist --ignore 'cli/blueprints/*/files'",
