@@ -17,14 +17,14 @@ var _contains2 = _interopRequireDefault(_contains);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _default(_engine) {
+function _default(_addon) {
   // Define a DSL for routes
   return {
 
-    // Attach a route to the engine
+    // Attach a route to the addon
 
     route: function route(method, pattern, actionPath) {
-      _engine.router[method](pattern, _engine.handlerForAction(actionPath));
+      _addon.router[method](pattern, _addon.handlerForAction(actionPath));
     },
 
     // Single routes
@@ -63,8 +63,8 @@ function _default(_engine) {
 
       this.route.apply(this, ['delete'].concat(args));
     },
-    engine: function engine(namespace, engineName) {
-      _engine._engineMounts[engineName] = namespace;
+    addon: function addon(namespace, addonName) {
+      _addon._addonMounts[addonName] = namespace;
     },
 
     // Resource routes

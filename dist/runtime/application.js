@@ -20,9 +20,9 @@ var _dagMap = require('dag-map');
 
 var _dagMap2 = _interopRequireDefault(_dagMap);
 
-var _engine = require('./engine');
+var _addon = require('./addon');
 
-var _engine2 = _interopRequireDefault(_engine);
+var _addon2 = _interopRequireDefault(_addon);
 
 var _container = require('./container');
 
@@ -73,12 +73,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 /**
- * Application instances are little more than specialized Engines, designed to
+ * Application instances are little more than specialized Addons, designed to
  * kick off the loading, mounting, and launching stages of booting up.
  *
  * @title Application
  */
-exports.default = _engine2.default.extend({
+exports.default = _addon2.default.extend({
 
   isApplication: true,
 
@@ -99,14 +99,14 @@ exports.default = _engine2.default.extend({
   mount: function mount() {
     this.mountConfig();
     this.sortInitializers();
-    this.mountEngineRouters();
+    this.mountAddonRouters();
   },
   mountConfig: function mountConfig() {
     var _this = this;
 
     this.config = this._config(this.environment);
-    this.eachEngine(function (engine) {
-      engine._config(_this.environment, _this.config);
+    this.eachAddon(function (addon) {
+      addon._config(_this.environment, _this.config);
     }, { childrenFirst: false });
     this.container.register('config/environment', this.config);
   },
@@ -114,8 +114,8 @@ exports.default = _engine2.default.extend({
     var _this2 = this;
 
     var initializers = this._initializers;
-    this.eachEngine(function (engine) {
-      initializers.push.apply(initializers, _toConsumableArray(engine._initializers));
+    this.eachAddon(function (addon) {
+      initializers.push.apply(initializers, _toConsumableArray(addon._initializers));
     });
     var initializerGraph = new _dagMap2.default();
     initializers.forEach(function (initializer) {
@@ -128,12 +128,12 @@ exports.default = _engine2.default.extend({
       _this2.initializers.push(value);
     });
   },
-  mountEngineRouters: function mountEngineRouters() {
+  mountAddonRouters: function mountAddonRouters() {
     var _this3 = this;
 
-    this.eachEngine(function (engine) {
-      var namespace = _this3._engineMounts[engine.name] || engine.defaultNamespace || '/';
-      _this3.router.use(namespace, engine.router);
+    this.eachAddon(function (addon) {
+      var namespace = _this3._addonMounts[addon.name] || addon.defaultNamespace || '/';
+      _this3.router.use(namespace, addon.router);
     });
   },
   start: function start() {

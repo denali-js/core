@@ -4,8 +4,10 @@
 - [x] addon loading & config
 - [x] content negotiation for actions
 - [x] default CSP, CORS, frame-jacking headers and config
-- [x] containers lookup in child engines if not found
+- [x] containers lookup in child addons if not found
    - [x] add default lookups for error route
+- [x] settle on engine vs addon
+- [x] addon blueprints
 
 
 * add normalization to blackburn
@@ -17,15 +19,36 @@
   * test helpers
   * generate tests from action classes
   * addon testing
-* engine blueprints
-  * settle on engine vs addon
-  * create stack trace link engine
+  * create stack trace link addon
 
 * find heroku addons, build addons for those saas services
+  * postgres
+  * sequelize models
+  * bookshelf models
+  * mongo
+  * mongoose models
+  * redis
+  * mysql
+  * newrelic
+  * librato
+  * papertrail
+  * logentries
+  * mailchimp / mandril
+  * sendgrid
+  * rollbar
+  * elasticsearch
+  * keen
+  * pubnub
+  * statuspage
+  * ci's? i.e. circle, travis, codeship?
+  * stripe
+* ssl?
+* load testing
 * error handling
   * special error actions? per folder, app wide?
   * most errors should result in output, not crashing, ideally
   * serve html error page to browsers, with additional details in dev
+* deploy command / pipeline
 
 Delayed
 * jobs
@@ -54,7 +77,7 @@ Application
 
 Engine
   loading
-  addons/engines
+  addons/addons
   local routes
   local builds/compiling
 
@@ -75,3 +98,9 @@ Adapter
 
 Filters
   mixed in to run before or after an Action
+
+
+# TODO
+Add a prop to the base Filter class, make sure it's usable on the action it's
+mixed into. Need to make sure the mixin.prototype switch pulls in the stuff
+from higher up the proto chain

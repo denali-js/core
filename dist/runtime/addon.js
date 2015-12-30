@@ -75,35 +75,35 @@ var _values2 = _interopRequireDefault(_values);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
- * Engines form the foundation of Denali, and are built with extensibility as a
+ * Addons form the foundation of Denali, and are built with extensibility as a
  * first-class feature. They are responsible for coordinating the various other
  * libraries in the Denali framework, and act as the glue that holds
  * everything together.
  *
- * @title Engine
+ * @title Addon
  */
 
 exports.default = _object2.default.extend({
 
   /**
-   * Create a new Engine. Upon creation, the Engine instance will search for any
-   * child Engine's present, then load it's config, intializers, routing
+   * Create a new Addon. Upon creation, the Addon instance will search for any
+   * child Addon's present, then load it's config, intializers, routing
    * information, and app classes (i.e. adapters, controllers, etc).
    *
    * @constructor
    *
    * @param  {Object} options
-   * @param  {Object} options.dir  The root directory for this engine
+   * @param  {Object} options.dir  The root directory for this addon
    * @param  {Object} options.environment  The current environment, i.e. 'production'
-   * @param  {Object} options.parent  If this is a child engine, the parent engine to this one
+   * @param  {Object} options.parent  If this is a child addon, the parent addon to this one
    *
-   * @return {Engine}
+   * @return {Addon}
    */
 
   init: function init() {
     this._super.apply(this, arguments);
-    (0, _assert2.default)(this.dir, 'You must supply a dir to an Engine instance');
-    (0, _assert2.default)(this.environment, 'You must supply an environment to an Engine instance');
+    (0, _assert2.default)(this.dir, 'You must supply a dir to an Addon instance');
+    (0, _assert2.default)(this.environment, 'You must supply an environment to an Addon instance');
 
     this.appDir = _path2.default.join(this.dir, 'app');
     this.configDir = _path2.default.join(this.dir, 'config');
@@ -111,14 +111,14 @@ exports.default = _object2.default.extend({
     this.name = this.pkg.name;
 
     this.router = _express2.default.Router();
-    this._engineMounts = {};
+    this._addonMounts = {};
     this.container = this.container || new _container2.default();
     if (this.parent) {
       this.parent.container.addChildContainer(this.container);
     }
 
     this.load();
-    this.discoverEngines();
+    this.discoverAddons();
   },
   load: function load() {
     this.loadConfig();
@@ -151,55 +151,55 @@ exports.default = _object2.default.extend({
   },
 
   /**
-   * Discovers any child engines present for this engine, and loads them.
+   * Discovers any child addons present for this addon, and loads them.
    *
-   * @method discoverEngines
+   * @method discoverAddons
    * @private
    */
-  discoverEngines: function discoverEngines() {
+  discoverAddons: function discoverAddons() {
     var _this2 = this;
 
-    this.engineGraph = new _dagMap2.default();
+    this.addonGraph = new _dagMap2.default();
     (0, _forIn2.default)(this.pkg.dependencies, function (version, pkgName) {
       var pkgMainPath = _resolve2.default.sync(pkgName, { basedir: _this2.dir });
       var pkgPath = _findup2.default.sync(pkgMainPath, 'package.json');
       var pkgJSONPath = _path2.default.join(pkgPath, 'package.json');
       var pkg = require(pkgJSONPath);
-      var isDenaliEngine = pkg.keywords && (0, _contains2.default)(pkg.keywords, 'denali-engine');
+      var isDenaliAddon = pkg.keywords && (0, _contains2.default)(pkg.keywords, 'denali-addon');
 
-      if (isDenaliEngine) {
+      if (isDenaliAddon) {
         var config = pkg.denali || {};
 
-        var EngineClass = undefined;
-        var customEngineClass = _path2.default.join(root, 'app', 'engine.js');
-        if (_fs2.default.existsSync(customEngineClass)) {
-          EngineClass = require(customEngineClass);
+        var AddonClass = undefined;
+        var customAddonClass = _path2.default.join(root, 'app', 'addon.js');
+        if (_fs2.default.existsSync(customAddonClass)) {
+          AddonClass = require(customAddonClass);
         } else {
-          EngineClass = module.exports;
+          AddonClass = module.exports;
         }
 
-        var engine = new EngineClass({
+        var addon = new AddonClass({
           dir: pkgPath,
           environment: _this2.environment,
           parent: _this2
         });
-        _this2.engineGraph.addEdges(pkg.name, engine, config.before, config.after);
+        _this2.addonGraph.addEdges(pkg.name, addon, config.before, config.after);
       }
     });
   },
-  eachEngine: function eachEngine(fn) {
+  eachAddon: function eachAddon(fn) {
     var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
 
     var childrenFirst = options.childrenFirst;
-    return this.engineGraph.topsort(function (_ref) {
+    return this.addonGraph.topsort(function (_ref) {
       var value = _ref.value;
 
       if (childrenFirst) {
-        value.eachEngine(fn, options);
+        value.eachAddon(fn, options);
         fn(value);
       } else {
         fn(value);
-        value.eachEngine(fn, options);
+        value.eachAddon(fn, options);
       }
     });
   },

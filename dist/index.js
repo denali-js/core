@@ -42,8 +42,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * There are two things we export from this file:
  *
  * 1. Convenient shortcuts to other modules within Denali. Rather than having
- * to `import Engine from 'denali/dist/lib/runtime/engine'`, you can just
- * `import { Engine } from 'denali'`.
+ * to `import Addon from 'denali/dist/lib/runtime/addon'`, you can just
+ * `import { Addon } from 'denali'`.
  *
  * 2. External modules that are part of the Denali framework. The big ones are
  * **foraker** and **blackburn**, responsible for providing controllers and a
