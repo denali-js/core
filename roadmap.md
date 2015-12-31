@@ -20,7 +20,8 @@
   * generate tests from action classes
   * addon testing
   * create stack trace link addon
-
+* Get uglify / linting trees working
+* consolidate/DRY up test/server commands
 * find heroku addons, build addons for those saas services
   * postgres
   * sequelize models
