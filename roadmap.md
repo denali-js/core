@@ -8,20 +8,18 @@
    - [x] add default lookups for error route
 - [x] settle on engine vs addon
 - [x] addon blueprints
+- [x] test helpers
+- [x] install command
 
 
 * add normalization to blackburn
   * support hydrating into ORM instances
   * normalize keys
 * testing framework
-  * database mock?
-  * mocking services
-  * test helpers
   * generate tests from action classes
   * addon testing
-  * create stack trace link addon
+* create stack trace link addon
 * Get uglify / linting trees working
-* consolidate/DRY up test/server commands
 * find heroku addons, build addons for those saas services
   * postgres
   * sequelize models
@@ -63,45 +61,5 @@ Delayed
 * docs command
   * swagger-like (or actually swagger) generation?
   * show API browser / console for text/html requests (i.e. in browser) via addon
-* install command
 * extract eslint styles to preset dependency
 * support arbitrary blueprint sources (i.e. local folders, git urls)
-
-
-
-
-
-Application
-  bootstraps everything
-  global aspects:
-    transports (once a transport is included, it's there for everyone)
-
-Engine
-  loading
-  addons/addons
-  local routes
-  local builds/compiling
-
-Transport
-  communication, request / response
-
-Service
-  external dependencies (database, email sending service, bug reporting)
-
-Action
-  performs a logical unit of work against a resource
-
-Serializer
-  transform hydrated ORM instances into JSON representations over the wire, and vice versa
-
-Adapter
-  tell the serializers how to interrogate your ORM instances
-
-Filters
-  mixed in to run before or after an Action
-
-
-# TODO
-Add a prop to the base Filter class, make sure it's usable on the action it's
-mixed into. Need to make sure the mixin.prototype switch pulls in the stuff
-from higher up the proto chain
