@@ -1,0 +1,12 @@
+{
+  "name": "build-acceptance-test",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "denali server",
+    "test": "denali test"
+  },
+  "private": true,
+  "dependencies": {
+    "denali": "davewasmer/denali"
+  }
+}
