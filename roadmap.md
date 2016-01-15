@@ -1,24 +1,3 @@
-- [x] preprocessor support w/ sourcemap support
-- [x] precompile & minify prod builds
-- [x] default logger with swappable interface
-- [x] addon loading & config
-- [x] content negotiation for actions
-- [x] default CSP, CORS, frame-jacking headers and config
-- [x] containers lookup in child addons if not found
-   - [x] add default lookups for error route
-- [x] settle on engine vs addon
-- [x] addon blueprints
-- [x] test helpers
-- [x] install command
-
-
-* add normalization to blackburn
-  * support hydrating into ORM instances
-  * normalize keys
-* testing framework
-  * generate tests from action classes
-  * addon testing
-* create stack trace link addon
 * Get uglify / linting trees working
 * find heroku addons, build addons for those saas services
   * postgres
