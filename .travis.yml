@@ -4,9 +4,11 @@ node_js:
   - "0.12"
   - "4.0"
   - "4.1"
-
+  - "5.1"
+install:
+  - npm install -g npm@3.5.3
+  - npm install
 sudo: false
-
 cache:
   directories:
     - node_modules
