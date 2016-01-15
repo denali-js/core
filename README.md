@@ -28,16 +28,16 @@ var denali = require('denali');
 MIT © [Dave Wasmer](http://davewasmer.com)
 
 
-[npm-url]: https://npmjs.org/package/<%= moduleName %>
-[npm-image]: https://img.shields.io/npm/v/<%= moduleName %>.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/denali
+[npm-image]: https://img.shields.io/npm/v/denali.svg?style=flat-square
 
-[travis-url]: https://travis-ci.org/davewasmer/<%= moduleName %>
-[travis-image]: https://img.shields.io/travis/davewasmer/<%= moduleName %>.svg?style=flat-square
+[travis-url]: https://travis-ci.org/davewasmer/denali
+[travis-image]: https://img.shields.io/travis/davewasmer/denali.svg?style=flat-square
 
-[coveralls-url]: https://coveralls.io/r/davewasmer/<%= moduleName %>
-[coveralls-image]: https://img.shields.io/coveralls/davewasmer/<%= moduleName %>.svg?style=flat-square
+[coveralls-url]: https://coveralls.io/r/davewasmer/denali
+[coveralls-image]: https://img.shields.io/coveralls/davewasmer/denali.svg?style=flat-square
 
-[depstat-url]: https://david-dm.org/davewasmer/<%= moduleName %>
-[depstat-image]: https://david-dm.org/davewasmer/<%= moduleName %>.svg?style=flat-square
+[depstat-url]: https://david-dm.org/davewasmer/denali
+[depstat-image]: https://david-dm.org/davewasmer/denali.svg?style=flat-square
 
-[download-badge]: http://img.shields.io/npm/dm/<%= moduleName %>.svg?style=flat-square
+[download-badge]: http://img.shields.io/npm/dm/denali.svg?style=flat-square
