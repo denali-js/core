@@ -1,0 +1,56 @@
+.homepage header {
+  position: absolute;
+  width: 100%;
+  padding: 1em;
+  background: transparent;
+  color: white;
+  z-index: 2;
+}
+
+.hero {
+  position: relative;
+  padding: 2rem;
+  background-color: #25DFCB;
+  background-image: url(/images/hero-bg.png), linear-gradient(40deg, #25DFCB, #7FE5B7);
+  color: white;
+}
+
+.hero-container {
+  margin: 0 auto;
+  text-align: center;
+
+  .logo {
+    width: 11.6rem;
+  }
+
+  .project {
+    position: relative;
+    max-width: 40rem;
+    margin: 0 auto;
+    padding: 3rem;
+  }
+
+  .project-name {
+    margin: 1.5em 0 0;
+    font-size: 3.6rem;
+    font-weight: 400;
+  }
+
+  .subhead {
+    margin: 0.5em 0;
+    font-family: $sans;
+    font-size: 1.2rem;
+    font-weight: 400;
+  }
+
+  .install {
+    width: 19rem;
+    margin: 3em auto 0em;
+    padding: 1.5em;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+    font-family: $monospace;
+    text-align: left;
+    line-height: 1.3;
+  }
+}

@@ -1,8 +1,10 @@
-@import 'normalize';
-@import 'code';
-
 $monospace: 'Inconsolata', 'Monaco', 'Anonymous', monospace;
-$sans: 'Open Sans', 'Helvetica Neue', Helvetica, sans-serif;
+$sans: 'Lato', 'Helvetica Neue', Helvetica, sans-serif;
+
+@import 'styles/normalize';
+@import 'styles/code';
+@import 'styles/homepage';
+@import 'styles/guides';
 
 * {
   box-sizing: border-box;
@@ -11,53 +13,41 @@ $sans: 'Open Sans', 'Helvetica Neue', Helvetica, sans-serif;
 body {
   color: #444;
   font-family: $sans;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
 h1, h2, h3, h4, h5, h6 {
   margin-top: 1.3em;
   margin-bottom: 0.8em;
-  font-family: 'Raleway';
-  font-weight: 800;
+  font-weight: 600;
 }
 
 a {
   color: #7884EA;
 }
 
-.homepage header {
-  position: absolute;
-  width: 100%;
-  background-color: transparent;
-  z-index: 2;
-  color: white;
-
-  .logo-dark {
-    display: none;
-  }
-
-  .logo-light {
-    display: inline-block;
-  }
-}
-
 header {
-  padding: 1em 2em;
-  color: #333;
+  padding: 1em;
+  background-color: #25DFCB;
+  background-image: url(/images/hero-bg.png), linear-gradient(40deg, #25DFCB, #7FE5B7);
+  color: white;
+  font-size: 1.4em;
   overflow: auto;
 
-  .logo-light, .logo-dark {
-    display: inline-block;
-    height: 1em;
-  }
-
   .logo-light {
-    display: none;
+    display: inline-block;
+    margin-top: -0.2em;
+    margin-right: 0.5em;
+    height: 2em;
+    vertical-align: middle;
   }
 
   .project-name {
     color: inherit;
-    font-weight: bold;
-    text-transform: uppercase;
+    font-family: 'Montserrat Alternates';
+    font-weight: 400;
+    letter-spacing: 0.5px;
     text-decoration: none;
   }
 
@@ -68,13 +58,14 @@ header {
   .nav-link {
     display: inline-block;
     margin-left: 2em;
+    padding-bottom: 0.2em;
     border-bottom: 2px solid transparent;
     color: inherit;
-    font-weight: 600;
+    font-size: 0.8em;
     text-decoration: none;
 
     &:hover {
-      border-bottom: 2px solid;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.7);
     }
   }
 
@@ -87,9 +78,8 @@ header {
 }
 
 .container {
-  width: 40rem;
-  margin: 2rem auto 5rem;
-  padding: 2rem;
+  width: 60rem;
+  margin: 0 auto;
 }
 
 pre {
@@ -120,80 +110,14 @@ blockquote {
   background-color: #ededff;
 }
 
-.hero {
-  position: relative;
-  padding: 2rem;
-  background-color: #eef8f7;
-  background-repeat: no-repeat;
-  background-image: radial-gradient(
-                      ellipse 27rem 17rem,
-                      rgba(0,0,0,0.5), rgba(0,0,0,0.3)
-                    ),
-                    linear-gradient(
-                      40deg,
-                      rgba(44, 49, 88, 0.7), rgba(66, 134, 73, 0.7)
-                    ),
-                    url(images/hero-bg.jpeg);
-  background-blend-mode: normal, color, luminosity;
-  background-size: cover;
-  color: white;
-
-  &::after {
-    position: absolute;
-    display: block;
-    width: 100%;
-    height: 1em;
-    top: 100%;
-    left: 0;
-    background-color: #444;
-    content: '';
-  }
+.row {
+  overflow: auto;
 }
 
-.hero-container {
-  margin: 4rem auto;
-  text-align: center;
-
-  .logo {
-    width: 11.6rem;
-  }
-
-  .project {
-    position: relative;
-    max-width: 30rem;
-    margin: 0 auto;
-    padding: 3rem;
-  }
-
-  .project-name {
-    margin: 0;
-    font-size: 4rem;
-    font-weight: 700;
-  }
-
-  .subhead {
-    margin: 0.5em 0;
-    font-size: 1.5rem;
-    font-weight: 400;
-  }
-
-  .links {
-    margin-top: 2em;
-    font-size: 1.2em;
-    font-weight: 600;
-
-    a {
-      display: inline-block;
-      width: 10rem;
-      margin: 0.5em;
-      padding: 0.4em 0.8em;
-      border: 2px solid;
-      border-radius: 2px;
-      background-color: rgba(white, 0.05);
-      color: white;
-      text-decoration: none;
-    }
-  }
+.three-column {
+  width: 33%;
+  padding: 1em;
+  float: left;
 }
 
 .file-path {

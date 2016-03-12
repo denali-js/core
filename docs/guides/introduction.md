@@ -1,6 +1,7 @@
 ---
 title: Why Denali?
 url: why-denali
+layout: guide
 ---
 
 ## Principles
