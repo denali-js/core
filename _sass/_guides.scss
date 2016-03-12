@@ -1,0 +1,33 @@
+.guides-nav {
+  width: 13rem;
+  padding: 3em 1em;
+  float: left;
+
+  .nav-section {
+    margin-bottom: 1.5em;
+  }
+
+  .nav-header {
+    margin-bottom: 0.3em;
+    color: #aaa;
+    font-size: 0.8em;
+    text-transform: uppercase;
+  }
+
+  .nav-link {
+    display: block;
+    padding: 0.1em 0;
+    color: #777;
+    text-decoration: none;
+
+    &:hover {
+      color: #222;
+    }
+  }
+}
+
+.guides-body {
+  padding-left: 3em;
+  border-left: 1px solid #eee;
+  overflow: auto;
+}

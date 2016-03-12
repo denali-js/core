@@ -1,0 +1,220 @@
+---
+---
+$monospace: 'Inconsolata', 'Monaco', 'Anonymous', monospace;
+$sans: 'Lato', 'Helvetica Neue', Helvetica, sans-serif;
+
+@import 'normalize';
+@import 'code';
+@import 'homepage';
+@import 'guides';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: #444;
+  font-family: $sans;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 1.3em;
+  margin-bottom: 0.8em;
+  font-weight: 600;
+}
+
+a {
+  color: #7884EA;
+}
+
+header {
+  padding: 1em;
+  background-color: #25DFCB;
+  background-image: url(/images/hero-bg.png), linear-gradient(40deg, #25DFCB, #7FE5B7);
+  color: white;
+  font-size: 1.4em;
+  overflow: auto;
+
+  .logo-light {
+    display: inline-block;
+    margin-top: -0.2em;
+    margin-right: 0.5em;
+    height: 2em;
+    vertical-align: middle;
+  }
+
+  .project-name {
+    color: inherit;
+    font-family: 'Montserrat Alternates';
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+  }
+
+  nav {
+    float: right;
+  }
+
+  .nav-link {
+    display: inline-block;
+    margin-left: 2em;
+    padding-bottom: 0.2em;
+    border-bottom: 2px solid transparent;
+    color: inherit;
+    font-size: 0.8em;
+    text-decoration: none;
+
+    &:hover {
+      border-bottom: 2px solid rgba(255, 255, 255, 0.7);
+    }
+  }
+
+  .api-nav-module-file {
+    font-family: $monospace;
+    opacity: 0.5;
+    display: block;
+    font-weight: 400;
+  }
+}
+
+.container {
+  width: 60rem;
+  margin: 0 auto;
+}
+
+pre {
+  padding: 0.8rem;
+  border-radius: 2px;
+  background-color: #333;
+
+  > code {
+    border: none;
+    background: transparent;
+    color: #ddd;
+    font-size: 0.9em;
+  }
+}
+
+code {
+  display: inline-block;
+  border: 1px solid #efefef;
+  background-color: #f7f7f7;
+  color: #666;
+  font-size: 0.9em;
+}
+
+blockquote {
+  margin: 2em 1em;
+  padding: 0.1em 1.2em;
+  border-radius: 2px;
+  background-color: #ededff;
+}
+
+.row {
+  overflow: auto;
+}
+
+.three-column {
+  width: 33%;
+  padding: 1em;
+  float: left;
+}
+
+.file-path {
+  display: block;
+  margin: 0.3em 0;
+  color: #888;
+  font-family: 'Open Sans';
+  font-size: 0.9rem;
+  font-weight: normal;
+
+  a {
+    color: inherit;
+    font-family: $monospace;
+  }
+}
+
+.context {
+  margin: 2rem -0.75em 0;
+  padding: 0.5em 0.75em;
+  background-color: #f4f4f9;
+}
+
+.method-name {
+  margin-top: 0;
+  margin-bottom: 0;
+
+  .arguments {
+    color: #777;
+    font-family: $monospace;
+    font-size: 0.8em;
+    font-weight: 600;
+  }
+
+  .argument {
+    &::after {
+      content: ', ';
+    }
+
+    &:last-child::after {
+      display: none;
+    }
+  }
+
+}
+
+.private {
+  display: inline-block;
+  margin-top: 1em;
+  margin-bottom: -0.5em;
+  color: #aaa;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+  padding: 0.2em 0.4em;
+  border: 1px solid #aaa;
+  border-radius: 3px;
+}
+
+.defined-in {
+  margin-top: 0.2em;
+  float: right;
+  color: #888;
+  font-size: 0.75em;
+
+  a {
+    color: inherit;
+  }
+}
+
+.argument {
+  font-size: 0.9em;
+
+  .argument-name {
+    font-family: $monospace;
+    font-weight: bold;
+  }
+
+  .argument-types {
+    color: #888;
+    font-family: $monospace;
+  }
+
+  .argument-description p {
+    display: inline;
+    margin: 0;
+  }
+}
+
+.return-types {
+  color: #888;
+  font-family: $monospace;
+}
+
+.return-description p {
+  display: inline;
+  margin: 0;
+}

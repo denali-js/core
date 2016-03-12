@@ -1,0 +1,55 @@
+---
+layout: default
+---
+<div class='homepage'>
+  {% include header.html %}
+  <div class='hero'>
+    <div class='hero-container'>
+      <div class='project'>
+        <h1 class='project-name'>denali</h1>
+        <h2 class='subhead'>
+          A Node.js framework for building robust APIs
+        </h2>
+        <div class='install'>
+          $ npm install -g denali<br>
+          $ denali new my-api<br>
+          $ cd my-api &amp;&amp; denali serve
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='container'>
+    <div class='row'>
+      <div class='three-column'>
+        <h3 class='column-header'>What is Denali?</h3>
+        <p>
+          Denali is a framework that makes building robust JSON APIs simple.
+          It borrows the best concepts from frameworks like Rails, is built
+          on the rock solid foundation of Express.js, and is designed for
+          developer happiness.
+        </p>
+      </div>
+      <div class='three-column'>
+        <h3 class='column-header'>API-centric</h3>
+        <p>
+          You won't find any templating languages, views, or other HTML
+          rendering support out of the box. Denali is unapologetically focused
+          on APIs first. First class support for JSON serializers, ORM
+          agnostic data adapters, and RESTful routing make APIs easier than
+          ever.
+        </p>
+      </div>
+      <div class='three-column'>
+        <h3 class='column-header'>Developer happiness</h3>
+        <p>
+          Denali ships with a top-notch CLI which can run reload-on-change
+          development server, scaffold new code, run tests, and even deploy
+          your app. Extensibility is baked into the core as well, with
+          Engines providing a powerful approach to incorporating third party
+          code.
+        </p>
+      </div>
+    </div>
+  </div>
+  {% include footer.html %}
+</div>
