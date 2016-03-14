@@ -49,7 +49,6 @@
     "coverage": "babel-node isparta cover _mocha && coveralls < coverage/lcov.info",
     "postcoverage": "rimraf coverage",
     "watch": "watch 'npm run build && npm run test' lib test",
-    "docs": "docify build",
     "clean": "rimraf dist/*"
   },
   "license": "MIT",

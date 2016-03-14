@@ -1,6 +1,5 @@
 ---
 title: Get Started with Denali
-url: get-started
 ---
 
 # Get Started with Denali
