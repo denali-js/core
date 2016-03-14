@@ -35,7 +35,7 @@ module Jekyll
       version_data = JSON.parse(raw)
       [ 'classes', 'modules' ].each do |file_type|
         version_data[file_type].each do |item_name, item_data|
-          dir = "api/#{version_name}/#{file_type}/"
+          dir = "#{version_name}/api/#{file_type}/"
           name = item_name.parameterize + '.html'
           site.pages << APIDocPage.new(site, site.source, dir, name, item_data, "api-#{file_type.singularize}.html")
         end
@@ -44,15 +44,14 @@ module Jekyll
     end
 
     def generate_guides_for_version(site, version_name, version_dir)
-      guides_dir = File.join(version_dir, 'docs')
-      guides = Dir.glob(File.join(guides_dir, '**', '*')).reject do |item|
+      guides = Dir.glob(File.join(version_dir, 'guides', '**', '*')).reject do |item|
         File.directory? item
       end
       guides.each do |guide|
         absolute_dir = File.dirname(guide)
-        dir = Pathname.new(absolute_dir).relative_path_from(Pathname.new(guides_dir))
+        relative_dir = Pathname.new(absolute_dir).relative_path_from(Pathname.new(version_dir)).to_s
         name = File.basename(guide)
-        site.pages << GuidePage.new(site, guides_dir, dir.to_s, name)
+        site.pages << GuidePage.new(site, version_dir, relative_dir, name, version_name)
       end
     end
 
@@ -72,9 +71,13 @@ module Jekyll
   end
 
   class GuidePage < Page
-    def dir
-      dir = super
-      "guides/#{dir}"
+    def initialize(site, base, dir, name, version)
+      super(site, base, dir, name)
+      @version = version
+    end
+    def destination(dest)
+      relative_dest = Pathname.new(super(dest)).relative_path_from(Pathname.new(dest)).to_s
+      File.join(dest, @version, relative_dest)
     end
   end
 
