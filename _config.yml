@@ -13,4 +13,4 @@ github_username:  denali
 
 # Build settings
 markdown: kramdown
-exclude: [ 'design' ]
+exclude: [ 'design', 'Gemfile', 'Gemfile.lock', 'Guardfile' ]
