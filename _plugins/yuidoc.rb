@@ -18,11 +18,11 @@ module Jekyll
       repo.with_temp_index do
         versions.map do |version|
           version_name = version == 'master' ? 'latest' : version
-          Dir.mktmpdir do |tmpdir|
+          Dir.mktmpdir(nil, File.join(site.source, 'tmp')) do |tmpdir|
             repo.read_tree(version)
             repo.checkout_index(prefix: tmpdir + '/', all: true)
             versions_data[version_name] = self.generate_api_docs_for_version(site, version_name, tmpdir)
-            self.generate_guides_for_version(site, version_name, version_dir)
+            self.generate_guides_for_version(site, version_name, tmpdir)
           end
         end
       end
@@ -43,15 +43,16 @@ module Jekyll
       version_data
     end
 
-    def generate_guides_for_version(version_name, version_dir)
+    def generate_guides_for_version(site, version_name, version_dir)
       guides_dir = File.join(version_dir, 'docs')
       guides = Dir.glob(File.join(guides_dir, '**', '*')).reject do |item|
         File.directory? item
       end
       guides.each do |guide|
-        dir = File.dirname(guide)
-        name = File.base_name(guide)
-        site.pages << Page.new(site, site.source, dir, name)
+        absolute_dir = File.dirname(guide)
+        dir = Pathname.new(absolute_dir).relative_path_from(Pathname.new(guides_dir))
+        name = File.basename(guide)
+        site.pages << GuidePage.new(site, guides_dir, dir.to_s, name)
       end
     end
 
@@ -67,6 +68,13 @@ module Jekyll
       self.process(@name)
       self.read_yaml(File.join(base, '_layouts'), template)
       self.data.merge!(data)
+    end
+  end
+
+  class GuidePage < Page
+    def dir
+      dir = super
+      "guides/#{dir}"
     end
   end
 
