@@ -4,7 +4,7 @@ title: Get Started with Denali
 
 # Get Started with Denali
 
-Oh yes, it's that ever-favorite first project for a server side framework: let's build a basic blogging application!
+It's that ever-favorite first project for a server side framework: let's build a basic blogging application!
 
 ## Installation
 
@@ -14,7 +14,7 @@ First off, make sure you install Denali globally via npm:
 $ npm install -g denali
 ```
 
-## Creating our application
+## Scaffolding our application
 
 Next, let's use Denali's handy scaffolding tools to create a blank slate for us to start from:
 
