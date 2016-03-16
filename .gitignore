@@ -5,3 +5,5 @@ tmp
 coverage
 npm-debug.log
 dist
+.sass-cache
+_site
