@@ -13,6 +13,7 @@ module Jekyll
       versions = repo.tags.select do |tag|
         tag =~ SemVerRegexp
       end
+      versions.concat(site.config['version_refs'])
       versions.push('master')
       versions_data = site.data['api_versions'] = {}
       repo.with_temp_index do
@@ -31,13 +32,17 @@ module Jekyll
     def generate_api_docs_for_version(site, version_name, version_dir)
       outdir = File.join(version_dir, 'out')
       `yuidoc -p -o #{outdir} #{version_dir}`
+      site.pages << YUIDocData.new(site, outdir, '.', 'data.json', version_name)
       raw = File.read(File.join(outdir, 'data.json'))
       version_data = JSON.parse(raw)
       [ 'classes', 'modules' ].each do |file_type|
         version_data[file_type].each do |item_name, item_data|
+          if item_data.key?('file')
+            item_data['file'] = Pathname.new(item_data['file']).relative_path_from(Pathname.new(version_dir)).to_s
+          end
           dir = "#{version_name}/api/#{file_type}/"
           name = item_name.parameterize + '.html'
-          site.pages << APIDocPage.new(site, site.source, dir, name, item_data, "api-#{file_type.singularize}.html")
+          site.pages << APIDocPage.new(site, site.source, dir, name, item_data, "api-#{file_type.singularize}.html", version_data)
         end
       end
       version_data
@@ -58,7 +63,7 @@ module Jekyll
   end
 
   class APIDocPage < Page
-    def initialize(site, base, dir, name, data, template)
+    def initialize(site, base, dir, name, data, template, version_data)
       @site = site
       @base = base
       @dir = dir
@@ -66,11 +71,22 @@ module Jekyll
 
       self.process(@name)
       self.read_yaml(File.join(base, '_layouts'), template)
-      self.data.merge!(data)
+      self.data.merge!({ 'api' => data, 'version' => version_data })
     end
   end
 
   class GuidePage < Page
+    def initialize(site, base, dir, name, version)
+      super(site, base, dir, name)
+      @version = version
+    end
+    def destination(dest)
+      relative_dest = Pathname.new(super(dest)).relative_path_from(Pathname.new(dest)).to_s
+      File.join(dest, @version, relative_dest)
+    end
+  end
+
+  class YUIDocData < Page
     def initialize(site, base, dir, name, version)
       super(site, base, dir, name)
       @version = version

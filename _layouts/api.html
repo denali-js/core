@@ -1,0 +1,27 @@
+---
+layout: page
+---
+
+<div class='container'>
+  <div class='api-nav'>
+
+    <div class='nav-section'>
+      <div class='nav-header'>Modules</div>
+      {% for module in page.version.modules %}
+        <a class='nav-link' href='../../modules/{{ module[1].name }}'>{{module[1].name | capitalize }}</a>
+      {% endfor %}
+    </div>
+
+    <div class='nav-section'>
+      <div class='nav-header'>Classes</div>
+      {% for class in page.version.classes %}
+        <a class='nav-link' href='../../classes/{{ class[0] }}'>{{ class[0] }}</a>
+      {% endfor %}
+    </div>
+
+  </div>
+
+  <div class='api-body'>
+    {{content}}
+  </div>
+</div>

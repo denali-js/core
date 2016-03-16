@@ -3,17 +3,21 @@
 $monospace: 'Inconsolata', 'Monaco', 'Anonymous', monospace;
 $sans: 'Lato', 'Helvetica Neue', Helvetica, sans-serif;
 
+$text: #444;
+$muted: #888;
+
 @import 'normalize';
 @import 'code';
 @import 'homepage';
 @import 'guides';
+@import 'api';
 
 * {
   box-sizing: border-box;
 }
 
 body {
-  color: #444;
+  color: $text;
   font-family: $sans;
   font-size: 16px;
   line-height: 1.5;

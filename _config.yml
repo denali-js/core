@@ -10,7 +10,16 @@ title: Denali
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://denali.github.com/denali" # the base hostname & protocol for your site
 github_username:  denali
+permalink: pretty
 
 # Build settings
 markdown: kramdown
-exclude: [ 'design', 'Gemfile', 'Gemfile.lock', 'Guardfile' ]
+exclude: [
+  'design',
+  'Gemfile',
+  'Gemfile.lock',
+  'Guardfile',
+  'npm-debug.log'
+]
+
+version_refs: [ 'simplify-di' ]

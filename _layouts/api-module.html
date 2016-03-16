@@ -1,0 +1,10 @@
+---
+layout: api
+---
+<div class='module'>
+  <h1 class='module-name'>{{ page.api.name | capitalize }}</h1>
+  <div class='defined-in'>{{ page.api.file }}</div>
+  {% if page.api.description %}
+    <p class='module-description'>{{ page.api.description | markdownify }}</p>
+  {% endif %}
+</div>

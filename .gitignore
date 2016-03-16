@@ -1,3 +1,7 @@
 _site
 .sass-cache
 .jekyll-metadata
+build.log
+dist
+node_modules
+npm-debug.log

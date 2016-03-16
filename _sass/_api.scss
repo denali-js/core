@@ -1,0 +1,26 @@
+.api-nav {
+  margin-top: 1em;
+  padding-right: 1em;
+  float: left;
+  overflow: auto;
+
+  .nav-header {
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+    color: $muted;
+    font-size: 0.8em;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .nav-link {
+    display: block;
+    padding: 0.1em 0;
+    color: $text;
+    text-decoration: none;
+  }
+}
+
+.api-body {
+  padding: 1px;
+}
