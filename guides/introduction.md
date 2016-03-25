@@ -1,7 +1,7 @@
 ---
-title: Why Denali?
-url: why-denali
+title: Introduction
 layout: guide
+category_order: -1
 ---
 
 ## Principles

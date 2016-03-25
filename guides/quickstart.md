@@ -1,5 +1,7 @@
 ---
-title: Get Started with Denali
+title: Quickstart
+layout: guide
+after: Introduction
 ---
 
 # Get Started with Denali
@@ -137,9 +139,9 @@ export default ApplicationAction.extend {
 
 Let's break down what's going on here:
 
-* `import ApplicationAction from './application';` - we import the `ApplicationAction` to use as our common base class. You could import the base `Action` class directly, but having a base class for all actions in your app is handy (and conventional).
+* `import ApplicationAction from './application';` - we import the `ApplicationAction` to use as our common base class. You could import the base `Action` class from the `denali` module directly, but having a base class for all actions in your app is handy (and the convention).
 * `respond() {` - the `respond()` method is the meat of any action. It defines how the action responds to an incoming request.
-* `return {...}` - you can tell Denali what kind of response to render in a few different ways. One is to simply return whatever value you want to respond with, which is the strategy we use here.
+* `return {...}` - you can tell Denali what to respond to a request with in a few different ways. Here, we directly return the object we want Denali to send as JSON.
 
 The end result here is an action which will always respond with the same JSON object that we saw above.
 
@@ -163,18 +165,17 @@ This scaffold creates several files:
 
   * A **model** to represent your Posts. Notice that the file is empty - this isn't required (since Denali is database agnostic). It's just wants to be helpful!
 
-The scaffold also added an empty test suite as well.
+  * A placeholder **integration test suite** for this resource. Denali comes with a first-class testing environment, setup and ready to go.
 
 If we open up `app/actions/posts/` now, you can see the stubbed out actions:
 
 ```js
   // app/actions/posts/list.js
-
-  list(req, res) {
-    res.render(new Errors.NotImplemented());
-  },
-
-  // ...
+  export default ApplicationAction.extend({
+    respond() {
+      return new Errors.NotImplemented();
+    },
+  });
 ```
 
 Let's go ahead and implement that list action now. We'll hardcode the Posts into the response for now:
@@ -182,8 +183,8 @@ Let's go ahead and implement that list action now. We'll hardcode the Posts into
 ```js
 // app/controllers/posts.js
 
-  list(req, res) {
-    res.render([
+  respond() {
+    return [
       {
         id: 1,
         title: 'Denali is awesome'
@@ -192,7 +193,7 @@ Let's go ahead and implement that list action now. We'll hardcode the Posts into
         id: 2,
         title: 'You are awesome!'
       }
-    ])
+    ];
   }
 ```
 
@@ -216,7 +217,7 @@ $ curl localhost:3000/posts
 
 This is our first lesson in working with Serializers. They are a core concept in Denali, and are a powerful tool for building _robust_ APIs.
 
-A Serializer takes a payload, and transforms into JSON to send back in the response. There's two parts to this problem:
+A Serializer takes an in-memory payload object (or array), and transforms into JSON to send back in the response. There's two parts to this problem:
 
   1. **What data to send**: many times you want to send only a subset of your records back (i.e. omitting a hashed password) or you want to transform the content (i.e. change underscore_keys to camelCaseKeys).
 
@@ -224,15 +225,15 @@ A Serializer takes a payload, and transforms into JSON to send back in the respo
 
 Serializers address both of these problems. They select what data to send, apply transformations to that data (i.e. renaming keys, serializing values), and structure the result according to a particular output format.
 
-Typically, your API will have a standard output format (i.e. all responses have a wrapper object, related records under the `relationships` key, etc). A good approach is to pick (or create) a base Serializer class that renders that structure.
+Typically, your API will have a standard output format (i.e. JSON-API 1.0). A good approach is to pick (or create) a base Serializer class that renders that structure, much like we used a base ApplicationAction class.
 
-Then you would create a subclass for each model you have. The model-specific subclass would then tell Denali what attributes and relationships should be sent in a response that contains that model.
+Then create a subclass for each model you have. These subclasses would then tell Denali what attributes and relationships should be sent in a response that contains that model.
 
 ## Serializers in action
 
-So what happened to our Post titles from the example above? They were automatically stripped out - Serializers will treat their attributes list as a white-list by default.
+So what happened to our Post titles from the example above? They were automatically stripped out - Serializers will treat their attributes list as a white-list, and our PostSerializer had no attributes listed!
 
-Let's add `'title'` to that list then:
+Let's fix that by adding `'title'` to the attributes whitelist then:
 
 ```js
 // app/serializers/posts.js
@@ -260,3 +261,20 @@ $ curl localhost:3000/posts
 ```
 
 It might seem like a bit of overhead at first, but Serializers quickly become a powerful tool. They allow you to decouple your application logic and data layer from how a response body is structured, making changes to either side that much easier.
+
+## Integrating your ORM with Adapters
+
+Denali is an **ORM-agnostic** framework. ORMs are difficult to get right, and
+a one-size-fits-all solution tends to reduce the strengths of each data store to the lowest common denominator. The result is that you could be forced to miss out on the very benefits that led you to choose a particular datastore.
+
+Denali sidesteps the issue entirely, focusing instead on providing a solid API framework to build off of, and the appropriate integration points to hook in your ORM of choice.
+
+This is done with **Adapters**, which provide a common interface to allow Denali to extract whatever information it needs from your models. Adapters exist for [several popular ORMs](./supported-orms) already, packaged as addons for easy installation.
+
+## Next Steps
+
+Congrats, you made it through the quickstart guide. From here, you can:
+
+* Check out the rest of the guides to learn more about the different parts of the framework
+* Dive into the API documentation to get into the gritty details
+* Explore the [heavily commented source code](https://github.com/{{site.repo}})
