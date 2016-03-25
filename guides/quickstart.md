@@ -19,34 +19,37 @@ $ npm install -g denali
 Next, let's use Denali's handy scaffolding tools to create a blank slate for us to start from:
 
 ```txt
-$ npm new blog
-denali v0.0.1 [global]
+$ denali new blog
+denali v0.1.0 [global]
+  create app/actions/application.js
+  create app/actions/index.js
+  create app/adapters/application.js
+  create app/models/.gitkeep
+  create app/serializers/.gitkeep
+  create app/services/.gitkeep
+  create config/environment.js
+  create config/middleware.js
+  create config/routes.js
+  create test/helpers/.gitkeep
+  create test/integration/.gitkeep
+  create test/unit/.gitkeep
+  create test/index.js
   create .eslintrc
   create .gitattributes
   create .gitignore
   create CHANGELOG.md
-  create README.md
-  create app/adapters/application.js
-  create app/controllers/application.js
-  create app/jobs/.gitkeep
-  create app/models/.gitkeep
-  create app/serializers/.gitkeep
-  create config/database.json
-  create config/initializers/database.js
-  create config/middleware.js
-  create config/routes.js
-  create index.js
+  create denali-build.js
   create package.json
-  create test/helpers/.gitkeep
+  create README.md
 
 Installing npm dependencies ...
 Setting up git repo ...
-
 
 Installation complete!
 To launch your application, just run:
 
   $ cd blog && denali server
+
 ```
 
 Go ahead and follow that last instruction:
@@ -65,7 +68,7 @@ $ curl localhost:3000
 {"denaliVersion":"0.0.1","message":"Welcome to Denali!"}
 ```
 
-> **Heads up!** Notice that we didn't visit that localhost URL in the browser. That's because Denali is designed to build **APIs** rather than HTML rendering applications. If you are looking for Node framework to build a server rendered web application, you might want to try a different framework than Denali.
+> **Heads up!** Notice that we didn't visit that localhost URL in the browser. That's because Denali is designed to build **APIs** rather than HTML rendering applications. If you are looking for Node framework to build a server rendered web application, you might want to try something like Sails.js or Express.
 
 Woo, we got an app up and running! Now that's great, but it's not _that_ exciting. Let's crack open the scaffolded code to see how that root endpoint is working, and how to add our own.
 
@@ -76,24 +79,25 @@ The `denali new` command did a lot of setup for us. It created the following dir
 ```txt
 blog/
   app/
+    actions/
+      application.js
+      index.js
     adapters/
       application.js
-    controllers/
-      application.js
-    jobs/
     models/
     serializers/
   config/
     initializers/
-      database.js
-    database.json
+    environment.js
     middleware.js
     routes.js
   test/
     helpers/
+    integration/
+    unit/
   .eslintrc
   CHANGELOG.md
-  index.js
+  denali-build.js
   package.json
   README.md
 ```
@@ -104,42 +108,48 @@ There's a lot there, but for now, let's open up the `config/routes.js` to see ho
 // config/routes.js
 export default function drawRoutes() {
 
-  this.get('/', 'application.index');
+  this.get('/', 'index');
 
 }
 ```
 
-This should look somewhat familiar. The `this.get()` method adds an endpoint that responds to GET requests at the url provided in the first argument.
+This should look somewhat familiar if you used frameworks like Rails before. The `this.get()` method adds an endpoint that responds to GET requests at the url provided in the first argument (`'/'` in this case).
 
-The second argument identifies a controller action to route these requests to (in this case, the `ApplicationController`'s `index` action).
+The second argument identifies an action to route these requests to (in this case, the `index` action).
 
-In `app/controllers/application.js`, we can see how that is handled:
+In `app/actions/index.js`, we can see how that is handled:
 
 ```js
-// app/controllers/application.js
-import { Controller, version } from 'denali';
+// app/actions/index.js
+import ApplicationAction from './application';
 
-export default Controller.extend {
+export default ApplicationAction.extend {
 
-  index(req, res) {
-    res.json({
+  respond() {
+    return {
       denaliVersion: version,
       message: 'Welcome to Denali!'
-    });
+    };
   }
 
 }
 ```
 
-As you can see, the `index` action on the Controller looks just like a regular Express route handling function. It accepts the `req` and `res` objects, and writes a simple object to the response.
+Let's break down what's going on here:
+
+* `import ApplicationAction from './application';` - we import the `ApplicationAction` to use as our common base class. You could import the base `Action` class directly, but having a base class for all actions in your app is handy (and conventional).
+* `respond() {` - the `respond()` method is the meat of any action. It defines how the action responds to an incoming request.
+* `return {...}` - you can tell Denali what kind of response to render in a few different ways. One is to simply return whatever value you want to respond with, which is the strategy we use here.
+
+The end result here is an action which will always respond with the same JSON object that we saw above.
 
 ## Adding a resource
 
-Now our blog API is going to need to store and retrieve our blog Posts. Let's create a Post resource to enable that.
+Now let's get a bit more creative. Our blog API is going to need to store and retrieve our blog Posts. Let's create a Post resource to enable that.
 
-> Normally, you'd probably store those in some kind of database (i.e. Mongo, Postgres, MySQL, etc). **Denali is database agnostic** though. So for now, we'll use plain ole' JS objects. But you could easily substitute your own models in later.
+> Normally, you'd probably store those in some kind of database (i.e. Mongo, Postgres, MySQL, etc). Denali is **database agnostic** though. So for now, we'll use plain ol' JS objects (a.k.a. POJOs). But you could easily substitute your own models in later. For more details, check out the Data guides.
 
-To start, let's use the handy scaffolding tools again:
+To start, let's use that handy scaffolding tool again:
 
 ```sh
 $ denali generate resource posts
@@ -147,18 +157,18 @@ $ denali generate resource posts
 
 This scaffold creates several files:
 
-  * A **controller** for this resource with the basic CRUD operations stubbed out. This is where you'll implement your application logic to respond to a particular request. We saw these above.
+  * A set of **actions** for this resource with the basic CRUD operations stubbed out. These files are where you'll implement your application logic to respond to a particular request. We saw these above.
 
-  * A **serializer** to determine how your Posts will be rendered in the response. See below for an explanation of serializers.
+  * A **serializer** to determine how your Posts will be rendered in the response. We'll learn more about this in a bit.
 
   * A **model** to represent your Posts. Notice that the file is empty - this isn't required (since Denali is database agnostic). It's just wants to be helpful!
 
 The scaffold also added an empty test suite as well.
 
-If we open up `app/controllers/posts.js` now, you can see the stubbed out actions:
+If we open up `app/actions/posts/` now, you can see the stubbed out actions:
 
 ```js
-  // ...
+  // app/actions/posts/list.js
 
   list(req, res) {
     res.render(new Errors.NotImplemented());
