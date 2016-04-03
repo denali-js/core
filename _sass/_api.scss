@@ -1,8 +1,10 @@
 .api-nav {
+  width: 13.5em;
   margin-top: 1em;
-  padding-right: 1em;
+  margin-right: 2em;
+  padding-right: 2em;
   float: left;
-  overflow: auto;
+  border-right: 1px solid darken($white, 4%);
 
   .nav-header {
     margin-top: 2em;
@@ -13,14 +15,283 @@
     text-transform: uppercase;
   }
 
+  .private-classes-toggle {
+    display: inline-block;
+    margin-top: 0.2em;
+    margin-left: 2em;
+    color: lighten($muted, 20%);
+    font-size: 0.8em;
+
+    input {
+      position: relative;
+      top: -0.1em;
+      margin-right: 0.3em;
+    }
+  }
+
   .nav-link {
     display: block;
-    padding: 0.1em 0;
-    color: $text;
+    margin: 0.1em 0;
+    padding: 0.1em 0.4em;
+    border-radius: 3px;
+    color: lighten($text, 10%);
     text-decoration: none;
+
+    &:hover {
+      color: darken($text, 10%);
+    }
+
+    &.active {
+      background-color: $link;
+      color: $white;
+    }
+  }
+
+  [data-private-class] {
+    display: none;
   }
 }
 
 .api-body {
-  padding: 1px;
+  overflow: auto;
+}
+
+.module-name, .class-name {
+  margin-bottom: 0;
+}
+
+.defined-in {
+  display: block;
+  color: $muted;
+  font-family: $sans;
+  font-size: 0.8em;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    &, .file, .line {
+      text-decoration: underline;
+    }
+  }
+
+  .file, .line {
+    display: inline-block;
+  }
+
+  .line {
+    margin-left: 0.5em;
+  }
+}
+
+.module-description, .class-description {
+  margin-bottom: 4em;
+}
+
+.display-controls {
+  $bg: mix($brand-one, $white, 20%);
+  padding: 0.75em 1em;
+  border: 1px solid darken($bg, 10%);
+  border-bottom: none;
+  border-radius: 4px 4px 0 0;
+  background-color: $bg;
+
+  .toggle {
+    display: inline-block;
+    margin-right: 1em;
+  }
+
+  + .summary {
+    border-radius: 0 0 4px 4px;
+  }
+}
+
+.summary {
+  $bg: mix($brand-one, $white, 5%);
+  padding: 1em;
+  border: 1px solid darken($bg, 10%);
+  border-radius: 4px;
+  background-color: $bg;
+  overflow: auto;
+}
+
+.summary-section {
+  width: 50%;
+  float: left;
+}
+
+.summary-header {
+  color: mix($brand-one, $text);
+  font-weight: 600;
+}
+
+.summary-link {
+  display: block;
+  padding: 0.1em 0.3em;
+  font-family: $monospace;
+}
+
+.type {
+  color: lighten($muted, 10%);
+}
+
+.classitems {
+  margin-bottom: 10em;
+}
+
+.item {
+  margin: 2em 0;
+}
+
+[data-private-member], [data-deprecated-member] {
+  display: none;
+}
+
+.item-header {
+  margin-bottom: 0.25em;
+  color: lighten($muted, 20%);
+  font-size: 0.7em;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+.item-title {
+  $bg: mix($brand-one, $white, 10%);
+  margin-bottom: 0;
+  padding: 0.5em 1em;
+  border: 1px solid darken($bg, 10%);
+  border-radius: 4px 4px 0 0;
+  background: $bg;
+  font-family: $monospace;
+  overflow: auto;
+
+  .item-name {
+    float: left;
+  }
+
+  .params {
+    margin: 0 0.3em;
+    float: left;
+    color: lighten($text, 10%);
+  }
+
+  .param {
+    float: left;
+  }
+
+  .defined-in {
+    margin-bottom: 2px;
+    clear: left;
+    font-size: 0.65em;
+    font-weight: 400;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .tag {
+    margin: 1em;
+    padding: 0.2em 0.4em;
+    float: right;
+    border-radius: 3px;
+    font-family: $sans;
+    font-size: 0.6em;
+    text-transform: uppercase;
+
+    &.private {
+      $bg: #e4f5bb;
+      border: 1px solid darken($bg, 20%);
+      background: $bg;
+      color: darken($bg, 50%);
+    }
+  }
+}
+
+.item-body {
+  $bg: mix($brand-one, $white, 5%);
+  padding: 1em;
+  border: 1px solid darken($bg, 10%);
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  background-color: $bg;
+
+  .item-header:first-of-type {
+    margin-top: 0;
+  }
+}
+
+.param-paren {
+  float: left;
+}
+
+.params {
+  overflow: auto;
+}
+
+.param {
+  font-weight: 400;
+
+  &::after {
+    content: ',';
+  }
+
+  &:last-of-type::after {
+    display: none;
+  }
+
+}
+
+.param-name, .param-type {
+  float: left;
+  font-family: $monospace;
+}
+
+.param-name {
+  font-weight: 600;
+}
+
+.param-description {
+  display: block;
+  margin-left: 0.25em;
+}
+
+.param-description, .item-description, .return-description {
+  p:first-of-type {
+    margin-top: 0;
+  }
+
+  p:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.param-description, .return-description {
+  &::before {
+    display: block;
+    margin: 0 0.2em;
+    float: left;
+    content: '-';
+  }
+}
+
+.return {
+  overflow: auto;
+}
+
+.return-type {
+  margin-right: 0.1em;
+  float: left;
+  color: $text;
+  font-family: $monospace;
+  font-weight: 600;
+}
+
+.module-classes-header {
+  margin-bottom: 0.25em;
+}
+
+.module-class-link {
+  padding: 0.1em 0;
+  font-size: 1.1em;
 }

@@ -1,7 +1,14 @@
 ---
 layout: page
 ---
-{% include guides-nav.html %}
-<div class='guides-body'>
-  {{ content }}
+<div class='container'>
+  {% include guides-nav.html %}
+  <div class='guides-body'>
+    {{ content }}
+  </div>
 </div>
+
+<!--
+  LEFT OFF: Need to figure out version aliasing, i.e. how do I point to a latest version (which is likely a tag),
+  and how to do I include aliased refs, i.e. if `master` branch represents "beta" / "edge"
+ -->

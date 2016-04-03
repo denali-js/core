@@ -1,0 +1,29 @@
+# Default application configuration that all configurations inherit from.
+
+scss_files: "app/**/*.scss"
+
+linters:
+
+  UnnecessaryParentReference:
+    enabled: false
+
+  BorderZero:
+    enabled: true
+    convention: none
+
+  LeadingZero:
+    enabled: true
+    style: include_zero
+
+  NameFormat:
+    enabled: true
+    allow_leading_underscore: false
+    convention: hyphenated_lowercase
+
+  SingleLinePerSelector:
+    enabled: false
+
+  PropertySortOrder:
+    enabled: true
+    order: smacss
+    separate_groups: false

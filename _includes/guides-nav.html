@@ -1,32 +1,15 @@
 <div class='guides-nav'>
-  <div class='nav-section'>
-    <a href='/guides/introduction' class='nav-link'>Introduction</a>
-    <a href='/guides/installation' class='nav-link'>Installation</a>
-  </div>
-  <div class='nav-section'>
-    <div class='nav-header'>Application</div>
-    <a href='' class='nav-link'>Routing</a>
-    <a href='' class='nav-link'>Actions</a>
-    <a href='' class='nav-link'>Filters</a>
-    <a href='' class='nav-link'>Services</a>
-  </div>
-  <div class='nav-section'>
-    <div class='nav-header'>Data</div>
-    <a href='' class='nav-link'>Adapters</a>
-    <a href='' class='nav-link'>Serializers</a>
-  </div>
-  <div class='nav-section'>
-    <div class='nav-header'>Configuration</div>
-    <a href='' class='nav-link'>Environment</a>
-    <a href='' class='nav-link'>Middleware</a>
-    <a href='' class='nav-link'>Initializers</a>
-  </div>
-  <div class='nav-section'>
-    <div class='nav-header'>CLI</div>
-    <a href='' class='nav-link'>generate</a>
-    <a href='' class='nav-link'>server</a>
-    <a href='' class='nav-link'>test</a>
-    <a href='' class='nav-link'>build</a>
-    <a href='' class='nav-link'>addon</a>
-  </div>
+
+  {% include version-dropdown.html %}
+
+  {% for category in site.guide_categories %}
+    <div class='nav-section'>
+      {% if category[0] != 'Uncategorized' %}
+        <div class='nav-header'>{{category[0]}}</div>
+      {% endif %}
+      {% for page in category[1] %}
+        <a href='/{{page.version.ref}}/{{page.url}}' class='nav-link'>{{page.title}}</a>
+      {% endfor %}
+    </div>
+  {% endfor %}
 </div>

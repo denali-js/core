@@ -1,12 +1,14 @@
 <header>
   <div class='container'>
-    <img class='logo-light' src='/images/logo.png' alt='Denali'>
-    <a class='project-name' href=''>denali</a>
+    <a href='/' class='brand'>
+      <img class='logo-light' src='/images/logo.png' alt='Denali'>
+      <span class='project-name'>denali</span>
+    </a>
 
     <nav>
-      <a href='/guides/quickstart' class='nav-link'>Quickstart</a>
-      <a href='/guides' class='nav-link'>Guides</a>
-      <a href='/api/latest/modules/denali' class='nav-link'>API</a>
+      <a href='/{{ page.version.ref | default: 'latest' }}/guides/quickstart' class='nav-link {% if page.url contains '/quickstart/' %}active{% endif %}'>Quickstart</a>
+      <a href='/{{ page.version.ref | default: 'latest' }}/guides/introduction' class='nav-link {% if page.url contains '/guides/' %}{% unless page.url contains '/quickstart' %}active{% endunless %}{% endif %}'>Guides</a>
+      <a href='/{{ page.version.ref | default: 'latest' }}/api/modules/denali' class='nav-link {% if page.url contains '/api/' %}active{% endif %}'>API</a>
       <a href='https://github.com/davewasmer/denali' target='_blank' class='nav-link'>Github</a>
       <a href='https://github.com/davewasmer/denali/issues' target='_blank' class='nav-link'>Issues</a>
     </nav>

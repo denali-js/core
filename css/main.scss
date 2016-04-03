@@ -3,8 +3,15 @@
 $monospace: 'Inconsolata', 'Monaco', 'Anonymous', monospace;
 $sans: 'Lato', 'Helvetica Neue', Helvetica, sans-serif;
 
+$white: #fff;
+$black: #000;
+
+$brand-one: #25dfdf;
+$brand-two: #7fe5b7;
+
 $text: #444;
 $muted: #888;
+$link: #7884ea;
 
 @import 'normalize';
 @import 'code';
@@ -30,26 +37,31 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a {
-  color: #7884EA;
+  color: $link;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 header {
   padding: 1em;
-  background-color: #25DFCB;
-  background-image: url(/images/hero-bg.png), linear-gradient(40deg, #25DFCB, #7FE5B7);
-  color: white;
+  background-color: $brand-one;
+  background-image: url('/images/hero-bg.png'), linear-gradient(40deg, $brand-one, $brand-two);
+  color: $white;
   font-size: 1.4em;
   overflow: auto;
 
   .logo-light {
     display: inline-block;
+    height: 2em;
     margin-top: -0.2em;
     margin-right: 0.5em;
-    height: 2em;
     vertical-align: middle;
   }
 
-  .project-name {
+  .brand {
     color: inherit;
     font-family: 'Montserrat Alternates';
     font-weight: 400;
@@ -70,50 +82,44 @@ header {
     font-size: 0.8em;
     text-decoration: none;
 
-    &:hover {
-      border-bottom: 2px solid rgba(255, 255, 255, 0.7);
+    &:hover, &.active {
+      border-bottom: 2px solid rgba($white, 0.7);
     }
   }
 
   .api-nav-module-file {
-    font-family: $monospace;
-    opacity: 0.5;
     display: block;
+    font-family: $monospace;
     font-weight: 400;
+    opacity: 0.5;
   }
 }
 
 .container {
-  width: 60rem;
+  max-width: 70rem;
   margin: 0 auto;
+  padding: 0 5rem;
 }
 
 pre {
   padding: 0.8rem;
   border-radius: 2px;
-  background-color: #333;
+  background-color: $text;
 
   > code {
     border: none;
     background: transparent;
-    color: #ddd;
+    color: darken($white, 10%);
     font-size: 0.9em;
   }
 }
 
 code {
   display: inline-block;
-  border: 1px solid #efefef;
-  background-color: #f7f7f7;
-  color: #666;
+  border: 1px solid darken($white, 5%);
+  background-color: darken($white, 3%);
+  color: $text;
   font-size: 0.9em;
-}
-
-blockquote {
-  margin: 2em 1em;
-  padding: 0.1em 1.2em;
-  border-radius: 2px;
-  background-color: #ededff;
 }
 
 .row {
@@ -124,101 +130,4 @@ blockquote {
   width: 33%;
   padding: 1em;
   float: left;
-}
-
-.file-path {
-  display: block;
-  margin: 0.3em 0;
-  color: #888;
-  font-family: 'Open Sans';
-  font-size: 0.9rem;
-  font-weight: normal;
-
-  a {
-    color: inherit;
-    font-family: $monospace;
-  }
-}
-
-.context {
-  margin: 2rem -0.75em 0;
-  padding: 0.5em 0.75em;
-  background-color: #f4f4f9;
-}
-
-.method-name {
-  margin-top: 0;
-  margin-bottom: 0;
-
-  .arguments {
-    color: #777;
-    font-family: $monospace;
-    font-size: 0.8em;
-    font-weight: 600;
-  }
-
-  .argument {
-    &::after {
-      content: ', ';
-    }
-
-    &:last-child::after {
-      display: none;
-    }
-  }
-
-}
-
-.private {
-  display: inline-block;
-  margin-top: 1em;
-  margin-bottom: -0.5em;
-  color: #aaa;
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.2px;
-  text-transform: uppercase;
-  padding: 0.2em 0.4em;
-  border: 1px solid #aaa;
-  border-radius: 3px;
-}
-
-.defined-in {
-  margin-top: 0.2em;
-  float: right;
-  color: #888;
-  font-size: 0.75em;
-
-  a {
-    color: inherit;
-  }
-}
-
-.argument {
-  font-size: 0.9em;
-
-  .argument-name {
-    font-family: $monospace;
-    font-weight: bold;
-  }
-
-  .argument-types {
-    color: #888;
-    font-family: $monospace;
-  }
-
-  .argument-description p {
-    display: inline;
-    margin: 0;
-  }
-}
-
-.return-types {
-  color: #888;
-  font-family: $monospace;
-}
-
-.return-description p {
-  display: inline;
-  margin: 0;
 }

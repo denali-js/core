@@ -1,0 +1,129 @@
+---
+layout: api
+---
+<div class='class'>
+  {% if page.class.private %}
+    <div class='private-class'>Private</div>
+  {% endif %}
+  <h1 class='class-name'>{{ page.class.name | capitalize }}</h1>
+  {% if page.class.file %}
+    <a class='defined-in' href='https://github.com/{{ site.repo }}/blob/{{ page.version.ref }}/{{ page.class.file | url_encode }}#L{{ page.class.line }}'>
+      <span class='file'>Defined in: {{ page.class.file }}</span>
+      <span class='line'>Line: {{ page.class.line }}</span>
+    </a>
+  {% endif %}
+
+  <div class='class-module'>
+    <strong>Module:</strong>
+    <span class='class-module-name'>{{page.class.module}}.{{page.class.submodule}}</span>
+  </div>
+
+  {% if page.class.description %}
+    <div class='class-description'>{{ page.class.description | markdownify }}</div>
+  {% endif %}
+
+  <div class='display-controls'>
+    <label class='toggle'>
+      <input type='checkbox' id='toggle-private-members'>
+      Show Private
+    </label>
+    <label class='toggle'>
+      <input type='checkbox' id='toggle-deprecated-members'>
+      Show Deprecated
+    </label>
+  </div>
+  <div class='summary'>
+    <div class='summary-section'>
+      <div class='summary-header'>Methods</div>
+      {% for item in page.class.classitems %}
+        {% if item.itemtype == 'method'%}
+          <a class='summary-link' {% if item.access == 'private' %} data-private-member=true {% endif %} href='#{{ item.name | url_encode }}'>{{ item.name }}</a>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div class='summary-section'>
+      <div class='summary-header'>Properties</div>
+      {% for item in page.class.classitems %}
+        {% if item.itemtype == 'property'%}
+          <a class='summary-link' {% if item.access == 'private' %} data-private-member=true {% endif %} href='#{{ item.name | url_encode }}'>{{ item.name }}</a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<div class='classitems'>
+  {% for item in page.class.classitems %}
+    <div class='item' id='{{item.name | url_encode}}' {% if item.access == 'private' %}data-private-member=true{% endif %}>
+      <h3 class='item-title'>
+        {% if item.access == 'private' %}
+          <div class='private tag'>Private</div>
+        {% endif %}
+        <div class='item-name'>{{ item.name }}</div>
+        {% if item.params %}
+          <div class='param-paren'>(</div>
+          <div class='params'>
+            {% for param in item.params %}
+              <div class='param'>
+                <span class='param-name'>{{param.name}}</span><span class='param-type type'>:{{param.type}}</span>
+              </div>
+            {% endfor %}
+          </div>
+          <div class='param-paren'>)</div>
+        {% endif %}
+        {% if item.file %}
+          <a class='defined-in' href='https://github.com/{{site.repo}}/blob/{{page.version.ref}}/{{item.file | url_encode}}#L{{item.line}}'>
+            <span class='file'>Defined in: {{ item.file }}</span>
+            <span class='line'>Line: {{ item.line }}</span>
+          </a>
+        {% endif %}
+      </h3>
+      <div class='item-body'>
+        {% if item.description %}
+          <h5 class='item-header'>Description</h5>
+          <div class='item-description'>{{ item.description | markdownify }}</div>
+        {% endif %}
+        {% if item.params %}
+          <h5 class='item-header'>Parameters</h5>
+          <div class='params'>
+            {% for param in item.params %}
+              <div class='param'>
+                <div class='param-name'>{{param.name}}</div><div class='param-type type'>:{{param.type}}</div>
+                {% unless param.description == '' %}
+                  <div class='param-description'>{{param.description | markdownify}}</div>
+                {% endunless %}
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+        {% if item.return %}
+          <h5 class='item-header'>Returns:</h5>
+          <div class='return'>
+            <div class='return-type type'>{{ item.return.type }}</div>
+            {% unless item.return.description == '' %}
+              <div class='return-description'>{{ item.return.description | markdownify }}</div>
+            {% endunless %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+<script>
+  $(function() {
+    [ 'private', 'deprecated' ].forEach(function(type) {
+      var $toggle = $('#toggle-' + type + '-members');
+      $toggle.on('change', function() {
+        if ($toggle.is(':checked')) {
+          $('[data-' + type + '-member]').css('display', 'block');
+        } else {
+          $('[data-' + type + '-member]').css('display', 'none');
+        }
+      });
+      if ($(window.location.hash).attr('data-' + type + '-member')) {
+        $toggle.click();
+      }
+    });
+  });
+</script>

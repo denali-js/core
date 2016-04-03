@@ -19,7 +19,11 @@ exclude: [
   'Gemfile',
   'Gemfile.lock',
   'Guardfile',
-  'npm-debug.log'
+  'npm-debug.log',
+  '.scss-lint.yml'
 ]
 
-version_refs: [ 'simplify-di' ]
+additional_version_refs: [ 'master' ]
+version_aliases:
+  master: 'canary'
+repo: 'davewasmer/denali'
