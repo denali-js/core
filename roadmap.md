@@ -23,13 +23,13 @@
 * ssl?
 * load testing
 * error handling
-  * special error actions? per folder, app wide?
+  * special error actions? per folder, app wide? or handle errors in the action itself?
   * most errors should result in output, not crashing, ideally
-  * serve html error page to browsers, with additional details in dev
+  * serve html error page to browsers with additional details in dev
 * deploy command / pipeline
-
-Delayed
+* generic caching layer with pluggable backing stores
 * jobs
+* mailers?
 * allow additional debug options (via REPL?)
   * allow it to start in debug mode, or to send a SIG to the process to trigger
     debug mode
@@ -40,5 +40,11 @@ Delayed
 * docs command
   * swagger-like (or actually swagger) generation?
   * show API browser / console for text/html requests (i.e. in browser) via addon
+* security review / audit
+* custom commands / tasks that an app or addon can add to denali cli
 * extract eslint styles to preset dependency
 * support arbitrary blueprint sources (i.e. local folders, git urls)
+
+-----
+
+Do adapters belong in config/ or app/?

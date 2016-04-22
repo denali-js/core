@@ -11,7 +11,7 @@ function expectNoFile(...filepath) {
   expect(isFile(path.join(...filepath))).to.not.be.true();
 }
 
-const fixtureDir = path.join(__dirname, '..', '..', 'fixtures', 'cli', 'build-acceptance-test');
+const fixtureDir = path.join(__dirname, '..', '..', 'fixtures', 'cli', 'basic-app');
 const bin = path.join(__dirname, '..', '..', '..', 'bin');
 const denaliPath = path.join(bin, 'denali');
 
