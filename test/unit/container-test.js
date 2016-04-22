@@ -1,6 +1,6 @@
-import expect from 'must';
-import Container from '../../lib/runtime/container';
-import Factory from '../../lib/runtime/factory';
+const expect = require('must');
+const Container = require('../../lib/runtime/container');
+const Factory = require('../../lib/runtime/factory');
 
 describe('Denali.Container', function() {
 

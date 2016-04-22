@@ -1,6 +1,6 @@
-import expect from 'must';
-import Action from '../../lib/runtime/action';
-import merge from 'lodash/object/merge';
+let expect = require('must');
+let Action = require('../../lib/runtime/action');
+let merge = require('lodash/object/merge');
 
 function mockReqRes(overrides) {
   return merge({
