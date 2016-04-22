@@ -42,30 +42,17 @@
     "must": "^0.13.1"
   },
   "scripts": {
-    "prepublish": "in-publish && npm run lint && npm test && npm run coverage && npm run compile || npm run build",
-    "test": "NODE_ENV=test mocha --compilers js:babel/register",
+    "prepublish": "in-publish && npm run lint && npm test && npm run coverage",
+    "test": "NODE_ENV=test mocha",
     "lint": "eslint lib test",
-    "build": "which babel && npm run clean && cp -r lib/ dist && babel lib --out-dir dist --ignore 'cli/blueprints/*/files'",
     "coverage": "babel-node isparta cover _mocha && coveralls < coverage/lcov.info",
-    "postcoverage": "rimraf coverage",
-    "watch": "watch 'npm run build && npm run test' lib test",
-    "clean": "rimraf dist/*"
+    "postcoverage": "rimraf coverage"
   },
   "license": "MIT",
   "dependencies": {
-    "babel": "^5.8.34",
     "blackburn": "0.0.2",
     "bluebird": "^2.10.0",
-    "broccoli": "^0.16.9",
-    "broccoli-babel-transpiler": "^5.5.0",
-    "broccoli-file-creator": "^1.0.1",
-    "broccoli-funnel": "^1.0.1",
-    "broccoli-lint-eslint": "^1.1.1",
-    "broccoli-slow-trees": "^2.0.0",
-    "broccoli-stew": "^1.2.0",
-    "broccoli-uglify-sourcemap": "^1.1.0",
     "chalk": "^1.1.1",
-    "commander": "^2.9.0",
     "compression": "^1.6.0",
     "cookie-parser": "^1.4.0",
     "copy-dereference": "^1.0.0",
