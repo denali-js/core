@@ -24,9 +24,6 @@
     "opinionated",
     "denali"
   ],
-  "peerDependencies": {
-    "node-inspector": "0.12.x"
-  },
   "devDependencies": {
     "axios": "^0.8.1",
     "body-parser": "^1.14.2",
@@ -79,6 +76,7 @@
     "moment": "^2.10.6",
     "morgan": "^1.6.1",
     "nodemon": "^1.8.1",
+    "node-inspector": "0.12.x"
     "nsp": "^2.2.0",
     "qs": "^6.0.1",
     "require-all": "^2.0.0",
