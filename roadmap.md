@@ -40,9 +40,6 @@
 
 * [STRETCH] The default HTML error page could embed node inspector, potentially
   even pause on the exception in question
-* Interactive REPL environment
-  * allow it to start in debug mode, or to send a SIG to the process to trigger
-    REPL
 
 # Addons
 
