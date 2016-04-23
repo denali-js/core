@@ -1,6 +1,5 @@
 # Operations
 
-* Native dotenv
 * Logger
   * How is it referenced? Globally (i.e. `Denali.Logger`) or locally (i.e. `this.logger`)
 * Load testing / benchmarks?
