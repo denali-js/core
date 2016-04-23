@@ -1,4 +1,3 @@
-* Get uglify / linting trees working
 * find heroku addons, build addons for those saas services
   * postgres
   * sequelize models
@@ -20,7 +19,6 @@
   * statuspage
   * ci's? i.e. circle, travis, codeship?
   * stripe
-* ssl?
 * load testing
 * error handling
   * special error actions? per folder, app wide? or handle errors in the action itself?
