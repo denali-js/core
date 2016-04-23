@@ -1,48 +1,111 @@
-* find heroku addons, build addons for those saas services
-  * postgres
-  * sequelize models
-  * bookshelf models
-  * mongo
-  * mongoose models
-  * redis
-  * mysql
-  * newrelic
-  * librato
-  * papertrail
-  * logentries
-  * mailchimp / mandril
-  * sendgrid
-  * rollbar
-  * elasticsearch
-  * keen
-  * pubnub
-  * statuspage
-  * ci's? i.e. circle, travis, codeship?
-  * stripe
-* load testing
-* error handling
-  * special error actions? per folder, app wide? or handle errors in the action itself?
-  * most errors should result in output, not crashing, ideally
-  * serve html error page to browsers with additional details in dev
-* deploy command / pipeline
-* generic caching layer with pluggable backing stores
-* jobs
-* mailers?
-* allow additional debug options (via REPL?)
+# Operations
+
+* Native dotenv
+* Logger
+  * How is it referenced? Globally (i.e. `Denali.Logger`) or locally (i.e. `this.logger`)
+* Load testing / benchmarks?
+* Caching headers
+  * https://devcenter.heroku.com/articles/increasing-application-performance-with-http-cache-headers
+  * two main strategies - ttl (cache for x time) or fingerprint (use cache unless lmt or fingerprint is different)
+  * could look like:
+      {
+        expiresIn: 60 * 60 // 1 hour
+        lastModified(params) {
+          return Resource.find(params.id).lmt // acts like before filter
+        }
+        fingerprint(responseBody) {
+          return hash(responseBody)
+        }
+      }
+
+# Instrumentation
+
+* `instrument([data], callback)` invokes the callback, which can return a
+  promise that resolves when any async activity completes.
+* Calling `instrument()` fires an event once the callback completes, with
+  includes the timing info (start, end, duration) and the optional data
+  supplied to the `instrument()` call, and a UUID for the event
+* Should be used to instrument internal framework steps
+* Should be able to add timing info to the meta block of JSONAPI responses
+
+# Security
+
+* Need to figure out if it makes sense / is possible to separate auth from
+  session management. It would be cool if the framework or an addon could do
+  stuff to the session without knowing how auth works. I.e. invalidate a session
+  if the IP changes in the middle, without knowing how auth is handled.
+* Built in or core addon for rate limiting, throttling, and blacklisting
+* Optionally force SSL if SSL is enabled
+  * Either drop insecured HTTP, redirect, or allow
+* Security review / audit
+
+# Debugging
+
+* [STRETCH] The default HTML error page could embed node inspector, potentially
+  even pause on the exception in question
+* Have a happy path for debugging / developing emails (i.e. mailcatcher)
+* Interactive REPL environment
   * allow it to start in debug mode, or to send a SIG to the process to trigger
-    debug mode
-  * use blessed to create gui/admin style interface in terminal
-    * can trigger it on stdio (for dev mode) or via telnet (for staging/prod)
-  * instead of terminal UI, serve a browser UI on an out-of-band server in dev
-    mode that shows an API console, debug options, etc interface
-* docs command
-  * swagger-like (or actually swagger) generation?
-  * show API browser / console for text/html requests (i.e. in browser) via addon
-* security review / audit
-* custom commands / tasks that an app or addon can add to denali cli
-* extract eslint styles to preset dependency
-* support arbitrary blueprint sources (i.e. local folders, git urls)
+    REPL
 
------
+# Addons
 
-Do adapters belong in config/ or app/?
+## Databases
+
+Do these even make sense? There's no ORM / adapter really.
+
+* Postgres
+* Mongo
+* Redis
+* Mysql
+
+## ORMs
+
+* Sequelize
+* Bookshelf
+* Mongoose
+* node-orm(2)
+
+## Monitoring
+
+* Newrelic
+* Librato
+
+## Logging
+
+* Papertrail
+* Logentries
+
+## Email
+
+* Mailchimp
+* Mandril
+* Sendgrid
+* SES
+
+## Error Reporting
+
+* Rollbar
+
+## Analytics
+
+* Keen
+* Mixpanel
+
+## Payments
+
+* Stripe
+
+# Jobs
+
+# Mailers
+
+# CLI
+
+* Docs command
+  * Generate documentation for your API, different output formats (including
+    Swagger)
+  * Interactive docs (i.e. "try this request")
+* Custom commands
+  * Tasks that an app or addon can add to the cli
+* Support arbitrary blueprint sources (i.e. local folders, git urls)
