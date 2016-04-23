@@ -1,7 +1,5 @@
 # Operations
 
-* Logger
-  * How is it referenced? Globally (i.e. `Denali.Logger`) or locally (i.e. `this.logger`)
 * Load testing / benchmarks?
 * Caching headers
   * https://devcenter.heroku.com/articles/increasing-application-performance-with-http-cache-headers
@@ -42,7 +40,6 @@
 
 * [STRETCH] The default HTML error page could embed node inspector, potentially
   even pause on the exception in question
-* Have a happy path for debugging / developing emails (i.e. mailcatcher)
 * Interactive REPL environment
   * allow it to start in debug mode, or to send a SIG to the process to trigger
     REPL
