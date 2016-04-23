@@ -1,6 +1,6 @@
-let expect = require('must');
-let Action = require('../../lib/runtime/action');
-let merge = require('lodash/object/merge');
+const expect = require('must');
+const Action = require('../../lib/runtime/action');
+const merge = require('lodash/object/merge');
 
 function mockReqRes(overrides) {
   return merge({
