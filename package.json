@@ -25,17 +25,11 @@
     "denali"
   ],
   "devDependencies": {
-    "axios": "^0.8.1",
-    "body-parser": "^1.14.2",
     "coveralls": "^2.11.4",
-    "eslint": "^1.10.1",
     "eslint-config-airbnb": "^1.0.2",
     "faker": "^3.0.1",
     "in-publish": "2.0.0",
     "isparta": "^4.0.0",
-    "mocha": "^2.3.4",
-    "mock-fs": "^3.6.0",
-    "mockery": "^1.4.0",
     "must": "^0.13.1"
   },
   "scripts": {
@@ -49,6 +43,7 @@
   "dependencies": {
     "blackburn": "0.0.2",
     "bluebird": "^2.10.0",
+    "body-parser": "^1.14.2",
     "chalk": "^1.1.1",
     "compression": "^1.6.0",
     "cookie-parser": "^1.4.0",
@@ -62,9 +57,7 @@
     "express": "^4.13.3",
     "express-force-ssl": "^0.3.0",
     "express-request-id": "^1.1.0",
-    "findup": "^0.1.5",
     "findup-sync": "^0.3.0",
-    "foraker": "0.0.4",
     "glob": "^6.0.1",
     "helmet": "^1.0.1",
     "http-errors": "^1.3.1",
@@ -80,7 +73,6 @@
     "nodemon": "^1.8.1",
     "nsp": "^2.2.0",
     "qs": "^6.0.1",
-    "require-all": "^2.0.0",
     "require-dir": "^0.3.0",
     "resolve": "^1.1.6",
     "response-time": "^2.3.1",
