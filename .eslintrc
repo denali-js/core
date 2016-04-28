@@ -20,6 +20,7 @@
     "no-use-before-define": 0,
     "padded-blocks": 0,
     "prefer-const": 0,
+    "prefer-rest-params": 0,
     "space-before-function-paren": 0,
     "template-curly-spacing": [ 2, "always" ]
   }
