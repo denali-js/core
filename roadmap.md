@@ -19,16 +19,6 @@
         }
       }
 
-# Instrumentation
-
-* `instrument([data], callback)` invokes the callback, which can return a
-  promise that resolves when any async activity completes.
-* Calling `instrument()` fires an event once the callback completes, with
-  includes the timing info (start, end, duration) and the optional data
-  supplied to the `instrument()` call, and a UUID for the event
-* Should be used to instrument internal framework steps
-* Should be able to add timing info to the meta block of JSONAPI responses
-
 # Security
 
 * Need to figure out if it makes sense / is possible to separate auth from
@@ -36,15 +26,20 @@
   stuff to the session without knowing how auth works. I.e. invalidate a session
   if the IP changes in the middle, without knowing how auth is handled.
 * Built in or core addon for rate limiting, throttling, and blacklisting
-* Optionally force SSL if SSL is enabled
-  * Either drop insecured HTTP, redirect, or allow
 * Security review / audit
 * Investigate OAuth (resource owner password grant)
+
+# Instrumentation
+
+* Should be able to add timing info to the meta block of JSONAPI responses
+* Reporting addons, i.e. automatically report core framework instrumentation stats to new relic
 
 # Debugging
 
 * [STRETCH] The default HTML error page could embed node inspector, potentially
   even pause on the exception in question
+* Actions can set "debug" or "log: verbose" to turn on highly detailed logging
+  for that action only
 
 # Integration Addons
 
