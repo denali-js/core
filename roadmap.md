@@ -59,6 +59,9 @@ Do these even make sense? There's no ORM / adapter really.
 * Mongoose
 * node-orm(2)
 
+ORM Adapter layer?
+Denali-defined model definitions backed by "drivers" which use lazy objects
+
 ## Monitoring
 
 * Newrelic
