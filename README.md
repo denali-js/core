@@ -1,4 +1,4 @@
-# denali
+# Denali
 
 [![NPM version][npm-image]][npm-url]
 [![Build Status][travis-image]][travis-url]
@@ -6,22 +6,74 @@
 [![Dependency Status][depstat-image]][depstat-url]
 [![Downloads][download-badge]][npm-url]
 
-[ALPHA] An opinionated Node framework for building robust JSON APIs
+> An opinionated Node framework for building robust JSON APIs
 
-> **Note:** this is alpha software, and still undergoing changes. Contributions welcome, consumers beware :wink:
+Denali is a tool to help you build and deliver amibitous JSON APIs. It features:
 
-## Install
+ * First class JSON serializers, included out of the box JSON-API support
+ * A single controller class (called Actions) per endpoint
+ * Flexible, declarative filter system
+ * An emphasis on developer happiness - a robust CLI, poweful testing primitives,
+   and support for the full lifecycle of app development
+ * ORM-agnostic design - choose your favorite Node ORM, or none at all
+
+## Why Denali?
+
+Denali should feel familiar to anyone whose worked with popular MVC frameworks
+like Rails. But Denali has a slightly unique take on each aspect of the MVC
+pattern:
+
+### (M)VC - ORM Adapters instead of ORM lock-in
+
+Unlike many server frameworks, Denali lets you choose which ORM you'd like to
+use. ORMs are hard, and the Node ecosystem has multiple competing options, each
+with it's own strengths and weaknesses. Rather than limiting you to a single
+"official" ORM, or worse, attempting to roll our own, Denali uses an adapter
+system to ensure that whatever ORM you bring, it can work with the Denali
+ecosystem.
+
+### M(V)C - Serializers instead of Views & Templates
+
+Denali's view layer is unique as well. Rather than traditional HTML rendering,
+Denali's view layer renders JSON. Instead of the usual templates and view
+classes.  we have Serializers instead, which tell Denali how to render the data
+you supply as a response. The separation of responsibilties ensures you can
+tweak how your data is structured in your API without having to change any of
+the logic of your app. Several common formats, include JSON-API, are supported
+out of the box, and customization is easy.
+
+### MV(C) - Actions instead of Controllers
+
+In Denali, the Action class takes the role of the controller in the application.
+But rather than a single controller class that responds to many different
+endpoints, an Action class is responsible for responding to requests against
+a single endpoint (URL + method) only. The result is powerful - since the
+an Action class directly and completely represents the app's response handler,
+we can use expressive declarative syntax to succicently define behaviors.
+
+## Getting Started
+
+You can install Denali globally via npm:
 
 ```sh
-$ npm install --save denali
+$ npm install -g denali
 ```
 
+Create a new application:
 
-## Usage
-
-```js
-var denali = require('denali');
+```sh
+$ denali new my-api
+$ cd my-api
 ```
+
+You can use the `server` command to run your API locally in development mode.
+The API server will automatically restart when you change make a change:
+
+```sh
+$ denali server
+```
+
+To learn more, check out [the docs](https://denalijs.github.com/denali).
 
 ## License
 

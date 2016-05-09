@@ -1,19 +1,25 @@
 #!/usr/bin/env node
 
-var Liftoff = require('liftoff');
+require('babel-register');
+var findup = require('findup-sync');
 
-var Denali = new Liftoff({
-  name: 'denali',
-  moduleName: 'denali/dist/cli/commands'
-});
+var pkgPath = findup('package.json');
 
-Denali.launch({
-  cwd: process.cwd()
-}, function(env) {
-  if (!env.modulePath) {
-    var pkg = require('../package');
-    require('../dist/cli/commands');
+// No package.json found, revert to global install
+if (!pkgPath) {
+  require('../lib/cli/commands');
+
+// Package.json found
+} else {
+
+  var pkgDir = path.dirname(pkgPath);
+  var localDenali = resolve.sync('denali', { basedir: pkgDir });
+
+  if (!localDenali) {
+    require('../lib/cli/commands');
   } else {
-    require(env.modulePath);
+    var localDenaliPkgDir = findup('package.json', { cwd: localDenali });
+    require(path.join(localDenaliPkgDir, 'lib/cli/commands'));
   }
-});
+}
+
