@@ -1,14 +1,3 @@
-# Updates
-
-* get rid of DenaliObject in favor of vanilla classes
-* use proxies for container injection?
-  *
-
-
-# Developer Experience
-
-* Can Proxies enable a better DX in any way?
-
 # Operations
 
 * Load testing / benchmarks?
