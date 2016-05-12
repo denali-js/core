@@ -1,4 +1,4 @@
-# <%= name %>
+# <%= humanizedName %>
 
 An awesome app built on the Denali framework.
 
