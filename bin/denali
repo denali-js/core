@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
 require('babel-register');
-var path = require('path');
-var resolve = require('resolve');
-var findup = require('findup-sync');
+const path = require('path');
+const resolve = require('resolve');
+const findup = require('findup-sync');
 
-var pkgPath = findup('package.json');
+const pkgPath = findup('package.json');
 
 // No package.json found, revert to global install
 if (!pkgPath) {
@@ -14,16 +14,16 @@ if (!pkgPath) {
 // Package.json found
 } else {
 
-  var pkgDir = path.dirname(pkgPath);
-  var localDenali;
+  let pkgDir = path.dirname(path.resolve(pkgPath));
+  let localDenali;
   try {
     localDenali = resolve.sync('denali', { basedir: pkgDir });
   } catch(e) {
     return require('../lib/cli/commands');
   }
 
-
-  var localDenaliPkgDir = findup('package.json', { cwd: localDenali });
-  require(path.join(localDenaliPkgDir, 'lib/cli/commands'));
+  let localDenaliPkgDir = path.dirname(findup('package.json', { cwd: localDenali }));
+  let localCommands = path.join(localDenaliPkgDir, 'lib/cli/commands');
+  require(localCommands);
 }
 

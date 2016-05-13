@@ -1,2 +1,2 @@
 require('babel-register');
-module.exports = require('lib');
+module.exports = require('dist');
