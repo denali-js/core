@@ -17,6 +17,9 @@
     "denali": "bin/denali"
   },
   "main": "index.js",
+  "engines": {
+    "node": ">=6.0.0"
+  },
   "keywords": [
     "jsonapi",
     "framework",
@@ -33,14 +36,19 @@
     "must": "^0.13.1"
   },
   "scripts": {
-    "prepublish": "in-publish && npm run lint && npm test && npm run coverage || not-in-publish",
-    "test": "NODE_ENV=test mocha",
-    "lint": "eslint lib test",
+    "prebuild": "trash dist && cp -r lib dist",
+    "build": "babel lib --out-dir dist --source-maps --ignore cli/blueprints/*/files/**",
+    "prewatch": "trash dist && cp -r lib dist",
+    "watch": "babel lib --out-dir dist --source-maps --ignore cli/blueprints/*/files/** --watch",
     "coverage": "babel-node isparta cover _mocha && coveralls < coverage/lcov.info",
-    "postcoverage": "rimraf coverage"
+    "lint": "eslint lib test",
+    "postcoverage": "rimraf coverage",
+    "prepublish": "in-publish && npm run lint && npm test && npm run coverage || not-in-publish",
+    "test": "NODE_ENV=test mocha"
   },
   "license": "MIT",
   "dependencies": {
+    "babel-cli": "^6.8.0",
     "babel-eslint": "^6.0.4",
     "babel-plugin-transform-class-properties": "^6.8.0",
     "babel-preset-es2015": "^6.6.0",
@@ -68,6 +76,8 @@
     "maildev": "^0.13.1",
     "mkdirp": "^0.5.1",
     "mocha": "^2.3.4",
+    "mock-req": "^0.2.0",
+    "mock-res": "^0.3.0",
     "moment": "^2.10.6",
     "morgan": "^1.6.1",
     "node-inspector": "0.12.x",
@@ -80,6 +90,7 @@
     "response-time": "^2.3.1",
     "rimraf": "^2.4.2",
     "sane": "^1.3.4",
+    "source-map-support": "^0.4.0",
     "trash": "^3.4.0",
     "walk-sync": "^0.2.6"
   }

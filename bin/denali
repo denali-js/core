@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-require('babel-register');
+require('source-map-support').install();
 const path = require('path');
 const resolve = require('resolve');
 const findup = require('findup-sync');
@@ -9,7 +9,7 @@ const pkgPath = findup('package.json');
 
 // No package.json found, revert to global install
 if (!pkgPath) {
-  require('../lib/cli/commands');
+  require('../dist/cli/commands');
 
 // Package.json found
 } else {
@@ -19,11 +19,11 @@ if (!pkgPath) {
   try {
     localDenali = resolve.sync('denali', { basedir: pkgDir });
   } catch(e) {
-    return require('../lib/cli/commands');
+    return require('../dist/cli/commands');
   }
 
   let localDenaliPkgDir = path.dirname(findup('package.json', { cwd: localDenali }));
-  let localCommands = path.join(localDenaliPkgDir, 'lib/cli/commands');
+  let localCommands = path.join(localDenaliPkgDir, 'dist/cli/commands');
   require(localCommands);
 }
 

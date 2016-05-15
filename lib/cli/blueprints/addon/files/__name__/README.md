@@ -1,9 +1,9 @@
-# <%= name %>
+# <%= humanizedName %>
 
-An awesome app built on the Denali framework.
+An awesome addon built on the Denali framework.
 
 
-## Installation
+## Developing
 
 1. Clone the repo down
 2. `npm install`

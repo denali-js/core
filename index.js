@@ -1,2 +1,2 @@
-require('babel-register');
-module.exports = require('dist');
+require('source-map-support').install();
+module.exports = require('./dist');
