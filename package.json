@@ -48,6 +48,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "accepts": "^1.3.3",
     "babel-cli": "^6.8.0",
     "babel-eslint": "^6.0.4",
     "babel-plugin-transform-class-properties": "^6.8.0",
@@ -89,9 +90,12 @@
     "resolve": "^1.1.6",
     "response-time": "^2.3.1",
     "rimraf": "^2.4.2",
+    "route-parser": "0.0.5",
     "sane": "^1.3.4",
     "source-map-support": "^0.4.0",
     "trash": "^3.4.0",
-    "walk-sync": "^0.2.6"
+    "type-is": "^1.6.12",
+    "walk-sync": "^0.2.6",
+    "ware": "^1.3.0"
   }
 }
