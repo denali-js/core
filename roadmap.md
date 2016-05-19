@@ -1,3 +1,4 @@
+
 # Operations
 
 * Load testing / benchmarks?
@@ -39,24 +40,12 @@
 
 # Integration Addons
 
-## Databases
-
-Do these even make sense? There's no ORM / adapter really.
-
-* Postgres
-* Mongo
-* Redis
-* Mysql
-
 ## ORMs
 
 * Sequelize
 * Bookshelf
 * Mongoose
 * node-orm(2)
-
-ORM Adapter layer?
-Denali-defined model definitions backed by "drivers" which use lazy objects
 
 ## Monitoring
 
@@ -108,6 +97,7 @@ Denali-defined model definitions backed by "drivers" which use lazy objects
 
 # CLI
 
+* add easy model access to console command
 * Docs command
   * Generate documentation for your API, different output formats (including
     Swagger)

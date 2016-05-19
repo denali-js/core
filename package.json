@@ -64,8 +64,6 @@
     "diveSync": "^0.3.0",
     "dotenv": "^2.0.0",
     "eslint": "^2.9.0",
-    "eslint-config-airbnb": "^9.0.1",
-    "express": "^4.13.3",
     "express-force-ssl": "^0.3.0",
     "express-request-id": "^1.1.0",
     "findup-sync": "^0.4.0",
