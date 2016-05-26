@@ -4,9 +4,14 @@ layout: guide
 after: Introduction
 ---
 
+
+
 # Get Started with Denali
 
-It's that ever-favorite first project for a server side framework: let's build a basic blogging application!
+It's that ever-favorite first project for a server side framework: let's build a
+basic blogging application!
+
+
 
 ## Installation
 
@@ -16,16 +21,18 @@ First off, make sure you install Denali globally via npm:
 $ npm install -g denali
 ```
 
+
+
 ## Scaffolding our application
 
-Next, let's use Denali's handy scaffolding tools to create a blank slate for us to start from:
+Next, let's use Denali's handy scaffolding tools to create a blank slate for us
+to start from:
 
-```txt
+```sh
 $ denali new blog
 denali v0.1.0 [global]
   create app/actions/application.js
   create app/actions/index.js
-  create app/adapters/application.js
   create app/models/.gitkeep
   create app/serializers/.gitkeep
   create app/services/.gitkeep
@@ -36,11 +43,11 @@ denali v0.1.0 [global]
   create test/integration/.gitkeep
   create test/unit/.gitkeep
   create test/index.js
+  create .babelrc
   create .eslintrc
   create .gitattributes
   create .gitignore
   create CHANGELOG.md
-  create denali-build.js
   create package.json
   create README.md
 
@@ -63,20 +70,28 @@ denali v0.0.1
 2015-09-13T23:21:44.404Z [INFO] blog@0.0.1 server up on port 3000
 ```
 
-Perfect! You've got your first Denali app up and running. Now let's see it in action. Hit the root endpoint with curl:
+Perfect! You've got your first Denali app up and running. Now let's see it in
+action. Hit the root endpoint with curl:
 
 ```txt
 $ curl localhost:3000
 {"denaliVersion":"0.0.1","message":"Welcome to Denali!"}
 ```
 
-> **Heads up!** Notice that we didn't visit that localhost URL in the browser. That's because Denali is designed to build **APIs** rather than HTML rendering applications. If you are looking for Node framework to build a server rendered web application, you might want to try something like Sails.js or Express.
+> **Heads up!** Notice that we didn't visit that localhost URL in the browser.
+> That's because Denali is designed to build **APIs** rather than HTML rendering
+> applications. If you are looking for Node framework to build a server rendered
+> web application, you might want to try something like Sails.js or Express.
 
-Woo, we got an app up and running! Now that's great, but it's not _that_ exciting. Let's crack open the scaffolded code to see how that root endpoint is working, and how to add our own.
+Great, we got an app up and running! Now that's cool, but it's not _that_ cool
+Let's crack open the scaffolded code to see how that root endpoint is working,
+and how to add our own.
+
 
 ### Directory structure
 
-The `denali new` command did a lot of setup for us. It created the following directory structure:
+The `denali new` command did a lot of setup for us. It created the following
+directory structure:
 
 ```txt
 blog/
@@ -84,8 +99,6 @@ blog/
     actions/
       application.js
       index.js
-    adapters/
-      application.js
     models/
     serializers/
   config/
@@ -104,20 +117,24 @@ blog/
   README.md
 ```
 
-There's a lot there, but for now, let's open up the `config/routes.js` to see how that root endpoint is being handled:
+There's a lot there, but for now, let's open up the `config/routes.js` to see
+how that root endpoint is being handled:
 
 ```js
 // config/routes.js
-export default function drawRoutes() {
+export default function drawRoutes(router) {
 
-  this.get('/', 'index');
+  router.get('/', 'index');
 
 }
 ```
 
-This should look somewhat familiar if you used frameworks like Rails before. The `this.get()` method adds an endpoint that responds to GET requests at the url provided in the first argument (`'/'` in this case).
+This should look somewhat familiar if you used frameworks like Rails before. The
+`router.get()` method adds an endpoint that responds to GET requests at the url
+provided in the first argument (`'/'` in this case).
 
-The second argument identifies an action to route these requests to (in this case, the `index` action).
+The second argument identifies an action to route these requests to (in this
+case, the `index` action).
 
 In `app/actions/index.js`, we can see how that is handled:
 
@@ -125,13 +142,12 @@ In `app/actions/index.js`, we can see how that is handled:
 // app/actions/index.js
 import ApplicationAction from './application';
 
-export default ApplicationAction.extend {
+export default class IndexAction extends ApplicationAction {
 
   respond() {
-    return {
-      denaliVersion: version,
+    return new Response(200, {
       message: 'Welcome to Denali!'
-    };
+    }, { raw: true });
   }
 
 }
@@ -139,17 +155,30 @@ export default ApplicationAction.extend {
 
 Let's break down what's going on here:
 
-* `import ApplicationAction from './application';` - we import the `ApplicationAction` to use as our common base class. You could import the base `Action` class from the `denali` module directly, but having a base class for all actions in your app is handy (and the convention).
-* `respond() {` - the `respond()` method is the meat of any action. It defines how the action responds to an incoming request.
-* `return {...}` - you can tell Denali what to respond to a request with in a few different ways. Here, we directly return the object we want Denali to send as JSON.
+  * `import ApplicationAction from './application';` - we import the
+  `ApplicationAction` to use as our common base class. You could import the base
+  `Action` class from the `denali` module directly, but having a base class for
+  all actions in your app is handy (and the convention).
+  * `respond() {` - the `respond()` method is the meat of any action. It defines
+  how the action responds to an incoming request.
+  * `return new Response(...)` - you can tell Denali what to respond to a
+  request with in a few different ways. Here, we return a `Response` object
+  which has details of what kind of response we want to send. The `raw` option
+  tells Denali not to send this payload through the serializer layer. More on
+  that below!
 
-The end result here is an action which will always respond with the same JSON object that we saw above.
+The end result here is an action which will always respond with the same JSON
+object that we saw above: `{ "message": "Welcome to Denali!" }`.
 
 ## Adding a resource
 
-Now let's get a bit more creative. Our blog API is going to need to store and retrieve our blog Posts. Let's create a Post resource to enable that.
+Now let's get a bit more creative. Our blog API is going to need to store and
+retrieve our blog posts. Let's create a Post resource to enable that.
 
-> Normally, you'd probably store those in some kind of database (i.e. Mongo, Postgres, MySQL, etc). Denali is **database agnostic** though. So for now, we'll use plain ol' JS objects (a.k.a. POJOs). But you could easily substitute your own models in later. For more details, check out the Data guides.
+> Normally, you'd probably store those in some kind of database (i.e. Mongo,
+> Postgres, MySQL, etc). Denali is **database agnostic** though. So for now,
+> we'll use plain ol' JS objects (a.k.a. POJOs). But you could easily substitute
+> your own models in later. For more details, check out the Data guides.
 
 To start, let's use that handy scaffolding tool again:
 
@@ -159,32 +188,37 @@ $ denali generate resource posts
 
 This scaffold creates several files:
 
-  * A set of **actions** for this resource with the basic CRUD operations stubbed out. These files are where you'll implement your application logic to respond to a particular request. We saw these above.
+  * A set of **actions** for this resource with the basic CRUD operations
+  stubbed out. These files are where you'll implement your application logic to
+  respond to a particular request. We saw these above.
 
-  * A **serializer** to determine how your Posts will be rendered in the response. We'll learn more about this in a bit.
+  * A **serializer** to determine how your Posts will be rendered in the
+  response. We'll learn more about this in a bit.
 
-  * A **model** to represent your Posts. Notice that the file is empty - this isn't required (since Denali is database agnostic). It's just wants to be helpful!
+  * A **model** to represent your Posts.
 
-  * A placeholder **integration test suite** for this resource. Denali comes with a first-class testing environment, setup and ready to go.
+  * A placeholder **integration test suite** for this resource. Denali comes
+  with a first-class testing environment, setup and ready to go.
 
 If we open up `app/actions/posts/` now, you can see the stubbed out actions:
 
 ```js
   // app/actions/posts/list.js
-  export default ApplicationAction.extend({
+  export default class ListPosts extends ApplicationAction {
     respond() {
       return new Errors.NotImplemented();
-    },
-  });
+    }
+  }
 ```
 
-Let's go ahead and implement that list action now. We'll hardcode the Posts into the response for now:
+Let's go ahead and implement that list action now. We'll just hardcode the Posts
+into the response for now:
 
 ```js
 // app/controllers/posts.js
 
   respond() {
-    return [
+    return new Response([
       {
         id: 1,
         title: 'Denali is awesome'
@@ -193,7 +227,7 @@ Let's go ahead and implement that list action now. We'll hardcode the Posts into
         id: 2,
         title: 'You are awesome!'
       }
-    ];
+      ], { raw: true });
   }
 ```
 
@@ -203,73 +237,166 @@ Great! Let's hit that endpoint now:
 $ curl localhost:3000/posts
 [
   {
-    id: 1
+    "id": 1,
+    "title": "Denali is awesome"
   },
   {
-    id: 2
+    "id": 2,
+    "title": "You are awesome!"
   }
 ]
 ```
 
-**Wait, hang on**. Our Post titles are gone!
+## Adding a database
 
-## Working with Serializers
+Hardcoded JSON still isn't all that interesting. Let's integrate with a data
+store so consumers of the API can actually manipulate the data.
 
-This is our first lesson in working with Serializers. They are a core concept in Denali, and are a powerful tool for building _robust_ APIs.
+Denali takes a unique approach to handling database integrations. Most
+frameworks ship with some kind of Object Relational Mapper (ORM) baked right in.
+It transforms rows from a database into objects you can manipulate.
 
-A Serializer takes an in-memory payload object (or array), and transforms into JSON to send back in the response. There's two parts to this problem:
+Here's the thing: **ORMs are hard. _Really hard.__** To make matters worse,
+there's **no generally accepted "good" ORM for Node.js**.
 
-  1. **What data to send**: many times you want to send only a subset of your records back (i.e. omitting a hashed password) or you want to transform the content (i.e. change underscore_keys to camelCaseKeys).
+With this in mind, Denali purposefully **does not ship with an ORM**. Instead,
+Denali's Models are essentially a thin adapter layer that lets you plug your
+own ORM in instead.
 
-  2. **How to send it**: what is the structure of the response? Is there a root JSON wrapper? Does it conform to a spec, i.e. JSON-API 1.0?
+There's lots of reasons why this is a powerful approach, but those are covered
+in the Data guides. For now, let's forge ahead and setup our data store.
 
-Serializers address both of these problems. They select what data to send, apply transformations to that data (i.e. renaming keys, serializing values), and structure the result according to a particular output format.
+### Memory Adapter
 
-Typically, your API will have a standard output format (i.e. JSON-API 1.0). A good approach is to pick (or create) a base Serializer class that renders that structure, much like we used a base ApplicationAction class.
+Denali ships with an in-memory data store and ORM adapter, which can be useful
+for testing and debugging use cases. It's the default ORM for newly scaffolded
+projects, so it's already setup and ready to go. We'll use it now to get going
+without needing to setup an actual database.
 
-Then create a subclass for each model you have. These subclasses would then tell Denali what attributes and relationships should be sent in a response that contains that model.
+## Adding a model
 
-## Serializers in action
+Let's add a Post model that will represent one of our blog posts:
 
-So what happened to our Post titles from the example above? They were automatically stripped out - Serializers will treat their attributes list as a white-list, and our PostSerializer had no attributes listed!
-
-Let's fix that by adding `'title'` to the attributes whitelist then:
-
-```js
-// app/serializers/posts.js
-export default FlatSerializer.extends({
-
-  // We added the title attribute, so now Denali will include
-  // it in the response
-  attributes: [ 'title' ],
+```sh
+$ denali generate model post
 ```
 
-Sure enough, if we hit the endpoint again:
+This creates `app/models/post.js`. Let's open that up, and add our title
+attribute:
+
+```js
+import ApplicationModel from './application';
+
+export default class Post extends ApplicationModel {
+
+  static title = attr('text');
+
+}
+```
+
+Okay, let's break this one down. First up, we follow the same pattern of having
+a base "Application" class that we did with Actions:
+
+```js
+import ApplicationModel from './application';
+```
+
+Next, we create our `title` attribute (note the class properties syntax, and
+that attributes are declared as static properties):
+
+```js
+  static title = attr('text');
+```
+
+Now, back in our actions, we can use the Post model to find and return all our
+posts:
+
+```js
+// app/actions/posts/list.js
+  respond() {
+    let Post = this.modelFor('post');
+    return Post.find();
+  }
+```
+
+The `Post.find()` method, when invoked with no parameters, will return a Promise
+that resolves with all the Post records.
+
+Over in our create action, we can let the user create new blog posts too:
+
+```js
+// app/actions/posts/create.js
+  respond(params) {
+    let Post = this.modelFor('post');
+    return Post.create(params);
+  }
+```
+
+Great! Now we can create and list all the Posts in our in-memory data store.
+Let's test it out:
+
+```sh
+$ curl localhost:3000/posts -X POST -d '{"title": "My first post!"}'
+
+{
+  "id": 1
+}
+```
+
+Looks like our Post was created, but the `title` wasn't returned. If we check
+this listing endpoint:
 
 ```sh
 $ curl localhost:3000/posts
+
 [
   {
-    id: 1,
-    title: 'Denali is awesome'
-  },
-  {
-    id: 2,
-    title: 'You are awesome!'
+    "id": 1
   }
 ]
 ```
 
-It might seem like a bit of overhead at first, but Serializers quickly become a powerful tool. They allow you to decouple your application logic and data layer from how a response body is structured, making changes to either side that much easier.
+It's missing there too. What's going on here?
 
-## Integrating your ORM with Adapters
+## Working with Serializers
 
-Denali is an **ORM-agnostic** framework. ORMs are difficult to get right, and
-a one-size-fits-all solution tends to reduce the strengths of each data store to the lowest common denominator. The result is that you could be forced to miss out on the very benefits that led you to choose a particular datastore.
+The reason our `title` field was missing was because of our Serializers.
 
-Denali sidesteps the issue entirely, focusing instead on providing a solid API framework to build off of, and the appropriate integration points to hook in your ORM of choice.
+A Serializer takes an in-memory payload object (or array), and transforms into
+JSON to send back in the response.
 
-This is done with **Adapters**, which provide a common interface to allow Denali to extract whatever information it needs from your models. Adapters exist for [several popular ORMs](./supported-orms) already, packaged as addons for easy installation.
+By default, Serializers are configured with a whitelist of which attributes are
+allowed to be returned. Since we didn't touch our PostSerializer yet, the
+`title` attribute isn't in that whitelist, so it gets stripped out on all our
+responses.
+
+Let's fix that now by adding it to the whitelist:
+
+```js
+// app/serializers/post.js
+import ApplicationSerializer from './application';
+
+export default class PostSerializer extends ApplicationSerializer {
+
+  attributes = [ 'title' ];
+
+}
+```
+
+And now let's try to list the posts again:
+
+```sh
+$ curl localhost:3000/posts
+
+[
+  {
+    "id": 1,
+    "title": "My first post!"
+  }
+]
+```
+
+There it is! Our blog is off to a promising start.
 
 ## Next Steps
 

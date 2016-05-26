@@ -1,6 +1,6 @@
 ---
 layout: guide
-title: Adapters
+title: ORM Adapters
 category: Data
 category_order: 2
 ---
