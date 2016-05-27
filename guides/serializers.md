@@ -2,7 +2,7 @@
 layout: guide
 title: Serializers
 category: Data
-after: Adapters
+after: ORM Adapters
 ---
 
 # Serializers
@@ -40,7 +40,10 @@ contains that particular model.
 ## What data to send
 
 Denali broadly divides the data in your models into **attributes** and
-**relationships**.
+**relationships**. Serializers render these based on _whitelists_; that is, you
+must specific data to render, rather than data to skip rendering. This ensures
+you won't accidentally let sensitive data through because you forgot to include
+it on a blacklist.
 
 Selecting which attributes to render is as simple as adding them to the
 attributes array on your serializer:
@@ -52,3 +55,7 @@ export default class UserSerializer extends ApplicationSerializer {
 
 }
 ```
+
+Relationships are slightly more complex. Ther
+
+
