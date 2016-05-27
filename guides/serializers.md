@@ -2,7 +2,7 @@
 layout: guide
 title: Serializers
 category: Data
-after: ORM Adapters
+after: Models
 ---
 
 # Serializers
@@ -58,4 +58,14 @@ export default class UserSerializer extends ApplicationSerializer {
 
 Relationships are slightly more complex. Ther
 
+
+# Built-in Serializers
+
+Denali ships with two base serializers out of the box:
+
+  * **FlatSerializer**, which renders models as simple JSON objects or arrays of
+  objects. Related records are directly embedded under their relationship name.
+
+  * **JSONAPISerializer**, a [JSON-API 1.0] compliant serializer with support
+  for meta, links, errors, and more.
 

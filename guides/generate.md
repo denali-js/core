@@ -2,5 +2,5 @@
 layout: guide
 title: denali generate
 category: CLI
-category_order: 5
+category_order: 6
 ---
