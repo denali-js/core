@@ -32,24 +32,24 @@
 
   .project-name {
     margin: 1.5em 0 0;
+    font-family: $font-family-logo;
     font-size: 3.6rem;
-    font-weight: 400;
+    font-weight: 800;
   }
 
   .subhead {
-    margin: 0.5em 0;
-    font-family: $sans;
+    margin: 0;
     font-size: 1.2rem;
     font-weight: 400;
   }
 
   .install {
-    width: 19rem;
+    width: 20rem;
     margin: 3em auto 0em;
     padding: 1.5em;
     background-color: rgba(0, 0, 0, 0.2);
     color: white;
-    font-family: $monospace;
+    font-family: $font-family-monospace;
     text-align: left;
     line-height: 1.3;
   }

@@ -1,133 +1,108 @@
 ---
 ---
-$monospace: 'Inconsolata', 'Monaco', 'Anonymous', monospace;
-$sans: 'Lato', 'Helvetica Neue', Helvetica, sans-serif;
+
+$enable-flex: 1;
+
+$font-family-monospace: 'Inconsolata', 'Monaco', 'Anonymous', monospace;
+$font-family-sans-serif: 'Open Sans', 'Helvetica Neue', Helvetica, sans-serif;
+$font-family-logo: 'Montserrat Alternates';
+
+$headings-font-family: 'Lato';
 
 $white: #fff;
 $black: #000;
 
-$brand-one: #25dfdf;
-$brand-two: #7fe5b7;
+$brand-primary: #00E2D7;
+$brand-secondary: #00C3B1;
 
-$text: #444;
-$muted: #888;
-$link: #7884ea;
+$body-color: #444;
 
-@import 'normalize';
+$font-size-root: 14px;
+
+$container-max-widths: (
+  sm: 576px,
+  md: 700px,
+  lg: 700px,
+  xl: 700px
+) !default;
+
+$navbar-dark-color:            rgba(255,255,255,.9);
+$navbar-dark-hover-color:      rgba(255,255,255,.75);
+$navbar-dark-active-color:     rgba(255,255,255,1);
+$navbar-dark-disabled-color:   rgba(255,255,255,.25);
+
+$pre-bg: #f7f7f7;
+
+
+@import "../bower_components/bootstrap/scss/bootstrap";
+
 @import 'code';
 @import 'homepage';
 @import 'guides';
 @import 'api';
 
-* {
-  box-sizing: border-box;
+.navbar {
+  background-image: url('/images/hero-bg.png'), linear-gradient(90deg, $brand-primary, $brand-secondary);
+  background-position-y: 3em;
 }
 
-body {
-  color: $text;
-  font-family: $sans;
-  font-size: 16px;
-  line-height: 1.5;
-}
+.navbar-brand {
+  font-family: $font-family-logo;
 
-h1, h2, h3, h4, h5, h6 {
-  margin-top: 1.3em;
-  margin-bottom: 0.8em;
-  font-weight: 600;
-}
-
-a {
-  color: $link;
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
+  img {
+    display: inline-block;
+    width: 2em;
   }
 }
 
-header {
-  padding: 1em;
-  background-color: $brand-one;
-  background-image: url('/images/hero-bg.png'), linear-gradient(40deg, $brand-one, $brand-two);
+.navbar-nav .nav-link {
+  padding: 0.7em 0;
+}
+
+.jumbotron {
+  background-image: url('/images/hero-bg.png'), linear-gradient(90deg, $brand-primary, $brand-secondary);
   color: $white;
-  font-size: 1.4em;
-  overflow: auto;
 
-  .logo-light {
-    display: inline-block;
-    height: 2em;
-    margin-top: -0.2em;
-    margin-right: 0.5em;
-    vertical-align: middle;
-  }
+  pre {
+    background-color: transparent;
 
-  .brand {
-    color: inherit;
-    font-family: 'Montserrat Alternates';
-    font-weight: 400;
-    letter-spacing: 0.5px;
-    text-decoration: none;
-  }
-
-  nav {
-    float: right;
-  }
-
-  .nav-link {
-    display: inline-block;
-    margin-left: 2em;
-    padding-bottom: 0.2em;
-    border-bottom: 2px solid transparent;
-    color: inherit;
-    font-size: 0.8em;
-    text-decoration: none;
-
-    &:hover, &.active {
-      border-bottom: 2px solid rgba($white, 0.7);
+    code {
+      color: $white;
     }
   }
 
-  .api-nav-module-file {
-    display: block;
-    font-family: $monospace;
-    font-weight: 400;
-    opacity: 0.5;
+  + .ribbon {
+    margin-top: -2rem;
+    margin-bottom: 4rem;
   }
 }
 
-.container {
-  max-width: 70rem;
-  margin: 0 auto;
-  padding: 0 5rem;
+.ribbon {
+  padding: 1em 0;
+  background-color: darken($brand-primary, 20%);
+  color: $white;
+}
+
+.project-name {
+  font-family: $font-family-logo;
+}
+
+.homepage-feature {
+  margin-bottom: 4em;
+  padding-bottom: 3em;
+  border-bottom: 1px solid $gray-lighter;
+
+  &:last-of-type {
+    border-bottom: none;
+  }
 }
 
 pre {
-  padding: 0.8rem;
-  border-radius: 2px;
-  background-color: $text;
-
-  > code {
-    border: none;
-    background: transparent;
-    color: darken($white, 10%);
-    font-size: 0.9em;
-  }
-}
-
-code {
-  display: inline-block;
-  border: 1px solid darken($white, 5%);
-  background-color: darken($white, 3%);
-  color: $text;
-  font-size: 0.9em;
-}
-
-.row {
-  overflow: auto;
-}
-
-.three-column {
-  width: 33%;
+  background: darken($brand-primary, 30%);
   padding: 1em;
-  float: left;
+  color: lighten($brand-primary, 50%);
+}
+
+pre code, code {
+  font-size: 1.1em;
 }

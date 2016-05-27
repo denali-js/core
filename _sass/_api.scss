@@ -9,7 +9,7 @@
   .nav-header {
     margin-top: 2em;
     margin-bottom: 0.5em;
-    color: $muted;
+    color: $text-muted;
     font-size: 0.8em;
     font-weight: 600;
     text-transform: uppercase;
@@ -19,7 +19,7 @@
     display: inline-block;
     margin-top: 0.2em;
     margin-left: 2em;
-    color: lighten($muted, 20%);
+    color: lighten($text-muted, 20%);
     font-size: 0.8em;
 
     input {
@@ -34,15 +34,15 @@
     margin: 0.1em 0;
     padding: 0.1em 0.4em;
     border-radius: 3px;
-    color: lighten($text, 10%);
+    color: lighten($body-color, 10%);
     text-decoration: none;
 
     &:hover {
-      color: darken($text, 10%);
+      color: darken($body-color, 10%);
     }
 
     &.active {
-      background-color: $link;
+      background-color: $link-color;
       color: $white;
     }
   }
@@ -62,8 +62,8 @@
 
 .defined-in {
   display: block;
-  color: $muted;
-  font-family: $sans;
+  color: $text-muted;
+  font-family: $font-family-sans-serif;
   font-size: 0.8em;
   text-decoration: none;
   cursor: pointer;
@@ -88,7 +88,7 @@
 }
 
 .display-controls {
-  $bg: mix($brand-one, $white, 20%);
+  $bg: mix($brand-primary, $white, 20%);
   padding: 0.75em 1em;
   border: 1px solid darken($bg, 10%);
   border-bottom: none;
@@ -106,7 +106,7 @@
 }
 
 .summary {
-  $bg: mix($brand-one, $white, 5%);
+  $bg: mix($brand-primary, $white, 5%);
   padding: 1em;
   border: 1px solid darken($bg, 10%);
   border-radius: 4px;
@@ -120,18 +120,18 @@
 }
 
 .summary-header {
-  color: mix($brand-one, $text);
+  color: mix($brand-primary, $body-color);
   font-weight: 600;
 }
 
 .summary-link {
   display: block;
   padding: 0.1em 0.3em;
-  font-family: $monospace;
+  font-family: $font-family-monospace;
 }
 
 .type {
-  color: lighten($muted, 10%);
+  color: lighten($text-muted, 10%);
 }
 
 .classitems {
@@ -148,7 +148,7 @@
 
 .item-header {
   margin-bottom: 0.25em;
-  color: lighten($muted, 20%);
+  color: lighten($text-muted, 20%);
   font-size: 0.7em;
   font-weight: 700;
   letter-spacing: 0.4px;
@@ -156,13 +156,13 @@
 }
 
 .item-title {
-  $bg: mix($brand-one, $white, 10%);
+  $bg: mix($brand-primary, $white, 10%);
   margin-bottom: 0;
   padding: 0.5em 1em;
   border: 1px solid darken($bg, 10%);
   border-radius: 4px 4px 0 0;
   background: $bg;
-  font-family: $monospace;
+  font-family: $font-family-monospace;
   overflow: auto;
 
   .item-name {
@@ -172,7 +172,7 @@
   .params {
     margin: 0 0.3em;
     float: left;
-    color: lighten($text, 10%);
+    color: lighten($body-color, 10%);
   }
 
   .param {
@@ -195,7 +195,7 @@
     padding: 0.2em 0.4em;
     float: right;
     border-radius: 3px;
-    font-family: $sans;
+    font-family: $font-family-sans-serif;
     font-size: 0.6em;
     text-transform: uppercase;
 
@@ -209,7 +209,7 @@
 }
 
 .item-body {
-  $bg: mix($brand-one, $white, 5%);
+  $bg: mix($brand-primary, $white, 5%);
   padding: 1em;
   border: 1px solid darken($bg, 10%);
   border-top: none;
@@ -244,7 +244,7 @@
 
 .param-name, .param-type {
   float: left;
-  font-family: $monospace;
+  font-family: $font-family-monospace;
 }
 
 .param-name {
@@ -282,8 +282,8 @@
 .return-type {
   margin-right: 0.1em;
   float: left;
-  color: $text;
-  font-family: $monospace;
+  color: $body-color;
+  font-family: $font-family-monospace;
   font-weight: 600;
 }
 

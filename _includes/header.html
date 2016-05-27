@@ -1,16 +1,26 @@
-<header>
+<nav class="navbar navbar-full navbar-dark">
   <div class='container'>
-    <a href='/' class='brand'>
+    <a href='/' class='navbar-brand'>
       <img class='logo-light' src='/images/logo.png' alt='Denali'>
       <span class='project-name'>denali</span>
     </a>
 
-    <nav>
-      <a href='/{{ page.version.ref | default: 'latest' }}/guides/quickstart' class='nav-link {% if page.url contains '/quickstart/' %}active{% endif %}'>Quickstart</a>
-      <a href='/{{ page.version.ref | default: 'latest' }}/guides/introduction' class='nav-link {% if page.url contains '/guides/' %}{% unless page.url contains '/quickstart' %}active{% endunless %}{% endif %}'>Guides</a>
-      <a href='/{{ page.version.ref | default: 'latest' }}/api/modules/denali' class='nav-link {% if page.url contains '/api/' %}active{% endif %}'>API</a>
-      <a href='https://github.com/davewasmer/denali' target='_blank' class='nav-link'>Github</a>
-      <a href='https://github.com/davewasmer/denali/issues' target='_blank' class='nav-link'>Issues</a>
-    </nav>
+    <div class='nav navbar-nav pull-xs-right'>
+      <li class='nav-item'>
+        <a class='nav-link' href='/{{ page.version.ref | default: 'latest' }}/guides/quickstart'>Quickstart</a>
+      </li>
+      <li class='nav-item'>
+        <a class='nav-link' href='/{{ page.version.ref | default: 'latest' }}/guides'>Guides</a>
+      </li>
+      <li class='nav-item'>
+        <a class='nav-link' href='/{{ page.version.ref | default: 'latest' }}/api'>API</a>
+      </li>
+      <li class='nav-item'>
+        <a class='nav-link' href='https://github.com/{{site.repo}}' target='_blank'>Github</a>
+      </li>
+      <li class='nav-item'>
+        <a class='nav-link' href='https://github.com/{{site.repo}}/issues' target='_blank'>Issues</a>
+      </li>
+    </div>
   </div>
-</header>
+</nav>

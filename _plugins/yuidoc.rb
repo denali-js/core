@@ -199,7 +199,7 @@ module Jekyll
     def api_data_for_page(data, version_data, all_versions_data)
       modules_data = version_data['modules']
       data['classitems'] = version_data['classitems'].select { |classitem| classitem['class'] == data['name'] }
-      data['classitems'] = data['classitems'].sort_by { |classitem| classitem['name'] }
+      data['classitems'] = data['classitems'].sort_by { |classitem| classitem['name'] || '' }
       {
         "class" => data
       }
