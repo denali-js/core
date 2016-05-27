@@ -5,16 +5,26 @@ category: Data
 after: Adapters
 ---
 
-There's two parts to this problem:
+# Serializers
+
+Since Denali is API focused, it doesn't ship with any kind of view layer for
+rendering HTML. However, one way to think of Serializers is like the view layer
+for a JSON only API.
+
+When your app needs to send some data in a response, there's three problems to
+face:
 
   1. **What data to send**: you'll often want to send only a subset of your
-     records back (i.e. omitting a hashed password) or you want to transform the
-     content (i.e. change underscore_keys to camelCaseKeys).
+  record back (i.e. omitting a hashed password).
 
-  2. **How to send it**: what is the structure of the response? Is there a root
-     JSON wrapper? Does it conform to a spec, i.e. JSON-API 1.0?
+  2. **Transforming the data**: you may want to transform the content to make it
+  easier to consume or to match consumer expectations (i.e. change underscore_
+  keys to camelCaseKeys).
 
-Serializers address both of these problems. They select what data to send, apply
+  3. **Structuring the data**: what is the structure of the response? Is there a
+     root JSON wrapper? Does it conform to a spec, i.e. JSON-API 1.0?
+
+Serializers address all of these problems. They select what data to send, apply
 transformations to that data (i.e. renaming keys, serializing values), and
 structure the result according to a particular output format.
 
@@ -27,35 +37,18 @@ for each model you have (PostSerializer, UserSerializer, etc). These subclasses
 tell Denali what attributes and relationships should be sent in a response that
 contains that particular model.
 
-## Serializers in action
+## What data to send
 
-So what happened to our Post titles from the example above? They were automatically stripped out - Serializers will treat their attributes list as a white-list, and our PostSerializer had no attributes listed!
+Denali broadly divides the data in your models into **attributes** and
+**relationships**.
 
-Let's fix that by adding `'title'` to the attributes whitelist then:
+Selecting which attributes to render is as simple as adding them to the
+attributes array on your serializer:
 
 ```js
-// app/serializers/posts.js
-export default FlatSerializer.extends({
+export default class UserSerializer extends ApplicationSerializer {
 
-  // We added the title attribute, so now Denali will include
-  // it in the response
-  attributes: [ 'title' ],
+  attributes = [ 'firstName', 'lastName' ];
+
+}
 ```
-
-Sure enough, if we hit the endpoint again:
-
-```sh
-$ curl localhost:3000/posts
-[
-  {
-    id: 1,
-    title: 'Denali is awesome'
-  },
-  {
-    id: 2,
-    title: 'You are awesome!'
-  }
-]
-```
-
-It might seem like a bit of overhead at first, but Serializers quickly become a powerful tool. They allow you to decouple your application logic and data layer from how a response body is structured, making changes to either side that much easier.
