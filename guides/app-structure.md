@@ -19,6 +19,7 @@ app/
     application.js  <- base model class to extend from
   serializers/
     application.js  <- base serializer class to extend from
+```
 
 ## `app/application.js`
 

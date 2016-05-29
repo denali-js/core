@@ -4,7 +4,7 @@ layout: guide
 category_order: -1
 ---
 
-## Principles
+# Core Principles
 
 Denali is built on a few core concepts:
 

@@ -6,7 +6,7 @@ after: Introduction
 
 
 
-# Get Started with Denali
+# Getting Started
 
 It's that ever-favorite first project for a server side framework: let's build a
 basic blogging application!

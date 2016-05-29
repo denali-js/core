@@ -37,13 +37,13 @@ for each model you have (PostSerializer, UserSerializer, etc). These subclasses
 tell Denali what attributes and relationships should be sent in a response that
 contains that particular model.
 
-## What data to send
+## Rendering data in a response
 
-Denali broadly divides the data in your models into **attributes** and
-**relationships**. Serializers render these based on _whitelists_; that is, you
-must specific data to render, rather than data to skip rendering. This ensures
-you won't accidentally let sensitive data through because you forgot to include
-it on a blacklist.
+Serializers render data based on _whitelists_. That means that if you want any
+part of your Model to render into JSON in the response body, you must specify
+it explicitly in that Model's Serializer. This ensures you won't
+accidentally return sensitive data in a response because you forgot to strip it
+out.
 
 Selecting which attributes to render is as simple as adding them to the
 attributes array on your serializer:
@@ -56,8 +56,9 @@ export default class UserSerializer extends ApplicationSerializer {
 }
 ```
 
-Relationships are slightly more complex. Ther
+Relationships are slightly more complex.
 
+TODO documentation for relationship serializers
 
 # Built-in Serializers
 

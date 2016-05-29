@@ -20,7 +20,20 @@ class, which should return either:
   2. a Model instance or array of Model instances, or
   3. a Promise which resolves with (1) or (2)
 
-## Actions as controllers
+### Example Action
+
+```js
+import ApplicationAction from './application';
+
+export default class ShowUser extends ApplicationAction {
+
+  respond() {
+    // ...
+  }
+}
+```
+
+### Actions as controllers
 
 Actions are probably a bit different than most controllers you might be used to.
 Rather than a single controller class that handles multiple different HTTP
@@ -53,7 +66,7 @@ Denali's Actions support content negotiation out of the box. If the incoming
 request includes an Accept header with a mime-type other than `*/*`, it will
 attempt to find the responder that best matches that type.
 
-Responders are methods on your Action that start with `respond`. So, for
+Responders are methods on your Action whose name starts with `respond`. So, for
 example, to respond to an HTML request (`Accept: text/html`), define a
 `respondToHtml()` method on your Action. It will be invoked, instead of
 `respond()`.
