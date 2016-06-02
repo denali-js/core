@@ -7,10 +7,11 @@
 
   <title>Instrumentation</title>
   <meta name="description" content="">
+    <base href="">
 
   <link href='https://fonts.googleapis.com/css?family=Inconsolata|Lato:400,700|Open+Sans:400,400italic,700|Montserrat+Alternates:700' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://denali.github.com/denali/guides/instrumentation.js">
+  <link rel="stylesheet" href="css/main.css">?
+  <link rel="canonical" href="/guides/instrumentation.js">
 </head>
 
   <body>
