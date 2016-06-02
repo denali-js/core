@@ -17,7 +17,7 @@ layout: api
   <h2 class='module-classes-header'>Classes</h2>
   {% for class in page.module.classes %}
     <div class='module-class-link'>
-      <a href='../../classes/{{ class[0] | url_encode }}'>{{ class[0] }}</a>
+      <a href='api/{{page.version.ref}}/classes/{{ class[0] | url_encode }}'>{{ class[0] }}</a>
     </div>
   {% endfor %}
 </div>

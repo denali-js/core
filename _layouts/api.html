@@ -12,7 +12,7 @@ layout: page
         <div class='nav-header'>Modules</div>
         {% for module in page.version.api.modules %}
           {% if module[1].is_submodule %}
-            <a class='nav-link {% if page.module.name == module[0] %}active{% endif %}' href='/{{ page.version.ref }}/api/modules/{{ module[1].name | url_encode }}'>{{module[1].name | capitalize }}</a>
+            <a class='nav-link {% if page.module.name == module[0] %}active{% endif %}' href='{{ page.version.ref }}/api/modules/{{ module[1].name | url_encode }}'>{{module[1].name | capitalize }}</a>
           {% endif %}
         {% endfor %}
       </div>
@@ -26,7 +26,7 @@ layout: page
           </label>
         </div>
         {% for class in page.version.api.classes %}
-          <a class='nav-link {% if page.class.name == class[0] %}active{% endif %}' href='/{{ page.version.ref }}/api/classes/{{ class[0] | url_encode }}' {% if class[1].access == 'private' %}data-private-class=true{% endif %}>{{ class[0] }}</a>
+          <a class='nav-link {% if page.class.name == class[0] %}active{% endif %}' href='{{ page.version.ref }}/api/classes/{{ class[0] | url_encode }}' {% if class[1].access == 'private' %}data-private-class=true{% endif %}>{{ class[0] }}</a>
         {% endfor %}
       </div>
 
