@@ -4,14 +4,14 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="http://davewasmer.github.com/denali/">
 
   <title>Instrumentation</title>
   <meta name="description" content="">
-  <base href="http://davewasmer.github.com/denali">
 
   <link href='//fonts.googleapis.com/css?family=Inconsolata|Lato:400,700|Open+Sans:400,400italic,700|Montserrat+Alternates:700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="css/main.css">
-  <link rel="canonical" href="http://davewasmer.github.com/denali/guides/instrumentation.js">
+  <link rel="canonical" href="http://davewasmer.github.com/denali//guides/instrumentation.js">
 </head>
 
   <body>
