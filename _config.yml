@@ -20,7 +20,8 @@ exclude: [
   'Gemfile.lock',
   'Guardfile',
   'npm-debug.log',
-  '.scss-lint.yml'
+  '.scss-lint.yml',
+  'deploy.sh'
 ]
 
 additional_version_refs: [ 'master' ]
