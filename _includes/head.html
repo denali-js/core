@@ -5,8 +5,9 @@
 
   <title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
   <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+    <base href="{{ site.baseurl }}">
 
   <link href='https://fonts.googleapis.com/css?family=Inconsolata|Lato:400,700|Open+Sans:400,400italic,700|Montserrat+Alternates:700' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
-  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+  <link rel="stylesheet" href="css/main.css">?
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl }}">
 </head>
