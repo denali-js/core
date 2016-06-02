@@ -6,7 +6,7 @@ layout: api
   <h1 class='module-name'>{{ page.module.name | capitalize }}</h1>
   {% if page.module.file %}
     <a class='defined-in' href='https://github.com/{{ site.repo }}/blob/{{ page.version.ref }}/{{ page.module.file | url_encode }}#L{{ page.module.line }}'>
-      <span class='file'>Defined in: {{ page.module.file }}</span>
+      <span class='filename'>Defined in: {{ page.module.file }}</span>
       <span class='line'>Line: {{ page.module.line }}</span>
     </a>
   {% endif %}

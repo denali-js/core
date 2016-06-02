@@ -27,3 +27,5 @@ additional_version_refs: [ 'master' ]
 version_aliases:
   master: 'canary'
 repo: 'davewasmer/denali'
+
+source_repo: '/Users/daw/projects/denali'

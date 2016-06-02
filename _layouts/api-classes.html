@@ -7,8 +7,8 @@ layout: api
   {% endif %}
   <h1 class='class-name'>{{ page.class.name | capitalize }}</h1>
   {% if page.class.file %}
-    <a class='defined-in' href='https://github.com/{{ site.repo }}/blob/{{ page.version.ref }}/{{ page.class.file | url_encode }}#L{{ page.class.line }}'>
-      <span class='file'>Defined in: {{ page.class.file }}</span>
+    <a class='defined-in' href='https://github.com/{{ site.repo }}/blob/{{ page.version.original_ref }}/{{ page.class.file | url_encode }}#L{{ page.class.line }}'>
+      <span class='filename'>Defined in: {{ page.class.file }}</span>
       <span class='line'>Line: {{ page.class.line }}</span>
     </a>
   {% endif %}
@@ -56,9 +56,6 @@ layout: api
   {% for item in page.class.classitems %}
     <div class='item' id='{{item.name | url_encode}}' {% if item.access == 'private' %}data-private-member=true{% endif %}>
       <h3 class='item-title'>
-        {% if item.access == 'private' %}
-          <div class='private tag'>Private</div>
-        {% endif %}
         <div class='item-name'>{{ item.name }}</div>
         {% if item.params %}
           <div class='param-paren'>(</div>
@@ -71,9 +68,12 @@ layout: api
           </div>
           <div class='param-paren'>)</div>
         {% endif %}
+        {% if item.access == 'private' %}
+          <div class='private tag'>Private</div>
+        {% endif %}
         {% if item.file %}
-          <a class='defined-in' href='https://github.com/{{site.repo}}/blob/{{page.version.ref}}/{{item.file | url_encode}}#L{{item.line}}'>
-            <span class='file'>Defined in: {{ item.file }}</span>
+          <a class='defined-in' href='https://github.com/{{site.repo}}/blob/{{page.version.original_ref}}/{{item.file | url_encode}}#L{{item.line}}'>
+            <span class='filename'>Defined in: {{ item.file }}</span>
             <span class='line'>Line: {{ item.line }}</span>
           </a>
         {% endif %}
@@ -105,6 +105,11 @@ layout: api
             {% endunless %}
           </div>
         {% endif %}
+        <div class='improve'>
+          <a target='_blank' href='https://github.com/{{site.repo}}/edit/{{page.version.original_ref}}/{{item.file | url_encode}}#L{{item.line}}'>
+            Improve this documentation
+          </a>
+        </div>
       </div>
     </div>
   {% endfor %}

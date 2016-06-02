@@ -1,6 +1,5 @@
 .guides-nav {
-  width: 10rem;
-  float: left;
+  margin-top: 3em;
 
   .nav-section {
     margin-bottom: 1.5em;
@@ -30,16 +29,14 @@
   margin-bottom: 8em;
   padding-left: 2em;
   border-left: 1px solid #eee;
-  overflow: auto;
   line-height: 1.8;
 
-  h1,h2,h3,h4,h5,h6 {
+  h2,h3,h4,h5,h6 {
     margin-top: 1em;
-    margin-bottom: 1rem;
+  }
 
-    &:first-child {
-      margin-top: 0;
-    }
+  h1,h2,h3,h4,h5,h6 {
+    margin-bottom: 1rem;
   }
 
   blockquote {

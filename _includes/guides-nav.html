@@ -1,4 +1,4 @@
-<div class='guides-nav'>
+<div class='guides-nav col-md-3'>
 
   {% include version-dropdown.html %}
 
@@ -8,7 +8,7 @@
         <div class='nav-header'>{{category[0]}}</div>
       {% endif %}
       {% for page in category[1] %}
-        <a href='/{{page.version.ref}}/{{page.url}}' class='nav-link'>{{page.title}}</a>
+        <a href='/{{page.version.ref}}{{page.url}}' class='nav-link'>{{page.title}}</a>
       {% endfor %}
     </div>
   {% endfor %}

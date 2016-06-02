@@ -21,9 +21,9 @@ $font-size-root: 14px;
 
 $container-max-widths: (
   sm: 576px,
-  md: 700px,
-  lg: 700px,
-  xl: 700px
+  md: 750px,
+  lg: 750px,
+  xl: 750px
 ) !default;
 
 $navbar-dark-color:            rgba(255,255,255,.9);
@@ -35,6 +35,11 @@ $pre-bg: #f7f7f7;
 
 
 @import "../bower_components/bootstrap/scss/bootstrap";
+
+// See https://github.com/twbs/bootstrap/issues/19123#issuecomment-222344311
+[class^="col-"] {
+  min-width: 0;
+}
 
 @import 'code';
 @import 'homepage';

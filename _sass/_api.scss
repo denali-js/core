@@ -1,10 +1,5 @@
 .api-nav {
-  width: 13.5em;
-  margin-top: 1em;
-  margin-right: 2em;
-  padding-right: 2em;
-  float: left;
-  border-right: 1px solid darken($white, 4%);
+  margin-top: 3em;
 
   .nav-header {
     margin-top: 2em;
@@ -17,7 +12,6 @@
 
   .private-classes-toggle {
     display: inline-block;
-    margin-top: 0.2em;
     margin-left: 2em;
     color: lighten($text-muted, 20%);
     font-size: 0.8em;
@@ -53,7 +47,9 @@
 }
 
 .api-body {
-  overflow: auto;
+  margin-top: 3em;
+  padding-left: 2em;
+  border-left: 1px solid darken($white, 4%);
 }
 
 .module-name, .class-name {
@@ -69,12 +65,12 @@
   cursor: pointer;
 
   &:hover {
-    &, .file, .line {
+    &, .filename, .line {
       text-decoration: underline;
     }
   }
 
-  .file, .line {
+  .filename, .line {
     display: inline-block;
   }
 
@@ -131,7 +127,7 @@
 }
 
 .type {
-  color: lighten($text-muted, 10%);
+  color: lighten($text-muted, 20%);
 }
 
 .classitems {
@@ -140,6 +136,17 @@
 
 .item {
   margin: 2em 0;
+
+  &:hover .improve {
+    visibility: visible;
+  }
+}
+
+.improve {
+  margin-top: 0.5em;
+  font-size: 0.8em;
+  text-align: right;
+  visibility: hidden;
 }
 
 [data-private-member], [data-deprecated-member] {
@@ -147,6 +154,7 @@
 }
 
 .item-header {
+  margin-top: 1.5em;
   margin-bottom: 0.25em;
   color: lighten($text-muted, 20%);
   font-size: 0.7em;
@@ -157,31 +165,48 @@
 
 .item-title {
   $bg: mix($brand-primary, $white, 10%);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   margin-bottom: 0;
-  padding: 0.5em 1em;
+  padding: 0.75em 1em;
   border: 1px solid darken($bg, 10%);
   border-radius: 4px 4px 0 0;
   background: $bg;
   font-family: $font-family-monospace;
+  font-size: 1.3rem;
   overflow: auto;
 
   .item-name {
-    float: left;
+    flex: 0 0 auto;
   }
 
   .params {
-    margin: 0 0.3em;
-    float: left;
-    color: lighten($body-color, 10%);
+    display: flex;
+    flex: 0 0 auto;
+    flex-wrap: wrap;
+    max-width: 100%
   }
 
   .param {
-    float: left;
+    display: flex;
+    flex: 0 0 auto;
+    margin: 0 0.2em;
+    color: lighten($body-color, 10%);
+
+    &::after {
+      content: ',';
+    }
+
+    &:last-of-type::after {
+      display: none;
+    }
   }
 
   .defined-in {
+    width: 100%;
+    margin-top: 0.4em;
     margin-bottom: 2px;
-    clear: left;
     font-size: 0.65em;
     font-weight: 400;
 
@@ -191,9 +216,8 @@
   }
 
   .tag {
-    margin: 1em;
+    margin: 0 1em;
     padding: 0.2em 0.4em;
-    float: right;
     border-radius: 3px;
     font-family: $font-family-sans-serif;
     font-size: 0.6em;
@@ -219,31 +243,31 @@
   .item-header:first-of-type {
     margin-top: 0;
   }
+
+  .param-name {
+    float: left;
+    clear: left;
+  }
+
+  .param-type {
+    float: left;
+  }
+
+  .params {
+    @include clearfix;
+  }
 }
 
 .param-paren {
-  float: left;
-}
-
-.params {
-  overflow: auto;
+  flex: 0 0 auto;
 }
 
 .param {
   font-weight: 400;
-
-  &::after {
-    content: ',';
-  }
-
-  &:last-of-type::after {
-    display: none;
-  }
-
 }
 
 .param-name, .param-type {
-  float: left;
+  flex: 0 0 auto;
   font-family: $font-family-monospace;
 }
 
@@ -269,7 +293,7 @@
 .param-description, .return-description {
   &::before {
     display: block;
-    margin: 0 0.2em;
+    margin: 0 0.3em;
     float: left;
     content: '-';
   }
@@ -282,7 +306,7 @@
 .return-type {
   margin-right: 0.1em;
   float: left;
-  color: $body-color;
+  color: $text-muted;
   font-family: $font-family-monospace;
   font-weight: 600;
 }

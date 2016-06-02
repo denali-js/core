@@ -10,7 +10,7 @@ module Jekyll
 
     def generate(site)
       @site = site
-      @repo = Git.init(@site.source)
+      @repo = Git.init(@site.config['source_repo'] || @site.source)
       @versions_data = @site.data['versions'] = {}
       self.build_versions()
     end
@@ -20,7 +20,7 @@ module Jekyll
         versions = self.discover_versions
         versions.map do |version|
           version_alias = @site.config['version_aliases'] && @site.config['version_aliases'][version] || version
-          version_data = @versions_data[version_alias] = { 'ref' => version_alias }
+          version_data = @versions_data[version_alias] = { 'ref' => version_alias, 'original_ref' => version }
           Dir.mktmpdir(nil, File.join(@site.source, 'tmp')) do |tmpdir|
             self.build_version(version, tmpdir, version_data)
           end
@@ -68,6 +68,8 @@ module Jekyll
       yuidoc_data['modules'].each do |item_name, item_data|
         @site.pages << APIModulePage.new(@site, item_name, item_data, version, yuidoc_data, @versions_data)
       end
+
+      @site.pages << APIRootPage.new(@site, version, yuidoc_data, @versions_data)
 
       yuidoc_data
     end
@@ -117,7 +119,7 @@ module Jekyll
         (0..guides.length).each do |i|
           index_of_next_guide = guides.find_index do |guide|
             last_title = sorted_guides.last && sorted_guides.last.data['title']
-            !guide.data.nil? && guide.data['after'] == last_title
+            guide.data['after'] == last_title
           end
           if !index_of_next_guide.nil?
             sorted_guides << guides[index_of_next_guide]
@@ -125,7 +127,8 @@ module Jekyll
         end
         if guides.length > sorted_guides.length
           dangling_guide_names = (guides - sorted_guides)
-          puts "WARNING: Guides sorting linked list broken for #{category_name} - #{dangling_guide_names.join(', ')} guides were not added to the left nav because they didn't properly point to the guide they should appear underneath"
+          dangling_guide_names = dangling_guide_names.map { |guide| guide.data['title'] }
+          puts "WARNING: The linked list for sorting guides is broken. The #{dangling_guide_names.join(', ')} guide(s) were not added to the left nav because they didn't properly point to which guide they appear underneath. You most likely have an incorrect, missing, or duplicate 'after:' for this guide."
         end
         categories[category_name] = sorted_guides
       end
@@ -203,6 +206,23 @@ module Jekyll
       {
         "class" => data
       }
+    end
+  end
+
+  class APIRootPage < Page
+    def initialize(site, version, version_data, all_versions_data)
+      @site = site
+      @base = site.source
+      @dir = File.join(version, 'api')
+      @name = 'index.html'
+
+      self.process(@name)
+      self.read_yaml(@base, "api.html")
+      self.data.merge!({
+        "versions" => all_versions_data,
+        "version" => all_versions_data[version]
+      })
+      self.data.merge!(version_data)
     end
   end
 

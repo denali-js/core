@@ -3,36 +3,38 @@ layout: page
 ---
 
 <div class='container'>
-  <div class='api-nav'>
+  <div class='row'>
+    <div class='api-nav col-md-3'>
 
-    {% include version-dropdown.html %}
+      {% include version-dropdown.html %}
 
-    <div class='nav-section'>
-      <div class='nav-header'>Modules</div>
-      {% for module in page.version.api.modules %}
-        {% if module[1].is_submodule %}
-          <a class='nav-link {% if page.module.name == module[0] %}active{% endif %}' href='../../modules/{{ module[1].name | url_encode }}'>{{module[1].name | capitalize }}</a>
-        {% endif %}
-      {% endfor %}
-    </div>
-
-    <div class='nav-section'>
-      <div class='nav-header'>
-        Classes
-        <label class='private-classes-toggle'>
-          <input type='checkbox' id='toggle-private-classes'>
-          Include Private
-        </label>
+      <div class='nav-section'>
+        <div class='nav-header'>Modules</div>
+        {% for module in page.version.api.modules %}
+          {% if module[1].is_submodule %}
+            <a class='nav-link {% if page.module.name == module[0] %}active{% endif %}' href='/{{ page.version.ref }}/api/modules/{{ module[1].name | url_encode }}'>{{module[1].name | capitalize }}</a>
+          {% endif %}
+        {% endfor %}
       </div>
-      {% for class in page.version.api.classes %}
-        <a class='nav-link {% if page.class.name == class[0] %}active{% endif %}' href='../../classes/{{ class[0] | url_encode }}' {% if class[1].access == 'private' %}data-private-class=true{% endif %}>{{ class[0] }}</a>
-      {% endfor %}
+
+      <div class='nav-section'>
+        <div class='nav-header'>
+          Classes
+          <label class='private-classes-toggle'>
+            <input type='checkbox' id='toggle-private-classes'>
+            Include Private
+          </label>
+        </div>
+        {% for class in page.version.api.classes %}
+          <a class='nav-link {% if page.class.name == class[0] %}active{% endif %}' href='/{{ page.version.ref }}/api/classes/{{ class[0] | url_encode }}' {% if class[1].access == 'private' %}data-private-class=true{% endif %}>{{ class[0] }}</a>
+        {% endfor %}
+      </div>
+
     </div>
 
-  </div>
-
-  <div class='api-body'>
-    {{content}}
+    <div class='api-body col-md-9'>
+      {{content}}
+    </div>
   </div>
 </div>
 
