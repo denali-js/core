@@ -20,19 +20,19 @@
     <nav class="navbar navbar-full navbar-dark">
   <div class='container'>
     <a href='/' class='navbar-brand'>
-      <img class='logo-light' src='/images/logo.png' alt='Denali'>
+      <img class='logo-light' src='images/logo.png' alt='Denali'>
       <span class='project-name'>denali</span>
     </a>
 
     <div class='nav navbar-nav pull-xs-right'>
       <li class='nav-item'>
-        <a class='nav-link' href='/canary/guides/quickstart'>Quickstart</a>
+        <a class='nav-link' href='canary/guides/quickstart'>Quickstart</a>
       </li>
       <li class='nav-item'>
-        <a class='nav-link' href='/canary/guides/introduction'>Guides</a>
+        <a class='nav-link' href='canary/guides/introduction'>Guides</a>
       </li>
       <li class='nav-item'>
-        <a class='nav-link' href='/canary/api'>API</a>
+        <a class='nav-link' href='canary/api'>API</a>
       </li>
       <li class='nav-item'>
         <a class='nav-link' href='https://github.com/davewasmer/denali' target='_blank'>Github</a>
