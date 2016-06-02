@@ -7,8 +7,8 @@
 
 # Site settings
 title: Denali
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://davewasmer.github.com/denali" # the base hostname & protocol for your site
+baseurl: "/denali" # the subpath of your site, e.g. /blog
+url: "http://davewasmer.github.com" # the base hostname & protocol for your site
 github_username:  denali
 permalink: pretty
 
