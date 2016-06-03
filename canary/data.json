@@ -1,8 +1,8 @@
 {
     "project": {},
     "files": {
-        "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/cli/lib/blueprint.js": {
-            "name": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/cli/lib/blueprint.js",
+        "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/cli/lib/blueprint.js": {
+            "name": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/cli/lib/blueprint.js",
             "modules": {
                 "cli": 1
             },
@@ -12,8 +12,8 @@
             "fors": {},
             "namespaces": {}
         },
-        "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/cli/lib/command.js": {
-            "name": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/cli/lib/command.js",
+        "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/cli/lib/command.js": {
+            "name": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/cli/lib/command.js",
             "modules": {},
             "classes": {
                 "Command": 1
@@ -21,22 +21,22 @@
             "fors": {},
             "namespaces": {}
         },
-        "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/flat.js": {
-            "name": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/flat.js",
+        "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/flat.js": {
+            "name": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/flat.js",
             "modules": {},
             "classes": {},
             "fors": {},
             "namespaces": {}
         },
-        "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/json-api.js": {
-            "name": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/json-api.js",
+        "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/json-api.js": {
+            "name": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/json-api.js",
             "modules": {},
             "classes": {},
             "fors": {},
             "namespaces": {}
         },
-        "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializer.js": {
-            "name": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializer.js",
+        "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializer.js": {
+            "name": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializer.js",
             "modules": {},
             "classes": {
                 "Serializer": 1
@@ -44,8 +44,8 @@
             "fors": {},
             "namespaces": {}
         },
-        "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/action.js": {
-            "name": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/action.js",
+        "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/action.js": {
+            "name": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/action.js",
             "modules": {
                 "runtime": 1
             },
@@ -55,8 +55,8 @@
             "fors": {},
             "namespaces": {}
         },
-        "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/addon.js": {
-            "name": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/addon.js",
+        "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/addon.js": {
+            "name": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/addon.js",
             "modules": {},
             "classes": {
                 "Addon": 1
@@ -64,8 +64,8 @@
             "fors": {},
             "namespaces": {}
         },
-        "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/application.js": {
-            "name": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/application.js",
+        "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/application.js": {
+            "name": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/application.js",
             "modules": {},
             "classes": {
                 "Application": 1
@@ -73,8 +73,8 @@
             "fors": {},
             "namespaces": {}
         },
-        "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/container.js": {
-            "name": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/container.js",
+        "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/container.js": {
+            "name": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/container.js",
             "modules": {},
             "classes": {
                 "Container": 1
@@ -82,8 +82,8 @@
             "fors": {},
             "namespaces": {}
         },
-        "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/errors.js": {
-            "name": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/errors.js",
+        "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/errors.js": {
+            "name": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/errors.js",
             "modules": {},
             "classes": {
                 "Error": 1
@@ -91,15 +91,15 @@
             "fors": {},
             "namespaces": {}
         },
-        "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/router.js": {
-            "name": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/router.js",
+        "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/router.js": {
+            "name": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/router.js",
             "modules": {},
             "classes": {},
             "fors": {},
             "namespaces": {}
         },
-        "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/service.js": {
-            "name": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/service.js",
+        "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/service.js": {
+            "name": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/service.js",
             "modules": {},
             "classes": {
                 "Service": 1
@@ -107,22 +107,22 @@
             "fors": {},
             "namespaces": {}
         },
-        "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/utils/ensure-array.js": {
-            "name": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/utils/ensure-array.js",
+        "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/utils/ensure-array.js": {
+            "name": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/utils/ensure-array.js",
             "modules": {},
             "classes": {},
             "fors": {},
             "namespaces": {}
         },
-        "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/utils/log.js": {
-            "name": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/utils/log.js",
+        "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/utils/log.js": {
+            "name": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/utils/log.js",
             "modules": {},
             "classes": {},
             "fors": {},
             "namespaces": {}
         },
-        "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/index.js": {
-            "name": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/index.js",
+        "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/index.js": {
+            "name": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/index.js",
             "modules": {
                 "denali": 1
             },
@@ -153,7 +153,7 @@
             "fors": {},
             "namespaces": {},
             "tag": "module",
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/service.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/service.js",
             "line": 6,
             "description": "This is the main module exported by Denali when it is loaded via\n`require/import`.\n\nThere are two things we export from this file:\n\n1. Convenient shortcuts to other modules within Denali. Rather than having\nto `import Addon from 'denali/dist/lib/runtime/addon'`, you can just\n`import { Addon } from 'denali'`.\n\n2. External modules that are part of the Denali framework. The big ones are\n**foraker** and **blackburn**, responsible for providing controllers and a\nserializer library, respectively. By having users import those modules\nthrough Denali, we retain the ability to tweak or patch them in the future\nas needed, and keep a unified experience for users who don't care about\nDenali's internal architecture.\n\n## Exports\n\n### `Serializer`\n\nThe [blackburn](https://github.com/davewasmer/blackburn) Serializer class.\nSerializers are responsible for determing what data gets sent over the\nwire, and how that data is rendered into a JSON response. Check out the\n[guides](serializers) or [blackburn](http://davewasmer.github.io/blackburn)\ndocs for details.\n\n### `Errors`\n\nAn errors module based on\n[http-errors](https://github.com/jshttp/http-errors). Useful for\nstandardizing how you handle error responses. Check out the [guides](errors)\nor the [http-errors docs](https://github.com/jshttp/http-errors) for details."
         },
@@ -170,7 +170,7 @@
             "namespaces": {},
             "module": "denali",
             "namespace": "",
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/cli/lib/command.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/cli/lib/command.js",
             "line": 13,
             "description": "The Blueprint class manages generating code from a template, or \"blueprint\".\nBlueprints have three main components:\n\n  * `Blueprint.locals()` - used to generate data to fill in the the templates\n  * Templates, found under `<blueprint dir>/files`. These files are copied\n    over into the project. The can contain ERB style interpolation to inject\n    values from the `locals` data. Filenames can also contain variables,\n    delimited by `__variable__`\n  * `Blueprint.postInstall()`, which runs after the copying operation is\n    finished. This gives the blueprint a chance to perform additional steps\n    that simple templating can't support (i.e. install an node module).\n\nThe code generated by a blueprint can also be removed via the `destroy`\ncommand. That command will only remove files that exactly match the\nwhat the blueprint generates, so if you modify a file after it was generated,\nit won't be removed."
         },
@@ -191,7 +191,7 @@
             "namespaces": {},
             "module": "denali",
             "namespace": "",
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/service.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/service.js",
             "line": 6,
             "description": "Actions form the core of interacting with a Denali application. They are\nthe controller layer in the MVC architecture, taking in incoming requests,\nperforming business logic, and handing off to the renderer to send the\nresponse.\n\nWhen a request comes in, Denali will invoke the `respond` method on the\nmatching Action class. This method can directly render a response, or just\nreturn data (or a promise which resolves with data) to be rendered.\n\n## Actions as controllers\n\nActions are probably a bit different than most controllers you might be\nused to. Rather than a single controller class that handles multiple\ndifferent HTTP endpoints, Actions represent just one endpoint (URL + verb).\n\nThis might seem like overkill at first, but it enables powerful declarative\nabstractions now that there is a 1:1 relationship between a class and\nendpoint.\n\nWant to validate incoming request bodies? Just define a schema property on\nthe action class itself, and a validation filter on the base class, and\nyou've got easy to understand declarative validation:\n\n```js\nexport default Action.extend(RolesFilter, {\n  validate: {\n    type: 'object',\n    required: [ 'firstName', 'lastName']\n  },\n  respond() {\n    // ...\n  }\n});\n```\n\nOr how about access controls? Just add an `allow` array and a roles filter:\n\n```js\nexport default Action.extend(RolesFilter, {\n  allow: [ 'admins' ],\n  respond() {\n    // ...\n  }\n});\n```\n\nFilters are supplied via the `before` or `after` arrays, and they accumulate\nfrom parent classes."
         }
@@ -208,7 +208,7 @@
             "module": "denali",
             "submodule": "cli",
             "namespace": "",
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/cli/lib/blueprint.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/cli/lib/blueprint.js",
             "line": 18,
             "description": "The Blueprint class manages generating code from a template, or \"blueprint\".\nBlueprints have three main components:\n\n  * `Blueprint.locals()` - used to generate data to fill in the the templates\n  * Templates, found under `<blueprint dir>/files`. These files are copied\n    over into the project. The can contain ERB style interpolation to inject\n    values from the `locals` data. Filenames can also contain variables,\n    delimited by `__variable__`\n  * `Blueprint.postInstall()`, which runs after the copying operation is\n    finished. This gives the blueprint a chance to perform additional steps\n    that simple templating can't support (i.e. install an node module).\n\nThe code generated by a blueprint can also be removed via the `destroy`\ncommand. That command will only remove files that exactly match the\nwhat the blueprint generates, so if you modify a file after it was generated,\nit won't be removed.",
             "letructor": "",
@@ -226,7 +226,7 @@
             "module": "denali",
             "submodule": "cli",
             "namespace": "",
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/cli/lib/command.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/cli/lib/command.js",
             "line": 13,
             "description": "Represents a subcommand of the `denali` CLI.",
             "letructor": "",
@@ -243,7 +243,7 @@
             "extension_for": [],
             "module": "denali",
             "namespace": "",
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializer.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializer.js",
             "line": 1,
             "description": "Serializers allow you to customize what data is returned the response, and\napply simple transformations to it. They allow you to decouple what data is\nsent, with how that data is structured / rendered.",
             "is_constructor": 1
@@ -259,7 +259,7 @@
             "module": "denali",
             "submodule": "runtime",
             "namespace": "",
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/action.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/action.js",
             "line": 25,
             "description": "Actions form the core of interacting with a Denali application. They are\nthe controller layer in the MVC architecture, taking in incoming requests,\nperforming business logic, and handing off to the renderer to send the\nresponse.\n\nWhen a request comes in, Denali will invoke the `respond` method on the\nmatching Action class. This method can directly render a response, or just\nreturn data (or a promise which resolves with data) to be rendered.\n\n## Actions as controllers\n\nActions are probably a bit different than most controllers you might be\nused to. Rather than a single controller class that handles multiple\ndifferent HTTP endpoints, Actions represent just one endpoint (URL + verb).\n\nThis might seem like overkill at first, but it enables powerful declarative\nabstractions now that there is a 1:1 relationship between a class and\nendpoint.\n\nWant to validate incoming request bodies? Just define a schema property on\nthe action class itself, and a validation filter on the base class, and\nyou've got easy to understand declarative validation:\n\n```js\nexport default Action.extend(RolesFilter, {\n  validate: {\n    type: 'object',\n    required: [ 'firstName', 'lastName']\n  },\n  respond() {\n    // ...\n  }\n});\n```\n\nOr how about access controls? Just add an `allow` array and a roles filter:\n\n```js\nexport default Action.extend(RolesFilter, {\n  allow: [ 'admins' ],\n  respond() {\n    // ...\n  }\n});\n```\n\nFilters are supplied via the `before` or `after` arrays, and they accumulate\nfrom parent classes.",
             "is_constructor": 1
@@ -275,7 +275,7 @@
             "module": "denali",
             "submodule": "runtime",
             "namespace": "",
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/addon.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/addon.js",
             "line": 21,
             "description": "Addons are the fundamental unit of organization for Denali apps. The\nApplication class is just a specialized Addon, and each Addon can contain\nany amount of functionality.\n\n## Structure\n\nAddons are packaged as npm modules for easy sharing. When Denali boots up,\nit searches your node_modules for available Denali Addons (identified by\nthe `denali-addon` keyword in the package.json). Addons can be nested (i.e.\nan addon can itself depend on another addon).\n\nEach addon can be composed of one or several of the following parts:\n\n  * Config\n  * Initializers\n  * Middleware\n  * App classes\n  * Routes\n\n## Load order\n\nAfter Denali discovers the available addons, it then merges them to form a\nsingle application base. Addons higher in the dependency tree take\nprecedence, and sibling addons can specify load order via their package.json\nfiles:\n\n    \"denali\": {\n      \"before\": [ \"another-addon-name\" ],\n      \"after\": [ \"cool-addon-name\" ]\n    }",
             "is_constructor": 1,
@@ -294,7 +294,7 @@
             "module": "denali",
             "submodule": "runtime",
             "namespace": "",
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/application.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/application.js",
             "line": 18,
             "description": "Application instances are little more than specialized Addons, designed to\nkick off the loading, mounting, and launching stages of booting up. They also\nmanage the handoff from the express routing layer to the app's actions.",
             "is_constructor": 1,
@@ -311,7 +311,7 @@
             "module": "denali",
             "submodule": "runtime",
             "namespace": "",
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/container.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/container.js",
             "line": 9,
             "description": "The Container houses all the various classes that makeup a Denali app's\nruntime. It holds references to the modules themselves, as well as caching\nsingleton instances and handling factory methods.",
             "is_constructor": 1
@@ -327,7 +327,7 @@
             "module": "denali",
             "submodule": "runtime",
             "namespace": "",
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/errors.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/errors.js",
             "line": 6,
             "description": "Denali uses the **http-errors** package for handling HTTP errors. Check [it's\ndocumentation](https://github.com/jshttp/http-errors) for how to use it."
         },
@@ -342,7 +342,7 @@
             "module": "denali",
             "submodule": "runtime",
             "namespace": "",
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/service.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/service.js",
             "line": 6,
             "description": "Services are typically used to represent either external systems (i.e. a\ncaching service) or a cross-cutting, reusable piece of application logic\n(i.e. an authorization / roles service).\n\nServices are mostly conventional - they are just singleton Denali.Objects\nwith no additional special behavior. The common base class ensures they are\nsingletons, makes user intent clear, and paves the way for introducing\nadditional common functionality in future versions of Denali.",
             "is_constructor": 1
@@ -351,7 +351,7 @@
     "elements": {},
     "classitems": [
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/cli/lib/blueprint.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/cli/lib/blueprint.js",
             "line": 42,
             "description": "Description of what the blueprint does. Displayed when `denali generate`\nis run without arguments.",
             "itemtype": "property",
@@ -362,7 +362,7 @@
             "submodule": "cli"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/cli/lib/blueprint.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/cli/lib/blueprint.js",
             "line": 55,
             "description": "A hook to generate data to be interpolated into the blueprint's template\nfiles.",
             "itemtype": "method",
@@ -376,7 +376,7 @@
             "submodule": "cli"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/cli/lib/blueprint.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/cli/lib/blueprint.js",
             "line": 66,
             "description": "Runs after the templating step is complete, letting you make additional\nmodifications (i.e. install a node module).",
             "itemtype": "method",
@@ -386,7 +386,7 @@
             "submodule": "cli"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/cli/lib/blueprint.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/cli/lib/blueprint.js",
             "line": 74,
             "description": "Runs when `denali destroy` is invoked, after the applicable template files\nhave been removed. You should clean up / reverse any changes made in\npostInstall(), but only in a way that avoids removing user modifications.",
             "itemtype": "method",
@@ -396,7 +396,7 @@
             "submodule": "cli"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/cli/lib/blueprint.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/cli/lib/blueprint.js",
             "line": 83,
             "description": "Returns the path to this blueprints template files directory. Defaults to\n`files/`.",
             "itemtype": "method",
@@ -410,7 +410,7 @@
             "submodule": "cli"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/cli/lib/blueprint.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/cli/lib/blueprint.js",
             "line": 94,
             "description": "Generate the blueprint. Generates the data to interpolate into the\ntemplates, then copies the template files over into the project. Finally,\nruns the postInstall hook.",
             "itemtype": "method",
@@ -429,7 +429,7 @@
             "submodule": "cli"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/cli/lib/blueprint.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/cli/lib/blueprint.js",
             "line": 129,
             "description": "Destroy the blueprint. Generates the data to interpolate into the\ntemplates, then deletes any unmodified files that were generated by this\nblueprint. Then runs the postUninstall hook.",
             "itemtype": "method",
@@ -448,7 +448,7 @@
             "submodule": "cli"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/cli/lib/command.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/cli/lib/command.js",
             "line": 22,
             "description": "Description of what the command does. Displayed when `denali` is run\nwithout arguments.",
             "itemtype": "property",
@@ -459,7 +459,7 @@
             "submodule": "cli"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/cli/lib/command.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/cli/lib/command.js",
             "line": 31,
             "description": "An array of positional paramters to this command. For example,\n\n    params: [ 'foo', 'bar' ]\n\nWhen run with:\n\n    $ denali mycommand Hello World\n\nWould result in:\n\n    run(params) {\n      params.foo // \"Hello\"\n      params.bar // \"World\"\n    }",
             "itemtype": "property",
@@ -470,7 +470,7 @@
             "submodule": "cli"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/cli/lib/command.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/cli/lib/command.js",
             "line": 52,
             "description": "Configuration for which flags the command accepts. Flags start with `-` or\n`--`, and can be booleans (i.e. the flag is present or not), strings (i.e.\n`--environment production`), or arrays of strings (i.e. `--files foo bar`).",
             "itemtype": "property",
@@ -484,7 +484,7 @@
             "submodule": "cli"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/cli/lib/command.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/cli/lib/command.js",
             "line": 76,
             "description": "Show a spinner to indicate activity",
             "itemtype": "method",
@@ -494,7 +494,7 @@
             "submodule": "cli"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/cli/lib/command.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/cli/lib/command.js",
             "line": 86,
             "description": "Stop showing the busy spinner",
             "itemtype": "method",
@@ -504,7 +504,7 @@
             "submodule": "cli"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/cli/lib/command.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/cli/lib/command.js",
             "line": 95,
             "description": "Run the command.",
             "itemtype": "method",
@@ -526,7 +526,7 @@
             "submodule": "cli"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/flat.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/flat.js",
             "line": 10,
             "description": "Renders the payload as a flat JSON object or array at the top level. Related\nrecords are embedded.",
             "title": "FlatSerializer",
@@ -534,7 +534,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/flat.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/flat.js",
             "line": 19,
             "description": "Renders the payload, either a primary data payload or an error payload.",
             "itemtype": "method",
@@ -559,7 +559,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/flat.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/flat.js",
             "line": 36,
             "description": "Renders a primary data payload (a record or array of records).",
             "itemtype": "method",
@@ -584,7 +584,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/flat.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/flat.js",
             "line": 55,
             "description": "Renders an individual record",
             "itemtype": "method",
@@ -609,7 +609,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/flat.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/flat.js",
             "line": 75,
             "description": "Serialize the attributes for a given record",
             "params": [
@@ -632,7 +632,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/flat.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/flat.js",
             "line": 96,
             "description": "Transform attribute names into their over-the-wire representation. Default\nbehavior uses the attribute name as-is.",
             "itemtype": "method",
@@ -652,7 +652,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/flat.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/flat.js",
             "line": 110,
             "description": "Take an attribute value and return the serialized value. Useful for\nchanging how certain types of values are serialized, i.e. Date objects.\n\nThe default implementation returns the attribute's value unchanged.",
             "itemtype": "method",
@@ -682,7 +682,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/flat.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/flat.js",
             "line": 162,
             "description": "Transform relationship names into their over-the-wire representation. Default\nbehavior uses the relationship name as-is.",
             "itemtype": "method",
@@ -702,7 +702,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/flat.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/flat.js",
             "line": 176,
             "description": "Render an error payload",
             "itemtype": "method",
@@ -722,7 +722,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/json-api.js",
             "line": 23,
             "description": "Renders the payload according to the JSONAPI 1.0 spec, including related\nresources, included records, and support for meta and links.",
             "title": "JSONAPISerializer",
@@ -730,7 +730,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/json-api.js",
             "line": 32,
             "description": "Take a payload (a model, an array of models, or an Error) and render it as\na JSONAPI compliant document",
             "itemtype": "method",
@@ -755,7 +755,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/json-api.js",
             "line": 54,
             "description": "Render the primary payload for a JSONAPI document (either a model or array\nof models).",
             "itemtype": "method",
@@ -784,7 +784,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/json-api.js",
             "line": 95,
             "description": "Render any included records into the top level of the document",
             "itemtype": "method",
@@ -817,7 +817,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/json-api.js",
             "line": 114,
             "description": "Render top level meta object for a document. Default uses meta supplied in\noptions call to res.render().",
             "itemtype": "method",
@@ -850,7 +850,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/json-api.js",
             "line": 131,
             "description": "Render top level links object for a document. Defaults to the links\nsupplied in options, or the URL for the invoking action if no links are\nsupplied.",
             "itemtype": "method",
@@ -883,7 +883,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/json-api.js",
             "line": 155,
             "description": "Render the version of JSONAPI supported.",
             "itemtype": "method",
@@ -909,7 +909,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/json-api.js",
             "line": 170,
             "description": "Render the supplied record as a resource object.",
             "itemtype": "method",
@@ -937,7 +937,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/json-api.js",
             "line": 196,
             "description": "Returns the JSONAPI attributes object representing this record's\nrelationships",
             "itemtype": "method",
@@ -965,7 +965,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/json-api.js",
             "line": 221,
             "description": "The JSONAPI spec recommends (but does not require) that property names be\ndasherized. The default implementation of this serializer therefore does\nthat, but you can override this method to use a different approach.",
             "itemtype": "method",
@@ -985,7 +985,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/json-api.js",
             "line": 236,
             "description": "Take an attribute value and return the serialized value. Useful for\nchanging how certain types of values are serialized, i.e. Date objects.\n\nThe default implementation returns the attribute's value unchanged.",
             "itemtype": "method",
@@ -1015,7 +1015,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/json-api.js",
             "line": 254,
             "description": "Returns the JSONAPI relationships object representing this record's\nrelationships",
             "itemtype": "method",
@@ -1043,7 +1043,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/json-api.js",
             "line": 283,
             "description": "Takes the serializer config and the model's descriptor for a relationship,\nand returns the serialized relationship object. Also sideloads any full\nrecords found for the relationship.",
             "params": [
@@ -1071,7 +1071,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/json-api.js",
             "line": 303,
             "description": "Given the serializer config and the model descriptor for a hasOne\nrelationship, returns the data for that relationship (the resource object\nwith type and id). Sideloads the related record if present.",
             "params": [
@@ -1099,7 +1099,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/json-api.js",
             "line": 320,
             "description": "Given the serializer config and the model descriptor for a hasMany\nrelationship, returns the data for that relationship (the resource objects\nwith type and id). Sideloads the related records if present.",
             "params": [
@@ -1127,7 +1127,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/json-api.js",
             "line": 337,
             "description": "Given a related record or it's id, return the resource object for that\nrecord (or id). If it's a full record, sideload the record as well.",
             "params": [
@@ -1160,7 +1160,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/json-api.js",
             "line": 362,
             "description": "Takes a relationship descriptor and the record it's for, and returns any\nlinks for that relationship for that record. I.e. '/books/1/author'",
             "itemtype": "method",
@@ -1190,7 +1190,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/json-api.js",
             "line": 384,
             "description": "Returns any meta for a given relationship and record. No meta included by\ndefault.",
             "itemtype": "method",
@@ -1225,7 +1225,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/json-api.js",
             "line": 400,
             "description": "Returns links for a particular record, i.e. self: \"/books/1\". Default\nimplementation assumes the URL for a particular record maps to that type's\n`show` action, i.e. `books/show`.",
             "itemtype": "method",
@@ -1250,7 +1250,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/json-api.js",
             "line": 418,
             "description": "Returns meta for a particular record.",
             "itemtype": "method",
@@ -1275,7 +1275,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/json-api.js",
             "line": 430,
             "description": "Sideloads a record into the top level \"included\" array",
             "itemtype": "method",
@@ -1332,7 +1332,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/json-api.js",
             "line": 456,
             "description": "Render the supplied error",
             "itemtype": "method",
@@ -1352,7 +1352,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/json-api.js",
             "line": 479,
             "description": "Given an error, return a JSON Pointer, a URL query param name, or other\ninfo indicating the source of the error.",
             "itemtype": "method",
@@ -1375,7 +1375,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/json-api.js",
             "line": 496,
             "description": "Return the meta for a given error object. You could use this for example,\nto return debug information in development environments.",
             "itemtype": "method",
@@ -1395,7 +1395,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/json-api.js",
             "line": 510,
             "description": "Return a links object for an error. You could use this to link to a bug\ntracker report of the error, for example.",
             "itemtype": "method",
@@ -1415,7 +1415,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/json-api.js",
             "line": 522,
             "description": "Remove duplicate entries from the sideloaded data.",
             "itemtype": "method",
@@ -1433,7 +1433,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/json-api.js",
             "line": 538,
             "description": "Unlike the other serializers, the default parse implementation does modify\nthe incoming payload. It converts the default dasherized attribute names\ninto camelCase.\n\nThe parse method here retains the JSONAPI document structure (i.e. data,\nincluded, links, meta, etc), only modifying resource objects in place.",
             "itemtype": "method",
@@ -1470,7 +1470,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/json-api.js",
             "line": 588,
             "description": "Parse a single resource object from a JSONAPI document. The resource object\ncould come from the top level `data` payload, or from the sideloaded\n`included` records.",
             "itemtype": "method",
@@ -1490,7 +1490,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/json-api.js",
             "line": 612,
             "description": "Parse a resource object id",
             "itemtype": "method",
@@ -1510,7 +1510,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/json-api.js",
             "line": 625,
             "description": "Parse a resource object's type string",
             "itemtype": "method",
@@ -1530,7 +1530,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/json-api.js",
             "line": 638,
             "description": "Parse a resource object's attributes. By default, this converts from the\nJSONAPI recommended dasheried keys to camelCase.",
             "itemtype": "method",
@@ -1550,7 +1550,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/json-api.js",
             "line": 654,
             "description": "Parse a resource object's relationships. By default, this converts from the\nJSONAPI recommended dasheried keys to camelCase.",
             "itemtype": "method",
@@ -1570,7 +1570,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializer.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializer.js",
             "line": 17,
             "description": "Take the supplied payload of record(s) or error(s) and the supplied options\nand return a rendered a JSON response object.",
             "itemtype": "method",
@@ -1596,7 +1596,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializer.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializer.js",
             "line": 33,
             "description": "Take a serialized JSON document (i.e. an incoming request body), and\nperform any normalization required.\n\nThe return value of this method is entirely up to the specific serializer,\ni.e. some may return the payload unchanged, others may tweak the structure,\nor some could even return actual ORM model instances.\n\nThis method is optional - the default implementation returns the payload\nunchanged.",
             "itemtype": "method",
@@ -1621,7 +1621,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializer.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializer.js",
             "line": 55,
             "description": "The list of attribute names that should be serialized. Attributes not\nincluded in this list will be omitted from the final rendered payload.",
             "type": "{String[]}",
@@ -1629,7 +1629,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializer.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializer.js",
             "line": 63,
             "description": "An object with configuration on how to serialize relationships.\nRelationships that have no configuration present are omitted from the final\nrendered payload.\n\nOut of the box, two options are supported:\n\n**strategy**\n\nIt has one of four possible values:\n\n  * `records`: embed all related records (1-n relationships)\n  * `record`: embed the related record (1-1 relationships)\n  * `ids`: include only the ids of related records (1-n relationships)\n  * `id`: include only the id of the related record (1-1 relationships)\n\nWhat the embedded records or ids look like is up to each serializer to\ndetermine.\n\n**type**\n\nThe model type of the related records.\n\nSpecific serializers may also accept additional options in the relationship\nconfiguration to customize their response format.",
             "type": "{Object}",
@@ -1637,7 +1637,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializer.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializer.js",
             "line": 93,
             "description": "Given a record, return the matching serializer for that record's type.",
             "itemtype": "method",
@@ -1657,7 +1657,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/action.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/action.js",
             "line": 80,
             "description": "Invoked before the `respond()` method, in the same order the mixins were\napplied. They can be synchronous, or return a promise (which will pause\nthe before/respond/after chain until it resolves).\n\nIf a before filter renders a response, any remaining filters as well as the\n`respond()` method are skipped.",
             "itemtype": "property",
@@ -1669,7 +1669,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/action.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/action.js",
             "line": 94,
             "description": "Invoked after the `respond()` method, in the same order the mixins were\napplied. They can be synchronous, or return a promise (which will pause\nthe before/respond/after chain until it resolves).\n\nIf a before filter renders a response, any remaining filters as well as\nthe `respond()` method are skipped. After filters are still called if the\n`respond()` method renders a response though.",
             "itemtype": "property",
@@ -1681,7 +1681,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/action.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/action.js",
             "line": 157,
             "description": "Invokes the action. Determines the best responder method for content\nnegotiation, then executes the filter/responder chain in sequence,\nhandling errors and rendering the response.\n\nYou shouldn't invoke this directly - Denali will automatically wire up\nyour routes to this method.",
             "itemtype": "method",
@@ -1697,7 +1697,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/addon.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/addon.js",
             "line": 60,
             "description": "The current environment for the app, i.e. 'development'",
             "itemtype": "property",
@@ -1708,7 +1708,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/addon.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/addon.js",
             "line": 68,
             "description": "The root directory on the filesystem for this addon",
             "itemtype": "property",
@@ -1719,7 +1719,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/addon.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/addon.js",
             "line": 76,
             "description": "The list of child addons that this addon contains",
             "itemtype": "property",
@@ -1730,7 +1730,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/addon.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/addon.js",
             "line": 84,
             "description": "The configuration that is specific to this addon",
             "itemtype": "property",
@@ -1741,7 +1741,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/addon.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/addon.js",
             "line": 106,
             "description": "Search this addon's package.json dependencies for Denali addons. For each\ndiscovered addon, instantiate it's Addon class, and add it to the addon\ngraph. Return the sorted addon graph.\n\nNote that this only returns top-level addons - nested addons are built\nwhen the top-level addon is instantiated here.",
             "itemtype": "method",
@@ -1757,7 +1757,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/addon.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/addon.js",
             "line": 150,
             "description": "Load the config for this addon. The standard `config/environment.js` file\nis loaded by default. `config/middleware.js` and `config/routes.js` are\nignored. All other userland config files are loaded into the container\nunder their filenames.\n\nConfig files are all .js files, so just the exported functions are loaded\nhere. The functions are run later, during application initialization, to\ngenerate the actual runtime configuration.",
             "itemtype": "method",
@@ -1773,7 +1773,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/addon.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/addon.js",
             "line": 177,
             "description": "Load the addon's various assets. Loads child addons first, meaning that\naddon loading is depth-first recursive.",
             "itemtype": "method",
@@ -1785,7 +1785,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/addon.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/addon.js",
             "line": 194,
             "description": "Load the initializers for this addon. Initializers live in\n`config/initializers`.",
             "itemtype": "method",
@@ -1797,7 +1797,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/addon.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/addon.js",
             "line": 211,
             "description": "Load the middleware for this addon. Middleware is specified in\n`config/middleware.js`. The file should export a function that accepts an\nexpress router as it's single argument. You can then attach any middleware\nyou'd like to that router, and it will execute before any route handling\nby Denali.\n\nTypically this is useful to register global middleware, i.e. a CORS\nhandler, cookie parser, etc.\n\nIf you want to run some logic before certain routes only, try using Filters\ninstead.",
             "itemtype": "method",
@@ -1809,7 +1809,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/addon.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/addon.js",
             "line": 231,
             "description": "Loads the routes for this addon. Routes are defined in `config/routes.js`.\nThe file should export a function that defines routes. See the RouterDSL\nmodule for details on how to define routes.",
             "itemtype": "method",
@@ -1821,7 +1821,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/addon.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/addon.js",
             "line": 243,
             "description": "Load the app assets for this addon. These are the various classes that live\nunder `addon/` (`app/` in applications), including actions, adapters,\nfilters, etc., as well as any custom class types (i.e. models, roles).\n\nFiles are loaded into the container under their folder's namespace, so\n`app/roles/admin.js` would be registered as 'role:admin' in the container.\nDeeply nested folders become part of the module name, i.e.\n`app/roles/employees/manager.js` becomes 'role:employees/manager'.",
             "itemtype": "method",
@@ -1833,7 +1833,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/application.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/application.js",
             "line": 54,
             "description": "Adds the default base addon to the application. The base addon includes\nsome helpful default functionality, like basic error handling and common\nmiddleware. You can customize the included middleware via config. See\nthe [Configuration guide](/guides/configuration) for details.",
             "itemtype": "method",
@@ -1845,7 +1845,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/application.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/application.js",
             "line": 73,
             "description": "Take the loaded environment config functions, and execute them.\nApplication config is executed first, and the returned config object is\nhanded off to the addon config files, which add their configuration by\nmutating that same object.\n\nThe resulting final config is stored at `application.config`, and is\nregistered in the container under `config:environment`.",
             "itemtype": "method",
@@ -1861,7 +1861,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/application.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/application.js",
             "line": 97,
             "description": "Assemble middleware and routes",
             "itemtype": "method",
@@ -1873,7 +1873,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/application.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/application.js",
             "line": 115,
             "description": "Start the Denali server. Runs all initializers, creates an HTTP server,\nand binds the express app to it to handle incoming HTTP requests.",
             "itemtype": "method",
@@ -1887,7 +1887,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/application.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/application.js",
             "line": 149,
             "description": "Lookup all initializers and run in them in sequence. Initializers can\noverride the default load order by including `before` or `after`\nproperties on the exported class (the name or array of names of the other\ninitializers it should run before/after).",
             "itemtype": "method",
@@ -1903,7 +1903,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/container.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/container.js",
             "line": 30,
             "description": "Register a value under the given `fullName` for later use.",
             "itemtype": "method",
@@ -1925,7 +1925,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/container.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/container.js",
             "line": 42,
             "description": "Lookup a value in the container.",
             "itemtype": "method",
@@ -1946,7 +1946,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/container.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/container.js",
             "line": 68,
             "description": "Lookup a model class. This special case is needed because Models need a\nreference to the container, but their lifecycle isn't always controlled\nby the framework (which would allow us to the inject the container per\ninstance). Thus, we make sure the class has a reference, which the\ninstances leverage via `this.constructor.container`.",
             "itemtype": "method",
@@ -1966,7 +1966,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/container.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/container.js",
             "line": 98,
             "description": "Lookup a value whose type doesn't have a unique lookup method.",
             "itemtype": "method",
@@ -1989,7 +1989,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/runtime/container.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/runtime/container.js",
             "line": 114,
             "description": "Take the supplied name which can come in several forms, and normalize it.",
             "itemtype": "method",
@@ -2012,7 +2012,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/utils/ensure-array.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/utils/ensure-array.js",
             "line": 3,
             "description": "Takes the provided argument and ensures that the return value is an array.\nIf it is already an array, it is returned as-is. If is null or undefined,\nan empty array is returned. Otherwise, it wraps the argument in an array\nand returns that array.",
             "itemtype": "method",
@@ -2032,7 +2032,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/utils/log.js",
+            "file": "/Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/utils/log.js",
             "line": 9,
             "description": "A simple console logging method that adds a timestamp, optional log level,\nand some color to the output.",
             "itemtype": "method",
@@ -2056,51 +2056,51 @@
     "warnings": [
         {
             "message": "unknown tag: letructor",
-            "line": " /Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/cli/lib/blueprint.js:18"
+            "line": " /Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/cli/lib/blueprint.js:18"
         },
         {
             "message": "unknown tag: letructor",
-            "line": " /Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/cli/lib/command.js:13"
+            "line": " /Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/cli/lib/command.js:13"
         },
         {
             "message": "unknown tag: abstract",
-            "line": " /Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializer.js:17"
+            "line": " /Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializer.js:17"
         },
         {
             "message": "Missing item type\nRenders the payload as a flat JSON object or array at the top level. Related\nrecords are embedded.",
-            "line": " /Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/flat.js:10"
+            "line": " /Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/flat.js:10"
         },
         {
             "message": "Missing item type\nSerialize the attributes for a given record",
-            "line": " /Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/flat.js:75"
+            "line": " /Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/flat.js:75"
         },
         {
             "message": "Missing item type\nRenders the payload according to the JSONAPI 1.0 spec, including related\nresources, included records, and support for meta and links.",
-            "line": " /Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/json-api.js:23"
+            "line": " /Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/json-api.js:23"
         },
         {
             "message": "Missing item type\nTakes the serializer config and the model's descriptor for a relationship,\nand returns the serialized relationship object. Also sideloads any full\nrecords found for the relationship.",
-            "line": " /Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/json-api.js:283"
+            "line": " /Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/json-api.js:283"
         },
         {
             "message": "Missing item type\nGiven the serializer config and the model descriptor for a hasOne\nrelationship, returns the data for that relationship (the resource object\nwith type and id). Sideloads the related record if present.",
-            "line": " /Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/json-api.js:303"
+            "line": " /Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/json-api.js:303"
         },
         {
             "message": "Missing item type\nGiven the serializer config and the model descriptor for a hasMany\nrelationship, returns the data for that relationship (the resource objects\nwith type and id). Sideloads the related records if present.",
-            "line": " /Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/json-api.js:320"
+            "line": " /Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/json-api.js:320"
         },
         {
             "message": "Missing item type\nGiven a related record or it's id, return the resource object for that\nrecord (or id). If it's a full record, sideload the record as well.",
-            "line": " /Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializers/json-api.js:337"
+            "line": " /Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializers/json-api.js:337"
         },
         {
             "message": "Missing item type\nThe list of attribute names that should be serialized. Attributes not\nincluded in this list will be omitted from the final rendered payload.",
-            "line": " /Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializer.js:55"
+            "line": " /Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializer.js:55"
         },
         {
             "message": "Missing item type\nAn object with configuration on how to serialize relationships.\nRelationships that have no configuration present are omitted from the final\nrendered payload.\n\nOut of the box, two options are supported:\n\n**strategy**\n\nIt has one of four possible values:\n\n  * `records`: embed all related records (1-n relationships)\n  * `record`: embed the related record (1-1 relationships)\n  * `ids`: include only the ids of related records (1-n relationships)\n  * `id`: include only the id of the related record (1-1 relationships)\n\nWhat the embedded records or ids look like is up to each serializer to\ndetermine.\n\n**type**\n\nThe model type of the related records.\n\nSpecific serializers may also accept additional options in the relationship\nconfiguration to customize their response format.",
-            "line": " /Users/daw/projects/denali-docs/tmp/d20160601-45015-3eilfw/lib/data/serializer.js:63"
+            "line": " /Users/daw/projects/denali-docs/tmp/d20160602-16870-pfmfuf/lib/data/serializer.js:63"
         }
     ]
 }
