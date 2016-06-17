@@ -1,12 +1,4 @@
 {
-  "parser": "babel-eslint",
-  "env": {
-    "node": true,
-    "es6": true,
-    "mocha": true
-  },
-  "rules": {
-    "prefer-arrow-callback": 0
-  }
+  "extends": "denali/test"
 }
 
