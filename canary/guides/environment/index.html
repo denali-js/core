@@ -19,7 +19,7 @@
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-2.2.2.min.js"><\/script>')</script>
     <nav class="navbar">
   <div class='container'>
-    <a href='/' class='navbar-brand'>
+    <a href='.' class='navbar-brand'>
       <img class='logo-light' src='images/logo.svg' alt='Denali'>
       <span class='project-name'>Denali</span>
     </a>
@@ -49,6 +49,7 @@
 
 
   
+    <div class="nav-section">
       
       
         <a href='canary/guides/introduction/' class='nav-link'>Introduction</a>
@@ -59,6 +60,7 @@
       
     </div>
   
+    <div class="nav-section">
       
         <div class='nav-header'>Application</div>
       
@@ -75,6 +77,7 @@
       
     </div>
   
+    <div class="nav-section">
       
         <div class='nav-header'>Data</div>
       
@@ -87,6 +90,7 @@
       
     </div>
   
+    <div class="nav-section">
       
         <div class='nav-header'>Testing</div>
       
@@ -97,6 +101,7 @@
       
     </div>
   
+    <div class="nav-section">
       
         <div class='nav-header'>Configuration</div>
       
@@ -109,6 +114,7 @@
       
     </div>
   
+    <div class="nav-section">
       
         <div class='nav-header'>Utilities</div>
       
@@ -121,6 +127,7 @@
       
     </div>
   
+    <div class="nav-section">
       
         <div class='nav-header'>CLI</div>
       
