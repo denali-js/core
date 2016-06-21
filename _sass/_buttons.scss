@@ -1,0 +1,26 @@
+@mixin btn {
+  display: inline-block;
+  padding: 0.75em 1.5em;
+  border: 4px solid $border-color;
+  border-radius: 8px;
+  font-weight: 600;
+  box-shadow: 0 2px 0 rgba($black, 0.2), inset 0 2px 0 $white;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+%btn-primary {
+  @include btn;
+  background-color: $brand-cyan;
+  color: $body-color;
+
+  &:hover {
+    background-color: darken($brand-cyan, 10%);
+  }
+}
+
+.btn-primary {
+  @extend %btn-primary;
+}

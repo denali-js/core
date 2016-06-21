@@ -8,27 +8,21 @@ layout: page
 
       {% include version-dropdown.html %}
 
-      <div class='nav-section'>
-        <div class='nav-header'>Modules</div>
-        {% for module in page.version.api.modules %}
-          {% if module[1].is_submodule %}
-            <a class='nav-link {% if page.module.name == module[0] %}active{% endif %}' href='{{ page.version.ref }}/api/modules/{{ module[1].name | url_encode }}'>{{module[1].name | capitalize }}</a>
-          {% endif %}
-        {% endfor %}
-      </div>
+      <label class='private-classes-toggle'>
+        <input type='checkbox' id='toggle-private-classes'>
+        Include Private
+      </label>
 
-      <div class='nav-section'>
-        <div class='nav-header'>
-          Classes
-          <label class='private-classes-toggle'>
-            <input type='checkbox' id='toggle-private-classes'>
-            Include Private
-          </label>
-        </div>
-        {% for class in page.version.api.classes %}
-          <a class='nav-link {% if page.class.name == class[0] %}active{% endif %}' href='{{ page.version.ref }}/api/classes/{{ class[0] | url_encode }}' {% if class[1].access == 'private' %}data-private-class=true{% endif %}>{{ class[0] }}</a>
-        {% endfor %}
-      </div>
+      {% for module in page.version.api.modules %}
+        {% if module[1].is_submodule %}
+          <div class='nav-section'>
+            <div class='nav-header'>{{module[1].name | capitalize }}</div>
+            {% for class in module[1].classes %}
+              <a class='nav-link {% if page.class.name == class[0] %}active{% endif %}' href='{{ page.version.ref }}/api/classes/{{ class[0] | url_encode }}' {% if class[1].access == 'private' %}data-private-class=true{% endif %}>{{ class[0] }}</a>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endfor %}
 
     </div>
 
@@ -43,9 +37,9 @@ layout: page
     var $privateClassToggle = $('#toggle-private-classes');
     $privateClassToggle.on('change', function() {
       if ($privateClassToggle.is(':checked')) {
-        $('[data-private-class]').css('display', 'block');
+        $('.api-nav [data-private-class]').css('display', 'block');
       } else {
-        $('[data-private-class]').css('display', 'none');
+        $('.api-nav [data-private-class]').css('display', 'none');
       }
     });
     {% if page.class.access == 'private' %}

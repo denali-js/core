@@ -4,15 +4,17 @@
   .nav-header {
     margin-top: 2em;
     margin-bottom: 0.5em;
-    color: $text-muted;
+    padding: 0 0.4rem;
+    color: lighten($text-muted, 20%);
     font-size: 0.8em;
     font-weight: 600;
     text-transform: uppercase;
   }
 
   .private-classes-toggle {
-    display: inline-block;
-    margin-left: 2em;
+    display: block;
+    margin-top: 2em;
+    margin-left: 0.4rem;
     color: lighten($text-muted, 20%);
     font-size: 0.8em;
 
@@ -21,6 +23,10 @@
       top: -0.1em;
       margin-right: 0.3em;
     }
+  }
+
+  .versions-select {
+    margin-left: 0.4em;
   }
 
   .nav-link {
@@ -46,7 +52,13 @@
   }
 }
 
+.class-link,
+.module-link {
+  display: block;
+}
+
 .api-body {
+  min-width: 0;
   margin-top: 3em;
   padding-left: 2em;
   border-left: 1px solid darken($white, 4%);
@@ -54,6 +66,27 @@
 
 .module-name, .class-name {
   margin-bottom: 0;
+}
+
+.class-module {
+  align-items: flex-end;
+  margin: 0.5em 0 1em;
+
+  .class-module-name {
+    margin: 0 0.5em;
+    font-family: $font-family-monospace;
+  }
+}
+
+.class-private {
+  float: right;
+  padding: 0.5em 1em;
+  background: $brand-yellow;
+  border-radius: 200px;
+  color: darken($brand-yellow, 50%);
+  font-family: $font-family-base;
+  font-size: 1rem;
+  font-weight: 400;
 }
 
 .defined-in {
@@ -80,20 +113,21 @@
 }
 
 .module-description, .class-description {
-  margin-bottom: 4em;
+  margin-bottom: 1em;
 }
 
 .display-controls {
-  $bg: mix($brand-primary, $white, 20%);
+  margin-top: 4em;
   padding: 0.75em 1em;
-  border: 1px solid darken($bg, 10%);
+  border: 2px solid $border-color;
   border-bottom: none;
   border-radius: 4px 4px 0 0;
-  background-color: $bg;
+  background-color: mix($brand-blue, $white, 20%);
 
   .toggle {
-    display: inline-block;
     margin-right: 1em;
+    margin-bottom: 0;
+    font-weight: 600;
   }
 
   + .summary {
@@ -102,17 +136,16 @@
 }
 
 .summary {
-  $bg: mix($brand-primary, $white, 5%);
+  display: flex;
   padding: 1em;
-  border: 1px solid darken($bg, 10%);
+  border: 2px solid $border-color;
   border-radius: 4px;
-  background-color: $bg;
+  background-color: mix($brand-yellow, $white, 40%);
   overflow: auto;
 }
 
 .summary-section {
-  width: 50%;
-  float: left;
+  flex-basis: 50%;
 }
 
 .summary-header {
@@ -123,6 +156,7 @@
 .summary-link {
   display: block;
   padding: 0.1em 0.3em;
+  color: $body-color;
   font-family: $font-family-monospace;
 }
 
@@ -136,6 +170,8 @@
 
 .item {
   margin: 2em 0;
+  border: 2px solid $border-color;
+  border-radius: 4px;
 
   &:hover .improve {
     visibility: visible;
@@ -164,38 +200,17 @@
 }
 
 .item-title {
-  $bg: mix($brand-primary, $white, 10%);
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
   margin-bottom: 0;
   padding: 0.75em 1em;
-  border: 1px solid darken($bg, 10%);
-  border-radius: 4px 4px 0 0;
-  background: $bg;
+  border-bottom: 1px solid #ccc;
   font-family: $font-family-monospace;
   font-size: 1.3rem;
-  overflow: auto;
-
-  .item-name {
-    flex: 0 0 auto;
-  }
-
-  .params {
-    display: flex;
-    flex: 0 0 auto;
-    flex-wrap: wrap;
-    max-width: 100%
-  }
 
   .param {
-    display: flex;
-    flex: 0 0 auto;
-    margin: 0 0.2em;
     color: lighten($body-color, 10%);
 
     &::after {
-      content: ',';
+      content: ', ';
     }
 
     &:last-of-type::after {
@@ -205,7 +220,6 @@
 
   .defined-in {
     width: 100%;
-    margin-top: 0.4em;
     margin-bottom: 2px;
     font-size: 0.65em;
     font-weight: 400;
@@ -233,33 +247,19 @@
 }
 
 .item-body {
-  $bg: mix($brand-primary, $white, 5%);
   padding: 1em;
-  border: 1px solid darken($bg, 10%);
-  border-top: none;
-  border-radius: 0 0 4px 4px;
-  background-color: $bg;
 
   .item-header:first-of-type {
     margin-top: 0;
   }
 
-  .param-name {
-    float: left;
-    clear: left;
+  .param {
+    @include flex;
   }
 
-  .param-type {
-    float: left;
+  .no-params, .no-return {
+    color: #ccc;
   }
-
-  .params {
-    @include clearfix;
-  }
-}
-
-.param-paren {
-  flex: 0 0 auto;
 }
 
 .param {
@@ -276,7 +276,7 @@
 }
 
 .param-description {
-  display: block;
+  @include flex;
   margin-left: 0.25em;
 }
 
@@ -292,20 +292,23 @@
 
 .param-description, .return-description {
   &::before {
-    display: block;
+    @include flex;
     margin: 0 0.3em;
-    float: left;
     content: '-';
   }
 }
 
 .return {
-  overflow: auto;
+  @include flex;
+}
+
+.return-description {
+  @include flex;
+  flex-shrink: 1;
 }
 
 .return-type {
   margin-right: 0.1em;
-  float: left;
   color: $text-muted;
   font-family: $font-family-monospace;
   font-weight: 600;

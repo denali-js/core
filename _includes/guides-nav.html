@@ -3,7 +3,6 @@
   {% include version-dropdown.html %}
 
   {% for category in site.guide_categories %}
-    <div class='nav-section'>
       {% if category[0] != 'Uncategorized' %}
         <div class='nav-header'>{{category[0]}}</div>
       {% endif %}
@@ -12,4 +11,5 @@
       {% endfor %}
     </div>
   {% endfor %}
+
 </div>

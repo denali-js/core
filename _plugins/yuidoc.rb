@@ -203,6 +203,11 @@ module Jekyll
       modules_data = version_data['modules']
       data['classitems'] = version_data['classitems'].select { |classitem| classitem['class'] == data['name'] }
       data['classitems'] = data['classitems'].sort_by { |classitem| classitem['name'] || '' }
+      data['classitems'].each do |classitem|
+        if classitem['type']
+          classitem['type'] = classitem['type'].gsub(/\{/, '').gsub(/\}/, '')
+        end
+      end
       {
         "class" => data
       }

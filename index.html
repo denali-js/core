@@ -4,94 +4,98 @@ layout: default
 
 <div class='homepage'>
   {% include header.html %}
-  <div class="jumbotron">
+  <div class="hero">
     <div class="container">
-      <h1>
-        <span class="project-name">Denali</span>
+      <h1 class="headline">
+        The best way to build <strong>robust</strong> APIs in Node
       </h1>
-      <div class="lead">is a Node.js framework for building <strong>robust</strong> JSON APIs.</div>
-      <pre>
-        <code>
-$ npm install -g denali
+      <div class="lead">
+        Denali is an opinionated Node.js framework that lets you focus on
+        shipping APIs, <br> instead of bikeshedding about the plumbing.
+      </div>
+      <div class="terminal">
+        <div class="terminal-title">
+          <div class="terminal-title-button">&nbsp;</div>
+          <div class="terminal-title-button">&nbsp;</div>
+          <div class="terminal-title-button">&nbsp;</div>
+        </div>
+        <pre>
+          <code>$ npm install -g denali
 $ denali new my-api
-$ cd my-api &amp;&amp; denali serve
-        </code>
-      </pre>
+$ cd my-api &amp;&amp; denali serve</code>
+        </pre>
+      </div>
     </div>
   </div>
-  <div class="ribbon">
+  <div class="alpha-warning">
     <div class="container">
-      <strong>Heads up!</strong>
-      Denali is still in alpha. We don't recommend using it for production apps
-      just yet. Check out the <a href='https://github.com/davewasmer/denali/milestones/v0.1.0-beta.1'>road to beta</a>
-      to see what's left!
+      <img src="images/warning.svg" class="warning-icon">
+      <div class="warning-body">
+        <h4 class="warning-title">Heads up!</h4>
+        Denali is still in alpha. We don't recommend using it for production apps
+        just yet. Check out the <a href='https://github.com/davewasmer/denali/milestones/v0.1.0-beta.1'>road to beta</a>
+        to see what's left!
+      </div>
     </div>
   </div>
-  <div class='container'>
+  <div class='container features'>
 
-    <div class='row homepage-feature'>
-      <div class='col-md-3'>
-        <img class='img-fluid' src='images/logo-dark.png'>
+    <div class='row feature'>
+      <div class='col-md-6'>
+        <img class='feature-graphic' src='images/api-first.svg'>
       </div>
-      <div class='col-md-9'>
-        <h2>What is Denali?</h2>
-        <p>
-          Denali is a framework that makes building robust JSON APIs simple.
-          It borrows the best concepts from frameworks like Rails and Ember,
-          but adapts them to feel native to Node and takes them even further.
-        </p>
-      </div>
-    </div>
-
-    <div class='row homepage-feature'>
-      <div class='col-md-9'>
+      <div class='col-md-6'>
         <h2>API-first</h2>
-        <p>
+        <p class="feature-description">
           You won't find any templating languages, views, or other HTML
           rendering support out of the box. Denali is unapologetically focused
-          on APIs first. First class support for JSON serializers, RESTful
-          routing, and powerful testing helpers make building APIs easier than
-          ever.
+          on APIs first. First class support for
+          <a href="latest/guides/serializers">JSON serializers</a>,
+          <a href="latest/guides/routing">RESTful routing</a>,
+          and <a href="latest/guides/integration">powerful testing helpers</a>
+          make building APIs easier than ever.
         </p>
-      </div>
-      <div class='col-md-3'>
-        <img class='img-fluid' src='images/api.png'>
       </div>
     </div>
 
-    <div class='row homepage-feature'>
-      <div class="col-md-3">
-        <img class='img-fluid' src='images/dx.png'>
+    <div class='row feature'>
+      <div class="col-md-6">
+        <img class='feature-graphic' src='images/developer-happiness.svg'>
       </div>
-      <div class='col-md-9'>
+      <div class='col-md-6'>
         <h2>Developer happiness</h2>
-        <p>
-          Denali ships with a top-notch CLI which can run reload-on-change
-          development server, scaffold new code, run tests, and more.
-          Extensibility is baked into the core as well, with Addons providing
-          a powerful approach to incorporating third party code.
+        <p class="feature-description">
+          Denali ships with a top-notch CLI which can run
+          <a href="latest/guides/server">reload-on-change development server</a>,
+          <a href="latest/guides/generate">scaffold new code</a>,
+          <a href="latest/guides/test">run tests</a>, and more. Extensibility
+          is baked into the core as well, with
+          <a href="latest/guides/addons">Addons</a> providing a powerful
+          approach to incorporating third party code.
         </p>
       </div>
     </div>
 
-    <div class="row homepage-feature">
-      <div class='col-md-9'>
+    <div class="row feature">
+      <div class='col-md-6'>
+        <img class='feature-graphic' src='images/data-flexibility.svg'>
+      </div>
+      <div class='col-md-6'>
         <h2>Data Flexibility</h2>
-        <p>
-          Thanks to it's unique model + adapter approach, Denali let's you use
-          whatever ORM you want with it. And Denali Addons will work with it
-          out of the box. You can even use multiple ORMs in the same project
-          to fully leverage the strengths of each data store (a.k.a polyglot
-          persistence).
+        <p class="feature-description">
+          Thanks to it's unique <a href="latest/guides/models">model</a> +
+          <a href="latest/guides/orm-adapters">adapter</a> approach, Denali
+          let's you use whatever ORM you want with it. And Denali Addons will
+          work with it out of the box. You can even use multiple ORMs in the
+          same project to fully leverage the strengths of each data store
+          (a.k.a polyglot persistence).
         </p>
-      </div>
-      <div class='col-md-3'>
-        <img class='img-fluid' src='images/data-flexibility.png'>
       </div>
     </div>
 
-    <div class='text-xs-center'>
-      <a class='btn btn-lg btn-primary m-b-3' href='/latest/guides'>
+    <div class="cta">
+      <h2 class="cta-header">Sound Interesting?</h2>
+      <a class='cta-btn' href='/latest/guides'>
         Check out the Guides
       </a>
     </div>

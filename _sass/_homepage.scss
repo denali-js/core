@@ -1,56 +1,132 @@
-.homepage header {
-  position: absolute;
-  width: 100%;
-  padding: 1em;
-  background: transparent;
-  color: white;
-  z-index: 2;
-}
+.homepage {
+  flex-direction: column;
 
-.hero {
-  position: relative;
-  padding: 2rem;
-  background-color: #25DFCB;
-  background-image: url(images/hero-bg.png), linear-gradient(40deg, #25dfdf, #7FE5B7);
-  color: white;
-}
+  .hero {
+    @include flex;
+    align-items: center;
+    justify-content: center;
+    height: 45em;
+    padding-top: 5em;
+    background: url('../images/hero-bg.svg');
+    background-size: 1075px;
+    background-position: center -80px;
+    background-repeat: no-repeat;
+    text-align: center;
 
-.hero-container {
-  margin: 0 auto;
-  text-align: center;
+    .container {
+      @include flex;
+      flex-direction: column;
+    }
 
-  .logo {
-    width: 11.6rem;
+    .headline {
+      margin-top: 4em;
+      font-family: $font-family-headings;
+      font-size: 2.5em;
+      font-weight: 400;
+
+      strong {
+        font-weight: 700;
+        text-decoration: underline;
+      }
+    }
+
+    .lead {
+      font-size: 1.3em;
+      font-weight: 300;
+    }
+
+    .terminal {
+      @include flex;
+      flex-direction: column;
+      align-self: center;
+      margin-top: 2em;
+      border: 4px solid $border-color;
+      border-radius: 8px;
+    }
+
+    .terminal-title {
+      @include flex;
+      padding: 0.4em;
+      background-color: #ccc;
+      border-radius: 4px 4px 0 0;
+    }
+
+    .terminal-title-button {
+      width: 0.85em;
+      height: 0.85em;
+      margin: 0.25em;
+      background-color: #aaa;
+      border-radius: 100px;
+    }
+
+    pre {
+      align-self: flex-start;
+      margin-bottom: 0;
+      padding: 1.2em 5em 1.2em 1.2em;
+      text-align: left;
+
+      code {
+        color: $white;
+      }
+    }
+
   }
 
-  .project {
-    position: relative;
-    max-width: 40rem;
-    margin: 0 auto;
-    padding: 3rem;
+  .alpha-warning {
+    margin: 4em 0;
+    padding: 2em;
+    background: $brand-yellow;
+    border-top: 4px solid $border-color;
+    border-bottom: 4px solid $border-color;
+    font-size: 1.1em;
+
+    .container {
+      @include flex;
+    }
+
+    .warning-icon {
+      margin: 0 2.5em;
+    }
+
+    .warning-title {
+      margin-bottom: 0;
+      font-size: 1.1em;
+    }
+
+    .warning-body {
+      flex: 1 1 auto;
+    }
   }
 
-  .project-name {
-    margin: 1.5em 0 0;
-    font-family: $font-family-logo;
-    font-size: 3.6rem;
-    font-weight: 800;
+  .features.container {
+    @include flex;
+    flex-direction: column;
   }
 
-  .subhead {
-    margin: 0;
-    font-size: 1.2rem;
-    font-weight: 400;
+  .feature {
+    @include flex;
+    margin: 4em 0;
   }
 
-  .install {
-    width: 20rem;
-    margin: 3em auto 0em;
-    padding: 1.5em;
-    background-color: rgba(0, 0, 0, 0.2);
-    color: white;
-    font-family: $font-family-monospace;
-    text-align: left;
-    line-height: 1.3;
+  .feature-graphic {
+    max-width: 100%;
   }
+
+  .cta {
+    margin-top: 15em;
+    margin-bottom: 15em;
+    text-align: center;
+  }
+
+  .cta-header {
+    font-size: 2em;
+  }
+
+  .cta-btn {
+    @extend %btn-primary;
+    align-self: center;
+    margin: 0.5em;
+    font-size: 1.4em;
+  }
+
 }

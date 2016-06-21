@@ -3,111 +3,128 @@
 
 $enable-flex: 1;
 
+$container-max-widths: (
+  sm: 576px,
+  md: 750px,
+  lg: 850px,
+  xl: 850px
+);
+
 $font-family-monospace: 'Inconsolata', 'Monaco', 'Anonymous', monospace;
 $font-family-sans-serif: 'Open Sans', 'Helvetica Neue', Helvetica, sans-serif;
-$font-family-logo: 'Montserrat Alternates';
-
-$headings-font-family: 'Lato';
+$font-family-headings: 'Bitter';
 
 $white: #fff;
 $black: #000;
 
-$brand-primary: #00E2D7;
+$gray: #888;
+$gray-lighter: #ccc;
+$gray-lightest: #eee;
+
+$brand-yellow: #FFFA89;
+$brand-red: #FE8787;
+$brand-orange: #FEC988;
+$brand-cyan: #8AF4FF;
+$brand-green: #8AFEA0;
+$brand-blue: #928BFF;
+
+$brand-primary: #324753;
 $brand-secondary: #00C3B1;
 
 $body-color: #444;
+$text-muted: #999;
+$text-inverse: $white;
+$link-color: #6CB5F9;
 
 $font-size-root: 14px;
 
-$container-max-widths: (
-  sm: 576px,
-  md: 750px,
-  lg: 750px,
-  xl: 750px
-) !default;
+$border-color: #444;
 
-$navbar-dark-color:            rgba(255,255,255,.9);
-$navbar-dark-hover-color:      rgba(255,255,255,.75);
-$navbar-dark-active-color:     rgba(255,255,255,1);
-$navbar-dark-disabled-color:   rgba(255,255,255,.25);
+$pre-bg: #444;
+$pre-color: $white;
 
-$pre-bg: #f7f7f7;
+$navbar-color: $body-color;
 
+@mixin flex {
+  display: flex;
+  flex: none;
+}
 
-@import "../bower_components/bootstrap/scss/bootstrap";
+@import '../bower_components/bootstrap/scss/bootstrap-reboot';
+@import '../bower_components/bootstrap/scss/bootstrap-grid';
 
-// See https://github.com/twbs/bootstrap/issues/19123#issuecomment-222344311
+@import 'buttons';
+
+// See https://github.com/twbs/bootstrap/issues/19123
 [class^="col-"] {
   min-width: 0;
 }
 
-@import 'code';
-@import 'homepage';
-@import 'guides';
-@import 'api';
-
-.navbar {
-  background-image: url('/images/hero-bg.png'), linear-gradient(90deg, $brand-primary, $brand-secondary);
-  background-position-y: 3em;
-}
-
-.navbar-brand {
-  font-family: $font-family-logo;
-
-  img {
-    display: inline-block;
-    width: 2em;
-  }
-}
-
-.navbar-nav .nav-link {
-  padding: 0.7em 0;
-}
-
-.jumbotron {
-  background-image: url('/images/hero-bg.png'), linear-gradient(90deg, $brand-primary, $brand-secondary);
-  color: $white;
-
-  pre {
-    background-color: transparent;
-
-    code {
-      color: $white;
-    }
-  }
-
-  + .ribbon {
-    margin-top: -2rem;
-    margin-bottom: 4rem;
-  }
-}
-
-.ribbon {
-  padding: 1em 0;
-  background-color: darken($brand-primary, 20%);
-  color: $white;
-}
-
-.project-name {
-  font-family: $font-family-logo;
-}
-
-.homepage-feature {
-  margin-bottom: 4em;
-  padding-bottom: 3em;
-  border-bottom: 1px solid $gray-lighter;
-
-  &:last-of-type {
-    border-bottom: none;
-  }
+h1,h2,h3,h4,h5,h6 {
+  font-family: $font-family-headings;
 }
 
 pre {
-  background: darken($brand-primary, 30%);
+  flex: 1 1 auto;
   padding: 1em;
-  color: lighten($brand-primary, 50%);
+  background: $pre-bg;
+  color: $pre-color;
+  white-space: normal;
 }
 
-pre code, code {
-  font-size: 1.1em;
+code {
+  white-space: pre;
 }
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+html, body {
+  min-height: 100%;
+}
+
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.navbar + .container {
+  flex: 1 1 auto;
+}
+
+img {
+  max-width: 100%;
+}
+
+.footer {
+  padding: 1em 0;
+  color: $text-muted;
+
+  .container {
+    @include flex;
+    justify-content: center;
+  }
+
+  .fox-and-beard {
+    margin: 0 0.3em;
+  }
+
+  a {
+    margin: 0 0.3em;
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+@import 'navbar';
+@import 'code';
+@import 'guides';
+@import 'api';
+@import 'homepage';
