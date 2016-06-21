@@ -1,96 +1,138 @@
-/* Tomorrow Night Theme */
-/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
-/* Original theme - https://github.com/chriskempson/tomorrow-theme */
-/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+// Zenburn Pygments theme
 
-/* Tomorrow Comment */
-.hljs-comment {
-  color: #969896;
+.highlight {
+color:#fdce93;
+background-color:#3f3f3f;
 }
 
-/* Tomorrow Red */
-.hljs-variable,
-.hljs-attribute,
-.hljs-tag,
-.hljs-regexp,
-.ruby .hljs-constant,
-.xml .hljs-tag .hljs-title,
-.xml .hljs-pi,
-.xml .hljs-doctype,
-.html .hljs-doctype,
-.css .hljs-id,
-.css .hljs-class,
-.css .hljs-pseudo {
-  color: #cc6666;
+.highlight .hll {
+background-color:#222;
 }
 
-/* Tomorrow Orange */
-.hljs-number,
-.hljs-preprocessor,
-.hljs-pragma,
-.hljs-built_in,
-.hljs-literal,
-.hljs-params,
-.hljs-constant {
-  color: #de935f;
+.highlight .err {
+color:#e37170;
+background-color:#3d3535;
 }
 
-/* Tomorrow Yellow */
-.ruby .hljs-class .hljs-title,
-.css .hljs-rule .hljs-attribute {
-  color: #f0c674;
+.highlight .k {
+color:#f0dfaf;
 }
 
-/* Tomorrow Green */
-.hljs-string,
-.hljs-value,
-.hljs-inheritance,
-.hljs-header,
-.hljs-name,
-.ruby .hljs-symbol,
-.xml .hljs-cdata {
-  color: #b5bd68;
+.highlight .p {
+color:#41706f;
 }
 
-/* Tomorrow Aqua */
-.hljs-title,
-.css .hljs-hexcolor {
-  color: #8abeb7;
+.highlight .cs {
+color:#cd0000;
+font-weight:700;
 }
 
-/* Tomorrow Blue */
-.hljs-function,
-.python .hljs-decorator,
-.python .hljs-title,
-.ruby .hljs-function .hljs-title,
-.ruby .hljs-title .hljs-keyword,
-.perl .hljs-sub,
-.javascript .hljs-title,
-.coffeescript .hljs-title {
-  color: #81a2be;
+.highlight .gd {
+color:#cd0000;
 }
 
-/* Tomorrow Purple */
-.hljs-keyword,
-.javascript .hljs-function {
-  color: #b294bb;
+.highlight .ge {
+color:#ccc;
+font-style:italic;
 }
 
-.hljs {
-  display: block;
-  overflow-x: auto;
-  background: #1d1f21;
-  color: #c5c8c6;
-  padding: 0.5em;
-  -webkit-text-size-adjust: none;
+.highlight .gr {
+color:red;
 }
 
-.coffeescript .javascript,
-.javascript .xml,
-.tex .hljs-formula,
-.xml .javascript,
-.xml .vbscript,
-.xml .css,
-.xml .hljs-cdata {
-  opacity: 0.5;
+.highlight .go {
+color:gray;
+}
+
+.highlight .gs {
+color:#ccc;
+font-weight:700;
+}
+
+.highlight .gu {
+color:purple;
+font-weight:700;
+}
+
+.highlight .gt {
+color:#0040D0;
+}
+
+.highlight .kc {
+color:#dca3a3;
+}
+
+.highlight .kd {
+color:#ffff86;
+}
+
+.highlight .kn {
+color:#dfaf8f;
+font-weight:700;
+}
+
+.highlight .kp {
+color:#cdcf99;
+}
+
+.highlight .kr {
+color:#cdcd00;
+}
+
+.highlight .ni {
+color:#c28182;
+}
+
+.highlight .ne {
+color:#c3bf9f;
+font-weight:700;
+}
+
+.highlight .nn {
+color:#8fbede;
+}
+
+.highlight .vi {
+color:#ffffc7;
+}
+
+.highlight .c,.highlight .g,.highlight .cm,.highlight .cp,.highlight .c1 {
+color:#7f9f7f;
+}
+
+.highlight .l,.highlight .x,.highlight .no,.highlight .nd,.highlight .nl,.highlight .nx,.highlight .py,.highlight .w {
+color:#eee;
+}
+
+.highlight .n,.highlight .nv,.highlight .vg {
+color:#dcdccc;
+}
+
+.highlight .o,.highlight .ow {
+color:#f0efd0;
+}
+
+.highlight .gh,.highlight .gp {
+color:#dcdccc;
+font-weight:700;
+}
+
+.highlight .gi,.highlight .kt {
+color:#00cd00;
+}
+
+.highlight .ld,.highlight .s,.highlight .sb,.highlight .sc,.highlight .sd,.highlight .s2,.highlight .se,.highlight .sh,.highlight .si,.highlight .sx,.highlight .sr,.highlight .s1,.highlight .ss {
+color:#cc9393;
+}
+
+.highlight .m,.highlight .mf,.highlight .mh,.highlight .mi,.highlight .mo,.highlight .il {
+color:#8cd0d3;
+}
+
+.highlight .na,.highlight .nt {
+color:#9ac39f;
+}
+
+.highlight .nb,.highlight .nc,.highlight .nf,.highlight .bp,.highlight .vc {
+color:#efef8f;
 }
