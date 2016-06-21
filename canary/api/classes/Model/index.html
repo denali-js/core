@@ -4,41 +4,32 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/denali/">
 
   <title>Denali</title>
   <meta name="description" content="">
 
-  <link href='https://fonts.googleapis.com/css?family=Inconsolata|Lato:400,700|Open+Sans:400,400italic,700|Montserrat+Alternates:700' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="denali/css/main.css">
-  <link rel="canonical" href="http://denali.github.com/denalidenali/canary/api/classes/Model/">
+  <link href='//fonts.googleapis.com/css?family=Inconsolata|Bitter:400,700|Open+Sans:300,400,400italic,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="canonical" href="https://davewasmer.github.com/denali/canary/api/classes/Model/">
 </head>
 
   <body>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-2.2.2.min.js"><\/script>')</script>
-    <nav class="navbar navbar-full navbar-dark">
+    <nav class="navbar">
   <div class='container'>
     <a href='/' class='navbar-brand'>
-      <img class='logo-light' src='/images/logo.png' alt='Denali'>
-      <span class='project-name'>denali</span>
+      <img class='logo-light' src='images/logo.svg' alt='Denali'>
+      <span class='project-name'>Denali</span>
     </a>
 
-    <div class='nav navbar-nav pull-xs-right'>
-      <li class='nav-item'>
-        <a class='nav-link' href='/canary/guides/quickstart'>Quickstart</a>
-      </li>
-      <li class='nav-item'>
-        <a class='nav-link' href='/canary/guides/introduction'>Guides</a>
-      </li>
-      <li class='nav-item'>
-        <a class='nav-link' href='/canary/api'>API</a>
-      </li>
-      <li class='nav-item'>
-        <a class='nav-link' href='https://github.com/davewasmer/denali' target='_blank'>Github</a>
-      </li>
-      <li class='nav-item'>
-        <a class='nav-link' href='https://github.com/davewasmer/denali/issues' target='_blank'>Issues</a>
-      </li>
+    <div class="navbar-nav">
+      <a class='nav-link' href='canary/guides/quickstart'>Quickstart</a>
+      <a class='nav-link' href='canary/guides/introduction'>Guides</a>
+      <a class='nav-link' href='canary/api'>API</a>
+      <a class='nav-link' href='https://github.com/davewasmer/denali' target='_blank'>Github</a>
+      <a class='nav-link' href='https://github.com/davewasmer/denali/issues' target='_blank'>Issues</a>
     </div>
   </div>
 </nav>
@@ -49,7 +40,7 @@
 
       <div class='nav-section'>
   <div class='nav-header'>Version</div>
-  <select id='versions'>
+  <select class='versions-select' id='versions'>
     
       <option value='canary' selected='selected'>canary</option>
     
@@ -57,90 +48,95 @@
 </div>
 
 
-      <div class='nav-section'>
-        <div class='nav-header'>Modules</div>
-        
-          
-        
-          
-            <a class='nav-link ' href='/canary/api/modules/cli'>Cli</a>
-          
-        
-          
-            <a class='nav-link ' href='/canary/api/modules/data'>Data</a>
-          
-        
-          
-            <a class='nav-link ' href='/canary/api/modules/metal'>Metal</a>
-          
-        
-          
-            <a class='nav-link ' href='/canary/api/modules/runtime'>Runtime</a>
-          
-        
-      </div>
+      <label class='private-classes-toggle'>
+        <input type='checkbox' id='toggle-private-classes'>
+        Include Private
+      </label>
 
-      <div class='nav-section'>
-        <div class='nav-header'>
-          Classes
-          <label class='private-classes-toggle'>
-            <input type='checkbox' id='toggle-private-classes'>
-            Include Private
-          </label>
-        </div>
+      
         
-          <a class='nav-link ' href='/canary/api/classes/Blueprint' data-private-class=true>Blueprint</a>
+      
         
-          <a class='nav-link ' href='/canary/api/classes/Command' data-private-class=true>Command</a>
+          <div class='nav-section'>
+            <div class='nav-header'>Cli</div>
+            
+              <a class='nav-link ' href='canary/api/classes/Blueprint' >Blueprint</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Command' >Command</a>
+            
+          </div>
         
-          <a class='nav-link ' href='/canary/api/classes/FlatSerializer' >FlatSerializer</a>
+      
         
-          <a class='nav-link ' href='/canary/api/classes/JSONAPISerializer' >JSONAPISerializer</a>
+          <div class='nav-section'>
+            <div class='nav-header'>Data</div>
+            
+              <a class='nav-link ' href='canary/api/classes/FlatSerializer' >FlatSerializer</a>
+            
+              <a class='nav-link ' href='canary/api/classes/JSONAPISerializer' >JSONAPISerializer</a>
+            
+              <a class='nav-link active' href='canary/api/classes/Model' >Model</a>
+            
+              <a class='nav-link ' href='canary/api/classes/ORMAdapter' >ORMAdapter</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Serializer' >Serializer</a>
+            
+          </div>
         
-          <a class='nav-link active' href='/canary/api/classes/Model' >Model</a>
+      
         
-          <a class='nav-link ' href='/canary/api/classes/ORMAdapter' >ORMAdapter</a>
+          <div class='nav-section'>
+            <div class='nav-header'>Metal</div>
+            
+              <a class='nav-link ' href='canary/api/classes/eachPrototype' >eachPrototype</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Instrumentation' >Instrumentation</a>
+            
+              <a class='nav-link ' href='canary/api/classes/mixin' >mixin</a>
+            
+              <a class='nav-link ' href='canary/api/classes/createMixin' >createMixin</a>
+            
+          </div>
         
-          <a class='nav-link ' href='/canary/api/classes/Serializer' >Serializer</a>
+      
         
-          <a class='nav-link ' href='/canary/api/classes/eachPrototype' >eachPrototype</a>
+          <div class='nav-section'>
+            <div class='nav-header'>Runtime</div>
+            
+              <a class='nav-link ' href='canary/api/classes/Action' >Action</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Addon' >Addon</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Application' >Application</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Container' >Container</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Error' >Error</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Logger' >Logger</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Mailer' >Mailer</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Request' >Request</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Response' >Response</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Router' >Router</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Service' >Service</a>
+            
+          </div>
         
-          <a class='nav-link ' href='/canary/api/classes/Instrumentation' >Instrumentation</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/mixin' >mixin</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/createMixin' >createMixin</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/Action' >Action</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/Addon' data-private-class=true>Addon</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/Application' >Application</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/Container' >Container</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/Error' >Error</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/Logger' >Logger</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/Mailer' >Mailer</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/Request' >Request</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/Response' >Response</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/Router' data-private-class=true>Router</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/Service' >Service</a>
-        
-      </div>
+      
 
     </div>
 
     <div class='api-body col-md-9'>
       <div class='class'>
-  
-  <h1 class='class-name'>Model</h1>
+  <h1 class='class-name'>
+    
+    Model
+  </h1>
   
     <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Fmodel.js#L16'>
       <span class='filename'>Defined in: lib/data/model.js</span>
@@ -186,53 +182,53 @@ Model) will translate and forward those calls to the underlying ORM adapter.</p>
         
       
         
-          <a class='summary-link'  href='#addRelated'>addRelated</a>
+          <a class='summary-link'  href='canary/api/classes/Model/#addRelated'>addRelated</a>
         
       
         
       
         
-          <a class='summary-link'  href='#create'>create</a>
+          <a class='summary-link'  href='canary/api/classes/Model/#create'>create</a>
         
       
         
-          <a class='summary-link'  href='#delete'>delete</a>
+          <a class='summary-link'  href='canary/api/classes/Model/#delete'>delete</a>
         
       
         
-          <a class='summary-link'  href='#find'>find</a>
+          <a class='summary-link'  href='canary/api/classes/Model/#find'>find</a>
         
       
         
-          <a class='summary-link'  href='#getRelated'>getRelated</a>
-        
-      
-        
-      
-        
-          <a class='summary-link'  href='#modelFor'>modelFor</a>
-        
-      
-        
-          <a class='summary-link'  href='#modelFor'>modelFor</a>
+          <a class='summary-link'  href='canary/api/classes/Model/#getRelated'>getRelated</a>
         
       
         
       
         
-          <a class='summary-link'  href='#removeRelated'>removeRelated</a>
+          <a class='summary-link'  href='canary/api/classes/Model/#modelFor'>modelFor</a>
         
       
         
-          <a class='summary-link'  href='#save'>save</a>
+          <a class='summary-link'  href='canary/api/classes/Model/#modelFor'>modelFor</a>
         
       
         
-          <a class='summary-link'  href='#service'>service</a>
+      
+        
+          <a class='summary-link'  href='canary/api/classes/Model/#removeRelated'>removeRelated</a>
         
       
         
-          <a class='summary-link'  href='#setRelated'>setRelated</a>
+          <a class='summary-link'  href='canary/api/classes/Model/#save'>save</a>
+        
+      
+        
+          <a class='summary-link'  href='canary/api/classes/Model/#service'>service</a>
+        
+      
+        
+          <a class='summary-link'  href='canary/api/classes/Model/#setRelated'>setRelated</a>
         
       
         
@@ -293,324 +289,371 @@ Model) will translate and forward those calls to the underlying ORM adapter.</p>
 
 <div class='classitems'>
   
-    <div class='item' id='adapter' data-private-member=true>
-      <h3 class='item-title'>
-        <div class='item-name'>adapter</div>
-        
-        
-          <div class='private tag'>Private</div>
-        
-        
-          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Fmodel.js#L104'>
-            <span class='filename'>Defined in: lib/data/model.js</span>
-            <span class='line'>Line: 104</span>
-          </a>
-        
-      </h3>
-      <div class='item-body'>
-        
-          <h5 class='item-header'>Description</h5>
+    
+      <div class='item property' id='adapter' data-private-member=true>
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            adapter<span class="type">:ORMAdapter</span>
+            
+              <div class='private tag'>Private</div>
+            
+            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Fmodel.js#L104'>
+              <span class='filename'>Defined in: lib/data/model.js</span>
+              <span class='line'>Line: 104</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
           <div class='item-description'><p>The ORM adapter specific to this model type. Defaults to the application’s
 ORM adapter if none for this specific model type is found.</p>
 </div>
-        
-        
-        
-        <div class='improve'>
-          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Fmodel.js#L104'>
-            Improve this documentation
-          </a>
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Fmodel.js#L104'>
+              Improve this documentation
+            </a>
+          </div>
         </div>
       </div>
-    </div>
+    
   
-    <div class='item' id='adapter' >
-      <h3 class='item-title'>
-        <div class='item-name'>adapter</div>
-        
-        
-        
-          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Fmodel.js#L135'>
-            <span class='filename'>Defined in: lib/data/model.js</span>
-            <span class='line'>Line: 135</span>
-          </a>
-        
-      </h3>
-      <div class='item-body'>
-        
-          <h5 class='item-header'>Description</h5>
+    
+      <div class='item property' id='adapter' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            adapter<span class="type">:ORMAdapter</span>
+            
+            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Fmodel.js#L135'>
+              <span class='filename'>Defined in: lib/data/model.js</span>
+              <span class='line'>Line: 135</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
           <div class='item-description'><p>The ORM adapter specific to this model type. Defaults to the application’s
 ORM adapter if none for this specific model type is found.</p>
 </div>
-        
-        
-        
-        <div class='improve'>
-          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Fmodel.js#L135'>
-            Improve this documentation
-          </a>
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Fmodel.js#L135'>
+              Improve this documentation
+            </a>
+          </div>
         </div>
       </div>
-    </div>
+    
   
-    <div class='item' id='addRelated' >
-      <h3 class='item-title'>
-        <div class='item-name'>addRelated</div>
-        
-          <div class='param-paren'>(</div>
-          <div class='params'>
-            
-              <div class='param'>
-                <span class='param-name'>relationshipName</span><span class='param-type type'>:String</span>
-              </div>
-            
-              <div class='param'>
-                <span class='param-name'>relatedModel</span><span class='param-type type'>:Object</span>
-              </div>
-            
-              <div class='param'>
-                <span class='param-name'>options</span><span class='param-type type'>:Object</span>
-              </div>
-            
-          </div>
-          <div class='param-paren'>)</div>
-        
-        
-        
-          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Fmodel.js#L271'>
-            <span class='filename'>Defined in: lib/data/model.js</span>
-            <span class='line'>Line: 271</span>
-          </a>
-        
-      </h3>
-      <div class='item-body'>
-        
-          <h5 class='item-header'>Description</h5>
-          <div class='item-description'><p>Add a related record to a hasMany relationship.</p>
-</div>
-        
-        
-          <h5 class='item-header'>Parameters</h5>
-          <div class='params'>
-            
-              <div class='param'>
-                <div class='param-name'>relationshipName</div><div class='param-type type'>:String</div>
-                
-              </div>
-            
-              <div class='param'>
-                <div class='param-name'>relatedModel</div><div class='param-type type'>:Object</div>
-                
-              </div>
-            
-              <div class='param'>
-                <div class='param-name'>options</div><div class='param-type type'>:Object</div>
-                
-                  <div class='param-description'><p>ORM-specific options</p>
-</div>
-                
-              </div>
-            
-          </div>
-        
-        
-          <h5 class='item-header'>Returns:</h5>
-          <div class='return'>
-            <div class='return-type type'>Promise</div>
-            
-              <div class='return-description'><p>resolves once the change has been persisted</p>
-</div>
-            
-          </div>
-        
-        <div class='improve'>
-          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Fmodel.js#L271'>
-            Improve this documentation
-          </a>
-        </div>
-      </div>
-    </div>
+    
   
-    <div class='item' id='container' >
-      <h3 class='item-title'>
-        <div class='item-name'>container</div>
-        
-        
-        
-          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Fmodel.js#L127'>
-            <span class='filename'>Defined in: lib/data/model.js</span>
-            <span class='line'>Line: 127</span>
-          </a>
-        
-      </h3>
-      <div class='item-body'>
-        
-          <h5 class='item-header'>Description</h5>
+    
+      <div class='item property' id='container' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            container<span class="type">:Container</span>
+            
+            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Fmodel.js#L127'>
+              <span class='filename'>Defined in: lib/data/model.js</span>
+              <span class='line'>Line: 127</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
           <div class='item-description'><p>The application container</p>
 </div>
-        
-        
-        
-        <div class='improve'>
-          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Fmodel.js#L127'>
-            Improve this documentation
-          </a>
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Fmodel.js#L127'>
+              Improve this documentation
+            </a>
+          </div>
         </div>
       </div>
-    </div>
+    
   
-    <div class='item' id='create' >
-      <h3 class='item-title'>
-        <div class='item-name'>create</div>
-        
-          <div class='param-paren'>(</div>
-          <div class='params'>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <div class='item property' id='id' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            id<span class="type">:Number|String</span>
             
-              <div class='param'>
-                <span class='param-name'>data</span><span class='param-type type'>:Object</span>
-              </div>
-            
-              <div class='param'>
-                <span class='param-name'>options</span><span class='param-type type'>:Object</span>
-              </div>
-            
+            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Fmodel.js#L119'>
+              <span class='filename'>Defined in: lib/data/model.js</span>
+              <span class='line'>Line: 119</span>
+            </a>
           </div>
-          <div class='param-paren'>)</div>
-        
-        
-        
-          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Fmodel.js#L83'>
-            <span class='filename'>Defined in: lib/data/model.js</span>
-            <span class='line'>Line: 83</span>
-          </a>
-        
-      </h3>
-      <div class='item-body'>
-        
-          <h5 class='item-header'>Description</h5>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'><p>The id of the record</p>
+</div>
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Fmodel.js#L119'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+  
+    
+  
+    
+      <div class='item property' id='record' data-private-member=true>
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            record<span class="type">:Object</span>
+            
+              <div class='private tag'>Private</div>
+            
+            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Fmodel.js#L144'>
+              <span class='filename'>Defined in: lib/data/model.js</span>
+              <span class='line'>Line: 144</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'><p>The underlying ORM adapter record. An opaque value to Denali, handled
+entirely by the ORM adapter.</p>
+</div>
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Fmodel.js#L144'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <div class='item property' id='type' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            type<span class="type">:String</span>
+            
+            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Fmodel.js#L33'>
+              <span class='filename'>Defined in: lib/data/model.js</span>
+              <span class='line'>Line: 33</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'><p>The type of the Model class. This string is used as the container name for
+the model, as well as in several other areas of Denali (i.e. serializers,
+ORM adapters, etc). Conventionally, types are dasherized versions of the
+model name (i.e. the BlogPost model’s type would be <code class="highlighter-rouge">"blog-post"</code>).</p>
+</div>
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Fmodel.js#L33'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+  
+    
+  
+    
+  
+    
+      <div class='item method' id='addRelated' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            addRelated<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>relationshipName</span><span class='param-type type'>:String</span></span><span class='param'><span class='param-name'>relatedModel</span><span class='param-type type'>:Object</span></span><span class='param'><span class='param-name'>options</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
+            
+            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Fmodel.js#L271'>
+              <span class='filename'>Defined in: lib/data/model.js</span>
+              <span class='line'>Line: 271</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'><p>Add a related record to a hasMany relationship.</p>
+</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>relationshipName</div><div class='param-type type'>:String</div>
+                  
+                </div>
+              
+                <div class='param'>
+                  <div class='param-name'>relatedModel</div><div class='param-type type'>:Object</div>
+                  
+                </div>
+              
+                <div class='param'>
+                  <div class='param-name'>options</div><div class='param-type type'>:Object</div>
+                  
+                    <div class='param-description'><p>ORM-specific options</p>
+</div>
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <div class='return'>
+              <div class='return-type type'>Promise</div>
+              
+                <div class='return-description'><p>resolves once the change has been persisted</p>
+</div>
+              
+            </div>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Fmodel.js#L271'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+  
+    
+      <div class='item method' id='create' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            create<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>data</span><span class='param-type type'>:Object</span></span><span class='param'><span class='param-name'>options</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
+            
+            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Fmodel.js#L83'>
+              <span class='filename'>Defined in: lib/data/model.js</span>
+              <span class='line'>Line: 83</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
           <div class='item-description'><p>Create a new record and immediately persist it.</p>
 </div>
-        
-        
-          <h5 class='item-header'>Parameters</h5>
-          <div class='params'>
-            
-              <div class='param'>
-                <div class='param-name'>data</div><div class='param-type type'>:Object</div>
-                
-              </div>
-            
-              <div class='param'>
-                <div class='param-name'>options</div><div class='param-type type'>:Object</div>
-                
-              </div>
-            
-          </div>
-        
-        
-          <h5 class='item-header'>Returns:</h5>
-          <div class='return'>
-            <div class='return-type type'>Promise</div>
-            
-              <div class='return-description'><p>resolves with the newly created record</p>
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>data</div><div class='param-type type'>:Object</div>
+                  
+                </div>
+              
+                <div class='param'>
+                  <div class='param-name'>options</div><div class='param-type type'>:Object</div>
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <div class='return'>
+              <div class='return-type type'>Promise</div>
+              
+                <div class='return-description'><p>resolves with the newly created record</p>
 </div>
-            
+              
+            </div>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Fmodel.js#L83'>
+              Improve this documentation
+            </a>
           </div>
-        
-        <div class='improve'>
-          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Fmodel.js#L83'>
-            Improve this documentation
-          </a>
         </div>
       </div>
-    </div>
+    
   
-    <div class='item' id='delete' >
-      <h3 class='item-title'>
-        <div class='item-name'>delete</div>
-        
-          <div class='param-paren'>(</div>
-          <div class='params'>
+    
+      <div class='item method' id='delete' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            delete<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>options</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
             
-              <div class='param'>
-                <span class='param-name'>options</span><span class='param-type type'>:Object</span>
-              </div>
-            
+            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Fmodel.js#L221'>
+              <span class='filename'>Defined in: lib/data/model.js</span>
+              <span class='line'>Line: 221</span>
+            </a>
           </div>
-          <div class='param-paren'>)</div>
-        
-        
-        
-          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Fmodel.js#L221'>
-            <span class='filename'>Defined in: lib/data/model.js</span>
-            <span class='line'>Line: 221</span>
-          </a>
-        
-      </h3>
-      <div class='item-body'>
-        
-          <h5 class='item-header'>Description</h5>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
           <div class='item-description'><p>Delete this model.</p>
 </div>
-        
-        
-          <h5 class='item-header'>Parameters</h5>
-          <div class='params'>
-            
-              <div class='param'>
-                <div class='param-name'>options</div><div class='param-type type'>:Object</div>
-                
-                  <div class='param-description'><p>ORM-specific options</p>
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>options</div><div class='param-type type'>:Object</div>
+                  
+                    <div class='param-description'><p>ORM-specific options</p>
 </div>
-                
-              </div>
-            
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <div class='return'>
+              <div class='return-type type'>Promise</div>
+              
+            </div>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Fmodel.js#L221'>
+              Improve this documentation
+            </a>
           </div>
-        
-        
-          <h5 class='item-header'>Returns:</h5>
-          <div class='return'>
-            <div class='return-type type'>Promise</div>
-            
-          </div>
-        
-        <div class='improve'>
-          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Fmodel.js#L221'>
-            Improve this documentation
-          </a>
         </div>
       </div>
-    </div>
+    
   
-    <div class='item' id='find' >
-      <h3 class='item-title'>
-        <div class='item-name'>find</div>
-        
-          <div class='param-paren'>(</div>
-          <div class='params'>
+    
+      <div class='item method' id='find' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            find<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>query</span><span class='param-type type'>:Number|String|Object|Function</span></span><span class='param'><span class='param-name'>options</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
             
-              <div class='param'>
-                <span class='param-name'>query</span><span class='param-type type'>:Number|String|Object|Function</span>
-              </div>
-            
-              <div class='param'>
-                <span class='param-name'>options</span><span class='param-type type'>:Object</span>
-              </div>
-            
+            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Fmodel.js#L45'>
+              <span class='filename'>Defined in: lib/data/model.js</span>
+              <span class='line'>Line: 45</span>
+            </a>
           </div>
-          <div class='param-paren'>)</div>
-        
-        
-        
-          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Fmodel.js#L45'>
-            <span class='filename'>Defined in: lib/data/model.js</span>
-            <span class='line'>Line: 45</span>
-          </a>
-        
-      </h3>
-      <div class='item-body'>
-        
-          <h5 class='item-header'>Description</h5>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
           <div class='item-description'><p>Find records by id, basic query, or query function.</p>
 
 <p>You can find single records by passing in the id:</p>
@@ -635,580 +678,415 @@ specific syntax and strengths of your ORM and data store:</p>
 </code></pre>
 </div>
 </div>
-        
-        
-          <h5 class='item-header'>Parameters</h5>
-          <div class='params'>
-            
-              <div class='param'>
-                <div class='param-name'>query</div><div class='param-type type'>:Number|String|Object|Function</div>
-                
-              </div>
-            
-              <div class='param'>
-                <div class='param-name'>options</div><div class='param-type type'>:Object</div>
-                
-                  <div class='param-description'><p>ORM-specific options</p>
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>query</div><div class='param-type type'>:Number|String|Object|Function</div>
+                  
+                </div>
+              
+                <div class='param'>
+                  <div class='param-name'>options</div><div class='param-type type'>:Object</div>
+                  
+                    <div class='param-description'><p>ORM-specific options</p>
 </div>
-                
-              </div>
-            
-          </div>
-        
-        
-          <h5 class='item-header'>Returns:</h5>
-          <div class='return'>
-            <div class='return-type type'>Promise</div>
-            
-              <div class='return-description'><p>resolves with the record(s) found, an empty array, or
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <div class='return'>
+              <div class='return-type type'>Promise</div>
+              
+                <div class='return-description'><p>resolves with the record(s) found, an empty array, or
 null</p>
 </div>
-            
+              
+            </div>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Fmodel.js#L45'>
+              Improve this documentation
+            </a>
           </div>
-        
-        <div class='improve'>
-          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Fmodel.js#L45'>
-            Improve this documentation
-          </a>
         </div>
       </div>
-    </div>
+    
   
-    <div class='item' id='getRelated' >
-      <h3 class='item-title'>
-        <div class='item-name'>getRelated</div>
-        
-          <div class='param-paren'>(</div>
-          <div class='params'>
+    
+      <div class='item method' id='getRelated' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            getRelated<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>relationshipName</span><span class='param-type type'>:String</span></span><span class='param'><span class='param-name'>options</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
             
-              <div class='param'>
-                <span class='param-name'>relationshipName</span><span class='param-type type'>:String</span>
-              </div>
-            
-              <div class='param'>
-                <span class='param-name'>options</span><span class='param-type type'>:Object</span>
-              </div>
-            
+            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Fmodel.js#L232'>
+              <span class='filename'>Defined in: lib/data/model.js</span>
+              <span class='line'>Line: 232</span>
+            </a>
           </div>
-          <div class='param-paren'>)</div>
-        
-        
-        
-          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Fmodel.js#L232'>
-            <span class='filename'>Defined in: lib/data/model.js</span>
-            <span class='line'>Line: 232</span>
-          </a>
-        
-      </h3>
-      <div class='item-body'>
-        
-          <h5 class='item-header'>Description</h5>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
           <div class='item-description'><p>Returns the related record(s) for the given relationship.</p>
 </div>
-        
-        
-          <h5 class='item-header'>Parameters</h5>
-          <div class='params'>
-            
-              <div class='param'>
-                <div class='param-name'>relationshipName</div><div class='param-type type'>:String</div>
-                
-              </div>
-            
-              <div class='param'>
-                <div class='param-name'>options</div><div class='param-type type'>:Object</div>
-                
-                  <div class='param-description'><p>ORM-specific options</p>
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>relationshipName</div><div class='param-type type'>:String</div>
+                  
+                </div>
+              
+                <div class='param'>
+                  <div class='param-name'>options</div><div class='param-type type'>:Object</div>
+                  
+                    <div class='param-description'><p>ORM-specific options</p>
 </div>
-                
-              </div>
-            
-          </div>
-        
-        
-          <h5 class='item-header'>Returns:</h5>
-          <div class='return'>
-            <div class='return-type type'>Promise</div>
-            
-              <div class='return-description'><p>resolves with the related model (for hasOne
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <div class='return'>
+              <div class='return-type type'>Promise</div>
+              
+                <div class='return-description'><p>resolves with the related model (for hasOne
 relationships), or an array of models (for hasMany relationships)</p>
 </div>
-            
+              
+            </div>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Fmodel.js#L232'>
+              Improve this documentation
+            </a>
           </div>
-        
-        <div class='improve'>
-          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Fmodel.js#L232'>
-            Improve this documentation
-          </a>
         </div>
       </div>
-    </div>
+    
   
-    <div class='item' id='id' >
-      <h3 class='item-title'>
-        <div class='item-name'>id</div>
-        
-        
-        
-          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Fmodel.js#L119'>
-            <span class='filename'>Defined in: lib/data/model.js</span>
-            <span class='line'>Line: 119</span>
-          </a>
-        
-      </h3>
-      <div class='item-body'>
-        
-          <h5 class='item-header'>Description</h5>
-          <div class='item-description'><p>The id of the record</p>
-</div>
-        
-        
-        
-        <div class='improve'>
-          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Fmodel.js#L119'>
-            Improve this documentation
-          </a>
-        </div>
-      </div>
-    </div>
+    
   
-    <div class='item' id='modelFor' >
-      <h3 class='item-title'>
-        <div class='item-name'>modelFor</div>
-        
-          <div class='param-paren'>(</div>
-          <div class='params'>
+    
+      <div class='item method' id='modelFor' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            modelFor<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>type</span><span class='param-type type'>:String</span></span></span><span class='param-paren'>)</span>
             
-              <div class='param'>
-                <span class='param-name'>type</span><span class='param-type type'>:String</span>
-              </div>
-            
+            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Fmodel.js#L307'>
+              <span class='filename'>Defined in: lib/data/model.js</span>
+              <span class='line'>Line: 307</span>
+            </a>
           </div>
-          <div class='param-paren'>)</div>
-        
-        
-        
-          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Fmodel.js#L307'>
-            <span class='filename'>Defined in: lib/data/model.js</span>
-            <span class='line'>Line: 307</span>
-          </a>
-        
-      </h3>
-      <div class='item-body'>
-        
-          <h5 class='item-header'>Description</h5>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
           <div class='item-description'><p>Lookup a model class by type.</p>
 </div>
-        
-        
-          <h5 class='item-header'>Parameters</h5>
-          <div class='params'>
-            
-              <div class='param'>
-                <div class='param-name'>type</div><div class='param-type type'>:String</div>
-                
-              </div>
-            
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>type</div><div class='param-type type'>:String</div>
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <div class='return'>
+              <div class='return-type type'>Model</div>
+              
+            </div>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Fmodel.js#L307'>
+              Improve this documentation
+            </a>
           </div>
-        
-        
-          <h5 class='item-header'>Returns:</h5>
-          <div class='return'>
-            <div class='return-type type'>Model</div>
-            
-          </div>
-        
-        <div class='improve'>
-          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Fmodel.js#L307'>
-            Improve this documentation
-          </a>
         </div>
       </div>
-    </div>
+    
   
-    <div class='item' id='modelFor' >
-      <h3 class='item-title'>
-        <div class='item-name'>modelFor</div>
-        
-          <div class='param-paren'>(</div>
-          <div class='params'>
+    
+      <div class='item method' id='modelFor' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            modelFor<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>type</span><span class='param-type type'>:String</span></span></span><span class='param-paren'>)</span>
             
-              <div class='param'>
-                <span class='param-name'>type</span><span class='param-type type'>:String</span>
-              </div>
-            
+            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Fmodel.js#L319'>
+              <span class='filename'>Defined in: lib/data/model.js</span>
+              <span class='line'>Line: 319</span>
+            </a>
           </div>
-          <div class='param-paren'>)</div>
-        
-        
-        
-          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Fmodel.js#L319'>
-            <span class='filename'>Defined in: lib/data/model.js</span>
-            <span class='line'>Line: 319</span>
-          </a>
-        
-      </h3>
-      <div class='item-body'>
-        
-          <h5 class='item-header'>Description</h5>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
           <div class='item-description'><p>Lookup a model class by type.</p>
 </div>
-        
-        
-          <h5 class='item-header'>Parameters</h5>
-          <div class='params'>
-            
-              <div class='param'>
-                <div class='param-name'>type</div><div class='param-type type'>:String</div>
-                
-              </div>
-            
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>type</div><div class='param-type type'>:String</div>
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <div class='return'>
+              <div class='return-type type'>Model</div>
+              
+            </div>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Fmodel.js#L319'>
+              Improve this documentation
+            </a>
           </div>
-        
-        
-          <h5 class='item-header'>Returns:</h5>
-          <div class='return'>
-            <div class='return-type type'>Model</div>
-            
-          </div>
-        
-        <div class='improve'>
-          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Fmodel.js#L319'>
-            Improve this documentation
-          </a>
         </div>
       </div>
-    </div>
+    
   
-    <div class='item' id='record' data-private-member=true>
-      <h3 class='item-title'>
-        <div class='item-name'>record</div>
-        
-        
-          <div class='private tag'>Private</div>
-        
-        
-          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Fmodel.js#L144'>
-            <span class='filename'>Defined in: lib/data/model.js</span>
-            <span class='line'>Line: 144</span>
-          </a>
-        
-      </h3>
-      <div class='item-body'>
-        
-          <h5 class='item-header'>Description</h5>
-          <div class='item-description'><p>The underlying ORM adapter record. An opaque value to Denali, handled
-entirely by the ORM adapter.</p>
-</div>
-        
-        
-        
-        <div class='improve'>
-          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Fmodel.js#L144'>
-            Improve this documentation
-          </a>
-        </div>
-      </div>
-    </div>
+    
   
-    <div class='item' id='removeRelated' >
-      <h3 class='item-title'>
-        <div class='item-name'>removeRelated</div>
-        
-          <div class='param-paren'>(</div>
-          <div class='params'>
+    
+      <div class='item method' id='removeRelated' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            removeRelated<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>relationshipName</span><span class='param-type type'>:String</span></span><span class='param'><span class='param-name'>relatedModel</span><span class='param-type type'>:Object</span></span><span class='param'><span class='param-name'>options</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
             
-              <div class='param'>
-                <span class='param-name'>relationshipName</span><span class='param-type type'>:String</span>
-              </div>
-            
-              <div class='param'>
-                <span class='param-name'>relatedModel</span><span class='param-type type'>:Object</span>
-              </div>
-            
-              <div class='param'>
-                <span class='param-name'>options</span><span class='param-type type'>:Object</span>
-              </div>
-            
+            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Fmodel.js#L289'>
+              <span class='filename'>Defined in: lib/data/model.js</span>
+              <span class='line'>Line: 289</span>
+            </a>
           </div>
-          <div class='param-paren'>)</div>
-        
-        
-        
-          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Fmodel.js#L289'>
-            <span class='filename'>Defined in: lib/data/model.js</span>
-            <span class='line'>Line: 289</span>
-          </a>
-        
-      </h3>
-      <div class='item-body'>
-        
-          <h5 class='item-header'>Description</h5>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
           <div class='item-description'><p>Remove the given record from the hasMany relationship</p>
 </div>
-        
-        
-          <h5 class='item-header'>Parameters</h5>
-          <div class='params'>
-            
-              <div class='param'>
-                <div class='param-name'>relationshipName</div><div class='param-type type'>:String</div>
-                
-              </div>
-            
-              <div class='param'>
-                <div class='param-name'>relatedModel</div><div class='param-type type'>:Object</div>
-                
-              </div>
-            
-              <div class='param'>
-                <div class='param-name'>options</div><div class='param-type type'>:Object</div>
-                
-                  <div class='param-description'><p>ORM-specific options</p>
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>relationshipName</div><div class='param-type type'>:String</div>
+                  
+                </div>
+              
+                <div class='param'>
+                  <div class='param-name'>relatedModel</div><div class='param-type type'>:Object</div>
+                  
+                </div>
+              
+                <div class='param'>
+                  <div class='param-name'>options</div><div class='param-type type'>:Object</div>
+                  
+                    <div class='param-description'><p>ORM-specific options</p>
 </div>
-                
-              </div>
-            
-          </div>
-        
-        
-          <h5 class='item-header'>Returns:</h5>
-          <div class='return'>
-            <div class='return-type type'>Promise</div>
-            
-              <div class='return-description'><p>resolves once the change is persisted</p>
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <div class='return'>
+              <div class='return-type type'>Promise</div>
+              
+                <div class='return-description'><p>resolves once the change is persisted</p>
 </div>
-            
+              
+            </div>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Fmodel.js#L289'>
+              Improve this documentation
+            </a>
           </div>
-        
-        <div class='improve'>
-          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Fmodel.js#L289'>
-            Improve this documentation
-          </a>
         </div>
       </div>
-    </div>
+    
   
-    <div class='item' id='save' >
-      <h3 class='item-title'>
-        <div class='item-name'>save</div>
-        
-          <div class='param-paren'>(</div>
-          <div class='params'>
+    
+      <div class='item method' id='save' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            save<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>options</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
             
-              <div class='param'>
-                <span class='param-name'>options</span><span class='param-type type'>:Object</span>
-              </div>
-            
+            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Fmodel.js#L209'>
+              <span class='filename'>Defined in: lib/data/model.js</span>
+              <span class='line'>Line: 209</span>
+            </a>
           </div>
-          <div class='param-paren'>)</div>
-        
-        
-        
-          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Fmodel.js#L209'>
-            <span class='filename'>Defined in: lib/data/model.js</span>
-            <span class='line'>Line: 209</span>
-          </a>
-        
-      </h3>
-      <div class='item-body'>
-        
-          <h5 class='item-header'>Description</h5>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
           <div class='item-description'><p>Persist this model.</p>
 </div>
-        
-        
-          <h5 class='item-header'>Parameters</h5>
-          <div class='params'>
-            
-              <div class='param'>
-                <div class='param-name'>options</div><div class='param-type type'>:Object</div>
-                
-                  <div class='param-description'><p>ORM-specific options</p>
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>options</div><div class='param-type type'>:Object</div>
+                  
+                    <div class='param-description'><p>ORM-specific options</p>
 </div>
-                
-              </div>
-            
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <div class='return'>
+              <div class='return-type type'>Promise</div>
+              
+            </div>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Fmodel.js#L209'>
+              Improve this documentation
+            </a>
           </div>
-        
-        
-          <h5 class='item-header'>Returns:</h5>
-          <div class='return'>
-            <div class='return-type type'>Promise</div>
-            
-          </div>
-        
-        <div class='improve'>
-          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Fmodel.js#L209'>
-            Improve this documentation
-          </a>
         </div>
       </div>
-    </div>
+    
   
-    <div class='item' id='service' >
-      <h3 class='item-title'>
-        <div class='item-name'>service</div>
-        
-          <div class='param-paren'>(</div>
-          <div class='params'>
+    
+      <div class='item method' id='service' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            service<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>type</span><span class='param-type type'>:String</span></span></span><span class='param-paren'>)</span>
             
-              <div class='param'>
-                <span class='param-name'>type</span><span class='param-type type'>:String</span>
-              </div>
-            
+            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Fmodel.js#L330'>
+              <span class='filename'>Defined in: lib/data/model.js</span>
+              <span class='line'>Line: 330</span>
+            </a>
           </div>
-          <div class='param-paren'>)</div>
-        
-        
-        
-          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Fmodel.js#L330'>
-            <span class='filename'>Defined in: lib/data/model.js</span>
-            <span class='line'>Line: 330</span>
-          </a>
-        
-      </h3>
-      <div class='item-body'>
-        
-          <h5 class='item-header'>Description</h5>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
           <div class='item-description'><p>Lookup a service by type</p>
 </div>
-        
-        
-          <h5 class='item-header'>Parameters</h5>
-          <div class='params'>
-            
-              <div class='param'>
-                <div class='param-name'>type</div><div class='param-type type'>:String</div>
-                
-              </div>
-            
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>type</div><div class='param-type type'>:String</div>
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <div class='return'>
+              <div class='return-type type'>Service</div>
+              
+            </div>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Fmodel.js#L330'>
+              Improve this documentation
+            </a>
           </div>
-        
-        
-          <h5 class='item-header'>Returns:</h5>
-          <div class='return'>
-            <div class='return-type type'>Service</div>
-            
-          </div>
-        
-        <div class='improve'>
-          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Fmodel.js#L330'>
-            Improve this documentation
-          </a>
         </div>
       </div>
-    </div>
+    
   
-    <div class='item' id='setRelated' >
-      <h3 class='item-title'>
-        <div class='item-name'>setRelated</div>
-        
-          <div class='param-paren'>(</div>
-          <div class='params'>
+    
+      <div class='item method' id='setRelated' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            setRelated<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>relationshipName</span><span class='param-type type'>:String</span></span><span class='param'><span class='param-name'>relatedModels</span><span class='param-type type'>:Object|Array</span></span><span class='param'><span class='param-name'>options</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
             
-              <div class='param'>
-                <span class='param-name'>relationshipName</span><span class='param-type type'>:String</span>
-              </div>
-            
-              <div class='param'>
-                <span class='param-name'>relatedModels</span><span class='param-type type'>:Object|Array</span>
-              </div>
-            
-              <div class='param'>
-                <span class='param-name'>options</span><span class='param-type type'>:Object</span>
-              </div>
-            
+            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Fmodel.js#L254'>
+              <span class='filename'>Defined in: lib/data/model.js</span>
+              <span class='line'>Line: 254</span>
+            </a>
           </div>
-          <div class='param-paren'>)</div>
-        
-        
-        
-          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Fmodel.js#L254'>
-            <span class='filename'>Defined in: lib/data/model.js</span>
-            <span class='line'>Line: 254</span>
-          </a>
-        
-      </h3>
-      <div class='item-body'>
-        
-          <h5 class='item-header'>Description</h5>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
           <div class='item-description'><p>Replaces the related records for the given relationship with the supplied
 related records.</p>
 </div>
-        
-        
-          <h5 class='item-header'>Parameters</h5>
-          <div class='params'>
-            
-              <div class='param'>
-                <div class='param-name'>relationshipName</div><div class='param-type type'>:String</div>
-                
-              </div>
-            
-              <div class='param'>
-                <div class='param-name'>relatedModels</div><div class='param-type type'>:Object|Array</div>
-                
-              </div>
-            
-              <div class='param'>
-                <div class='param-name'>options</div><div class='param-type type'>:Object</div>
-                
-                  <div class='param-description'><p>ORM-specific options</p>
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>relationshipName</div><div class='param-type type'>:String</div>
+                  
+                </div>
+              
+                <div class='param'>
+                  <div class='param-name'>relatedModels</div><div class='param-type type'>:Object|Array</div>
+                  
+                </div>
+              
+                <div class='param'>
+                  <div class='param-name'>options</div><div class='param-type type'>:Object</div>
+                  
+                    <div class='param-description'><p>ORM-specific options</p>
 </div>
-                
-              </div>
-            
-          </div>
-        
-        
-          <h5 class='item-header'>Returns:</h5>
-          <div class='return'>
-            <div class='return-type type'>Promise</div>
-            
-              <div class='return-description'><p>resolves once the change is persisted</p>
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <div class='return'>
+              <div class='return-type type'>Promise</div>
+              
+                <div class='return-description'><p>resolves once the change is persisted</p>
 </div>
-            
+              
+            </div>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Fmodel.js#L254'>
+              Improve this documentation
+            </a>
           </div>
-        
-        <div class='improve'>
-          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Fmodel.js#L254'>
-            Improve this documentation
-          </a>
         </div>
       </div>
-    </div>
+    
   
-    <div class='item' id='type' >
-      <h3 class='item-title'>
-        <div class='item-name'>type</div>
-        
-        
-        
-          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Fmodel.js#L33'>
-            <span class='filename'>Defined in: lib/data/model.js</span>
-            <span class='line'>Line: 33</span>
-          </a>
-        
-      </h3>
-      <div class='item-body'>
-        
-          <h5 class='item-header'>Description</h5>
-          <div class='item-description'><p>The type of the Model class. This string is used as the container name for
-the model, as well as in several other areas of Denali (i.e. serializers,
-ORM adapters, etc). Conventionally, types are dasherized versions of the
-model name (i.e. the BlogPost model’s type would be <code class="highlighter-rouge">"blog-post"</code>).</p>
-</div>
-        
-        
-        
-        <div class='improve'>
-          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Fmodel.js#L33'>
-            Improve this documentation
-          </a>
-        </div>
-      </div>
-    </div>
+    
   
 </div>
 
@@ -1239,9 +1117,9 @@ model name (i.e. the BlogPost model’s type would be <code class="highlighter-r
     var $privateClassToggle = $('#toggle-private-classes');
     $privateClassToggle.on('change', function() {
       if ($privateClassToggle.is(':checked')) {
-        $('[data-private-class]').css('display', 'block');
+        $('.api-nav [data-private-class]').css('display', 'block');
       } else {
-        $('[data-private-class]').css('display', 'none');
+        $('.api-nav [data-private-class]').css('display', 'none');
       }
     });
     
@@ -1249,7 +1127,10 @@ model name (i.e. the BlogPost model’s type would be <code class="highlighter-r
 </script>
 
 <footer class="footer">
-
+  <div class='container'>
+    Made with <img src='images/fox-and-beard.svg' class='fox-and-beard'> at
+    <a href='http://foxandbeard.co' target='_blank'>Fox and Beard</a>
+  </div>
 </footer>
 
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

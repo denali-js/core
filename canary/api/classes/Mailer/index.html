@@ -4,41 +4,32 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/denali/">
 
   <title>Denali</title>
   <meta name="description" content="">
 
-  <link href='https://fonts.googleapis.com/css?family=Inconsolata|Lato:400,700|Open+Sans:400,400italic,700|Montserrat+Alternates:700' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="denali/css/main.css">
-  <link rel="canonical" href="http://denali.github.com/denalidenali/canary/api/classes/Mailer/">
+  <link href='//fonts.googleapis.com/css?family=Inconsolata|Bitter:400,700|Open+Sans:300,400,400italic,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="canonical" href="https://davewasmer.github.com/denali/canary/api/classes/Mailer/">
 </head>
 
   <body>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-2.2.2.min.js"><\/script>')</script>
-    <nav class="navbar navbar-full navbar-dark">
+    <nav class="navbar">
   <div class='container'>
     <a href='/' class='navbar-brand'>
-      <img class='logo-light' src='/images/logo.png' alt='Denali'>
-      <span class='project-name'>denali</span>
+      <img class='logo-light' src='images/logo.svg' alt='Denali'>
+      <span class='project-name'>Denali</span>
     </a>
 
-    <div class='nav navbar-nav pull-xs-right'>
-      <li class='nav-item'>
-        <a class='nav-link' href='/canary/guides/quickstart'>Quickstart</a>
-      </li>
-      <li class='nav-item'>
-        <a class='nav-link' href='/canary/guides/introduction'>Guides</a>
-      </li>
-      <li class='nav-item'>
-        <a class='nav-link' href='/canary/api'>API</a>
-      </li>
-      <li class='nav-item'>
-        <a class='nav-link' href='https://github.com/davewasmer/denali' target='_blank'>Github</a>
-      </li>
-      <li class='nav-item'>
-        <a class='nav-link' href='https://github.com/davewasmer/denali/issues' target='_blank'>Issues</a>
-      </li>
+    <div class="navbar-nav">
+      <a class='nav-link' href='canary/guides/quickstart'>Quickstart</a>
+      <a class='nav-link' href='canary/guides/introduction'>Guides</a>
+      <a class='nav-link' href='canary/api'>API</a>
+      <a class='nav-link' href='https://github.com/davewasmer/denali' target='_blank'>Github</a>
+      <a class='nav-link' href='https://github.com/davewasmer/denali/issues' target='_blank'>Issues</a>
     </div>
   </div>
 </nav>
@@ -49,7 +40,7 @@
 
       <div class='nav-section'>
   <div class='nav-header'>Version</div>
-  <select id='versions'>
+  <select class='versions-select' id='versions'>
     
       <option value='canary' selected='selected'>canary</option>
     
@@ -57,90 +48,95 @@
 </div>
 
 
-      <div class='nav-section'>
-        <div class='nav-header'>Modules</div>
-        
-          
-        
-          
-            <a class='nav-link ' href='/canary/api/modules/cli'>Cli</a>
-          
-        
-          
-            <a class='nav-link ' href='/canary/api/modules/data'>Data</a>
-          
-        
-          
-            <a class='nav-link ' href='/canary/api/modules/metal'>Metal</a>
-          
-        
-          
-            <a class='nav-link ' href='/canary/api/modules/runtime'>Runtime</a>
-          
-        
-      </div>
+      <label class='private-classes-toggle'>
+        <input type='checkbox' id='toggle-private-classes'>
+        Include Private
+      </label>
 
-      <div class='nav-section'>
-        <div class='nav-header'>
-          Classes
-          <label class='private-classes-toggle'>
-            <input type='checkbox' id='toggle-private-classes'>
-            Include Private
-          </label>
-        </div>
+      
         
-          <a class='nav-link ' href='/canary/api/classes/Blueprint' data-private-class=true>Blueprint</a>
+      
         
-          <a class='nav-link ' href='/canary/api/classes/Command' data-private-class=true>Command</a>
+          <div class='nav-section'>
+            <div class='nav-header'>Cli</div>
+            
+              <a class='nav-link ' href='canary/api/classes/Blueprint' >Blueprint</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Command' >Command</a>
+            
+          </div>
         
-          <a class='nav-link ' href='/canary/api/classes/FlatSerializer' >FlatSerializer</a>
+      
         
-          <a class='nav-link ' href='/canary/api/classes/JSONAPISerializer' >JSONAPISerializer</a>
+          <div class='nav-section'>
+            <div class='nav-header'>Data</div>
+            
+              <a class='nav-link ' href='canary/api/classes/FlatSerializer' >FlatSerializer</a>
+            
+              <a class='nav-link ' href='canary/api/classes/JSONAPISerializer' >JSONAPISerializer</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Model' >Model</a>
+            
+              <a class='nav-link ' href='canary/api/classes/ORMAdapter' >ORMAdapter</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Serializer' >Serializer</a>
+            
+          </div>
         
-          <a class='nav-link ' href='/canary/api/classes/Model' >Model</a>
+      
         
-          <a class='nav-link ' href='/canary/api/classes/ORMAdapter' >ORMAdapter</a>
+          <div class='nav-section'>
+            <div class='nav-header'>Metal</div>
+            
+              <a class='nav-link ' href='canary/api/classes/eachPrototype' >eachPrototype</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Instrumentation' >Instrumentation</a>
+            
+              <a class='nav-link ' href='canary/api/classes/mixin' >mixin</a>
+            
+              <a class='nav-link ' href='canary/api/classes/createMixin' >createMixin</a>
+            
+          </div>
         
-          <a class='nav-link ' href='/canary/api/classes/Serializer' >Serializer</a>
+      
         
-          <a class='nav-link ' href='/canary/api/classes/eachPrototype' >eachPrototype</a>
+          <div class='nav-section'>
+            <div class='nav-header'>Runtime</div>
+            
+              <a class='nav-link ' href='canary/api/classes/Action' >Action</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Addon' >Addon</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Application' >Application</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Container' >Container</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Error' >Error</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Logger' >Logger</a>
+            
+              <a class='nav-link active' href='canary/api/classes/Mailer' >Mailer</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Request' >Request</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Response' >Response</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Router' >Router</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Service' >Service</a>
+            
+          </div>
         
-          <a class='nav-link ' href='/canary/api/classes/Instrumentation' >Instrumentation</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/mixin' >mixin</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/createMixin' >createMixin</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/Action' >Action</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/Addon' data-private-class=true>Addon</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/Application' >Application</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/Container' >Container</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/Error' >Error</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/Logger' >Logger</a>
-        
-          <a class='nav-link active' href='/canary/api/classes/Mailer' >Mailer</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/Request' >Request</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/Response' >Response</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/Router' data-private-class=true>Router</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/Service' >Service</a>
-        
-      </div>
+      
 
     </div>
 
     <div class='api-body col-md-9'>
       <div class='class'>
-  
-  <h1 class='class-name'>Mailer</h1>
+  <h1 class='class-name'>
+    
+    Mailer
+  </h1>
   
     <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Fmailer.js#L8'>
       <span class='filename'>Defined in: lib/runtime/mailer.js</span>
@@ -174,21 +170,21 @@ that goes with them.</p>
       <div class='summary-header'>Methods</div>
       
         
-          <a class='summary-link'  href='#mail'>mail</a>
+          <a class='summary-link'  href='canary/api/classes/Mailer/#mail'>mail</a>
         
       
         
       
         
-          <a class='summary-link'  href='#send'>send</a>
+          <a class='summary-link'  href='canary/api/classes/Mailer/#send'>send</a>
         
       
         
-          <a class='summary-link'  href='#sendMail'>sendMail</a>
+          <a class='summary-link'  href='canary/api/classes/Mailer/#sendMail'>sendMail</a>
         
       
         
-          <a class='summary-link'  href='#template'>template</a>
+          <a class='summary-link'  href='canary/api/classes/Mailer/#template'>template</a>
         
       
         
@@ -219,31 +215,85 @@ that goes with them.</p>
 
 <div class='classitems'>
   
-    <div class='item' id='mail' >
-      <h3 class='item-title'>
-        <div class='item-name'>mail</div>
-        
-          <div class='param-paren'>(</div>
-          <div class='params'>
+    
+  
+    
+      <div class='item property' id='name' data-private-member=true>
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            name<span class="type">:String</span>
             
-              <div class='param'>
-                <span class='param-name'>options</span><span class='param-type type'>:Object</span>
-              </div>
+              <div class='private tag'>Private</div>
             
+            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Fmailer.js#L26'>
+              <span class='filename'>Defined in: lib/runtime/mailer.js</span>
+              <span class='line'>Line: 26</span>
+            </a>
           </div>
-          <div class='param-paren'>)</div>
-        
-        
-        
-          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Fmailer.js#L71'>
-            <span class='filename'>Defined in: lib/runtime/mailer.js</span>
-            <span class='line'>Line: 71</span>
-          </a>
-        
-      </h3>
-      <div class='item-body'>
-        
-          <h5 class='item-header'>Description</h5>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'><p>The name of this mailer. Used in lookup (when you invoke the mail service),
+logging (to identify the mailer), and templating (to find the related
+templates).</p>
+</div>
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Fmailer.js#L26'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <div class='item property' id='templateCache' data-private-member=true>
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            templateCache<span class="type">:Object</span>
+            
+              <div class='private tag'>Private</div>
+            
+            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Fmailer.js#L17'>
+              <span class='filename'>Defined in: lib/runtime/mailer.js</span>
+              <span class='line'>Line: 17</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'><p>A cache of mailer templates, keyed by their format.</p>
+</div>
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Fmailer.js#L17'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+  
+    
+      <div class='item method' id='mail' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            mail<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>options</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
+            
+            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Fmailer.js#L71'>
+              <span class='filename'>Defined in: lib/runtime/mailer.js</span>
+              <span class='line'>Line: 71</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
           <div class='item-description'><p>Intermediate method that does some housekeeping before actually calling
 <code class="highlighter-rouge">sendMail()</code> to send the email:</p>
 
@@ -264,90 +314,51 @@ environment behavior remains the same</li>
 <p>You should <strong>not</strong> override this method. You are probably looking for
 <code class="highlighter-rouge">sendMail()</code>.</p>
 </div>
-        
-        
-          <h5 class='item-header'>Parameters</h5>
-          <div class='params'>
-            
-              <div class='param'>
-                <div class='param-name'>options</div><div class='param-type type'>:Object</div>
-                
-              </div>
-            
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>options</div><div class='param-type type'>:Object</div>
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <div class='return'>
+              <div class='return-type type'>Promise</div>
+              
+            </div>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Fmailer.js#L71'>
+              Improve this documentation
+            </a>
           </div>
-        
-        
-          <h5 class='item-header'>Returns:</h5>
-          <div class='return'>
-            <div class='return-type type'>Promise</div>
-            
-          </div>
-        
-        <div class='improve'>
-          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Fmailer.js#L71'>
-            Improve this documentation
-          </a>
         </div>
       </div>
-    </div>
+    
   
-    <div class='item' id='name' data-private-member=true>
-      <h3 class='item-title'>
-        <div class='item-name'>name</div>
-        
-        
-          <div class='private tag'>Private</div>
-        
-        
-          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Fmailer.js#L26'>
-            <span class='filename'>Defined in: lib/runtime/mailer.js</span>
-            <span class='line'>Line: 26</span>
-          </a>
-        
-      </h3>
-      <div class='item-body'>
-        
-          <h5 class='item-header'>Description</h5>
-          <div class='item-description'><p>The name of this mailer. Used in lookup (when you invoke the mail service),
-logging (to identify the mailer), and templating (to find the related
-templates).</p>
-</div>
-        
-        
-        
-        <div class='improve'>
-          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Fmailer.js#L26'>
-            Improve this documentation
-          </a>
-        </div>
-      </div>
-    </div>
+    
   
-    <div class='item' id='send' >
-      <h3 class='item-title'>
-        <div class='item-name'>send</div>
-        
-          <div class='param-paren'>(</div>
-          <div class='params'>
+    
+      <div class='item method' id='send' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            send<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>options</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
             
-              <div class='param'>
-                <span class='param-name'>options</span><span class='param-type type'>:Object</span>
-              </div>
-            
+            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Fmailer.js#L42'>
+              <span class='filename'>Defined in: lib/runtime/mailer.js</span>
+              <span class='line'>Line: 42</span>
+            </a>
           </div>
-          <div class='param-paren'>)</div>
-        
-        
-        
-          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Fmailer.js#L42'>
-            <span class='filename'>Defined in: lib/runtime/mailer.js</span>
-            <span class='line'>Line: 42</span>
-          </a>
-        
-      </h3>
-      <div class='item-body'>
-        
-          <h5 class='item-header'>Description</h5>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
           <div class='item-description'><p>This is the meat of any Mailer class. The <code class="highlighter-rouge">.send()</code> method is invoked
 whenever the mailer is invoked, and is tasked with building and sending
 whatever emails are necessary.</p>
@@ -362,117 +373,95 @@ that logic here, it allows you to send this email from within an action,
 from a background job, or somewhere else, and keep all that lookup logic
 in one location.</p>
 </div>
-        
-        
-          <h5 class='item-header'>Parameters</h5>
-          <div class='params'>
-            
-              <div class='param'>
-                <div class='param-name'>options</div><div class='param-type type'>:Object</div>
-                
-              </div>
-            
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>options</div><div class='param-type type'>:Object</div>
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <div class='return'>
+              <div class='return-type type'>Promise</div>
+              
+            </div>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Fmailer.js#L42'>
+              Improve this documentation
+            </a>
           </div>
-        
-        
-          <h5 class='item-header'>Returns:</h5>
-          <div class='return'>
-            <div class='return-type type'>Promise</div>
-            
-          </div>
-        
-        <div class='improve'>
-          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Fmailer.js#L42'>
-            Improve this documentation
-          </a>
         </div>
       </div>
-    </div>
+    
   
-    <div class='item' id='sendMail' >
-      <h3 class='item-title'>
-        <div class='item-name'>sendMail</div>
-        
-          <div class='param-paren'>(</div>
-          <div class='params'>
+    
+      <div class='item method' id='sendMail' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            sendMail<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>options</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
             
-              <div class='param'>
-                <span class='param-name'>options</span><span class='param-type type'>:Object</span>
-              </div>
-            
+            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Fmailer.js#L105'>
+              <span class='filename'>Defined in: lib/runtime/mailer.js</span>
+              <span class='line'>Line: 105</span>
+            </a>
           </div>
-          <div class='param-paren'>)</div>
-        
-        
-        
-          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Fmailer.js#L105'>
-            <span class='filename'>Defined in: lib/runtime/mailer.js</span>
-            <span class='line'>Line: 105</span>
-          </a>
-        
-      </h3>
-      <div class='item-body'>
-        
-          <h5 class='item-header'>Description</h5>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
           <div class='item-description'><p>Actually send an email. A simple wrapper over nodemailer’s <code class="highlighter-rouge">.sendMail()</code>
 method. See nodemailer docs for details.</p>
 </div>
-        
-        
-          <h5 class='item-header'>Parameters</h5>
-          <div class='params'>
-            
-              <div class='param'>
-                <div class='param-name'>options</div><div class='param-type type'>:Object</div>
-                
-              </div>
-            
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>options</div><div class='param-type type'>:Object</div>
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <div class='return'>
+              <div class='return-type type'>Promise</div>
+              
+            </div>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Fmailer.js#L105'>
+              Improve this documentation
+            </a>
           </div>
-        
-        
-          <h5 class='item-header'>Returns:</h5>
-          <div class='return'>
-            <div class='return-type type'>Promise</div>
-            
-          </div>
-        
-        <div class='improve'>
-          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Fmailer.js#L105'>
-            Improve this documentation
-          </a>
         </div>
       </div>
-    </div>
+    
   
-    <div class='item' id='template' >
-      <h3 class='item-title'>
-        <div class='item-name'>template</div>
-        
-          <div class='param-paren'>(</div>
-          <div class='params'>
+    
+      <div class='item method' id='template' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            template<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>format</span><span class='param-type type'>:String</span></span><span class='param'><span class='param-name'>data</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
             
-              <div class='param'>
-                <span class='param-name'>format</span><span class='param-type type'>:String</span>
-              </div>
-            
-              <div class='param'>
-                <span class='param-name'>data</span><span class='param-type type'>:Object</span>
-              </div>
-            
+            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Fmailer.js#L126'>
+              <span class='filename'>Defined in: lib/runtime/mailer.js</span>
+              <span class='line'>Line: 126</span>
+            </a>
           </div>
-          <div class='param-paren'>)</div>
-        
-        
-        
-          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Fmailer.js#L126'>
-            <span class='filename'>Defined in: lib/runtime/mailer.js</span>
-            <span class='line'>Line: 126</span>
-          </a>
-        
-      </h3>
-      <div class='item-body'>
-        
-          <h5 class='item-header'>Description</h5>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
           <div class='item-description'><p>Lookup the template for this email, in the given format, and return the
 result of applying the given data to that template.</p>
 
@@ -485,76 +474,50 @@ as the mailer file (i.e. <code class="highlighter-rouge">app/mailers/welcome.js<
 <p>You can override this method to provide your own lookup semantics or
 templating engine.</p>
 </div>
-        
-        
-          <h5 class='item-header'>Parameters</h5>
-          <div class='params'>
-            
-              <div class='param'>
-                <div class='param-name'>format</div><div class='param-type type'>:String</div>
-                
-                  <div class='param-description'><p>the template format to lookup (‘html’ or ‘text’)</p>
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>format</div><div class='param-type type'>:String</div>
+                  
+                    <div class='param-description'><p>the template format to lookup (‘html’ or ‘text’)</p>
 </div>
-                
-              </div>
-            
-              <div class='param'>
-                <div class='param-name'>data</div><div class='param-type type'>:Object</div>
-                
-                  <div class='param-description'><p>the data to populate the template with</p>
+                  
+                </div>
+              
+                <div class='param'>
+                  <div class='param-name'>data</div><div class='param-type type'>:Object</div>
+                  
+                    <div class='param-description'><p>the data to populate the template with</p>
 </div>
-                
-              </div>
-            
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <div class='return'>
+              <div class='return-type type'>String</div>
+              
+                <div class='return-description'><p>the templated result</p>
+</div>
+              
+            </div>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Fmailer.js#L126'>
+              Improve this documentation
+            </a>
           </div>
-        
-        
-          <h5 class='item-header'>Returns:</h5>
-          <div class='return'>
-            <div class='return-type type'>String</div>
-            
-              <div class='return-description'><p>the templated result</p>
-</div>
-            
-          </div>
-        
-        <div class='improve'>
-          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Fmailer.js#L126'>
-            Improve this documentation
-          </a>
         </div>
       </div>
-    </div>
+    
   
-    <div class='item' id='templateCache' data-private-member=true>
-      <h3 class='item-title'>
-        <div class='item-name'>templateCache</div>
-        
-        
-          <div class='private tag'>Private</div>
-        
-        
-          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Fmailer.js#L17'>
-            <span class='filename'>Defined in: lib/runtime/mailer.js</span>
-            <span class='line'>Line: 17</span>
-          </a>
-        
-      </h3>
-      <div class='item-body'>
-        
-          <h5 class='item-header'>Description</h5>
-          <div class='item-description'><p>A cache of mailer templates, keyed by their format.</p>
-</div>
-        
-        
-        
-        <div class='improve'>
-          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Fmailer.js#L17'>
-            Improve this documentation
-          </a>
-        </div>
-      </div>
-    </div>
+    
   
 </div>
 
@@ -585,9 +548,9 @@ templating engine.</p>
     var $privateClassToggle = $('#toggle-private-classes');
     $privateClassToggle.on('change', function() {
       if ($privateClassToggle.is(':checked')) {
-        $('[data-private-class]').css('display', 'block');
+        $('.api-nav [data-private-class]').css('display', 'block');
       } else {
-        $('[data-private-class]').css('display', 'none');
+        $('.api-nav [data-private-class]').css('display', 'none');
       }
     });
     
@@ -595,7 +558,10 @@ templating engine.</p>
 </script>
 
 <footer class="footer">
-
+  <div class='container'>
+    Made with <img src='images/fox-and-beard.svg' class='fox-and-beard'> at
+    <a href='http://foxandbeard.co' target='_blank'>Fox and Beard</a>
+  </div>
 </footer>
 
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

@@ -4,41 +4,32 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/denali/">
 
   <title>Denali</title>
   <meta name="description" content="">
 
-  <link href='https://fonts.googleapis.com/css?family=Inconsolata|Lato:400,700|Open+Sans:400,400italic,700|Montserrat+Alternates:700' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="denali/css/main.css">
-  <link rel="canonical" href="http://denali.github.com/denalidenali/canary/api/classes/Error/">
+  <link href='//fonts.googleapis.com/css?family=Inconsolata|Bitter:400,700|Open+Sans:300,400,400italic,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="canonical" href="https://davewasmer.github.com/denali/canary/api/classes/Error/">
 </head>
 
   <body>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-2.2.2.min.js"><\/script>')</script>
-    <nav class="navbar navbar-full navbar-dark">
+    <nav class="navbar">
   <div class='container'>
     <a href='/' class='navbar-brand'>
-      <img class='logo-light' src='/images/logo.png' alt='Denali'>
-      <span class='project-name'>denali</span>
+      <img class='logo-light' src='images/logo.svg' alt='Denali'>
+      <span class='project-name'>Denali</span>
     </a>
 
-    <div class='nav navbar-nav pull-xs-right'>
-      <li class='nav-item'>
-        <a class='nav-link' href='/canary/guides/quickstart'>Quickstart</a>
-      </li>
-      <li class='nav-item'>
-        <a class='nav-link' href='/canary/guides/introduction'>Guides</a>
-      </li>
-      <li class='nav-item'>
-        <a class='nav-link' href='/canary/api'>API</a>
-      </li>
-      <li class='nav-item'>
-        <a class='nav-link' href='https://github.com/davewasmer/denali' target='_blank'>Github</a>
-      </li>
-      <li class='nav-item'>
-        <a class='nav-link' href='https://github.com/davewasmer/denali/issues' target='_blank'>Issues</a>
-      </li>
+    <div class="navbar-nav">
+      <a class='nav-link' href='canary/guides/quickstart'>Quickstart</a>
+      <a class='nav-link' href='canary/guides/introduction'>Guides</a>
+      <a class='nav-link' href='canary/api'>API</a>
+      <a class='nav-link' href='https://github.com/davewasmer/denali' target='_blank'>Github</a>
+      <a class='nav-link' href='https://github.com/davewasmer/denali/issues' target='_blank'>Issues</a>
     </div>
   </div>
 </nav>
@@ -49,7 +40,7 @@
 
       <div class='nav-section'>
   <div class='nav-header'>Version</div>
-  <select id='versions'>
+  <select class='versions-select' id='versions'>
     
       <option value='canary' selected='selected'>canary</option>
     
@@ -57,90 +48,95 @@
 </div>
 
 
-      <div class='nav-section'>
-        <div class='nav-header'>Modules</div>
-        
-          
-        
-          
-            <a class='nav-link ' href='/canary/api/modules/cli'>Cli</a>
-          
-        
-          
-            <a class='nav-link ' href='/canary/api/modules/data'>Data</a>
-          
-        
-          
-            <a class='nav-link ' href='/canary/api/modules/metal'>Metal</a>
-          
-        
-          
-            <a class='nav-link ' href='/canary/api/modules/runtime'>Runtime</a>
-          
-        
-      </div>
+      <label class='private-classes-toggle'>
+        <input type='checkbox' id='toggle-private-classes'>
+        Include Private
+      </label>
 
-      <div class='nav-section'>
-        <div class='nav-header'>
-          Classes
-          <label class='private-classes-toggle'>
-            <input type='checkbox' id='toggle-private-classes'>
-            Include Private
-          </label>
-        </div>
+      
         
-          <a class='nav-link ' href='/canary/api/classes/Blueprint' data-private-class=true>Blueprint</a>
+      
         
-          <a class='nav-link ' href='/canary/api/classes/Command' data-private-class=true>Command</a>
+          <div class='nav-section'>
+            <div class='nav-header'>Cli</div>
+            
+              <a class='nav-link ' href='canary/api/classes/Blueprint' >Blueprint</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Command' >Command</a>
+            
+          </div>
         
-          <a class='nav-link ' href='/canary/api/classes/FlatSerializer' >FlatSerializer</a>
+      
         
-          <a class='nav-link ' href='/canary/api/classes/JSONAPISerializer' >JSONAPISerializer</a>
+          <div class='nav-section'>
+            <div class='nav-header'>Data</div>
+            
+              <a class='nav-link ' href='canary/api/classes/FlatSerializer' >FlatSerializer</a>
+            
+              <a class='nav-link ' href='canary/api/classes/JSONAPISerializer' >JSONAPISerializer</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Model' >Model</a>
+            
+              <a class='nav-link ' href='canary/api/classes/ORMAdapter' >ORMAdapter</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Serializer' >Serializer</a>
+            
+          </div>
         
-          <a class='nav-link ' href='/canary/api/classes/Model' >Model</a>
+      
         
-          <a class='nav-link ' href='/canary/api/classes/ORMAdapter' >ORMAdapter</a>
+          <div class='nav-section'>
+            <div class='nav-header'>Metal</div>
+            
+              <a class='nav-link ' href='canary/api/classes/eachPrototype' >eachPrototype</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Instrumentation' >Instrumentation</a>
+            
+              <a class='nav-link ' href='canary/api/classes/mixin' >mixin</a>
+            
+              <a class='nav-link ' href='canary/api/classes/createMixin' >createMixin</a>
+            
+          </div>
         
-          <a class='nav-link ' href='/canary/api/classes/Serializer' >Serializer</a>
+      
         
-          <a class='nav-link ' href='/canary/api/classes/eachPrototype' >eachPrototype</a>
+          <div class='nav-section'>
+            <div class='nav-header'>Runtime</div>
+            
+              <a class='nav-link ' href='canary/api/classes/Action' >Action</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Addon' >Addon</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Application' >Application</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Container' >Container</a>
+            
+              <a class='nav-link active' href='canary/api/classes/Error' >Error</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Logger' >Logger</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Mailer' >Mailer</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Request' >Request</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Response' >Response</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Router' >Router</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Service' >Service</a>
+            
+          </div>
         
-          <a class='nav-link ' href='/canary/api/classes/Instrumentation' >Instrumentation</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/mixin' >mixin</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/createMixin' >createMixin</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/Action' >Action</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/Addon' data-private-class=true>Addon</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/Application' >Application</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/Container' >Container</a>
-        
-          <a class='nav-link active' href='/canary/api/classes/Error' >Error</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/Logger' >Logger</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/Mailer' >Mailer</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/Request' >Request</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/Response' >Response</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/Router' data-private-class=true>Router</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/Service' >Service</a>
-        
-      </div>
+      
 
     </div>
 
     <div class='api-body col-md-9'>
       <div class='class'>
-  
-  <h1 class='class-name'>Error</h1>
+  <h1 class='class-name'>
+    
+    Error
+  </h1>
   
     <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Ferrors.js#L7'>
       <span class='filename'>Defined in: lib/runtime/errors.js</span>
@@ -183,6 +179,7 @@ documentation</a> for how to use it.</p>
 
 <div class='classitems'>
   
+  
 </div>
 
 <script>
@@ -212,9 +209,9 @@ documentation</a> for how to use it.</p>
     var $privateClassToggle = $('#toggle-private-classes');
     $privateClassToggle.on('change', function() {
       if ($privateClassToggle.is(':checked')) {
-        $('[data-private-class]').css('display', 'block');
+        $('.api-nav [data-private-class]').css('display', 'block');
       } else {
-        $('[data-private-class]').css('display', 'none');
+        $('.api-nav [data-private-class]').css('display', 'none');
       }
     });
     
@@ -222,7 +219,10 @@ documentation</a> for how to use it.</p>
 </script>
 
 <footer class="footer">
-
+  <div class='container'>
+    Made with <img src='images/fox-and-beard.svg' class='fox-and-beard'> at
+    <a href='http://foxandbeard.co' target='_blank'>Fox and Beard</a>
+  </div>
 </footer>
 
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

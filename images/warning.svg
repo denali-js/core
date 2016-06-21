@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="47px" height="43px" viewBox="0 0 47 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+    <title>warning</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M45.5196973,34.1993378 C47.9623034,38.5227297 45.9186979,42.0275313 40.9479809,42.0275313 L6.26689733,42.0275313 C1.299402,42.0275313 -0.748144318,38.5240026 1.69518088,34.1993378 L19.1847096,3.24302125 C21.6273157,-1.08037062 25.5868434,-1.08164349 28.0301686,3.24302125 L45.5196973,34.1993378 Z" id="path-1"></path>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="45.8870044" height="42.0275313" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+    </defs>
+    <g id="Page-4" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="warning">
+            <use id="Triangle-1-Copy-5" stroke="#444444" mask="url(#mask-2)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="#FFFA89" xlink:href="#path-1"></use>
+            <path d="M25.6830589,27.9768453 L21.8158714,27.9768453 L21.2182152,16.8909078 L26.2807152,16.8909078 L25.6830589,27.9768453 Z M21.2650902,32.0784078 C21.2650902,31.3674668 21.4760256,30.8147379 21.8979027,30.4202047 C22.3197798,30.0256715 22.9330549,29.8284078 23.7377464,29.8284078 C24.5346254,29.8284078 25.138135,30.0256715 25.5482933,30.4202047 C25.9584516,30.8147379 26.1635277,31.3674668 26.1635277,32.0784078 C26.1635277,32.7815364 25.9506392,33.330359 25.5248558,33.7248922 C25.0990724,34.1194254 24.5033752,34.3166891 23.7377464,34.3166891 C22.964305,34.3166891 22.3588424,34.1194254 21.9213402,33.7248922 C21.483838,33.330359 21.2650902,32.7815364 21.2650902,32.0784078 L21.2650902,32.0784078 Z" id="!" fill="#444444"></path>
+        </g>
+    </g>
+</svg>

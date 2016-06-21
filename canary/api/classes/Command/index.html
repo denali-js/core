@@ -4,41 +4,32 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/denali/">
 
   <title>Denali</title>
   <meta name="description" content="">
 
-  <link href='https://fonts.googleapis.com/css?family=Inconsolata|Lato:400,700|Open+Sans:400,400italic,700|Montserrat+Alternates:700' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="denali/css/main.css">
-  <link rel="canonical" href="http://denali.github.com/denalidenali/canary/api/classes/Command/">
+  <link href='//fonts.googleapis.com/css?family=Inconsolata|Bitter:400,700|Open+Sans:300,400,400italic,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="canonical" href="https://davewasmer.github.com/denali/canary/api/classes/Command/">
 </head>
 
   <body>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-2.2.2.min.js"><\/script>')</script>
-    <nav class="navbar navbar-full navbar-dark">
+    <nav class="navbar">
   <div class='container'>
     <a href='/' class='navbar-brand'>
-      <img class='logo-light' src='/images/logo.png' alt='Denali'>
-      <span class='project-name'>denali</span>
+      <img class='logo-light' src='images/logo.svg' alt='Denali'>
+      <span class='project-name'>Denali</span>
     </a>
 
-    <div class='nav navbar-nav pull-xs-right'>
-      <li class='nav-item'>
-        <a class='nav-link' href='/canary/guides/quickstart'>Quickstart</a>
-      </li>
-      <li class='nav-item'>
-        <a class='nav-link' href='/canary/guides/introduction'>Guides</a>
-      </li>
-      <li class='nav-item'>
-        <a class='nav-link' href='/canary/api'>API</a>
-      </li>
-      <li class='nav-item'>
-        <a class='nav-link' href='https://github.com/davewasmer/denali' target='_blank'>Github</a>
-      </li>
-      <li class='nav-item'>
-        <a class='nav-link' href='https://github.com/davewasmer/denali/issues' target='_blank'>Issues</a>
-      </li>
+    <div class="navbar-nav">
+      <a class='nav-link' href='canary/guides/quickstart'>Quickstart</a>
+      <a class='nav-link' href='canary/guides/introduction'>Guides</a>
+      <a class='nav-link' href='canary/api'>API</a>
+      <a class='nav-link' href='https://github.com/davewasmer/denali' target='_blank'>Github</a>
+      <a class='nav-link' href='https://github.com/davewasmer/denali/issues' target='_blank'>Issues</a>
     </div>
   </div>
 </nav>
@@ -49,7 +40,7 @@
 
       <div class='nav-section'>
   <div class='nav-header'>Version</div>
-  <select id='versions'>
+  <select class='versions-select' id='versions'>
     
       <option value='canary' selected='selected'>canary</option>
     
@@ -57,90 +48,97 @@
 </div>
 
 
-      <div class='nav-section'>
-        <div class='nav-header'>Modules</div>
-        
-          
-        
-          
-            <a class='nav-link ' href='/canary/api/modules/cli'>Cli</a>
-          
-        
-          
-            <a class='nav-link ' href='/canary/api/modules/data'>Data</a>
-          
-        
-          
-            <a class='nav-link ' href='/canary/api/modules/metal'>Metal</a>
-          
-        
-          
-            <a class='nav-link ' href='/canary/api/modules/runtime'>Runtime</a>
-          
-        
-      </div>
+      <label class='private-classes-toggle'>
+        <input type='checkbox' id='toggle-private-classes'>
+        Include Private
+      </label>
 
-      <div class='nav-section'>
-        <div class='nav-header'>
-          Classes
-          <label class='private-classes-toggle'>
-            <input type='checkbox' id='toggle-private-classes'>
-            Include Private
-          </label>
-        </div>
+      
         
-          <a class='nav-link ' href='/canary/api/classes/Blueprint' data-private-class=true>Blueprint</a>
+      
         
-          <a class='nav-link active' href='/canary/api/classes/Command' data-private-class=true>Command</a>
+          <div class='nav-section'>
+            <div class='nav-header'>Cli</div>
+            
+              <a class='nav-link ' href='canary/api/classes/Blueprint' >Blueprint</a>
+            
+              <a class='nav-link active' href='canary/api/classes/Command' >Command</a>
+            
+          </div>
         
-          <a class='nav-link ' href='/canary/api/classes/FlatSerializer' >FlatSerializer</a>
+      
         
-          <a class='nav-link ' href='/canary/api/classes/JSONAPISerializer' >JSONAPISerializer</a>
+          <div class='nav-section'>
+            <div class='nav-header'>Data</div>
+            
+              <a class='nav-link ' href='canary/api/classes/FlatSerializer' >FlatSerializer</a>
+            
+              <a class='nav-link ' href='canary/api/classes/JSONAPISerializer' >JSONAPISerializer</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Model' >Model</a>
+            
+              <a class='nav-link ' href='canary/api/classes/ORMAdapter' >ORMAdapter</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Serializer' >Serializer</a>
+            
+          </div>
         
-          <a class='nav-link ' href='/canary/api/classes/Model' >Model</a>
+      
         
-          <a class='nav-link ' href='/canary/api/classes/ORMAdapter' >ORMAdapter</a>
+          <div class='nav-section'>
+            <div class='nav-header'>Metal</div>
+            
+              <a class='nav-link ' href='canary/api/classes/eachPrototype' >eachPrototype</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Instrumentation' >Instrumentation</a>
+            
+              <a class='nav-link ' href='canary/api/classes/mixin' >mixin</a>
+            
+              <a class='nav-link ' href='canary/api/classes/createMixin' >createMixin</a>
+            
+          </div>
         
-          <a class='nav-link ' href='/canary/api/classes/Serializer' >Serializer</a>
+      
         
-          <a class='nav-link ' href='/canary/api/classes/eachPrototype' >eachPrototype</a>
+          <div class='nav-section'>
+            <div class='nav-header'>Runtime</div>
+            
+              <a class='nav-link ' href='canary/api/classes/Action' >Action</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Addon' >Addon</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Application' >Application</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Container' >Container</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Error' >Error</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Logger' >Logger</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Mailer' >Mailer</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Request' >Request</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Response' >Response</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Router' >Router</a>
+            
+              <a class='nav-link ' href='canary/api/classes/Service' >Service</a>
+            
+          </div>
         
-          <a class='nav-link ' href='/canary/api/classes/Instrumentation' >Instrumentation</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/mixin' >mixin</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/createMixin' >createMixin</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/Action' >Action</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/Addon' data-private-class=true>Addon</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/Application' >Application</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/Container' >Container</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/Error' >Error</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/Logger' >Logger</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/Mailer' >Mailer</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/Request' >Request</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/Response' >Response</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/Router' data-private-class=true>Router</a>
-        
-          <a class='nav-link ' href='/canary/api/classes/Service' >Service</a>
-        
-      </div>
+      
 
     </div>
 
     <div class='api-body col-md-9'>
       <div class='class'>
-  
-  <h1 class='class-name'>Command</h1>
+  <h1 class='class-name'>
+    
+      <div class='class-private'>Private</div>
+    
+    Command
+  </h1>
   
     <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fcli%2Flib%2Fcommand.js#L13'>
       <span class='filename'>Defined in: lib/cli/lib/command.js</span>
@@ -179,15 +177,15 @@
         
       
         
-          <a class='summary-link'  href='#run'>run</a>
+          <a class='summary-link'  href='canary/api/classes/Command/#run'>run</a>
         
       
         
-          <a class='summary-link'  href='#startSpinner'>startSpinner</a>
+          <a class='summary-link'  href='canary/api/classes/Command/#startSpinner'>startSpinner</a>
         
       
         
-          <a class='summary-link'  href='#stopSpinner'>stopSpinner</a>
+          <a class='summary-link'  href='canary/api/classes/Command/#stopSpinner'>stopSpinner</a>
         
       
     </div>
@@ -218,80 +216,73 @@
 
 <div class='classitems'>
   
-    <div class='item' id='description' >
-      <h3 class='item-title'>
-        <div class='item-name'>description</div>
-        
-        
-        
-          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fcli%2Flib%2Fcommand.js#L22'>
-            <span class='filename'>Defined in: lib/cli/lib/command.js</span>
-            <span class='line'>Line: 22</span>
-          </a>
-        
-      </h3>
-      <div class='item-body'>
-        
-          <h5 class='item-header'>Description</h5>
+    
+      <div class='item property' id='description' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            description<span class="type">:String</span>
+            
+            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fcli%2Flib%2Fcommand.js#L22'>
+              <span class='filename'>Defined in: lib/cli/lib/command.js</span>
+              <span class='line'>Line: 22</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
           <div class='item-description'><p>Description of what the command does. Displayed when <code class="highlighter-rouge">denali</code> is run
 without arguments.</p>
 </div>
-        
-        
-        
-        <div class='improve'>
-          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fcli%2Flib%2Fcommand.js#L22'>
-            Improve this documentation
-          </a>
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fcli%2Flib%2Fcommand.js#L22'>
+              Improve this documentation
+            </a>
+          </div>
         </div>
       </div>
-    </div>
+    
   
-    <div class='item' id='flags' >
-      <h3 class='item-title'>
-        <div class='item-name'>flags</div>
-        
-        
-        
-          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fcli%2Flib%2Fcommand.js#L52'>
-            <span class='filename'>Defined in: lib/cli/lib/command.js</span>
-            <span class='line'>Line: 52</span>
-          </a>
-        
-      </h3>
-      <div class='item-body'>
-        
-          <h5 class='item-header'>Description</h5>
+    
+      <div class='item property' id='flags' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            flags<span class="type">:Object</span>
+            
+            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fcli%2Flib%2Fcommand.js#L52'>
+              <span class='filename'>Defined in: lib/cli/lib/command.js</span>
+              <span class='line'>Line: 52</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
           <div class='item-description'><p>Configuration for which flags the command accepts. Flags start with <code class="highlighter-rouge">-</code> or
 <code class="highlighter-rouge">--</code>, and can be booleans (i.e. the flag is present or not), strings (i.e.
 <code class="highlighter-rouge">--environment production</code>), or arrays of strings (i.e. <code class="highlighter-rouge">--files foo bar</code>).</p>
 </div>
-        
-        
-        
-        <div class='improve'>
-          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fcli%2Flib%2Fcommand.js#L52'>
-            Improve this documentation
-          </a>
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fcli%2Flib%2Fcommand.js#L52'>
+              Improve this documentation
+            </a>
+          </div>
         </div>
       </div>
-    </div>
+    
   
-    <div class='item' id='params' >
-      <h3 class='item-title'>
-        <div class='item-name'>params</div>
-        
-        
-        
-          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fcli%2Flib%2Fcommand.js#L31'>
-            <span class='filename'>Defined in: lib/cli/lib/command.js</span>
-            <span class='line'>Line: 31</span>
-          </a>
-        
-      </h3>
-      <div class='item-body'>
-        
-          <h5 class='item-header'>Description</h5>
+    
+      <div class='item property' id='params' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            params<span class="type">:Array</span>
+            
+            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fcli%2Flib%2Fcommand.js#L31'>
+              <span class='filename'>Defined in: lib/cli/lib/command.js</span>
+              <span class='line'>Line: 31</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
           <div class='item-description'><p>An array of positional paramters to this command. For example,</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>params: [ 'foo', 'bar' ]
@@ -313,137 +304,152 @@ without arguments.</p>
 </code></pre>
 </div>
 </div>
-        
-        
-        
-        <div class='improve'>
-          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fcli%2Flib%2Fcommand.js#L31'>
-            Improve this documentation
-          </a>
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fcli%2Flib%2Fcommand.js#L31'>
+              Improve this documentation
+            </a>
+          </div>
         </div>
       </div>
-    </div>
+    
   
-    <div class='item' id='run' >
-      <h3 class='item-title'>
-        <div class='item-name'>run</div>
-        
-          <div class='param-paren'>(</div>
-          <div class='params'>
+    
+  
+    
+  
+    
+  
+  
+    
+  
+    
+  
+    
+  
+    
+      <div class='item method' id='run' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            run<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>params</span><span class='param-type type'>:Object</span></span><span class='param'><span class='param-name'>flags</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
             
-              <div class='param'>
-                <span class='param-name'>params</span><span class='param-type type'>:Object</span>
-              </div>
-            
-              <div class='param'>
-                <span class='param-name'>flags</span><span class='param-type type'>:Object</span>
-              </div>
-            
+            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fcli%2Flib%2Fcommand.js#L95'>
+              <span class='filename'>Defined in: lib/cli/lib/command.js</span>
+              <span class='line'>Line: 95</span>
+            </a>
           </div>
-          <div class='param-paren'>)</div>
-        
-        
-        
-          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fcli%2Flib%2Fcommand.js#L95'>
-            <span class='filename'>Defined in: lib/cli/lib/command.js</span>
-            <span class='line'>Line: 95</span>
-          </a>
-        
-      </h3>
-      <div class='item-body'>
-        
-          <h5 class='item-header'>Description</h5>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
           <div class='item-description'><p>Run the command.</p>
 </div>
-        
-        
-          <h5 class='item-header'>Parameters</h5>
-          <div class='params'>
-            
-              <div class='param'>
-                <div class='param-name'>params</div><div class='param-type type'>:Object</div>
-                
-                  <div class='param-description'><p>an object containing the values of any configured
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>params</div><div class='param-type type'>:Object</div>
+                  
+                    <div class='param-description'><p>an object containing the values of any configured
 positional params</p>
 </div>
-                
-              </div>
-            
-              <div class='param'>
-                <div class='param-name'>flags</div><div class='param-type type'>:Object</div>
-                
-                  <div class='param-description'><p>an object containing the values of any configured
+                  
+                </div>
+              
+                <div class='param'>
+                  <div class='param-name'>flags</div><div class='param-type type'>:Object</div>
+                  
+                    <div class='param-description'><p>an object containing the values of any configured
 flags</p>
 </div>
-                
-              </div>
-            
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <p class="no-return">Returns <code>undefined</code></p>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fcli%2Flib%2Fcommand.js#L95'>
+              Improve this documentation
+            </a>
           </div>
-        
-        
-        <div class='improve'>
-          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fcli%2Flib%2Fcommand.js#L95'>
-            Improve this documentation
-          </a>
         </div>
       </div>
-    </div>
+    
   
-    <div class='item' id='startSpinner' >
-      <h3 class='item-title'>
-        <div class='item-name'>startSpinner</div>
-        
-        
-        
-          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fcli%2Flib%2Fcommand.js#L76'>
-            <span class='filename'>Defined in: lib/cli/lib/command.js</span>
-            <span class='line'>Line: 76</span>
-          </a>
-        
-      </h3>
-      <div class='item-body'>
-        
-          <h5 class='item-header'>Description</h5>
+    
+      <div class='item method' id='startSpinner' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            startSpinner<span class='param-paren'>(</span><span class='params'></span><span class='param-paren'>)</span>
+            
+            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fcli%2Flib%2Fcommand.js#L76'>
+              <span class='filename'>Defined in: lib/cli/lib/command.js</span>
+              <span class='line'>Line: 76</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
           <div class='item-description'><p>Show a spinner to indicate activity</p>
 </div>
-        
-        
-        
-        <div class='improve'>
-          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fcli%2Flib%2Fcommand.js#L76'>
-            Improve this documentation
-          </a>
+
+          <div class='item-header'>Parameters</div>
+          
+            <p class="no-params">No parameters</p>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <p class="no-return">Returns <code>undefined</code></p>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fcli%2Flib%2Fcommand.js#L76'>
+              Improve this documentation
+            </a>
+          </div>
         </div>
       </div>
-    </div>
+    
   
-    <div class='item' id='stopSpinner' >
-      <h3 class='item-title'>
-        <div class='item-name'>stopSpinner</div>
-        
-        
-        
-          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fcli%2Flib%2Fcommand.js#L86'>
-            <span class='filename'>Defined in: lib/cli/lib/command.js</span>
-            <span class='line'>Line: 86</span>
-          </a>
-        
-      </h3>
-      <div class='item-body'>
-        
-          <h5 class='item-header'>Description</h5>
+    
+      <div class='item method' id='stopSpinner' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            stopSpinner<span class='param-paren'>(</span><span class='params'></span><span class='param-paren'>)</span>
+            
+            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fcli%2Flib%2Fcommand.js#L86'>
+              <span class='filename'>Defined in: lib/cli/lib/command.js</span>
+              <span class='line'>Line: 86</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
           <div class='item-description'><p>Stop showing the busy spinner</p>
 </div>
-        
-        
-        
-        <div class='improve'>
-          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fcli%2Flib%2Fcommand.js#L86'>
-            Improve this documentation
-          </a>
+
+          <div class='item-header'>Parameters</div>
+          
+            <p class="no-params">No parameters</p>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <p class="no-return">Returns <code>undefined</code></p>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fcli%2Flib%2Fcommand.js#L86'>
+              Improve this documentation
+            </a>
+          </div>
         </div>
       </div>
-    </div>
+    
   
 </div>
 
@@ -474,9 +480,9 @@ flags</p>
     var $privateClassToggle = $('#toggle-private-classes');
     $privateClassToggle.on('change', function() {
       if ($privateClassToggle.is(':checked')) {
-        $('[data-private-class]').css('display', 'block');
+        $('.api-nav [data-private-class]').css('display', 'block');
       } else {
-        $('[data-private-class]').css('display', 'none');
+        $('.api-nav [data-private-class]').css('display', 'none');
       }
     });
     
@@ -486,7 +492,10 @@ flags</p>
 </script>
 
 <footer class="footer">
-
+  <div class='container'>
+    Made with <img src='images/fox-and-beard.svg' class='fox-and-beard'> at
+    <a href='http://foxandbeard.co' target='_blank'>Fox and Beard</a>
+  </div>
 </footer>
 
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
