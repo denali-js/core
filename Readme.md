@@ -18,3 +18,9 @@ $ npm install -g yuidocjs
 ```sh
 $ bundle exec jekyll serve
 ```
+
+## Deploying
+
+```sh
+$ ./deploy.sh
+```
