@@ -1,8 +1,10 @@
 # Denali Documentation
 
-The Denali docs are a Jekyll site. The site files are on the `gh-pages` branch,
+The Denali docs are a Jekyll site. The source files are on the `docs` branch,
 and it leverages the `_plugins/yuidoc.rb` plugin to read the documentation
-source from the various source branches and tags.
+source from the various source branches and tags. The `deploy.sh` script on the
+`docs` branch will build the docs, copy them to this (`gh-pages`) branch, commit
+and push them up.
 
 ## Installation
 
@@ -15,4 +17,10 @@ $ npm install -g yuidocjs
 
 ```sh
 $ bundle exec jekyll serve
+```
+
+## Deploying
+
+```sh
+$ ./deploy.sh
 ```
