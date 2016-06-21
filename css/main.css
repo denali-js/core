@@ -4828,7 +4828,7 @@ a.bg-danger:focus, a.bg-danger:hover {
   position: relative;
   padding: 2rem;
   background-color: #25DFCB;
-  background-image: url(images/hero-bg.png), linear-gradient(40deg, #25dfdf, #7FE5B7);
+  background-image: url(/images/hero-bg.png), linear-gradient(40deg, #25dfdf, #7FE5B7);
   color: white; }
 
 .hero-container {

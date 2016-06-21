@@ -4,14 +4,13 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <base href="http://davewasmer.github.com/denali/">
 
   <title>Denali</title>
   <meta name="description" content="">
 
-  <link href='//fonts.googleapis.com/css?family=Inconsolata|Lato:400,700|Open+Sans:400,400italic,700|Montserrat+Alternates:700' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="canonical" href="http://davewasmer.github.com/denali/canary/api/classes/Container/">
+  <link href='https://fonts.googleapis.com/css?family=Inconsolata|Lato:400,700|Open+Sans:400,400italic,700|Montserrat+Alternates:700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://denali.github.com/denali/canary/api/classes/Container/">
 </head>
 
   <body>
@@ -20,19 +19,19 @@
     <nav class="navbar navbar-full navbar-dark">
   <div class='container'>
     <a href='/' class='navbar-brand'>
-      <img class='logo-light' src='images/logo.png' alt='Denali'>
+      <img class='logo-light' src='/images/logo.png' alt='Denali'>
       <span class='project-name'>denali</span>
     </a>
 
     <div class='nav navbar-nav pull-xs-right'>
       <li class='nav-item'>
-        <a class='nav-link' href='canary/guides/quickstart'>Quickstart</a>
+        <a class='nav-link' href='/canary/guides/quickstart'>Quickstart</a>
       </li>
       <li class='nav-item'>
-        <a class='nav-link' href='canary/guides/introduction'>Guides</a>
+        <a class='nav-link' href='/canary/guides/introduction'>Guides</a>
       </li>
       <li class='nav-item'>
-        <a class='nav-link' href='canary/api'>API</a>
+        <a class='nav-link' href='/canary/api'>API</a>
       </li>
       <li class='nav-item'>
         <a class='nav-link' href='https://github.com/davewasmer/denali' target='_blank'>Github</a>
@@ -64,11 +63,19 @@
           
         
           
-            <a class='nav-link ' href='canary/api/modules/cli'>Cli</a>
+            <a class='nav-link ' href='/canary/api/modules/cli'>Cli</a>
           
         
           
-            <a class='nav-link ' href='canary/api/modules/runtime'>Runtime</a>
+            <a class='nav-link ' href='/canary/api/modules/data'>Data</a>
+          
+        
+          
+            <a class='nav-link ' href='/canary/api/modules/metal'>Metal</a>
+          
+        
+          
+            <a class='nav-link ' href='/canary/api/modules/runtime'>Runtime</a>
           
         
       </div>
@@ -82,23 +89,49 @@
           </label>
         </div>
         
-          <a class='nav-link ' href='canary/api/classes/Blueprint' data-private-class=true>Blueprint</a>
+          <a class='nav-link ' href='/canary/api/classes/Blueprint' data-private-class=true>Blueprint</a>
         
-          <a class='nav-link ' href='canary/api/classes/Command' data-private-class=true>Command</a>
+          <a class='nav-link ' href='/canary/api/classes/Command' data-private-class=true>Command</a>
         
-          <a class='nav-link ' href='canary/api/classes/Serializer' >Serializer</a>
+          <a class='nav-link ' href='/canary/api/classes/FlatSerializer' >FlatSerializer</a>
         
-          <a class='nav-link ' href='canary/api/classes/Action' >Action</a>
+          <a class='nav-link ' href='/canary/api/classes/JSONAPISerializer' >JSONAPISerializer</a>
         
-          <a class='nav-link ' href='canary/api/classes/Addon' data-private-class=true>Addon</a>
+          <a class='nav-link ' href='/canary/api/classes/Model' >Model</a>
         
-          <a class='nav-link ' href='canary/api/classes/Application' >Application</a>
+          <a class='nav-link ' href='/canary/api/classes/ORMAdapter' >ORMAdapter</a>
         
-          <a class='nav-link active' href='canary/api/classes/Container' >Container</a>
+          <a class='nav-link ' href='/canary/api/classes/Serializer' >Serializer</a>
         
-          <a class='nav-link ' href='canary/api/classes/Error' >Error</a>
+          <a class='nav-link ' href='/canary/api/classes/eachPrototype' >eachPrototype</a>
         
-          <a class='nav-link ' href='canary/api/classes/Service' >Service</a>
+          <a class='nav-link ' href='/canary/api/classes/Instrumentation' >Instrumentation</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/mixin' >mixin</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/createMixin' >createMixin</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Action' >Action</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Addon' data-private-class=true>Addon</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Application' >Application</a>
+        
+          <a class='nav-link active' href='/canary/api/classes/Container' >Container</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Error' >Error</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Logger' >Logger</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Mailer' >Mailer</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Request' >Request</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Response' >Response</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Router' data-private-class=true>Router</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Service' >Service</a>
         
       </div>
 
@@ -122,8 +155,9 @@
 
   
     <div class='class-description'><p>The Container houses all the various classes that makeup a Denali app’s
-runtime. It holds references to the modules themselves, as well as caching
-singleton instances and handling factory methods.</p>
+runtime. It holds references to the modules themselves, as well as managing
+lookup logic (i.e. some types of classes fall back to a generic “application”
+class if a more specific one is not found.</p>
 </div>
   
 
@@ -146,11 +180,33 @@ singleton instances and handling factory methods.</p>
         
       
         
+      
+        
+          <a class='summary-link'  data-private-member=true  href='#availableForType'>availableForType</a>
+        
+      
+        
+      
+        
+      
+        
+          <a class='summary-link'  href='#lookup'>lookup</a>
+        
+      
+        
           <a class='summary-link'  href='#lookup'>lookup</a>
         
       
         
           <a class='summary-link'  href='#lookupModel'>lookupModel</a>
+        
+      
+        
+          <a class='summary-link'  data-private-member=true  href='#lookupWithApplicationFallback'>lookupWithApplicationFallback</a>
+        
+      
+        
+          <a class='summary-link'  href='#moduleNameFor'>moduleNameFor</a>
         
       
         
@@ -164,6 +220,26 @@ singleton instances and handling factory methods.</p>
     </div>
     <div class='summary-section'>
       <div class='summary-header'>Properties</div>
+      
+        
+      
+        
+          <a class='summary-link'  data-private-member=true  href='#_registry'>_registry</a>
+        
+      
+        
+      
+        
+          <a class='summary-link'  data-private-member=true  href='#config'>config</a>
+        
+      
+        
+          <a class='summary-link'  data-private-member=true  href='#logger'>logger</a>
+        
+      
+        
+      
+        
       
         
       
@@ -199,9 +275,9 @@ singleton instances and handling factory methods.</p>
           <div class='private tag'>Private</div>
         
         
-          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Fcontainer.js#L98'>
+          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Fcontainer.js#L154'>
             <span class='filename'>Defined in: lib/runtime/container.js</span>
-            <span class='line'>Line: 98</span>
+            <span class='line'>Line: 154</span>
           </a>
         
       </h3>
@@ -230,7 +306,158 @@ singleton instances and handling factory methods.</p>
           </div>
         
         <div class='improve'>
-          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Fcontainer.js#L98'>
+          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Fcontainer.js#L154'>
+            Improve this documentation
+          </a>
+        </div>
+      </div>
+    </div>
+  
+    <div class='item' id='_registry' data-private-member=true>
+      <h3 class='item-title'>
+        <div class='item-name'>_registry</div>
+        
+        
+          <div class='private tag'>Private</div>
+        
+        
+          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Fcontainer.js#L21'>
+            <span class='filename'>Defined in: lib/runtime/container.js</span>
+            <span class='line'>Line: 21</span>
+          </a>
+        
+      </h3>
+      <div class='item-body'>
+        
+          <h5 class='item-header'>Description</h5>
+          <div class='item-description'><p>The internal cache of available references</p>
+</div>
+        
+        
+        
+        <div class='improve'>
+          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Fcontainer.js#L21'>
+            Improve this documentation
+          </a>
+        </div>
+      </div>
+    </div>
+  
+    <div class='item' id='availableForType' data-private-member=true>
+      <h3 class='item-title'>
+        <div class='item-name'>availableForType</div>
+        
+          <div class='param-paren'>(</div>
+          <div class='params'>
+            
+              <div class='param'>
+                <span class='param-name'>type</span><span class='param-type type'>:String</span>
+              </div>
+            
+          </div>
+          <div class='param-paren'>)</div>
+        
+        
+          <div class='private tag'>Private</div>
+        
+        
+          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Fcontainer.js#L191'>
+            <span class='filename'>Defined in: lib/runtime/container.js</span>
+            <span class='line'>Line: 191</span>
+          </a>
+        
+      </h3>
+      <div class='item-body'>
+        
+          <h5 class='item-header'>Description</h5>
+          <div class='item-description'><p>For a given type, returns the names of all the available modules under that
+type. Primarily used for debugging purposes (i.e. to show available modules
+when a lookup of that type fails).</p>
+</div>
+        
+        
+          <h5 class='item-header'>Parameters</h5>
+          <div class='params'>
+            
+              <div class='param'>
+                <div class='param-name'>type</div><div class='param-type type'>:String</div>
+                
+              </div>
+            
+          </div>
+        
+        
+          <h5 class='item-header'>Returns:</h5>
+          <div class='return'>
+            <div class='return-type type'>Array</div>
+            
+              <div class='return-description'><p>an array of module names</p>
+</div>
+            
+          </div>
+        
+        <div class='improve'>
+          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Fcontainer.js#L191'>
+            Improve this documentation
+          </a>
+        </div>
+      </div>
+    </div>
+  
+    <div class='item' id='config' data-private-member=true>
+      <h3 class='item-title'>
+        <div class='item-name'>config</div>
+        
+        
+          <div class='private tag'>Private</div>
+        
+        
+          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Fcontainer.js#L30'>
+            <span class='filename'>Defined in: lib/runtime/container.js</span>
+            <span class='line'>Line: 30</span>
+          </a>
+        
+      </h3>
+      <div class='item-body'>
+        
+          <h5 class='item-header'>Description</h5>
+          <div class='item-description'><p>A reference to the application config</p>
+</div>
+        
+        
+        
+        <div class='improve'>
+          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Fcontainer.js#L30'>
+            Improve this documentation
+          </a>
+        </div>
+      </div>
+    </div>
+  
+    <div class='item' id='logger' data-private-member=true>
+      <h3 class='item-title'>
+        <div class='item-name'>logger</div>
+        
+        
+          <div class='private tag'>Private</div>
+        
+        
+          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Fcontainer.js#L39'>
+            <span class='filename'>Defined in: lib/runtime/container.js</span>
+            <span class='line'>Line: 39</span>
+          </a>
+        
+      </h3>
+      <div class='item-body'>
+        
+          <h5 class='item-header'>Description</h5>
+          <div class='item-description'><p>A reference to the application logger</p>
+</div>
+        
+        
+        
+        <div class='improve'>
+          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Fcontainer.js#L39'>
             Improve this documentation
           </a>
         </div>
@@ -253,16 +480,17 @@ singleton instances and handling factory methods.</p>
         
         
         
-          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Fcontainer.js#L42'>
+          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Fcontainer.js#L61'>
             <span class='filename'>Defined in: lib/runtime/container.js</span>
-            <span class='line'>Line: 42</span>
+            <span class='line'>Line: 61</span>
           </a>
         
       </h3>
       <div class='item-body'>
         
           <h5 class='item-header'>Description</h5>
-          <div class='item-description'><p>Lookup a value in the container.</p>
+          <div class='item-description'><p>Lookup a value in the container. Uses type specific lookup logic if
+available.</p>
 </div>
         
         
@@ -272,7 +500,8 @@ singleton instances and handling factory methods.</p>
               <div class='param'>
                 <div class='param-name'>name</div><div class='param-type type'>:String</div>
                 
-                  <div class='param-description'><p>the name of the value to lookup, i.e. ‘application’ or ‘adapter:foo’</p>
+                  <div class='param-description'><p>the name of the value to lookup, i.e. ‘application’
+or ‘adapter:foo’</p>
 </div>
                 
               </div>
@@ -287,7 +516,68 @@ singleton instances and handling factory methods.</p>
           </div>
         
         <div class='improve'>
-          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Fcontainer.js#L42'>
+          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Fcontainer.js#L61'>
+            Improve this documentation
+          </a>
+        </div>
+      </div>
+    </div>
+  
+    <div class='item' id='lookup' >
+      <h3 class='item-title'>
+        <div class='item-name'>lookup</div>
+        
+          <div class='param-paren'>(</div>
+          <div class='params'>
+            
+              <div class='param'>
+                <span class='param-name'>name</span><span class='param-type type'>:String</span>
+              </div>
+            
+          </div>
+          <div class='param-paren'>)</div>
+        
+        
+        
+          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Fcontainer.js#L76'>
+            <span class='filename'>Defined in: lib/runtime/container.js</span>
+            <span class='line'>Line: 76</span>
+          </a>
+        
+      </h3>
+      <div class='item-body'>
+        
+          <h5 class='item-header'>Description</h5>
+          <div class='item-description'><p>Lookup all modules of a specific type in the container. Returns an object
+of all the modules keyed by their module path (i.e.
+<code class="highlighter-rouge">role:employees/manager</code> would be found under
+<code class="highlighter-rouge">lookupAll('role')['employees/manager']</code></p>
+</div>
+        
+        
+          <h5 class='item-header'>Parameters</h5>
+          <div class='params'>
+            
+              <div class='param'>
+                <div class='param-name'>name</div><div class='param-type type'>:String</div>
+                
+                  <div class='param-description'><p>the name of the value to lookup, i.e. ‘application’
+or ‘adapter:foo’</p>
+</div>
+                
+              </div>
+            
+          </div>
+        
+        
+          <h5 class='item-header'>Returns:</h5>
+          <div class='return'>
+            <div class='return-type type'>Any</div>
+            
+          </div>
+        
+        <div class='improve'>
+          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Fcontainer.js#L76'>
             Improve this documentation
           </a>
         </div>
@@ -310,9 +600,9 @@ singleton instances and handling factory methods.</p>
         
         
         
-          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Fcontainer.js#L68'>
+          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Fcontainer.js#L96'>
             <span class='filename'>Defined in: lib/runtime/container.js</span>
-            <span class='line'>Line: 68</span>
+            <span class='line'>Line: 96</span>
           </a>
         
       </h3>
@@ -348,7 +638,119 @@ instances leverage via <code class="highlighter-rouge">this.constructor.containe
           </div>
         
         <div class='improve'>
-          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Fcontainer.js#L68'>
+          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Fcontainer.js#L96'>
+            Improve this documentation
+          </a>
+        </div>
+      </div>
+    </div>
+  
+    <div class='item' id='lookupWithApplicationFallback' data-private-member=true>
+      <h3 class='item-title'>
+        <div class='item-name'>lookupWithApplicationFallback</div>
+        
+          <div class='param-paren'>(</div>
+          <div class='params'>
+            
+              <div class='param'>
+                <span class='param-name'>parsedName</span><span class='param-type type'>:Object</span>
+              </div>
+            
+          </div>
+          <div class='param-paren'>)</div>
+        
+        
+          <div class='private tag'>Private</div>
+        
+        
+          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Fcontainer.js#L136'>
+            <span class='filename'>Defined in: lib/runtime/container.js</span>
+            <span class='line'>Line: 136</span>
+          </a>
+        
+      </h3>
+      <div class='item-body'>
+        
+          <h5 class='item-header'>Description</h5>
+          <div class='item-description'><p>Lookup a type specific class, and if that’s not available, fall back to the
+generic “application” class</p>
+</div>
+        
+        
+          <h5 class='item-header'>Parameters</h5>
+          <div class='params'>
+            
+              <div class='param'>
+                <div class='param-name'>parsedName</div><div class='param-type type'>:Object</div>
+                
+              </div>
+            
+          </div>
+        
+        
+          <h5 class='item-header'>Returns:</h5>
+          <div class='return'>
+            <div class='return-type type'>Any</div>
+            
+          </div>
+        
+        <div class='improve'>
+          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Fcontainer.js#L136'>
+            Improve this documentation
+          </a>
+        </div>
+      </div>
+    </div>
+  
+    <div class='item' id='moduleNameFor' >
+      <h3 class='item-title'>
+        <div class='item-name'>moduleNameFor</div>
+        
+          <div class='param-paren'>(</div>
+          <div class='params'>
+            
+              <div class='param'>
+                <span class='param-name'>mod</span><span class='param-type type'>:Object</span>
+              </div>
+            
+          </div>
+          <div class='param-paren'>)</div>
+        
+        
+        
+          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Fcontainer.js#L209'>
+            <span class='filename'>Defined in: lib/runtime/container.js</span>
+            <span class='line'>Line: 209</span>
+          </a>
+        
+      </h3>
+      <div class='item-body'>
+        
+          <h5 class='item-header'>Description</h5>
+          <div class='item-description'><p>Find the module name for the given module object. Essentially the reverse
+of <code class="highlighter-rouge">.lookup()</code></p>
+</div>
+        
+        
+          <h5 class='item-header'>Parameters</h5>
+          <div class='params'>
+            
+              <div class='param'>
+                <div class='param-name'>mod</div><div class='param-type type'>:Object</div>
+                
+              </div>
+            
+          </div>
+        
+        
+          <h5 class='item-header'>Returns:</h5>
+          <div class='return'>
+            <div class='return-type type'>String</div>
+            
+          </div>
+        
+        <div class='improve'>
+          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Fcontainer.js#L209'>
             Improve this documentation
           </a>
         </div>
@@ -373,9 +775,9 @@ instances leverage via <code class="highlighter-rouge">this.constructor.containe
           <div class='private tag'>Private</div>
         
         
-          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Fcontainer.js#L114'>
+          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Fcontainer.js#L170'>
             <span class='filename'>Defined in: lib/runtime/container.js</span>
-            <span class='line'>Line: 114</span>
+            <span class='line'>Line: 170</span>
           </a>
         
       </h3>
@@ -407,7 +809,7 @@ instances leverage via <code class="highlighter-rouge">this.constructor.containe
           </div>
         
         <div class='improve'>
-          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Fcontainer.js#L114'>
+          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Fcontainer.js#L170'>
             Improve this documentation
           </a>
         </div>
@@ -434,9 +836,9 @@ instances leverage via <code class="highlighter-rouge">this.constructor.containe
         
         
         
-          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Fcontainer.js#L30'>
+          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Fcontainer.js#L48'>
             <span class='filename'>Defined in: lib/runtime/container.js</span>
-            <span class='line'>Line: 30</span>
+            <span class='line'>Line: 48</span>
           </a>
         
       </h3>
@@ -453,7 +855,8 @@ instances leverage via <code class="highlighter-rouge">this.constructor.containe
               <div class='param'>
                 <div class='param-name'>name</div><div class='param-type type'>:String</div>
                 
-                  <div class='param-description'><p>name to register under, i.e. ‘application’ or ‘adapter:foo’</p>
+                  <div class='param-description'><p>name to register under, i.e. ‘application’ or
+‘model:foo’</p>
 </div>
                 
               </div>
@@ -470,7 +873,7 @@ instances leverage via <code class="highlighter-rouge">this.constructor.containe
         
         
         <div class='improve'>
-          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Fcontainer.js#L30'>
+          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Fcontainer.js#L48'>
             Improve this documentation
           </a>
         </div>

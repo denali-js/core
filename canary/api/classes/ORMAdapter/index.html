@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Denali</title>
+  <meta name="description" content="">
+
+  <link href='https://fonts.googleapis.com/css?family=Inconsolata|Lato:400,700|Open+Sans:400,400italic,700|Montserrat+Alternates:700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://denali.github.com/denali/canary/api/classes/ORMAdapter/">
+</head>
+
+  <body>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-2.2.2.min.js"><\/script>')</script>
+    <nav class="navbar navbar-full navbar-dark">
+  <div class='container'>
+    <a href='/' class='navbar-brand'>
+      <img class='logo-light' src='/images/logo.png' alt='Denali'>
+      <span class='project-name'>denali</span>
+    </a>
+
+    <div class='nav navbar-nav pull-xs-right'>
+      <li class='nav-item'>
+        <a class='nav-link' href='/canary/guides/quickstart'>Quickstart</a>
+      </li>
+      <li class='nav-item'>
+        <a class='nav-link' href='/canary/guides/introduction'>Guides</a>
+      </li>
+      <li class='nav-item'>
+        <a class='nav-link' href='/canary/api'>API</a>
+      </li>
+      <li class='nav-item'>
+        <a class='nav-link' href='https://github.com/davewasmer/denali' target='_blank'>Github</a>
+      </li>
+      <li class='nav-item'>
+        <a class='nav-link' href='https://github.com/davewasmer/denali/issues' target='_blank'>Issues</a>
+      </li>
+    </div>
+  </div>
+</nav>
+
+<div class='container'>
+  <div class='row'>
+    <div class='api-nav col-md-3'>
+
+      <div class='nav-section'>
+  <div class='nav-header'>Version</div>
+  <select id='versions'>
+    
+      <option value='canary' selected='selected'>canary</option>
+    
+  </select>
+</div>
+
+
+      <div class='nav-section'>
+        <div class='nav-header'>Modules</div>
+        
+          
+        
+          
+            <a class='nav-link ' href='/canary/api/modules/cli'>Cli</a>
+          
+        
+          
+            <a class='nav-link ' href='/canary/api/modules/data'>Data</a>
+          
+        
+          
+            <a class='nav-link ' href='/canary/api/modules/metal'>Metal</a>
+          
+        
+          
+            <a class='nav-link ' href='/canary/api/modules/runtime'>Runtime</a>
+          
+        
+      </div>
+
+      <div class='nav-section'>
+        <div class='nav-header'>
+          Classes
+          <label class='private-classes-toggle'>
+            <input type='checkbox' id='toggle-private-classes'>
+            Include Private
+          </label>
+        </div>
+        
+          <a class='nav-link ' href='/canary/api/classes/Blueprint' data-private-class=true>Blueprint</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Command' data-private-class=true>Command</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/FlatSerializer' >FlatSerializer</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/JSONAPISerializer' >JSONAPISerializer</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Model' >Model</a>
+        
+          <a class='nav-link active' href='/canary/api/classes/ORMAdapter' >ORMAdapter</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Serializer' >Serializer</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/eachPrototype' >eachPrototype</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Instrumentation' >Instrumentation</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/mixin' >mixin</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/createMixin' >createMixin</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Action' >Action</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Addon' data-private-class=true>Addon</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Application' >Application</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Container' >Container</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Error' >Error</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Logger' >Logger</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Mailer' >Mailer</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Request' >Request</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Response' >Response</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Router' data-private-class=true>Router</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Service' >Service</a>
+        
+      </div>
+
+    </div>
+
+    <div class='api-body col-md-9'>
+      <div class='class'>
+  
+  <h1 class='class-name'>Ormadapter</h1>
+  
+    <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Form-adapter.js#L6'>
+      <span class='filename'>Defined in: lib/data/orm-adapter.js</span>
+      <span class='line'>Line: 6</span>
+    </a>
+  
+
+  <div class='class-module'>
+    <strong>Module:</strong>
+    <span class='class-module-name'>denali.data</span>
+  </div>
+
+  
+    <div class='class-description'><p>The ORMAdapter class is responsible for enabling Denali to communicate with
+the ORM of your choice. It does this by boiling down the possible actions
+that a user might before against a Model that would involve persistence into
+a set of basic operations. Your adapter then implements these operations, and
+Denali can build on top of that.</p>
+</div>
+  
+
+  <div class='display-controls'>
+    <label class='toggle'>
+      <input type='checkbox' id='toggle-private-members'>
+      Show Private
+    </label>
+    <label class='toggle'>
+      <input type='checkbox' id='toggle-deprecated-members'>
+      Show Deprecated
+    </label>
+  </div>
+  <div class='summary'>
+    <div class='summary-section'>
+      <div class='summary-header'>Methods</div>
+      
+        
+          <a class='summary-link'  href='#addRelated'>addRelated</a>
+        
+      
+        
+          <a class='summary-link'  href='#define'>define</a>
+        
+      
+        
+          <a class='summary-link'  href='#deleteRecord'>deleteRecord</a>
+        
+      
+        
+          <a class='summary-link'  href='#find'>find</a>
+        
+      
+        
+          <a class='summary-link'  href='#getAttribute'>getAttribute</a>
+        
+      
+        
+          <a class='summary-link'  href='#getRelated'>getRelated</a>
+        
+      
+        
+          <a class='summary-link'  href='#idFor'>idFor</a>
+        
+      
+        
+          <a class='summary-link'  href='#removeRelated'>removeRelated</a>
+        
+      
+        
+          <a class='summary-link'  href='#saveRecord'>saveRecord</a>
+        
+      
+        
+          <a class='summary-link'  href='#setAttribute'>setAttribute</a>
+        
+      
+        
+          <a class='summary-link'  href='#setAttribute'>setAttribute</a>
+        
+      
+        
+          <a class='summary-link'  href='#setRelated'>setRelated</a>
+        
+      
+    </div>
+    <div class='summary-section'>
+      <div class='summary-header'>Properties</div>
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+</div>
+
+<div class='classitems'>
+  
+    <div class='item' id='addRelated' >
+      <h3 class='item-title'>
+        <div class='item-name'>addRelated</div>
+        
+          <div class='param-paren'>(</div>
+          <div class='params'>
+            
+              <div class='param'>
+                <span class='param-name'>record</span><span class='param-type type'>:Object</span>
+              </div>
+            
+              <div class='param'>
+                <span class='param-name'>relationship</span><span class='param-type type'>:String</span>
+              </div>
+            
+              <div class='param'>
+                <span class='param-name'>descriptor</span><span class='param-type type'>:Object</span>
+              </div>
+            
+              <div class='param'>
+                <span class='param-name'>related</span><span class='param-type type'>:Object</span>
+              </div>
+            
+          </div>
+          <div class='param-paren'>)</div>
+        
+        
+        
+          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Form-adapter.js#L143'>
+            <span class='filename'>Defined in: lib/data/orm-adapter.js</span>
+            <span class='line'>Line: 143</span>
+          </a>
+        
+      </h3>
+      <div class='item-body'>
+        
+          <h5 class='item-header'>Description</h5>
+          <div class='item-description'><p>Add a related record to a hasMany relationship.</p>
+</div>
+        
+        
+          <h5 class='item-header'>Parameters</h5>
+          <div class='params'>
+            
+              <div class='param'>
+                <div class='param-name'>record</div><div class='param-type type'>:Object</div>
+                
+              </div>
+            
+              <div class='param'>
+                <div class='param-name'>relationship</div><div class='param-type type'>:String</div>
+                
+                  <div class='param-description'><p>the name of the relationship</p>
+</div>
+                
+              </div>
+            
+              <div class='param'>
+                <div class='param-name'>descriptor</div><div class='param-type type'>:Object</div>
+                
+                  <div class='param-description'><p>the descriptor object for the relationship</p>
+</div>
+                
+              </div>
+            
+              <div class='param'>
+                <div class='param-name'>related</div><div class='param-type type'>:Object</div>
+                
+              </div>
+            
+          </div>
+        
+        
+        <div class='improve'>
+          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Form-adapter.js#L143'>
+            Improve this documentation
+          </a>
+        </div>
+      </div>
+    </div>
+  
+    <div class='item' id='define' >
+      <h3 class='item-title'>
+        <div class='item-name'>define</div>
+        
+          <div class='param-paren'>(</div>
+          <div class='params'>
+            
+              <div class='param'>
+                <span class='param-name'>Model</span><span class='param-type type'>:Model</span>
+              </div>
+            
+          </div>
+          <div class='param-paren'>)</div>
+        
+        
+        
+          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Form-adapter.js#L198'>
+            <span class='filename'>Defined in: lib/data/orm-adapter.js</span>
+            <span class='line'>Line: 198</span>
+          </a>
+        
+      </h3>
+      <div class='item-body'>
+        
+          <h5 class='item-header'>Description</h5>
+          <div class='item-description'><p>Takes a Denali Model class and defines an ORM specific model class, and/or
+any other ORM specific setup that might be required for that Model.</p>
+</div>
+        
+        
+          <h5 class='item-header'>Parameters</h5>
+          <div class='params'>
+            
+              <div class='param'>
+                <div class='param-name'>Model</div><div class='param-type type'>:Model</div>
+                
+                  <div class='param-description'><p>the Denali Model class</p>
+</div>
+                
+              </div>
+            
+          </div>
+        
+        
+          <h5 class='item-header'>Returns:</h5>
+          <div class='return'>
+            <div class='return-type type'>Promise</div>
+            
+              <div class='return-description'><p>resolves once all the ORM specific setup for the given
+Model is complete</p>
+</div>
+            
+          </div>
+        
+        <div class='improve'>
+          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Form-adapter.js#L198'>
+            Improve this documentation
+          </a>
+        </div>
+      </div>
+    </div>
+  
+    <div class='item' id='deleteRecord' >
+      <h3 class='item-title'>
+        <div class='item-name'>deleteRecord</div>
+        
+          <div class='param-paren'>(</div>
+          <div class='params'>
+            
+              <div class='param'>
+                <span class='param-name'>record</span><span class='param-type type'>:Object</span>
+              </div>
+            
+              <div class='param'>
+                <span class='param-name'>options</span><span class='param-type type'>:Object</span>
+              </div>
+            
+          </div>
+          <div class='param-paren'>)</div>
+        
+        
+        
+          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Form-adapter.js#L185'>
+            <span class='filename'>Defined in: lib/data/orm-adapter.js</span>
+            <span class='line'>Line: 185</span>
+          </a>
+        
+      </h3>
+      <div class='item-body'>
+        
+          <h5 class='item-header'>Description</h5>
+          <div class='item-description'><p>Delete the supplied record from the persistent data store.</p>
+</div>
+        
+        
+          <h5 class='item-header'>Parameters</h5>
+          <div class='params'>
+            
+              <div class='param'>
+                <div class='param-name'>record</div><div class='param-type type'>:Object</div>
+                
+              </div>
+            
+              <div class='param'>
+                <div class='param-name'>options</div><div class='param-type type'>:Object</div>
+                
+                  <div class='param-description'><p>ORM specific options</p>
+</div>
+                
+              </div>
+            
+          </div>
+        
+        
+          <h5 class='item-header'>Returns:</h5>
+          <div class='return'>
+            <div class='return-type type'>Promise</div>
+            
+              <div class='return-description'><p>resolves once the delete operation is complete</p>
+</div>
+            
+          </div>
+        
+        <div class='improve'>
+          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Form-adapter.js#L185'>
+            Improve this documentation
+          </a>
+        </div>
+      </div>
+    </div>
+  
+    <div class='item' id='find' >
+      <h3 class='item-title'>
+        <div class='item-name'>find</div>
+        
+          <div class='param-paren'>(</div>
+          <div class='params'>
+            
+              <div class='param'>
+                <span class='param-name'>type</span><span class='param-type type'>:String</span>
+              </div>
+            
+              <div class='param'>
+                <span class='param-name'>query</span><span class='param-type type'>:String|Number|Object|Function</span>
+              </div>
+            
+              <div class='param'>
+                <span class='param-name'>options</span><span class='param-type type'>:Object</span>
+              </div>
+            
+          </div>
+          <div class='param-paren'>)</div>
+        
+        
+        
+          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Form-adapter.js#L18'>
+            <span class='filename'>Defined in: lib/data/orm-adapter.js</span>
+            <span class='line'>Line: 18</span>
+          </a>
+        
+      </h3>
+      <div class='item-body'>
+        
+          <h5 class='item-header'>Description</h5>
+          <div class='item-description'><p>Find a record by ID, basic query, or adapter-specific query.</p>
+
+<p>To find a single record by it’s id, just call:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Post.find(1)
+</code></pre>
+</div>
+
+<p>Denali also allows users to supply simple queries in a universal format
+of an object with properties:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Post.find({ title: 'foo' })
+</code></pre>
+</div>
+
+<p>This allows basic querying regardless of the ORM used. However, for more
+advanced use cases, rather than trying to design a single interface that
+could support all ORMs, Denali simply defers to ORM specific syntax via
+a query function:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Post.find((myQueryBuilder) =&gt; {
+  return myQueryBuilder.foo('bar');
+});
+</code></pre>
+</div>
+
+<p>This approach allows you to provide ultimately flexibility for querying
+(the arguments to the query function are supplied by you and can be ORM
+specific).</p>
+
+<p>The <code class="highlighter-rouge">options</code> argument allows for additional, orthogonal options in case
+your ORM needs it. It’s treated as an opaque, pass through value by Deanli.</p>
+</div>
+        
+        
+          <h5 class='item-header'>Parameters</h5>
+          <div class='params'>
+            
+              <div class='param'>
+                <div class='param-name'>type</div><div class='param-type type'>:String</div>
+                
+                  <div class='param-description'><p>the model type</p>
+</div>
+                
+              </div>
+            
+              <div class='param'>
+                <div class='param-name'>query</div><div class='param-type type'>:String|Number|Object|Function</div>
+                
+                  <div class='param-description'><p>the id of the record to
+lookup, a basic query object, or a query function</p>
+</div>
+                
+              </div>
+            
+              <div class='param'>
+                <div class='param-name'>options</div><div class='param-type type'>:Object</div>
+                
+                  <div class='param-description'><p>user supplied options, unique to your ORM</p>
+</div>
+                
+              </div>
+            
+          </div>
+        
+        
+          <h5 class='item-header'>Returns:</h5>
+          <div class='return'>
+            <div class='return-type type'>Promise</div>
+            
+              <div class='return-description'><p>resolves with the query results. Empty sets should
+resolve to empty arrays (not rejections), or <code class="highlighter-rouge">null</code> if a single record was
+requested by id.</p>
+</div>
+            
+          </div>
+        
+        <div class='improve'>
+          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Form-adapter.js#L18'>
+            Improve this documentation
+          </a>
+        </div>
+      </div>
+    </div>
+  
+    <div class='item' id='getAttribute' >
+      <h3 class='item-title'>
+        <div class='item-name'>getAttribute</div>
+        
+          <div class='param-paren'>(</div>
+          <div class='params'>
+            
+              <div class='param'>
+                <span class='param-name'>record</span><span class='param-type type'>:Object</span>
+              </div>
+            
+              <div class='param'>
+                <span class='param-name'>attribute</span><span class='param-type type'>:String</span>
+              </div>
+            
+          </div>
+          <div class='param-paren'>)</div>
+        
+        
+        
+          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Form-adapter.js#L72'>
+            <span class='filename'>Defined in: lib/data/orm-adapter.js</span>
+            <span class='line'>Line: 72</span>
+          </a>
+        
+      </h3>
+      <div class='item-body'>
+        
+          <h5 class='item-header'>Description</h5>
+          <div class='item-description'><p>Return the value for the given attribute on the given record.</p>
+</div>
+        
+        
+          <h5 class='item-header'>Parameters</h5>
+          <div class='params'>
+            
+              <div class='param'>
+                <div class='param-name'>record</div><div class='param-type type'>:Object</div>
+                
+              </div>
+            
+              <div class='param'>
+                <div class='param-name'>attribute</div><div class='param-type type'>:String</div>
+                
+              </div>
+            
+          </div>
+        
+        
+          <h5 class='item-header'>Returns:</h5>
+          <div class='return'>
+            <div class='return-type type'>Any</div>
+            
+          </div>
+        
+        <div class='improve'>
+          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Form-adapter.js#L72'>
+            Improve this documentation
+          </a>
+        </div>
+      </div>
+    </div>
+  
+    <div class='item' id='getRelated' >
+      <h3 class='item-title'>
+        <div class='item-name'>getRelated</div>
+        
+          <div class='param-paren'>(</div>
+          <div class='params'>
+            
+              <div class='param'>
+                <span class='param-name'>record</span><span class='param-type type'>:Object</span>
+              </div>
+            
+              <div class='param'>
+                <span class='param-name'>relationship</span><span class='param-type type'>:String</span>
+              </div>
+            
+              <div class='param'>
+                <span class='param-name'>descriptor</span><span class='param-type type'>:Object</span>
+              </div>
+            
+          </div>
+          <div class='param-paren'>)</div>
+        
+        
+        
+          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Form-adapter.js#L115'>
+            <span class='filename'>Defined in: lib/data/orm-adapter.js</span>
+            <span class='line'>Line: 115</span>
+          </a>
+        
+      </h3>
+      <div class='item-body'>
+        
+          <h5 class='item-header'>Description</h5>
+          <div class='item-description'><p>Return the related record(s) for the given relationship.</p>
+</div>
+        
+        
+          <h5 class='item-header'>Parameters</h5>
+          <div class='params'>
+            
+              <div class='param'>
+                <div class='param-name'>record</div><div class='param-type type'>:Object</div>
+                
+              </div>
+            
+              <div class='param'>
+                <div class='param-name'>relationship</div><div class='param-type type'>:String</div>
+                
+                  <div class='param-description'><p>the name of the relationship</p>
+</div>
+                
+              </div>
+            
+              <div class='param'>
+                <div class='param-name'>descriptor</div><div class='param-type type'>:Object</div>
+                
+                  <div class='param-description'><p>the descriptor object for the relationship</p>
+</div>
+                
+              </div>
+            
+          </div>
+        
+        
+          <h5 class='item-header'>Returns:</h5>
+          <div class='return'>
+            <div class='return-type type'>Object|Array</div>
+            
+              <div class='return-description'><p>the related record(s)</p>
+</div>
+            
+          </div>
+        
+        <div class='improve'>
+          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Form-adapter.js#L115'>
+            Improve this documentation
+          </a>
+        </div>
+      </div>
+    </div>
+  
+    <div class='item' id='idFor' >
+      <h3 class='item-title'>
+        <div class='item-name'>idFor</div>
+        
+          <div class='param-paren'>(</div>
+          <div class='params'>
+            
+              <div class='param'>
+                <span class='param-name'>record</span><span class='param-type type'>:Object</span>
+              </div>
+            
+          </div>
+          <div class='param-paren'>)</div>
+        
+        
+        
+          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Form-adapter.js#L60'>
+            <span class='filename'>Defined in: lib/data/orm-adapter.js</span>
+            <span class='line'>Line: 60</span>
+          </a>
+        
+      </h3>
+      <div class='item-body'>
+        
+          <h5 class='item-header'>Description</h5>
+          <div class='item-description'><p>Return the id for the given record.</p>
+</div>
+        
+        
+          <h5 class='item-header'>Parameters</h5>
+          <div class='params'>
+            
+              <div class='param'>
+                <div class='param-name'>record</div><div class='param-type type'>:Object</div>
+                
+              </div>
+            
+          </div>
+        
+        
+          <h5 class='item-header'>Returns:</h5>
+          <div class='return'>
+            <div class='return-type type'>String|Number</div>
+            
+          </div>
+        
+        <div class='improve'>
+          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Form-adapter.js#L60'>
+            Improve this documentation
+          </a>
+        </div>
+      </div>
+    </div>
+  
+    <div class='item' id='removeRelated' >
+      <h3 class='item-title'>
+        <div class='item-name'>removeRelated</div>
+        
+          <div class='param-paren'>(</div>
+          <div class='params'>
+            
+              <div class='param'>
+                <span class='param-name'>record</span><span class='param-type type'>:Object</span>
+              </div>
+            
+              <div class='param'>
+                <span class='param-name'>relationship</span><span class='param-type type'>:String</span>
+              </div>
+            
+              <div class='param'>
+                <span class='param-name'>descriptor</span><span class='param-type type'>:Object</span>
+              </div>
+            
+              <div class='param'>
+                <span class='param-name'>related</span><span class='param-type type'>:Object</span>
+              </div>
+            
+          </div>
+          <div class='param-paren'>)</div>
+        
+        
+        
+          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Form-adapter.js#L157'>
+            <span class='filename'>Defined in: lib/data/orm-adapter.js</span>
+            <span class='line'>Line: 157</span>
+          </a>
+        
+      </h3>
+      <div class='item-body'>
+        
+          <h5 class='item-header'>Description</h5>
+          <div class='item-description'><p>Remove a related record from a hasMany relationship.</p>
+</div>
+        
+        
+          <h5 class='item-header'>Parameters</h5>
+          <div class='params'>
+            
+              <div class='param'>
+                <div class='param-name'>record</div><div class='param-type type'>:Object</div>
+                
+              </div>
+            
+              <div class='param'>
+                <div class='param-name'>relationship</div><div class='param-type type'>:String</div>
+                
+                  <div class='param-description'><p>the name of the relationship</p>
+</div>
+                
+              </div>
+            
+              <div class='param'>
+                <div class='param-name'>descriptor</div><div class='param-type type'>:Object</div>
+                
+                  <div class='param-description'><p>the descriptor object for the relationship</p>
+</div>
+                
+              </div>
+            
+              <div class='param'>
+                <div class='param-name'>related</div><div class='param-type type'>:Object</div>
+                
+              </div>
+            
+          </div>
+        
+        
+        <div class='improve'>
+          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Form-adapter.js#L157'>
+            Improve this documentation
+          </a>
+        </div>
+      </div>
+    </div>
+  
+    <div class='item' id='saveRecord' >
+      <h3 class='item-title'>
+        <div class='item-name'>saveRecord</div>
+        
+          <div class='param-paren'>(</div>
+          <div class='params'>
+            
+              <div class='param'>
+                <span class='param-name'>record</span><span class='param-type type'>:Object</span>
+              </div>
+            
+              <div class='param'>
+                <span class='param-name'>options</span><span class='param-type type'>:Object</span>
+              </div>
+            
+          </div>
+          <div class='param-paren'>)</div>
+        
+        
+        
+          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Form-adapter.js#L171'>
+            <span class='filename'>Defined in: lib/data/orm-adapter.js</span>
+            <span class='line'>Line: 171</span>
+          </a>
+        
+      </h3>
+      <div class='item-body'>
+        
+          <h5 class='item-header'>Description</h5>
+          <div class='item-description'><p>Persist the supplied record.</p>
+</div>
+        
+        
+          <h5 class='item-header'>Parameters</h5>
+          <div class='params'>
+            
+              <div class='param'>
+                <div class='param-name'>record</div><div class='param-type type'>:Object</div>
+                
+              </div>
+            
+              <div class='param'>
+                <div class='param-name'>options</div><div class='param-type type'>:Object</div>
+                
+                  <div class='param-description'><p>ORM specific options</p>
+</div>
+                
+              </div>
+            
+          </div>
+        
+        
+          <h5 class='item-header'>Returns:</h5>
+          <div class='return'>
+            <div class='return-type type'>Promise</div>
+            
+              <div class='return-description'><p>resolves with the saved record once the save operation
+is complete</p>
+</div>
+            
+          </div>
+        
+        <div class='improve'>
+          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Form-adapter.js#L171'>
+            Improve this documentation
+          </a>
+        </div>
+      </div>
+    </div>
+  
+    <div class='item' id='setAttribute' >
+      <h3 class='item-title'>
+        <div class='item-name'>setAttribute</div>
+        
+          <div class='param-paren'>(</div>
+          <div class='params'>
+            
+              <div class='param'>
+                <span class='param-name'>record</span><span class='param-type type'>:Object</span>
+              </div>
+            
+              <div class='param'>
+                <span class='param-name'>attribute</span><span class='param-type type'>:String</span>
+              </div>
+            
+              <div class='param'>
+                <span class='param-name'>value</span><span class='param-type type'>:Any</span>
+              </div>
+            
+          </div>
+          <div class='param-paren'>)</div>
+        
+        
+        
+          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Form-adapter.js#L99'>
+            <span class='filename'>Defined in: lib/data/orm-adapter.js</span>
+            <span class='line'>Line: 99</span>
+          </a>
+        
+      </h3>
+      <div class='item-body'>
+        
+          <h5 class='item-header'>Description</h5>
+          <div class='item-description'><p>Delete the value for the given attribute on the given record. The
+semantics of this may behave slightly differently depending on backend -
+SQL databases may NULL out the value, while document stores like Mongo may
+actually delete the key from the document (rather than just nulling it out)</p>
+</div>
+        
+        
+          <h5 class='item-header'>Parameters</h5>
+          <div class='params'>
+            
+              <div class='param'>
+                <div class='param-name'>record</div><div class='param-type type'>:Object</div>
+                
+              </div>
+            
+              <div class='param'>
+                <div class='param-name'>attribute</div><div class='param-type type'>:String</div>
+                
+              </div>
+            
+              <div class='param'>
+                <div class='param-name'>value</div><div class='param-type type'>:Any</div>
+                
+              </div>
+            
+          </div>
+        
+        
+        <div class='improve'>
+          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Form-adapter.js#L99'>
+            Improve this documentation
+          </a>
+        </div>
+      </div>
+    </div>
+  
+    <div class='item' id='setAttribute' >
+      <h3 class='item-title'>
+        <div class='item-name'>setAttribute</div>
+        
+          <div class='param-paren'>(</div>
+          <div class='params'>
+            
+              <div class='param'>
+                <span class='param-name'>record</span><span class='param-type type'>:Object</span>
+              </div>
+            
+              <div class='param'>
+                <span class='param-name'>attribute</span><span class='param-type type'>:String</span>
+              </div>
+            
+              <div class='param'>
+                <span class='param-name'>value</span><span class='param-type type'>:Any</span>
+              </div>
+            
+          </div>
+          <div class='param-paren'>)</div>
+        
+        
+        
+          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Form-adapter.js#L85'>
+            <span class='filename'>Defined in: lib/data/orm-adapter.js</span>
+            <span class='line'>Line: 85</span>
+          </a>
+        
+      </h3>
+      <div class='item-body'>
+        
+          <h5 class='item-header'>Description</h5>
+          <div class='item-description'><p>Set the value for the given attribute on the given record.</p>
+</div>
+        
+        
+          <h5 class='item-header'>Parameters</h5>
+          <div class='params'>
+            
+              <div class='param'>
+                <div class='param-name'>record</div><div class='param-type type'>:Object</div>
+                
+              </div>
+            
+              <div class='param'>
+                <div class='param-name'>attribute</div><div class='param-type type'>:String</div>
+                
+              </div>
+            
+              <div class='param'>
+                <div class='param-name'>value</div><div class='param-type type'>:Any</div>
+                
+              </div>
+            
+          </div>
+        
+        
+          <h5 class='item-header'>Returns:</h5>
+          <div class='return'>
+            <div class='return-type type'>Boolean</div>
+            
+              <div class='return-description'><p>return true if the set was successful, false if not</p>
+</div>
+            
+          </div>
+        
+        <div class='improve'>
+          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Form-adapter.js#L85'>
+            Improve this documentation
+          </a>
+        </div>
+      </div>
+    </div>
+  
+    <div class='item' id='setRelated' >
+      <h3 class='item-title'>
+        <div class='item-name'>setRelated</div>
+        
+          <div class='param-paren'>(</div>
+          <div class='params'>
+            
+              <div class='param'>
+                <span class='param-name'>record</span><span class='param-type type'>:Object</span>
+              </div>
+            
+              <div class='param'>
+                <span class='param-name'>relationship</span><span class='param-type type'>:String</span>
+              </div>
+            
+              <div class='param'>
+                <span class='param-name'>descriptor</span><span class='param-type type'>:Object</span>
+              </div>
+            
+              <div class='param'>
+                <span class='param-name'>related</span><span class='param-type type'>:Object|Array</span>
+              </div>
+            
+          </div>
+          <div class='param-paren'>)</div>
+        
+        
+        
+          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fdata%2Form-adapter.js#L129'>
+            <span class='filename'>Defined in: lib/data/orm-adapter.js</span>
+            <span class='line'>Line: 129</span>
+          </a>
+        
+      </h3>
+      <div class='item-body'>
+        
+          <h5 class='item-header'>Description</h5>
+          <div class='item-description'><p>Set the related record(s) for the given relationship.</p>
+</div>
+        
+        
+          <h5 class='item-header'>Parameters</h5>
+          <div class='params'>
+            
+              <div class='param'>
+                <div class='param-name'>record</div><div class='param-type type'>:Object</div>
+                
+              </div>
+            
+              <div class='param'>
+                <div class='param-name'>relationship</div><div class='param-type type'>:String</div>
+                
+                  <div class='param-description'><p>the name of the relationship</p>
+</div>
+                
+              </div>
+            
+              <div class='param'>
+                <div class='param-name'>descriptor</div><div class='param-type type'>:Object</div>
+                
+                  <div class='param-description'><p>the descriptor object for the relationship</p>
+</div>
+                
+              </div>
+            
+              <div class='param'>
+                <div class='param-name'>related</div><div class='param-type type'>:Object|Array</div>
+                
+              </div>
+            
+          </div>
+        
+        
+        <div class='improve'>
+          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fdata%2Form-adapter.js#L129'>
+            Improve this documentation
+          </a>
+        </div>
+      </div>
+    </div>
+  
+</div>
+
+<script>
+  $(function() {
+    [ 'private', 'deprecated' ].forEach(function(type) {
+      var $toggle = $('#toggle-' + type + '-members');
+      $toggle.on('change', function() {
+        if ($toggle.is(':checked')) {
+          $('[data-' + type + '-member]').css('display', 'block');
+        } else {
+          $('[data-' + type + '-member]').css('display', 'none');
+        }
+      });
+      if ($(window.location.hash).attr('data-' + type + '-member')) {
+        $toggle.click();
+      }
+    });
+  });
+</script>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function() {
+    var $privateClassToggle = $('#toggle-private-classes');
+    $privateClassToggle.on('change', function() {
+      if ($privateClassToggle.is(':checked')) {
+        $('[data-private-class]').css('display', 'block');
+      } else {
+        $('[data-private-class]').css('display', 'none');
+      }
+    });
+    
+  });
+</script>
+
+<footer class="footer">
+
+</footer>
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<script>
+    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+    e.src='//www.google-analytics.com/analytics.js';
+    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+    ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+</script>
+
+
+  </body>
+</html>

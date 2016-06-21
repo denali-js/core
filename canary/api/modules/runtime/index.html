@@ -4,14 +4,13 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <base href="http://davewasmer.github.com/denali/">
 
   <title>Denali</title>
   <meta name="description" content="">
 
-  <link href='//fonts.googleapis.com/css?family=Inconsolata|Lato:400,700|Open+Sans:400,400italic,700|Montserrat+Alternates:700' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="canonical" href="http://davewasmer.github.com/denali/canary/api/modules/runtime/">
+  <link href='https://fonts.googleapis.com/css?family=Inconsolata|Lato:400,700|Open+Sans:400,400italic,700|Montserrat+Alternates:700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://denali.github.com/denali/canary/api/modules/runtime/">
 </head>
 
   <body>
@@ -20,19 +19,19 @@
     <nav class="navbar navbar-full navbar-dark">
   <div class='container'>
     <a href='/' class='navbar-brand'>
-      <img class='logo-light' src='images/logo.png' alt='Denali'>
+      <img class='logo-light' src='/images/logo.png' alt='Denali'>
       <span class='project-name'>denali</span>
     </a>
 
     <div class='nav navbar-nav pull-xs-right'>
       <li class='nav-item'>
-        <a class='nav-link' href='canary/guides/quickstart'>Quickstart</a>
+        <a class='nav-link' href='/canary/guides/quickstart'>Quickstart</a>
       </li>
       <li class='nav-item'>
-        <a class='nav-link' href='canary/guides/introduction'>Guides</a>
+        <a class='nav-link' href='/canary/guides/introduction'>Guides</a>
       </li>
       <li class='nav-item'>
-        <a class='nav-link' href='canary/api'>API</a>
+        <a class='nav-link' href='/canary/api'>API</a>
       </li>
       <li class='nav-item'>
         <a class='nav-link' href='https://github.com/davewasmer/denali' target='_blank'>Github</a>
@@ -64,11 +63,19 @@
           
         
           
-            <a class='nav-link ' href='canary/api/modules/cli'>Cli</a>
+            <a class='nav-link ' href='/canary/api/modules/cli'>Cli</a>
           
         
           
-            <a class='nav-link active' href='canary/api/modules/runtime'>Runtime</a>
+            <a class='nav-link ' href='/canary/api/modules/data'>Data</a>
+          
+        
+          
+            <a class='nav-link ' href='/canary/api/modules/metal'>Metal</a>
+          
+        
+          
+            <a class='nav-link active' href='/canary/api/modules/runtime'>Runtime</a>
           
         
       </div>
@@ -82,23 +89,49 @@
           </label>
         </div>
         
-          <a class='nav-link ' href='canary/api/classes/Blueprint' data-private-class=true>Blueprint</a>
+          <a class='nav-link ' href='/canary/api/classes/Blueprint' data-private-class=true>Blueprint</a>
         
-          <a class='nav-link ' href='canary/api/classes/Command' data-private-class=true>Command</a>
+          <a class='nav-link ' href='/canary/api/classes/Command' data-private-class=true>Command</a>
         
-          <a class='nav-link ' href='canary/api/classes/Serializer' >Serializer</a>
+          <a class='nav-link ' href='/canary/api/classes/FlatSerializer' >FlatSerializer</a>
         
-          <a class='nav-link ' href='canary/api/classes/Action' >Action</a>
+          <a class='nav-link ' href='/canary/api/classes/JSONAPISerializer' >JSONAPISerializer</a>
         
-          <a class='nav-link ' href='canary/api/classes/Addon' data-private-class=true>Addon</a>
+          <a class='nav-link ' href='/canary/api/classes/Model' >Model</a>
         
-          <a class='nav-link ' href='canary/api/classes/Application' >Application</a>
+          <a class='nav-link ' href='/canary/api/classes/ORMAdapter' >ORMAdapter</a>
         
-          <a class='nav-link ' href='canary/api/classes/Container' >Container</a>
+          <a class='nav-link ' href='/canary/api/classes/Serializer' >Serializer</a>
         
-          <a class='nav-link ' href='canary/api/classes/Error' >Error</a>
+          <a class='nav-link ' href='/canary/api/classes/eachPrototype' >eachPrototype</a>
         
-          <a class='nav-link ' href='canary/api/classes/Service' >Service</a>
+          <a class='nav-link ' href='/canary/api/classes/Instrumentation' >Instrumentation</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/mixin' >mixin</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/createMixin' >createMixin</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Action' >Action</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Addon' data-private-class=true>Addon</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Application' >Application</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Container' >Container</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Error' >Error</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Logger' >Logger</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Mailer' >Mailer</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Request' >Request</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Response' >Response</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Router' data-private-class=true>Router</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Service' >Service</a>
         
       </div>
 
@@ -119,76 +152,63 @@ the controller layer in the MVC architecture, taking in incoming requests,
 performing business logic, and handing off to the renderer to send the
 response.</p>
 
-<p>When a request comes in, Denali will invoke the <code class="highlighter-rouge">respond</code> method on the
-matching Action class. This method can directly render a response, or just
-return data (or a promise which resolves with data) to be rendered.</p>
+<p>When a request comes in, Denali will invoke the <code class="highlighter-rouge">respond</code> method (or
+<code class="highlighter-rouge">respondWith__</code> for content negotiated requests) on the
+matching Action class. The return value (or resolved return value) of this
+method is used to render the response.</p>
 
-<h2 id="actions-as-controllers">Actions as controllers</h2>
-
-<p>Actions are probably a bit different than most controllers you might be
-used to. Rather than a single controller class that handles multiple
-different HTTP endpoints, Actions represent just one endpoint (URL + verb).</p>
-
-<p>This might seem like overkill at first, but it enables powerful declarative
-abstractions now that there is a 1:1 relationship between a class and
-endpoint.</p>
-
-<p>Want to validate incoming request bodies? Just define a schema property on
-the action class itself, and a validation filter on the base class, and
-you’ve got easy to understand declarative validation:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="kr">export</span> <span class="k">default</span> <span class="nx">Action</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">RolesFilter</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">validate</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">type</span><span class="p">:</span> <span class="s1">'object'</span><span class="p">,</span>
-    <span class="na">required</span><span class="p">:</span> <span class="p">[</span> <span class="s1">'firstName'</span><span class="p">,</span> <span class="s1">'lastName'</span><span class="p">]</span>
-  <span class="p">},</span>
-  <span class="nx">respond</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// ...</span>
-  <span class="p">}</span>
-<span class="p">});</span>
-</code></pre>
-</div>
-
-<p>Or how about access controls? Just add an <code class="highlighter-rouge">allow</code> array and a roles filter:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="kr">export</span> <span class="k">default</span> <span class="nx">Action</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">RolesFilter</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">allow</span><span class="p">:</span> <span class="p">[</span> <span class="s1">'admins'</span> <span class="p">],</span>
-  <span class="nx">respond</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// ...</span>
-  <span class="p">}</span>
-<span class="p">});</span>
-</code></pre>
-</div>
-
-<p>Filters are supplied via the <code class="highlighter-rouge">before</code> or <code class="highlighter-rouge">after</code> arrays, and they accumulate
-from parent classes.</p>
+<p>Actions also support filters. Simply define a method on your action, and add
+the method name to the <code class="highlighter-rouge">before</code> or <code class="highlighter-rouge">after</code> array. Filters behave similar to
+responders in that they recieve the request params and can return a promise
+which will be waited on before continuing. Filters are inheritable, so child
+classes will run filters added by parent classes.</p>
 </div>
   
 
   <h2 class='module-classes-header'>Classes</h2>
   
     <div class='module-class-link'>
-      <a href='api/canary/classes/Action'>Action</a>
+      <a href='../../classes/Action'>Action</a>
     </div>
   
     <div class='module-class-link'>
-      <a href='api/canary/classes/Addon'>Addon</a>
+      <a href='../../classes/Addon'>Addon</a>
     </div>
   
     <div class='module-class-link'>
-      <a href='api/canary/classes/Application'>Application</a>
+      <a href='../../classes/Application'>Application</a>
     </div>
   
     <div class='module-class-link'>
-      <a href='api/canary/classes/Container'>Container</a>
+      <a href='../../classes/Container'>Container</a>
     </div>
   
     <div class='module-class-link'>
-      <a href='api/canary/classes/Error'>Error</a>
+      <a href='../../classes/Error'>Error</a>
     </div>
   
     <div class='module-class-link'>
-      <a href='api/canary/classes/Service'>Service</a>
+      <a href='../../classes/Logger'>Logger</a>
+    </div>
+  
+    <div class='module-class-link'>
+      <a href='../../classes/Mailer'>Mailer</a>
+    </div>
+  
+    <div class='module-class-link'>
+      <a href='../../classes/Request'>Request</a>
+    </div>
+  
+    <div class='module-class-link'>
+      <a href='../../classes/Response'>Response</a>
+    </div>
+  
+    <div class='module-class-link'>
+      <a href='../../classes/Router'>Router</a>
+    </div>
+  
+    <div class='module-class-link'>
+      <a href='../../classes/Service'>Service</a>
     </div>
   
 </div>

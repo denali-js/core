@@ -4,14 +4,13 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <base href="http://davewasmer.github.com/denali/">
 
   <title>Denali</title>
   <meta name="description" content="">
 
-  <link href='//fonts.googleapis.com/css?family=Inconsolata|Lato:400,700|Open+Sans:400,400italic,700|Montserrat+Alternates:700' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="canonical" href="http://davewasmer.github.com/denali/canary/api/classes/Action/">
+  <link href='https://fonts.googleapis.com/css?family=Inconsolata|Lato:400,700|Open+Sans:400,400italic,700|Montserrat+Alternates:700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://denali.github.com/denali/canary/api/classes/Action/">
 </head>
 
   <body>
@@ -20,19 +19,19 @@
     <nav class="navbar navbar-full navbar-dark">
   <div class='container'>
     <a href='/' class='navbar-brand'>
-      <img class='logo-light' src='images/logo.png' alt='Denali'>
+      <img class='logo-light' src='/images/logo.png' alt='Denali'>
       <span class='project-name'>denali</span>
     </a>
 
     <div class='nav navbar-nav pull-xs-right'>
       <li class='nav-item'>
-        <a class='nav-link' href='canary/guides/quickstart'>Quickstart</a>
+        <a class='nav-link' href='/canary/guides/quickstart'>Quickstart</a>
       </li>
       <li class='nav-item'>
-        <a class='nav-link' href='canary/guides/introduction'>Guides</a>
+        <a class='nav-link' href='/canary/guides/introduction'>Guides</a>
       </li>
       <li class='nav-item'>
-        <a class='nav-link' href='canary/api'>API</a>
+        <a class='nav-link' href='/canary/api'>API</a>
       </li>
       <li class='nav-item'>
         <a class='nav-link' href='https://github.com/davewasmer/denali' target='_blank'>Github</a>
@@ -64,11 +63,19 @@
           
         
           
-            <a class='nav-link ' href='canary/api/modules/cli'>Cli</a>
+            <a class='nav-link ' href='/canary/api/modules/cli'>Cli</a>
           
         
           
-            <a class='nav-link ' href='canary/api/modules/runtime'>Runtime</a>
+            <a class='nav-link ' href='/canary/api/modules/data'>Data</a>
+          
+        
+          
+            <a class='nav-link ' href='/canary/api/modules/metal'>Metal</a>
+          
+        
+          
+            <a class='nav-link ' href='/canary/api/modules/runtime'>Runtime</a>
           
         
       </div>
@@ -82,23 +89,49 @@
           </label>
         </div>
         
-          <a class='nav-link ' href='canary/api/classes/Blueprint' data-private-class=true>Blueprint</a>
+          <a class='nav-link ' href='/canary/api/classes/Blueprint' data-private-class=true>Blueprint</a>
         
-          <a class='nav-link ' href='canary/api/classes/Command' data-private-class=true>Command</a>
+          <a class='nav-link ' href='/canary/api/classes/Command' data-private-class=true>Command</a>
         
-          <a class='nav-link ' href='canary/api/classes/Serializer' >Serializer</a>
+          <a class='nav-link ' href='/canary/api/classes/FlatSerializer' >FlatSerializer</a>
         
-          <a class='nav-link active' href='canary/api/classes/Action' >Action</a>
+          <a class='nav-link ' href='/canary/api/classes/JSONAPISerializer' >JSONAPISerializer</a>
         
-          <a class='nav-link ' href='canary/api/classes/Addon' data-private-class=true>Addon</a>
+          <a class='nav-link ' href='/canary/api/classes/Model' >Model</a>
         
-          <a class='nav-link ' href='canary/api/classes/Application' >Application</a>
+          <a class='nav-link ' href='/canary/api/classes/ORMAdapter' >ORMAdapter</a>
         
-          <a class='nav-link ' href='canary/api/classes/Container' >Container</a>
+          <a class='nav-link ' href='/canary/api/classes/Serializer' >Serializer</a>
         
-          <a class='nav-link ' href='canary/api/classes/Error' >Error</a>
+          <a class='nav-link ' href='/canary/api/classes/eachPrototype' >eachPrototype</a>
         
-          <a class='nav-link ' href='canary/api/classes/Service' >Service</a>
+          <a class='nav-link ' href='/canary/api/classes/Instrumentation' >Instrumentation</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/mixin' >mixin</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/createMixin' >createMixin</a>
+        
+          <a class='nav-link active' href='/canary/api/classes/Action' >Action</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Addon' data-private-class=true>Addon</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Application' >Application</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Container' >Container</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Error' >Error</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Logger' >Logger</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Mailer' >Mailer</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Request' >Request</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Response' >Response</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Router' data-private-class=true>Router</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Service' >Service</a>
         
       </div>
 
@@ -126,49 +159,16 @@ the controller layer in the MVC architecture, taking in incoming requests,
 performing business logic, and handing off to the renderer to send the
 response.</p>
 
-<p>When a request comes in, Denali will invoke the <code class="highlighter-rouge">respond</code> method on the
-matching Action class. This method can directly render a response, or just
-return data (or a promise which resolves with data) to be rendered.</p>
+<p>When a request comes in, Denali will invoke the <code class="highlighter-rouge">respond</code> method (or
+<code class="highlighter-rouge">respondWith__</code> for content negotiated requests) on the
+matching Action class. The return value (or resolved return value) of this
+method is used to render the response.</p>
 
-<h2 id="actions-as-controllers">Actions as controllers</h2>
-
-<p>Actions are probably a bit different than most controllers you might be
-used to. Rather than a single controller class that handles multiple
-different HTTP endpoints, Actions represent just one endpoint (URL + verb).</p>
-
-<p>This might seem like overkill at first, but it enables powerful declarative
-abstractions now that there is a 1:1 relationship between a class and
-endpoint.</p>
-
-<p>Want to validate incoming request bodies? Just define a schema property on
-the action class itself, and a validation filter on the base class, and
-you’ve got easy to understand declarative validation:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="kr">export</span> <span class="k">default</span> <span class="nx">Action</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">RolesFilter</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">validate</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">type</span><span class="p">:</span> <span class="s1">'object'</span><span class="p">,</span>
-    <span class="na">required</span><span class="p">:</span> <span class="p">[</span> <span class="s1">'firstName'</span><span class="p">,</span> <span class="s1">'lastName'</span><span class="p">]</span>
-  <span class="p">},</span>
-  <span class="nx">respond</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// ...</span>
-  <span class="p">}</span>
-<span class="p">});</span>
-</code></pre>
-</div>
-
-<p>Or how about access controls? Just add an <code class="highlighter-rouge">allow</code> array and a roles filter:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="kr">export</span> <span class="k">default</span> <span class="nx">Action</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">RolesFilter</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">allow</span><span class="p">:</span> <span class="p">[</span> <span class="s1">'admins'</span> <span class="p">],</span>
-  <span class="nx">respond</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// ...</span>
-  <span class="p">}</span>
-<span class="p">});</span>
-</code></pre>
-</div>
-
-<p>Filters are supplied via the <code class="highlighter-rouge">before</code> or <code class="highlighter-rouge">after</code> arrays, and they accumulate
-from parent classes.</p>
+<p>Actions also support filters. Simply define a method on your action, and add
+the method name to the <code class="highlighter-rouge">before</code> or <code class="highlighter-rouge">after</code> array. Filters behave similar to
+responders in that they recieve the request params and can return a promise
+which will be waited on before continuing. Filters are inheritable, so child
+classes will run filters added by parent classes.</p>
 </div>
   
 
@@ -187,16 +187,48 @@ from parent classes.</p>
       <div class='summary-header'>Methods</div>
       
         
+          <a class='summary-link'  href='#_buildFilterChains'>_buildFilterChains</a>
+        
       
+        
+          <a class='summary-link'  href='#_invokeFilters'>_invokeFilters</a>
+        
+      
+        
+          <a class='summary-link'  data-private-member=true  href='#_pickBestResponder'>_pickBestResponder</a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <a class='summary-link'  href='#modelFor'>modelFor</a>
+        
+      
+        
+          <a class='summary-link'  data-private-member=true  href='#render'>render</a>
         
       
         
           <a class='summary-link'  data-private-member=true  href='#run'>run</a>
         
       
+        
+          <a class='summary-link'  href='#service'>service</a>
+        
+      
     </div>
     <div class='summary-section'>
       <div class='summary-header'>Properties</div>
+      
+        
+      
+        
+      
+        
       
         
           <a class='summary-link'  href='#after'>after</a>
@@ -207,6 +239,16 @@ from parent classes.</p>
         
       
         
+          <a class='summary-link'  href='#config'>config</a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
       
     </div>
   </div>
@@ -214,34 +256,208 @@ from parent classes.</p>
 
 <div class='classitems'>
   
-    <div class='item' id='after' >
+    <div class='item' id='_buildFilterChains' >
       <h3 class='item-title'>
-        <div class='item-name'>after</div>
+        <div class='item-name'>_buildFilterChains</div>
         
         
         
-          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Faction.js#L94'>
+          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Faction.js#L246'>
             <span class='filename'>Defined in: lib/runtime/action.js</span>
-            <span class='line'>Line: 94</span>
+            <span class='line'>Line: 246</span>
           </a>
         
       </h3>
       <div class='item-body'>
         
           <h5 class='item-header'>Description</h5>
-          <div class='item-description'><p>Invoked after the <code class="highlighter-rouge">respond()</code> method, in the same order the mixins were
-applied. They can be synchronous, or return a promise (which will pause
-the before/respond/after chain until it resolves).</p>
+          <div class='item-description'><p>Walk the prototype chain of this Action instance to find all the <code class="highlighter-rouge">before</code>
+and <code class="highlighter-rouge">after</code> arrays to build the complete filter chains.</p>
 
-<p>If a before filter renders a response, any remaining filters as well as
-the <code class="highlighter-rouge">respond()</code> method are skipped. After filters are still called if the
-<code class="highlighter-rouge">respond()</code> method renders a response though.</p>
+<p>Caches the result on the child Action class to avoid the potentially
+expensive prototype walk on each request.</p>
+
+<p>Throws if it encounters the name of a filter method that doesn’t exist.</p>
+</div>
+        
+        
+        
+          <h5 class='item-header'>Returns:</h5>
+          <div class='return'>
+            <div class='return-type type'>Object</div>
+            
+              <div class='return-description'><p>an object with <code class="highlighter-rouge">beforeChain</code> and <code class="highlighter-rouge">afterChain</code> arrays,
+each containing the filter method names as strings</p>
+</div>
+            
+          </div>
+        
+        <div class='improve'>
+          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Faction.js#L246'>
+            Improve this documentation
+          </a>
+        </div>
+      </div>
+    </div>
+  
+    <div class='item' id='_invokeFilters' >
+      <h3 class='item-title'>
+        <div class='item-name'>_invokeFilters</div>
+        
+          <div class='param-paren'>(</div>
+          <div class='params'>
+            
+              <div class='param'>
+                <span class='param-name'>chain</span><span class='param-type type'>:String[]</span>
+              </div>
+            
+              <div class='param'>
+                <span class='param-name'>params</span><span class='param-type type'>:Object</span>
+              </div>
+            
+              <div class='param'>
+                <span class='param-name'>allowHalt</span><span class='param-type type'>:Boolean</span>
+              </div>
+            
+          </div>
+          <div class='param-paren'>)</div>
+        
+        
+        
+          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Faction.js#L283'>
+            <span class='filename'>Defined in: lib/runtime/action.js</span>
+            <span class='line'>Line: 283</span>
+          </a>
+        
+      </h3>
+      <div class='item-body'>
+        
+          <h5 class='item-header'>Description</h5>
+          <div class='item-description'><p>Invokes the filters in the supplied chain in sequence. If the <code class="highlighter-rouge">allowHalt</code>
+flag is true, then filters which return non-null/undefined values will
+halt the filter chain and their return value will be rendered.</p>
+</div>
+        
+        
+          <h5 class='item-header'>Parameters</h5>
+          <div class='params'>
+            
+              <div class='param'>
+                <div class='param-name'>chain</div><div class='param-type type'>:String[]</div>
+                
+                  <div class='param-description'><p>an array of filter method names to invoke in order</p>
+</div>
+                
+              </div>
+            
+              <div class='param'>
+                <div class='param-name'>params</div><div class='param-type type'>:Object</div>
+                
+                  <div class='param-description'><p>the incoming request params</p>
+</div>
+                
+              </div>
+            
+              <div class='param'>
+                <div class='param-name'>allowHalt</div><div class='param-type type'>:Boolean</div>
+                
+                  <div class='param-description'><p>should return values halt the chain and render?</p>
+</div>
+                
+              </div>
+            
+          </div>
+        
+        
+          <h5 class='item-header'>Returns:</h5>
+          <div class='return'>
+            <div class='return-type type'>Promise</div>
+            
+              <div class='return-description'><p>resolves once the chain is complete, rejects if the
+chain was halted.</p>
+</div>
+            
+          </div>
+        
+        <div class='improve'>
+          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Faction.js#L283'>
+            Improve this documentation
+          </a>
+        </div>
+      </div>
+    </div>
+  
+    <div class='item' id='_pickBestResponder' data-private-member=true>
+      <h3 class='item-title'>
+        <div class='item-name'>_pickBestResponder</div>
+        
+        
+          <div class='private tag'>Private</div>
+        
+        
+          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Faction.js#L210'>
+            <span class='filename'>Defined in: lib/runtime/action.js</span>
+            <span class='line'>Line: 210</span>
+          </a>
+        
+      </h3>
+      <div class='item-body'>
+        
+          <h5 class='item-header'>Description</h5>
+          <div class='item-description'><p>Find the best responder method for the incoming request, given the
+incoming request’s Accept header.</p>
+
+<p>If the Accept header is “Accept: * / *”, then the generic <code class="highlighter-rouge">respond()</code>
+method is selected. Otherwise, attempt to find the best responder method
+based on the mime types.</p>
+</div>
+        
+        
+        
+          <h5 class='item-header'>Returns:</h5>
+          <div class='return'>
+            <div class='return-type type'>Function</div>
+            
+              <div class='return-description'><p>the best match responder method</p>
+</div>
+            
+          </div>
+        
+        <div class='improve'>
+          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Faction.js#L210'>
+            Improve this documentation
+          </a>
+        </div>
+      </div>
+    </div>
+  
+    <div class='item' id='after' >
+      <h3 class='item-title'>
+        <div class='item-name'>after</div>
+        
+        
+        
+          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Faction.js#L66'>
+            <span class='filename'>Defined in: lib/runtime/action.js</span>
+            <span class='line'>Line: 66</span>
+          </a>
+        
+      </h3>
+      <div class='item-body'>
+        
+          <h5 class='item-header'>Description</h5>
+          <div class='item-description'><p>Invoked before the <code class="highlighter-rouge">respond()</code> method. The framework will invoke filters
+from parent classes and mixins in the same order the mixins were
+applied.</p>
+
+<p>Filters can be synchronous, or return a promise (which will pause the
+before/respond/after chain until it resolves).</p>
 </div>
         
         
         
         <div class='improve'>
-          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Faction.js#L94'>
+          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Faction.js#L66'>
             Improve this documentation
           </a>
         </div>
@@ -254,6 +470,44 @@ the <code class="highlighter-rouge">respond()</code> method are skipped. After f
         
         
         
+          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Faction.js#L47'>
+            <span class='filename'>Defined in: lib/runtime/action.js</span>
+            <span class='line'>Line: 47</span>
+          </a>
+        
+      </h3>
+      <div class='item-body'>
+        
+          <h5 class='item-header'>Description</h5>
+          <div class='item-description'><p>Invoked before the <code class="highlighter-rouge">respond()</code> method. The framework will invoke filters
+from parent classes and mixins in the same order the mixins were
+applied.</p>
+
+<p>Filters can be synchronous, or return a promise (which will pause the
+before/respond/after chain until it resolves).</p>
+
+<p>If a before filter returns any value (or returns a promise which resolves
+to any value) other than null or undefined, Denali will attempt to render
+that response and halt further processing of the request (including
+remaining before filters).</p>
+</div>
+        
+        
+        
+        <div class='improve'>
+          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Faction.js#L47'>
+            Improve this documentation
+          </a>
+        </div>
+      </div>
+    </div>
+  
+    <div class='item' id='config' >
+      <h3 class='item-title'>
+        <div class='item-name'>config</div>
+        
+        
+        
           <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Faction.js#L80'>
             <span class='filename'>Defined in: lib/runtime/action.js</span>
             <span class='line'>Line: 80</span>
@@ -263,18 +517,126 @@ the <code class="highlighter-rouge">respond()</code> method are skipped. After f
       <div class='item-body'>
         
           <h5 class='item-header'>Description</h5>
-          <div class='item-description'><p>Invoked before the <code class="highlighter-rouge">respond()</code> method, in the same order the mixins were
-applied. They can be synchronous, or return a promise (which will pause
-the before/respond/after chain until it resolves).</p>
-
-<p>If a before filter renders a response, any remaining filters as well as the
-<code class="highlighter-rouge">respond()</code> method are skipped.</p>
+          <div class='item-description'><p>The application config</p>
 </div>
         
         
         
         <div class='improve'>
           <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Faction.js#L80'>
+            Improve this documentation
+          </a>
+        </div>
+      </div>
+    </div>
+  
+    <div class='item' id='modelFor' >
+      <h3 class='item-title'>
+        <div class='item-name'>modelFor</div>
+        
+          <div class='param-paren'>(</div>
+          <div class='params'>
+            
+              <div class='param'>
+                <span class='param-name'>type</span><span class='param-type type'>:String</span>
+              </div>
+            
+          </div>
+          <div class='param-paren'>)</div>
+        
+        
+        
+          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Faction.js#L95'>
+            <span class='filename'>Defined in: lib/runtime/action.js</span>
+            <span class='line'>Line: 95</span>
+          </a>
+        
+      </h3>
+      <div class='item-body'>
+        
+          <h5 class='item-header'>Description</h5>
+          <div class='item-description'><p>Fetch a model class by it’s type string, i.e. ‘post’ =&gt; PostModel</p>
+</div>
+        
+        
+          <h5 class='item-header'>Parameters</h5>
+          <div class='params'>
+            
+              <div class='param'>
+                <div class='param-name'>type</div><div class='param-type type'>:String</div>
+                
+                  <div class='param-description'><p>the model type string</p>
+</div>
+                
+              </div>
+            
+          </div>
+        
+        
+          <h5 class='item-header'>Returns:</h5>
+          <div class='return'>
+            <div class='return-type type'>Model</div>
+            
+          </div>
+        
+        <div class='improve'>
+          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Faction.js#L95'>
+            Improve this documentation
+          </a>
+        </div>
+      </div>
+    </div>
+  
+    <div class='item' id='render' data-private-member=true>
+      <h3 class='item-title'>
+        <div class='item-name'>render</div>
+        
+          <div class='param-paren'>(</div>
+          <div class='params'>
+            
+              <div class='param'>
+                <span class='param-name'>response</span><span class='param-type type'>:Model|Model[]|Response]</span>
+              </div>
+            
+          </div>
+          <div class='param-paren'>)</div>
+        
+        
+          <div class='private tag'>Private</div>
+        
+        
+          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Faction.js#L117'>
+            <span class='filename'>Defined in: lib/runtime/action.js</span>
+            <span class='line'>Line: 117</span>
+          </a>
+        
+      </h3>
+      <div class='item-body'>
+        
+          <h5 class='item-header'>Description</h5>
+          <div class='item-description'><p>Render some supplied data to the response. Data can be:</p>
+
+<ul>
+  <li>a Model instance</li>
+  <li>an array of Model instances</li>
+  <li>a Denali.Response instance</li>
+</ul>
+</div>
+        
+        
+          <h5 class='item-header'>Parameters</h5>
+          <div class='params'>
+            
+              <div class='param'>
+                <div class='param-name'>response</div><div class='param-type type'>:Model|Model[]|Response]</div>
+                
+              </div>
+            
+          </div>
+        
+        
+        <div class='improve'>
+          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Faction.js#L117'>
             Improve this documentation
           </a>
         </div>
@@ -289,9 +651,9 @@ the before/respond/after chain until it resolves).</p>
           <div class='private tag'>Private</div>
         
         
-          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Faction.js#L157'>
+          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Faction.js#L163'>
             <span class='filename'>Defined in: lib/runtime/action.js</span>
-            <span class='line'>Line: 157</span>
+            <span class='line'>Line: 163</span>
           </a>
         
       </h3>
@@ -319,7 +681,64 @@ i.e. when the action is finished</p>
           </div>
         
         <div class='improve'>
-          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Faction.js#L157'>
+          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Faction.js#L163'>
+            Improve this documentation
+          </a>
+        </div>
+      </div>
+    </div>
+  
+    <div class='item' id='service' >
+      <h3 class='item-title'>
+        <div class='item-name'>service</div>
+        
+          <div class='param-paren'>(</div>
+          <div class='params'>
+            
+              <div class='param'>
+                <span class='param-name'>type</span><span class='param-type type'>:String</span>
+              </div>
+            
+          </div>
+          <div class='param-paren'>)</div>
+        
+        
+        
+          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Faction.js#L106'>
+            <span class='filename'>Defined in: lib/runtime/action.js</span>
+            <span class='line'>Line: 106</span>
+          </a>
+        
+      </h3>
+      <div class='item-body'>
+        
+          <h5 class='item-header'>Description</h5>
+          <div class='item-description'><p>Fetch a service by it’s container name, i.e. ‘email’ =&gt; ‘services/email.js’</p>
+</div>
+        
+        
+          <h5 class='item-header'>Parameters</h5>
+          <div class='params'>
+            
+              <div class='param'>
+                <div class='param-name'>type</div><div class='param-type type'>:String</div>
+                
+                  <div class='param-description'><p>the service name</p>
+</div>
+                
+              </div>
+            
+          </div>
+        
+        
+          <h5 class='item-header'>Returns:</h5>
+          <div class='return'>
+            <div class='return-type type'>Service</div>
+            
+          </div>
+        
+        <div class='improve'>
+          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Faction.js#L106'>
             Improve this documentation
           </a>
         </div>

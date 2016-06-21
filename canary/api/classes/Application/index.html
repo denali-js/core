@@ -4,14 +4,13 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <base href="http://davewasmer.github.com/denali/">
 
   <title>Denali</title>
   <meta name="description" content="">
 
-  <link href='//fonts.googleapis.com/css?family=Inconsolata|Lato:400,700|Open+Sans:400,400italic,700|Montserrat+Alternates:700' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="canonical" href="http://davewasmer.github.com/denali/canary/api/classes/Application/">
+  <link href='https://fonts.googleapis.com/css?family=Inconsolata|Lato:400,700|Open+Sans:400,400italic,700|Montserrat+Alternates:700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://denali.github.com/denali/canary/api/classes/Application/">
 </head>
 
   <body>
@@ -20,19 +19,19 @@
     <nav class="navbar navbar-full navbar-dark">
   <div class='container'>
     <a href='/' class='navbar-brand'>
-      <img class='logo-light' src='images/logo.png' alt='Denali'>
+      <img class='logo-light' src='/images/logo.png' alt='Denali'>
       <span class='project-name'>denali</span>
     </a>
 
     <div class='nav navbar-nav pull-xs-right'>
       <li class='nav-item'>
-        <a class='nav-link' href='canary/guides/quickstart'>Quickstart</a>
+        <a class='nav-link' href='/canary/guides/quickstart'>Quickstart</a>
       </li>
       <li class='nav-item'>
-        <a class='nav-link' href='canary/guides/introduction'>Guides</a>
+        <a class='nav-link' href='/canary/guides/introduction'>Guides</a>
       </li>
       <li class='nav-item'>
-        <a class='nav-link' href='canary/api'>API</a>
+        <a class='nav-link' href='/canary/api'>API</a>
       </li>
       <li class='nav-item'>
         <a class='nav-link' href='https://github.com/davewasmer/denali' target='_blank'>Github</a>
@@ -64,11 +63,19 @@
           
         
           
-            <a class='nav-link ' href='canary/api/modules/cli'>Cli</a>
+            <a class='nav-link ' href='/canary/api/modules/cli'>Cli</a>
           
         
           
-            <a class='nav-link ' href='canary/api/modules/runtime'>Runtime</a>
+            <a class='nav-link ' href='/canary/api/modules/data'>Data</a>
+          
+        
+          
+            <a class='nav-link ' href='/canary/api/modules/metal'>Metal</a>
+          
+        
+          
+            <a class='nav-link ' href='/canary/api/modules/runtime'>Runtime</a>
           
         
       </div>
@@ -82,23 +89,49 @@
           </label>
         </div>
         
-          <a class='nav-link ' href='canary/api/classes/Blueprint' data-private-class=true>Blueprint</a>
+          <a class='nav-link ' href='/canary/api/classes/Blueprint' data-private-class=true>Blueprint</a>
         
-          <a class='nav-link ' href='canary/api/classes/Command' data-private-class=true>Command</a>
+          <a class='nav-link ' href='/canary/api/classes/Command' data-private-class=true>Command</a>
         
-          <a class='nav-link ' href='canary/api/classes/Serializer' >Serializer</a>
+          <a class='nav-link ' href='/canary/api/classes/FlatSerializer' >FlatSerializer</a>
         
-          <a class='nav-link ' href='canary/api/classes/Action' >Action</a>
+          <a class='nav-link ' href='/canary/api/classes/JSONAPISerializer' >JSONAPISerializer</a>
         
-          <a class='nav-link ' href='canary/api/classes/Addon' data-private-class=true>Addon</a>
+          <a class='nav-link ' href='/canary/api/classes/Model' >Model</a>
         
-          <a class='nav-link active' href='canary/api/classes/Application' >Application</a>
+          <a class='nav-link ' href='/canary/api/classes/ORMAdapter' >ORMAdapter</a>
         
-          <a class='nav-link ' href='canary/api/classes/Container' >Container</a>
+          <a class='nav-link ' href='/canary/api/classes/Serializer' >Serializer</a>
         
-          <a class='nav-link ' href='canary/api/classes/Error' >Error</a>
+          <a class='nav-link ' href='/canary/api/classes/eachPrototype' >eachPrototype</a>
         
-          <a class='nav-link ' href='canary/api/classes/Service' >Service</a>
+          <a class='nav-link ' href='/canary/api/classes/Instrumentation' >Instrumentation</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/mixin' >mixin</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/createMixin' >createMixin</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Action' >Action</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Addon' data-private-class=true>Addon</a>
+        
+          <a class='nav-link active' href='/canary/api/classes/Application' >Application</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Container' >Container</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Error' >Error</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Logger' >Logger</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Mailer' >Mailer</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Request' >Request</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Response' >Response</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Router' data-private-class=true>Router</a>
+        
+          <a class='nav-link ' href='/canary/api/classes/Service' >Service</a>
         
       </div>
 
@@ -121,9 +154,8 @@
   </div>
 
   
-    <div class='class-description'><p>Application instances are little more than specialized Addons, designed to
-kick off the loading, mounting, and launching stages of booting up. They also
-manage the handoff from the express routing layer to the app’s actions.</p>
+    <div class='class-description'><p>Application instances are specialized Addons, designed to kick off the
+loading, mounting, and launching stages of booting up.</p>
 </div>
   
 
@@ -143,6 +175,10 @@ manage the handoff from the express routing layer to the app’s actions.</p>
       
         
           <a class='summary-link'  data-private-member=true  href='#compileRouter'>compileRouter</a>
+        
+      
+        
+          <a class='summary-link'  data-private-member=true  href='#createServer'>createServer</a>
         
       
         
@@ -175,6 +211,8 @@ manage the handoff from the express routing layer to the app’s actions.</p>
       
         
       
+        
+      
     </div>
   </div>
 </div>
@@ -189,9 +227,9 @@ manage the handoff from the express routing layer to the app’s actions.</p>
           <div class='private tag'>Private</div>
         
         
-          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Fapplication.js#L97'>
+          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Fapplication.js#L96'>
             <span class='filename'>Defined in: lib/runtime/application.js</span>
-            <span class='line'>Line: 97</span>
+            <span class='line'>Line: 96</span>
           </a>
         
       </h3>
@@ -204,7 +242,67 @@ manage the handoff from the express routing layer to the app’s actions.</p>
         
         
         <div class='improve'>
-          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Fapplication.js#L97'>
+          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Fapplication.js#L96'>
+            Improve this documentation
+          </a>
+        </div>
+      </div>
+    </div>
+  
+    <div class='item' id='createServer' data-private-member=true>
+      <h3 class='item-title'>
+        <div class='item-name'>createServer</div>
+        
+          <div class='param-paren'>(</div>
+          <div class='params'>
+            
+              <div class='param'>
+                <span class='param-name'>port</span><span class='param-type type'>:Number</span>
+              </div>
+            
+          </div>
+          <div class='param-paren'>)</div>
+        
+        
+          <div class='private tag'>Private</div>
+        
+        
+          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Fapplication.js#L136'>
+            <span class='filename'>Defined in: lib/runtime/application.js</span>
+            <span class='line'>Line: 136</span>
+          </a>
+        
+      </h3>
+      <div class='item-body'>
+        
+          <h5 class='item-header'>Description</h5>
+          <div class='item-description'><p>Creates an HTTP or HTTPS server, depending on whether or not SSL
+configuration is present in config/environment.js</p>
+</div>
+        
+        
+          <h5 class='item-header'>Parameters</h5>
+          <div class='params'>
+            
+              <div class='param'>
+                <div class='param-name'>port</div><div class='param-type type'>:Number</div>
+                
+              </div>
+            
+          </div>
+        
+        
+          <h5 class='item-header'>Returns:</h5>
+          <div class='return'>
+            <div class='return-type type'>Promise</div>
+            
+              <div class='return-description'><p>resolves once the server is up and ready for connections</p>
+</div>
+            
+          </div>
+        
+        <div class='improve'>
+          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Fapplication.js#L136'>
             Improve this documentation
           </a>
         </div>
@@ -219,9 +317,9 @@ manage the handoff from the express routing layer to the app’s actions.</p>
           <div class='private tag'>Private</div>
         
         
-          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Fapplication.js#L73'>
+          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Fapplication.js#L72'>
             <span class='filename'>Defined in: lib/runtime/application.js</span>
-            <span class='line'>Line: 73</span>
+            <span class='line'>Line: 72</span>
           </a>
         
       </h3>
@@ -249,7 +347,7 @@ registered in the container under <code class="highlighter-rouge">config:environ
           </div>
         
         <div class='improve'>
-          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Fapplication.js#L73'>
+          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Fapplication.js#L72'>
             Improve this documentation
           </a>
         </div>
@@ -264,9 +362,9 @@ registered in the container under <code class="highlighter-rouge">config:environ
           <div class='private tag'>Private</div>
         
         
-          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Fapplication.js#L54'>
+          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Fapplication.js#L53'>
             <span class='filename'>Defined in: lib/runtime/application.js</span>
-            <span class='line'>Line: 54</span>
+            <span class='line'>Line: 53</span>
           </a>
         
       </h3>
@@ -276,13 +374,13 @@ registered in the container under <code class="highlighter-rouge">config:environ
           <div class='item-description'><p>Adds the default base addon to the application. The base addon includes
 some helpful default functionality, like basic error handling and common
 middleware. You can customize the included middleware via config. See
-the <a href="/guides/configuration">Configuration guide</a> for details.</p>
+the Configuration guide for details.</p>
 </div>
         
         
         
         <div class='improve'>
-          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Fapplication.js#L54'>
+          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Fapplication.js#L53'>
             Improve this documentation
           </a>
         </div>
@@ -297,9 +395,9 @@ the <a href="/guides/configuration">Configuration guide</a> for details.</p>
           <div class='private tag'>Private</div>
         
         
-          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Fapplication.js#L149'>
+          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Fapplication.js#L157'>
             <span class='filename'>Defined in: lib/runtime/application.js</span>
-            <span class='line'>Line: 149</span>
+            <span class='line'>Line: 157</span>
           </a>
         
       </h3>
@@ -324,7 +422,7 @@ initializers it should run before/after).</p>
           </div>
         
         <div class='improve'>
-          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Fapplication.js#L149'>
+          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Fapplication.js#L157'>
             Improve this documentation
           </a>
         </div>
@@ -337,9 +435,9 @@ initializers it should run before/after).</p>
         
         
         
-          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Fapplication.js#L115'>
+          <a class='defined-in' href='https://github.com/davewasmer/denali/blob/master/lib%2Fruntime%2Fapplication.js#L114'>
             <span class='filename'>Defined in: lib/runtime/application.js</span>
-            <span class='line'>Line: 115</span>
+            <span class='line'>Line: 114</span>
           </a>
         
       </h3>
@@ -347,7 +445,7 @@ initializers it should run before/after).</p>
         
           <h5 class='item-header'>Description</h5>
           <div class='item-description'><p>Start the Denali server. Runs all initializers, creates an HTTP server,
-and binds the express app to it to handle incoming HTTP requests.</p>
+and binds to the port to handle incoming HTTP requests.</p>
 </div>
         
         
@@ -362,7 +460,7 @@ and binds the express app to it to handle incoming HTTP requests.</p>
           </div>
         
         <div class='improve'>
-          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Fapplication.js#L115'>
+          <a target='_blank' href='https://github.com/davewasmer/denali/edit/master/lib%2Fruntime%2Fapplication.js#L114'>
             Improve this documentation
           </a>
         </div>
