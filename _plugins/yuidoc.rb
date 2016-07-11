@@ -6,7 +6,7 @@ require 'active_support/inflector'
 module Jekyll
   class DocGenerator < Generator
 
-    SemVerRegexp = /\A(\d+\.\d+\.\d+)(-([0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*))?(\+([0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*))?\Z/
+    SemVerRegexp = /\Av(\d+\.\d+\.\d+)(-([0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*))?(\+([0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*))?\Z/
 
     def generate(site)
       @site = site
@@ -30,10 +30,14 @@ module Jekyll
 
     def discover_versions
       versions = @repo.tags.select do |tag|
-        tag =~ SemVerRegexp
+        SemVerRegexp.match(tag.name)
+      end
+      versions = versions.map do |tag|
+        tag.name
       end
       versions.sort! { |a, b| Semantic::Version.new(a) <=> Semantic::Version.new(b) }
-      @site.config['latest'] = versions.last
+      @site.config['version_aliases'] ||= {}
+      @site.config['version_aliases'][versions.last] = 'latest'
       (@site.config['additional_version_refs'] || []).concat(versions)
     end
 
