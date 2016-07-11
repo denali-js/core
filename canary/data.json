@@ -1,8 +1,8 @@
 {
     "project": {},
     "files": {
-        "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/cli/lib/blueprint.js": {
-            "name": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/cli/lib/blueprint.js",
+        "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/cli/lib/blueprint.js": {
+            "name": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/cli/lib/blueprint.js",
             "modules": {
                 "cli": 1
             },
@@ -12,8 +12,8 @@
             "fors": {},
             "namespaces": {}
         },
-        "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/cli/lib/command.js": {
-            "name": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/cli/lib/command.js",
+        "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/cli/lib/command.js": {
+            "name": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/cli/lib/command.js",
             "modules": {},
             "classes": {
                 "Command": 1
@@ -21,8 +21,8 @@
             "fors": {},
             "namespaces": {}
         },
-        "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/flat.js": {
-            "name": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/flat.js",
+        "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/flat.js": {
+            "name": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/flat.js",
             "modules": {
                 "data": 1
             },
@@ -32,8 +32,8 @@
             "fors": {},
             "namespaces": {}
         },
-        "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/json-api.js": {
-            "name": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/json-api.js",
+        "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/json-api.js": {
+            "name": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/json-api.js",
             "modules": {},
             "classes": {
                 "JSONAPISerializer": 1
@@ -41,8 +41,8 @@
             "fors": {},
             "namespaces": {}
         },
-        "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/model.js": {
-            "name": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/model.js",
+        "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/model.js": {
+            "name": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/model.js",
             "modules": {},
             "classes": {
                 "Model": 1
@@ -50,8 +50,8 @@
             "fors": {},
             "namespaces": {}
         },
-        "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/orm-adapter.js": {
-            "name": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/orm-adapter.js",
+        "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/orm-adapter.js": {
+            "name": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/orm-adapter.js",
             "modules": {},
             "classes": {
                 "ORMAdapter": 1
@@ -59,8 +59,8 @@
             "fors": {},
             "namespaces": {}
         },
-        "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializer.js": {
-            "name": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializer.js",
+        "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializer.js": {
+            "name": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializer.js",
             "modules": {},
             "classes": {
                 "Serializer": 1
@@ -68,8 +68,8 @@
             "fors": {},
             "namespaces": {}
         },
-        "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/metal/each-prototype.js": {
-            "name": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/metal/each-prototype.js",
+        "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/metal/each-prototype.js": {
+            "name": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/metal/each-prototype.js",
             "modules": {
                 "metal": 1
             },
@@ -79,8 +79,8 @@
             "fors": {},
             "namespaces": {}
         },
-        "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/metal/instrumentation.js": {
-            "name": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/metal/instrumentation.js",
+        "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/metal/instrumentation.js": {
+            "name": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/metal/instrumentation.js",
             "modules": {},
             "classes": {
                 "Instrumentation": 1
@@ -88,8 +88,8 @@
             "fors": {},
             "namespaces": {}
         },
-        "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/metal/mixin.js": {
-            "name": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/metal/mixin.js",
+        "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/metal/mixin.js": {
+            "name": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/metal/mixin.js",
             "modules": {},
             "classes": {
                 "mixin": 1,
@@ -98,8 +98,8 @@
             "fors": {},
             "namespaces": {}
         },
-        "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/action.js": {
-            "name": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/action.js",
+        "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/action.js": {
+            "name": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/action.js",
             "modules": {
                 "runtime": 1
             },
@@ -109,8 +109,8 @@
             "fors": {},
             "namespaces": {}
         },
-        "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/addon.js": {
-            "name": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/addon.js",
+        "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/addon.js": {
+            "name": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/addon.js",
             "modules": {},
             "classes": {
                 "Addon": 1
@@ -118,8 +118,8 @@
             "fors": {},
             "namespaces": {}
         },
-        "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/application.js": {
-            "name": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/application.js",
+        "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/application.js": {
+            "name": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/application.js",
             "modules": {},
             "classes": {
                 "Application": 1
@@ -127,8 +127,8 @@
             "fors": {},
             "namespaces": {}
         },
-        "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/container.js": {
-            "name": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/container.js",
+        "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/container.js": {
+            "name": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/container.js",
             "modules": {},
             "classes": {
                 "Container": 1
@@ -136,8 +136,8 @@
             "fors": {},
             "namespaces": {}
         },
-        "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/errors.js": {
-            "name": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/errors.js",
+        "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/errors.js": {
+            "name": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/errors.js",
             "modules": {},
             "classes": {
                 "Error": 1
@@ -145,8 +145,8 @@
             "fors": {},
             "namespaces": {}
         },
-        "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/logger.js": {
-            "name": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/logger.js",
+        "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/logger.js": {
+            "name": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/logger.js",
             "modules": {},
             "classes": {
                 "Logger": 1
@@ -154,8 +154,8 @@
             "fors": {},
             "namespaces": {}
         },
-        "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/mailer.js": {
-            "name": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/mailer.js",
+        "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/mailer.js": {
+            "name": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/mailer.js",
             "modules": {},
             "classes": {
                 "Mailer": 1
@@ -163,8 +163,8 @@
             "fors": {},
             "namespaces": {}
         },
-        "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/request.js": {
-            "name": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/request.js",
+        "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/request.js": {
+            "name": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/request.js",
             "modules": {},
             "classes": {
                 "Request": 1
@@ -172,8 +172,8 @@
             "fors": {},
             "namespaces": {}
         },
-        "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/response.js": {
-            "name": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/response.js",
+        "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/response.js": {
+            "name": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/response.js",
             "modules": {},
             "classes": {
                 "Response": 1
@@ -181,8 +181,8 @@
             "fors": {},
             "namespaces": {}
         },
-        "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/router.js": {
-            "name": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/router.js",
+        "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/router.js": {
+            "name": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/router.js",
             "modules": {},
             "classes": {
                 "Router": 1
@@ -190,8 +190,8 @@
             "fors": {},
             "namespaces": {}
         },
-        "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/service.js": {
-            "name": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/service.js",
+        "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/service.js": {
+            "name": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/service.js",
             "modules": {},
             "classes": {
                 "Service": 1
@@ -199,22 +199,22 @@
             "fors": {},
             "namespaces": {}
         },
-        "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/utils/ensure-array.js": {
-            "name": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/utils/ensure-array.js",
+        "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/utils/ensure-array.js": {
+            "name": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/utils/ensure-array.js",
             "modules": {},
             "classes": {},
             "fors": {},
             "namespaces": {}
         },
-        "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/utils/log.js": {
-            "name": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/utils/log.js",
+        "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/utils/log.js": {
+            "name": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/utils/log.js",
             "modules": {},
             "classes": {},
             "fors": {},
             "namespaces": {}
         },
-        "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/index.js": {
-            "name": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/index.js",
+        "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/index.js": {
+            "name": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/index.js",
             "modules": {
                 "denali": 1
             },
@@ -260,7 +260,7 @@
             "fors": {},
             "namespaces": {},
             "tag": "module",
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/service.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/service.js",
             "line": 6,
             "description": "This is the main module exported by Denali when it is loaded via\n`require/import`.\n\nThere are two things we export from this file:\n\n1. Convenient shortcuts to other modules within Denali. Rather than having\nto `import Addon from 'denali/dist/lib/runtime/addon'`, you can just\n`import { Addon } from 'denali'`.\n\n2. External modules that are part of the Denali framework. The big ones are\n**foraker** and **blackburn**, responsible for providing controllers and a\nserializer library, respectively. By having users import those modules\nthrough Denali, we retain the ability to tweak or patch them in the future\nas needed, and keep a unified experience for users who don't care about\nDenali's internal architecture.\n\n## Exports\n\n### `Serializer`\n\nThe [blackburn](https://github.com/davewasmer/blackburn) Serializer class.\nSerializers are responsible for determing what data gets sent over the\nwire, and how that data is rendered into a JSON response. Check out the\n[guides](serializers) or [blackburn](http://davewasmer.github.io/blackburn)\ndocs for details.\n\n### `Errors`\n\nAn errors module based on\n[http-errors](https://github.com/jshttp/http-errors). Useful for\nstandardizing how you handle error responses. Check out the [guides](errors)\nor the [http-errors docs](https://github.com/jshttp/http-errors) for details."
         },
@@ -277,7 +277,7 @@
             "namespaces": {},
             "module": "denali",
             "namespace": "",
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/cli/lib/command.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/cli/lib/command.js",
             "line": 13,
             "description": "The Blueprint class manages generating code from a template, or \"blueprint\".\nBlueprints have three main components:\n\n  * `Blueprint.locals()` - used to generate data to fill in the the templates\n  * Templates, found under `<blueprint dir>/files`. These files are copied\n    over into the project. The can contain ERB style interpolation to inject\n    values from the `locals` data. Filenames can also contain variables,\n    delimited by `__variable__`\n  * `Blueprint.postInstall()`, which runs after the copying operation is\n    finished. This gives the blueprint a chance to perform additional steps\n    that simple templating can't support (i.e. install an node module).\n\nThe code generated by a blueprint can also be removed via the `destroy`\ncommand. That command will only remove files that exactly match the\nwhat the blueprint generates, so if you modify a file after it was generated,\nit won't be removed."
         },
@@ -297,7 +297,7 @@
             "namespaces": {},
             "module": "denali",
             "namespace": "",
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializer.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializer.js",
             "line": 6,
             "description": "Renders the payload as a flat JSON object or array at the top level. Related\nrecords are embedded."
         },
@@ -316,7 +316,7 @@
             "namespaces": {},
             "module": "denali",
             "namespace": "",
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/metal/mixin.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/metal/mixin.js",
             "line": 24,
             "description": "A utility method to walk up the prototype chain of the supplied object,\ncalling the given function with each prototype until it reaches the root\nof the prototype chain (where the prototype is Object).\n\nThis is useful for dealing with accumulating inheritance. For example, Action\nclasses accumulate their filters through inheritance, rather than replacing\nthem. Since ES6/7 has no mechanism for accumulating a value, we let each\nchild class wipe out it's parent value, and rebuild the accumulated value\nmanually via this kind of prototype walking."
         },
@@ -342,7 +342,7 @@
             "namespaces": {},
             "module": "denali",
             "namespace": "",
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/service.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/service.js",
             "line": 6,
             "description": "Actions form the core of interacting with a Denali application. They are\nthe controller layer in the MVC architecture, taking in incoming requests,\nperforming business logic, and handing off to the renderer to send the\nresponse.\n\nWhen a request comes in, Denali will invoke the `respond` method (or\n`respondWith__` for content negotiated requests) on the\nmatching Action class. The return value (or resolved return value) of this\nmethod is used to render the response.\n\nActions also support filters. Simply define a method on your action, and add\nthe method name to the `before` or `after` array. Filters behave similar to\nresponders in that they recieve the request params and can return a promise\nwhich will be waited on before continuing. Filters are inheritable, so child\nclasses will run filters added by parent classes."
         }
@@ -359,7 +359,7 @@
             "module": "denali",
             "submodule": "cli",
             "namespace": "",
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/cli/lib/blueprint.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/cli/lib/blueprint.js",
             "line": 18,
             "description": "The Blueprint class manages generating code from a template, or \"blueprint\".\nBlueprints have three main components:\n\n  * `Blueprint.locals()` - used to generate data to fill in the the templates\n  * Templates, found under `<blueprint dir>/files`. These files are copied\n    over into the project. The can contain ERB style interpolation to inject\n    values from the `locals` data. Filenames can also contain variables,\n    delimited by `__variable__`\n  * `Blueprint.postInstall()`, which runs after the copying operation is\n    finished. This gives the blueprint a chance to perform additional steps\n    that simple templating can't support (i.e. install an node module).\n\nThe code generated by a blueprint can also be removed via the `destroy`\ncommand. That command will only remove files that exactly match the\nwhat the blueprint generates, so if you modify a file after it was generated,\nit won't be removed.",
             "letructor": "",
@@ -377,7 +377,7 @@
             "module": "denali",
             "submodule": "cli",
             "namespace": "",
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/cli/lib/command.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/cli/lib/command.js",
             "line": 13,
             "description": "Represents a subcommand of the `denali` CLI.",
             "letructor": "",
@@ -395,7 +395,7 @@
             "module": "denali",
             "submodule": "data",
             "namespace": "",
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/flat.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/flat.js",
             "line": 16,
             "description": "Renders the payload as a flat JSON object or array at the top level. Related\nrecords are embedded.",
             "static": 1
@@ -411,7 +411,7 @@
             "module": "denali",
             "submodule": "data",
             "namespace": "",
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/json-api.js",
             "line": 28,
             "description": "Renders the payload according to the JSONAPI 1.0 spec, including related\nresources, included records, and support for meta and links.",
             "static": 1
@@ -427,7 +427,7 @@
             "module": "denali",
             "submodule": "data",
             "namespace": "",
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/model.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/model.js",
             "line": 16,
             "description": "The Model class is the core of Denali's unique approach to data and ORMs.\nIt acts as a wrapper and translation layer that provides a unified interface\nto access and manipulate data, but translates those interactions into ORM\nspecific operations via ORM adapters.\n\nModels are able to maintain their relatively clean interface thanks to the\nway the constructor actually returns a Proxy which wraps the Model instance,\nrather than the Model instance directly. This means you can directly get and\nset properties on your records, and the record (which is a Proxy-wrapped\nModel) will translate and forward those calls to the underlying ORM adapter.",
             "is_constructor": 1
@@ -443,7 +443,7 @@
             "module": "denali",
             "submodule": "data",
             "namespace": "",
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/orm-adapter.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/orm-adapter.js",
             "line": 6,
             "description": "The ORMAdapter class is responsible for enabling Denali to communicate with\nthe ORM of your choice. It does this by boiling down the possible actions\nthat a user might before against a Model that would involve persistence into\na set of basic operations. Your adapter then implements these operations, and\nDenali can build on top of that.",
             "is_constructor": 1
@@ -459,7 +459,7 @@
             "module": "denali",
             "submodule": "data",
             "namespace": "",
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializer.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializer.js",
             "line": 6,
             "description": "Serializers allow you to customize what data is returned the response, and\napply simple transformations to it. They allow you to decouple what data is\nsent, with how that data is structured / rendered.",
             "static": 1
@@ -475,7 +475,7 @@
             "module": "denali",
             "submodule": "metal",
             "namespace": "",
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/metal/each-prototype.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/metal/each-prototype.js",
             "line": 7,
             "description": "A utility method to walk up the prototype chain of the supplied object,\ncalling the given function with each prototype until it reaches the root\nof the prototype chain (where the prototype is Object).\n\nThis is useful for dealing with accumulating inheritance. For example, Action\nclasses accumulate their filters through inheritance, rather than replacing\nthem. Since ES6/7 has no mechanism for accumulating a value, we let each\nchild class wipe out it's parent value, and rebuild the accumulated value\nmanually via this kind of prototype walking.",
             "is_constructor": 1,
@@ -503,7 +503,7 @@
             "module": "denali",
             "submodule": "metal",
             "namespace": "",
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/metal/instrumentation.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/metal/instrumentation.js",
             "line": 8,
             "description": "The Instrumentation class is a low level class for instrumenting your app's\ncode. It allows you to listen to framework level profiling events, as well\nas creating and firing your own such events.\n\nFor example, if you wanted to instrument how long a particular was taking:\n\n    import { Instrumentation, Action } from 'denali';\n    export default class MyAction extends Action {\n      respond() {\n        let Post = this.modelFor('post');\n        return Instrumentation.instrument('post lookup', { currentUser: this.user.id }, () => {\n          Post.find({ user: this.user });\n        });\n      }\n    }",
             "static": 1
@@ -519,7 +519,7 @@
             "module": "denali",
             "submodule": "metal",
             "namespace": "",
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/metal/mixin.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/metal/mixin.js",
             "line": 7,
             "description": "ES6 classes don't provide any native syntax or support for compositional\nmixins. This helper method provides that support. Since ES6 classes are based\non prototype chains, and protoype chains are purely linear (you can't have\ntwo prototypes), we implement mixins by creating anonymous intermediate\nsubclasses for each applied mixin."
         },
@@ -534,7 +534,7 @@
             "module": "denali",
             "submodule": "metal",
             "namespace": "",
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/metal/mixin.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/metal/mixin.js",
             "line": 24,
             "description": "Since the mixins themselves cannot have their original prototype\nmodified (to preserve their ability to mix in to multiple different classes),\nmixins must be defined as a function which returns a class, so that we can\neffectively create a new mixin class definition for each use."
         },
@@ -549,7 +549,7 @@
             "module": "denali",
             "submodule": "runtime",
             "namespace": "",
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/action.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/action.js",
             "line": 25,
             "description": "Actions form the core of interacting with a Denali application. They are\nthe controller layer in the MVC architecture, taking in incoming requests,\nperforming business logic, and handing off to the renderer to send the\nresponse.\n\nWhen a request comes in, Denali will invoke the `respond` method (or\n`respondWith__` for content negotiated requests) on the\nmatching Action class. The return value (or resolved return value) of this\nmethod is used to render the response.\n\nActions also support filters. Simply define a method on your action, and add\nthe method name to the `before` or `after` array. Filters behave similar to\nresponders in that they recieve the request params and can return a promise\nwhich will be waited on before continuing. Filters are inheritable, so child\nclasses will run filters added by parent classes.",
             "is_constructor": 1
@@ -565,7 +565,7 @@
             "module": "denali",
             "submodule": "runtime",
             "namespace": "",
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/addon.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/addon.js",
             "line": 22,
             "description": "Addons are the fundamental unit of organization for Denali apps. The\nApplication class is just a specialized Addon, and each Addon can contain\nany amount of functionality.\n\n## Structure\n\nAddons are packaged as npm modules for easy sharing. When Denali boots up,\nit searches your node_modules for available Denali Addons (identified by\nthe `denali-addon` keyword in the package.json). Addons can be nested (i.e.\nan addon can itself depend on another addon).\n\nEach addon can be composed of one or several of the following parts:\n\n  * Config\n  * Initializers\n  * Middleware\n  * App classes\n  * Routes\n\n## Load order\n\nAfter Denali discovers the available addons, it then merges them to form a\nunified application. Addons higher in the dependency tree take precedence,\nand sibling addons can specify load order via their package.json files:\n\n    \"denali\": {\n      \"before\": [ \"another-addon-name\" ],\n      \"after\": [ \"cool-addon-name\" ]\n    }",
             "is_constructor": 1,
@@ -618,7 +618,7 @@
             "module": "denali",
             "submodule": "runtime",
             "namespace": "",
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/application.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/application.js",
             "line": 18,
             "description": "Application instances are specialized Addons, designed to kick off the\nloading, mounting, and launching stages of booting up.",
             "is_constructor": 1,
@@ -635,7 +635,7 @@
             "module": "denali",
             "submodule": "runtime",
             "namespace": "",
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/container.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/container.js",
             "line": 9,
             "description": "The Container houses all the various classes that makeup a Denali app's\nruntime. It holds references to the modules themselves, as well as managing\nlookup logic (i.e. some types of classes fall back to a generic \"application\"\nclass if a more specific one is not found.",
             "is_constructor": 1
@@ -651,7 +651,7 @@
             "module": "denali",
             "submodule": "runtime",
             "namespace": "",
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/errors.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/errors.js",
             "line": 7,
             "description": "Denali uses the **http-errors** package for handling HTTP errors. Check [it's\ndocumentation](https://github.com/jshttp/http-errors) for how to use it."
         },
@@ -666,7 +666,7 @@
             "module": "denali",
             "submodule": "runtime",
             "namespace": "",
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/logger.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/logger.js",
             "line": 9,
             "description": "A simple Logger class that adds timestamps and supports multiple levels of\nlogging, colorized output, and control over verbosity.",
             "static": 1
@@ -682,7 +682,7 @@
             "module": "denali",
             "submodule": "runtime",
             "namespace": "",
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/mailer.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/mailer.js",
             "line": 8,
             "description": "Mailers represent email templates and any associated controller-style logic\nthat goes with them.",
             "is_constructor": 1
@@ -698,7 +698,7 @@
             "module": "denali",
             "submodule": "runtime",
             "namespace": "",
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/request.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/request.js",
             "line": 11,
             "description": "The Request class represents an incoming HTTP request (specifically, Node's\nIncomingMessage). It's designed with an express-compatible interface to allow\ninterop with existing express middleware.",
             "is_constructor": 1,
@@ -722,7 +722,7 @@
             "module": "denali",
             "submodule": "runtime",
             "namespace": "",
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/response.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/response.js",
             "line": 8,
             "description": "The Response class represents a response to an incoming request. You can\nreturn an instance of this class from your action's responder method to\nrender a response with a custom status code, headers, or body.",
             "is_constructor": 1
@@ -738,7 +738,7 @@
             "module": "denali",
             "submodule": "runtime",
             "namespace": "",
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/router.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/router.js",
             "line": 14,
             "description": "The Router handles incoming requests, sending the to the appropraite action.\nIt's also responsible for defining routes in the first place - it's passed\ninto the `config/routes.js` file's exported function as the first argument.",
             "is_constructor": 1,
@@ -756,7 +756,7 @@
             "module": "denali",
             "submodule": "runtime",
             "namespace": "",
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/service.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/service.js",
             "line": 6,
             "description": "Services are typically used to represent either external systems (i.e. a\ncaching service) or a cross-cutting, reusable piece of application logic\n(i.e. an authorization / roles service).\n\nServices are mostly conventional - they are just singleton Denali.Objects\nwith no additional special behavior. The common base class ensures they are\nsingletons, makes user intent clear, and paves the way for introducing\nadditional common functionality in future versions of Denali.",
             "is_constructor": 1
@@ -765,7 +765,7 @@
     "elements": {},
     "classitems": [
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/cli/lib/blueprint.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/cli/lib/blueprint.js",
             "line": 42,
             "description": "Description of what the blueprint does. Displayed when `denali generate`\nis run without arguments.",
             "itemtype": "property",
@@ -776,7 +776,7 @@
             "submodule": "cli"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/cli/lib/blueprint.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/cli/lib/blueprint.js",
             "line": 55,
             "description": "A hook to generate data to be interpolated into the blueprint's template\nfiles.",
             "itemtype": "method",
@@ -790,7 +790,7 @@
             "submodule": "cli"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/cli/lib/blueprint.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/cli/lib/blueprint.js",
             "line": 66,
             "description": "Runs after the templating step is complete, letting you make additional\nmodifications (i.e. install a node module).",
             "itemtype": "method",
@@ -800,7 +800,7 @@
             "submodule": "cli"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/cli/lib/blueprint.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/cli/lib/blueprint.js",
             "line": 74,
             "description": "Runs when `denali destroy` is invoked, after the applicable template files\nhave been removed. You should clean up / reverse any changes made in\npostInstall(), but only in a way that avoids removing user modifications.",
             "itemtype": "method",
@@ -810,7 +810,7 @@
             "submodule": "cli"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/cli/lib/blueprint.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/cli/lib/blueprint.js",
             "line": 83,
             "description": "Returns the path to this blueprints template files directory. Defaults to\n`files/`.",
             "itemtype": "method",
@@ -824,7 +824,7 @@
             "submodule": "cli"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/cli/lib/blueprint.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/cli/lib/blueprint.js",
             "line": 94,
             "description": "Generate the blueprint. Generates the data to interpolate into the\ntemplates, then copies the template files over into the project. Finally,\nruns the postInstall hook.",
             "itemtype": "method",
@@ -843,7 +843,7 @@
             "submodule": "cli"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/cli/lib/blueprint.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/cli/lib/blueprint.js",
             "line": 129,
             "description": "Destroy the blueprint. Generates the data to interpolate into the\ntemplates, then deletes any unmodified files that were generated by this\nblueprint. Then runs the postUninstall hook.",
             "itemtype": "method",
@@ -862,7 +862,7 @@
             "submodule": "cli"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/cli/lib/command.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/cli/lib/command.js",
             "line": 22,
             "description": "Description of what the command does. Displayed when `denali` is run\nwithout arguments.",
             "itemtype": "property",
@@ -873,7 +873,7 @@
             "submodule": "cli"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/cli/lib/command.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/cli/lib/command.js",
             "line": 31,
             "description": "An array of positional paramters to this command. For example,\n\n    params: [ 'foo', 'bar' ]\n\nWhen run with:\n\n    $ denali mycommand Hello World\n\nWould result in:\n\n    run(params) {\n      params.foo // \"Hello\"\n      params.bar // \"World\"\n    }",
             "itemtype": "property",
@@ -884,7 +884,7 @@
             "submodule": "cli"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/cli/lib/command.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/cli/lib/command.js",
             "line": 52,
             "description": "Configuration for which flags the command accepts. Flags start with `-` or\n`--`, and can be booleans (i.e. the flag is present or not), strings (i.e.\n`--environment production`), or arrays of strings (i.e. `--files foo bar`).",
             "itemtype": "property",
@@ -898,7 +898,7 @@
             "submodule": "cli"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/cli/lib/command.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/cli/lib/command.js",
             "line": 76,
             "description": "Show a spinner to indicate activity",
             "itemtype": "method",
@@ -908,7 +908,7 @@
             "submodule": "cli"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/cli/lib/command.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/cli/lib/command.js",
             "line": 86,
             "description": "Stop showing the busy spinner",
             "itemtype": "method",
@@ -918,7 +918,7 @@
             "submodule": "cli"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/cli/lib/command.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/cli/lib/command.js",
             "line": 95,
             "description": "Run the command.",
             "itemtype": "method",
@@ -940,7 +940,7 @@
             "submodule": "cli"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/flat.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/flat.js",
             "line": 26,
             "description": "Renders the payload, either a primary data payload or an error payload.",
             "itemtype": "method",
@@ -966,7 +966,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/flat.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/flat.js",
             "line": 41,
             "description": "Renders a primary data payload (a record or array of records).",
             "itemtype": "method",
@@ -992,7 +992,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/flat.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/flat.js",
             "line": 58,
             "description": "Renders an individual record",
             "itemtype": "method",
@@ -1018,7 +1018,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/flat.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/flat.js",
             "line": 76,
             "description": "Serialize the attributes for a given record",
             "params": [
@@ -1042,7 +1042,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/flat.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/flat.js",
             "line": 96,
             "description": "Transform attribute names into their over-the-wire representation. Default\nbehavior uses the attribute name as-is.",
             "itemtype": "method",
@@ -1063,7 +1063,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/flat.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/flat.js",
             "line": 108,
             "description": "Take an attribute value and return the serialized value. Useful for\nchanging how certain types of values are serialized, i.e. Date objects.\n\nThe default implementation returns the attribute's value unchanged.",
             "itemtype": "method",
@@ -1094,7 +1094,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/flat.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/flat.js",
             "line": 158,
             "description": "Transform relationship names into their over-the-wire representation. Default\nbehavior uses the relationship name as-is.",
             "itemtype": "method",
@@ -1115,7 +1115,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/flat.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/flat.js",
             "line": 170,
             "description": "Render an error payload",
             "itemtype": "method",
@@ -1136,7 +1136,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/json-api.js",
             "line": 38,
             "description": "Take a payload (a model, an array of models, or an Error) and render it as\na JSONAPI compliant document",
             "itemtype": "method",
@@ -1162,7 +1162,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/json-api.js",
             "line": 58,
             "description": "Render the primary payload for a JSONAPI document (either a model or array\nof models).",
             "itemtype": "method",
@@ -1192,7 +1192,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/json-api.js",
             "line": 98,
             "description": "Render any included records into the top level of the document",
             "itemtype": "method",
@@ -1226,7 +1226,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/json-api.js",
             "line": 116,
             "description": "Render top level meta object for a document. Default uses meta supplied in\noptions call to res.render().",
             "itemtype": "method",
@@ -1260,7 +1260,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/json-api.js",
             "line": 132,
             "description": "Render top level links object for a document. Defaults to the links\nsupplied in options, or the URL for the invoking action if no links are\nsupplied.",
             "itemtype": "method",
@@ -1294,7 +1294,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/json-api.js",
             "line": 150,
             "description": "Render the version of JSONAPI supported.",
             "itemtype": "method",
@@ -1321,7 +1321,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/json-api.js",
             "line": 164,
             "description": "Render the supplied record as a resource object.",
             "itemtype": "method",
@@ -1350,7 +1350,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/json-api.js",
             "line": 189,
             "description": "Returns the JSONAPI attributes object representing this record's\nrelationships",
             "itemtype": "method",
@@ -1379,7 +1379,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/json-api.js",
             "line": 212,
             "description": "The JSONAPI spec recommends (but does not require) that property names be\ndasherized. The default implementation of this serializer therefore does\nthat, but you can override this method to use a different approach.",
             "itemtype": "method",
@@ -1400,7 +1400,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/json-api.js",
             "line": 225,
             "description": "Take an attribute value and return the serialized value. Useful for\nchanging how certain types of values are serialized, i.e. Date objects.\n\nThe default implementation returns the attribute's value unchanged.",
             "itemtype": "method",
@@ -1431,7 +1431,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/json-api.js",
             "line": 241,
             "description": "Returns the JSONAPI relationships object representing this record's\nrelationships",
             "itemtype": "method",
@@ -1460,7 +1460,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/json-api.js",
             "line": 268,
             "description": "Takes the serializer config and the model's descriptor for a relationship,\nand returns the serialized relationship object. Also sideloads any full\nrecords found for the relationship.",
             "params": [
@@ -1489,7 +1489,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/json-api.js",
             "line": 287,
             "description": "Given the serializer config and the model descriptor for a hasOne\nrelationship, returns the data for that relationship (the resource object\nwith type and id). Sideloads the related record if present.",
             "params": [
@@ -1518,7 +1518,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/json-api.js",
             "line": 303,
             "description": "Given the serializer config and the model descriptor for a hasMany\nrelationship, returns the data for that relationship (the resource objects\nwith type and id). Sideloads the related records if present.",
             "params": [
@@ -1547,7 +1547,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/json-api.js",
             "line": 319,
             "description": "Given a related record or it's id, return the resource object for that\nrecord (or id). If it's a full record, sideload the record as well.",
             "params": [
@@ -1581,7 +1581,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/json-api.js",
             "line": 343,
             "description": "Takes a relationship descriptor and the record it's for, and returns any\nlinks for that relationship for that record. I.e. '/books/1/author'",
             "itemtype": "method",
@@ -1612,7 +1612,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/json-api.js",
             "line": 363,
             "description": "Returns any meta for a given relationship and record. No meta included by\ndefault.",
             "itemtype": "method",
@@ -1648,7 +1648,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/json-api.js",
             "line": 377,
             "description": "Returns links for a particular record, i.e. self: \"/books/1\". Default\nimplementation assumes the URL for a particular record maps to that type's\n`show` action, i.e. `books/show`.",
             "itemtype": "method",
@@ -1674,7 +1674,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/json-api.js",
             "line": 393,
             "description": "Returns meta for a particular record.",
             "itemtype": "method",
@@ -1700,7 +1700,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/json-api.js",
             "line": 403,
             "description": "Sideloads a record into the top level \"included\" array",
             "itemtype": "method",
@@ -1758,7 +1758,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/json-api.js",
             "line": 427,
             "description": "Render the supplied error",
             "itemtype": "method",
@@ -1779,7 +1779,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/json-api.js",
             "line": 448,
             "description": "Given an error, return a JSON Pointer, a URL query param name, or other\ninfo indicating the source of the error.",
             "itemtype": "method",
@@ -1803,7 +1803,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/json-api.js",
             "line": 463,
             "description": "Return the meta for a given error object. You could use this for example,\nto return debug information in development environments.",
             "itemtype": "method",
@@ -1824,7 +1824,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/json-api.js",
             "line": 475,
             "description": "Return a links object for an error. You could use this to link to a bug\ntracker report of the error, for example.",
             "itemtype": "method",
@@ -1845,7 +1845,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/json-api.js",
             "line": 485,
             "description": "Remove duplicate entries from the sideloaded data.",
             "itemtype": "method",
@@ -1864,7 +1864,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/json-api.js",
             "line": 500,
             "description": "Unlike the other serializers, the default parse implementation does modify\nthe incoming payload. It converts the default dasherized attribute names\ninto camelCase.\n\nThe parse method here retains the JSONAPI document structure (i.e. data,\nincluded, links, meta, etc), only modifying resource objects in place.",
             "itemtype": "method",
@@ -1885,7 +1885,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/json-api.js",
             "line": 536,
             "description": "Takes a JSON-API resource object and hands it off for parsing to the\nserializer specific to that object's type.",
             "itemtype": "method",
@@ -1908,7 +1908,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/json-api.js",
             "line": 552,
             "description": "Parse a single resource object from a JSONAPI document. The resource object\ncould come from the top level `data` payload, or from the sideloaded\n`included` records.",
             "itemtype": "method",
@@ -1929,7 +1929,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/json-api.js",
             "line": 569,
             "description": "Parse a resource object id",
             "itemtype": "method",
@@ -1950,7 +1950,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/json-api.js",
             "line": 580,
             "description": "Parse a resource object's type string",
             "itemtype": "method",
@@ -1971,7 +1971,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/json-api.js",
             "line": 591,
             "description": "Parse a resource object's attributes. By default, this converts from the\nJSONAPI recommended dasheried keys to camelCase.",
             "itemtype": "method",
@@ -1992,7 +1992,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/json-api.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/json-api.js",
             "line": 605,
             "description": "Parse a resource object's relationships. By default, this converts from the\nJSONAPI recommended dasheried keys to camelCase.",
             "itemtype": "method",
@@ -2013,7 +2013,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/model.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/model.js",
             "line": 33,
             "description": "The type of the Model class. This string is used as the container name for\nthe model, as well as in several other areas of Denali (i.e. serializers,\nORM adapters, etc). Conventionally, types are dasherized versions of the\nmodel name (i.e. the BlogPost model's type would be `\"blog-post\"`).",
             "itemtype": "property",
@@ -2025,7 +2025,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/model.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/model.js",
             "line": 45,
             "description": "Find records by id, basic query, or query function.\n\nYou can find single records by passing in the id:\n\n    BlogPost.find(1)\n\nYou can query records using basic query syntax:\n\n    BlogPost.find({ title: 'foobar' })\n\nFor more complex queries, you can use a query function to leverage the\nspecific syntax and strengths of your ORM and data store:\n\n    BlogPost.find((sql) => {\n      return sql.where({ title: 'foobar' })\n        .greaterThan('view_count', 10);\n    });",
             "itemtype": "method",
@@ -2052,7 +2052,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/model.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/model.js",
             "line": 83,
             "description": "Create a new record and immediately persist it.",
             "itemtype": "method",
@@ -2079,7 +2079,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/model.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/model.js",
             "line": 104,
             "description": "The ORM adapter specific to this model type. Defaults to the application's\nORM adapter if none for this specific model type is found.",
             "itemtype": "property",
@@ -2093,7 +2093,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/model.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/model.js",
             "line": 119,
             "description": "The id of the record",
             "itemtype": "property",
@@ -2104,7 +2104,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/model.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/model.js",
             "line": 127,
             "description": "The application container",
             "itemtype": "property",
@@ -2115,7 +2115,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/model.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/model.js",
             "line": 135,
             "description": "The ORM adapter specific to this model type. Defaults to the application's\nORM adapter if none for this specific model type is found.",
             "itemtype": "property",
@@ -2126,7 +2126,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/model.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/model.js",
             "line": 144,
             "description": "The underlying ORM adapter record. An opaque value to Denali, handled\nentirely by the ORM adapter.",
             "itemtype": "property",
@@ -2139,7 +2139,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/model.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/model.js",
             "line": 209,
             "description": "Persist this model.",
             "itemtype": "method",
@@ -2160,7 +2160,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/model.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/model.js",
             "line": 221,
             "description": "Delete this model.",
             "itemtype": "method",
@@ -2181,7 +2181,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/model.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/model.js",
             "line": 232,
             "description": "Returns the related record(s) for the given relationship.",
             "itemtype": "method",
@@ -2207,7 +2207,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/model.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/model.js",
             "line": 254,
             "description": "Replaces the related records for the given relationship with the supplied\nrelated records.",
             "itemtype": "method",
@@ -2238,7 +2238,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/model.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/model.js",
             "line": 271,
             "description": "Add a related record to a hasMany relationship.",
             "itemtype": "method",
@@ -2269,7 +2269,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/model.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/model.js",
             "line": 289,
             "description": "Remove the given record from the hasMany relationship",
             "itemtype": "method",
@@ -2300,7 +2300,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/model.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/model.js",
             "line": 307,
             "description": "Lookup a model class by type.",
             "itemtype": "method",
@@ -2322,7 +2322,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/model.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/model.js",
             "line": 319,
             "description": "Lookup a model class by type.",
             "itemtype": "method",
@@ -2343,7 +2343,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/model.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/model.js",
             "line": 330,
             "description": "Lookup a service by type",
             "itemtype": "method",
@@ -2364,7 +2364,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/orm-adapter.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/orm-adapter.js",
             "line": 18,
             "description": "Find a record by ID, basic query, or adapter-specific query.\n\nTo find a single record by it's id, just call:\n\n    Post.find(1)\n\nDenali also allows users to supply simple queries in a universal format\nof an object with properties:\n\n    Post.find({ title: 'foo' })\n\nThis allows basic querying regardless of the ORM used. However, for more\nadvanced use cases, rather than trying to design a single interface that\ncould support all ORMs, Denali simply defers to ORM specific syntax via\na query function:\n\n    Post.find((myQueryBuilder) => {\n      return myQueryBuilder.foo('bar');\n    });\n\nThis approach allows you to provide ultimately flexibility for querying\n(the arguments to the query function are supplied by you and can be ORM\nspecific).\n\nThe `options` argument allows for additional, orthogonal options in case\nyour ORM needs it. It's treated as an opaque, pass through value by Deanli.",
             "itemtype": "method",
@@ -2396,7 +2396,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/orm-adapter.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/orm-adapter.js",
             "line": 60,
             "description": "Return the id for the given record.",
             "itemtype": "method",
@@ -2418,7 +2418,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/orm-adapter.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/orm-adapter.js",
             "line": 72,
             "description": "Return the value for the given attribute on the given record.",
             "itemtype": "method",
@@ -2445,7 +2445,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/orm-adapter.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/orm-adapter.js",
             "line": 85,
             "description": "Set the value for the given attribute on the given record.",
             "itemtype": "method",
@@ -2477,7 +2477,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/orm-adapter.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/orm-adapter.js",
             "line": 99,
             "description": "Delete the value for the given attribute on the given record. The\nsemantics of this may behave slightly differently depending on backend -\nSQL databases may NULL out the value, while document stores like Mongo may\nactually delete the key from the document (rather than just nulling it out)",
             "itemtype": "method",
@@ -2505,7 +2505,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/orm-adapter.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/orm-adapter.js",
             "line": 115,
             "description": "Return the related record(s) for the given relationship.",
             "itemtype": "method",
@@ -2537,7 +2537,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/orm-adapter.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/orm-adapter.js",
             "line": 129,
             "description": "Set the related record(s) for the given relationship.",
             "itemtype": "method",
@@ -2570,7 +2570,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/orm-adapter.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/orm-adapter.js",
             "line": 143,
             "description": "Add a related record to a hasMany relationship.",
             "itemtype": "method",
@@ -2603,7 +2603,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/orm-adapter.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/orm-adapter.js",
             "line": 157,
             "description": "Remove a related record from a hasMany relationship.",
             "itemtype": "method",
@@ -2636,7 +2636,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/orm-adapter.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/orm-adapter.js",
             "line": 171,
             "description": "Persist the supplied record.",
             "itemtype": "method",
@@ -2663,7 +2663,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/orm-adapter.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/orm-adapter.js",
             "line": 185,
             "description": "Delete the supplied record from the persistent data store.",
             "itemtype": "method",
@@ -2690,7 +2690,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/orm-adapter.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/orm-adapter.js",
             "line": 198,
             "description": "Takes a Denali Model class and defines an ORM specific model class, and/or\nany other ORM specific setup that might be required for that Model.",
             "itemtype": "method",
@@ -2712,7 +2712,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializer.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializer.js",
             "line": 21,
             "description": "Take the supplied payload of record(s) or error(s) and the supplied options\nand return a rendered a JSON response object.",
             "itemtype": "method",
@@ -2738,7 +2738,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializer.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializer.js",
             "line": 34,
             "description": "Take a serialized JSON document (i.e. an incoming request body), and\nperform any normalization required.\n\nThe return value of this method is entirely up to the specific serializer,\ni.e. some may return the payload unchanged, others may tweak the structure,\nor some could even return actual ORM model instances.\n\nThis method is optional - the default implementation returns the payload\nunchanged.",
             "itemtype": "method",
@@ -2764,7 +2764,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializer.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializer.js",
             "line": 54,
             "description": "The list of attribute names that should be serialized. Attributes not\nincluded in this list will be omitted from the final rendered payload.",
             "itemtype": "property",
@@ -2775,7 +2775,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializer.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializer.js",
             "line": 63,
             "description": "An object with configuration on how to serialize relationships.\nRelationships that have no configuration present are omitted from the final\nrendered payload.\n\nOut of the box, two options are supported:\n\n**strategy**\n\nIt has one of four possible values:\n\n  * `records`: embed all related records (1-n relationships)\n  * `record`: embed the related record (1-1 relationships)\n  * `ids`: include only the ids of related records (1-n relationships)\n  * `id`: include only the id of the related record (1-1 relationships)\n\nWhat the embedded records or ids look like is up to each serializer to\ndetermine.\n\n**type**\n\nThe model type of the related records.\n\nSpecific serializers may also accept additional options in the relationship\nconfiguration to customize their response format.",
             "itemtype": "property",
@@ -2786,7 +2786,7 @@
             "submodule": "data"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/metal/instrumentation.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/metal/instrumentation.js",
             "line": 30,
             "description": "The internal event emitter used for notifications",
             "itemtype": "property",
@@ -2797,7 +2797,7 @@
             "submodule": "metal"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/metal/instrumentation.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/metal/instrumentation.js",
             "line": 38,
             "description": "Subscribe to be notified when a particular instrumentation block completes.",
             "itemtype": "method",
@@ -2819,7 +2819,7 @@
             "submodule": "metal"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/metal/instrumentation.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/metal/instrumentation.js",
             "line": 49,
             "description": "Unsubscribe from being notified when a particular instrumentation\nblock completes.",
             "itemtype": "method",
@@ -2841,7 +2841,7 @@
             "submodule": "metal"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/metal/instrumentation.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/metal/instrumentation.js",
             "line": 61,
             "description": "Run the supplied function, timing how long it takes to complete. If the\nfunction returns a promise, the timer waits until that promise resolves.\nReturns a promise that resolves with the return value of the supplied\nfunction. Fires an event with the given event name and event data (the\nfunction result is provided as well).",
             "itemtype": "method",
@@ -2872,7 +2872,7 @@
             "submodule": "metal"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/action.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/action.js",
             "line": 47,
             "description": "Invoked before the `respond()` method. The framework will invoke filters\nfrom parent classes and mixins in the same order the mixins were\napplied.\n\nFilters can be synchronous, or return a promise (which will pause the\nbefore/respond/after chain until it resolves).\n\nIf a before filter returns any value (or returns a promise which resolves\nto any value) other than null or undefined, Denali will attempt to render\nthat response and halt further processing of the request (including\nremaining before filters).",
             "itemtype": "property",
@@ -2884,7 +2884,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/action.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/action.js",
             "line": 66,
             "description": "Invoked before the `respond()` method. The framework will invoke filters\nfrom parent classes and mixins in the same order the mixins were\napplied.\n\nFilters can be synchronous, or return a promise (which will pause the\nbefore/respond/after chain until it resolves).",
             "itemtype": "property",
@@ -2896,7 +2896,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/action.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/action.js",
             "line": 80,
             "description": "The application config",
             "itemtype": "property",
@@ -2907,7 +2907,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/action.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/action.js",
             "line": 95,
             "description": "Fetch a model class by it's type string, i.e. 'post' => PostModel",
             "itemtype": "method",
@@ -2928,7 +2928,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/action.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/action.js",
             "line": 106,
             "description": "Fetch a service by it's container name, i.e. 'email' => 'services/email.js'",
             "itemtype": "method",
@@ -2949,7 +2949,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/action.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/action.js",
             "line": 117,
             "description": "Render some supplied data to the response. Data can be:\n\n  * a Model instance\n  * an array of Model instances\n  * a Denali.Response instance",
             "itemtype": "method",
@@ -2968,7 +2968,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/action.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/action.js",
             "line": 163,
             "description": "Invokes the action. Determines the best responder method for content\nnegotiation, then executes the filter/responder chain in sequence,\nhandling errors and rendering the response.\n\nYou shouldn't invoke this directly - Denali will automatically wire up\nyour routes to this method.",
             "itemtype": "method",
@@ -2984,7 +2984,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/action.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/action.js",
             "line": 210,
             "description": "Find the best responder method for the incoming request, given the\nincoming request's Accept header.\n\nIf the Accept header is \"Accept: * / *\", then the generic `respond()`\nmethod is selected. Otherwise, attempt to find the best responder method\nbased on the mime types.",
             "itemtype": "method",
@@ -3000,7 +3000,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/action.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/action.js",
             "line": 246,
             "description": "Walk the prototype chain of this Action instance to find all the `before`\nand `after` arrays to build the complete filter chains.\n\nCaches the result on the child Action class to avoid the potentially\nexpensive prototype walk on each request.\n\nThrows if it encounters the name of a filter method that doesn't exist.",
             "itemtype": "method",
@@ -3014,7 +3014,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/action.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/action.js",
             "line": 283,
             "description": "Invokes the filters in the supplied chain in sequence. If the `allowHalt`\nflag is true, then filters which return non-null/undefined values will\nhalt the filter chain and their return value will be rendered.",
             "itemtype": "method",
@@ -3045,7 +3045,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/addon.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/addon.js",
             "line": 68,
             "description": "The current environment for the app, i.e. 'development'",
             "itemtype": "property",
@@ -3056,7 +3056,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/addon.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/addon.js",
             "line": 76,
             "description": "The root directory on the filesystem for this addon",
             "itemtype": "property",
@@ -3067,7 +3067,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/addon.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/addon.js",
             "line": 84,
             "description": "The list of child addons that this addon contains",
             "itemtype": "property",
@@ -3078,7 +3078,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/addon.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/addon.js",
             "line": 92,
             "description": "The configuration that is specific to this addon",
             "itemtype": "property",
@@ -3089,7 +3089,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/addon.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/addon.js",
             "line": 100,
             "description": "Which file extensions should be autoloaded into the container.",
             "itemtype": "property",
@@ -3101,7 +3101,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/addon.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/addon.js",
             "line": 124,
             "description": "Search this addon's package.json dependencies for Denali addons. For each\ndiscovered addon, instantiate it's Addon class, and add it to the addon\ngraph. Return the sorted addon graph.\n\nNote that this only returns top-level addons - nested addons are built\nwhen the top-level addon is instantiated here.",
             "itemtype": "method",
@@ -3124,7 +3124,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/addon.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/addon.js",
             "line": 178,
             "description": "Given a directory that contains an addon, load that addon and instantiate\nit's Addon class.",
             "itemtype": "method",
@@ -3147,7 +3147,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/addon.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/addon.js",
             "line": 208,
             "description": "Load the config for this addon. The standard `config/environment.js` file\nis loaded by default. `config/middleware.js` and `config/routes.js` are\nignored. All other userland config files are loaded into the container\nunder their filenames.\n\nConfig files are all .js files, so just the exported functions are loaded\nhere. The functions are run later, during application initialization, to\ngenerate the actual runtime configuration.",
             "itemtype": "method",
@@ -3163,7 +3163,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/addon.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/addon.js",
             "line": 233,
             "description": "Load the addon's various assets. Loads child addons first, meaning that\naddon loading is depth-first recursive.",
             "itemtype": "method",
@@ -3175,7 +3175,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/addon.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/addon.js",
             "line": 250,
             "description": "Load the initializers for this addon. Initializers live in\n`config/initializers`.",
             "itemtype": "method",
@@ -3187,7 +3187,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/addon.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/addon.js",
             "line": 267,
             "description": "Load the middleware for this addon. Middleware is specified in\n`config/middleware.js`. The file should export a function that accepts the\nrouter as it's single argument. You can then attach any middleware you'd\nlike to that router, and it will execute before any route handling by\nDenali.\n\nTypically this is useful to register global middleware, i.e. a CORS\nhandler, cookie parser, etc.\n\nIf you want to run some logic before certain routes only, try using filters\non your actions instead.",
             "itemtype": "method",
@@ -3199,7 +3199,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/addon.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/addon.js",
             "line": 287,
             "description": "Loads the routes for this addon. Routes are defined in `config/routes.js`.\nThe file should export a function that defines routes. See the Routing\nguide for details on how to define routes.",
             "itemtype": "method",
@@ -3211,7 +3211,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/addon.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/addon.js",
             "line": 299,
             "description": "Load the app assets for this addon. These are the various classes that live\nunder `app/`, including actions, models, etc., as well as any custom class\ntypes.\n\nFiles are loaded into the container under their folder's namespace, so\n`app/roles/admin.js` would be registered as 'role:admin' in the container.\nDeeply nested folders become part of the module name, i.e.\n`app/roles/employees/manager.js` becomes 'role:employees/manager'.\n\nNon-JS files are loaded as well, and their container names include the\nextension, so `app/mailer/welcome.html` becomes `mail:welcome.html`.",
             "itemtype": "method",
@@ -3223,7 +3223,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/application.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/application.js",
             "line": 53,
             "description": "Adds the default base addon to the application. The base addon includes\nsome helpful default functionality, like basic error handling and common\nmiddleware. You can customize the included middleware via config. See\nthe Configuration guide for details.",
             "itemtype": "method",
@@ -3235,7 +3235,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/application.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/application.js",
             "line": 72,
             "description": "Take the loaded environment config functions, and execute them.\nApplication config is executed first, and the returned config object is\nhanded off to the addon config files, which add their configuration by\nmutating that same object.\n\nThe resulting final config is stored at `application.config`, and is\nregistered in the container under `config:environment`.",
             "itemtype": "method",
@@ -3251,7 +3251,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/application.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/application.js",
             "line": 96,
             "description": "Assemble middleware and routes",
             "itemtype": "method",
@@ -3263,7 +3263,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/application.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/application.js",
             "line": 114,
             "description": "Start the Denali server. Runs all initializers, creates an HTTP server,\nand binds to the port to handle incoming HTTP requests.",
             "itemtype": "method",
@@ -3277,7 +3277,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/application.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/application.js",
             "line": 136,
             "description": "Creates an HTTP or HTTPS server, depending on whether or not SSL\nconfiguration is present in config/environment.js",
             "itemtype": "method",
@@ -3300,7 +3300,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/application.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/application.js",
             "line": 157,
             "description": "Lookup all initializers and run in them in sequence. Initializers can\noverride the default load order by including `before` or `after`\nproperties on the exported class (the name or array of names of the other\ninitializers it should run before/after).",
             "itemtype": "method",
@@ -3316,7 +3316,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/container.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/container.js",
             "line": 21,
             "description": "The internal cache of available references",
             "itemtype": "property",
@@ -3329,7 +3329,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/container.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/container.js",
             "line": 30,
             "description": "A reference to the application config",
             "itemtype": "property",
@@ -3342,7 +3342,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/container.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/container.js",
             "line": 39,
             "description": "A reference to the application logger",
             "itemtype": "property",
@@ -3355,7 +3355,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/container.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/container.js",
             "line": 48,
             "description": "Register a value under the given `fullName` for later use.",
             "itemtype": "method",
@@ -3377,7 +3377,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/container.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/container.js",
             "line": 61,
             "description": "Lookup a value in the container. Uses type specific lookup logic if\navailable.",
             "itemtype": "method",
@@ -3398,7 +3398,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/container.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/container.js",
             "line": 76,
             "description": "Lookup all modules of a specific type in the container. Returns an object\nof all the modules keyed by their module path (i.e.\n`role:employees/manager` would be found under\n`lookupAll('role')['employees/manager']`",
             "itemtype": "method",
@@ -3419,7 +3419,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/container.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/container.js",
             "line": 96,
             "description": "Lookup a model class. This special case is needed because Models need a\nreference to the container, but their lifecycle isn't always controlled\nby the framework (which would allow us to the inject the container per\ninstance). Thus, we make sure the class has a reference, which the\ninstances leverage via `this.constructor.container`.",
             "itemtype": "method",
@@ -3439,7 +3439,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/container.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/container.js",
             "line": 136,
             "description": "Lookup a type specific class, and if that's not available, fall back to the\ngeneric \"application\" class",
             "itemtype": "method",
@@ -3462,7 +3462,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/container.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/container.js",
             "line": 154,
             "description": "Lookup a value whose type doesn't have a unique lookup method.",
             "itemtype": "method",
@@ -3485,7 +3485,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/container.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/container.js",
             "line": 170,
             "description": "Take the supplied name which can come in several forms, and normalize it.",
             "itemtype": "method",
@@ -3508,7 +3508,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/container.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/container.js",
             "line": 191,
             "description": "For a given type, returns the names of all the available modules under that\ntype. Primarily used for debugging purposes (i.e. to show available modules\nwhen a lookup of that type fails).",
             "itemtype": "method",
@@ -3531,7 +3531,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/container.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/container.js",
             "line": 209,
             "description": "Find the module name for the given module object. Essentially the reverse\nof `.lookup()`",
             "itemtype": "method",
@@ -3552,7 +3552,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/mailer.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/mailer.js",
             "line": 17,
             "description": "A cache of mailer templates, keyed by their format.",
             "itemtype": "property",
@@ -3565,7 +3565,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/mailer.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/mailer.js",
             "line": 26,
             "description": "The name of this mailer. Used in lookup (when you invoke the mail service),\nlogging (to identify the mailer), and templating (to find the related\ntemplates).",
             "itemtype": "property",
@@ -3578,7 +3578,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/mailer.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/mailer.js",
             "line": 42,
             "description": "This is the meat of any Mailer class. The `.send()` method is invoked\nwhenever the mailer is invoked, and is tasked with building and sending\nwhatever emails are necessary.\n\nThe default implementation takes a `to`, `from`, and `subject` option, and\nexpects the body of the email to come from a template file with the same\nname as the mailer (see `.template()`).\n\nYou can override this function if you need to, for example, query a\ndatabase to fetch data to populate the email template with. By including\nthat logic here, it allows you to send this email from within an action,\nfrom a background job, or somewhere else, and keep all that lookup logic\nin one location.",
             "itemtype": "method",
@@ -3599,7 +3599,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/mailer.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/mailer.js",
             "line": 71,
             "description": "Intermediate method that does some housekeeping before actually calling\n`sendMail()` to send the email:\n\n  * Logs the email send\n  * Overrides in test environments and caches the \"sent\" email\"\n\nThis is implemented as a separate method for two reasons:\n\n  * It's easier / simpler to override sendMail, since it's **just** sending\n    the email. Custom email senders don't need to worry about logging, etc\n  * It ensures that no matter what custom email sender is implemented, test\n    environment behavior remains the same\n\nYou should **not** override this method. You are probably looking for\n`sendMail()`.",
             "itemtype": "method",
@@ -3620,7 +3620,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/mailer.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/mailer.js",
             "line": 105,
             "description": "Actually send an email. A simple wrapper over nodemailer's `.sendMail()`\nmethod. See nodemailer docs for details.",
             "itemtype": "method",
@@ -3641,7 +3641,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/mailer.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/mailer.js",
             "line": 126,
             "description": "Lookup the template for this email, in the given format, and return the\nresult of applying the given data to that template.\n\nThe default lookup behavior is to find a template file with the same name\nas the mailer file (i.e. `app/mailers/welcome.js` would look for\n`app/mailers/welcome.html).\n\nThe default template engine is EJS.\n\nYou can override this method to provide your own lookup semantics or\ntemplating engine.",
             "itemtype": "method",
@@ -3667,7 +3667,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/request.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/request.js",
             "line": 23,
             "description": "The raw IncomingMessage instance from Node's http server",
             "itemtype": "property",
@@ -3680,7 +3680,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/request.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/request.js",
             "line": 66,
             "description": "The incoming request's method (lowercased).\n\nSee https://nodejs.org/api/http.html#http_message_method",
             "itemtype": "property",
@@ -3691,7 +3691,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/request.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/request.js",
             "line": 78,
             "description": "The incoming request's hostname, taken from the request's Host header.",
             "itemtype": "property",
@@ -3702,7 +3702,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/request.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/request.js",
             "line": 89,
             "description": "The IP address of the incoming request.",
             "itemtype": "property",
@@ -3713,7 +3713,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/request.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/request.js",
             "line": 99,
             "description": "The incoming request's path.",
             "itemtype": "property",
@@ -3724,7 +3724,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/request.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/request.js",
             "line": 109,
             "description": "The incoming request's query parameters (parsed into JS objects).",
             "itemtype": "property",
@@ -3735,7 +3735,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/request.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/request.js",
             "line": 119,
             "description": "The incoming request's subdomains as an array.",
             "itemtype": "property",
@@ -3746,7 +3746,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/request.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/request.js",
             "line": 130,
             "description": "Check if a mime-type (or shorthand type, i.e. 'json') matches the incoming\nrequest's Accept header. You can supply multiple types (as separate args,\nor in an array) in order of preference, and the best match will be\nreturned.\n\nSee [accepts](https://www.npmjs.com/package/accepts).",
             "itemtype": "method",
@@ -3768,7 +3768,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/request.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/request.js",
             "line": 146,
             "description": "Return the value of the given header (case-insensitive).",
             "itemtype": "method",
@@ -3789,7 +3789,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/request.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/request.js",
             "line": 157,
             "description": "Returns the matching type of the incoming request.\n\nSee [type-is](https://www.npmjs.com/package/type-is).",
             "itemtype": "method",
@@ -3811,7 +3811,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/response.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/response.js",
             "line": 18,
             "description": "Create a Response instance. Accepts a status code, a body payload, and an\noptions hash.",
             "itemtype": "method",
@@ -3858,7 +3858,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/response.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/response.js",
             "line": 38,
             "description": "The content type of the response. Set via the `options` argument of the\nResponse constructor.",
             "itemtype": "property",
@@ -3869,7 +3869,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/router.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/router.js",
             "line": 25,
             "description": "The cache of available routes.",
             "itemtype": "property",
@@ -3882,7 +3882,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/router.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/router.js",
             "line": 42,
             "description": "The generic middleware handler.",
             "itemtype": "property",
@@ -3893,7 +3893,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/router.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/router.js",
             "line": 55,
             "description": "Helper method to invoke the function exported by `config/routes.js` in the\ncontext of the current router instance?",
             "itemtype": "method",
@@ -3912,7 +3912,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/router.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/router.js",
             "line": 67,
             "description": "Takes an incoming request and it's response from an HTTP server, prepares\nthem, runs the generic middleware first, and then hands them off\nto the appropriate action given the incoming URL.",
             "itemtype": "method",
@@ -3936,7 +3936,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/router.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/router.js",
             "line": 123,
             "description": "Takes a request, response, and an error and hands off to the generic\napplication level error action.",
             "itemtype": "method",
@@ -3963,7 +3963,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/router.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/router.js",
             "line": 143,
             "description": "Add the supplied middleware function to the generic middleware stack that\nruns prior to action handling.",
             "itemtype": "method",
@@ -3980,7 +3980,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/router.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/router.js",
             "line": 154,
             "description": "Add a route to the application. Maps a method and URL pattern to an action,\nwith optional additional parameters.\n\nURL patterns can use:\n\n * Dynamic segments, i.e. `'foo/:bar'`\n * Wildcard segments, i.e. `'foo/*bar'`, captures the rest of the URL up\n   to the querystring\n * Optional groups, i.e. `'foo(/:bar)'`",
             "itemtype": "method",
@@ -4013,7 +4013,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/router.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/router.js",
             "line": 189,
             "description": "Returns the URL for a given action. You can supply a params object which\nwill be used to fill in the dynamic segements of the action's route (if\nany).",
             "itemtype": "method",
@@ -4039,7 +4039,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/router.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/router.js",
             "line": 215,
             "description": "Shorthand for `this.route('get', ...arguments)`",
             "itemtype": "method",
@@ -4049,7 +4049,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/router.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/router.js",
             "line": 222,
             "description": "Shorthand for `this.route('post', ...arguments)`",
             "itemtype": "method",
@@ -4059,7 +4059,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/router.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/router.js",
             "line": 229,
             "description": "Shorthand for `this.route('put', ...arguments)`",
             "itemtype": "method",
@@ -4069,7 +4069,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/router.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/router.js",
             "line": 236,
             "description": "Shorthand for `this.route('patch', ...arguments)`",
             "itemtype": "method",
@@ -4079,7 +4079,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/router.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/router.js",
             "line": 243,
             "description": "Shorthand for `this.route('delete', ...arguments)`",
             "itemtype": "method",
@@ -4089,7 +4089,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/router.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/router.js",
             "line": 250,
             "description": "Create all the CRUD routes for a given resource and it's relationships.\nBased on the JSON-API recommendations for URL design.\n\nThe `options` argument lets you pass in `only` or `except` arrays to define\nexceptions. Action names included in `only` will be the only ones\ngenerated, while names included in `except` will be omitted.\n\nSet `options.related = false` to disable relationship routes.\n\nIf no options are supplied, the following routes are generated (assuming a\n'books' resource as an example):\n\n  * `GET /books`\n  * `POST /books`\n  * `GET /books/:id`\n  * `PATCH /books/:id`\n  * `DELETE /books/:id`\n  * `GET /books/:id/:relation`\n  * `GET /books/:id/relationships/:relation`\n  * `PATCH /books/:id/relationships/:relation`\n  * `POST /books/:id/relationships/:relation`\n  * `DELETE /books/:id/relationships/:relation`\n\nSee http://jsonapi.org/recommendations/#urls for details.",
             "class": "Router",
@@ -4097,7 +4097,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/router.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/router.js",
             "line": 319,
             "description": "Enables easy route namespacing. You can supply a method which takes a\nsingle argument that works just like the `router` argument in your\n`config/routes.js`, or you can use the return value just like the router.\n\n  router.namespace('users', (namespace) => {\n    namespace.get('sign-in');\n  });\n  // or ...\n  let namespace = router.namespace('users');\n  namespace.get('sign-in');",
             "itemtype": "method",
@@ -4124,7 +4124,7 @@
             "submodule": "runtime"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/utils/ensure-array.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/utils/ensure-array.js",
             "line": 3,
             "description": "Takes the provided argument and ensures that the return value is an array.\nIf it is already an array, it is returned as-is. If is null or undefined,\nan empty array is returned. Otherwise, it wraps the argument in an array\nand returns that array.",
             "itemtype": "method",
@@ -4144,7 +4144,7 @@
             "module": "denali"
         },
         {
-            "file": "/Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/utils/log.js",
+            "file": "/Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/utils/log.js",
             "line": 9,
             "description": "A simple console logging method that adds a timestamp, optional log level,\nand some color to the output.",
             "itemtype": "method",
@@ -4168,59 +4168,59 @@
     "warnings": [
         {
             "message": "unknown tag: letructor",
-            "line": " /Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/cli/lib/blueprint.js:18"
+            "line": " /Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/cli/lib/blueprint.js:18"
         },
         {
             "message": "unknown tag: letructor",
-            "line": " /Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/cli/lib/command.js:13"
+            "line": " /Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/cli/lib/command.js:13"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " /Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/orm-adapter.js:18"
+            "line": " /Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/orm-adapter.js:18"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " /Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/orm-adapter.js:60"
+            "line": " /Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/orm-adapter.js:60"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " /Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/orm-adapter.js:72"
+            "line": " /Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/orm-adapter.js:72"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " /Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/metal/instrumentation.js:61"
+            "line": " /Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/metal/instrumentation.js:61"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " /Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/mailer.js:71"
+            "line": " /Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/mailer.js:71"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " /Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/response.js:18"
+            "line": " /Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/response.js:18"
         },
         {
             "message": "Missing item type\nSerialize the attributes for a given record",
-            "line": " /Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/flat.js:76"
+            "line": " /Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/flat.js:76"
         },
         {
             "message": "Missing item type\nTakes the serializer config and the model's descriptor for a relationship,\nand returns the serialized relationship object. Also sideloads any full\nrecords found for the relationship.",
-            "line": " /Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/json-api.js:268"
+            "line": " /Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/json-api.js:268"
         },
         {
             "message": "Missing item type\nGiven the serializer config and the model descriptor for a hasOne\nrelationship, returns the data for that relationship (the resource object\nwith type and id). Sideloads the related record if present.",
-            "line": " /Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/json-api.js:287"
+            "line": " /Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/json-api.js:287"
         },
         {
             "message": "Missing item type\nGiven the serializer config and the model descriptor for a hasMany\nrelationship, returns the data for that relationship (the resource objects\nwith type and id). Sideloads the related records if present.",
-            "line": " /Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/json-api.js:303"
+            "line": " /Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/json-api.js:303"
         },
         {
             "message": "Missing item type\nGiven a related record or it's id, return the resource object for that\nrecord (or id). If it's a full record, sideload the record as well.",
-            "line": " /Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/data/serializers/json-api.js:319"
+            "line": " /Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/data/serializers/json-api.js:319"
         },
         {
             "message": "Missing item type\nCreate all the CRUD routes for a given resource and it's relationships.\nBased on the JSON-API recommendations for URL design.\n\nThe `options` argument lets you pass in `only` or `except` arrays to define\nexceptions. Action names included in `only` will be the only ones\ngenerated, while names included in `except` will be omitted.\n\nSet `options.related = false` to disable relationship routes.\n\nIf no options are supplied, the following routes are generated (assuming a\n'books' resource as an example):\n\n  * `GET /books`\n  * `POST /books`\n  * `GET /books/:id`\n  * `PATCH /books/:id`\n  * `DELETE /books/:id`\n  * `GET /books/:id/:relation`\n  * `GET /books/:id/relationships/:relation`\n  * `PATCH /books/:id/relationships/:relation`\n  * `POST /books/:id/relationships/:relation`\n  * `DELETE /books/:id/relationships/:relation`\n\nSee http://jsonapi.org/recommendations/#urls for details.",
-            "line": " /Users/daw/projects/denali/tmp/d20160620-81885-jlm3f4/lib/runtime/router.js:250"
+            "line": " /Users/daw/projects/denali/tmp/d20160711-78759-1q23xrl/lib/runtime/router.js:250"
         }
     ]
 }
