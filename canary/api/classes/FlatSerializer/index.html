@@ -44,6 +44,8 @@
     
       <option value='canary' selected='selected'>canary</option>
     
+      <option value='latest' >latest</option>
+    
   </select>
 </div>
 

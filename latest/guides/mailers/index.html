@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/denali/">
+
+  <title>Mailers</title>
+  <meta name="description" content="">
+
+  <link href='//fonts.googleapis.com/css?family=Inconsolata|Bitter:400,700|Open+Sans:300,400,400italic,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="canonical" href="https://davewasmer.github.com/denali/guides/mailers/">
+</head>
+
+  <body>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-2.2.2.min.js"><\/script>')</script>
+    <nav class="navbar">
+  <div class='container'>
+    <a href='.' class='navbar-brand'>
+      <img class='logo-light' src='images/logo.svg' alt='Denali'>
+      <span class='project-name'>Denali</span>
+    </a>
+
+    <div class="navbar-nav">
+      <a class='nav-link' href='latest/guides/quickstart'>Quickstart</a>
+      <a class='nav-link' href='latest/guides/introduction'>Guides</a>
+      <a class='nav-link' href='latest/api'>API</a>
+      <a class='nav-link' href='https://github.com/davewasmer/denali' target='_blank'>Github</a>
+      <a class='nav-link' href='https://github.com/davewasmer/denali/issues' target='_blank'>Issues</a>
+    </div>
+  </div>
+</nav>
+
+<div class='container'>
+  <div class="row">
+    <div class='guides-nav col-md-3'>
+
+  <div class='nav-section'>
+  <div class='nav-header'>Version</div>
+  <select class='versions-select' id='versions'>
+    
+      <option value='canary' >canary</option>
+    
+      <option value='latest' selected='selected'>latest</option>
+    
+  </select>
+</div>
+
+
+  
+    <div class="nav-section">
+      
+      
+        <a href='canary/guides/introduction/' class='nav-link'>Introduction</a>
+      
+        <a href='canary/guides/quickstart/' class='nav-link'>Quickstart</a>
+      
+        <a href='canary/guides/app-structure/' class='nav-link'>App Structure</a>
+      
+    </div>
+  
+    <div class="nav-section">
+      
+        <div class='nav-header'>Application</div>
+      
+      
+        <a href='canary/guides/routing/' class='nav-link'>Routing</a>
+      
+        <a href='canary/guides/actions/' class='nav-link'>Actions</a>
+      
+        <a href='canary/guides/services/' class='nav-link'>Services</a>
+      
+        <a href='canary/guides/errors/' class='nav-link'>Errors</a>
+      
+        <a href='canary/guides/mailers/' class='nav-link'>Mailers</a>
+      
+    </div>
+  
+    <div class="nav-section">
+      
+        <div class='nav-header'>Data</div>
+      
+      
+        <a href='canary/guides/models/' class='nav-link'>Models</a>
+      
+        <a href='canary/guides/serializers/' class='nav-link'>Serializers</a>
+      
+        <a href='canary/guides/orm-adapters/' class='nav-link'>ORM Adapters</a>
+      
+    </div>
+  
+    <div class="nav-section">
+      
+        <div class='nav-header'>Testing</div>
+      
+      
+        <a href='canary/guides/integration/' class='nav-link'>Integration</a>
+      
+        <a href='canary/guides/unit/' class='nav-link'>Unit Testing</a>
+      
+    </div>
+  
+    <div class="nav-section">
+      
+        <div class='nav-header'>Configuration</div>
+      
+      
+        <a href='canary/guides/environment/' class='nav-link'>Environment</a>
+      
+        <a href='canary/guides/middleware/' class='nav-link'>Middleware</a>
+      
+        <a href='canary/guides/initializers/' class='nav-link'>Initializers</a>
+      
+    </div>
+  
+    <div class="nav-section">
+      
+        <div class='nav-header'>Utilities</div>
+      
+      
+        <a href='canary/guides/mixins.js' class='nav-link'>Mixins</a>
+      
+        <a href='canary/guides/addons/' class='nav-link'>Addons</a>
+      
+        <a href='canary/guides/instrumentation/' class='nav-link'>Instrumentation</a>
+      
+    </div>
+  
+    <div class="nav-section">
+      
+        <div class='nav-header'>CLI</div>
+      
+      
+        <a href='canary/guides/generate/' class='nav-link'>denali generate</a>
+      
+        <a href='canary/guides/serve/' class='nav-link'>denali serve</a>
+      
+        <a href='canary/guides/test/' class='nav-link'>denali test</a>
+      
+        <a href='canary/guides/build/' class='nav-link'>denali build</a>
+      
+        <a href='canary/guides/addon/' class='nav-link'>denali addon</a>
+      
+        <a href='canary/guides/console/' class='nav-link'>denali console</a>
+      
+    </div>
+  
+
+</div>
+
+    <div class='col-md-9 guides-body copy'>
+      <a class="improve-btn" target="_blank" href="https://github.com/davewasmer/denali/edit/master/guides/mailers.md">Improve this page</a>
+      <h1 id="mailers">Mailers</h1>
+
+<p>Most web applications of non-trivial size will need to send emails to users.
+Denali’s Mailers provide a convention-based, out of the box solution that scales
+from simple transactional emails all the way up to complex digests, all while
+abstracting the emails from the method of sending (i.e. SES, Mandrill, Sendgrid,
+etc).</p>
+
+<h2 id="concepts">Concepts</h2>
+
+<p>Denali exposes a <code class="highlighter-rouge">Mailer</code> class, which represents an email that is sent. It
+captures all the associated logic of that email - if it needs to lookup data
+from a database, that happens in the Mailer class. Mailers are defined in
+<code class="highlighter-rouge">app/mailers/</code>.</p>
+
+<p>Each Mailer class is paired with template files to define the body of the email.
+By convention, the template files are stored right next to mailer files, and use
+the same name (but different extensions - one for the HTML version of the email,
+and one for the plain text version):</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>app/
+  mailers/
+    welcome.js   &lt;- The mailer class
+    welcome.html &lt;- The HTML version of the email body
+    welcome.txt  &lt;- The plain text version of the email body
+</code></pre>
+</div>
+
+<p>It’s not required to have both a plain text and HTML version of an email -
+either one is fine alone.</p>
+
+<h2 id="creating-a-mailer">Creating a Mailer</h2>
+
+<p>To get started sending emails, let’s create a mailer. You can use the <code class="highlighter-rouge">generate</code>
+command in the Denali CLI to scaffold out a new mailer for you:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ denali generate mailer welcome
+</code></pre>
+</div>
+
+<p>This will create a blank mailer for us. In this case, we’re building a welcome
+email to send after a user signs up. Now lets update the scaffolded templates
+with our welcome message:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>// app/mailers/welcome.html
+<span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+  <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">content=</span><span class="s">'text/html; charset=UTF-8'</span> <span class="na">http-equiv=</span><span class="s">'Content-Type'</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/head&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>Welcome to example.com, <span class="err">&lt;</span>%= user.name %&gt;!<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;p&gt;</span>Thanks for joining and have a great day!<span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre>
+</div>
+
+<p>And our plain text version (it’s usually a good idea to have both, since some
+email clients prefer plain text to HTML):</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>// app/mailers/welcome.txt
+Welcome to example.com, &lt;%= user.name %&gt;!
+Thanks for joining and have a great day!
+</code></pre>
+</div>
+
+<p>Notice our template tags in both templates, where we dynamically insert the
+user’s name into the template.</p>
+
+<p>Now, if we wanted to pull in additional data, we could override the <code class="highlighter-rouge">welcome.js</code>
+mailer’s <code class="highlighter-rouge">send()</code> method, like this:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>// app/mailers/welcome.js
+import { Mailer } from 'denali';
+
+export default class WelcomeMailer extends Mailer {
+  send(user) {
+    let Topic = this.modelFor('topic');
+    return Topic.findInteresting().then((interestingTopics) =&gt; {
+      return this.mail({
+        to: user.email,
+        from: 'notifications@example.com',
+        subject: 'Welcome!',
+        html: this.template('html', { user, interestingTopics }),
+        text: this.template('text', { user, interestingTopics })
+      });
+  }
+}
+</code></pre>
+</div>
+
+<p>Notice that we use <code class="highlighter-rouge">this.mail({ to, from, subject, html, text })</code> to actually
+send the email once we’ve gathered all the relevant data.</p>
+
+<h2 id="sending-the-email">Sending the email</h2>
+
+<p>Now that we have a mailer ready to go, let’s wire it up to a <code class="highlighter-rouge">users/sign-up</code>
+action so that new users will be sent a welcome email:</p>
+
+<p>// app/actions/users/sign-up.js
+   respond(params) {
+     let User = this.modelFor(‘user’);
+     return User.create(params).then((newUser) =&gt; {
+       this.mail(‘welcome’, newUser);
+       return newUser;
+     });
+   }</p>
+
+<p>As we can see, actions come with a <code class="highlighter-rouge">this.mail</code> method which invoke the named
+mailer with the data supplied (in this case, our new user record).</p>
+
+<p>Notice also that, despite <code class="highlighter-rouge">this.mail()</code> returning a Promise, we don’t wait for
+it to finish the action. This let’s us leverage Node’s asynchronous behavior to
+finish the request as soon as possible rather than waiting for the email to
+finish before responding to the incoming request.</p>
+
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class='container'>
+    Made with <img src='images/fox-and-beard.svg' class='fox-and-beard'> at
+    <a href='http://foxandbeard.co' target='_blank'>Fox and Beard</a>
+  </div>
+</footer>
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<script>
+    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+    e.src='//www.google-analytics.com/analytics.js';
+    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+    ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+</script>
+
+
+  </body>
+</html>
