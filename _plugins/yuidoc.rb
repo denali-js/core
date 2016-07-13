@@ -35,7 +35,7 @@ module Jekyll
       versions = versions.map do |tag|
         tag.name
       end
-      versions.sort! { |a, b| Semantic::Version.new(a) <=> Semantic::Version.new(b) }
+      versions.sort! { |a, b| Semantic::Version.new(a[1..-1]) <=> Semantic::Version.new(b[1..-1]) }
       @site.config['version_aliases'] ||= {}
       @site.config['version_aliases'][versions.last] = 'latest'
       (@site.config['additional_version_refs'] || []).concat(versions)
