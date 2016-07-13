@@ -44,6 +44,8 @@
     
       <option value='canary' selected='selected'>canary</option>
     
+      <option value='v0.0.4' >v0.0.4</option>
+    
       <option value='latest' >latest</option>
     
   </select>
