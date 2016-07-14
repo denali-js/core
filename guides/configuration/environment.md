@@ -1,8 +1,5 @@
 ---
-layout: guide
 title: Environment
-category: Configuration
-category_order: 4
 ---
 
 The environment config file (`config/environment.js`) holds the configuration

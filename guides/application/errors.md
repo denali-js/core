@@ -1,11 +1,8 @@
 ---
-layout: guide
-title: Instrumentation
-category: Utilities
-after: Addons
+title: Errors
 ---
 
-# Instrumentation
+# Errors
 
 **Coming soon ...**
 

@@ -1,8 +1,5 @@
 ---
-layout: guide
 title: ORM Adapters
-category: Data
-after: Serializers
 ---
 
 # ORM Adapters

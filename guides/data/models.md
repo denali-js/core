@@ -1,11 +1,9 @@
 ---
-layout: guide
-title: Errors
-category: Application
-after: Services
+title: Models
 ---
 
-# Errors
+
+# Models
 
 **Coming soon ...**
 

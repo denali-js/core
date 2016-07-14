@@ -1,8 +1,5 @@
 ---
-layout: guide
 title: Mailers
-category: Application
-after: Errors
 ---
 
 # Mailers

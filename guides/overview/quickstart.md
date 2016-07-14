@@ -1,7 +1,5 @@
 ---
 title: Quickstart
-layout: guide
-after: Introduction
 ---
 
 

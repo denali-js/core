@@ -1,0 +1,71 @@
+{
+  "categories": [
+    {
+      "dir": "overview",
+      "name": "Overview",
+      "guides": [
+        "introduction",
+        "quickstart",
+        "app-structure"
+      ]
+    },
+    {
+      "dir": "application",
+      "name": "Application",
+      "guides": [
+        "routing",
+        "actions",
+        "services",
+        "errors",
+        "mailers"
+      ]
+    },
+    {
+      "dir": "data",
+      "name": "Data",
+      "guides": [
+        "models",
+        "serializers",
+        "orm-adapters"
+      ]
+    },
+    {
+      "dir": "testing",
+      "name": "Testing",
+      "guides": [
+        "integration",
+        "unit"
+      ]
+    },
+    {
+      "dir": "configuration",
+      "name": "Configuration",
+      "guides": [
+        "environment",
+        "middleware",
+        "initializers"
+      ]
+    },
+    {
+      "dir": "utilities",
+      "name": "Utilities",
+      "guides": [
+        "mixins",
+        "addons",
+        "instrumentation"
+      ]
+    },
+    {
+      "dir": "cli",
+      "name": "CLI",
+      "guides": [
+        "generate",
+        "serve",
+        "test",
+        "build",
+        "addon",
+        "console"
+      ]
+    }
+  ]
+}

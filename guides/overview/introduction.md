@@ -1,7 +1,5 @@
 ---
 title: Introduction
-layout: guide
-category_order: -1
 ---
 
 # Core Principles

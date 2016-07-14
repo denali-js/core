@@ -1,7 +1,5 @@
 ---
 title: App Structure
-layout: guide
-after: Quickstart
 ---
 
 # `app/`

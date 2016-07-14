@@ -1,11 +1,8 @@
 ---
-layout: guide
-title: Services
-category: Application
-after: Actions
+title: Instrumentation
 ---
 
-# Services
+# Instrumentation
 
 **Coming soon ...**
 
