@@ -1,0 +1,24 @@
+---
+layout: page
+---
+<div class='container'>
+  <div class="row">
+    <div class='guides-nav col-md-3'>
+      <%- include('version-dropdown') %>
+      <% categories.forEach((category) => { %>
+        <div class="nav-section">
+          <% if (category.name !== 'Uncategorized') { %>
+            <div class='nav-header'><%= category.name %></div>
+          <% } %>
+          <% category.guides.forEach((guide) => { %>
+            <a href='<%= version.name %>/guides/<%= category.dir %>/<%= guide.name %>' class='nav-link'><%= guide.data.title %></a>
+          <% }) %>
+        </div>
+      <% }) %>
+    </div>
+    <div class='col-md-9 guides-body copy'>
+      <a class="improve-btn" target="_blank" href="https://github.com/<%= repo %>/edit/master/guides/<%= guide.name %>">Improve this page</a>
+      <%- content %>
+    </div>
+  </div>
+</div>

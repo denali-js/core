@@ -1,0 +1,17 @@
+<nav class="navbar">
+  <div class='container'>
+    <a href='.' class='navbar-brand'>
+      <img class='logo-light' src='images/logo.svg' alt='Denali'>
+      <span class='project-name'>Denali</span>
+    </a>
+
+    <div class="navbar-nav">
+      <% let targetVersion = (locals.version && locals.version.name) || 'latest' %>
+      <a class='nav-link' href='<%= targetVersion %>/guides/overview/quickstart'>Quickstart</a>
+      <a class='nav-link' href='<%= targetVersion  %>/guides/overview/introduction'>Guides</a>
+      <a class='nav-link' href='<%= targetVersion  %>/api/modules/denali'>API</a>
+      <a class='nav-link' href='https://github.com/<%= repo %>' target='_blank'>Github</a>
+      <a class='nav-link' href='https://github.com/<%= repo %>/issues' target='_blank'>Issues</a>
+    </div>
+  </div>
+</nav>

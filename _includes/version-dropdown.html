@@ -1,8 +1,0 @@
-<div class='nav-section'>
-  <div class='nav-header'>Version</div>
-  <select class='versions-select' id='versions'>
-    {% for version in page.versions %}
-      <option value='{{version[0]}}' {% if page.version.ref == version[0] %}selected='selected'{% endif %}>{{version[0]}}</option>
-    {% endfor %}
-  </select>
-</div>

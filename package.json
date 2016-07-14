@@ -1,0 +1,38 @@
+{
+  "name": "denali-docs",
+  "version": "0.1.0",
+  "description": "The Denali docs are a Jekyll site. The source files are on the `docs` branch, and it leverages the `_plugins/yuidoc.rb` plugin to read the documentation source from the various source branches and tags. The `deploy.sh` script on the `docs` branch will build the docs, copy them to this (`gh-pages`) branch, commit and push them up.",
+  "main": "Brocfile.js",
+  "dependencies": {
+    "broccoli-cli": "^1.0.0",
+    "broccoli-filter": "^1.2.3",
+    "broccoli-merge-trees": "^1.1.2",
+    "broccoli-plugin": "^1.2.1",
+    "broccoli-sass": "^0.7.0",
+    "broccoli-stew": "^1.3.2",
+    "ejs": "^2.4.2",
+    "front-matter": "^2.1.0",
+    "frontmatter": "0.0.3",
+    "fs-extra": "^0.30.0",
+    "lodash": "^4.13.1",
+    "marked": "^0.3.5",
+    "semver": "^5.2.0",
+    "yuidocjs": "^0.10.2"
+  },
+  "devDependencies": {
+    "broccoli": "^0.16.9"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davewasmer/denali.git"
+  },
+  "author": "Dave Wasmer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/davewasmer/denali/issues"
+  },
+  "homepage": "https://github.com/davewasmer/denali#readme"
+}

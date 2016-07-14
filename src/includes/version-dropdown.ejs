@@ -1,0 +1,8 @@
+<div class='nav-section'>
+  <div class='nav-header'>Version</div>
+  <select class='versions-select' id='versions'>
+    <% versions.forEach((v) => { %>
+      <option value='<%= v.name %>' <% if (v.name === version.name) { %>selected='selected'<% } %>><%= v.name %></option>
+    <% }) %>
+  </select>
+</div>

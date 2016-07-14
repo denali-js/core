@@ -1,9 +1,8 @@
 ---
 layout: default
 ---
-
 <div class='homepage'>
-  {% include header.html %}
+  <%- include('./header') %>
   <div class="hero">
     <div class="container">
       <h1 class="headline">
@@ -33,7 +32,7 @@ $ cd my-api &amp;&amp; denali serve</code>
       <div class="warning-body">
         <h4 class="warning-title">Heads up!</h4>
         Denali is still in alpha. We don't recommend using it for production apps
-        just yet. Check out the <a href='https://github.com/davewasmer/denali/milestones/v0.1.0-beta.1'>road to beta</a>
+        just yet. Check out the <a href='https://github.com/<%= repo %>/milestones/v0.1.0-beta.1'>road to beta</a>
         to see what's left!
       </div>
     </div>
@@ -101,5 +100,5 @@ $ cd my-api &amp;&amp; denali serve</code>
     </div>
 
   </div>
-  {% include footer.html %}
+  <%- include('footer') %>
 </div>

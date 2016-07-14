@@ -1,0 +1,22 @@
+---
+layout: api
+---
+<div class='module'>
+  <h1 class='module-name'><%= mod.name %></h1>
+  <% if (mod.file) { %>
+    <a class='defined-in' href='https://github.com/<%= repo %>/blob/<%= version.name %>/<%= mod.file %>#L<%= mod.line %>'>
+      <span class='filename'>Defined in: <%= mod.file %></span>
+      <span class='line'>Line: <%= mod.line %></span>
+    </a>
+  <% } %>
+  <% if (mod.description) { %>
+    <div class='module-description'><%- markdown(mod.description) %></div>
+  <% } %>
+
+  <h2 class='module-classes-header'>Classes</h2>
+  <% forIn(mod.classes, (klass, name) => { %>
+    <div class='module-class-link'>
+      <a href='<%= version.name %>/api/classes/<%= encodeURIComponent(name) %>'><%= name %></a>
+    </div>
+  <% }); %>
+</div>

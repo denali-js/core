@@ -5,29 +5,24 @@ layout: page
 <div class='container'>
   <div class='row'>
     <div class='api-nav col-md-3'>
-
-      {% include version-dropdown.html %}
-
+      <%- include('version-dropdown') %>
       <label class='private-classes-toggle'>
         <input type='checkbox' id='toggle-private-classes'>
         Include Private
       </label>
-
-      {% for module in page.version.api.modules %}
-        {% if module[1].is_submodule %}
+      <% forIn(version.data.modules, (moduleData, moduleName) => { %>
+        <% if (moduleData.is_submodule) { %>
           <div class='nav-section'>
-            <div class='nav-header'>{{module[1].name | capitalize }}</div>
-            {% for class in module[1].classes %}
-              <a class='nav-link {% if page.class.name == class[0] %}active{% endif %}' href='{{ page.version.ref }}/api/classes/{{ class[0] | url_encode }}' {% if class[1].access == 'private' %}data-private-class=true{% endif %}>{{ class[0] }}</a>
-            {% endfor %}
+            <div class='nav-header'><%= moduleData.name %></div>
+            <% forIn(moduleData.classes, (classData, className) => { %>
+              <a class='nav-link <% if (locals.klass && locals.klass.name == className) { %>active<% } %>' href='<%= version.name %>/api/classes/<%= encodeURIComponent(className) %>' <% if (classData.access === 'private') { %>data-private-class=true<% } %>><%= className %></a>
+            <% }) %>
           </div>
-        {% endif %}
-      {% endfor %}
-
+        <% } %>
+      <% }) %>
     </div>
-
     <div class='api-body col-md-9'>
-      {{content}}
+      <%- content %>
     </div>
   </div>
 </div>
