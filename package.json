@@ -23,7 +23,9 @@
     "broccoli": "^0.16.9"
   },
   "scripts": {
-    "test": "mocha"
+    "build": "rm -rf dist && broccoli build",
+    "serve": "broccoli serve",
+    "deploy": "./deploy.sh"
   },
   "repository": {
     "type": "git",
