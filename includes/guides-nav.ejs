@@ -1,0 +1,16 @@
+<div class='guides-nav col-md-3'>
+
+  <%- include('version-dropdown') %>
+
+  <% categories.forEach((category) => { %>
+    <div class="nav-section">
+      <% if (category.name !== 'Uncategorized') { %>
+        <div class='nav-header'><%= category.name %></div>
+      <% } %>
+      <% category.guides.forEach((guide) => { %>
+        <a href='<%= version.name %>/guides/<%= category.dir %>/<%= guide.name %>' class='nav-link'><%= guide.data.title %></a>
+      <% }) %>
+    </div>
+  <% }) %>
+
+</div>

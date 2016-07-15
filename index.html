@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/">
+
+    <title></title>
+    <!-- <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ description }}{% endif %}"> -->
+
+    <link href='//fonts.googleapis.com/css?family=Inconsolata|Bitter:400,700|Open+Sans:300,400,400italic,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="styles.css">
+    <!-- <link rel="canonical" href="{% page.url | replace:'index.html','' | prepend: baseurl | prepend: url }}"> -->
+  </head>
+  <body>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-2.2.2.min.js"><\/script>')</script>
+    <div class='homepage'>
+  <nav class="navbar">
+  <div class='container'>
+    <a href='.' class='navbar-brand'>
+      <img class='logo-light' src='images/logo.svg' alt='Denali'>
+      <span class='project-name'>Denali</span>
+    </a>
+
+    <div class="navbar-nav">
+      
+      <a class='nav-link' href='latest/guides/overview/quickstart'>Quickstart</a>
+      <a class='nav-link' href='latest/guides/overview/introduction'>Guides</a>
+      <a class='nav-link' href='latest/api/modules/denali'>API</a>
+      <a class='nav-link' href='https://github.com/davewasmer/denali' target='_blank'>Github</a>
+      <a class='nav-link' href='https://github.com/davewasmer/denali/issues' target='_blank'>Issues</a>
+    </div>
+  </div>
+</nav>
+
+
+  <div class="hero">
+    <div class="container">
+      <h1 class="headline">
+        The best way to build <strong>robust</strong> APIs in Node
+      </h1>
+      <div class="lead">
+        Denali is an opinionated Node.js framework that lets you focus on
+        shipping APIs, <br> instead of bikeshedding about the plumbing.
+      </div>
+      <div class="terminal">
+        <div class="terminal-title">
+          <div class="terminal-title-button">&nbsp;</div>
+          <div class="terminal-title-button">&nbsp;</div>
+          <div class="terminal-title-button">&nbsp;</div>
+        </div>
+        <pre>
+          <code>$ npm install -g denali
+$ denali new my-api
+$ cd my-api &amp;&amp; denali serve</code>
+        </pre>
+      </div>
+    </div>
+  </div>
+  <div class="alpha-warning">
+    <div class="container">
+      <img src="images/warning.svg" class="warning-icon">
+      <div class="warning-body">
+        <h4 class="warning-title">Heads up!</h4>
+        Denali is still in alpha. We don't recommend using it for production apps
+        just yet. Check out the <a href='https://github.com/davewasmer/denali/milestones/v0.1.0-beta.1'>road to beta</a>
+        to see what's left!
+      </div>
+    </div>
+  </div>
+  <div class='container features'>
+
+    <div class='row feature'>
+      <div class='col-md-6'>
+        <img class='feature-graphic' src='images/api-first.svg'>
+      </div>
+      <div class='col-md-6'>
+        <h2>API-first</h2>
+        <p class="feature-description">
+          You won't find any templating languages, views, or other HTML
+          rendering support out of the box. Denali is unapologetically focused
+          on APIs first. First class support for
+          <a href="latest/guides/serializers">JSON serializers</a>,
+          <a href="latest/guides/routing">RESTful routing</a>,
+          and <a href="latest/guides/integration">powerful testing helpers</a>
+          make building APIs easier than ever.
+        </p>
+      </div>
+    </div>
+
+    <div class='row feature'>
+      <div class="col-md-6">
+        <img class='feature-graphic' src='images/developer-happiness.svg'>
+      </div>
+      <div class='col-md-6'>
+        <h2>Developer happiness</h2>
+        <p class="feature-description">
+          Denali ships with a top-notch CLI which can run
+          <a href="latest/guides/server">reload-on-change development server</a>,
+          <a href="latest/guides/generate">scaffold new code</a>,
+          <a href="latest/guides/test">run tests</a>, and more. Extensibility
+          is baked into the core as well, with
+          <a href="latest/guides/addons">Addons</a> providing a powerful
+          approach to incorporating third party code.
+        </p>
+      </div>
+    </div>
+
+    <div class="row feature">
+      <div class='col-md-6'>
+        <img class='feature-graphic' src='images/data-flexibility.svg'>
+      </div>
+      <div class='col-md-6'>
+        <h2>Data Flexibility</h2>
+        <p class="feature-description">
+          Thanks to it's unique <a href="latest/guides/models">model</a> +
+          <a href="latest/guides/orm-adapters">adapter</a> approach, Denali
+          let's you use whatever ORM you want with it. And Denali Addons will
+          work with it out of the box. You can even use multiple ORMs in the
+          same project to fully leverage the strengths of each data store
+          (a.k.a polyglot persistence).
+        </p>
+      </div>
+    </div>
+
+    <div class="cta">
+      <h2 class="cta-header">Sound Interesting?</h2>
+      <a class='cta-btn' href='/latest/guides'>
+        Check out the Guides
+      </a>
+    </div>
+
+  </div>
+  <footer class="footer">
+  <div class='container'>
+    Made with <img src='images/fox-and-beard.svg' class='fox-and-beard'> at
+    <a href='http://foxandbeard.co' target='_blank'>Fox and Beard</a>
+  </div>
+</footer>
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<script>
+    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+    e.src='//www.google-analytics.com/analytics.js';
+    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+    ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+</script>
+
+
+</div>
+
+
+  </body>
+</html>
