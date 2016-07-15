@@ -1,9 +1,7 @@
-const sortVersions = require('./build/lib/sort-versions');
-
 module.exports = {
   data: {
     repo: 'davewasmer/denali',
-    baseurl: '',
+    baseurl: process.env.NODE_ENV === 'production' ? 'denali/' : '',
     title: 'Denali',
     url: 'http://localhost:4400'
   },

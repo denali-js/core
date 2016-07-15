@@ -11,7 +11,7 @@ if [ -n "$(git status --porcelain)" ]; then
 fi
 
 trash dist
-broccoli build $tmpdir/dist
+NODE_ENV=production broccoli build $tmpdir/dist
 
 mv node_modules $node_modules_backup/
 
