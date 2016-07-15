@@ -10,7 +10,7 @@ if [ -n "$(git status --porcelain)" ]; then
 fi
 
 trash dist
-broccoli build dist
+broccoli build $tmpdir
 
 git checkout gh-pages
 trash ./*
