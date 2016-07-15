@@ -9,7 +9,8 @@ if [ -n "$(git status --porcelain)" ]; then
   exit 1
 fi
 
-jekyll build --destination $tmpdir
+trash dist
+broccoli build dist
 
 git checkout gh-pages
 trash ./*
