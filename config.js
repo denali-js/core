@@ -1,7 +1,7 @@
 module.exports = {
   data: {
     repo: 'davewasmer/denali',
-    baseurl: process.env.NODE_ENV === 'production' ? 'denali/' : '',
+    baseurl: process.env.NODE_ENV === 'production' ? 'denali' : '',
     title: 'Denali',
     url: 'http://localhost:4400'
   },
