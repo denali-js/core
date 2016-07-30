@@ -32,7 +32,8 @@
     "faker": "^3.0.1",
     "in-publish": "2.0.0",
     "isparta": "^4.0.0",
-    "must": "^0.13.1"
+    "must": "^0.13.1",
+    "trash-cli": "^1.3.0"
   },
   "scripts": {
     "prebuild": "trash dist && cp -r lib dist",
