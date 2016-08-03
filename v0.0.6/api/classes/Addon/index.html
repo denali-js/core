@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/">
+
+    <title></title>
+    <!-- <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ description }}{% endif %}"> -->
+
+    <link href='//fonts.googleapis.com/css?family=Inconsolata|Bitter:400,700|Open+Sans:300,400,400italic,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="styles.css">
+    <!-- <link rel="canonical" href="{% page.url | replace:'index.html','' | prepend: baseurl | prepend: url }}"> -->
+  </head>
+  <body>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-2.2.2.min.js"><\/script>')</script>
+    <nav class="navbar">
+  <div class='container'>
+    <a href='.' class='navbar-brand'>
+      <img class='logo-light' src='images/logo.svg' alt='Denali'>
+      <span class='project-name'>Denali</span>
+    </a>
+
+    <div class="navbar-nav">
+      
+      <a class='nav-link' href='v0.0.6/guides/overview/quickstart'>Quickstart</a>
+      <a class='nav-link' href='v0.0.6/guides/overview/introduction'>Guides</a>
+      <a class='nav-link' href='v0.0.6/api/modules/denali'>API</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali' target='_blank'>Github</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali/issues' target='_blank'>Issues</a>
+    </div>
+  </div>
+</nav>
+
+
+<div class='container'>
+  <div class='row'>
+    <div class='api-nav col-md-3'>
+      <div class='nav-section'>
+  <div class='nav-header'>Version</div>
+  <select class='versions-select' id='versions'>
+    
+      <option value='v0.0.6' selected='selected'>v0.0.6</option>
+    
+      <option value='canary' >canary</option>
+    
+  </select>
+</div>
+
+      <label class='private-classes-toggle'>
+        <input type='checkbox' id='toggle-private-classes'>
+        Include Private
+      </label>
+      
+        
+      
+        
+          <div class='nav-section'>
+            <div class='nav-header'>cli</div>
+            
+              <a class='nav-link ' href='v0.0.6/api/classes/Blueprint' >Blueprint</a>
+            
+              <a class='nav-link ' href='v0.0.6/api/classes/Command' >Command</a>
+            
+          </div>
+        
+      
+        
+          <div class='nav-section'>
+            <div class='nav-header'>data</div>
+            
+              <a class='nav-link ' href='v0.0.6/api/classes/FlatSerializer' >FlatSerializer</a>
+            
+              <a class='nav-link ' href='v0.0.6/api/classes/JSONAPISerializer' >JSONAPISerializer</a>
+            
+              <a class='nav-link ' href='v0.0.6/api/classes/Model' >Model</a>
+            
+              <a class='nav-link ' href='v0.0.6/api/classes/ORMAdapter' >ORMAdapter</a>
+            
+              <a class='nav-link ' href='v0.0.6/api/classes/Serializer' >Serializer</a>
+            
+          </div>
+        
+      
+        
+          <div class='nav-section'>
+            <div class='nav-header'>metal</div>
+            
+              <a class='nav-link ' href='v0.0.6/api/classes/eachPrototype' >eachPrototype</a>
+            
+              <a class='nav-link ' href='v0.0.6/api/classes/Instrumentation' >Instrumentation</a>
+            
+              <a class='nav-link ' href='v0.0.6/api/classes/mixin' >mixin</a>
+            
+              <a class='nav-link ' href='v0.0.6/api/classes/createMixin' >createMixin</a>
+            
+          </div>
+        
+      
+        
+          <div class='nav-section'>
+            <div class='nav-header'>runtime</div>
+            
+              <a class='nav-link ' href='v0.0.6/api/classes/Action' >Action</a>
+            
+              <a class='nav-link active' href='v0.0.6/api/classes/Addon' >Addon</a>
+            
+              <a class='nav-link ' href='v0.0.6/api/classes/Application' >Application</a>
+            
+              <a class='nav-link ' href='v0.0.6/api/classes/Container' >Container</a>
+            
+              <a class='nav-link ' href='v0.0.6/api/classes/Error' >Error</a>
+            
+              <a class='nav-link ' href='v0.0.6/api/classes/Logger' >Logger</a>
+            
+              <a class='nav-link ' href='v0.0.6/api/classes/Mailer' >Mailer</a>
+            
+              <a class='nav-link ' href='v0.0.6/api/classes/Request' >Request</a>
+            
+              <a class='nav-link ' href='v0.0.6/api/classes/Response' >Response</a>
+            
+              <a class='nav-link ' href='v0.0.6/api/classes/Router' >Router</a>
+            
+              <a class='nav-link ' href='v0.0.6/api/classes/Service' >Service</a>
+            
+          </div>
+        
+      
+    </div>
+    <div class='api-body col-md-9'>
+      <div class='class'>
+  <h1 class='class-name'>
+    
+      <div class='class-private'>Private</div>
+    
+    Addon
+  </h1>
+  
+    <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.6/lib/runtime/addon.js#L22'>
+      <span class='filename'>Defined in: lib/runtime/addon.js</span>
+      <span class='line'>Line: 22</span>
+    </a>
+  
+
+  <div class='class-module'>
+    <strong>Module:</strong>
+    <span class='class-module-name'>denali.runtime</span>
+  </div>
+
+  
+    <div class='class-description'><p>Addons are the fundamental unit of organization for Denali apps. The
+Application class is just a specialized Addon, and each Addon can contain
+any amount of functionality.</p>
+<h2 id="structure">Structure</h2>
+<p>Addons are packaged as npm modules for easy sharing. When Denali boots up,
+it searches your node_modules for available Denali Addons (identified by
+the <code>denali-addon</code> keyword in the package.json). Addons can be nested (i.e.
+an addon can itself depend on another addon).</p>
+<p>Each addon can be composed of one or several of the following parts:</p>
+<ul>
+<li>Config</li>
+<li>Initializers</li>
+<li>Middleware</li>
+<li>App classes</li>
+<li>Routes</li>
+</ul>
+<h2 id="load-order">Load order</h2>
+<p>After Denali discovers the available addons, it then merges them to form a
+unified application. Addons higher in the dependency tree take precedence,
+and sibling addons can specify load order via their package.json files:</p>
+<pre><code>&quot;denali&quot;: {
+  &quot;before&quot;: [ &quot;another-addon-name&quot; ],
+  &quot;after&quot;: [ &quot;cool-addon-name&quot; ]
+}
+</code></pre></div>
+  
+
+  <div class='display-controls'>
+    <label class='toggle'>
+      <input type='checkbox' id='toggle-private-members'>
+      Show Private
+    </label>
+    <label class='toggle'>
+      <input type='checkbox' id='toggle-deprecated-members'>
+      Show Deprecated
+    </label>
+  </div>
+  <div class='summary'>
+    <div class='summary-section'>
+      <div class='summary-header'>Methods</div>
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <a class='summary-link'  data-private-member=true  href='v0.0.6/api/classes/Addon/#discoverAddons'>discoverAddons</a>
+        
+      
+        
+          <a class='summary-link'  data-private-member=true  href='v0.0.6/api/classes/Addon/#createAddonFromDirectory'>createAddonFromDirectory</a>
+        
+      
+        
+          <a class='summary-link'  data-private-member=true  href='v0.0.6/api/classes/Addon/#loadConfig'>loadConfig</a>
+        
+      
+        
+          <a class='summary-link'  data-private-member=true  href='v0.0.6/api/classes/Addon/#load'>load</a>
+        
+      
+        
+          <a class='summary-link'  data-private-member=true  href='v0.0.6/api/classes/Addon/#loadInitializers'>loadInitializers</a>
+        
+      
+        
+          <a class='summary-link'  data-private-member=true  href='v0.0.6/api/classes/Addon/#loadMiddleware'>loadMiddleware</a>
+        
+      
+        
+          <a class='summary-link'  data-private-member=true  href='v0.0.6/api/classes/Addon/#loadRoutes'>loadRoutes</a>
+        
+      
+        
+          <a class='summary-link'  data-private-member=true  href='v0.0.6/api/classes/Addon/#loadApp'>loadApp</a>
+        
+      
+    </div>
+    <div class='summary-section'>
+      <div class='summary-header'>Properties</div>
+      
+        
+          <a class='summary-link'  href='v0.0.6/api/classes/Addon/#environment'>environment</a>
+        
+      
+        
+          <a class='summary-link'  href='v0.0.6/api/classes/Addon/#dir'>dir</a>
+        
+      
+        
+          <a class='summary-link'  href='v0.0.6/api/classes/Addon/#addons'>addons</a>
+        
+      
+        
+          <a class='summary-link'  href='v0.0.6/api/classes/Addon/#_config'>_config</a>
+        
+      
+        
+          <a class='summary-link'  href='v0.0.6/api/classes/Addon/#autoLoadExtensions'>autoLoadExtensions</a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+</div>
+
+<div class='classitems'>
+  
+    
+      <div class='item property' id='environment' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            environment<span class="type">:{String}</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.6/lib/runtime/addon.js#L68'>
+              <span class='filename'>Defined in: lib/runtime/addon.js</span>
+              <span class='line'>Line: 68</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>The current environment for the app, i.e. &#39;development&#39;</div>
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.6/lib/runtime/addon.js#L68'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item property' id='dir' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            dir<span class="type">:{String}</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.6/lib/runtime/addon.js#L76'>
+              <span class='filename'>Defined in: lib/runtime/addon.js</span>
+              <span class='line'>Line: 76</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>The root directory on the filesystem for this addon</div>
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.6/lib/runtime/addon.js#L76'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item property' id='addons' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            addons<span class="type">:{Array}</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.6/lib/runtime/addon.js#L84'>
+              <span class='filename'>Defined in: lib/runtime/addon.js</span>
+              <span class='line'>Line: 84</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>The list of child addons that this addon contains</div>
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.6/lib/runtime/addon.js#L84'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item property' id='_config' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            _config<span class="type">:{Object}</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.6/lib/runtime/addon.js#L92'>
+              <span class='filename'>Defined in: lib/runtime/addon.js</span>
+              <span class='line'>Line: 92</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>The configuration that is specific to this addon</div>
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.6/lib/runtime/addon.js#L92'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item property' id='autoLoadExtensions' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            autoLoadExtensions<span class="type">:{Array}</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.6/lib/runtime/addon.js#L100'>
+              <span class='filename'>Defined in: lib/runtime/addon.js</span>
+              <span class='line'>Line: 100</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Which file extensions should be autoloaded into the container.</div>
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.6/lib/runtime/addon.js#L100'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <div class='item method' id='discoverAddons' data-private-member=true>
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            discoverAddons<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>preseededAddons</span><span class='param-type type'>:Array</span></span></span><span class='param-paren'>)</span>
+            
+              <div class='private tag'>Private</div>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.6/lib/runtime/addon.js#L124'>
+              <span class='filename'>Defined in: lib/runtime/addon.js</span>
+              <span class='line'>Line: 124</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Search this addon&#39;s package.json dependencies for Denali addons. For each
+discovered addon, instantiate it&#39;s Addon class, and add it to the addon
+graph. Return the sorted addon graph.
+
+Note that this only returns top-level addons - nested addons are built
+when the top-level addon is instantiated here.</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>preseededAddons</div><div class='param-type type'>:Array</div>
+                  
+                    <div class='param-description'>an array of Addon instances, or directories
+that contain the addons to be instantiated; useful to programmatically add
+to the list of addons that are discovered, i.e. during testing</div>
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <div class='return'>
+              <div class='return-type type'>Addon[]</div>
+              
+                <div class='return-description'>list of addons sorted by load order</div>
+              
+            </div>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.6/lib/runtime/addon.js#L124'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item method' id='createAddonFromDirectory' data-private-member=true>
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            createAddonFromDirectory<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>directory</span><span class='param-type type'>:String</span></span></span><span class='param-paren'>)</span>
+            
+              <div class='private tag'>Private</div>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.6/lib/runtime/addon.js#L178'>
+              <span class='filename'>Defined in: lib/runtime/addon.js</span>
+              <span class='line'>Line: 178</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Given a directory that contains an addon, load that addon and instantiate
+it&#39;s Addon class.</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>directory</div><div class='param-type type'>:String</div>
+                  
+                    <div class='param-description'>path to the directory containing the addon</div>
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <div class='return'>
+              <div class='return-type type'>Addon</div>
+              
+                <div class='return-description'>the instantiated Addon class representing that directory</div>
+              
+            </div>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.6/lib/runtime/addon.js#L178'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item method' id='loadConfig' data-private-member=true>
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            loadConfig<span class='param-paren'>(</span><span class='params'></span><span class='param-paren'>)</span>
+            
+              <div class='private tag'>Private</div>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.6/lib/runtime/addon.js#L208'>
+              <span class='filename'>Defined in: lib/runtime/addon.js</span>
+              <span class='line'>Line: 208</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Load the config for this addon. The standard `config/environment.js` file
+is loaded by default. `config/middleware.js` and `config/routes.js` are
+ignored. All other userland config files are loaded into the container
+under their filenames.
+
+Config files are all .js files, so just the exported functions are loaded
+here. The functions are run later, during application initialization, to
+generate the actual runtime configuration.</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <p class="no-params">No parameters</p>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <div class='return'>
+              <div class='return-type type'>Object</div>
+              
+                <div class='return-description'>the config/environment.js output</div>
+              
+            </div>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.6/lib/runtime/addon.js#L208'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item method' id='load' data-private-member=true>
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            load<span class='param-paren'>(</span><span class='params'></span><span class='param-paren'>)</span>
+            
+              <div class='private tag'>Private</div>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.6/lib/runtime/addon.js#L233'>
+              <span class='filename'>Defined in: lib/runtime/addon.js</span>
+              <span class='line'>Line: 233</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Load the addon&#39;s various assets. Loads child addons first, meaning that
+addon loading is depth-first recursive.</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <p class="no-params">No parameters</p>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <p class="no-return">Returns <code>undefined</code></p>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.6/lib/runtime/addon.js#L233'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item method' id='loadInitializers' data-private-member=true>
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            loadInitializers<span class='param-paren'>(</span><span class='params'></span><span class='param-paren'>)</span>
+            
+              <div class='private tag'>Private</div>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.6/lib/runtime/addon.js#L250'>
+              <span class='filename'>Defined in: lib/runtime/addon.js</span>
+              <span class='line'>Line: 250</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Load the initializers for this addon. Initializers live in
+`config/initializers`.</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <p class="no-params">No parameters</p>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <p class="no-return">Returns <code>undefined</code></p>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.6/lib/runtime/addon.js#L250'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item method' id='loadMiddleware' data-private-member=true>
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            loadMiddleware<span class='param-paren'>(</span><span class='params'></span><span class='param-paren'>)</span>
+            
+              <div class='private tag'>Private</div>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.6/lib/runtime/addon.js#L267'>
+              <span class='filename'>Defined in: lib/runtime/addon.js</span>
+              <span class='line'>Line: 267</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Load the middleware for this addon. Middleware is specified in
+`config/middleware.js`. The file should export a function that accepts the
+router as it&#39;s single argument. You can then attach any middleware you&#39;d
+like to that router, and it will execute before any route handling by
+Denali.
+
+Typically this is useful to register global middleware, i.e. a CORS
+handler, cookie parser, etc.
+
+If you want to run some logic before certain routes only, try using filters
+on your actions instead.</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <p class="no-params">No parameters</p>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <p class="no-return">Returns <code>undefined</code></p>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.6/lib/runtime/addon.js#L267'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item method' id='loadRoutes' data-private-member=true>
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            loadRoutes<span class='param-paren'>(</span><span class='params'></span><span class='param-paren'>)</span>
+            
+              <div class='private tag'>Private</div>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.6/lib/runtime/addon.js#L287'>
+              <span class='filename'>Defined in: lib/runtime/addon.js</span>
+              <span class='line'>Line: 287</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Loads the routes for this addon. Routes are defined in `config/routes.js`.
+The file should export a function that defines routes. See the Routing
+guide for details on how to define routes.</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <p class="no-params">No parameters</p>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <p class="no-return">Returns <code>undefined</code></p>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.6/lib/runtime/addon.js#L287'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item method' id='loadApp' data-private-member=true>
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            loadApp<span class='param-paren'>(</span><span class='params'></span><span class='param-paren'>)</span>
+            
+              <div class='private tag'>Private</div>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.6/lib/runtime/addon.js#L299'>
+              <span class='filename'>Defined in: lib/runtime/addon.js</span>
+              <span class='line'>Line: 299</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Load the app assets for this addon. These are the various classes that live
+under `app/`, including actions, models, etc., as well as any custom class
+types.
+
+Files are loaded into the container under their folder&#39;s namespace, so
+`app/roles/admin.js` would be registered as &#39;role:admin&#39; in the container.
+Deeply nested folders become part of the module name, i.e.
+`app/roles/employees/manager.js` becomes &#39;role:employees/manager&#39;.
+
+Non-JS files are loaded as well, and their container names include the
+extension, so `app/mailer/welcome.html` becomes `mail:welcome.html`.</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <p class="no-params">No parameters</p>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <p class="no-return">Returns <code>undefined</code></p>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.6/lib/runtime/addon.js#L299'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+</div>
+
+<script>
+  $(function() {
+    [ 'private', 'deprecated' ].forEach(function(type) {
+      var $toggle = $('#toggle-' + type + '-members');
+      $toggle.on('change', function() {
+        if ($toggle.is(':checked')) {
+          $('[data-' + type + '-member]').css('display', 'block');
+        } else {
+          $('[data-' + type + '-member]').css('display', 'none');
+        }
+      });
+      if ($(window.location.hash).attr('data-' + type + '-member')) {
+        $toggle.click();
+      }
+    });
+  });
+</script>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function() {
+    var $privateClassToggle = $('#toggle-private-classes');
+    $privateClassToggle.on('change', function() {
+      if ($privateClassToggle.is(':checked')) {
+        $('.api-nav [data-private-class]').css('display', 'block');
+      } else {
+        $('.api-nav [data-private-class]').css('display', 'none');
+      }
+    });
+    {% if page.class.access == 'private' %}
+      $privateClassToggle.click();
+    {% endif %}
+  });
+</script>
+
+<footer class="footer">
+  <div class='container'>
+    Made with <img src='images/fox-and-beard.svg' class='fox-and-beard'> at
+    <a href='http://foxandbeard.co' target='_blank'>Fox and Beard</a>
+  </div>
+</footer>
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<script>
+    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+    e.src='//www.google-analytics.com/analytics.js';
+    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+    ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+</script>
+
+
+  </body>
+</html>

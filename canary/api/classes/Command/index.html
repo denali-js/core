@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <base href="/denali/">
+    <base href="/">
 
     <title></title>
     <!-- <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ description }}{% endif %}"> -->
@@ -28,12 +28,11 @@
       <a class='nav-link' href='canary/guides/overview/quickstart'>Quickstart</a>
       <a class='nav-link' href='canary/guides/overview/introduction'>Guides</a>
       <a class='nav-link' href='canary/api/modules/denali'>API</a>
-      <a class='nav-link' href='https://github.com/davewasmer/denali' target='_blank'>Github</a>
-      <a class='nav-link' href='https://github.com/davewasmer/denali/issues' target='_blank'>Issues</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali' target='_blank'>Github</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali/issues' target='_blank'>Issues</a>
     </div>
   </div>
 </nav>
-
 
 
 <div class='container'>
@@ -42,6 +41,8 @@
       <div class='nav-section'>
   <div class='nav-header'>Version</div>
   <select class='versions-select' id='versions'>
+    
+      <option value='v0.0.6' >v0.0.6</option>
     
       <option value='canary' selected='selected'>canary</option>
     
@@ -137,7 +138,7 @@
     Command
   </h1>
   
-    <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/cli/lib/command.js#L13'>
+    <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/cli/lib/command.js#L13'>
       <span class='filename'>Defined in: lib/cli/lib/command.js</span>
       <span class='line'>Line: 13</span>
     </a>
@@ -219,7 +220,7 @@
           <div class='item-descriptor'>
             description<span class="type">:String</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/cli/lib/command.js#L22'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/cli/lib/command.js#L22'>
               <span class='filename'>Defined in: lib/cli/lib/command.js</span>
               <span class='line'>Line: 22</span>
             </a>
@@ -230,7 +231,7 @@
           <div class='item-description'>Description of what the command does. Displayed when `denali` is run
 without arguments.</div>
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/cli/lib/command.js#L22'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/cli/lib/command.js#L22'>
               Improve this documentation
             </a>
           </div>
@@ -244,7 +245,7 @@ without arguments.</div>
           <div class='item-descriptor'>
             params<span class="type">:Array</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/cli/lib/command.js#L31'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/cli/lib/command.js#L31'>
               <span class='filename'>Defined in: lib/cli/lib/command.js</span>
               <span class='line'>Line: 31</span>
             </a>
@@ -267,7 +268,7 @@ Would result in:
       params.bar // &#34;World&#34;
     }</div>
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/cli/lib/command.js#L31'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/cli/lib/command.js#L31'>
               Improve this documentation
             </a>
           </div>
@@ -281,7 +282,7 @@ Would result in:
           <div class='item-descriptor'>
             flags<span class="type">:{Object}</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/cli/lib/command.js#L52'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/cli/lib/command.js#L52'>
               <span class='filename'>Defined in: lib/cli/lib/command.js</span>
               <span class='line'>Line: 52</span>
             </a>
@@ -293,7 +294,7 @@ Would result in:
 `--`, and can be booleans (i.e. the flag is present or not), strings (i.e.
 `--environment production`), or arrays of strings (i.e. `--files foo bar`).</div>
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/cli/lib/command.js#L52'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/cli/lib/command.js#L52'>
               Improve this documentation
             </a>
           </div>
@@ -320,7 +321,7 @@ Would result in:
           <div class='item-descriptor'>
             startSpinner<span class='param-paren'>(</span><span class='params'></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/cli/lib/command.js#L76'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/cli/lib/command.js#L76'>
               <span class='filename'>Defined in: lib/cli/lib/command.js</span>
               <span class='line'>Line: 76</span>
             </a>
@@ -340,7 +341,7 @@ Would result in:
             <p class="no-return">Returns <code>undefined</code></p>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/cli/lib/command.js#L76'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/cli/lib/command.js#L76'>
               Improve this documentation
             </a>
           </div>
@@ -354,7 +355,7 @@ Would result in:
           <div class='item-descriptor'>
             stopSpinner<span class='param-paren'>(</span><span class='params'></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/cli/lib/command.js#L86'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/cli/lib/command.js#L86'>
               <span class='filename'>Defined in: lib/cli/lib/command.js</span>
               <span class='line'>Line: 86</span>
             </a>
@@ -374,7 +375,7 @@ Would result in:
             <p class="no-return">Returns <code>undefined</code></p>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/cli/lib/command.js#L86'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/cli/lib/command.js#L86'>
               Improve this documentation
             </a>
           </div>
@@ -388,7 +389,7 @@ Would result in:
           <div class='item-descriptor'>
             run<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>params</span><span class='param-type type'>:Object</span></span><span class='param'><span class='param-name'>flags</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/cli/lib/command.js#L95'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/cli/lib/command.js#L95'>
               <span class='filename'>Defined in: lib/cli/lib/command.js</span>
               <span class='line'>Line: 95</span>
             </a>
@@ -426,7 +427,7 @@ flags</div>
             <p class="no-return">Returns <code>undefined</code></p>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/cli/lib/command.js#L95'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/cli/lib/command.js#L95'>
               Improve this documentation
             </a>
           </div>
@@ -453,7 +454,6 @@ flags</div>
     });
   });
 </script>
-
 
     </div>
   </div>
@@ -491,7 +491,6 @@ flags</div>
     r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
     ga('create','UA-XXXXX-X','auto');ga('send','pageview');
 </script>
-
 
 
   </body>

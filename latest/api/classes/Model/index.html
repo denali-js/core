@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <base href="/denali/">
+    <base href="/">
 
     <title></title>
     <!-- <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ description }}{% endif %}"> -->
@@ -28,12 +28,11 @@
       <a class='nav-link' href='canary/guides/overview/quickstart'>Quickstart</a>
       <a class='nav-link' href='canary/guides/overview/introduction'>Guides</a>
       <a class='nav-link' href='canary/api/modules/denali'>API</a>
-      <a class='nav-link' href='https://github.com/davewasmer/denali' target='_blank'>Github</a>
-      <a class='nav-link' href='https://github.com/davewasmer/denali/issues' target='_blank'>Issues</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali' target='_blank'>Github</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali/issues' target='_blank'>Issues</a>
     </div>
   </div>
 </nav>
-
 
 
 <div class='container'>
@@ -42,6 +41,8 @@
       <div class='nav-section'>
   <div class='nav-header'>Version</div>
   <select class='versions-select' id='versions'>
+    
+      <option value='v0.0.6' >v0.0.6</option>
     
       <option value='canary' selected='selected'>canary</option>
     
@@ -135,7 +136,7 @@
     Model
   </h1>
   
-    <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/data/model.js#L16'>
+    <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/data/model.js#L16'>
       <span class='filename'>Defined in: lib/data/model.js</span>
       <span class='line'>Line: 16</span>
     </a>
@@ -291,7 +292,7 @@ Model) will translate and forward those calls to the underlying ORM adapter.</p>
           <div class='item-descriptor'>
             type<span class="type">:{String}</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/data/model.js#L33'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/data/model.js#L33'>
               <span class='filename'>Defined in: lib/data/model.js</span>
               <span class='line'>Line: 33</span>
             </a>
@@ -304,7 +305,7 @@ the model, as well as in several other areas of Denali (i.e. serializers,
 ORM adapters, etc). Conventionally, types are dasherized versions of the
 model name (i.e. the BlogPost model&#39;s type would be `&#34;blog-post&#34;`).</div>
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/data/model.js#L33'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/data/model.js#L33'>
               Improve this documentation
             </a>
           </div>
@@ -324,7 +325,7 @@ model name (i.e. the BlogPost model&#39;s type would be `&#34;blog-post&#34;`).<
             
               <div class='private tag'>Private</div>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/data/model.js#L105'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/data/model.js#L105'>
               <span class='filename'>Defined in: lib/data/model.js</span>
               <span class='line'>Line: 105</span>
             </a>
@@ -335,7 +336,7 @@ model name (i.e. the BlogPost model&#39;s type would be `&#34;blog-post&#34;`).<
           <div class='item-description'>The ORM adapter specific to this model type. Defaults to the application&#39;s
 ORM adapter if none for this specific model type is found.</div>
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/data/model.js#L105'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/data/model.js#L105'>
               Improve this documentation
             </a>
           </div>
@@ -349,7 +350,7 @@ ORM adapter if none for this specific model type is found.</div>
           <div class='item-descriptor'>
             id<span class="type">:{Number|String}</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/data/model.js#L120'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/data/model.js#L120'>
               <span class='filename'>Defined in: lib/data/model.js</span>
               <span class='line'>Line: 120</span>
             </a>
@@ -359,7 +360,7 @@ ORM adapter if none for this specific model type is found.</div>
           <div class='item-header'>Description</div>
           <div class='item-description'>The id of the record</div>
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/data/model.js#L120'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/data/model.js#L120'>
               Improve this documentation
             </a>
           </div>
@@ -373,7 +374,7 @@ ORM adapter if none for this specific model type is found.</div>
           <div class='item-descriptor'>
             container<span class="type">:{Container}</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/data/model.js#L128'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/data/model.js#L128'>
               <span class='filename'>Defined in: lib/data/model.js</span>
               <span class='line'>Line: 128</span>
             </a>
@@ -383,7 +384,7 @@ ORM adapter if none for this specific model type is found.</div>
           <div class='item-header'>Description</div>
           <div class='item-description'>The application container</div>
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/data/model.js#L128'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/data/model.js#L128'>
               Improve this documentation
             </a>
           </div>
@@ -397,7 +398,7 @@ ORM adapter if none for this specific model type is found.</div>
           <div class='item-descriptor'>
             adapter<span class="type">:{ORMAdapter}</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/data/model.js#L136'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/data/model.js#L136'>
               <span class='filename'>Defined in: lib/data/model.js</span>
               <span class='line'>Line: 136</span>
             </a>
@@ -408,7 +409,7 @@ ORM adapter if none for this specific model type is found.</div>
           <div class='item-description'>The ORM adapter specific to this model type. Defaults to the application&#39;s
 ORM adapter if none for this specific model type is found.</div>
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/data/model.js#L136'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/data/model.js#L136'>
               Improve this documentation
             </a>
           </div>
@@ -424,7 +425,7 @@ ORM adapter if none for this specific model type is found.</div>
             
               <div class='private tag'>Private</div>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/data/model.js#L145'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/data/model.js#L145'>
               <span class='filename'>Defined in: lib/data/model.js</span>
               <span class='line'>Line: 145</span>
             </a>
@@ -435,7 +436,7 @@ ORM adapter if none for this specific model type is found.</div>
           <div class='item-description'>The underlying ORM adapter record. An opaque value to Denali, handled
 entirely by the ORM adapter.</div>
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/data/model.js#L145'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/data/model.js#L145'>
               Improve this documentation
             </a>
           </div>
@@ -470,7 +471,7 @@ entirely by the ORM adapter.</div>
           <div class='item-descriptor'>
             find<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>query</span><span class='param-type type'>:Number|String|Object|Function</span></span><span class='param'><span class='param-name'>options</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/data/model.js#L45'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/data/model.js#L45'>
               <span class='filename'>Defined in: lib/data/model.js</span>
               <span class='line'>Line: 45</span>
             </a>
@@ -526,7 +527,7 @@ null</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/data/model.js#L45'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/data/model.js#L45'>
               Improve this documentation
             </a>
           </div>
@@ -540,7 +541,7 @@ null</div>
           <div class='item-descriptor'>
             create<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>data</span><span class='param-type type'>:Object</span></span><span class='param'><span class='param-name'>options</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/data/model.js#L84'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/data/model.js#L84'>
               <span class='filename'>Defined in: lib/data/model.js</span>
               <span class='line'>Line: 84</span>
             </a>
@@ -577,7 +578,7 @@ null</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/data/model.js#L84'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/data/model.js#L84'>
               Improve this documentation
             </a>
           </div>
@@ -601,7 +602,7 @@ null</div>
           <div class='item-descriptor'>
             save<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>options</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/data/model.js#L210'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/data/model.js#L210'>
               <span class='filename'>Defined in: lib/data/model.js</span>
               <span class='line'>Line: 210</span>
             </a>
@@ -633,7 +634,7 @@ null</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/data/model.js#L210'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/data/model.js#L210'>
               Improve this documentation
             </a>
           </div>
@@ -647,7 +648,7 @@ null</div>
           <div class='item-descriptor'>
             delete<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>options</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/data/model.js#L222'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/data/model.js#L222'>
               <span class='filename'>Defined in: lib/data/model.js</span>
               <span class='line'>Line: 222</span>
             </a>
@@ -679,7 +680,7 @@ null</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/data/model.js#L222'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/data/model.js#L222'>
               Improve this documentation
             </a>
           </div>
@@ -693,7 +694,7 @@ null</div>
           <div class='item-descriptor'>
             getRelated<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>relationshipName</span><span class='param-type type'>:String</span></span><span class='param'><span class='param-name'>options</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/data/model.js#L233'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/data/model.js#L233'>
               <span class='filename'>Defined in: lib/data/model.js</span>
               <span class='line'>Line: 233</span>
             </a>
@@ -733,7 +734,7 @@ relationships), or an array of models (for hasMany relationships)</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/data/model.js#L233'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/data/model.js#L233'>
               Improve this documentation
             </a>
           </div>
@@ -747,7 +748,7 @@ relationships), or an array of models (for hasMany relationships)</div>
           <div class='item-descriptor'>
             setRelated<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>relationshipName</span><span class='param-type type'>:String</span></span><span class='param'><span class='param-name'>relatedModels</span><span class='param-type type'>:Object|Array</span></span><span class='param'><span class='param-name'>options</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/data/model.js#L255'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/data/model.js#L255'>
               <span class='filename'>Defined in: lib/data/model.js</span>
               <span class='line'>Line: 255</span>
             </a>
@@ -792,7 +793,7 @@ related records.</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/data/model.js#L255'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/data/model.js#L255'>
               Improve this documentation
             </a>
           </div>
@@ -806,7 +807,7 @@ related records.</div>
           <div class='item-descriptor'>
             addRelated<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>relationshipName</span><span class='param-type type'>:String</span></span><span class='param'><span class='param-name'>relatedModel</span><span class='param-type type'>:Object</span></span><span class='param'><span class='param-name'>options</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/data/model.js#L272'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/data/model.js#L272'>
               <span class='filename'>Defined in: lib/data/model.js</span>
               <span class='line'>Line: 272</span>
             </a>
@@ -850,7 +851,7 @@ related records.</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/data/model.js#L272'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/data/model.js#L272'>
               Improve this documentation
             </a>
           </div>
@@ -864,7 +865,7 @@ related records.</div>
           <div class='item-descriptor'>
             removeRelated<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>relationshipName</span><span class='param-type type'>:String</span></span><span class='param'><span class='param-name'>relatedModel</span><span class='param-type type'>:Object</span></span><span class='param'><span class='param-name'>options</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/data/model.js#L290'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/data/model.js#L290'>
               <span class='filename'>Defined in: lib/data/model.js</span>
               <span class='line'>Line: 290</span>
             </a>
@@ -908,7 +909,7 @@ related records.</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/data/model.js#L290'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/data/model.js#L290'>
               Improve this documentation
             </a>
           </div>
@@ -922,7 +923,7 @@ related records.</div>
           <div class='item-descriptor'>
             modelFor<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>type</span><span class='param-type type'>:String</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/data/model.js#L308'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/data/model.js#L308'>
               <span class='filename'>Defined in: lib/data/model.js</span>
               <span class='line'>Line: 308</span>
             </a>
@@ -952,7 +953,7 @@ related records.</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/data/model.js#L308'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/data/model.js#L308'>
               Improve this documentation
             </a>
           </div>
@@ -966,7 +967,7 @@ related records.</div>
           <div class='item-descriptor'>
             modelFor<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>type</span><span class='param-type type'>:String</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/data/model.js#L320'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/data/model.js#L320'>
               <span class='filename'>Defined in: lib/data/model.js</span>
               <span class='line'>Line: 320</span>
             </a>
@@ -996,7 +997,7 @@ related records.</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/data/model.js#L320'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/data/model.js#L320'>
               Improve this documentation
             </a>
           </div>
@@ -1010,7 +1011,7 @@ related records.</div>
           <div class='item-descriptor'>
             service<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>type</span><span class='param-type type'>:String</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/data/model.js#L331'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/data/model.js#L331'>
               <span class='filename'>Defined in: lib/data/model.js</span>
               <span class='line'>Line: 331</span>
             </a>
@@ -1040,7 +1041,7 @@ related records.</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/data/model.js#L331'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/data/model.js#L331'>
               Improve this documentation
             </a>
           </div>
@@ -1067,7 +1068,6 @@ related records.</div>
     });
   });
 </script>
-
 
     </div>
   </div>
@@ -1105,7 +1105,6 @@ related records.</div>
     r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
     ga('create','UA-XXXXX-X','auto');ga('send','pageview');
 </script>
-
 
 
   </body>

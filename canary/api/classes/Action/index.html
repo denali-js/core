@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <base href="/denali/">
+    <base href="/">
 
     <title></title>
     <!-- <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ description }}{% endif %}"> -->
@@ -28,12 +28,11 @@
       <a class='nav-link' href='canary/guides/overview/quickstart'>Quickstart</a>
       <a class='nav-link' href='canary/guides/overview/introduction'>Guides</a>
       <a class='nav-link' href='canary/api/modules/denali'>API</a>
-      <a class='nav-link' href='https://github.com/davewasmer/denali' target='_blank'>Github</a>
-      <a class='nav-link' href='https://github.com/davewasmer/denali/issues' target='_blank'>Issues</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali' target='_blank'>Github</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali/issues' target='_blank'>Issues</a>
     </div>
   </div>
 </nav>
-
 
 
 <div class='container'>
@@ -42,6 +41,8 @@
       <div class='nav-section'>
   <div class='nav-header'>Version</div>
   <select class='versions-select' id='versions'>
+    
+      <option value='v0.0.6' >v0.0.6</option>
     
       <option value='canary' selected='selected'>canary</option>
     
@@ -135,7 +136,7 @@
     Action
   </h1>
   
-    <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/runtime/action.js#L25'>
+    <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/runtime/action.js#L25'>
       <span class='filename'>Defined in: lib/runtime/action.js</span>
       <span class='line'>Line: 25</span>
     </a>
@@ -253,7 +254,7 @@ classes will run filters added by parent classes.</p>
           <div class='item-descriptor'>
             before<span class="type">:{Array}</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/runtime/action.js#L47'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/runtime/action.js#L47'>
               <span class='filename'>Defined in: lib/runtime/action.js</span>
               <span class='line'>Line: 47</span>
             </a>
@@ -273,7 +274,7 @@ to any value) other than null or undefined, Denali will attempt to render
 that response and halt further processing of the request (including
 remaining before filters).</div>
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/runtime/action.js#L47'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/runtime/action.js#L47'>
               Improve this documentation
             </a>
           </div>
@@ -287,7 +288,7 @@ remaining before filters).</div>
           <div class='item-descriptor'>
             after<span class="type">:{Array}</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/runtime/action.js#L66'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/runtime/action.js#L66'>
               <span class='filename'>Defined in: lib/runtime/action.js</span>
               <span class='line'>Line: 66</span>
             </a>
@@ -302,7 +303,7 @@ applied.
 Filters can be synchronous, or return a promise (which will pause the
 before/respond/after chain until it resolves).</div>
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/runtime/action.js#L66'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/runtime/action.js#L66'>
               Improve this documentation
             </a>
           </div>
@@ -316,7 +317,7 @@ before/respond/after chain until it resolves).</div>
           <div class='item-descriptor'>
             config<span class="type">:{Object}</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/runtime/action.js#L80'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/runtime/action.js#L80'>
               <span class='filename'>Defined in: lib/runtime/action.js</span>
               <span class='line'>Line: 80</span>
             </a>
@@ -326,7 +327,7 @@ before/respond/after chain until it resolves).</div>
           <div class='item-header'>Description</div>
           <div class='item-description'>The application config</div>
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/runtime/action.js#L80'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/runtime/action.js#L80'>
               Improve this documentation
             </a>
           </div>
@@ -361,7 +362,7 @@ before/respond/after chain until it resolves).</div>
           <div class='item-descriptor'>
             modelFor<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>type</span><span class='param-type type'>:String</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/runtime/action.js#L96'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/runtime/action.js#L96'>
               <span class='filename'>Defined in: lib/runtime/action.js</span>
               <span class='line'>Line: 96</span>
             </a>
@@ -393,7 +394,7 @@ before/respond/after chain until it resolves).</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/runtime/action.js#L96'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/runtime/action.js#L96'>
               Improve this documentation
             </a>
           </div>
@@ -407,7 +408,7 @@ before/respond/after chain until it resolves).</div>
           <div class='item-descriptor'>
             service<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>type</span><span class='param-type type'>:String</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/runtime/action.js#L107'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/runtime/action.js#L107'>
               <span class='filename'>Defined in: lib/runtime/action.js</span>
               <span class='line'>Line: 107</span>
             </a>
@@ -439,7 +440,7 @@ before/respond/after chain until it resolves).</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/runtime/action.js#L107'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/runtime/action.js#L107'>
               Improve this documentation
             </a>
           </div>
@@ -455,7 +456,7 @@ before/respond/after chain until it resolves).</div>
             
               <div class='private tag'>Private</div>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/runtime/action.js#L118'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/runtime/action.js#L118'>
               <span class='filename'>Defined in: lib/runtime/action.js</span>
               <span class='line'>Line: 118</span>
             </a>
@@ -486,7 +487,7 @@ before/respond/after chain until it resolves).</div>
             <p class="no-return">Returns <code>undefined</code></p>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/runtime/action.js#L118'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/runtime/action.js#L118'>
               Improve this documentation
             </a>
           </div>
@@ -502,7 +503,7 @@ before/respond/after chain until it resolves).</div>
             
               <div class='private tag'>Private</div>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/runtime/action.js#L166'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/runtime/action.js#L166'>
               <span class='filename'>Defined in: lib/runtime/action.js</span>
               <span class='line'>Line: 166</span>
             </a>
@@ -533,7 +534,7 @@ i.e. when the action is finished</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/runtime/action.js#L166'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/runtime/action.js#L166'>
               Improve this documentation
             </a>
           </div>
@@ -549,7 +550,7 @@ i.e. when the action is finished</div>
             
               <div class='private tag'>Private</div>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/runtime/action.js#L213'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/runtime/action.js#L213'>
               <span class='filename'>Defined in: lib/runtime/action.js</span>
               <span class='line'>Line: 213</span>
             </a>
@@ -579,7 +580,7 @@ based on the mime types.</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/runtime/action.js#L213'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/runtime/action.js#L213'>
               Improve this documentation
             </a>
           </div>
@@ -593,7 +594,7 @@ based on the mime types.</div>
           <div class='item-descriptor'>
             _buildFilterChains<span class='param-paren'>(</span><span class='params'></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/runtime/action.js#L249'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/runtime/action.js#L249'>
               <span class='filename'>Defined in: lib/runtime/action.js</span>
               <span class='line'>Line: 249</span>
             </a>
@@ -625,7 +626,7 @@ each containing the filter method names as strings</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/runtime/action.js#L249'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/runtime/action.js#L249'>
               Improve this documentation
             </a>
           </div>
@@ -639,7 +640,7 @@ each containing the filter method names as strings</div>
           <div class='item-descriptor'>
             _invokeFilters<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>chain</span><span class='param-type type'>:String[]</span></span><span class='param'><span class='param-name'>params</span><span class='param-type type'>:Object</span></span><span class='param'><span class='param-name'>allowHalt</span><span class='param-type type'>:Boolean</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/runtime/action.js#L286'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/runtime/action.js#L286'>
               <span class='filename'>Defined in: lib/runtime/action.js</span>
               <span class='line'>Line: 286</span>
             </a>
@@ -690,7 +691,7 @@ chain was halted.</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/runtime/action.js#L286'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/runtime/action.js#L286'>
               Improve this documentation
             </a>
           </div>
@@ -717,7 +718,6 @@ chain was halted.</div>
     });
   });
 </script>
-
 
     </div>
   </div>
@@ -755,7 +755,6 @@ chain was halted.</div>
     r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
     ga('create','UA-XXXXX-X','auto');ga('send','pageview');
 </script>
-
 
 
   </body>

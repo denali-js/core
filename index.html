@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <base href="/denali/">
+    <base href="/">
 
     <title></title>
     <!-- <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ description }}{% endif %}"> -->
@@ -29,12 +29,11 @@
       <a class='nav-link' href='latest/guides/overview/quickstart'>Quickstart</a>
       <a class='nav-link' href='latest/guides/overview/introduction'>Guides</a>
       <a class='nav-link' href='latest/api/modules/denali'>API</a>
-      <a class='nav-link' href='https://github.com/davewasmer/denali' target='_blank'>Github</a>
-      <a class='nav-link' href='https://github.com/davewasmer/denali/issues' target='_blank'>Issues</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali' target='_blank'>Github</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali/issues' target='_blank'>Issues</a>
     </div>
   </div>
 </nav>
-
 
   <div class="hero">
     <div class="container">
@@ -65,7 +64,7 @@ $ cd my-api &amp;&amp; denali serve</code>
       <div class="warning-body">
         <h4 class="warning-title">Heads up!</h4>
         Denali is still in alpha. We don't recommend using it for production apps
-        just yet. Check out the <a href='https://github.com/davewasmer/denali/milestones/v0.1.0-beta.1'>road to beta</a>
+        just yet. Check out the <a href='https://github.com/denali-js/denali/milestones/v0.1.0-beta.1'>road to beta</a>
         to see what's left!
       </div>
     </div>
@@ -82,9 +81,9 @@ $ cd my-api &amp;&amp; denali serve</code>
           You won't find any templating languages, views, or other HTML
           rendering support out of the box. Denali is unapologetically focused
           on APIs first. First class support for
-          <a href="latest/guides/serializers">JSON serializers</a>,
-          <a href="latest/guides/routing">RESTful routing</a>,
-          and <a href="latest/guides/integration">powerful testing helpers</a>
+          <a href="latest/guides/data/serializers/">JSON serializers</a>,
+          <a href="latest/guides/application/routing">RESTful routing</a>,
+          and <a href="latest/guides/testing/integration">powerful testing helpers</a>
           make building APIs easier than ever.
         </p>
       </div>
@@ -98,11 +97,11 @@ $ cd my-api &amp;&amp; denali serve</code>
         <h2>Developer happiness</h2>
         <p class="feature-description">
           Denali ships with a top-notch CLI which can run
-          <a href="latest/guides/server">reload-on-change development server</a>,
-          <a href="latest/guides/generate">scaffold new code</a>,
-          <a href="latest/guides/test">run tests</a>, and more. Extensibility
+          <a href="latest/guides/cli/serve">reload-on-change development server</a>,
+          <a href="latest/guides/cli/generate">scaffold new code</a>,
+          <a href="latest/guides/cli/test">run tests</a>, and more. Extensibility
           is baked into the core as well, with
-          <a href="latest/guides/addons">Addons</a> providing a powerful
+          <a href="latest/guides/cli/addon">Addons</a> providing a powerful
           approach to incorporating third party code.
         </p>
       </div>
@@ -115,8 +114,8 @@ $ cd my-api &amp;&amp; denali serve</code>
       <div class='col-md-6'>
         <h2>Data Flexibility</h2>
         <p class="feature-description">
-          Thanks to it's unique <a href="latest/guides/models">model</a> +
-          <a href="latest/guides/orm-adapters">adapter</a> approach, Denali
+          Thanks to it's unique <a href="latest/guides/data/models">model</a> +
+          <a href="latest/guides/data/orm-adapters">adapter</a> approach, Denali
           let's you use whatever ORM you want with it. And Denali Addons will
           work with it out of the box. You can even use multiple ORMs in the
           same project to fully leverage the strengths of each data store
@@ -127,7 +126,7 @@ $ cd my-api &amp;&amp; denali serve</code>
 
     <div class="cta">
       <h2 class="cta-header">Sound Interesting?</h2>
-      <a class='cta-btn' href='/latest/guides'>
+      <a class='cta-btn' href='latest/guides/overview/introduction'>
         Check out the Guides
       </a>
     </div>
@@ -150,9 +149,7 @@ $ cd my-api &amp;&amp; denali serve</code>
     ga('create','UA-XXXXX-X','auto');ga('send','pageview');
 </script>
 
-
 </div>
-
 
   </body>
 </html>

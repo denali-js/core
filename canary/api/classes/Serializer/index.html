@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <base href="/denali/">
+    <base href="/">
 
     <title></title>
     <!-- <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ description }}{% endif %}"> -->
@@ -28,12 +28,11 @@
       <a class='nav-link' href='canary/guides/overview/quickstart'>Quickstart</a>
       <a class='nav-link' href='canary/guides/overview/introduction'>Guides</a>
       <a class='nav-link' href='canary/api/modules/denali'>API</a>
-      <a class='nav-link' href='https://github.com/davewasmer/denali' target='_blank'>Github</a>
-      <a class='nav-link' href='https://github.com/davewasmer/denali/issues' target='_blank'>Issues</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali' target='_blank'>Github</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali/issues' target='_blank'>Issues</a>
     </div>
   </div>
 </nav>
-
 
 
 <div class='container'>
@@ -42,6 +41,8 @@
       <div class='nav-section'>
   <div class='nav-header'>Version</div>
   <select class='versions-select' id='versions'>
+    
+      <option value='v0.0.6' >v0.0.6</option>
     
       <option value='canary' selected='selected'>canary</option>
     
@@ -135,7 +136,7 @@
     Serializer
   </h1>
   
-    <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/data/serializer.js#L6'>
+    <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/data/serializer.js#L6'>
       <span class='filename'>Defined in: lib/data/serializer.js</span>
       <span class='line'>Line: 6</span>
     </a>
@@ -211,7 +212,7 @@ sent, with how that data is structured / rendered.</p>
           <div class='item-descriptor'>
             attributes;<span class="type">:{String[]}</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/data/serializer.js#L54'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/data/serializer.js#L54'>
               <span class='filename'>Defined in: lib/data/serializer.js</span>
               <span class='line'>Line: 54</span>
             </a>
@@ -222,7 +223,7 @@ sent, with how that data is structured / rendered.</p>
           <div class='item-description'>The list of attribute names that should be serialized. Attributes not
 included in this list will be omitted from the final rendered payload.</div>
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/data/serializer.js#L54'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/data/serializer.js#L54'>
               Improve this documentation
             </a>
           </div>
@@ -236,7 +237,7 @@ included in this list will be omitted from the final rendered payload.</div>
           <div class='item-descriptor'>
             relationships<span class="type">:{Object}</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/data/serializer.js#L63'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/data/serializer.js#L63'>
               <span class='filename'>Defined in: lib/data/serializer.js</span>
               <span class='line'>Line: 63</span>
             </a>
@@ -269,7 +270,7 @@ The model type of the related records.
 Specific serializers may also accept additional options in the relationship
 configuration to customize their response format.</div>
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/data/serializer.js#L63'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/data/serializer.js#L63'>
               Improve this documentation
             </a>
           </div>
@@ -284,7 +285,7 @@ configuration to customize their response format.</div>
           <div class='item-descriptor'>
             serialize<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>payload</span><span class='param-type type'>:Object[]|Error[]|Object|Error</span></span><span class='param'><span class='param-name'>options</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/data/serializer.js#L21'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/data/serializer.js#L21'>
               <span class='filename'>Defined in: lib/data/serializer.js</span>
               <span class='line'>Line: 21</span>
             </a>
@@ -322,7 +323,7 @@ and return a rendered a JSON response object.</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/data/serializer.js#L21'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/data/serializer.js#L21'>
               Improve this documentation
             </a>
           </div>
@@ -336,7 +337,7 @@ and return a rendered a JSON response object.</div>
           <div class='item-descriptor'>
             parse<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>payload</span><span class='param-type type'>:Object</span></span><span class='param'><span class='param-name'>options</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/data/serializer.js#L34'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/data/serializer.js#L34'>
               <span class='filename'>Defined in: lib/data/serializer.js</span>
               <span class='line'>Line: 34</span>
             </a>
@@ -379,7 +380,7 @@ unchanged.</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/data/serializer.js#L34'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/data/serializer.js#L34'>
               Improve this documentation
             </a>
           </div>
@@ -410,7 +411,6 @@ unchanged.</div>
     });
   });
 </script>
-
 
     </div>
   </div>
@@ -448,7 +448,6 @@ unchanged.</div>
     r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
     ga('create','UA-XXXXX-X','auto');ga('send','pageview');
 </script>
-
 
 
   </body>

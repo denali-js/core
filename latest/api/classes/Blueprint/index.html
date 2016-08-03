@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <base href="/denali/">
+    <base href="/">
 
     <title></title>
     <!-- <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ description }}{% endif %}"> -->
@@ -28,12 +28,11 @@
       <a class='nav-link' href='canary/guides/overview/quickstart'>Quickstart</a>
       <a class='nav-link' href='canary/guides/overview/introduction'>Guides</a>
       <a class='nav-link' href='canary/api/modules/denali'>API</a>
-      <a class='nav-link' href='https://github.com/davewasmer/denali' target='_blank'>Github</a>
-      <a class='nav-link' href='https://github.com/davewasmer/denali/issues' target='_blank'>Issues</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali' target='_blank'>Github</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali/issues' target='_blank'>Issues</a>
     </div>
   </div>
 </nav>
-
 
 
 <div class='container'>
@@ -42,6 +41,8 @@
       <div class='nav-section'>
   <div class='nav-header'>Version</div>
   <select class='versions-select' id='versions'>
+    
+      <option value='v0.0.6' >v0.0.6</option>
     
       <option value='canary' selected='selected'>canary</option>
     
@@ -137,7 +138,7 @@
     Blueprint
   </h1>
   
-    <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/cli/lib/blueprint.js#L18'>
+    <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/cli/lib/blueprint.js#L18'>
       <span class='filename'>Defined in: lib/cli/lib/blueprint.js</span>
       <span class='line'>Line: 18</span>
     </a>
@@ -240,7 +241,7 @@ it won&#39;t be removed.</p>
           <div class='item-descriptor'>
             description<span class="type">:String</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/cli/lib/blueprint.js#L42'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/cli/lib/blueprint.js#L42'>
               <span class='filename'>Defined in: lib/cli/lib/blueprint.js</span>
               <span class='line'>Line: 42</span>
             </a>
@@ -251,7 +252,7 @@ it won&#39;t be removed.</p>
           <div class='item-description'>Description of what the blueprint does. Displayed when `denali generate`
 is run without arguments.</div>
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/cli/lib/blueprint.js#L42'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/cli/lib/blueprint.js#L42'>
               Improve this documentation
             </a>
           </div>
@@ -280,7 +281,7 @@ is run without arguments.</div>
           <div class='item-descriptor'>
             locals<span class='param-paren'>(</span><span class='params'></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/cli/lib/blueprint.js#L55'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/cli/lib/blueprint.js#L55'>
               <span class='filename'>Defined in: lib/cli/lib/blueprint.js</span>
               <span class='line'>Line: 55</span>
             </a>
@@ -306,7 +307,7 @@ files.</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/cli/lib/blueprint.js#L55'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/cli/lib/blueprint.js#L55'>
               Improve this documentation
             </a>
           </div>
@@ -320,7 +321,7 @@ files.</div>
           <div class='item-descriptor'>
             postInstall<span class='param-paren'>(</span><span class='params'></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/cli/lib/blueprint.js#L66'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/cli/lib/blueprint.js#L66'>
               <span class='filename'>Defined in: lib/cli/lib/blueprint.js</span>
               <span class='line'>Line: 66</span>
             </a>
@@ -341,7 +342,7 @@ modifications (i.e. install a node module).</div>
             <p class="no-return">Returns <code>undefined</code></p>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/cli/lib/blueprint.js#L66'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/cli/lib/blueprint.js#L66'>
               Improve this documentation
             </a>
           </div>
@@ -355,7 +356,7 @@ modifications (i.e. install a node module).</div>
           <div class='item-descriptor'>
             postUninstall<span class='param-paren'>(</span><span class='params'></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/cli/lib/blueprint.js#L74'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/cli/lib/blueprint.js#L74'>
               <span class='filename'>Defined in: lib/cli/lib/blueprint.js</span>
               <span class='line'>Line: 74</span>
             </a>
@@ -377,7 +378,7 @@ postInstall(), but only in a way that avoids removing user modifications.</div>
             <p class="no-return">Returns <code>undefined</code></p>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/cli/lib/blueprint.js#L74'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/cli/lib/blueprint.js#L74'>
               Improve this documentation
             </a>
           </div>
@@ -391,7 +392,7 @@ postInstall(), but only in a way that avoids removing user modifications.</div>
           <div class='item-descriptor'>
             templateFiles<span class='param-paren'>(</span><span class='params'></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/cli/lib/blueprint.js#L83'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/cli/lib/blueprint.js#L83'>
               <span class='filename'>Defined in: lib/cli/lib/blueprint.js</span>
               <span class='line'>Line: 83</span>
             </a>
@@ -415,7 +416,7 @@ postInstall(), but only in a way that avoids removing user modifications.</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/cli/lib/blueprint.js#L83'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/cli/lib/blueprint.js#L83'>
               Improve this documentation
             </a>
           </div>
@@ -431,7 +432,7 @@ postInstall(), but only in a way that avoids removing user modifications.</div>
             
               <div class='private tag'>Private</div>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/cli/lib/blueprint.js#L94'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/cli/lib/blueprint.js#L94'>
               <span class='filename'>Defined in: lib/cli/lib/blueprint.js</span>
               <span class='line'>Line: 94</span>
             </a>
@@ -462,7 +463,7 @@ runs the postInstall hook.</div>
             <p class="no-return">Returns <code>undefined</code></p>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/cli/lib/blueprint.js#L94'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/cli/lib/blueprint.js#L94'>
               Improve this documentation
             </a>
           </div>
@@ -478,7 +479,7 @@ runs the postInstall hook.</div>
             
               <div class='private tag'>Private</div>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/cli/lib/blueprint.js#L129'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/cli/lib/blueprint.js#L129'>
               <span class='filename'>Defined in: lib/cli/lib/blueprint.js</span>
               <span class='line'>Line: 129</span>
             </a>
@@ -509,7 +510,7 @@ blueprint. Then runs the postUninstall hook.</div>
             <p class="no-return">Returns <code>undefined</code></p>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/cli/lib/blueprint.js#L129'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/cli/lib/blueprint.js#L129'>
               Improve this documentation
             </a>
           </div>
@@ -536,7 +537,6 @@ blueprint. Then runs the postUninstall hook.</div>
     });
   });
 </script>
-
 
     </div>
   </div>
@@ -574,7 +574,6 @@ blueprint. Then runs the postUninstall hook.</div>
     r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
     ga('create','UA-XXXXX-X','auto');ga('send','pageview');
 </script>
-
 
 
   </body>

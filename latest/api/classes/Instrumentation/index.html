@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <base href="/denali/">
+    <base href="/">
 
     <title></title>
     <!-- <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ description }}{% endif %}"> -->
@@ -28,12 +28,11 @@
       <a class='nav-link' href='canary/guides/overview/quickstart'>Quickstart</a>
       <a class='nav-link' href='canary/guides/overview/introduction'>Guides</a>
       <a class='nav-link' href='canary/api/modules/denali'>API</a>
-      <a class='nav-link' href='https://github.com/davewasmer/denali' target='_blank'>Github</a>
-      <a class='nav-link' href='https://github.com/davewasmer/denali/issues' target='_blank'>Issues</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali' target='_blank'>Github</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali/issues' target='_blank'>Issues</a>
     </div>
   </div>
 </nav>
-
 
 
 <div class='container'>
@@ -42,6 +41,8 @@
       <div class='nav-section'>
   <div class='nav-header'>Version</div>
   <select class='versions-select' id='versions'>
+    
+      <option value='v0.0.6' >v0.0.6</option>
     
       <option value='canary' selected='selected'>canary</option>
     
@@ -135,7 +136,7 @@
     Instrumentation
   </h1>
   
-    <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/metal/instrumentation.js#L8'>
+    <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/metal/instrumentation.js#L8'>
       <span class='filename'>Defined in: lib/metal/instrumentation.js</span>
       <span class='line'>Line: 8</span>
     </a>
@@ -217,7 +218,7 @@ export default class MyAction extends Action {
           <div class='item-descriptor'>
             _emitter<span class="type">:{events.EventEmitter}</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/metal/instrumentation.js#L30'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/metal/instrumentation.js#L30'>
               <span class='filename'>Defined in: lib/metal/instrumentation.js</span>
               <span class='line'>Line: 30</span>
             </a>
@@ -227,7 +228,7 @@ export default class MyAction extends Action {
           <div class='item-header'>Description</div>
           <div class='item-description'>The internal event emitter used for notifications</div>
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/metal/instrumentation.js#L30'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/metal/instrumentation.js#L30'>
               Improve this documentation
             </a>
           </div>
@@ -250,7 +251,7 @@ export default class MyAction extends Action {
           <div class='item-descriptor'>
             subscribe<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>eventName</span><span class='param-type type'>:String</span></span><span class='param'><span class='param-name'>listener</span><span class='param-type type'>:Function</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/metal/instrumentation.js#L38'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/metal/instrumentation.js#L38'>
               <span class='filename'>Defined in: lib/metal/instrumentation.js</span>
               <span class='line'>Line: 38</span>
             </a>
@@ -282,7 +283,7 @@ export default class MyAction extends Action {
             <p class="no-return">Returns <code>undefined</code></p>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/metal/instrumentation.js#L38'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/metal/instrumentation.js#L38'>
               Improve this documentation
             </a>
           </div>
@@ -296,7 +297,7 @@ export default class MyAction extends Action {
           <div class='item-descriptor'>
             unsubscribe<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>eventName</span><span class='param-type type'>:String</span></span><span class='param'><span class='param-name'>listener</span><span class='param-type type'>:Function</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/metal/instrumentation.js#L49'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/metal/instrumentation.js#L49'>
               <span class='filename'>Defined in: lib/metal/instrumentation.js</span>
               <span class='line'>Line: 49</span>
             </a>
@@ -329,7 +330,7 @@ block completes.</div>
             <p class="no-return">Returns <code>undefined</code></p>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/metal/instrumentation.js#L49'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/metal/instrumentation.js#L49'>
               Improve this documentation
             </a>
           </div>
@@ -343,7 +344,7 @@ block completes.</div>
           <div class='item-descriptor'>
             instrument<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>eventName</span><span class='param-type type'>:String</span></span><span class='param'><span class='param-name'>data</span><span class='param-type type'>:Object</span></span><span class='param'><span class='param-name'>workFn</span><span class='param-type type'>:Function</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/metal/instrumentation.js#L61'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/metal/instrumentation.js#L61'>
               <span class='filename'>Defined in: lib/metal/instrumentation.js</span>
               <span class='line'>Line: 61</span>
             </a>
@@ -387,7 +388,7 @@ function result is provided as well).</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/metal/instrumentation.js#L61'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/metal/instrumentation.js#L61'>
               Improve this documentation
             </a>
           </div>
@@ -414,7 +415,6 @@ function result is provided as well).</div>
     });
   });
 </script>
-
 
     </div>
   </div>
@@ -452,7 +452,6 @@ function result is provided as well).</div>
     r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
     ga('create','UA-XXXXX-X','auto');ga('send','pageview');
 </script>
-
 
 
   </body>

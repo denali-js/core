@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <base href="/denali/">
+    <base href="/">
 
     <title></title>
     <!-- <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ description }}{% endif %}"> -->
@@ -28,12 +28,11 @@
       <a class='nav-link' href='canary/guides/overview/quickstart'>Quickstart</a>
       <a class='nav-link' href='canary/guides/overview/introduction'>Guides</a>
       <a class='nav-link' href='canary/api/modules/denali'>API</a>
-      <a class='nav-link' href='https://github.com/davewasmer/denali' target='_blank'>Github</a>
-      <a class='nav-link' href='https://github.com/davewasmer/denali/issues' target='_blank'>Issues</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali' target='_blank'>Github</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali/issues' target='_blank'>Issues</a>
     </div>
   </div>
 </nav>
-
 
 
 <div class='container'>
@@ -42,6 +41,8 @@
       <div class='nav-section'>
   <div class='nav-header'>Version</div>
   <select class='versions-select' id='versions'>
+    
+      <option value='v0.0.6' >v0.0.6</option>
     
       <option value='canary' selected='selected'>canary</option>
     
@@ -137,7 +138,7 @@
     Addon
   </h1>
   
-    <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/runtime/addon.js#L22'>
+    <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/runtime/addon.js#L22'>
       <span class='filename'>Defined in: lib/runtime/addon.js</span>
       <span class='line'>Line: 22</span>
     </a>
@@ -284,7 +285,7 @@ and sibling addons can specify load order via their package.json files:</p>
           <div class='item-descriptor'>
             environment<span class="type">:{String}</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/runtime/addon.js#L68'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/runtime/addon.js#L68'>
               <span class='filename'>Defined in: lib/runtime/addon.js</span>
               <span class='line'>Line: 68</span>
             </a>
@@ -294,7 +295,7 @@ and sibling addons can specify load order via their package.json files:</p>
           <div class='item-header'>Description</div>
           <div class='item-description'>The current environment for the app, i.e. &#39;development&#39;</div>
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/runtime/addon.js#L68'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/runtime/addon.js#L68'>
               Improve this documentation
             </a>
           </div>
@@ -308,7 +309,7 @@ and sibling addons can specify load order via their package.json files:</p>
           <div class='item-descriptor'>
             dir<span class="type">:{String}</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/runtime/addon.js#L76'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/runtime/addon.js#L76'>
               <span class='filename'>Defined in: lib/runtime/addon.js</span>
               <span class='line'>Line: 76</span>
             </a>
@@ -318,7 +319,7 @@ and sibling addons can specify load order via their package.json files:</p>
           <div class='item-header'>Description</div>
           <div class='item-description'>The root directory on the filesystem for this addon</div>
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/runtime/addon.js#L76'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/runtime/addon.js#L76'>
               Improve this documentation
             </a>
           </div>
@@ -332,7 +333,7 @@ and sibling addons can specify load order via their package.json files:</p>
           <div class='item-descriptor'>
             addons<span class="type">:{Array}</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/runtime/addon.js#L84'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/runtime/addon.js#L84'>
               <span class='filename'>Defined in: lib/runtime/addon.js</span>
               <span class='line'>Line: 84</span>
             </a>
@@ -342,7 +343,7 @@ and sibling addons can specify load order via their package.json files:</p>
           <div class='item-header'>Description</div>
           <div class='item-description'>The list of child addons that this addon contains</div>
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/runtime/addon.js#L84'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/runtime/addon.js#L84'>
               Improve this documentation
             </a>
           </div>
@@ -356,7 +357,7 @@ and sibling addons can specify load order via their package.json files:</p>
           <div class='item-descriptor'>
             _config<span class="type">:{Object}</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/runtime/addon.js#L92'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/runtime/addon.js#L92'>
               <span class='filename'>Defined in: lib/runtime/addon.js</span>
               <span class='line'>Line: 92</span>
             </a>
@@ -366,7 +367,7 @@ and sibling addons can specify load order via their package.json files:</p>
           <div class='item-header'>Description</div>
           <div class='item-description'>The configuration that is specific to this addon</div>
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/runtime/addon.js#L92'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/runtime/addon.js#L92'>
               Improve this documentation
             </a>
           </div>
@@ -380,7 +381,7 @@ and sibling addons can specify load order via their package.json files:</p>
           <div class='item-descriptor'>
             autoLoadExtensions<span class="type">:{Array}</span>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/runtime/addon.js#L100'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/runtime/addon.js#L100'>
               <span class='filename'>Defined in: lib/runtime/addon.js</span>
               <span class='line'>Line: 100</span>
             </a>
@@ -390,7 +391,7 @@ and sibling addons can specify load order via their package.json files:</p>
           <div class='item-header'>Description</div>
           <div class='item-description'>Which file extensions should be autoloaded into the container.</div>
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/runtime/addon.js#L100'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/runtime/addon.js#L100'>
               Improve this documentation
             </a>
           </div>
@@ -433,7 +434,7 @@ and sibling addons can specify load order via their package.json files:</p>
             
               <div class='private tag'>Private</div>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/runtime/addon.js#L124'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/runtime/addon.js#L124'>
               <span class='filename'>Defined in: lib/runtime/addon.js</span>
               <span class='line'>Line: 124</span>
             </a>
@@ -474,7 +475,7 @@ to the list of addons that are discovered, i.e. during testing</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/runtime/addon.js#L124'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/runtime/addon.js#L124'>
               Improve this documentation
             </a>
           </div>
@@ -490,7 +491,7 @@ to the list of addons that are discovered, i.e. during testing</div>
             
               <div class='private tag'>Private</div>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/runtime/addon.js#L178'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/runtime/addon.js#L178'>
               <span class='filename'>Defined in: lib/runtime/addon.js</span>
               <span class='line'>Line: 178</span>
             </a>
@@ -525,7 +526,7 @@ it&#39;s Addon class.</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/runtime/addon.js#L178'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/runtime/addon.js#L178'>
               Improve this documentation
             </a>
           </div>
@@ -541,7 +542,7 @@ it&#39;s Addon class.</div>
             
               <div class='private tag'>Private</div>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/runtime/addon.js#L208'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/runtime/addon.js#L208'>
               <span class='filename'>Defined in: lib/runtime/addon.js</span>
               <span class='line'>Line: 208</span>
             </a>
@@ -573,7 +574,7 @@ generate the actual runtime configuration.</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/runtime/addon.js#L208'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/runtime/addon.js#L208'>
               Improve this documentation
             </a>
           </div>
@@ -589,7 +590,7 @@ generate the actual runtime configuration.</div>
             
               <div class='private tag'>Private</div>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/runtime/addon.js#L233'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/runtime/addon.js#L233'>
               <span class='filename'>Defined in: lib/runtime/addon.js</span>
               <span class='line'>Line: 233</span>
             </a>
@@ -610,7 +611,7 @@ addon loading is depth-first recursive.</div>
             <p class="no-return">Returns <code>undefined</code></p>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/runtime/addon.js#L233'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/runtime/addon.js#L233'>
               Improve this documentation
             </a>
           </div>
@@ -626,7 +627,7 @@ addon loading is depth-first recursive.</div>
             
               <div class='private tag'>Private</div>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/runtime/addon.js#L250'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/runtime/addon.js#L250'>
               <span class='filename'>Defined in: lib/runtime/addon.js</span>
               <span class='line'>Line: 250</span>
             </a>
@@ -647,7 +648,7 @@ addon loading is depth-first recursive.</div>
             <p class="no-return">Returns <code>undefined</code></p>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/runtime/addon.js#L250'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/runtime/addon.js#L250'>
               Improve this documentation
             </a>
           </div>
@@ -663,7 +664,7 @@ addon loading is depth-first recursive.</div>
             
               <div class='private tag'>Private</div>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/runtime/addon.js#L267'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/runtime/addon.js#L267'>
               <span class='filename'>Defined in: lib/runtime/addon.js</span>
               <span class='line'>Line: 267</span>
             </a>
@@ -693,7 +694,7 @@ on your actions instead.</div>
             <p class="no-return">Returns <code>undefined</code></p>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/runtime/addon.js#L267'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/runtime/addon.js#L267'>
               Improve this documentation
             </a>
           </div>
@@ -709,7 +710,7 @@ on your actions instead.</div>
             
               <div class='private tag'>Private</div>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/runtime/addon.js#L287'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/runtime/addon.js#L287'>
               <span class='filename'>Defined in: lib/runtime/addon.js</span>
               <span class='line'>Line: 287</span>
             </a>
@@ -731,7 +732,7 @@ guide for details on how to define routes.</div>
             <p class="no-return">Returns <code>undefined</code></p>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/runtime/addon.js#L287'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/runtime/addon.js#L287'>
               Improve this documentation
             </a>
           </div>
@@ -747,7 +748,7 @@ guide for details on how to define routes.</div>
             
               <div class='private tag'>Private</div>
             
-            <a class='defined-in' href='https://github.com/davewasmer/denali/blob/canary/lib/runtime/addon.js#L299'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/canary/lib/runtime/addon.js#L299'>
               <span class='filename'>Defined in: lib/runtime/addon.js</span>
               <span class='line'>Line: 299</span>
             </a>
@@ -777,7 +778,7 @@ extension, so `app/mailer/welcome.html` becomes `mail:welcome.html`.</div>
             <p class="no-return">Returns <code>undefined</code></p>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/davewasmer/denali/edit/canary/lib/runtime/addon.js#L299'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/canary/lib/runtime/addon.js#L299'>
               Improve this documentation
             </a>
           </div>
@@ -804,7 +805,6 @@ extension, so `app/mailer/welcome.html` becomes `mail:welcome.html`.</div>
     });
   });
 </script>
-
 
     </div>
   </div>
@@ -842,7 +842,6 @@ extension, so `app/mailer/welcome.html` becomes `mail:welcome.html`.</div>
     r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
     ga('create','UA-XXXXX-X','auto');ga('send','pageview');
 </script>
-
 
 
   </body>
