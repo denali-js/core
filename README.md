@@ -59,7 +59,7 @@ You can install Denali globally via npm:
 $ npm install -g denali
 ```
 
-Create a new application:
+Create a new application (run with Node 6.0+):
 
 ```sh
 $ denali new my-api
