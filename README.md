@@ -84,12 +84,12 @@ MIT © [Dave Wasmer](http://davewasmer.com)
 [npm-image]: https://img.shields.io/npm/v/denali.svg?style=flat-square
 
 [travis-url]: https://travis-ci.org/denali-js/denali
-[travis-image]: https://img.shields.io/travis/denali-js/denali.svg?style=flat-square
+[travis-image]: https://img.shields.io/travis/denali-js/denali/master.svg?style=flat-square
 
 [coveralls-url]: https://coveralls.io/r/denali-js/denali
-[coveralls-image]: https://img.shields.io/coveralls/denali-js/denali.svg?style=flat-square
+[coveralls-image]: https://img.shields.io/coveralls/denali-js/denali/master.svg?style=flat-square
 
 [depstat-url]: https://david-dm.org/denali-js/denali
-[depstat-image]: https://david-dm.org/denali-js/denali.svg?style=flat-square
+[depstat-image]: https://david-dm.org/denali-js/denali/status.svg?style=flat-square
 
-[download-badge]: http://img.shields.io/npm/dm/denali.svg?style=flat-square
+[download-badge]: https://img.shields.io/npm/dm/denali.svg?style=flat-square
