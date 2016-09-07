@@ -23,6 +23,8 @@ $ npm install -g denali
 
 ## Scaffolding our application
 
+> Note: Denali requires you to use Node 6.0 or greater.
+
 Next, let's use Denali's handy scaffolding tools to create a blank slate for us
 to start from:
 
