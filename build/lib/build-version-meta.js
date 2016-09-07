@@ -1,4 +1,3 @@
-const semver = require('semver');
 const sortVersions = require('./sort-versions');
 
 module.exports = function buildVersionMeta(versions, options) {
