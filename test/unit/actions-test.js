@@ -24,13 +24,13 @@ function mockReqRes(overrides) {
 describe('Denali.Action', function() {
   it('should invoke respond() with params', function() {
     let responded = false;
-    let TestAction = Action.extend({
+    class TestAction extends Action {
       respond(params) {
         expect(params.query).to.be.true();
         expect(params.body).to.be.true();
         responded = true;
       }
-    });
+    }
     let action = new TestAction(mockReqRes({
       request: {
         query: { query: true },
@@ -45,11 +45,11 @@ describe('Denali.Action', function() {
 
   it('should proxy this.render() to response.render()', function() {
     let rendered = false;
-    let TestAction = Action.extend({
+    class TestAction extends Action {
       respond() {
         this.render(true);
       }
-    });
+    }
     let action = new TestAction(mockReqRes({
       response: {
         render() {
@@ -67,17 +67,19 @@ describe('Denali.Action', function() {
 
     it('should invoke before filters prior to respond()', function() {
       let sequence = [];
-      let TestAction = Action.extend({
+      class TestAction extends Action {
         before() {
           sequence.push('before');
-        },
+        }
+
         respond() {
           sequence.push('respond');
-        },
+        }
+
         after() {
           sequence.push('after');
         }
-      });
+      }
       let action = new TestAction(mockReqRes());
 
       return action.run().then(() => {
@@ -87,17 +89,18 @@ describe('Denali.Action', function() {
 
     it('should invoke superclass filters before subclass filters', function() {
       let sequence = [];
-      let ParentClass = Action.extend({
+      class ParentClass extends Action {
         before() {
           sequence.push('parent');
-        },
+        }
+
         respond() {}
-      });
-      let ChildClass = ParentClass.extend({
+      }
+      class ChildClass extends ParentClass {
         before() {
           sequence.push('child');
         }
-      });
+      }
       let action = new ChildClass(mockReqRes());
 
       return action.run().then(() => {
@@ -111,13 +114,13 @@ describe('Denali.Action', function() {
 
     it('should respond with the content-type specific responder', function() {
       let responded = false;
-      let TestAction = Action.extend({
-        respond() {},
+      class TestAction extends Action {
+        respond() {}
         respondWithHtml() {
           responded = true;
         }
-      });
-      let action = TestAction.create(mockReqRes({
+      }
+      let action = new TestAction(mockReqRes({
         request: {
           headers: {
             'Content-type': 'text/html'
@@ -139,12 +142,12 @@ describe('Denali.Action', function() {
 
     it('should autorender', function() {
       let rendered;
-      let TestAction = Action.extend({
+      class TestAction extends Action {
         respond() {
           return { foo: 'bar' };
         }
-      });
-      let action = TestAction.create(mockReqRes({
+      }
+      let action = new TestAction(mockReqRes({
         response: {
           render(result) {
             rendered = result;
