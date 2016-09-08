@@ -15,7 +15,8 @@ function mockReqRes(overrides) {
       body: {}
     },
     response: {
-      render() {}
+      render() {},
+      end() {}
     },
     next() {}
   }, overrides);
