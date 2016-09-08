@@ -1,6 +1,6 @@
-const expect = require('must');
-const Container = require('../../lib/runtime/container');
-const Factory = require('../../lib/runtime/factory');
+import expect from 'must';
+import Container from '../../lib/runtime/container';
+//const Factory = require('../../lib/runtime/factory');
 
 describe('Denali.Container', function() {
 
@@ -100,7 +100,7 @@ describe('Denali.Container', function() {
       });
 
     });
-
+/*
     describe('Factories', function() {
 
       it('should run Factory.build() on lookup', function() {
@@ -145,6 +145,6 @@ describe('Denali.Container', function() {
       });
 
     });
-
+*/
   });
 });
