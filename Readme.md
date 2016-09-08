@@ -12,6 +12,12 @@ $ npm install -g broccoli-cli trash-cli
 $ npm install
 ```
 
+## Development
+
+```sh
+$ broccoli build dist
+```
+
 ## Deploying
 
 ```sh
