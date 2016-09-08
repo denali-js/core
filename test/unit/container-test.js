@@ -20,13 +20,13 @@ describe('Denali.Container', function() {
       expect(container.lookup('foo:bar').buzz).to.be.true();
     });
 
-    describe('lookup("type:*")', function() {
+    describe('lookupAll("type")', function() {
 
       it('should return an object with all the modules of the given type', function() {
         let container = new Container();
         container.register('foo:bar', { buzz: true });
         container.register('foo:buzz', { bat: true });
-        let type = container.lookup('foo:*');
+        let type = container.lookupAll('foo');
         expect(type.bar).to.be.exist();
         expect(type.bar.buzz).to.be.true();
         expect(type.buzz).to.be.exist();
