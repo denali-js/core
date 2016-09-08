@@ -29,7 +29,8 @@ module.exports = class CompileGuides extends Plugin {
           let rawGuide = fs.readFileSync(guidePath, 'utf-8');
           return {
             name: guideName,
-            data: frontmatter(rawGuide).attributes
+            data: frontmatter(rawGuide).attributes,
+            category: category
           };
         });
       });
