@@ -1,9 +1,17 @@
 import expect from 'must';
 import Action from '../../lib/runtime/action';
+import Container from '../../lib/runtime/container';
+import FlatSerializer from '../../lib/runtime/base/app/serializers/flat';
 import merge from 'lodash/merge';
 
 function mockReqRes(overrides) {
+  let container = new Container();
+
+  container.register('serializer:application', FlatSerializer);
+  container.register('config:environment', {});
+
   return merge({
+    container,
     request: {
       get(headerName) {
         return this.headers && this.headers[headerName.toLowerCase()];
@@ -15,6 +23,8 @@ function mockReqRes(overrides) {
       body: {}
     },
     response: {
+      write() {},
+      setHeader() {},
       render() {},
       end() {}
     },
