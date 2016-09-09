@@ -8,8 +8,9 @@ layout: api
     <% } %>
     <%= klass.name %>
   </h1>
+
   <% if (klass.file) { %>
-    <a class='defined-in' href='https://github.com/<%= repo %>/blob/<%= version.name %>/<%= klass.file  %>#L<%= klass.line %>'>
+    <a class='defined-in' href='https://github.com/<%= repo %>/blob/<%= version.ref %>/<%= klass.file  %>#L<%= klass.line %>'>
       <span class='filename'>Defined in: <%= klass.file %></span>
       <span class='line'>Line: <%= klass.line %></span>
     </a>
