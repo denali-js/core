@@ -9,6 +9,8 @@ install:
   - npm install -g npm@3.5.3
   - npm install -g multidep
   - npm install
+after_script:
+  - npm run coverage
 sudo: false
 cache:
   directories:
