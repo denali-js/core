@@ -47,7 +47,7 @@ argument, or use the return object to declare your nested routes:
 
 ```js
 router.namespace('admin', function(adminRouter) {
-  router.get('products');
+  adminRouter.get('products');
 });
 // or ...
 let adminNamespace = router.namespace('admin');
