@@ -65,7 +65,7 @@ layout: api
             <% if (item.access == 'private') { %>
               <div class='private tag'>Private</div>
             <% } %>
-            <a class='defined-in' href='https://github.com/<%= repo %>/blob/<%= version.name %>/<%= item.file %>#L<%= item.line %>'>
+            <a class='defined-in' href='https://github.com/<%= repo %>/blob/<%= version.ref %>/<%= item.file %>#L<%= item.line %>'>
               <span class='filename'>Defined in: <%= item.file %></span>
               <span class='line'>Line: <%= item.line %></span>
             </a>
@@ -92,7 +92,7 @@ layout: api
             <% if (item.access == 'private') { %>
               <div class='private tag'>Private</div>
             <% } %>
-            <a class='defined-in' href='https://github.com/<%= repo %>/blob/<%= version.name %>/<%= item.file %>#L<%= item.line %>'>
+            <a class='defined-in' href='https://github.com/<%= repo %>/blob/<%= version.ref %>/<%= item.file %>#L<%= item.line %>'>
               <span class='filename'>Defined in: <%= item.file %></span>
               <span class='line'>Line: <%= item.line %></span>
             </a>
