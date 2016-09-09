@@ -44,4 +44,4 @@ of the major differences with Denali:
 --------------
 [1] If you choose an ORM that doesn't have out of the box support, you will need
 to write an adapter for it. But fear not, adapters are simple - only 4 methods
-to implement! Check out the [adapter docs](adapters) for details.
+to implement! Check out the [adapter docs](latest/guides/data/orm-adapters) for details.

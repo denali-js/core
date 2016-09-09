@@ -59,5 +59,5 @@ guide](guides/routing) for more details.
 
 # `test/`
 
-The test suite for your app. See the [Testing guide](guides/testing) for more
-details.
+The test suite for your app. See the [integration](latest/guides/testing/integration)
+and [unit](latest/guides/testing/unit) testing guides for more details.

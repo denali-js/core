@@ -9,7 +9,7 @@ controller layer in the MVC architecture, taking in incoming requests,
 performing business logic, and handing off to the renderer to send the
 response.
 
-When a request comes in, Denali's [Router](guides/routing) will map the method
+When a request comes in, Denali's [Router](latest/guides/application/routing) will map the method
 and URL to a particular Action. It will invoke the `respond()` method on that
 class, which should return either:
 
