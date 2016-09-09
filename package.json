@@ -45,7 +45,7 @@
     "lint": "eslint lib test",
     "postcoverage": "rimraf coverage",
     "prepublish": "in-publish && npm run lint && npm test && npm run coverage || not-in-publish",
-    "test": "NODE_ENV=test mocha --compilers js:babel-core/register test/*.js test/**/*.js"
+    "test": "NODE_ENV=test mocha --compilers js:babel-core/register test/**/*.js test/*.js"
   },
   "license": "MIT",
   "dependencies": {
