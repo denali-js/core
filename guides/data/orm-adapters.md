@@ -22,8 +22,8 @@ project via `$ denali install <adapter package name>`, and set your `ormAdapter`
 property in your `config/environment.js` file to the ORM's name.
 
 * [`node-orm2`](https://github.com/denali-js/denali-node-orm2) (alpha)
-* ~`Sequelize`~ (coming soon)
-* ~`Bookshelf`~ (coming soon)
+* ~~`Sequelize`~~ (coming soon)
+* ~~`Bookshelf`~~ (coming soon)
 
 TODO confirm these links work and projects are working
 
