@@ -404,4 +404,4 @@ Congrats, you made it through the quickstart guide. From here, you can:
 
 * Check out the rest of the guides to learn more about the different parts of the framework
 * Dive into the API documentation to get into the gritty details
-* Explore the [heavily commented source code](https://github.com/{{site.repo}})
+* Explore the [heavily commented source code](https://github.com/denali-js/denali)
