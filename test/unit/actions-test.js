@@ -1,5 +1,6 @@
 import expect from 'must';
 import Action from '../../lib/runtime/action';
+import Response from '../../lib/runtime/response';
 import Container from '../../lib/runtime/container';
 import FlatSerializer from '../../lib/runtime/base/app/serializers/flat';
 import merge from 'lodash/merge';
@@ -51,26 +52,6 @@ describe('Denali.Action', function() {
 
     return action.run().then(() => {
       expect(responded).to.be.true();
-    });
-  });
-
-  it('should proxy this.render() to response.render()', function() {
-    let rendered = false;
-    class TestAction extends Action {
-      respond() {
-        this.render(true);
-      }
-    }
-    let action = new TestAction(mockReqRes({
-      response: {
-        render() {
-          rendered = true;
-        }
-      }
-    }));
-
-    return action.run().then(() => {
-      expect(rendered).to.be.true();
     });
   });
 
@@ -132,10 +113,13 @@ describe('Denali.Action', function() {
 
     it('should respond with the content-type specific responder', function() {
       let responded = false;
+      let respondedWithHtml = false;
       class TestAction extends Action {
-        respond() {}
-        respondWithHtml() {
+        respond() {
           responded = true;
+        }
+        respondWithHtml() {
+          respondedWithHtml = true;
         }
       }
       let action = new TestAction(mockReqRes({
@@ -150,7 +134,8 @@ describe('Denali.Action', function() {
       }));
 
       return action.run().then(() => {
-        expect(responded).to.be.true();
+        expect(responded).to.be.false();
+        expect(respondedWithHtml).to.be.true();
       });
     });
 
@@ -162,13 +147,13 @@ describe('Denali.Action', function() {
       let rendered;
       class TestAction extends Action {
         respond() {
-          return { foo: 'bar' };
+          return new Response(200, { foo: 'bar' }, { raw: true });
         }
       }
       let action = new TestAction(mockReqRes({
         response: {
-          render(result) {
-            rendered = result;
+          write(result) {
+            rendered = JSON.parse(result);
           }
         }
       }));
