@@ -75,7 +75,7 @@ layout: api
           <div class='item-header'>Description</div>
           <div class='item-description'><%= item.description %></div>
           <div class='improve'>
-            <a target='_blank' href='https://github.com/<%= repo %>/edit/<%= version.name %>/<%= item.file %>#L<%= item.line %>'>
+            <a target='_blank' href='https://github.com/<%= repo %>/edit/<%= version.ref %>/<%= item.file %>#L<%= item.line %>'>
               Improve this documentation
             </a>
           </div>
@@ -130,7 +130,7 @@ layout: api
             <p class="no-return">Returns <code>undefined</code></p>
           <% } %>
           <div class='improve'>
-            <a target='_blank' href='https://github.com/<%= repo %>/edit/<%= version.name %>/<%= item.file %>#L<%= item.line %>'>
+            <a target='_blank' href='https://github.com/<%= repo %>/edit/<%= version.ref %>/<%= item.file %>#L<%= item.line %>'>
               Improve this documentation
             </a>
           </div>
