@@ -44,7 +44,7 @@
     "coverage": "babel-node isparta cover _mocha && coveralls < coverage/lcov.info",
     "lint": "eslint lib test",
     "postcoverage": "rimraf coverage",
-    "prepublish": "in-publish && npm run lint && npm test && npm run coverage || not-in-publish",
+    "prepublish": "in-publish && npm run lint && npm test && npm run build || not-in-publish",
     "test": "NODE_ENV=test mocha --compilers js:babel-core/register test/**/*.js test/*.js"
   },
   "license": "MIT",
