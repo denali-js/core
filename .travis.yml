@@ -10,7 +10,7 @@ install:
   - npm install -g multidep
   - npm install
 after_script:
-  - "npm install isparta && npm run coverage"
+  - npm run coverage
 sudo: false
 cache:
   directories:
