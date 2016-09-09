@@ -219,7 +219,7 @@ URL design</a>):</p>
 the <code>router.namespace()</code> method. You can either supply a function as a second
 argument, or use the return object to declare your nested routes:</p>
 <pre><code class="lang-js">router.namespace(&#39;admin&#39;, function(adminRouter) {
-  router.get(&#39;products&#39;);
+  adminRouter.get(&#39;products&#39;);
 });
 // or ...
 let adminNamespace = router.namespace(&#39;admin&#39;);
