@@ -1,6 +1,7 @@
+const fs = require('fs');
 const path = require('path');
-const rimraf = require('rimraf');
 const expect = require('must');
+const tmp = require('tmp');
 const run = require('child_process').execSync;
 const isFile = require('../../../lib/utils/is-file');
 

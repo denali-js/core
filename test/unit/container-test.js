@@ -1,6 +1,5 @@
 import expect from 'must';
 import Container from '../../lib/runtime/container';
-//const Factory = require('../../lib/runtime/factory');
 
 describe('Denali.Container', function() {
 
@@ -79,8 +78,8 @@ describe('Denali.Container', function() {
 
         let serializerOne = container.lookup('serializer:one');
         expect(serializerOne).to.be.an.instanceof(SerializerOne);
-        //expect(serializerOne.serializers).to.have.keys([ 'one', 'two' ]);
-        //expect(serializerOne.serializers.two).to.be.an.instanceof(SerializerTwo);
+        // expect(serializerOne.serializers).to.have.keys([ 'one', 'two' ]);
+        // expect(serializerOne.serializers.two).to.be.an.instanceof(SerializerTwo);
       });
 
     });
@@ -100,56 +99,10 @@ describe('Denali.Container', function() {
 
         let adapterOne = container.lookup('adapter:one');
         expect(adapterOne).to.be.an.instanceof(AdapterOne);
-        //expect(adapterOne.adapters).to.have.keys([ 'one', 'two' ]);
-        //expect(adapterOne.adapters.two).to.be.an.instanceof(AdapterTwo);
+        // expect(adapterOne.adapters).to.have.keys([ 'one', 'two' ]);
+        // expect(adapterOne.adapters.two).to.be.an.instanceof(AdapterTwo);
       });
 
     });
-/*
-    describe('Factories', function() {
-
-      it('should run Factory.build() on lookup', function() {
-        let built = false;
-        let TestFactory = Factory.extend({
-          build() {
-            built = true;
-            return {};
-          }
-        });
-        let container = new Container();
-        container.register('foo:bar', TestFactory);
-
-        container.lookup('foo:bar');
-        expect(built).to.be.true();
-      });
-
-      it('should use the return value of `build()` as the registered value', function() {
-        let TestFactory = Factory.extend({
-          build() {
-            return { ima: 'object' };
-          }
-        });
-        let container = new Container();
-        container.register('foo:bar', TestFactory);
-
-        let value = container.lookup('foo:bar');
-        expect(value.ima).to.equal('object');
-      });
-
-      it('should inject the factory class singleton & instantiate properties onto the returned value', function() {
-        let TestFactory = Factory.extend({
-          build() {
-            return {};
-          }
-        });
-        let container = new Container();
-        container.register('foo:bar', TestFactory);
-
-        let value = container.lookup('foo:bar');
-        expect(value).to.have.keys([ 'singleton', 'instantiate' ]);
-      });
-
-    });
-*/
   });
 });

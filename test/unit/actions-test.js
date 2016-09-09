@@ -79,8 +79,8 @@ describe('Denali.Action', function() {
     it('should invoke before filters prior to respond()', function() {
       let sequence = [];
       class TestAction extends Action {
-        static before = ['before'];
-        static after = ['after'];
+        static before = [ 'before' ];
+        static after = [ 'after' ];
 
         before() {
           sequence.push('before');
@@ -104,7 +104,7 @@ describe('Denali.Action', function() {
     it('should invoke superclass filters before subclass filters', function() {
       let sequence = [];
       class ParentClass extends Action {
-        static before = ['before'];
+        static before = [ 'before' ];
 
         before() {
           sequence.push('parent');
@@ -113,7 +113,7 @@ describe('Denali.Action', function() {
         respond() {}
       }
       class ChildClass extends ParentClass {
-        static before = ['before', 'beforeChild'];
+        static before = [ 'before', 'beforeChild' ];
 
         beforeChild() {
           sequence.push('child');
