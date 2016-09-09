@@ -55,7 +55,7 @@ action.
 ## `config/routes.js`
 
 You define your application's routes in this file. See the [Routing
-guide](guides/routing) for more details.
+guide](latest/guides/application/routing) for more details.
 
 # `test/`
 
