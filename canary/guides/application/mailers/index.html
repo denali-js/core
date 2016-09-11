@@ -220,15 +220,15 @@ send the email once we&#39;ve gathered all the relevant data.</p>
 <h2 id="sending-the-email">Sending the email</h2>
 <p>Now that we have a mailer ready to go, let&#39;s wire it up to a <code>users/sign-up</code>
 action so that new users will be sent a welcome email:</p>
-<p>   // app/actions/users/sign-up.js
-   respond(params) {
-     let User = this.modelFor(&#39;user&#39;);
-     return User.create(params).then((newUser) =&gt; {
-       this.mail(&#39;welcome&#39;, newUser);
-       return newUser;
-     });
-   }</p>
-<p>As we can see, actions come with a <code>this.mail</code> method which invoke the named
+<pre><code>// app/actions/users/sign-up.js
+respond(params) {
+  let User = this.modelFor(&#39;user&#39;);
+  return User.create(params).then((newUser) =&gt; {
+    this.mail(&#39;welcome&#39;, newUser);
+    return newUser;
+  });
+}
+</code></pre><p>As we can see, actions come with a <code>this.mail</code> method which invoke the named
 mailer with the data supplied (in this case, our new user record).</p>
 <p>Notice also that, despite <code>this.mail()</code> returning a Promise, we don&#39;t wait for
 it to finish the action. This let&#39;s us leverage Node&#39;s asynchronous behavior to
