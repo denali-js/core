@@ -92,14 +92,14 @@ send the email once we've gathered all the relevant data.
 Now that we have a mailer ready to go, let's wire it up to a `users/sign-up`
 action so that new users will be sent a welcome email:
 
-   // app/actions/users/sign-up.js
-   respond(params) {
-     let User = this.modelFor('user');
-     return User.create(params).then((newUser) => {
-       this.mail('welcome', newUser);
-       return newUser;
-     });
-   }
+    // app/actions/users/sign-up.js
+    respond(params) {
+      let User = this.modelFor('user');
+      return User.create(params).then((newUser) => {
+        this.mail('welcome', newUser);
+        return newUser;
+      });
+    }
 
 As we can see, actions come with a `this.mail` method which invoke the named
 mailer with the data supplied (in this case, our new user record).
