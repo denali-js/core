@@ -165,4 +165,49 @@ describe('Denali.Action', function() {
 
   });
 
+  describe('wrapper methods', function() {
+
+    it('should return model when using modelFor', function() {
+      let model;
+      class TestAction extends Action {
+        respond() {
+          let User = this.modelFor('user');
+          model = User;
+          return User;
+        }
+      }
+      let mock = mockReqRes();
+
+      mock.container.register('model:user', { type: 'user' });
+
+      let action = new TestAction(mock);
+
+      return action.run().then(() => {
+        expect(model.type).to.eql('user');
+        expect(model.container).to.eql(action.container);
+      });
+    });
+
+    it('should return service when using service(type)', function() {
+      let service;
+      class TestAction extends Action {
+        respond() {
+          let Mine = this.service('mine');
+          service = Mine;
+          return Mine;
+        }
+      }
+      let mock = mockReqRes();
+
+      mock.container.register('service:mine', { type: 'mine' });
+
+      let action = new TestAction(mock);
+
+      return action.run().then(() => {
+        expect(service.type).to.eql('mine');
+      });
+    });
+
+  });
+
 });
