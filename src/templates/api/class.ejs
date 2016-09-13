@@ -18,7 +18,9 @@ layout: api
 
   <div class='class-module'>
     <strong>Module:</strong>
-    <span class='class-module-name'><%= klass.module %>.<%= klass.submodule %></span>
+    <a class='module' href='/<%= version.name %>/api/modules/<%= klass.submodule %>'>
+      <span class='class-module-name'><%= klass.module %>.<%= klass.submodule %></span>
+    </a>
   </div>
 
   <% if (klass.description) { %>
