@@ -1544,6 +1544,9 @@ img {
   flex: none;
   flex-shrink: 1; }
 
+.item-description {
+  white-space: pre; }
+
 .return-type {
   margin-right: 0.1em;
   color: #999;
