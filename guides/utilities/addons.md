@@ -12,7 +12,7 @@ the "Improve this page" link and chip in!
 ## Installing An Addon
 
 To install an addon, it must first be published to npm. Once you know what
-the addont is published as, you can use the install command.
+the addon is published as, you can use the install command.
 
 ```sh
 $ denali install addon-name
