@@ -139,27 +139,14 @@
   
     <div class='module-description'><p>This is the main module exported by Denali when it is loaded via
 <code>require/import</code>.</p>
-<p>There are two things we export from this file:</p>
-<ol>
-<li><p>Convenient shortcuts to other modules within Denali. Rather than having
-to <code>import Addon from &#39;denali/dist/lib/runtime/addon&#39;</code>, you can just
-<code>import { Addon } from &#39;denali&#39;</code>.</p>
-</li>
-<li><p>External modules that are part of the Denali framework. The big ones are
-<strong>foraker</strong> and <strong>blackburn</strong>, responsible for providing controllers and a
-serializer library, respectively. By having users import those modules
-through Denali, we retain the ability to tweak or patch them in the future
-as needed, and keep a unified experience for users who don&#39;t care about
-Denali&#39;s internal architecture.</p>
-</li>
-</ol>
+<p>This exports convenient shortcuts to other modules within Denali.
+Rather than having to <code>import Addon from &#39;denali/dist/lib/runtime/addon&#39;</code>,
+you can just <code>import { Addon } from &#39;denali&#39;</code>.</p>
 <h2 id="exports">Exports</h2>
 <h3 id="-serializer-"><code>Serializer</code></h3>
-<p>The <a href="https://github.com/davewasmer/blackburn">blackburn</a> Serializer class.
-Serializers are responsible for determing what data gets sent over the
+<p>Serializers are responsible for determing what data gets sent over the
 wire, and how that data is rendered into a JSON response. Check out the
-<a href="serializers">guides</a> or <a href="http://davewasmer.github.io/blackburn">blackburn</a>
-docs for details.</p>
+<a href="serializers">guides</a> for details.</p>
 <h3 id="-errors-"><code>Errors</code></h3>
 <p>An errors module based on
 <a href="https://github.com/jshttp/http-errors">http-errors</a>. Useful for
