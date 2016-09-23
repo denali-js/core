@@ -220,6 +220,8 @@ into the <code>config/routes.js</code> file&#39;s exported function as the first
         
       
         
+          <a class='summary-link'  href='canary/api/classes/Router/#resource'>resource</a>
+        
       
         
           <a class='summary-link'  href='canary/api/classes/Router/#namespace'>namespace</a>
@@ -846,6 +848,79 @@ action class itself</div>
     
   
     
+      <div class='item method' id='resource' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            resource<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>resourceName</span><span class='param-type type'>:String</span></span><span class='param'><span class='param-name'>options</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/runtime/router.js#L269'>
+              <span class='filename'>Defined in: lib/runtime/router.js</span>
+              <span class='line'>Line: 269</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Create all the CRUD routes for a given resource and it&#39;s relationships.
+Based on the JSON-API recommendations for URL design.
+
+The `options` argument lets you pass in `only` or `except` arrays to define
+exceptions. Action names included in `only` will be the only ones
+generated, while names included in `except` will be omitted.
+
+Set `options.related = false` to disable relationship routes.
+
+If no options are supplied, the following routes are generated (assuming a
+&#39;books&#39; resource as an example):
+
+  * `GET /books`
+  * `POST /books`
+  * `GET /books/:id`
+  * `PATCH /books/:id`
+  * `DELETE /books/:id`
+  * `GET /books/:id/:relation`
+  * `GET /books/:id/relationships/:relation`
+  * `PATCH /books/:id/relationships/:relation`
+  * `POST /books/:id/relationships/:relation`
+  * `DELETE /books/:id/relationships/:relation`
+
+See http://jsonapi.org/recommendations/#urls for details.
+
+TODO: document available options</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>resourceName</div><div class='param-type type'>:String</div>
+                  
+                    <div class='param-description'>the name of the resource</div>
+                  
+                </div>
+              
+                <div class='param'>
+                  <div class='param-name'>options</div><div class='param-type type'>:Object</div>
+                  
+                    <div class='param-description'>options for the resource</div>
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <p class="no-return">Returns <code>undefined</code></p>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/runtime/router.js#L269'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
   
     
       <div class='item method' id='namespace' >
@@ -853,9 +928,9 @@ action class itself</div>
           <div class='item-descriptor'>
             namespace<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>namespace</span><span class='param-type type'>:String</span></span><span class='param'><span class='param-name'>fn</span><span class='param-type type'>:Function</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/runtime/router.js#L338'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/runtime/router.js#L343'>
               <span class='filename'>Defined in: lib/runtime/router.js</span>
-              <span class='line'>Line: 338</span>
+              <span class='line'>Line: 343</span>
             </a>
           </div>
         </h3>
@@ -903,7 +978,7 @@ single argument that works just like the `router` argument in your
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/runtime/router.js#L338'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/runtime/router.js#L343'>
               Improve this documentation
             </a>
           </div>
