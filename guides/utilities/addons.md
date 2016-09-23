@@ -28,3 +28,10 @@ $ denali addon my-addon
 
 This will create a new directory with all of the necessary files
 to get you started writing your first addon.
+
+## Addon Structure
+
+Addons use a similar structure to a regular app.
+
+- `app` - Anything in this directory will be available on the container in the consuming app.
+- `lib` - Anything you want to add here will have to be explicitly imported.
