@@ -24,6 +24,10 @@ module.exports = class ExtractYuidocs extends Plugin {
     });
   }
   normalizeData(data, root) {
+    forIn(data.warnings, (warningData) => {
+      let [,file] = warningData.line.split('.tmp');
+      console.log(`${warningData.message}\n(${file.slice(3)})\n\n`);
+    });
     forIn(data.modules, (moduleData) => {
       moduleData.file = path.relative(root, moduleData.file);
     });
