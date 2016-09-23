@@ -1521,6 +1521,7 @@ img {
 .param-description {
   display: flex;
   flex: none;
+  flex: auto !important;
   margin-left: 0.25em; }
 
 .param-description p:first-of-type, .item-description p:first-of-type, .return-description p:first-of-type {
