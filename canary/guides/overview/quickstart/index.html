@@ -271,8 +271,8 @@ export default class IndexAction extends ApplicationAction {
 <li><code>import ApplicationAction from &#39;./application&#39;;</code> - we import the
 <code>ApplicationAction</code> to use as our common base class. You could import the base
 <code>Action</code> class from the <code>denali</code> module directly, but having a base class for
-all actions in your app is handy (and the convention).</li>
-<li><code>respond() {</code> - the <code>respond()</code> method is the meat of any action. It defines
+all actions in your app is handy (and common convention).</li>
+<li><code>respond()</code> - the <code>respond()</code> method is the meat of any action. It defines
 how the action responds to an incoming request.</li>
 <li><code>return new Response(...)</code> - you can tell Denali what to respond to a
 request with in a few different ways. Here, we return a <code>Response</code> object
@@ -286,10 +286,10 @@ object that we saw above: <code>{ &quot;message&quot;: &quot;Welcome to Denali!&
 <p>Now let&#39;s get a bit more creative. Our blog API is going to need to store and
 retrieve our blog posts. Let&#39;s create a Post resource to enable that.</p>
 <blockquote>
-<p>Normally, you&#39;d probably store those in some kind of database (i.e. Mongo,
+<p>Normally, you&#39;d probably store these in some kind of database (i.e. Mongo,
 Postgres, MySQL, etc). Denali is <strong>database agnostic</strong> though. So for now,
-we&#39;ll use plain ol&#39; JS objects (a.k.a. POJOs). But you could easily substitute
-your own models in later. For more details, check out the Data guides.</p>
+we&#39;ll use plain ol&#39; JS objects (a.k.a. POJOs). But you can easily substitute
+your own models in later. For more details, check out the <a href="../../data/models">Data guides</a>.</p>
 </blockquote>
 <p>To start, let&#39;s use that handy scaffolding tool again:</p>
 <pre><code class="lang-sh">$ denali generate resource posts
@@ -353,7 +353,7 @@ store so consumers of the API can actually manipulate the data.</p>
 <p>Denali takes a unique approach to handling database integrations. Most
 frameworks ship with some kind of Object Relational Mapper (ORM) baked right in.
 It transforms rows from a database into objects you can manipulate.</p>
-<p>Here&#39;s the thing: <strong>ORMs are hard. _Really hard.__</strong> To make matters worse,
+<p>Here&#39;s the thing: <strong>ORMs are hard. <em>Really hard.</em></strong> To make matters worse,
 there&#39;s <strong>no generally accepted &quot;good&quot; ORM for Node.js</strong>.</p>
 <p>With this in mind, Denali purposefully <strong>does not ship with an ORM</strong>. Instead,
 Denali&#39;s Models are essentially a thin adapter layer that lets you plug your
@@ -425,11 +425,11 @@ this listing endpoint:</p>
 <p>It&#39;s missing there too. What&#39;s going on here?</p>
 <h2 id="working-with-serializers">Working with Serializers</h2>
 <p>The reason our <code>title</code> field was missing was because of our Serializers.</p>
-<p>A Serializer takes an in-memory payload object (or array), and transforms into
+<p>A Serializer takes an in-memory payload object (or array), and transforms it into
 JSON to send back in the response.</p>
 <p>By default, Serializers are configured with a whitelist of which attributes are
-allowed to be returned. Since we didn&#39;t touch our PostSerializer yet, the
-<code>title</code> attribute isn&#39;t in that whitelist, so it gets stripped out on all our
+allowed to be returned. Since we haven&#39;t touched our PostSerializer yet, the
+<code>title</code> attribute isn&#39;t in that whitelist, so it gets stripped out of all our
 responses.</p>
 <p>Let&#39;s fix that now by adding it to the whitelist:</p>
 <pre><code class="lang-js">// app/serializers/post.js

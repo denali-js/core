@@ -151,7 +151,7 @@
     <div class='col-md-9 guides-body copy'>
       <a class="improve-btn" target="_blank" href="https://github.com/denali-js/denali/edit/master/guides/configuration/initializers.md">Improve this page</a>
       <h1 id="initializers">Initializers</h1>
-<p>Initializers a functions that run after your application is loaded into memory,
+<p>Initializers are functions that run after your application is loaded into memory,
 but before it binds to a port to start accepting connections. It&#39;s the ideal
 spot to do any kind of bootstrapping or setup to get your app ready to start
 serving connections.</p>
@@ -177,7 +177,7 @@ export default {
 }
 </code></pre>
 <h2 id="initializer-order">Initializer order</h2>
-<p>Sometimes you may way an initializer to run before or after another. To let
+<p>Sometimes you may want an initializer to run before or after another. To let
 Denali know what the order should be, just add a <code>before</code> and/or <code>after</code> array
 to your initializer object which contains the names of the initializers that
 should run before or after:</p>

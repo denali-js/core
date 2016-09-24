@@ -213,11 +213,19 @@ resources, included records, and support for meta and links.</p>
         
       
         
-      
+          <a class='summary-link'  href='canary/api/classes/JSONAPISerializer/#serializeRelationship'>serializeRelationship</a>
         
       
         
+          <a class='summary-link'  href='canary/api/classes/JSONAPISerializer/#dataForHasOne'>dataForHasOne</a>
+        
       
+        
+          <a class='summary-link'  href='canary/api/classes/JSONAPISerializer/#dataForHasMany'>dataForHasMany</a>
+        
+      
+        
+          <a class='summary-link'  href='canary/api/classes/JSONAPISerializer/#dataForRelatedRecord'>dataForRelatedRecord</a>
         
       
         
@@ -1015,11 +1023,257 @@ relationships</div>
     
   
     
-  
+      <div class='item method' id='serializeRelationship' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            serializeRelationship<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>config</span><span class='param-type type'>:Object</span></span><span class='param'><span class='param-name'>descriptor</span><span class='param-type type'>:Object</span></span><span class='param'><span class='param-name'>context</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializers/json-api.js#L267'>
+              <span class='filename'>Defined in: lib/data/serializers/json-api.js</span>
+              <span class='line'>Line: 267</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Takes the serializer config and the model&#39;s descriptor for a relationship,
+and returns the serialized relationship object. Also sideloads any full
+records found for the relationship.</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>config</div><div class='param-type type'>:Object</div>
+                  
+                    <div class='param-description'>the options provided at the serializer for this relationship</div>
+                  
+                </div>
+              
+                <div class='param'>
+                  <div class='param-name'>descriptor</div><div class='param-type type'>:Object</div>
+                  
+                    <div class='param-description'>the model&#39;s descriptor for this relationship</div>
+                  
+                </div>
+              
+                <div class='param'>
+                  <div class='param-name'>context</div><div class='param-type type'>:Object</div>
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <div class='return'>
+              <div class='return-type type'>Object</div>
+              
+                <div class='return-description'>the serialized relationship object</div>
+              
+            </div>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializers/json-api.js#L267'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
     
   
     
+      <div class='item method' id='dataForHasOne' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            dataForHasOne<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>config</span><span class='param-type type'>:Object</span></span><span class='param'><span class='param-name'>descriptor</span><span class='param-type type'>:Object</span></span><span class='param'><span class='param-name'>context</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializers/json-api.js#L288'>
+              <span class='filename'>Defined in: lib/data/serializers/json-api.js</span>
+              <span class='line'>Line: 288</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Given the serializer config and the model descriptor for a hasOne
+relationship, returns the data for that relationship (the resource object
+with type and id). Sideloads the related record if present.</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>config</div><div class='param-type type'>:Object</div>
+                  
+                    <div class='param-description'>the options provided at the serializer for this relationship</div>
+                  
+                </div>
+              
+                <div class='param'>
+                  <div class='param-name'>descriptor</div><div class='param-type type'>:Object</div>
+                  
+                    <div class='param-description'>the model&#39;s descriptor for this relationship</div>
+                  
+                </div>
+              
+                <div class='param'>
+                  <div class='param-name'>context</div><div class='param-type type'>:Object</div>
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <div class='return'>
+              <div class='return-type type'>Object</div>
+              
+                <div class='return-description'>the serialized data object for the relationship</div>
+              
+            </div>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializers/json-api.js#L288'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
   
+    
+      <div class='item method' id='dataForHasMany' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            dataForHasMany<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>config</span><span class='param-type type'>:Object</span></span><span class='param'><span class='param-name'>descriptor</span><span class='param-type type'>:Object</span></span><span class='param'><span class='param-name'>context</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializers/json-api.js#L306'>
+              <span class='filename'>Defined in: lib/data/serializers/json-api.js</span>
+              <span class='line'>Line: 306</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Given the serializer config and the model descriptor for a hasMany
+relationship, returns the data for that relationship (the resource objects
+with type and id). Sideloads the related records if present.</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>config</div><div class='param-type type'>:Object</div>
+                  
+                    <div class='param-description'>the options provided at the serializer for this relationship</div>
+                  
+                </div>
+              
+                <div class='param'>
+                  <div class='param-name'>descriptor</div><div class='param-type type'>:Object</div>
+                  
+                    <div class='param-description'>the model&#39;s descriptor for this relationship</div>
+                  
+                </div>
+              
+                <div class='param'>
+                  <div class='param-name'>context</div><div class='param-type type'>:Object</div>
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <div class='return'>
+              <div class='return-type type'>Object</div>
+              
+                <div class='return-description'>the serialized data array for the relationship</div>
+              
+            </div>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializers/json-api.js#L306'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item method' id='dataForRelatedRecord' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            dataForRelatedRecord<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>relatedRecordOrId</span><span class='param-type type'>:Model|Number|String</span></span><span class='param'><span class='param-name'>config</span><span class='param-type type'>:Object</span></span><span class='param'><span class='param-name'>descriptor</span><span class='param-type type'>:Object</span></span><span class='param'><span class='param-name'>context</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializers/json-api.js#L324'>
+              <span class='filename'>Defined in: lib/data/serializers/json-api.js</span>
+              <span class='line'>Line: 324</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Given a related record or it&#39;s id, return the resource object for that
+record (or id). If it&#39;s a full record, sideload the record as well.</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>relatedRecordOrId</div><div class='param-type type'>:Model|Number|String</div>
+                  
+                    <div class='param-description'>the related record or it&#39;s id</div>
+                  
+                </div>
+              
+                <div class='param'>
+                  <div class='param-name'>config</div><div class='param-type type'>:Object</div>
+                  
+                    <div class='param-description'>the options provided at the serializer for this relationship</div>
+                  
+                </div>
+              
+                <div class='param'>
+                  <div class='param-name'>descriptor</div><div class='param-type type'>:Object</div>
+                  
+                    <div class='param-description'>the model&#39;s descriptor for this relationship</div>
+                  
+                </div>
+              
+                <div class='param'>
+                  <div class='param-name'>context</div><div class='param-type type'>:Object</div>
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <div class='return'>
+              <div class='return-type type'>Object</div>
+              
+                <div class='return-description'>the serialized resource object for the given related record or id</div>
+              
+            </div>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializers/json-api.js#L324'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
     
   
     
@@ -1028,9 +1282,9 @@ relationships</div>
           <div class='item-descriptor'>
             linksForRelationship<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>name</span><span class='param-type type'>:String</span></span><span class='param'><span class='param-name'>descriptor</span><span class='param-type type'>:Object</span></span><span class='param'><span class='param-name'>record</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializers/json-api.js#L342'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializers/json-api.js#L350'>
               <span class='filename'>Defined in: lib/data/serializers/json-api.js</span>
-              <span class='line'>Line: 342</span>
+              <span class='line'>Line: 350</span>
             </a>
           </div>
         </h3>
@@ -1079,7 +1333,7 @@ links for that relationship for that record. I.e. &#39;/books/1/author&#39;</div
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializers/json-api.js#L342'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializers/json-api.js#L350'>
               Improve this documentation
             </a>
           </div>
@@ -1093,9 +1347,9 @@ links for that relationship for that record. I.e. &#39;/books/1/author&#39;</div
           <div class='item-descriptor'>
             metaForRelationship<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>name</span><span class='param-type type'>:String</span></span><span class='param'><span class='param-name'>descriptor</span><span class='param-type type'>:Object</span></span><span class='param'><span class='param-name'>record</span><span class='param-type type'>:Object</span></span><span class='param'><span class='param-name'>options</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializers/json-api.js#L362'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializers/json-api.js#L370'>
               <span class='filename'>Defined in: lib/data/serializers/json-api.js</span>
-              <span class='line'>Line: 362</span>
+              <span class='line'>Line: 370</span>
             </a>
           </div>
         </h3>
@@ -1146,7 +1400,7 @@ default.</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializers/json-api.js#L362'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializers/json-api.js#L370'>
               Improve this documentation
             </a>
           </div>
@@ -1160,9 +1414,9 @@ default.</div>
           <div class='item-descriptor'>
             linksForRecord<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>record</span><span class='param-type type'>:Object</span></span><span class='param'><span class='param-name'>options</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializers/json-api.js#L376'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializers/json-api.js#L384'>
               <span class='filename'>Defined in: lib/data/serializers/json-api.js</span>
-              <span class='line'>Line: 376</span>
+              <span class='line'>Line: 384</span>
             </a>
           </div>
         </h3>
@@ -1203,7 +1457,7 @@ implementation assumes the URL for a particular record maps to that type&#39;s
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializers/json-api.js#L376'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializers/json-api.js#L384'>
               Improve this documentation
             </a>
           </div>
@@ -1217,9 +1471,9 @@ implementation assumes the URL for a particular record maps to that type&#39;s
           <div class='item-descriptor'>
             metaForRecord<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>record</span><span class='param-type type'>:Object</span></span><span class='param'><span class='param-name'>options</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializers/json-api.js#L392'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializers/json-api.js#L400'>
               <span class='filename'>Defined in: lib/data/serializers/json-api.js</span>
-              <span class='line'>Line: 392</span>
+              <span class='line'>Line: 400</span>
             </a>
           </div>
         </h3>
@@ -1252,7 +1506,7 @@ implementation assumes the URL for a particular record maps to that type&#39;s
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializers/json-api.js#L392'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializers/json-api.js#L400'>
               Improve this documentation
             </a>
           </div>
@@ -1268,9 +1522,9 @@ implementation assumes the URL for a particular record maps to that type&#39;s
             
               <div class='private tag'>Private</div>
             
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializers/json-api.js#L402'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializers/json-api.js#L410'>
               <span class='filename'>Defined in: lib/data/serializers/json-api.js</span>
-              <span class='line'>Line: 402</span>
+              <span class='line'>Line: 410</span>
             </a>
           </div>
         </h3>
@@ -1314,7 +1568,7 @@ implementation assumes the URL for a particular record maps to that type&#39;s
             <p class="no-return">Returns <code>undefined</code></p>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializers/json-api.js#L402'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializers/json-api.js#L410'>
               Improve this documentation
             </a>
           </div>
@@ -1328,9 +1582,9 @@ implementation assumes the URL for a particular record maps to that type&#39;s
           <div class='item-descriptor'>
             renderError<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>error</span><span class='param-type type'>:Error</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializers/json-api.js#L426'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializers/json-api.js#L434'>
               <span class='filename'>Defined in: lib/data/serializers/json-api.js</span>
-              <span class='line'>Line: 426</span>
+              <span class='line'>Line: 434</span>
             </a>
           </div>
         </h3>
@@ -1360,7 +1614,7 @@ implementation assumes the URL for a particular record maps to that type&#39;s
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializers/json-api.js#L426'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializers/json-api.js#L434'>
               Improve this documentation
             </a>
           </div>
@@ -1374,9 +1628,9 @@ implementation assumes the URL for a particular record maps to that type&#39;s
           <div class='item-descriptor'>
             sourceForError<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>error</span><span class='param-type type'>:Error</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializers/json-api.js#L447'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializers/json-api.js#L455'>
               <span class='filename'>Defined in: lib/data/serializers/json-api.js</span>
-              <span class='line'>Line: 447</span>
+              <span class='line'>Line: 455</span>
             </a>
           </div>
         </h3>
@@ -1409,7 +1663,7 @@ info indicating the source of the error.</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializers/json-api.js#L447'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializers/json-api.js#L455'>
               Improve this documentation
             </a>
           </div>
@@ -1423,9 +1677,9 @@ info indicating the source of the error.</div>
           <div class='item-descriptor'>
             metaForError<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>error</span><span class='param-type type'>:Error</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializers/json-api.js#L462'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializers/json-api.js#L470'>
               <span class='filename'>Defined in: lib/data/serializers/json-api.js</span>
-              <span class='line'>Line: 462</span>
+              <span class='line'>Line: 470</span>
             </a>
           </div>
         </h3>
@@ -1454,7 +1708,7 @@ to return debug information in development environments.</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializers/json-api.js#L462'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializers/json-api.js#L470'>
               Improve this documentation
             </a>
           </div>
@@ -1468,9 +1722,9 @@ to return debug information in development environments.</div>
           <div class='item-descriptor'>
             linksForError<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>error</span><span class='param-type type'>:Error</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializers/json-api.js#L474'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializers/json-api.js#L482'>
               <span class='filename'>Defined in: lib/data/serializers/json-api.js</span>
-              <span class='line'>Line: 474</span>
+              <span class='line'>Line: 482</span>
             </a>
           </div>
         </h3>
@@ -1499,7 +1753,7 @@ tracker report of the error, for example.</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializers/json-api.js#L474'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializers/json-api.js#L482'>
               Improve this documentation
             </a>
           </div>
@@ -1515,9 +1769,9 @@ tracker report of the error, for example.</div>
             
               <div class='private tag'>Private</div>
             
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializers/json-api.js#L484'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializers/json-api.js#L492'>
               <span class='filename'>Defined in: lib/data/serializers/json-api.js</span>
-              <span class='line'>Line: 484</span>
+              <span class='line'>Line: 492</span>
             </a>
           </div>
         </h3>
@@ -1544,7 +1798,7 @@ tracker report of the error, for example.</div>
             <p class="no-return">Returns <code>undefined</code></p>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializers/json-api.js#L484'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializers/json-api.js#L492'>
               Improve this documentation
             </a>
           </div>
@@ -1558,9 +1812,9 @@ tracker report of the error, for example.</div>
           <div class='item-descriptor'>
             parse<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>payload</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializers/json-api.js#L499'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializers/json-api.js#L507'>
               <span class='filename'>Defined in: lib/data/serializers/json-api.js</span>
-              <span class='line'>Line: 499</span>
+              <span class='line'>Line: 507</span>
             </a>
           </div>
         </h3>
@@ -1597,7 +1851,7 @@ included, links, meta, etc), only modifying resource objects in place.</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializers/json-api.js#L499'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializers/json-api.js#L507'>
               Improve this documentation
             </a>
           </div>
@@ -1613,9 +1867,9 @@ included, links, meta, etc), only modifying resource objects in place.</div>
             
               <div class='private tag'>Private</div>
             
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializers/json-api.js#L535'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializers/json-api.js#L543'>
               <span class='filename'>Defined in: lib/data/serializers/json-api.js</span>
-              <span class='line'>Line: 535</span>
+              <span class='line'>Line: 543</span>
             </a>
           </div>
         </h3>
@@ -1648,7 +1902,7 @@ serializer specific to that object&#39;s type.</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializers/json-api.js#L535'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializers/json-api.js#L543'>
               Improve this documentation
             </a>
           </div>
@@ -1662,9 +1916,9 @@ serializer specific to that object&#39;s type.</div>
           <div class='item-descriptor'>
             parseResource<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>resource</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializers/json-api.js#L551'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializers/json-api.js#L559'>
               <span class='filename'>Defined in: lib/data/serializers/json-api.js</span>
-              <span class='line'>Line: 551</span>
+              <span class='line'>Line: 559</span>
             </a>
           </div>
         </h3>
@@ -1699,7 +1953,7 @@ instance from this method - that is handled separately.</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializers/json-api.js#L551'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializers/json-api.js#L559'>
               Improve this documentation
             </a>
           </div>
@@ -1713,9 +1967,9 @@ instance from this method - that is handled separately.</div>
           <div class='item-descriptor'>
             parseId<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>id</span><span class='param-type type'>:String|Number</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializers/json-api.js#L568'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializers/json-api.js#L576'>
               <span class='filename'>Defined in: lib/data/serializers/json-api.js</span>
-              <span class='line'>Line: 568</span>
+              <span class='line'>Line: 576</span>
             </a>
           </div>
         </h3>
@@ -1745,7 +1999,7 @@ instance from this method - that is handled separately.</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializers/json-api.js#L568'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializers/json-api.js#L576'>
               Improve this documentation
             </a>
           </div>
@@ -1759,9 +2013,9 @@ instance from this method - that is handled separately.</div>
           <div class='item-descriptor'>
             parseType<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>type</span><span class='param-type type'>:String</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializers/json-api.js#L579'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializers/json-api.js#L587'>
               <span class='filename'>Defined in: lib/data/serializers/json-api.js</span>
-              <span class='line'>Line: 579</span>
+              <span class='line'>Line: 587</span>
             </a>
           </div>
         </h3>
@@ -1791,7 +2045,7 @@ instance from this method - that is handled separately.</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializers/json-api.js#L579'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializers/json-api.js#L587'>
               Improve this documentation
             </a>
           </div>
@@ -1805,9 +2059,9 @@ instance from this method - that is handled separately.</div>
           <div class='item-descriptor'>
             parseAttributes<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>attrs</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializers/json-api.js#L590'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializers/json-api.js#L598'>
               <span class='filename'>Defined in: lib/data/serializers/json-api.js</span>
-              <span class='line'>Line: 590</span>
+              <span class='line'>Line: 598</span>
             </a>
           </div>
         </h3>
@@ -1838,7 +2092,7 @@ JSONAPI recommended dasheried keys to camelCase.</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializers/json-api.js#L590'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializers/json-api.js#L598'>
               Improve this documentation
             </a>
           </div>
@@ -1852,9 +2106,9 @@ JSONAPI recommended dasheried keys to camelCase.</div>
           <div class='item-descriptor'>
             parseRelationships<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>relationships</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializers/json-api.js#L604'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializers/json-api.js#L612'>
               <span class='filename'>Defined in: lib/data/serializers/json-api.js</span>
-              <span class='line'>Line: 604</span>
+              <span class='line'>Line: 612</span>
             </a>
           </div>
         </h3>
@@ -1885,7 +2139,7 @@ JSONAPI recommended dasheried keys to camelCase.</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializers/json-api.js#L604'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializers/json-api.js#L612'>
               Improve this documentation
             </a>
           </div>
