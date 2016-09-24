@@ -87,8 +87,6 @@
     "lodash": "^4.12.0",
     "mkdirp": "^0.5.1",
     "mocha": "^3.0.2",
-    "mock-req": "^0.2.0",
-    "mock-res": "^0.3.0",
     "moment": "^2.14.1",
     "morgan": "^1.6.1",
     "nodemailer": "^2.4.2",
