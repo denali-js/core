@@ -50,13 +50,6 @@
     "prepublish": "in-publish && npm run lint && npm test && npm run build || not-in-publish"
   },
   "license": "MIT",
-  "nyc": {
-    "require": [
-      "babel-core/register"
-    ],
-    "sourceMap": false,
-    "instrument": false
-  },
   "dependencies": {
     "accepts": "^1.3.3",
     "babel-cli": "^6.8.0",
