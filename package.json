@@ -40,14 +40,14 @@
     "trash-cli": "^1.3.0"
   },
   "scripts": {
-    "prebuild": "trash dist && cp -r lib dist",
-    "build": "babel lib --out-dir dist --source-maps --ignore cli/blueprints/*/files/**",
-    "prewatch": "trash dist && cp -r lib dist",
-    "watch": "babel lib --out-dir dist --source-maps --ignore cli/blueprints/*/files/** --watch",
-    "test": "NODE_ENV=test nyc mocha test/**/*.js test/*.js",
-    "coverage": "NODE_ENV=test nyc report --reporter=text-lcov | coveralls",
-    "lint": "eslint lib test",
-    "prepublish": "in-publish && npm run lint && npm test && npm run build || not-in-publish"
+    "prebuild": "scripts/prebuild.sh",
+    "build": "scripts/build.sh",
+    "coverage": "scripts/coverage.sh",
+    "lint": "scripts/lint.sh",
+    "prepublish": "scripts/prepublish.sh",
+    "test": "scripts/test.sh",
+    "prewatch": "scripts/prewatch.sh",
+    "watch": "scripts/watch.sh"
   },
   "license": "MIT",
   "dependencies": {
