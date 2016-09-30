@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/">
+
+    <title></title>
+    <!-- <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ description }}{% endif %}"> -->
+
+    <link href='//fonts.googleapis.com/css?family=Inconsolata|Bitter:400,700|Open+Sans:300,400,400italic,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="styles.css">
+    <!-- <link rel="canonical" href="{% page.url | replace:'index.html','' | prepend: baseurl | prepend: url }}"> -->
+  </head>
+  <body>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-2.2.2.min.js"><\/script>')</script>
+    <nav class="navbar">
+  <div class='container'>
+    <a href='.' class='navbar-brand'>
+      <img class='logo-light' src='images/logo.svg' alt='Denali'>
+      <span class='project-name'>Denali</span>
+    </a>
+
+    <div class="navbar-nav">
+      
+      <a class='nav-link' href='v0.0.10/guides/overview/quickstart'>Quickstart</a>
+      <a class='nav-link' href='v0.0.10/guides/overview/introduction'>Guides</a>
+      <a class='nav-link' href='v0.0.10/api/modules/denali'>API</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali' target='_blank'>Github</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali/issues' target='_blank'>Issues</a>
+    </div>
+  </div>
+</nav>
+
+<div class='container'>
+  <div class="row">
+    <div class='guides-nav col-md-3'>
+      <div class='nav-section'>
+  <div class='nav-header'>Version</div>
+  <select class='versions-select' id='versions'>
+    
+      <option value='v0.2.0' >v0.2.0</option>
+    
+      <option value='v0.0.10' selected='selected'>v0.0.10</option>
+    
+      <option value='v0.0.9' >v0.0.9</option>
+    
+      <option value='v0.0.8' >v0.0.8</option>
+    
+      <option value='v0.0.7' >v0.0.7</option>
+    
+      <option value='canary' >canary</option>
+    
+  </select>
+</div>
+
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>Overview</div>
+          
+          
+            <a href='v0.0.10/guides/overview/introduction' class='nav-link'>Introduction</a>
+          
+            <a href='v0.0.10/guides/overview/quickstart' class='nav-link'>Quickstart</a>
+          
+            <a href='v0.0.10/guides/overview/app-structure' class='nav-link'>App Structure</a>
+          
+        </div>
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>Application</div>
+          
+          
+            <a href='v0.0.10/guides/application/routing' class='nav-link'>Routing</a>
+          
+            <a href='v0.0.10/guides/application/actions' class='nav-link'>Actions</a>
+          
+            <a href='v0.0.10/guides/application/services' class='nav-link'>Services</a>
+          
+            <a href='v0.0.10/guides/application/errors' class='nav-link'>Errors</a>
+          
+            <a href='v0.0.10/guides/application/mailers' class='nav-link'>Mailers</a>
+          
+        </div>
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>Data</div>
+          
+          
+            <a href='v0.0.10/guides/data/models' class='nav-link'>Models</a>
+          
+            <a href='v0.0.10/guides/data/serializers' class='nav-link'>Serializers</a>
+          
+            <a href='v0.0.10/guides/data/orm-adapters' class='nav-link'>ORM Adapters</a>
+          
+        </div>
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>Testing</div>
+          
+          
+            <a href='v0.0.10/guides/testing/integration' class='nav-link'>Integration</a>
+          
+            <a href='v0.0.10/guides/testing/unit' class='nav-link'>Unit Testing</a>
+          
+        </div>
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>Configuration</div>
+          
+          
+            <a href='v0.0.10/guides/configuration/environment' class='nav-link'>Environment</a>
+          
+            <a href='v0.0.10/guides/configuration/middleware' class='nav-link'>Middleware</a>
+          
+            <a href='v0.0.10/guides/configuration/initializers' class='nav-link'>Initializers</a>
+          
+        </div>
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>Utilities</div>
+          
+          
+            <a href='v0.0.10/guides/utilities/mixins' class='nav-link'>Mixins</a>
+          
+            <a href='v0.0.10/guides/utilities/addons' class='nav-link'>Addons</a>
+          
+            <a href='v0.0.10/guides/utilities/instrumentation' class='nav-link'>Instrumentation</a>
+          
+        </div>
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>CLI</div>
+          
+          
+            <a href='v0.0.10/guides/cli/generate' class='nav-link'>denali generate</a>
+          
+            <a href='v0.0.10/guides/cli/serve' class='nav-link'>denali serve</a>
+          
+            <a href='v0.0.10/guides/cli/test' class='nav-link'>denali test</a>
+          
+            <a href='v0.0.10/guides/cli/build' class='nav-link'>denali build</a>
+          
+            <a href='v0.0.10/guides/cli/addon' class='nav-link'>denali addon</a>
+          
+            <a href='v0.0.10/guides/cli/console' class='nav-link'>denali console</a>
+          
+        </div>
+      
+    </div>
+
+    <div class='col-md-9 guides-body copy'>
+      <a class="improve-btn" target="_blank" href="https://github.com/denali-js/denali/edit/master/guides/overview/quickstart.md">Improve this page</a>
+      <h1 id="getting-started">Getting Started</h1>
+<p>It&#39;s that ever-favorite first project for a server side framework: let&#39;s build a
+basic blogging application!</p>
+<h2 id="installation">Installation</h2>
+<p>First off, make sure you install Denali globally via npm:</p>
+<pre><code class="lang-sh">$ npm install -g denali
+</code></pre>
+<h2 id="scaffolding-our-application">Scaffolding our application</h2>
+<blockquote>
+<p>Note: Denali requires you to use Node 6.0 or greater.</p>
+</blockquote>
+<p>Next, let&#39;s use Denali&#39;s handy scaffolding tools to create a blank slate for us
+to start from:</p>
+<pre><code class="lang-sh">$ denali new blog
+denali v0.1.0 [global]
+  create app/actions/application.js
+  create app/actions/index.js
+  create app/models/.gitkeep
+  create app/serializers/.gitkeep
+  create app/services/.gitkeep
+  create config/environment.js
+  create config/middleware.js
+  create config/routes.js
+  create test/helpers/.gitkeep
+  create test/integration/.gitkeep
+  create test/unit/.gitkeep
+  create test/index.js
+  create .babelrc
+  create .eslintrc
+  create .gitattributes
+  create .gitignore
+  create CHANGELOG.md
+  create package.json
+  create README.md
+
+Installing npm dependencies ...
+Setting up git repo ...
+
+Installation complete!
+To launch your application, just run:
+
+  $ cd blog &amp;&amp; denali server
+</code></pre>
+<p>Go ahead and follow that last instruction:</p>
+<pre><code class="lang-txt">$ cd blog
+$ denali server
+denali v0.0.1
+2015-09-13T23:21:44.404Z [INFO] blog@0.0.1 server up on port 3000
+</code></pre>
+<p>Perfect! You&#39;ve got your first Denali app up and running. Now let&#39;s see it in
+action. Hit the root endpoint with curl:</p>
+<pre><code class="lang-txt">$ curl localhost:3000
+{&quot;denaliVersion&quot;:&quot;0.0.1&quot;,&quot;message&quot;:&quot;Welcome to Denali!&quot;}
+</code></pre>
+<blockquote>
+<p><strong>Heads up!</strong> Notice that we didn&#39;t visit that localhost URL in the browser.
+That&#39;s because Denali is designed to build <strong>APIs</strong> rather than HTML rendering
+applications. If you are looking for Node framework to build a server rendered
+web application, you might want to try something like Sails.js or Express.</p>
+</blockquote>
+<p>Great, we got an app up and running! Now that&#39;s cool, but it&#39;s not <em>that</em> cool
+Let&#39;s crack open the scaffolded code to see how that root endpoint is working,
+and how to add our own.</p>
+<h3 id="directory-structure">Directory structure</h3>
+<p>The <code>denali new</code> command did a lot of setup for us. It created the following
+directory structure:</p>
+<pre><code class="lang-txt">blog/
+  app/
+    actions/
+      application.js
+      index.js
+    models/
+    serializers/
+  config/
+    initializers/
+    environment.js
+    middleware.js
+    routes.js
+  test/
+    helpers/
+    integration/
+    unit/
+  .eslintrc
+  CHANGELOG.md
+  denali-build.js
+  package.json
+  README.md
+</code></pre>
+<p>There&#39;s a lot there, but for now, let&#39;s open up the <code>config/routes.js</code> to see
+how that root endpoint is being handled:</p>
+<pre><code class="lang-js">// config/routes.js
+export default function drawRoutes(router) {
+
+  router.get(&#39;/&#39;, &#39;index&#39;);
+
+}
+</code></pre>
+<p>This should look somewhat familiar if you used frameworks like Rails before. The
+<code>router.get()</code> method adds an endpoint that responds to GET requests at the url
+provided in the first argument (<code>&#39;/&#39;</code> in this case).</p>
+<p>The second argument identifies an action to route these requests to (in this
+case, the <code>index</code> action).</p>
+<p>In <code>app/actions/index.js</code>, we can see how that is handled:</p>
+<pre><code class="lang-js">// app/actions/index.js
+import ApplicationAction from &#39;./application&#39;;
+
+export default class IndexAction extends ApplicationAction {
+
+  respond() {
+    return new Response(200, {
+      message: &#39;Welcome to Denali!&#39;
+    }, { raw: true });
+  }
+
+}
+</code></pre>
+<p>Let&#39;s break down what&#39;s going on here:</p>
+<ul>
+<li><code>import ApplicationAction from &#39;./application&#39;;</code> - we import the
+<code>ApplicationAction</code> to use as our common base class. You could import the base
+<code>Action</code> class from the <code>denali</code> module directly, but having a base class for
+all actions in your app is handy (and common convention).</li>
+<li><code>respond()</code> - the <code>respond()</code> method is the meat of any action. It defines
+how the action responds to an incoming request.</li>
+<li><code>return new Response(...)</code> - you can tell Denali what to respond to a
+request with in a few different ways. Here, we return a <code>Response</code> object
+which has details of what kind of response we want to send. The <code>raw</code> option
+tells Denali not to send this payload through the serializer layer. More on
+that below!</li>
+</ul>
+<p>The end result here is an action which will always respond with the same JSON
+object that we saw above: <code>{ &quot;message&quot;: &quot;Welcome to Denali!&quot; }</code>.</p>
+<h2 id="adding-a-resource">Adding a resource</h2>
+<p>Now let&#39;s get a bit more creative. Our blog API is going to need to store and
+retrieve our blog posts. Let&#39;s create a Post resource to enable that.</p>
+<blockquote>
+<p>Normally, you&#39;d probably store these in some kind of database (i.e. Mongo,
+Postgres, MySQL, etc). Denali is <strong>database agnostic</strong> though. So for now,
+we&#39;ll use plain ol&#39; JS objects (a.k.a. POJOs). But you can easily substitute
+your own models in later. For more details, check out the <a href="../../data/models">Data guides</a>.</p>
+</blockquote>
+<p>To start, let&#39;s use that handy scaffolding tool again:</p>
+<pre><code class="lang-sh">$ denali generate resource posts
+</code></pre>
+<p>This scaffold creates several files:</p>
+<ul>
+<li><p>A set of <strong>actions</strong> for this resource with the basic CRUD operations
+stubbed out. These files are where you&#39;ll implement your application logic to
+respond to a particular request. We saw these above.</p>
+</li>
+<li><p>A <strong>serializer</strong> to determine how your Posts will be rendered in the
+response. We&#39;ll learn more about this in a bit.</p>
+</li>
+<li><p>A <strong>model</strong> to represent your Posts.</p>
+</li>
+<li><p>A placeholder <strong>integration test suite</strong> for this resource. Denali comes
+with a first-class testing environment, setup and ready to go.</p>
+</li>
+</ul>
+<p>If we open up <code>app/actions/posts/</code> now, you can see the stubbed out actions:</p>
+<pre><code class="lang-js">  // app/actions/posts/list.js
+  export default class ListPosts extends ApplicationAction {
+    respond() {
+      return new Errors.NotImplemented();
+    }
+  }
+</code></pre>
+<p>Let&#39;s go ahead and implement that list action now. We&#39;ll just hardcode the Posts
+into the response for now:</p>
+<pre><code class="lang-js">// app/controllers/posts.js
+
+  respond() {
+    return new Response([
+      {
+        id: 1,
+        title: &#39;Denali is awesome&#39;
+      },
+      {
+        id: 2,
+        title: &#39;You are awesome!&#39;
+      }
+      ], { raw: true });
+  }
+</code></pre>
+<p>Great! Let&#39;s hit that endpoint now:</p>
+<pre><code class="lang-sh">$ curl localhost:3000/posts
+[
+  {
+    &quot;id&quot;: 1,
+    &quot;title&quot;: &quot;Denali is awesome&quot;
+  },
+  {
+    &quot;id&quot;: 2,
+    &quot;title&quot;: &quot;You are awesome!&quot;
+  }
+]
+</code></pre>
+<h2 id="adding-a-database">Adding a database</h2>
+<p>Hardcoded JSON still isn&#39;t all that interesting. Let&#39;s integrate with a data
+store so consumers of the API can actually manipulate the data.</p>
+<p>Denali takes a unique approach to handling database integrations. Most
+frameworks ship with some kind of Object Relational Mapper (ORM) baked right in.
+It transforms rows from a database into objects you can manipulate.</p>
+<p>Here&#39;s the thing: <strong>ORMs are hard. <em>Really hard.</em></strong> To make matters worse,
+there&#39;s <strong>no generally accepted &quot;good&quot; ORM for Node.js</strong>.</p>
+<p>With this in mind, Denali purposefully <strong>does not ship with an ORM</strong>. Instead,
+Denali&#39;s Models are essentially a thin adapter layer that lets you plug your
+own ORM in instead.</p>
+<p>There&#39;s lots of reasons why this is a powerful approach, but those are covered
+in the Data guides. For now, let&#39;s forge ahead and setup our data store.</p>
+<h3 id="memory-adapter">Memory Adapter</h3>
+<p>Denali ships with an in-memory data store and ORM adapter, which can be useful
+for testing and debugging use cases. It&#39;s the default ORM for newly scaffolded
+projects, so it&#39;s already setup and ready to go. We&#39;ll use it now to get going
+without needing to setup an actual database.</p>
+<h2 id="adding-a-model">Adding a model</h2>
+<p>Let&#39;s add a Post model that will represent one of our blog posts:</p>
+<pre><code class="lang-sh">$ denali generate model post
+</code></pre>
+<p>This creates <code>app/models/post.js</code>. Let&#39;s open that up, and add our title
+attribute:</p>
+<pre><code class="lang-js">import ApplicationModel from &#39;./application&#39;;
+
+export default class Post extends ApplicationModel {
+
+  static title = attr(&#39;text&#39;);
+
+}
+</code></pre>
+<p>Okay, let&#39;s break this one down. First up, we follow the same pattern of having
+a base &quot;Application&quot; class that we did with Actions:</p>
+<pre><code class="lang-js">import ApplicationModel from &#39;./application&#39;;
+</code></pre>
+<p>Next, we create our <code>title</code> attribute (note the class properties syntax, and
+that attributes are declared as static properties):</p>
+<pre><code class="lang-js">  static title = attr(&#39;text&#39;);
+</code></pre>
+<p>Now, back in our actions, we can use the Post model to find and return all our
+posts:</p>
+<pre><code class="lang-js">// app/actions/posts/list.js
+  respond() {
+    let Post = this.modelFor(&#39;post&#39;);
+    return Post.find();
+  }
+</code></pre>
+<p>The <code>Post.find()</code> method, when invoked with no parameters, will return a Promise
+that resolves with all the Post records.</p>
+<p>Over in our create action, we can let the user create new blog posts too:</p>
+<pre><code class="lang-js">// app/actions/posts/create.js
+  respond(params) {
+    let Post = this.modelFor(&#39;post&#39;);
+    return Post.create(params);
+  }
+</code></pre>
+<p>Great! Now we can create and list all the Posts in our in-memory data store.
+Let&#39;s test it out:</p>
+<pre><code class="lang-sh">$ curl localhost:3000/posts -X POST -d &#39;{&quot;title&quot;: &quot;My first post!&quot;}&#39;
+
+{
+  &quot;id&quot;: 1
+}
+</code></pre>
+<p>Looks like our Post was created, but the <code>title</code> wasn&#39;t returned. If we check
+this listing endpoint:</p>
+<pre><code class="lang-sh">$ curl localhost:3000/posts
+
+[
+  {
+    &quot;id&quot;: 1
+  }
+]
+</code></pre>
+<p>It&#39;s missing there too. What&#39;s going on here?</p>
+<h2 id="working-with-serializers">Working with Serializers</h2>
+<p>The reason our <code>title</code> field was missing was because of our Serializers.</p>
+<p>A Serializer takes an in-memory payload object (or array), and transforms it into
+JSON to send back in the response.</p>
+<p>By default, Serializers are configured with a whitelist of which attributes are
+allowed to be returned. Since we haven&#39;t touched our PostSerializer yet, the
+<code>title</code> attribute isn&#39;t in that whitelist, so it gets stripped out of all our
+responses.</p>
+<p>Let&#39;s fix that now by adding it to the whitelist:</p>
+<pre><code class="lang-js">// app/serializers/post.js
+import ApplicationSerializer from &#39;./application&#39;;
+
+export default class PostSerializer extends ApplicationSerializer {
+
+  attributes = [ &#39;title&#39; ];
+
+}
+</code></pre>
+<p>And now let&#39;s try to list the posts again:</p>
+<pre><code class="lang-sh">$ curl localhost:3000/posts
+
+[
+  {
+    &quot;id&quot;: 1,
+    &quot;title&quot;: &quot;My first post!&quot;
+  }
+]
+</code></pre>
+<p>There it is! Our blog is off to a promising start.</p>
+<h2 id="next-steps">Next Steps</h2>
+<p>Congrats, you made it through the quickstart guide. From here, you can:</p>
+<ul>
+<li>Check out the rest of the guides to learn more about the different parts of the framework</li>
+<li>Dive into the API documentation to get into the gritty details</li>
+<li>Explore the <a href="https://github.com/denali-js/denali">heavily commented source code</a></li>
+</ul>
+
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class='container'>
+    Made with <img src='images/fox-and-beard.svg' class='fox-and-beard'> at
+    <a href='http://foxandbeard.co' target='_blank'>Fox and Beard</a>
+  </div>
+</footer>
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<script>
+    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+    e.src='//www.google-analytics.com/analytics.js';
+    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+    ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+</script>
+
+
+  </body>
+</html>

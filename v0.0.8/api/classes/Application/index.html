@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/">
+
+    <title></title>
+    <!-- <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ description }}{% endif %}"> -->
+
+    <link href='//fonts.googleapis.com/css?family=Inconsolata|Bitter:400,700|Open+Sans:300,400,400italic,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="styles.css">
+    <!-- <link rel="canonical" href="{% page.url | replace:'index.html','' | prepend: baseurl | prepend: url }}"> -->
+  </head>
+  <body>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-2.2.2.min.js"><\/script>')</script>
+    <nav class="navbar">
+  <div class='container'>
+    <a href='.' class='navbar-brand'>
+      <img class='logo-light' src='images/logo.svg' alt='Denali'>
+      <span class='project-name'>Denali</span>
+    </a>
+
+    <div class="navbar-nav">
+      
+      <a class='nav-link' href='v0.0.8/guides/overview/quickstart'>Quickstart</a>
+      <a class='nav-link' href='v0.0.8/guides/overview/introduction'>Guides</a>
+      <a class='nav-link' href='v0.0.8/api/modules/denali'>API</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali' target='_blank'>Github</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali/issues' target='_blank'>Issues</a>
+    </div>
+  </div>
+</nav>
+
+
+<div class='container'>
+  <div class='row'>
+    <div class='api-nav col-md-3'>
+      <div class='nav-section'>
+  <div class='nav-header'>Version</div>
+  <select class='versions-select' id='versions'>
+    
+      <option value='v0.2.0' >v0.2.0</option>
+    
+      <option value='v0.0.10' >v0.0.10</option>
+    
+      <option value='v0.0.9' >v0.0.9</option>
+    
+      <option value='v0.0.8' selected='selected'>v0.0.8</option>
+    
+      <option value='v0.0.7' >v0.0.7</option>
+    
+      <option value='canary' >canary</option>
+    
+  </select>
+</div>
+
+      <label class='private-classes-toggle'>
+        <input type='checkbox' id='toggle-private-classes'>
+        Include Private
+      </label>
+      
+        
+      
+        
+          <div class='nav-section'>
+            <div class='nav-header'>cli</div>
+            
+              <a class='nav-link ' href='v0.0.8/api/classes/Blueprint' >Blueprint</a>
+            
+              <a class='nav-link ' href='v0.0.8/api/classes/Command' >Command</a>
+            
+          </div>
+        
+      
+        
+          <div class='nav-section'>
+            <div class='nav-header'>data</div>
+            
+              <a class='nav-link ' href='v0.0.8/api/classes/FlatSerializer' >FlatSerializer</a>
+            
+              <a class='nav-link ' href='v0.0.8/api/classes/JSONAPISerializer' >JSONAPISerializer</a>
+            
+              <a class='nav-link ' href='v0.0.8/api/classes/Model' >Model</a>
+            
+              <a class='nav-link ' href='v0.0.8/api/classes/ORMAdapter' >ORMAdapter</a>
+            
+              <a class='nav-link ' href='v0.0.8/api/classes/Serializer' >Serializer</a>
+            
+          </div>
+        
+      
+        
+          <div class='nav-section'>
+            <div class='nav-header'>metal</div>
+            
+              <a class='nav-link ' href='v0.0.8/api/classes/eachPrototype' >eachPrototype</a>
+            
+              <a class='nav-link ' href='v0.0.8/api/classes/Instrumentation' >Instrumentation</a>
+            
+              <a class='nav-link ' href='v0.0.8/api/classes/mixin' >mixin</a>
+            
+              <a class='nav-link ' href='v0.0.8/api/classes/createMixin' >createMixin</a>
+            
+          </div>
+        
+      
+        
+          <div class='nav-section'>
+            <div class='nav-header'>runtime</div>
+            
+              <a class='nav-link ' href='v0.0.8/api/classes/Action' >Action</a>
+            
+              <a class='nav-link ' href='v0.0.8/api/classes/Addon' >Addon</a>
+            
+              <a class='nav-link active' href='v0.0.8/api/classes/Application' >Application</a>
+            
+              <a class='nav-link ' href='v0.0.8/api/classes/Container' >Container</a>
+            
+              <a class='nav-link ' href='v0.0.8/api/classes/Error' >Error</a>
+            
+              <a class='nav-link ' href='v0.0.8/api/classes/Logger' >Logger</a>
+            
+              <a class='nav-link ' href='v0.0.8/api/classes/Mailer' >Mailer</a>
+            
+              <a class='nav-link ' href='v0.0.8/api/classes/Request' >Request</a>
+            
+              <a class='nav-link ' href='v0.0.8/api/classes/Response' >Response</a>
+            
+              <a class='nav-link ' href='v0.0.8/api/classes/Router' >Router</a>
+            
+              <a class='nav-link ' href='v0.0.8/api/classes/Service' >Service</a>
+            
+          </div>
+        
+      
+    </div>
+    <div class='api-body col-md-9'>
+      <div class='class'>
+  <h1 class='class-name'>
+    
+    Application
+  </h1>
+
+  
+    <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.8/lib/runtime/application.js#L18'>
+      <span class='filename'>Defined in: lib/runtime/application.js</span>
+      <span class='line'>Line: 18</span>
+    </a>
+  
+
+  <div class='class-module'>
+    <strong>Module:</strong>
+    <a class='module' href='/v0.0.8/api/modules/runtime'>
+      <span class='class-module-name'>denali.runtime</span>
+    </a>
+  </div>
+
+  
+    <div class='class-description'><p>Application instances are specialized Addons, designed to kick off the
+loading, mounting, and launching stages of booting up.</p>
+</div>
+  
+
+  <div class='display-controls'>
+    <label class='toggle'>
+      <input type='checkbox' id='toggle-private-members'>
+      Show Private
+    </label>
+    <label class='toggle'>
+      <input type='checkbox' id='toggle-deprecated-members'>
+      Show Deprecated
+    </label>
+  </div>
+  <div class='summary'>
+    <div class='summary-section'>
+      <div class='summary-header'>Methods</div>
+      
+        
+          <a class='summary-link'  data-private-member=true  href='v0.0.8/api/classes/Application/#includeBaseAddon'>includeBaseAddon</a>
+        
+      
+        
+          <a class='summary-link'  data-private-member=true  href='v0.0.8/api/classes/Application/#generateConfig'>generateConfig</a>
+        
+      
+        
+          <a class='summary-link'  data-private-member=true  href='v0.0.8/api/classes/Application/#compileRouter'>compileRouter</a>
+        
+      
+        
+          <a class='summary-link'  href='v0.0.8/api/classes/Application/#start'>start</a>
+        
+      
+        
+          <a class='summary-link'  data-private-member=true  href='v0.0.8/api/classes/Application/#createServer'>createServer</a>
+        
+      
+        
+          <a class='summary-link'  data-private-member=true  href='v0.0.8/api/classes/Application/#runInitializers'>runInitializers</a>
+        
+      
+    </div>
+    <div class='summary-section'>
+      <div class='summary-header'>Properties</div>
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+</div>
+
+<div class='classitems'>
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+  
+    
+      <div class='item method' id='includeBaseAddon' data-private-member=true>
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            includeBaseAddon<span class='param-paren'>(</span><span class='params'></span><span class='param-paren'>)</span>
+            
+              <div class='private tag'>Private</div>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.8/lib/runtime/application.js#L51'>
+              <span class='filename'>Defined in: lib/runtime/application.js</span>
+              <span class='line'>Line: 51</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Adds the default base addon to the application. The base addon includes
+some helpful default functionality, like basic error handling and common
+middleware. You can customize the included middleware via config. See
+the Configuration guide for details.</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <p class="no-params">No parameters</p>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <p class="no-return">Returns <code>undefined</code></p>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.8/lib/runtime/application.js#L51'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item method' id='generateConfig' data-private-member=true>
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            generateConfig<span class='param-paren'>(</span><span class='params'></span><span class='param-paren'>)</span>
+            
+              <div class='private tag'>Private</div>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.8/lib/runtime/application.js#L70'>
+              <span class='filename'>Defined in: lib/runtime/application.js</span>
+              <span class='line'>Line: 70</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Take the loaded environment config functions, and execute them.
+Application config is executed first, and the returned config object is
+handed off to the addon config files, which add their configuration by
+mutating that same object.
+
+The resulting final config is stored at `application.config`, and is
+registered in the container under `config:environment`.</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <p class="no-params">No parameters</p>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <div class='return'>
+              <div class='return-type type'>Object</div>
+              
+                <div class='return-description'>the generated config</div>
+              
+            </div>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.8/lib/runtime/application.js#L70'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item method' id='compileRouter' data-private-member=true>
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            compileRouter<span class='param-paren'>(</span><span class='params'></span><span class='param-paren'>)</span>
+            
+              <div class='private tag'>Private</div>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.8/lib/runtime/application.js#L94'>
+              <span class='filename'>Defined in: lib/runtime/application.js</span>
+              <span class='line'>Line: 94</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Assemble middleware and routes</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <p class="no-params">No parameters</p>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <p class="no-return">Returns <code>undefined</code></p>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.8/lib/runtime/application.js#L94'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item method' id='start' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            start<span class='param-paren'>(</span><span class='params'></span><span class='param-paren'>)</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.8/lib/runtime/application.js#L112'>
+              <span class='filename'>Defined in: lib/runtime/application.js</span>
+              <span class='line'>Line: 112</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Start the Denali server. Runs all initializers, creates an HTTP server,
+and binds to the port to handle incoming HTTP requests.</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <p class="no-params">No parameters</p>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <div class='return'>
+              <div class='return-type type'>Promise</div>
+              
+                <div class='return-description'>resolves when the startup completes</div>
+              
+            </div>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.8/lib/runtime/application.js#L112'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item method' id='createServer' data-private-member=true>
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            createServer<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>port</span><span class='param-type type'>:Number</span></span></span><span class='param-paren'>)</span>
+            
+              <div class='private tag'>Private</div>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.8/lib/runtime/application.js#L134'>
+              <span class='filename'>Defined in: lib/runtime/application.js</span>
+              <span class='line'>Line: 134</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Creates an HTTP or HTTPS server, depending on whether or not SSL
+configuration is present in config/environment.js</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>port</div><div class='param-type type'>:Number</div>
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <div class='return'>
+              <div class='return-type type'>Promise</div>
+              
+                <div class='return-description'>resolves once the server is up and ready for connections</div>
+              
+            </div>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.8/lib/runtime/application.js#L134'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item method' id='runInitializers' data-private-member=true>
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            runInitializers<span class='param-paren'>(</span><span class='params'></span><span class='param-paren'>)</span>
+            
+              <div class='private tag'>Private</div>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.8/lib/runtime/application.js#L155'>
+              <span class='filename'>Defined in: lib/runtime/application.js</span>
+              <span class='line'>Line: 155</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Lookup all initializers and run them in sequence. Initializers can
+override the default load order by including `before` or `after`
+properties on the exported class (the name or array of names of the other
+initializers it should run before/after).</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <p class="no-params">No parameters</p>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <div class='return'>
+              <div class='return-type type'>Promise</div>
+              
+                <div class='return-description'>resolves when all the initializers have completed</div>
+              
+            </div>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.8/lib/runtime/application.js#L155'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+</div>
+
+<script>
+  $(function() {
+    [ 'private', 'deprecated' ].forEach(function(type) {
+      var $toggle = $('#toggle-' + type + '-members');
+      $toggle.on('change', function() {
+        if ($toggle.is(':checked')) {
+          $('[data-' + type + '-member]').css('display', 'block');
+        } else {
+          $('[data-' + type + '-member]').css('display', 'none');
+        }
+      });
+      if ($(window.location.hash).attr('data-' + type + '-member')) {
+        $toggle.click();
+      }
+    });
+  });
+</script>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function() {
+    var $privateClassToggle = $('#toggle-private-classes');
+    $privateClassToggle.on('change', function() {
+      if ($privateClassToggle.is(':checked')) {
+        $('.api-nav [data-private-class]').css('display', 'block');
+      } else {
+        $('.api-nav [data-private-class]').css('display', 'none');
+      }
+    });
+    {% if page.class.access == 'private' %}
+      $privateClassToggle.click();
+    {% endif %}
+  });
+</script>
+
+<footer class="footer">
+  <div class='container'>
+    Made with <img src='images/fox-and-beard.svg' class='fox-and-beard'> at
+    <a href='http://foxandbeard.co' target='_blank'>Fox and Beard</a>
+  </div>
+</footer>
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<script>
+    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+    e.src='//www.google-analytics.com/analytics.js';
+    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+    ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+</script>
+
+
+  </body>
+</html>

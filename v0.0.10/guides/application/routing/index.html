@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/">
+
+    <title></title>
+    <!-- <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ description }}{% endif %}"> -->
+
+    <link href='//fonts.googleapis.com/css?family=Inconsolata|Bitter:400,700|Open+Sans:300,400,400italic,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="styles.css">
+    <!-- <link rel="canonical" href="{% page.url | replace:'index.html','' | prepend: baseurl | prepend: url }}"> -->
+  </head>
+  <body>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-2.2.2.min.js"><\/script>')</script>
+    <nav class="navbar">
+  <div class='container'>
+    <a href='.' class='navbar-brand'>
+      <img class='logo-light' src='images/logo.svg' alt='Denali'>
+      <span class='project-name'>Denali</span>
+    </a>
+
+    <div class="navbar-nav">
+      
+      <a class='nav-link' href='v0.0.10/guides/overview/quickstart'>Quickstart</a>
+      <a class='nav-link' href='v0.0.10/guides/overview/introduction'>Guides</a>
+      <a class='nav-link' href='v0.0.10/api/modules/denali'>API</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali' target='_blank'>Github</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali/issues' target='_blank'>Issues</a>
+    </div>
+  </div>
+</nav>
+
+<div class='container'>
+  <div class="row">
+    <div class='guides-nav col-md-3'>
+      <div class='nav-section'>
+  <div class='nav-header'>Version</div>
+  <select class='versions-select' id='versions'>
+    
+      <option value='v0.2.0' >v0.2.0</option>
+    
+      <option value='v0.0.10' selected='selected'>v0.0.10</option>
+    
+      <option value='v0.0.9' >v0.0.9</option>
+    
+      <option value='v0.0.8' >v0.0.8</option>
+    
+      <option value='v0.0.7' >v0.0.7</option>
+    
+      <option value='canary' >canary</option>
+    
+  </select>
+</div>
+
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>Overview</div>
+          
+          
+            <a href='v0.0.10/guides/overview/introduction' class='nav-link'>Introduction</a>
+          
+            <a href='v0.0.10/guides/overview/quickstart' class='nav-link'>Quickstart</a>
+          
+            <a href='v0.0.10/guides/overview/app-structure' class='nav-link'>App Structure</a>
+          
+        </div>
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>Application</div>
+          
+          
+            <a href='v0.0.10/guides/application/routing' class='nav-link'>Routing</a>
+          
+            <a href='v0.0.10/guides/application/actions' class='nav-link'>Actions</a>
+          
+            <a href='v0.0.10/guides/application/services' class='nav-link'>Services</a>
+          
+            <a href='v0.0.10/guides/application/errors' class='nav-link'>Errors</a>
+          
+            <a href='v0.0.10/guides/application/mailers' class='nav-link'>Mailers</a>
+          
+        </div>
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>Data</div>
+          
+          
+            <a href='v0.0.10/guides/data/models' class='nav-link'>Models</a>
+          
+            <a href='v0.0.10/guides/data/serializers' class='nav-link'>Serializers</a>
+          
+            <a href='v0.0.10/guides/data/orm-adapters' class='nav-link'>ORM Adapters</a>
+          
+        </div>
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>Testing</div>
+          
+          
+            <a href='v0.0.10/guides/testing/integration' class='nav-link'>Integration</a>
+          
+            <a href='v0.0.10/guides/testing/unit' class='nav-link'>Unit Testing</a>
+          
+        </div>
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>Configuration</div>
+          
+          
+            <a href='v0.0.10/guides/configuration/environment' class='nav-link'>Environment</a>
+          
+            <a href='v0.0.10/guides/configuration/middleware' class='nav-link'>Middleware</a>
+          
+            <a href='v0.0.10/guides/configuration/initializers' class='nav-link'>Initializers</a>
+          
+        </div>
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>Utilities</div>
+          
+          
+            <a href='v0.0.10/guides/utilities/mixins' class='nav-link'>Mixins</a>
+          
+            <a href='v0.0.10/guides/utilities/addons' class='nav-link'>Addons</a>
+          
+            <a href='v0.0.10/guides/utilities/instrumentation' class='nav-link'>Instrumentation</a>
+          
+        </div>
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>CLI</div>
+          
+          
+            <a href='v0.0.10/guides/cli/generate' class='nav-link'>denali generate</a>
+          
+            <a href='v0.0.10/guides/cli/serve' class='nav-link'>denali serve</a>
+          
+            <a href='v0.0.10/guides/cli/test' class='nav-link'>denali test</a>
+          
+            <a href='v0.0.10/guides/cli/build' class='nav-link'>denali build</a>
+          
+            <a href='v0.0.10/guides/cli/addon' class='nav-link'>denali addon</a>
+          
+            <a href='v0.0.10/guides/cli/console' class='nav-link'>denali console</a>
+          
+        </div>
+      
+    </div>
+
+    <div class='col-md-9 guides-body copy'>
+      <a class="improve-btn" target="_blank" href="https://github.com/denali-js/denali/edit/master/guides/application/routing.md">Improve this page</a>
+      <h1 id="routing">Routing</h1>
+<p>Routing in Denali should feel familiar to anyone with experience in modern
+server side frameworks. Routes are defined in <code>config/routes.js</code>.</p>
+<p>To add individual routes, just invoke the appropriate method on the router and
+supply the URL and action to route to:</p>
+<pre><code class="lang-js">// Routes requests to /foo to the FooAction at `app/actions/foo.js`
+router.get(&#39;/foo&#39;, &#39;foo&#39;);
+</code></pre>
+<p>The router also exposes a <code>resource()</code> method for quickly adding an entire suite
+of endpoints for a given resource (it follows the <a href="http://jsonapi.org/recommendations/#urls">JSON-API recommendations for
+URL design</a>):</p>
+<pre><code class="lang-js">this.resource(&#39;post&#39;);
+</code></pre>
+<p>will generate the following routes:</p>
+<table>
+<thead>
+<tr>
+<th>Endpoint</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET     /posts</code></td>
+<td><code>posts/list</code></td>
+</tr>
+<tr>
+<td><code>POST    /posts</code></td>
+<td><code>posts/create</code></td>
+</tr>
+<tr>
+<td><code>GET     /posts/:id</code></td>
+<td><code>posts/show</code></td>
+</tr>
+<tr>
+<td><code>PATCH   /posts/:id</code></td>
+<td><code>posts/update</code></td>
+</tr>
+<tr>
+<td><code>DELETE  /posts/:id</code></td>
+<td><code>posts/destroy</code></td>
+</tr>
+<tr>
+<td><code>GET     /posts/:id/:relation</code></td>
+<td><code>posts/related</code></td>
+</tr>
+<tr>
+<td><code>GET     /posts/:id/relationships/:relation</code></td>
+<td><code>posts/fetch-related</code></td>
+</tr>
+<tr>
+<td><code>PATCH   /posts/:id/relationships/:relation</code></td>
+<td><code>posts/replace-related</code></td>
+</tr>
+<tr>
+<td><code>POST    /posts/:id/relationships/:relation</code></td>
+<td><code>posts/add-related</code></td>
+</tr>
+<tr>
+<td><code>DELETE  /posts/:id/relationships/:relation</code></td>
+<td><code>posts/remove-related</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="namespacing">Namespacing</h2>
+<p>If you want to nest a group of routes underneath a common namespace, you can use
+the <code>router.namespace()</code> method. You can either supply a function as a second
+argument, or use the return object to declare your nested routes:</p>
+<pre><code class="lang-js">router.namespace(&#39;admin&#39;, function(adminRouter) {
+  adminRouter.get(&#39;products&#39;);
+});
+// or ...
+let adminNamespace = router.namespace(&#39;admin&#39;);
+adminNamespace.get(&#39;products&#39;);
+</code></pre>
+
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class='container'>
+    Made with <img src='images/fox-and-beard.svg' class='fox-and-beard'> at
+    <a href='http://foxandbeard.co' target='_blank'>Fox and Beard</a>
+  </div>
+</footer>
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<script>
+    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+    e.src='//www.google-analytics.com/analytics.js';
+    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+    ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+</script>
+
+
+  </body>
+</html>

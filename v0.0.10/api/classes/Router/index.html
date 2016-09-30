@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/">
+
+    <title></title>
+    <!-- <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ description }}{% endif %}"> -->
+
+    <link href='//fonts.googleapis.com/css?family=Inconsolata|Bitter:400,700|Open+Sans:300,400,400italic,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="styles.css">
+    <!-- <link rel="canonical" href="{% page.url | replace:'index.html','' | prepend: baseurl | prepend: url }}"> -->
+  </head>
+  <body>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-2.2.2.min.js"><\/script>')</script>
+    <nav class="navbar">
+  <div class='container'>
+    <a href='.' class='navbar-brand'>
+      <img class='logo-light' src='images/logo.svg' alt='Denali'>
+      <span class='project-name'>Denali</span>
+    </a>
+
+    <div class="navbar-nav">
+      
+      <a class='nav-link' href='v0.0.10/guides/overview/quickstart'>Quickstart</a>
+      <a class='nav-link' href='v0.0.10/guides/overview/introduction'>Guides</a>
+      <a class='nav-link' href='v0.0.10/api/modules/denali'>API</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali' target='_blank'>Github</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali/issues' target='_blank'>Issues</a>
+    </div>
+  </div>
+</nav>
+
+
+<div class='container'>
+  <div class='row'>
+    <div class='api-nav col-md-3'>
+      <div class='nav-section'>
+  <div class='nav-header'>Version</div>
+  <select class='versions-select' id='versions'>
+    
+      <option value='v0.2.0' >v0.2.0</option>
+    
+      <option value='v0.0.10' selected='selected'>v0.0.10</option>
+    
+      <option value='v0.0.9' >v0.0.9</option>
+    
+      <option value='v0.0.8' >v0.0.8</option>
+    
+      <option value='v0.0.7' >v0.0.7</option>
+    
+      <option value='canary' >canary</option>
+    
+  </select>
+</div>
+
+      <label class='private-classes-toggle'>
+        <input type='checkbox' id='toggle-private-classes'>
+        Include Private
+      </label>
+      
+        
+      
+        
+          <div class='nav-section'>
+            <div class='nav-header'>cli</div>
+            
+              <a class='nav-link ' href='v0.0.10/api/classes/Blueprint' >Blueprint</a>
+            
+              <a class='nav-link ' href='v0.0.10/api/classes/Command' >Command</a>
+            
+          </div>
+        
+      
+        
+          <div class='nav-section'>
+            <div class='nav-header'>data</div>
+            
+              <a class='nav-link ' href='v0.0.10/api/classes/FlatSerializer' >FlatSerializer</a>
+            
+              <a class='nav-link ' href='v0.0.10/api/classes/JSONAPISerializer' >JSONAPISerializer</a>
+            
+              <a class='nav-link ' href='v0.0.10/api/classes/Model' >Model</a>
+            
+              <a class='nav-link ' href='v0.0.10/api/classes/ORMAdapter' >ORMAdapter</a>
+            
+              <a class='nav-link ' href='v0.0.10/api/classes/Serializer' >Serializer</a>
+            
+          </div>
+        
+      
+        
+          <div class='nav-section'>
+            <div class='nav-header'>metal</div>
+            
+              <a class='nav-link ' href='v0.0.10/api/classes/eachPrototype' >eachPrototype</a>
+            
+              <a class='nav-link ' href='v0.0.10/api/classes/Instrumentation' >Instrumentation</a>
+            
+              <a class='nav-link ' href='v0.0.10/api/classes/mixin' >mixin</a>
+            
+              <a class='nav-link ' href='v0.0.10/api/classes/createMixin' >createMixin</a>
+            
+          </div>
+        
+      
+        
+          <div class='nav-section'>
+            <div class='nav-header'>runtime</div>
+            
+              <a class='nav-link ' href='v0.0.10/api/classes/Action' >Action</a>
+            
+              <a class='nav-link ' href='v0.0.10/api/classes/Addon' >Addon</a>
+            
+              <a class='nav-link ' href='v0.0.10/api/classes/Application' >Application</a>
+            
+              <a class='nav-link ' href='v0.0.10/api/classes/Container' >Container</a>
+            
+              <a class='nav-link ' href='v0.0.10/api/classes/Error' >Error</a>
+            
+              <a class='nav-link ' href='v0.0.10/api/classes/Logger' >Logger</a>
+            
+              <a class='nav-link ' href='v0.0.10/api/classes/Mailer' >Mailer</a>
+            
+              <a class='nav-link ' href='v0.0.10/api/classes/Request' >Request</a>
+            
+              <a class='nav-link ' href='v0.0.10/api/classes/Response' >Response</a>
+            
+              <a class='nav-link active' href='v0.0.10/api/classes/Router' >Router</a>
+            
+              <a class='nav-link ' href='v0.0.10/api/classes/Service' >Service</a>
+            
+          </div>
+        
+      
+    </div>
+    <div class='api-body col-md-9'>
+      <div class='class'>
+  <h1 class='class-name'>
+    
+      <div class='class-private'>Private</div>
+    
+    Router
+  </h1>
+
+  
+    <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.10/lib/runtime/router.js#L16'>
+      <span class='filename'>Defined in: lib/runtime/router.js</span>
+      <span class='line'>Line: 16</span>
+    </a>
+  
+
+  <div class='class-module'>
+    <strong>Module:</strong>
+    <a class='module' href='/v0.0.10/api/modules/runtime'>
+      <span class='class-module-name'>denali.runtime</span>
+    </a>
+  </div>
+
+  
+    <div class='class-description'><p>The Router handles incoming requests, sending the to the appropraite action.
+It&#39;s also responsible for defining routes in the first place - it&#39;s passed
+into the <code>config/routes.js</code> file&#39;s exported function as the first argument.</p>
+</div>
+  
+
+  <div class='display-controls'>
+    <label class='toggle'>
+      <input type='checkbox' id='toggle-private-members'>
+      Show Private
+    </label>
+    <label class='toggle'>
+      <input type='checkbox' id='toggle-deprecated-members'>
+      Show Deprecated
+    </label>
+  </div>
+  <div class='summary'>
+    <div class='summary-section'>
+      <div class='summary-header'>Methods</div>
+      
+        
+      
+        
+      
+        
+          <a class='summary-link'  data-private-member=true  href='v0.0.10/api/classes/Router/#map'>map</a>
+        
+      
+        
+          <a class='summary-link'  data-private-member=true  href='v0.0.10/api/classes/Router/#handle'>handle</a>
+        
+      
+        
+          <a class='summary-link'  href='v0.0.10/api/classes/Router/#handleError'>handleError</a>
+        
+      
+        
+          <a class='summary-link'  href='v0.0.10/api/classes/Router/#use'>use</a>
+        
+      
+        
+          <a class='summary-link'  href='v0.0.10/api/classes/Router/#route'>route</a>
+        
+      
+        
+          <a class='summary-link'  href='v0.0.10/api/classes/Router/#urlFor'>urlFor</a>
+        
+      
+        
+          <a class='summary-link'  href='v0.0.10/api/classes/Router/#get'>get</a>
+        
+      
+        
+          <a class='summary-link'  href='v0.0.10/api/classes/Router/#post'>post</a>
+        
+      
+        
+          <a class='summary-link'  href='v0.0.10/api/classes/Router/#put'>put</a>
+        
+      
+        
+          <a class='summary-link'  href='v0.0.10/api/classes/Router/#patch'>patch</a>
+        
+      
+        
+          <a class='summary-link'  href='v0.0.10/api/classes/Router/#delete'>delete</a>
+        
+      
+        
+          <a class='summary-link'  href='v0.0.10/api/classes/Router/#resource'>resource</a>
+        
+      
+        
+          <a class='summary-link'  href='v0.0.10/api/classes/Router/#namespace'>namespace</a>
+        
+      
+    </div>
+    <div class='summary-section'>
+      <div class='summary-header'>Properties</div>
+      
+        
+          <a class='summary-link'  data-private-member=true  href='v0.0.10/api/classes/Router/#routes'>routes</a>
+        
+      
+        
+          <a class='summary-link'  href='v0.0.10/api/classes/Router/#middleware'>middleware</a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+</div>
+
+<div class='classitems'>
+  
+    
+      <div class='item property' id='routes' data-private-member=true>
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            routes<span class="type">:{Object}</span>
+            
+              <div class='private tag'>Private</div>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.10/lib/runtime/router.js#L27'>
+              <span class='filename'>Defined in: lib/runtime/router.js</span>
+              <span class='line'>Line: 27</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>The cache of available routes.</div>
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.10/lib/runtime/router.js#L27'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item property' id='middleware' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            middleware<span class="type">:{Ware}</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.10/lib/runtime/router.js#L44'>
+              <span class='filename'>Defined in: lib/runtime/router.js</span>
+              <span class='line'>Line: 44</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>The generic middleware handler.</div>
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.10/lib/runtime/router.js#L44'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+  
+    
+  
+    
+  
+    
+      <div class='item method' id='map' data-private-member=true>
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            map<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>fn</span><span class='param-type type'>:Function</span></span></span><span class='param-paren'>)</span>
+            
+              <div class='private tag'>Private</div>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.10/lib/runtime/router.js#L57'>
+              <span class='filename'>Defined in: lib/runtime/router.js</span>
+              <span class='line'>Line: 57</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Helper method to invoke the function exported by `config/routes.js` in the
+context of the current router instance?</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>fn</div><div class='param-type type'>:Function</div>
+                  
+                    <div class='param-description'>the route definition function</div>
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <p class="no-return">Returns <code>undefined</code></p>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.10/lib/runtime/router.js#L57'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item method' id='handle' data-private-member=true>
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            handle<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>req</span><span class='param-type type'>:http.IncomingMessage</span></span><span class='param'><span class='param-name'>response</span><span class='param-type type'>:http.ServerResponse</span></span></span><span class='param-paren'>)</span>
+            
+              <div class='private tag'>Private</div>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.10/lib/runtime/router.js#L69'>
+              <span class='filename'>Defined in: lib/runtime/router.js</span>
+              <span class='line'>Line: 69</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Takes an incoming request and it&#39;s response from an HTTP server, prepares
+them, runs the generic middleware first, and then hands them off
+to the appropriate action given the incoming URL.</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>req</div><div class='param-type type'>:http.IncomingMessage</div>
+                  
+                    <div class='param-description'>the incoming request object
+from the node HTTP server</div>
+                  
+                </div>
+              
+                <div class='param'>
+                  <div class='param-name'>response</div><div class='param-type type'>:http.ServerResponse</div>
+                  
+                    <div class='param-description'>the outgoing response
+object from the node HTTP server</div>
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <p class="no-return">Returns <code>undefined</code></p>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.10/lib/runtime/router.js#L69'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item method' id='handleError' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            handleError<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>request</span><span class='param-type type'>:Request</span></span><span class='param'><span class='param-name'>response</span><span class='param-type type'>:Response</span></span><span class='param'><span class='param-name'>error</span><span class='param-type type'>:Error</span></span></span><span class='param-paren'>)</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.10/lib/runtime/router.js#L131'>
+              <span class='filename'>Defined in: lib/runtime/router.js</span>
+              <span class='line'>Line: 131</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Takes a request, response, and an error and hands off to the generic
+application level error action.</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>request</div><div class='param-type type'>:Request</div>
+                  
+                </div>
+              
+                <div class='param'>
+                  <div class='param-name'>response</div><div class='param-type type'>:Response</div>
+                  
+                </div>
+              
+                <div class='param'>
+                  <div class='param-name'>error</div><div class='param-type type'>:Error</div>
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <p class="no-return">Returns <code>undefined</code></p>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.10/lib/runtime/router.js#L131'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item method' id='use' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            use<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>middleware</span><span class='param-type type'>:Function</span></span></span><span class='param-paren'>)</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.10/lib/runtime/router.js#L152'>
+              <span class='filename'>Defined in: lib/runtime/router.js</span>
+              <span class='line'>Line: 152</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Add the supplied middleware function to the generic middleware stack that
+runs prior to action handling.</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>middleware</div><div class='param-type type'>:Function</div>
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <p class="no-return">Returns <code>undefined</code></p>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.10/lib/runtime/router.js#L152'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item method' id='route' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            route<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>method</span><span class='param-type type'>:String</span></span><span class='param'><span class='param-name'>rawPattern</span><span class='param-type type'>:String</span></span><span class='param'><span class='param-name'>actionPath</span><span class='param-type type'>:String</span></span><span class='param'><span class='param-name'>params</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.10/lib/runtime/router.js#L163'>
+              <span class='filename'>Defined in: lib/runtime/router.js</span>
+              <span class='line'>Line: 163</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Add a route to the application. Maps a method and URL pattern to an action,
+with optional additional parameters.
+
+URL patterns can use:
+
+ * Dynamic segments, i.e. `&#39;foo/:bar&#39;`
+ * Wildcard segments, i.e. `&#39;foo/*bar&#39;`, captures the rest of the URL up
+   to the querystring
+ * Optional groups, i.e. `&#39;foo(/:bar)&#39;`</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>method</div><div class='param-type type'>:String</div>
+                  
+                    <div class='param-description'>the HTTP method to match</div>
+                  
+                </div>
+              
+                <div class='param'>
+                  <div class='param-name'>rawPattern</div><div class='param-type type'>:String</div>
+                  
+                    <div class='param-description'>the URL pattern to match</div>
+                  
+                </div>
+              
+                <div class='param'>
+                  <div class='param-name'>actionPath</div><div class='param-type type'>:String</div>
+                  
+                    <div class='param-description'>the container name of the action to route to</div>
+                  
+                </div>
+              
+                <div class='param'>
+                  <div class='param-name'>params</div><div class='param-type type'>:Object</div>
+                  
+                    <div class='param-description'>additional params to be merged into the action&#39;s
+params argument</div>
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <p class="no-return">Returns <code>undefined</code></p>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.10/lib/runtime/router.js#L163'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item method' id='urlFor' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            urlFor<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>action</span><span class='param-type type'>:String|Action</span></span><span class='param'><span class='param-name'>data</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.10/lib/runtime/router.js#L198'>
+              <span class='filename'>Defined in: lib/runtime/router.js</span>
+              <span class='line'>Line: 198</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Returns the URL for a given action. You can supply a params object which
+will be used to fill in the dynamic segements of the action&#39;s route (if
+any).</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>action</div><div class='param-type type'>:String|Action</div>
+                  
+                    <div class='param-description'>the container name of the action, or the
+action class itself</div>
+                  
+                </div>
+              
+                <div class='param'>
+                  <div class='param-name'>data</div><div class='param-type type'>:Object</div>
+                  
+                    <div class='param-description'>params to fill in the dynamic segments</div>
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <div class='return'>
+              <div class='return-type type'>String</div>
+              
+            </div>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.10/lib/runtime/router.js#L198'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item method' id='get' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            get<span class='param-paren'>(</span><span class='params'></span><span class='param-paren'>)</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.10/lib/runtime/router.js#L224'>
+              <span class='filename'>Defined in: lib/runtime/router.js</span>
+              <span class='line'>Line: 224</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Shorthand for `this.route(&#39;get&#39;, ...arguments)`</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <p class="no-params">No parameters</p>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <p class="no-return">Returns <code>undefined</code></p>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.10/lib/runtime/router.js#L224'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item method' id='post' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            post<span class='param-paren'>(</span><span class='params'></span><span class='param-paren'>)</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.10/lib/runtime/router.js#L233'>
+              <span class='filename'>Defined in: lib/runtime/router.js</span>
+              <span class='line'>Line: 233</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Shorthand for `this.route(&#39;post&#39;, ...arguments)`</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <p class="no-params">No parameters</p>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <p class="no-return">Returns <code>undefined</code></p>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.10/lib/runtime/router.js#L233'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item method' id='put' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            put<span class='param-paren'>(</span><span class='params'></span><span class='param-paren'>)</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.10/lib/runtime/router.js#L242'>
+              <span class='filename'>Defined in: lib/runtime/router.js</span>
+              <span class='line'>Line: 242</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Shorthand for `this.route(&#39;put&#39;, ...arguments)`</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <p class="no-params">No parameters</p>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <p class="no-return">Returns <code>undefined</code></p>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.10/lib/runtime/router.js#L242'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item method' id='patch' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            patch<span class='param-paren'>(</span><span class='params'></span><span class='param-paren'>)</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.10/lib/runtime/router.js#L251'>
+              <span class='filename'>Defined in: lib/runtime/router.js</span>
+              <span class='line'>Line: 251</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Shorthand for `this.route(&#39;patch&#39;, ...arguments)`</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <p class="no-params">No parameters</p>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <p class="no-return">Returns <code>undefined</code></p>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.10/lib/runtime/router.js#L251'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item method' id='delete' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            delete<span class='param-paren'>(</span><span class='params'></span><span class='param-paren'>)</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.10/lib/runtime/router.js#L260'>
+              <span class='filename'>Defined in: lib/runtime/router.js</span>
+              <span class='line'>Line: 260</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Shorthand for `this.route(&#39;delete&#39;, ...arguments)`</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <p class="no-params">No parameters</p>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <p class="no-return">Returns <code>undefined</code></p>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.10/lib/runtime/router.js#L260'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item method' id='resource' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            resource<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>resourceName</span><span class='param-type type'>:String</span></span><span class='param'><span class='param-name'>options</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.10/lib/runtime/router.js#L269'>
+              <span class='filename'>Defined in: lib/runtime/router.js</span>
+              <span class='line'>Line: 269</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Create all the CRUD routes for a given resource and it&#39;s relationships.
+Based on the JSON-API recommendations for URL design.
+
+The `options` argument lets you pass in `only` or `except` arrays to define
+exceptions. Action names included in `only` will be the only ones
+generated, while names included in `except` will be omitted.
+
+Set `options.related = false` to disable relationship routes.
+
+If no options are supplied, the following routes are generated (assuming a
+&#39;books&#39; resource as an example):
+
+  * `GET /books`
+  * `POST /books`
+  * `GET /books/:id`
+  * `PATCH /books/:id`
+  * `DELETE /books/:id`
+  * `GET /books/:id/:relation`
+  * `GET /books/:id/relationships/:relation`
+  * `PATCH /books/:id/relationships/:relation`
+  * `POST /books/:id/relationships/:relation`
+  * `DELETE /books/:id/relationships/:relation`
+
+See http://jsonapi.org/recommendations/#urls for details.</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>resourceName</div><div class='param-type type'>:String</div>
+                  
+                    <div class='param-description'>the name of the resource</div>
+                  
+                </div>
+              
+                <div class='param'>
+                  <div class='param-name'>options</div><div class='param-type type'>:Object</div>
+                  
+                    <div class='param-description'>options for the resource</div>
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <p class="no-return">Returns <code>undefined</code></p>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.10/lib/runtime/router.js#L269'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item method' id='namespace' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            namespace<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>namespace</span><span class='param-type type'>:String</span></span><span class='param'><span class='param-name'>fn</span><span class='param-type type'>:Function</span></span></span><span class='param-paren'>)</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.10/lib/runtime/router.js#L341'>
+              <span class='filename'>Defined in: lib/runtime/router.js</span>
+              <span class='line'>Line: 341</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Enables easy route namespacing. You can supply a method which takes a
+single argument that works just like the `router` argument in your
+`config/routes.js`, or you can use the return value just like the router.
+
+  router.namespace(&#39;users&#39;, (namespace) =&gt; {
+    namespace.get(&#39;sign-in&#39;);
+  });
+  // or ...
+  let namespace = router.namespace(&#39;users&#39;);
+  namespace.get(&#39;sign-in&#39;);</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>namespace</div><div class='param-type type'>:String</div>
+                  
+                    <div class='param-description'>the URL prefix to use as the namespace</div>
+                  
+                </div>
+              
+                <div class='param'>
+                  <div class='param-name'>fn</div><div class='param-type type'>:Function</div>
+                  
+                    <div class='param-description'>a function that accepts a namespace as it&#39;s argument</div>
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <div class='return'>
+              <div class='return-type type'>Object</div>
+              
+                <div class='return-description'>an object that wraps the router methods with namespaces</div>
+              
+            </div>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.10/lib/runtime/router.js#L341'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+</div>
+
+<script>
+  $(function() {
+    [ 'private', 'deprecated' ].forEach(function(type) {
+      var $toggle = $('#toggle-' + type + '-members');
+      $toggle.on('change', function() {
+        if ($toggle.is(':checked')) {
+          $('[data-' + type + '-member]').css('display', 'block');
+        } else {
+          $('[data-' + type + '-member]').css('display', 'none');
+        }
+      });
+      if ($(window.location.hash).attr('data-' + type + '-member')) {
+        $toggle.click();
+      }
+    });
+  });
+</script>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function() {
+    var $privateClassToggle = $('#toggle-private-classes');
+    $privateClassToggle.on('change', function() {
+      if ($privateClassToggle.is(':checked')) {
+        $('.api-nav [data-private-class]').css('display', 'block');
+      } else {
+        $('.api-nav [data-private-class]').css('display', 'none');
+      }
+    });
+    {% if page.class.access == 'private' %}
+      $privateClassToggle.click();
+    {% endif %}
+  });
+</script>
+
+<footer class="footer">
+  <div class='container'>
+    Made with <img src='images/fox-and-beard.svg' class='fox-and-beard'> at
+    <a href='http://foxandbeard.co' target='_blank'>Fox and Beard</a>
+  </div>
+</footer>
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<script>
+    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+    e.src='//www.google-analytics.com/analytics.js';
+    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+    ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+</script>
+
+
+  </body>
+</html>

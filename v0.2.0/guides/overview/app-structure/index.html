@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/">
+
+    <title></title>
+    <!-- <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ description }}{% endif %}"> -->
+
+    <link href='//fonts.googleapis.com/css?family=Inconsolata|Bitter:400,700|Open+Sans:300,400,400italic,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="styles.css">
+    <!-- <link rel="canonical" href="{% page.url | replace:'index.html','' | prepend: baseurl | prepend: url }}"> -->
+  </head>
+  <body>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-2.2.2.min.js"><\/script>')</script>
+    <nav class="navbar">
+  <div class='container'>
+    <a href='.' class='navbar-brand'>
+      <img class='logo-light' src='images/logo.svg' alt='Denali'>
+      <span class='project-name'>Denali</span>
+    </a>
+
+    <div class="navbar-nav">
+      
+      <a class='nav-link' href='v0.2.0/guides/overview/quickstart'>Quickstart</a>
+      <a class='nav-link' href='v0.2.0/guides/overview/introduction'>Guides</a>
+      <a class='nav-link' href='v0.2.0/api/modules/denali'>API</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali' target='_blank'>Github</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali/issues' target='_blank'>Issues</a>
+    </div>
+  </div>
+</nav>
+
+<div class='container'>
+  <div class="row">
+    <div class='guides-nav col-md-3'>
+      <div class='nav-section'>
+  <div class='nav-header'>Version</div>
+  <select class='versions-select' id='versions'>
+    
+      <option value='v0.2.0' selected='selected'>v0.2.0</option>
+    
+      <option value='v0.0.10' >v0.0.10</option>
+    
+      <option value='v0.0.9' >v0.0.9</option>
+    
+      <option value='v0.0.8' >v0.0.8</option>
+    
+      <option value='v0.0.7' >v0.0.7</option>
+    
+      <option value='canary' >canary</option>
+    
+  </select>
+</div>
+
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>Overview</div>
+          
+          
+            <a href='v0.2.0/guides/overview/introduction' class='nav-link'>Introduction</a>
+          
+            <a href='v0.2.0/guides/overview/quickstart' class='nav-link'>Quickstart</a>
+          
+            <a href='v0.2.0/guides/overview/app-structure' class='nav-link'>App Structure</a>
+          
+        </div>
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>Application</div>
+          
+          
+            <a href='v0.2.0/guides/application/routing' class='nav-link'>Routing</a>
+          
+            <a href='v0.2.0/guides/application/actions' class='nav-link'>Actions</a>
+          
+            <a href='v0.2.0/guides/application/services' class='nav-link'>Services</a>
+          
+            <a href='v0.2.0/guides/application/errors' class='nav-link'>Errors</a>
+          
+            <a href='v0.2.0/guides/application/mailers' class='nav-link'>Mailers</a>
+          
+        </div>
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>Data</div>
+          
+          
+            <a href='v0.2.0/guides/data/models' class='nav-link'>Models</a>
+          
+            <a href='v0.2.0/guides/data/serializers' class='nav-link'>Serializers</a>
+          
+            <a href='v0.2.0/guides/data/orm-adapters' class='nav-link'>ORM Adapters</a>
+          
+        </div>
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>Testing</div>
+          
+          
+            <a href='v0.2.0/guides/testing/integration' class='nav-link'>Integration</a>
+          
+            <a href='v0.2.0/guides/testing/unit' class='nav-link'>Unit Testing</a>
+          
+        </div>
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>Configuration</div>
+          
+          
+            <a href='v0.2.0/guides/configuration/environment' class='nav-link'>Environment</a>
+          
+            <a href='v0.2.0/guides/configuration/middleware' class='nav-link'>Middleware</a>
+          
+            <a href='v0.2.0/guides/configuration/initializers' class='nav-link'>Initializers</a>
+          
+        </div>
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>Utilities</div>
+          
+          
+            <a href='v0.2.0/guides/utilities/mixins' class='nav-link'>Mixins</a>
+          
+            <a href='v0.2.0/guides/utilities/addons' class='nav-link'>Addons</a>
+          
+            <a href='v0.2.0/guides/utilities/instrumentation' class='nav-link'>Instrumentation</a>
+          
+        </div>
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>CLI</div>
+          
+          
+            <a href='v0.2.0/guides/cli/generate' class='nav-link'>denali generate</a>
+          
+            <a href='v0.2.0/guides/cli/serve' class='nav-link'>denali serve</a>
+          
+            <a href='v0.2.0/guides/cli/test' class='nav-link'>denali test</a>
+          
+            <a href='v0.2.0/guides/cli/build' class='nav-link'>denali build</a>
+          
+            <a href='v0.2.0/guides/cli/addon' class='nav-link'>denali addon</a>
+          
+            <a href='v0.2.0/guides/cli/console' class='nav-link'>denali console</a>
+          
+        </div>
+      
+    </div>
+
+    <div class='col-md-9 guides-body copy'>
+      <a class="improve-btn" target="_blank" href="https://github.com/denali-js/denali/edit/master/guides/overview/app-structure.md">Improve this page</a>
+      <h1 id="-app-"><code>app/</code></h1>
+<p>Holds the majority of your application code. This is where your actual business
+logic tends to live. All files in this folder are automatically loaded into the
+container, and their directory name is used as the type (i.e. <code>app/foos/bar</code>
+would be loaded into the container under <code>foo:bar</code>).</p>
+<pre><code class="lang-txt">app/
+  actions/
+    application.js  &lt;- base action class to extend from
+  models/
+    application.js  &lt;- base model class to extend from
+  serializers/
+    application.js  &lt;- base serializer class to extend from
+</code></pre>
+<h2 id="-app-application-js-"><code>app/application.js</code></h2>
+<p>This file exports the root Application class used by your entire app. You
+generally won&#39;t need to modify this file, it&#39;s typically advanced use cases
+only.</p>
+<h1 id="-config-"><code>config/</code></h1>
+<p>Holds the declarative and executable configuration for your app. <em>.js files
+(other than <code>environment.js</code> and `initializers/</em>.js<code>) in this folder will be
+automatically loaded into the container under their filename (i.e.</code>config/foo.js<code>will be loaded under</code>config:foo`).</p>
+<p>Configuration files in Denali tend to be JS files that export a function which
+returns the configuration object. This gives the app developer greater
+flexibility in constructing configuration: it allows for inter-dependent values
+(i.e. option A depends on the value of option B), and easily using environment
+variables via <code>process.env</code>.</p>
+<p>Third party addons can add their own configuration files this way as well.</p>
+<h2 id="-config-environment-js-"><code>config/environment.js</code></h2>
+<p>This file holds the configuration that varies per environment (i.e. development vs.
+staging vs. production database details).</p>
+<h2 id="-config-middleware-js-"><code>config/middleware.js</code></h2>
+<p>This file exports a function which is invoked with the application&#39;s Router as
+its first argument. It lets you add generic Connect-compatible middleware to
+your application that will run <em>before</em> the Router hands off to the appropriate
+action.</p>
+<h2 id="-config-routes-js-"><code>config/routes.js</code></h2>
+<p>You define your application&#39;s routes in this file. See the <a href="../../application/routing">Routing
+guide</a> for more details.</p>
+<h1 id="-test-"><code>test/</code></h1>
+<p>The test suite for your app. See the <a href="../../testing/integration">integration</a>
+and <a href="../../testing/unit">unit</a> testing guides for more details.</p>
+
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class='container'>
+    Made with <img src='images/fox-and-beard.svg' class='fox-and-beard'> at
+    <a href='http://foxandbeard.co' target='_blank'>Fox and Beard</a>
+  </div>
+</footer>
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<script>
+    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+    e.src='//www.google-analytics.com/analytics.js';
+    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+    ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+</script>
+
+
+  </body>
+</html>
