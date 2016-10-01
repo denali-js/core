@@ -1161,8 +1161,8 @@ img {
     font-family: "Bitter";
     font-size: 1.3em; }
     .navbar-nav .nav-link:hover {
-      text-decoration: none;
-      border-bottom: 4px solid #444; }
+      border-bottom: 4px solid #444;
+      text-decoration: none; }
 
 .homepage .navbar {
   position: absolute;
@@ -1170,6 +1170,26 @@ img {
   right: 0;
   left: 0;
   background: none; }
+
+.versions-menu .jq-dropdown-menu li > a.active {
+  font-weight: bold; }
+  .versions-menu .jq-dropdown-menu li > a.active:hover {
+    background-color: transparent;
+    cursor: default; }
+
+.versions-menu-toggle {
+  display: flex;
+  align-items: center;
+  margin: 0 -4px;
+  padding: 3px 4px;
+  border-radius: 3px;
+  cursor: pointer;
+  user-select: none; }
+  .versions-menu-toggle:hover {
+    background-color: #eee; }
+  .versions-menu-toggle .versions-menu-caret {
+    margin-left: auto;
+    opacity: 0.8; }
 
 .highlight {
   color: #fdce93;
@@ -1337,8 +1357,6 @@ img {
       position: relative;
       top: -0.1em;
       margin-right: 0.3em; }
-  .api-nav .versions-select {
-    margin-left: 0.4em; }
   .api-nav .nav-link {
     display: block;
     margin: 0.1em 0;
