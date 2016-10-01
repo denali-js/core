@@ -10,13 +10,13 @@ if [ -n "$(git status --porcelain)" ]; then
   exit 1
 fi
 
-trash dist
-NODE_ENV=production broccoli build $tmpdir/dist
+rm -rf dist
+NODE_ENV=production node_modules/.bin/broccoli build $tmpdir/dist
 
 mv node_modules $node_modules_backup/
 
 git checkout gh-pages
-trash ./*
+rm -rf ./*
 cp -r $tmpdir/dist/ ./
 git add .
 git commit -m 'update docs'
