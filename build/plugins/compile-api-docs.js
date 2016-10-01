@@ -32,7 +32,8 @@ module.exports = class CompileAPIDocs extends Plugin {
         let templateData = {
           klass,
           version,
-          versions
+          versions,
+          url: path.join('api', 'classes', klass.name)
         };
         compile(template, templateData, outputFile);
       });
@@ -44,7 +45,8 @@ module.exports = class CompileAPIDocs extends Plugin {
         let templateData = {
           mod,
           version,
-          versions
+          versions,
+          url: path.join('api', 'modules', mod.name)
         };
         compile(template, templateData, outputFile);
       });

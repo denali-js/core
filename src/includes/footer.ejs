@@ -4,3 +4,19 @@
     <a href='http://foxandbeard.co' target='_blank'>Fox and Beard</a>
   </div>
 </footer>
+<% if (locals.versions) { %>
+  <div id='versions-menu' class='versions-menu jq-dropdown jq-dropdown-tip'>
+    <ul class='jq-dropdown-menu'>
+      <% versions.forEach((v) => { %>
+        <li>
+          <% if (version.name === v.name) { %>
+            <a class='active'><%= v.name %> <%= v.channel ? '(' + v.channel + ')' : '' %></a>
+          <% } else { %>
+            <a href='/<%= v.name %>/<%= url %>'><%= v.name %> <%= v.channel ? '(' + v.channel + ')' : '' %></a>
+          <% } %>
+        </li>
+      <% }) %>
+    </ul>
+  </div>
+  <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery-dropdown/2.0.3/jquery.dropdown.min.js'></script>
+<% } %>

@@ -11,10 +11,11 @@ module.exports = {
     ],
     skip: [
       'v0.0.4',
-      'v0.0.5'
+      'v0.0.5',
+      'v0.0.6'
     ],
-    rename: {
-      master: 'canary'
+    channels: {
+      canary: 'v0.0.10'
     },
     alias: {
       latest(versions) {

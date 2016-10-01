@@ -44,7 +44,8 @@ module.exports = class CompileGuides extends Plugin {
             guide,
             categories: manifest.categories,
             version,
-            versions
+            versions,
+            url: path.join('guides', category.dir, withoutExt(guide.name))
           });
           compile(guidePath, guideData, outputFile);
         });

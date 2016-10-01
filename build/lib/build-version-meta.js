@@ -1,10 +1,12 @@
 const sortVersions = require('./sort-versions');
+const findKey = require('lodash/findKey');
 
 module.exports = function buildVersionMeta(versions, options) {
   versions = versions.map((version) => {
     return {
       ref: version,
-      name: options.rename[version] || version
+      name: version,
+      channel: findKey(options.channels, (value) => value === version)
     };
   });
   versions = sortVersions(versions);
