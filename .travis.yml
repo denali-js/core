@@ -8,6 +8,9 @@ install:
   - npm install
 after_script:
   - npm run coverage
+  - add-apt-repository ppa:git-core/ppa
+  - apt-get update
+  - apt-get install git
   - git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
   - git fetch
   - git checkout docs
