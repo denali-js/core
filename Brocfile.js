@@ -14,8 +14,7 @@ const CompileStaticPages = require('./build/plugins/compile-static-pages');
 const config = require('./config.js');
 Object.assign(globalData, config.data);
 
-let refs = new MergeTree([ '.git/refs/heads', '.git/refs/tags' ]);
-let targets = new FindBuildTargets(refs, config.versions);
+let targets = new FindBuildTargets(config.versions);
 let versions = new CheckoutVersions(targets);
 let yuidocs = new ExtractYuidocs(versions);
 
