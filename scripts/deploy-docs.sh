@@ -46,7 +46,13 @@ cp -r dist/* docs-deploy
 # Now let's go have some fun with the deploy branch
 cd docs-deploy
 
+# Log out the changes
 echo `git status`
+
+if [ -z "$(git status --porcelain)" ]; then
+  echo "No changes to docs, skipping deploy."
+  exit 0
+fi
 
 # Commit the "changes", i.e. the new version.
 git config user.name "Denali CI"
@@ -65,4 +71,4 @@ eval `ssh-agent -s`
 ssh-add ../deploy_key
 
 # Now that we're all set up, we can push.
-# git push $SSH_REPO $DEPLOY_BRANCH
+git push $SSH_REPO $DEPLOY_BRANCH
