@@ -19,6 +19,7 @@ module.exports = class CompileGuides extends Plugin {
     let versionDirs = fs.readdirSync(this.inputPaths[0]);
     let versions = buildVersionMeta(versionDirs, this.versionConfig);
     versions.forEach((version) => {
+      console.log('compile guides', version.ref);
       let guidesDir = path.join(this.inputPaths[0], version.ref, 'guides');
       let manifest = loadJSON(path.join(guidesDir, 'manifest.json'));
       let outputDir = path.join(this.outputPath, version.name, 'guides');

@@ -23,6 +23,7 @@ module.exports = class CompileAPIDocs extends Plugin {
       return version;
     });
     versions.forEach((version) => {
+      console.log('compile api docs', version.ref);
       let outputDir = path.join(this.outputPath, version.name, 'api');
 
       // Classes

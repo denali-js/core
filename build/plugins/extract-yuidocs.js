@@ -15,6 +15,7 @@ module.exports = class ExtractYuidocs extends Plugin {
   build() {
     let versions = fs.readdirSync(this.inputPaths[0]);
     versions.forEach((version) => {
+      console.log('analyze', version);
       let versionDir = path.join(this.inputPaths[0], version);
       let outputDir = path.join(this.outputPath, version);
       execSync(`node_modules/.bin/yuidoc -p -q -o ${ outputDir } ${ versionDir }`);
