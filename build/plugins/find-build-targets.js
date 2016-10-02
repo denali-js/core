@@ -6,7 +6,7 @@ const semver = require('semver');
 
 module.exports = class FindBuildTargets extends Plugin {
   constructor(versionConfig) {
-    super([ process.cwd() ], { annotation: 'find build targets' });
+    super([], { annotation: 'find build targets' });
     versionConfig.branches = versionConfig.branches || [ 'master' ];
     this.versionConfig = versionConfig;
   }
