@@ -12,6 +12,7 @@ module.exports = class CheckoutVersions extends Plugin {
   build() {
     let refs = fs.readdirSync(this.inputPaths[0]);
     refs.forEach((ref) => {
+      console.log('checkout', ref);
       execSync(`git read-tree ${ ref }`);
       execSync(`git checkout-index --all --prefix ${ path.join(this.outputPath, ref) }${ path.sep }`);
     });
