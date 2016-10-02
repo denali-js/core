@@ -46,16 +46,12 @@ cp -r dist/* docs-deploy
 # Now let's go have some fun with the deploy branch
 cd docs-deploy
 
-# If there are no changes to the compiled out (e.g. this is a README update) then just bail.
-if [ -z `git diff --exit-code` ]; then
-    echo "No docs changes on this push; exiting."
-    exit 0
-fi
+echo `git status`
 
 # Commit the "changes", i.e. the new version.
 git config user.name "Denali CI"
 git config user.email "$COMMIT_AUTHOR_EMAIL"
-git add .
+git add . --all
 git commit -m "Deploy to GitHub Pages: ${SHA}"
 
 # Get the deploy key by using Travis's stored variables to decrypt deploy_key.enc
@@ -63,10 +59,10 @@ ENCRYPTED_KEY_VAR="encrypted_${ENCRYPTION_LABEL}_key"
 ENCRYPTED_IV_VAR="encrypted_${ENCRYPTION_LABEL}_iv"
 ENCRYPTED_KEY=${!ENCRYPTED_KEY_VAR}
 ENCRYPTED_IV=${!ENCRYPTED_IV_VAR}
-openssl aes-256-cbc -K $ENCRYPTED_KEY -iv $ENCRYPTED_IV -in deploy_key.enc -out deploy_key -d
-chmod 600 deploy_key
+openssl aes-256-cbc -K $ENCRYPTED_KEY -iv $ENCRYPTED_IV -in ../deploy_key.enc -out ../deploy_key -d
+chmod 600 ../deploy_key
 eval `ssh-agent -s`
-ssh-add deploy_key
+ssh-add ../deploy_key
 
 # Now that we're all set up, we can push.
-git push $SSH_REPO $DEPLOY_BRANCH
+# git push $SSH_REPO $DEPLOY_BRANCH
