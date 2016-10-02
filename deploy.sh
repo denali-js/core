@@ -31,7 +31,7 @@ cp -r $tmpdir/dist/ ./
 
 echo "Updating gh-pages branch with new build"
 git add .
-git commit -m 'update docs'
+git -c user.name='Denali CI' -c user.email='davewasmer@gmail.com' commit -m 'update docs'
 
 echo "Pushing gh-pages branch"
 git push origin gh-pages
