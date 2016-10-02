@@ -2,22 +2,14 @@
 language: node_js
 node_js:
   - "6.0"
-before_install:
-  - sudo add-apt-repository ppa:git-core/ppa -y
-  - sudo apt-get update -q
-  - sudo apt-get install git -y
-install:
-  - npm install -g npm@3.5.3
-  - npm install -g multidep
-  - npm install
-after_script:
+after_success:
   - npm run coverage
   - git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
   - git fetch --unshallow --tags
   - git checkout docs
   - npm install
   - ./deploy.sh
-sudo: true
+sudo: false
 cache:
   directories:
     - node_modules
