@@ -16,7 +16,8 @@ module.exports = class CheckoutVersions extends Plugin {
       execSync(`git read-tree ${ ref }`);
       execSync(`git checkout-index --all --prefix ${ path.join(this.outputPath, ref) }${ path.sep }`);
     });
-    console.log(execSync('git status').toString())
-    execSync('git reset head');
+    console.log(execSync('git rev-parse HEAD').toString())
+    console.log(execSync('ls -la .git/refs/heads').toString())
+    execSync('git reset HEAD');
   }
 }
