@@ -8,10 +8,6 @@ SOURCE_BRANCH="master"
 BUILD_BRANCH="docs"
 DEPLOY_BRANCH="gh-pages"
 
-function doCompile {
-  NODE_ENV=production node_modules/.bin/broccoli build dist
-}
-
 # Pull requests and commits to other branches shouldn't try to deploy, just build to verify
 if [ "$TRAVIS_PULL_REQUEST" != "false" -o "$TRAVIS_BRANCH" != "$SOURCE_BRANCH" ]; then
     echo "Skipping docs deploy."
@@ -23,28 +19,32 @@ REPO=`git config remote.origin.url`
 SSH_REPO=${REPO/https:\/\/github.com\//git@github.com:}
 SHA=`git rev-parse --verify HEAD`
 
-# Clone the existing gh-pages for this repo into out/
-# Create a new empty branch if gh-pages doesn't exist yet (should only happen on first deply)
-git clone $REPO docs
-cd docs
+# Clone the repo and checkout the build branch, and install build dependencis
+git clone $REPO docs-build
+cd docs-build
 git checkout $BUILD_BRANCH
 npm install
 
-git clone $REPO dist
-cd dist
+# Clone the repo and checkout the deploy branch
+git clone $REPO docs-deploy
+cd docs-deploy
 git checkout $DEPLOY_BRANCH || git checkout --orphan $DEPLOY_BRANCH
+
+# Back up to the build branch
 cd ..
 
-# Clean out existing contents
-rm -rf dist/**/* || exit 0
+# Clean out deploy branch to prepare for a fresh build
+rm -rf docs-deploy/**/* || exit 0
 
-# Run our compile script
-doCompile
+# Build the docs into a temporary dist folder (because broccoli can't build into
+# an existing directory)
+NODE_ENV=production node_modules/.bin/broccoli build dist
 
-# Now let's go have some fun with the cloned repo
-cd dist
-git config user.name "Denali CI"
-git config user.email "$COMMIT_AUTHOR_EMAIL"
+# Copy build resutls into the deploy branch
+cp -r dist/* docs-deploy
+
+# Now let's go have some fun with the deploy branch
+cd docs-deploy
 
 # If there are no changes to the compiled out (e.g. this is a README update) then just bail.
 if [ -z `git diff --exit-code` ]; then
@@ -53,7 +53,8 @@ if [ -z `git diff --exit-code` ]; then
 fi
 
 # Commit the "changes", i.e. the new version.
-# The delta will show diffs between new and old versions.
+git config user.name "Denali CI"
+git config user.email "$COMMIT_AUTHOR_EMAIL"
 git add .
 git commit -m "Deploy to GitHub Pages: ${SHA}"
 
