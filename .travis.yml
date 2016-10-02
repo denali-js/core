@@ -4,11 +4,7 @@ node_js:
   - "6.0"
 after_success:
   - npm run coverage
-  - git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
-  - git fetch --unshallow --tags
-  - git checkout docs
-  - npm install
-  - ./deploy.sh
+  - npm run deploy-docs
 sudo: false
 cache:
   directories:

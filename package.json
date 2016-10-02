@@ -42,6 +42,7 @@
     "prebuild": "scripts/prebuild.sh",
     "build": "scripts/build.sh",
     "coverage": "scripts/coverage.sh",
+    "deploy-docs": "scripts/deploy-docs.sh",
     "lint": "scripts/lint.sh",
     "prepublish": "scripts/prepublish.sh",
     "release": "scripts/release.sh",
