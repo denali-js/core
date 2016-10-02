@@ -18,6 +18,7 @@ module.exports = class CheckoutVersions extends Plugin {
     });
     console.log(execSync('git rev-parse HEAD').toString())
     console.log(execSync('ls -la .git/refs/heads').toString())
+    console.log(execSync('cat .git/HEAD').toString())
     execSync('git reset HEAD');
   }
 }
