@@ -18,6 +18,12 @@ module.exports = class ExtractYuidocs extends Plugin {
       console.log('analyze', version);
       let versionDir = path.join(this.inputPaths[0], version);
       let outputDir = path.join(this.outputPath, version);
+      // Because yuidoc doesn't respect excluded dirs when trying to find yuidoc.json,
+      // it will grind Node into an OOM crash because it attempts to traverse
+      // the entire tmp dir. So we write an empty config file here to halt the
+      // traversal
+      // https://github.com/yui/yuidoc/issues/374
+      fs.writeFileSync(path.join(versionDir, 'yuidoc.json'), '{}');
       execSync(`node_modules/.bin/yuidoc -p -q -o ${ outputDir } ${ versionDir }`);
       let data = loadJSON(path.join(outputDir, 'data.json'));
       this.normalizeData(data, versionDir);
