@@ -2,7 +2,6 @@ module.exports = {
   data: {
     repo: 'denali-js/denali',
     baseurl: '/',
-    title: 'Denali',
     url: 'http://localhost:4400'
   },
   versions: {
