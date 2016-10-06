@@ -166,9 +166,10 @@ would be loaded into the container under <code>foo:bar</code>).</p>
 generally won&#39;t need to modify this file, it&#39;s typically advanced use cases
 only.</p>
 <h1 id="-config-"><code>config/</code></h1>
-<p>Holds the declarative and executable configuration for your app. <em>.js files
-(other than <code>environment.js</code> and `initializers/</em>.js<code>) in this folder will be
-automatically loaded into the container under their filename (i.e.</code>config/foo.js<code>will be loaded under</code>config:foo`).</p>
+<p>Holds the declarative and executable configuration for your app. *.js files
+(other than <code>environment.js</code> and <code>initializers/*.js</code>) in this folder will be
+automatically loaded into the container under their filename (i.e.
+<code>config/foo.js</code> will be loaded under <code>config:foo</code>).</p>
 <p>Configuration files in Denali tend to be JS files that export a function which
 returns the configuration object. This gives the app developer greater
 flexibility in constructing configuration: it allows for inter-dependent values
