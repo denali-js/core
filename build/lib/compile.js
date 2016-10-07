@@ -2,6 +2,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const frontmatter = require('front-matter');
 const marked = require('marked');
+const highlighter = require('highlight.js');
 const ejs = require('ejs');
 const forIn = require('lodash/forIn');
 const globalData = require('./global-data');
@@ -14,6 +15,12 @@ const helpers = {
   forIn,
   markdown: marked
 };
+
+marked.setOptions({
+  highlight(code) {
+    return highlighter.highlightAuto(code).value;
+  }
+});
 
 module.exports = function compile(templatePath, data = {}, outputPath) {
   // Load the template
