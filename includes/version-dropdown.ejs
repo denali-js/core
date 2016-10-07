@@ -1,7 +1,8 @@
 <div class='nav-section'>
   <div class='nav-header'>Version</div>
-  <div class='versions-menu-toggle' data-jq-dropdown='#versions-menu'>
-    <%= version.name %> <%= version.channel ? '(' + version.channel + ')' : '' %>
-    <img class='versions-menu-caret' src='/images/caret.svg'>
-  </div>
+  <select class='versions-select' id='versions'>
+    <% versions.forEach((v) => { %>
+      <option value='<%= v.name %>' <% if (v.name === version.name) { %>selected='selected'<% } %>><%= v.name %></option>
+    <% }) %>
+  </select>
 </div>
