@@ -6,12 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <base href="/">
 
-    <title></title>
-    <!-- <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ description }}{% endif %}"> -->
+    <title> Mailers  </title>
 
     <link href='//fonts.googleapis.com/css?family=Inconsolata|Bitter:400,700|Open+Sans:300,400,400italic,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="styles.css">
-    <!-- <link rel="canonical" href="{% page.url | replace:'index.html','' | prepend: baseurl | prepend: url }}"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-dropdown/2.0.3/jquery.dropdown.min.css" />
   </head>
   <body>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
@@ -39,19 +38,10 @@
     <div class='guides-nav col-md-3'>
       <div class='nav-section'>
   <div class='nav-header'>Version</div>
-  <select class='versions-select' id='versions'>
-    
-      <option value='v0.0.10' >v0.0.10</option>
-    
-      <option value='v0.0.9' >v0.0.9</option>
-    
-      <option value='v0.0.8' selected='selected'>v0.0.8</option>
-    
-      <option value='v0.0.7' >v0.0.7</option>
-    
-      <option value='canary' >canary</option>
-    
-  </select>
+  <div class='versions-menu-toggle' data-jq-dropdown='#versions-menu'>
+    v0.0.8 
+    <img class='versions-menu-caret' src='/images/caret.svg'>
+  </div>
 </div>
 
       
@@ -175,51 +165,51 @@ the same name (but different extensions - one for the HTML version of the email,
 and one for the plain text version):</p>
 <pre><code>app/
   mailers/
-    welcome.js   &lt;- The mailer class
-    welcome.html &lt;- The HTML version of the email body
-    welcome.txt  &lt;- The plain text version of the email body
+    welcome<span class="hljs-selector-class">.js</span>   &lt;- The mailer class
+    welcome<span class="hljs-selector-class">.html</span> &lt;- The HTML version of the email <span class="hljs-selector-tag">body</span>
+    welcome<span class="hljs-selector-class">.txt</span>  &lt;- The plain text version of the email body
 </code></pre><p>It&#39;s not required to have both a plain text and HTML version of an email -
 either one is fine alone.</p>
 <h2 id="creating-a-mailer">Creating a Mailer</h2>
 <p>To get started sending emails, let&#39;s create a mailer. You can use the <code>generate</code>
 command in the Denali CLI to scaffold out a new mailer for you:</p>
-<pre><code>$ denali generate mailer welcome
+<pre><code>$ denali <span class="hljs-keyword">generate</span> mailer welcome
 </code></pre><p>This will create a blank mailer for us. In this case, we&#39;re building a welcome
 email to send after a user signs up. Now lets update the scaffolded templates
 with our welcome message:</p>
-<pre><code>// app/mailers/welcome.html
-&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-  &lt;head&gt;
-    &lt;meta content=&#39;text/html; charset=UTF-8&#39; http-equiv=&#39;Content-Type&#39; /&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-    &lt;h1&gt;Welcome to example.com, &lt;%= user.name %&gt;!&lt;/h1&gt;
-    &lt;p&gt;Thanks for joining and have a great day!&lt;/p&gt;
-  &lt;/body&gt;
-&lt;/html&gt;
+<pre><code><span class="xml">// app/mailers/welcome.html
+<span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">content</span>=<span class="hljs-string">'text/html; charset=UTF-8'</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">'Content-Type'</span> /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Welcome to example.com, <span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> user.name </span><span class="xml"><span class="hljs-tag">%&gt;</span>!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Thanks for joining and have a great day!<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></span>
 </code></pre><p>And our plain text version (it&#39;s usually a good idea to have both, since some
 email clients prefer plain text to HTML):</p>
-<pre><code>// app/mailers/welcome.txt
-Welcome to example.com, &lt;%= user.name %&gt;!
-Thanks for joining and have a great day!
+<pre><code><span class="hljs-comment">// app/mailers/welcome.txt</span>
+Welcome <span class="hljs-keyword">to</span> example.com, &lt;%= user.<span class="hljs-keyword">name</span> %&gt;!
+Thanks <span class="hljs-keyword">for</span> joining <span class="hljs-keyword">and</span> have a great day!
 </code></pre><p>Notice our template tags in both templates, where we dynamically insert the
 user&#39;s name into the template.</p>
 <p>Now, if we wanted to pull in additional data, we could override the <code>welcome.js</code>
 mailer&#39;s <code>send()</code> method, like this:</p>
-<pre><code>// app/mailers/welcome.js
-import { Mailer } from &#39;denali&#39;;
+<pre><code><span class="hljs-comment">// app/mailers/welcome.js</span>
+<span class="hljs-keyword">import</span> { <span class="hljs-type">Mailer</span> } from <span class="hljs-symbol">'denal</span>i';
 
-export default class WelcomeMailer extends Mailer {
+export <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WelcomeMailer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Mailer</span> </span>{
   send(user) {
-    let Topic = this.modelFor(&#39;topic&#39;);
-    return Topic.findInteresting().then((interestingTopics) =&gt; {
-      return this.mail({
+    let <span class="hljs-type">Topic</span> = <span class="hljs-keyword">this</span>.modelFor(<span class="hljs-symbol">'topi</span>c');
+    <span class="hljs-keyword">return</span> <span class="hljs-type">Topic</span>.findInteresting().then((interestingTopics) =&gt; {
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.mail({
         to: user.email,
-        from: &#39;notifications@example.com&#39;,
-        subject: &#39;Welcome!&#39;,
-        html: this.template(&#39;html&#39;, { user, interestingTopics }),
-        text: this.template(&#39;text&#39;, { user, interestingTopics })
+        from: <span class="hljs-symbol">'notifications</span><span class="hljs-meta">@example</span>.com',
+        subject: <span class="hljs-symbol">'Welcome</span>!',
+        html: <span class="hljs-keyword">this</span>.template(<span class="hljs-symbol">'htm</span>l', { user, interestingTopics }),
+        text: <span class="hljs-keyword">this</span>.template(<span class="hljs-symbol">'tex</span>t', { user, interestingTopics })
       });
   }
 }
@@ -228,12 +218,12 @@ send the email once we&#39;ve gathered all the relevant data.</p>
 <h2 id="sending-the-email">Sending the email</h2>
 <p>Now that we have a mailer ready to go, let&#39;s wire it up to a <code>users/sign-up</code>
 action so that new users will be sent a welcome email:</p>
-<pre><code>// app/actions/users/sign-up.js
+<pre><code><span class="hljs-comment">// app/actions/users/sign-up.js</span>
 respond(params) {
-  let User = this.modelFor(&#39;user&#39;);
-  return User.create(params).then((newUser) =&gt; {
-    this.mail(&#39;welcome&#39;, newUser);
-    return newUser;
+  let User = <span class="hljs-keyword">this</span>.modelFor(<span class="hljs-string">'user'</span>);
+  <span class="hljs-keyword">return</span> User.create(params).then((newUser) =&gt; {
+    <span class="hljs-keyword">this</span>.mail(<span class="hljs-string">'welcome'</span>, newUser);
+    <span class="hljs-keyword">return</span> newUser;
   });
 }
 </code></pre><p>As we can see, actions come with a <code>this.mail</code> method which invoke the named
@@ -254,16 +244,52 @@ finish before responding to the incoming request.</p>
   </div>
 </footer>
 
-<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-<script>
-    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-    e.src='//www.google-analytics.com/analytics.js';
-    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-    ga('create','UA-XXXXX-X','auto');ga('send','pageview');
-</script>
+  <div id='versions-menu' class='versions-menu jq-dropdown jq-dropdown-tip'>
+    <ul class='jq-dropdown-menu'>
+      
+        <li>
+          
+            <a href='/v0.0.10/guides/application/mailers'>v0.0.10 (canary)</a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.9/guides/application/mailers'>v0.0.9 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a class='active'>v0.0.8 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.7/guides/application/mailers'>v0.0.7 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/master/guides/application/mailers'>master </a>
+          
+        </li>
+      
+    </ul>
+  </div>
+  <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery-dropdown/2.0.3/jquery.dropdown.min.js'></script>
 
 
+
+    <script>
+     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+     ga('create', 'UA-85043775-1', 'auto');
+     ga('send', 'pageview');
+    </script>
   </body>
 </html>

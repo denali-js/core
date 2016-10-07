@@ -6,12 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <base href="/">
 
-    <title></title>
-    <!-- <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ description }}{% endif %}"> -->
+    <title> Actions  </title>
 
     <link href='//fonts.googleapis.com/css?family=Inconsolata|Bitter:400,700|Open+Sans:300,400,400italic,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="styles.css">
-    <!-- <link rel="canonical" href="{% page.url | replace:'index.html','' | prepend: baseurl | prepend: url }}"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-dropdown/2.0.3/jquery.dropdown.min.css" />
   </head>
   <body>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
@@ -39,19 +38,10 @@
     <div class='guides-nav col-md-3'>
       <div class='nav-section'>
   <div class='nav-header'>Version</div>
-  <select class='versions-select' id='versions'>
-    
-      <option value='v0.0.10' selected='selected'>v0.0.10</option>
-    
-      <option value='v0.0.9' >v0.0.9</option>
-    
-      <option value='v0.0.8' >v0.0.8</option>
-    
-      <option value='v0.0.7' >v0.0.7</option>
-    
-      <option value='canary' >canary</option>
-    
-  </select>
+  <div class='versions-menu-toggle' data-jq-dropdown='#versions-menu'>
+    v0.0.10 (canary)
+    <img class='versions-menu-caret' src='/images/caret.svg'>
+  </div>
 </div>
 
       
@@ -172,12 +162,12 @@ class, which should return either:</p>
 <li>a Promise which resolves with (1) or (2)</li>
 </ol>
 <h3 id="example-action">Example Action</h3>
-<pre><code class="lang-js">import ApplicationAction from &#39;./application&#39;;
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> <span class="hljs-type">ApplicationAction</span> from './application';
 
-export default class ShowUser extends ApplicationAction {
+export <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ShowUser</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ApplicationAction</span> </span>{
 
   respond() {
-    // ...
+    <span class="hljs-comment">// ...</span>
   }
 }
 </code></pre>
@@ -218,22 +208,22 @@ ability to render a response and abort the rest of the action handling (i.e.
 skip subsequent before filters and the responder).</p>
 <p>To add a filter, simply add the method name to the <code>before</code> or <code>after</code> array on
 your Action:</p>
-<pre><code class="lang-js">class CreatePurchase extends Action {
+<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CreatePurchase</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Action</span> </span>{
 
-  static before = [ &#39;authenticateUser&#39;, &#39;confirmBalance&#39; ];
-  static after = [ &#39;trackPurchase&#39; ];
+  static before = [ <span class="hljs-symbol">'authenticateUse</span>r', <span class="hljs-symbol">'confirmBalanc</span>e' ];
+  static after = [ <span class="hljs-symbol">'trackPurchas</span>e' ];
 
   authenticateUser() {
-    // makes sure the user is logged in
+    <span class="hljs-comment">// makes sure the user is logged in</span>
   }
 
   confirmBalance() {
-    // make sure the user has money to make the purchase
+    <span class="hljs-comment">// make sure the user has money to make the purchase</span>
   }
 
   trackPurchase() {
-    // log the purchase in an analytics tool, but don&#39;t hold up rendering the
-    // response for it
+    <span class="hljs-comment">// log the purchase in an analytics tool, but don't hold up rendering the</span>
+    <span class="hljs-comment">// response for it</span>
   }
 
 }
@@ -241,15 +231,15 @@ your Action:</p>
 <p>Filters are inherited. Want to authenticate all requests against your API? Just
 add an authentication before filter to your ApplicationAction, and it will run
 on all requests:</p>
-<pre><code class="lang-js">class ApplicationAction extends Action {
+<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ApplicationAction</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Action</span> </span>{
 
-  static before = [ &#39;authenticate&#39; ];
+  static before = [ <span class="hljs-symbol">'authenticat</span>e' ];
 
   authenticate() {
-    // This allows individual actions to &quot;opt-out&quot; of authentication by setting
-    // `protected = false;`
-    if (this.protected !== false) {
-      // authenticate the user
+    <span class="hljs-comment">// This allows individual actions to "opt-out" of authentication by setting</span>
+    <span class="hljs-comment">// `protected = false;`</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.<span class="hljs-keyword">protected</span> !== <span class="hljs-literal">false</span>) {
+      <span class="hljs-comment">// authenticate the user</span>
     }
   }
 
@@ -276,16 +266,52 @@ processing to halt prematurely, and Denali will attempt to render that value!</p
   </div>
 </footer>
 
-<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-<script>
-    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-    e.src='//www.google-analytics.com/analytics.js';
-    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-    ga('create','UA-XXXXX-X','auto');ga('send','pageview');
-</script>
+  <div id='versions-menu' class='versions-menu jq-dropdown jq-dropdown-tip'>
+    <ul class='jq-dropdown-menu'>
+      
+        <li>
+          
+            <a class='active'>v0.0.10 (canary)</a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.9/guides/application/actions'>v0.0.9 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.8/guides/application/actions'>v0.0.8 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.7/guides/application/actions'>v0.0.7 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/master/guides/application/actions'>master </a>
+          
+        </li>
+      
+    </ul>
+  </div>
+  <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery-dropdown/2.0.3/jquery.dropdown.min.js'></script>
 
 
+
+    <script>
+     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+     ga('create', 'UA-85043775-1', 'auto');
+     ga('send', 'pageview');
+    </script>
   </body>
 </html>
