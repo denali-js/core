@@ -114,7 +114,28 @@ describe('Denali.Action', function() {
       }
       let action = new TestAction(mockReqRes());
 
-      return action.run.bind(action).must.throw();
+      return expect(action.run.bind(action)).to.throw();
+    });
+
+    it('should should render the returned value of a filter (if that value != null)', function() {
+      let rendered;
+      class TestAction extends Action {
+        static before = [ 'preempt' ];
+        respond() {
+          return { never: 'reached' };
+        }
+        preempt() {
+          return { hello: 'world' };
+        }
+        render(result) {
+          rendered = result;
+        }
+      }
+      let action = new TestAction(mockReqRes());
+
+      return action.run().then(() => {
+        expect(rendered).to.eql({ hello: 'world' });
+      });
     });
 
   });
