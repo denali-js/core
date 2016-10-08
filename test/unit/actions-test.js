@@ -107,6 +107,16 @@ describe('Denali.Action', function() {
       });
     });
 
+    it('should error out when an non-existent filter was specified', function() {
+      class TestAction extends Action {
+        static before = [ 'some-non-existent-method' ];
+        respond() {}
+      }
+      let action = new TestAction(mockReqRes());
+
+      return action.run.bind(action).must.throw();
+    });
+
   });
 
   describe('content negotiation', function() {
