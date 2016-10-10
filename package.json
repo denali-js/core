@@ -30,6 +30,7 @@
   ],
   "devDependencies": {
     "babel-plugin-istanbul": "^2.0.1",
+    "broccoli-cli": "^1.0.0",
     "broccoli-timepiece": "^0.3.0",
     "coveralls": "^2.11.4",
     "faker": "^3.0.1",
