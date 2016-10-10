@@ -1,5 +1,6 @@
 import expect from 'must';
 import Action from '../../lib/runtime/action';
+import Model from '../../lib/data/model';
 import Response from '../../lib/runtime/response';
 import Container from '../../lib/runtime/container';
 import FlatSerializer from '../../lib/runtime/base/app/serializers/flat';
@@ -52,6 +53,106 @@ describe('Denali.Action', function() {
 
     return action.run().then(() => {
       expect(responded).to.be.true();
+    });
+  });
+
+  it('should not invoke the serializer if no response body was provided', function() {
+    let responded = false;
+    let serialized = false;
+    class TestAction extends Action {
+      serializer = 'foo';
+      respond() {
+        responded = true;
+      }
+    }
+    let mock = mockReqRes();
+    mock.container.register('serializer:foo', {
+      serialize() {
+        serialized = true;
+      }
+    });
+    let action = new TestAction(mock);
+
+    return action.run().then(() => {
+      expect(responded).to.be.true();
+      expect(serialized).to.be.false();
+    });
+  });
+
+  it('should use the specified serializer type if provided', function() {
+    let responded = false;
+    let serialized = false;
+    class TestAction extends Action {
+      serializer = 'foo';
+      respond() {
+        responded = true;
+        return {};
+      }
+    }
+    let mock = mockReqRes();
+    mock.container.register('serializer:foo', {
+      serialize() {
+        serialized = true;
+      }
+    });
+    let action = new TestAction(mock);
+
+    return action.run().then(() => {
+      expect(responded).to.be.true();
+      expect(serialized).to.be.true();
+    });
+  });
+
+  it('should render with the error serializer if an error was rendered', function() {
+    let responded = false;
+    let serialized = false;
+    class TestAction extends Action {
+      respond() {
+        responded = true;
+        return new Error();
+      }
+    }
+    let mock = mockReqRes();
+    mock.container.register('serializer:error', {
+      serialize() {
+        serialized = true;
+      }
+    });
+    let action = new TestAction(mock);
+
+    return action.run().then(() => {
+      expect(responded).to.be.true();
+      expect(serialized).to.be.true();
+    });
+  });
+
+  it('should render with the model type serializer if a model was rendered', function() {
+    let responded = false;
+    let serialized = false;
+    let mock = mockReqRes();
+
+    class TestAction extends Action {
+      respond() {
+        responded = true;
+        return new Proxy({
+          constructor: { type: 'foo' }
+        }, {
+          getPrototypeOf() {
+            return Model.prototype;
+          }
+        });
+      }
+    }
+    mock.container.register('serializer:foo', {
+      serialize() {
+        serialized = true;
+      }
+    });
+    let action = new TestAction(mock);
+
+    return action.run().then(() => {
+      expect(responded).to.be.true();
+      expect(serialized).to.be.true();
     });
   });
 
