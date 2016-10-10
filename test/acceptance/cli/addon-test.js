@@ -1,22 +1,23 @@
-const fs = require('fs');
-const path = require('path');
-const expect = require('must');
-const tmp = require('tmp');
-const run = require('child_process').execSync;
-const isFile = require('../../../lib/utils/is-file');
+import fs from 'fs';
+import path from 'path';
+import expect from 'must';
+import tmp from 'tmp';
+import { execSync as run } from 'child_process';
+import isFile from '../../../lib/utils/is-file';
 
 function expectFile(...filepath) {
   expect(isFile(path.join(...filepath))).to.be.true();
 }
 
-const bin = path.join(__dirname, '..', '..', '..', 'bin');
-const denaliPath = path.join(bin, 'denali');
+let bin = path.join(__dirname, '..', '..', '..', '..', 'bin');
+let denaliPath = path.join(bin, 'denali');
 
 describe('addon command', function() {
 
   before(function() {
-    this.tmpdir = tmp.dirSync();
-    run(`${ denaliPath } addon foobar`, { cwd: this.tmpdir.name });
+    this.timeout(20000);
+    this.tmpdir = tmp.dirSync({ unsafeCleanup: true });
+    run(`${ denaliPath } addon foobar --skip-npm`, { cwd: this.tmpdir.name });
   });
 
   after(function() {
@@ -24,9 +25,9 @@ describe('addon command', function() {
   });
 
   it('should generate an addon', function() {
-    let indexPath = path.join(this.tmpdir.name, 'foobar', 'index.js');
-    expectFile(indexPath);
-    let contents = fs.readFileSync(indexPath, 'utf-8');
+    let addonPath = path.join(this.tmpdir.name, 'foobar', 'app', 'addon.js');
+    expectFile(addonPath);
+    let contents = fs.readFileSync(addonPath, 'utf-8');
     expect(contents).to.include('Addon');
   });
 
