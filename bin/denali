@@ -9,7 +9,7 @@ const pkgPath = findup('package.json');
 
 // No package.json found, revert to global install
 if (!pkgPath) {
-  require('../dist/cli/commands');
+  require('../dist/lib/cli/commands');
 
 // Package.json found
 } else {
@@ -18,12 +18,11 @@ if (!pkgPath) {
   let localDenali;
   try {
     localDenali = resolve.sync('denali', { basedir: pkgDir });
+    let localDenaliPkgDir = path.dirname(findup('package.json', { cwd: localDenali }));
+    let localCommands = path.join(localDenaliPkgDir, 'dist/lib/cli/commands');
+    require(localCommands);
   } catch(e) {
-    return require('../dist/cli/commands');
+    require('../dist/lib/cli/commands');
   }
 
-  let localDenaliPkgDir = path.dirname(findup('package.json', { cwd: localDenali }));
-  let localCommands = path.join(localDenaliPkgDir, 'dist/cli/commands');
-  require(localCommands);
 }
-

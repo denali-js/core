@@ -3,6 +3,9 @@
   "plugins": [
     "transform-class-properties"
   ],
+  "ignore": [
+    "cli/blueprints/*/files/**"
+  ],
   "env": {
     "test": {
       "plugins": ["istanbul"]

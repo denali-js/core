@@ -29,6 +29,8 @@
     "server"
   ],
   "devDependencies": {
+    "babel-plugin-istanbul": "^2.0.1",
+    "broccoli-timepiece": "^0.3.0",
     "coveralls": "^2.11.4",
     "faker": "^3.0.1",
     "in-publish": "2.0.0",
@@ -39,16 +41,15 @@
     "standard-version": "^2.4.0"
   },
   "scripts": {
-    "prebuild": "scripts/prebuild.sh",
     "build": "scripts/build.sh",
     "coverage": "scripts/coverage.sh",
     "deploy-docs": "scripts/deploy-docs.sh",
     "lint": "scripts/lint.sh",
     "prepublish": "scripts/prepublish.sh",
     "release": "scripts/release.sh",
+    "pretest": "scripts/pretest.sh",
     "test": "scripts/test.sh",
     "preversion": "scripts/preversion.sh",
-    "prewatch": "scripts/prewatch.sh",
     "watch": "scripts/watch.sh"
   },
   "license": "MIT",
