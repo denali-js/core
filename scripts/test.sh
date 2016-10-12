@@ -1,3 +1,3 @@
 # Use npm run test -- (other args here) to pass args to mocha
 cd dist
-NODE_ENV=test nyc mocha --recursive "$@"
+NODE_ENV=test nyc mocha --recursive test/acceptance test/unit test/linting.js "$@"
