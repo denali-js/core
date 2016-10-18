@@ -172,9 +172,63 @@ logging, colorized output, and control over verbosity.</p>
     <div class='summary-section'>
       <div class='summary-header'>Methods</div>
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <a class='summary-link'  href='master/api/classes/Logger/#debug'>debug</a>
+        
+      
+        
+          <a class='summary-link'  href='master/api/classes/Logger/#info'>info</a>
+        
+      
+        
+          <a class='summary-link'  href='master/api/classes/Logger/#warn'>warn</a>
+        
+      
+        
+          <a class='summary-link'  href='master/api/classes/Logger/#error'>error</a>
+        
+      
+        
+          <a class='summary-link'  href='master/api/classes/Logger/#log'>log</a>
+        
+      
     </div>
     <div class='summary-section'>
       <div class='summary-header'>Properties</div>
+      
+        
+          <a class='summary-link'  href='master/api/classes/Logger/#logLevel'>logLevel</a>
+        
+      
+        
+          <a class='summary-link'  href='master/api/classes/Logger/#colorize'>colorize</a>
+        
+      
+        
+          <a class='summary-link'  data-private-member=true  href='master/api/classes/Logger/#levels'>levels</a>
+        
+      
+        
+          <a class='summary-link'  data-private-member=true  href='master/api/classes/Logger/#colors'>colors</a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
       
     </div>
   </div>
@@ -182,6 +236,346 @@ logging, colorized output, and control over verbosity.</p>
 
 <div class='classitems'>
   
+    
+      <div class='item property' id='logLevel' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            logLevel<span class="type">:{String}</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/runtime/logger.js#L15'>
+              <span class='filename'>Defined in: lib/runtime/logger.js</span>
+              <span class='line'>Line: 15</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Default log level if none specified.</div>
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/runtime/logger.js#L15'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item property' id='colorize' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            colorize<span class="type">:{Boolean}</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/runtime/logger.js#L23'>
+              <span class='filename'>Defined in: lib/runtime/logger.js</span>
+              <span class='line'>Line: 23</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Specify if logs should be colorized.</div>
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/runtime/logger.js#L23'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item property' id='levels' data-private-member=true>
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            levels<span class="type">:{Array}</span>
+            
+              <div class='private tag'>Private</div>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/runtime/logger.js#L31'>
+              <span class='filename'>Defined in: lib/runtime/logger.js</span>
+              <span class='line'>Line: 31</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Available log levels that can be used.</div>
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/runtime/logger.js#L31'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item property' id='colors' data-private-member=true>
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            colors<span class="type">:{Object}</span>
+            
+              <div class='private tag'>Private</div>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/runtime/logger.js#L45'>
+              <span class='filename'>Defined in: lib/runtime/logger.js</span>
+              <span class='line'>Line: 45</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Color map for the available levels.</div>
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/runtime/logger.js#L45'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <div class='item method' id='debug' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            debug<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>msg</span><span class='param-type type'>:String</span></span></span><span class='param-paren'>)</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/runtime/logger.js#L59'>
+              <span class='filename'>Defined in: lib/runtime/logger.js</span>
+              <span class='line'>Line: 59</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Log at the &#39;debug&#39; level.</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>msg</div><div class='param-type type'>:String</div>
+                  
+                    <div class='param-description'>Message to log to the logger</div>
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <p class="no-return">Returns <code>undefined</code></p>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/runtime/logger.js#L59'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item method' id='info' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            info<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>msg</span><span class='param-type type'>:String</span></span></span><span class='param-paren'>)</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/runtime/logger.js#L69'>
+              <span class='filename'>Defined in: lib/runtime/logger.js</span>
+              <span class='line'>Line: 69</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Log at the &#39;info&#39; level.</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>msg</div><div class='param-type type'>:String</div>
+                  
+                    <div class='param-description'>Message to log to the logger</div>
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <p class="no-return">Returns <code>undefined</code></p>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/runtime/logger.js#L69'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item method' id='warn' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            warn<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>msg</span><span class='param-type type'>:String</span></span></span><span class='param-paren'>)</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/runtime/logger.js#L79'>
+              <span class='filename'>Defined in: lib/runtime/logger.js</span>
+              <span class='line'>Line: 79</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Log at the &#39;warn&#39; level.</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>msg</div><div class='param-type type'>:String</div>
+                  
+                    <div class='param-description'>Message to log to the logger</div>
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <p class="no-return">Returns <code>undefined</code></p>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/runtime/logger.js#L79'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item method' id='error' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            error<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>msg</span><span class='param-type type'>:String</span></span></span><span class='param-paren'>)</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/runtime/logger.js#L89'>
+              <span class='filename'>Defined in: lib/runtime/logger.js</span>
+              <span class='line'>Line: 89</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Log at the &#39;error&#39; level.</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>msg</div><div class='param-type type'>:String</div>
+                  
+                    <div class='param-description'>Message to log to the logger</div>
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <p class="no-return">Returns <code>undefined</code></p>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/runtime/logger.js#L89'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item method' id='log' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            log<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>level</span><span class='param-type type'>:String</span></span><span class='param'><span class='param-name'>msg</span><span class='param-type type'>:String</span></span></span><span class='param-paren'>)</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/runtime/logger.js#L99'>
+              <span class='filename'>Defined in: lib/runtime/logger.js</span>
+              <span class='line'>Line: 99</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Log a message to the logger at a specific log level.</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>level</div><div class='param-type type'>:String</div>
+                  
+                    <div class='param-description'>Level to log at</div>
+                  
+                </div>
+              
+                <div class='param'>
+                  <div class='param-name'>msg</div><div class='param-type type'>:String</div>
+                  
+                    <div class='param-description'>Message to log to the logger</div>
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <p class="no-return">Returns <code>undefined</code></p>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/runtime/logger.js#L99'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
   
 </div>
 
