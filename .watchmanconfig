@@ -1,4 +1,0 @@
-{
-  "ignore_vcs": [ ".git" ],
-  "ignore_dirs": ["dist", "guides", "node_modules"]
-}
