@@ -15,12 +15,13 @@ export default class BuildOrigin {
     this.dir = dir;
     this.project = project;
     this.lint = options.lint;
+    this.isDummy = options.isDummy;
     this.pkg = require(path.join(this.dir, 'package.json'));
   }
 
   sourceDirs() {
     let dirs = [ 'app', 'config', 'lib' ];
-    if (this.environment === 'test') {
+    if (this.project.environment === 'test') {
       dirs.push('test');
     }
     return dirs;
@@ -89,22 +90,30 @@ export default class BuildOrigin {
     };
   }
 
+  treeForTest() {
+    if (this.isDummy) {
+      return '..';
+    }
+    return 'test';
+  }
+
   toTree() {
     let dirs = this.sourceDirs();
-    dirs = dirs.filter((dir) => fs.existsSync(path.join(this.dir, dir)));
 
     let sourceTrees = dirs.map((dir) => {
       let treeFor = this[`treeFor${ upperFirst(dir) }`] || this.treeFor;
-      let tree = treeFor(path.join(this.dir, dir));
-      return new Funnel(tree, { annotation: dir, destDir: dir });
-    });
-
+      let tree = treeFor.call(this, dir);
+      if (typeof tree !== 'string' || fs.existsSync(path.join(this.dir, tree))) {
+        return new Funnel(path.join(this.dir, tree), { annotation: dir, destDir: dir });
+      }
+      return false;
+    }).filter(Boolean);
 
     // We do this first because broccoli-lint-eslint is weird
     // https://github.com/ember-cli/broccoli-lint-eslint/pull/25
-    if (this.lint && false) {
+    if (this.lint) {
       // If it's in test environment, generate test modules for each linted file
-      if (this.environment === 'test') {
+      if (this.project.environment === 'test') {
         let lintTestTrees = sourceTrees.map((tree) => {
           return this.generateLintTestTree(tree);
         });

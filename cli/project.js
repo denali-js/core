@@ -28,6 +28,7 @@ export default class Project {
     let preseededAddons = [];
     if (pkg.keywords.includes('denali-addon')) {
       preseededAddons.push(this.dir);
+      this.isAddon = true;
       this.dir = path.join(this.dir, 'test/dummy');
     }
 
@@ -136,7 +137,7 @@ export default class Project {
 
   _createBuildTree() {
     // Create a builder for the app itself first, so that addons can modify it
-    this.appBuilder = this._builderForDir(this.dir);
+    this.appBuilder = this._builderForDir(this.dir, { isDummy: this.isAddon });
     // Create builders for each addon
     let builders = this.addons.map((dir) => this._builderForDir(dir));
     // Add the app builder last to ensure it overwrites any addon trees
@@ -145,14 +146,14 @@ export default class Project {
     return new MergeTree(buildTrees, { overwrite: true });
   }
 
-  _builderForDir(dir) {
+  _builderForDir(dir, options = {}) {
     let BuilderClass;
     if (fs.existsSync(path.join(dir, 'denali-build.js'))) {
       BuilderClass = require(path.join(dir, 'denali-build.js'));
     } else {
       BuilderClass = Builder;
     }
-    return new BuilderClass(dir, this, { lint: this.lint });
+    return new BuilderClass(dir, this, Object.assign({ lint: this.lint }, options));
   }
 
   _finishBuild(results, outputDir) {

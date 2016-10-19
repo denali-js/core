@@ -25,7 +25,7 @@ export default class TestCommand extends Command {
     },
     watch: {
       description: 'Re-run the tests when the source files change',
-      defaultValue: null,
+      defaultValue: false,
       type: Boolean
     },
     grep: {
@@ -52,7 +52,7 @@ export default class TestCommand extends Command {
 
   run({ params, flags }) {
     this.files = params.files || 'test/**/*.js';
-    this.watch = flags.watch || flags.environment === 'development';
+    this.watch = flags.watch;
     this.port = flags.port;
     this.debug = flags.debug;
     this.grep = flags.grep;
