@@ -28,7 +28,7 @@ export default class TestCommand extends Command {
       defaultValue: false,
       type: Boolean
     },
-    grep: {
+    match: {
       description: 'Filter which tests run based on the supplied regex pattern',
       defaultValue: null,
       type: String
@@ -55,7 +55,7 @@ export default class TestCommand extends Command {
     this.watch = flags.watch;
     this.port = flags.port;
     this.debug = flags.debug;
-    this.grep = flags.grep;
+    this.match = flags.match;
 
     this.project = new Project({
       environment: 'test',
@@ -83,14 +83,14 @@ export default class TestCommand extends Command {
   }
 
   runTests(buildDir) {
-    let args = [ this.files, '--colors' ];
-    if (this.grep) {
-      args.push('--grep', this.grep);
+    let args = [ this.files, '!test/dummy/**/*' ];
+    if (this.match) {
+      args.push('--match', this.match);
     }
     if (this.debug) {
       args.push('--inspect', '--debug-brk');
     }
-    this.tests = spawn('./node_modules/.bin/mocha', args, {
+    this.tests = spawn('./node_modules/.bin/ava', args, {
       cwd: buildDir,
       stdio: [ 'pipe', process.stdout, process.stderr ],
       env: assign({}, process.env, {

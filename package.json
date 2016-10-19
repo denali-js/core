@@ -37,7 +37,6 @@
     "codeclimate-test-reporter": "^0.4.0",
     "faker": "^3.0.1",
     "in-publish": "2.0.0",
-    "mocha-eslint": "^3.0.1",
     "must": "^0.13.1",
     "nyc": "^8.1.0",
     "rimraf": "^2.4.2",
@@ -50,7 +49,6 @@
     "lint": "scripts/lint.sh",
     "prepublish": "scripts/prepublish.sh",
     "release": "scripts/release.sh",
-    "pretest": "scripts/pretest.sh",
     "test": "scripts/test.sh",
     "preversion": "scripts/preversion.sh",
     "watch": "scripts/watch.sh"
@@ -58,6 +56,7 @@
   "license": "MIT",
   "dependencies": {
     "accepts": "^1.3.3",
+    "ava": "^0.16.0",
     "babel-cli": "^6.16.0",
     "babel-core": "^6.16.0",
     "babel-eslint": "^7.0.0",
@@ -98,7 +97,6 @@
     "js-string-escape": "^1.0.1",
     "lodash": "^4.16.2",
     "mkdirp": "^0.5.1",
-    "mocha": "^3.1.0",
     "morgan": "^1.6.1",
     "nodemailer": "^2.4.2",
     "nsp": "^2.2.0",
