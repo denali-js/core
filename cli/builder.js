@@ -74,9 +74,18 @@ export default class BuildOrigin {
     return {
       presets: [ 'latest' ],
       plugins: [
-        'transform-class-properties'
+        'transform-class-properties',
+        'transform-async-to-generator'
       ],
-      browserPolyfill: true
+      ignore: [
+        'lib/cli/blueprints/*/files/**',
+        'test/fixtures/cli/**'
+      ],
+      env: {
+        test: {
+          plugins: [ 'istanbul' ]
+        }
+      }
     };
   }
 
