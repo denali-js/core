@@ -120,11 +120,12 @@ export default class Project {
   findBlueprint(name) {
     // Search every addon plus this app, with precedence given to the app
     let blueprintOrigins = this.addons.concat([ this.dir ]);
-    let allBlueprints = blueprintOrigins.reduce((blueprints, addonDir) => {
-      let addonName = require(path.join(addonDir), 'package.json').name;
-      let blueprintDir = path.join(addonDir, 'blueprints');
-      fs.readdirSync(blueprintDir)
-        .filter((filepath) => fs.statSync(filepath).isDirectory())
+    let allBlueprints = blueprintOrigins.reduce((blueprints, originDir) => {
+      let addonName = require(path.join(originDir, 'package.json')).name;
+      let blueprintDir = path.join(originDir, 'blueprints');
+      if (isDir(blueprintDir)) {
+        fs.readdirSync(blueprintDir)
+        .filter((filepath) => fs.statSync(path.join(blueprintDir, filepath)).isDirectory())
         .forEach((blueprintName) => {
           // Add each blueprint under it's addon namespace, and without the
           // namespace, so that the last addon (or the app) will win in case of
@@ -132,6 +133,7 @@ export default class Project {
           blueprints[`${ addonName }:${ blueprintName }`] = path.join(blueprintDir, blueprintName);
           blueprints[blueprintName] = path.join(blueprintDir, blueprintName);
         });
+      }
       return blueprints;
     }, {});
     return allBlueprints[name];
