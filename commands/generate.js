@@ -29,10 +29,14 @@ export default class GenerateCommand extends Command {
     } else {
       let project = new Project();
       let blueprintDir = project.findBlueprint(params.blueprintName);
-      let Blueprint = require(blueprintDir).default;
-      let blueprint = new Blueprint(blueprintDir);
-      let blueprintArgs = this.parseArgs.call(blueprint, argTokens.slice(1));
-      blueprint.generate(blueprintArgs);
+      if (!blueprintDir) {
+        ui.error(`No blueprint called ${ params.blueprintName } was found.`);
+      } else {
+        let Blueprint = require(blueprintDir).default;
+        let blueprint = new Blueprint(blueprintDir);
+        let blueprintArgs = this.parseArgs.call(blueprint, argTokens.slice(1));
+        blueprint.generate(blueprintArgs);
+      }
     }
   }
 
