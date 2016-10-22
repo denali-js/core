@@ -17,7 +17,7 @@ import eachDir from '../lib/utils/each-dir';
 
 export default class Project {
 
-  constructor(options) {
+  constructor(options = {}) {
     this.environment = options.environment || 'development';
     this.dir = options.dir || process.cwd();
     this.projectDir = this.dir;
