@@ -42,8 +42,8 @@ export default class BuildOrigin {
         'transform-async-to-generator'
       ],
       ignore: [
-        'lib/cli/blueprints/*/files/**',
-        'test/fixtures/cli/**'
+        'blueprints/*/files/**',
+        'test/dummy/**'
       ],
       env: {
         test: {
