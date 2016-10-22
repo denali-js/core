@@ -112,12 +112,9 @@ export default class ServerCommand extends Command {
       let result = code === 0 ? 'exited' : 'crashed';
       ui.error(`Server ${ result }. waiting for changes to restart ...`);
     });
-    let cleanExit = () => {
+    process.on('exit', () => {
       this.server.kill();
-      process.exit();
-    };
-    process.on('SIGINT', cleanExit);
-    process.on('SIGTERM', cleanExit);
+    });
   }
 
 }
