@@ -13,7 +13,7 @@ let env = process.env.DENALI_ENV || process.env.NODE_ENV || 'development';
 
 let defaultLevels = {
   development: 'debug',
-  test: 'silent',
+  test: 'info',
   production: 'info'
 };
 
