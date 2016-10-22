@@ -33,12 +33,12 @@ export default class TestCommand extends Command {
       defaultValue: null,
       type: String
     },
-    skipLint: {
+    'skip-lint': {
       description: 'Skip linting the app source files',
       defaultValue: false,
       type: Boolean
     },
-    skipAudit: {
+    'skip-audit': {
       description: 'Skip auditing your package.json for vulnerabilites',
       defaultValue: false,
       type: Boolean
@@ -59,8 +59,8 @@ export default class TestCommand extends Command {
 
     this.project = new Project({
       environment: 'test',
-      audit: !flags.skipAudit,
-      lint: !flags.skipLint
+      audit: !flags['skip-audit'],
+      lint: !flags['skip-lint']
     });
 
     if (flags.watch || flags.environment === 'development') {
