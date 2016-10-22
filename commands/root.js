@@ -8,7 +8,8 @@ import padEnd from 'lodash/padEnd';
 
 export default class RootCommand extends Command {
 
-  hidden = true;
+  static commandName = 'root';
+  static hidden = true;
 
   params = [];
 
