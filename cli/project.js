@@ -198,8 +198,10 @@ export default class Project {
       try {
         fs.symlinkSync(source, dest);
       } catch (e) {
-        if (e.message.match(/EEXIST/) && isDir(path.join(source, 'node_modules'))) {
-          this._linkDependencies(path.join(source, 'node_modules'), path.join(dest, 'node_modules'));
+        if (e.message.match(/EEXIST/)) {
+          if (isDir(path.join(source, 'node_modules'))) {
+            this._linkDependencies(path.join(source, 'node_modules'), path.join(dest, 'node_modules'));
+          }
         } else {
           throw e;
         }
