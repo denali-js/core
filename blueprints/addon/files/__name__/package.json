@@ -1,0 +1,29 @@
+{
+  "name": "<%= name %>",
+  "version": "0.0.1",
+  "scripts": {
+    "build": "denali build",
+    "test": "denali test"
+  },
+  "keywords": [
+    "denali",
+    "denali-addon",
+    "addon"
+  ],
+  "main": "app/addon.js",
+  "dependencies": {
+    "babel-plugin-transform-class-properties": "^6.8.0",
+    "babel-preset-latest": "^6.16.0",
+    "babel-register": "^6.8.0",
+    "bluebird": "^2.9.25",
+    "eslint": "^2.11.0",
+    "eslint-config-denali": "^1.1.0",
+    "denali": "<%= denaliVersion %>",
+    "lodash": "^4.0.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^6.0.4",
+    "eslint": "^2.9.0",
+    "must": "^0.13.1"
+  }
+}
