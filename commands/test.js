@@ -43,6 +43,11 @@ export default class TestCommand extends Command {
       defaultValue: false,
       type: Boolean
     },
+    verbose: {
+      description: 'Print detailed output of the status of your test run',
+      defaultValue: false,
+      type: Boolean
+    },
     output: {
       description: 'The directory to write the compiled app to. Defaults to a tmp directory',
       defaultValue: 'dist',
@@ -56,6 +61,7 @@ export default class TestCommand extends Command {
     this.port = flags.port;
     this.debug = flags.debug;
     this.match = flags.match;
+    this.verbose = flags.verbose;
 
     this.project = new Project({
       environment: 'test',
@@ -89,6 +95,9 @@ export default class TestCommand extends Command {
     }
     if (this.debug) {
       args.push('--inspect', '--debug-brk');
+    }
+    if (this.verbose) {
+      args.push('--verbose');
     }
     this.tests = spawn('./node_modules/.bin/ava', args, {
       cwd: buildDir,
