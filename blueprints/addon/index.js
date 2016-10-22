@@ -2,11 +2,13 @@ import ora from 'ora';
 import Promise from 'bluebird';
 import { exec } from 'child_process';
 import startCase from 'lodash/startCase';
+import cmdExists from 'command-exists';
 import ui from '../../cli/ui';
 import Blueprint from '../../cli/blueprint';
 import pkg from '../../package.json';
 
 const run = Promise.promisify(exec);
+const commandExists = Promise.promisify(cmdExists);
 
 export default class AddonBlueprint extends Blueprint {
 
@@ -16,8 +18,8 @@ export default class AddonBlueprint extends Blueprint {
   params = [ 'name' ];
 
   flags = {
-    'skip-npm': {
-      description: 'Do not run npm install on new app',
+    'skip-deps': {
+      description: 'Do not install dependencies on new app',
       defaultValue: false,
       type: Boolean
     }
@@ -38,10 +40,15 @@ export default class AddonBlueprint extends Blueprint {
     spinner.text = 'Installing npm dependencies ...';
     spinner.start();
     return Promise.resolve().then(() => {
-      if (!flags['skip-npm']) {
-        return run('npm install --loglevel=error', { cwd: name }).then(() => {
+      if (!flags['skip-deps']) {
+        return commandExists('yarn').then((yarnExists) => {
+          if (yarnExists) {
+            return run('yarn install', { cwd: name });
+          }
+          return run('npm install --loglevel=error', { cwd: name });
+        }).then(() => {
           spinner.stop();
-          ui.success('Installing npm dependencies ... done ✔');
+          ui.success('Installing dependencies ... done ✔');
         });
       }
     }).then(() => {
