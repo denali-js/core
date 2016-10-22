@@ -25,17 +25,19 @@ export default class Project {
     this.audit = options.audit;
 
     let pkg = require(path.join(this.dir, 'package.json'));
-    let preseededAddons = [];
-    if (pkg.keywords.includes('denali-addon')) {
-      preseededAddons.push(this.dir);
+    if (pkg.keywords && pkg.keywords.includes('denali-addon')) {
+      this.addons = discoverAddons(this.dir, {
+        environment: this.environment,
+        preseededAddons: [ this.dir ]
+      });
       this.isAddon = true;
       this.dir = path.join(this.dir, 'test/dummy');
+    } else {
+      this.addons = discoverAddons(this.dir, {
+        environment: this.environment
+      });
     }
 
-    this.addons = discoverAddons(this.dir, {
-      environment: this.environment,
-      preseededAddons
-    });
     this.buildTree = this._createBuildTree();
   }
 
