@@ -1,13 +1,12 @@
 import fs from 'fs';
 import path from 'path';
 import upperFirst from 'lodash/upperFirst';
-import dedent from 'dedent-js';
-import escape from 'js-string-escape';
 import Funnel from 'broccoli-funnel';
 import BabelTree from 'broccoli-babel-transpiler';
-import LintTree from 'broccoli-lint-eslint';
 import MergeTree from 'broccoli-merge-trees';
+import LintTree from './lint-tree';
 import PackageTree from './package-tree';
+
 
 export default class BuildOrigin {
 
@@ -29,42 +28,6 @@ export default class BuildOrigin {
 
   treeFor(dir) {
     return dir;
-  }
-
-  generateLintTestTree(tree) {
-    return new LintTree(tree, {
-      testGenerator(relativePath, errors, results) {
-        let passed = !results.errorCount || results.errorCount.length === 0;
-        let messages = `${ relativePath } should pass ESLint`;
-        if (results.messages) {
-          messages += '\n\n';
-          messages += errors.map((error) => {
-            return `${ error.line }:${ error.column } - ${ error.message } (${ error.ruleId })`;
-          }).join('\n');
-        }
-        let output = dedent`import { AssertionError } from 'must';
-                            describe('ESLint | ${ escape(relativePath) }', function() {
-                              it('should pass ESLint', function() {
-                            `;
-        if (passed) {
-          output += '    // ESLint passed\n';
-        } else {
-          output += dedent`// ESLint failed
-                           let error = new AssertionError('${ escape(messages) }');
-                           error.stack = undefined;
-                           throw error;`;
-        }
-        output += `  });\n});\n`;
-        return output;
-      },
-      format() {
-        return '\r';
-      }
-    });
-  }
-
-  lintTree(tree) {
-    return new LintTree(tree);
   }
 
   transformSourceTree(tree) {
@@ -115,14 +78,16 @@ export default class BuildOrigin {
       // If it's in test environment, generate test modules for each linted file
       if (this.project.environment === 'test') {
         let lintTestTrees = sourceTrees.map((tree) => {
-          return this.generateLintTestTree(tree);
+          return new LintTree(tree, { generateTests: true, rootDir: this.dir });
         });
         let lintTestTree = new MergeTree(lintTestTrees);
         lintTestTree = new Funnel(lintTestTree, { destDir: 'test/lint' });
         sourceTrees.push(lintTestTree);
       // Otherwise, just lint and move on
       } else {
-        sourceTrees = sourceTrees.map((tree) => this.lintTree(tree));
+        sourceTrees = sourceTrees.map((tree) => {
+          return new LintTree(tree, { rootDir: this.dir });
+        });
       }
     }
 
