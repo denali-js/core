@@ -43,15 +43,11 @@
     "standard-version": "^2.4.0"
   },
   "scripts": {
-    "build": "scripts/build.sh",
     "coverage": "scripts/coverage.sh",
     "deploy-docs": "scripts/deploy-docs.sh",
-    "lint": "scripts/lint.sh",
-    "prepublish": "scripts/prepublish.sh",
-    "release": "scripts/release.sh",
-    "test": "scripts/test.sh",
     "preversion": "scripts/preversion.sh",
-    "watch": "scripts/watch.sh"
+    "release": "scripts/release.sh",
+    "test": "scripts/test.sh"
   },
   "license": "MIT",
   "dependencies": {
