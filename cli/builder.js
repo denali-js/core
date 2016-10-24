@@ -44,12 +44,7 @@ export default class BuildOrigin {
       ignore: [
         'blueprints/*/files/**',
         'test/dummy/**'
-      ],
-      env: {
-        test: {
-          plugins: [ 'istanbul' ]
-        }
-      }
+      ]
     };
   }
 

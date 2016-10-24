@@ -154,6 +154,7 @@ export default class Project {
     let BuilderClass;
     if (fs.existsSync(path.join(dir, 'denali-build.js'))) {
       BuilderClass = require(path.join(dir, 'denali-build.js'));
+      BuilderClass = BuilderClass.default || BuilderClass;
     } else {
       BuilderClass = Builder;
     }
