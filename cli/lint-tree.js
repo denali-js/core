@@ -2,6 +2,8 @@ import path from 'path';
 import escape from 'js-string-escape';
 import Filter from 'broccoli-filter';
 import { CLIEngine } from 'eslint';
+import dedent from 'dedent-js';
+import ui from './ui';
 
 const IGNORED_FILE_MESSAGE_REGEXP = /(?:File ignored by default\.)|(?:File ignored because of a matching ignore pattern\.)/;
 
@@ -33,7 +35,12 @@ export default class LintTree extends Filter {
       return this.testGenerator(relativePath, errors);
     }
 
-    errors.forEach((error) => console.log(error)); // eslint-disable-line no-console
+    errors.forEach((error) => {
+      ui.warn(dedent`
+        ${ error.source }
+        ${ error.message } (${ error.ruleId })
+      `);
+    });
     return content;
   }
 
