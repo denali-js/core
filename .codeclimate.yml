@@ -16,3 +16,4 @@ exclude_paths:
 - node_modules/
 - scripts/
 - tmp/
+- blueprints/*/files/**/*
