@@ -33,6 +33,11 @@ export default class TestCommand extends Command {
       defaultValue: null,
       type: String
     },
+    timeout: {
+      description: 'Set the timeout for all tests, i.e. --timeout 10s, --timeout 2m',
+      defaultValue: null,
+      type: String
+    },
     'skip-lint': {
       description: 'Skip linting the app source files',
       defaultValue: false,
@@ -62,6 +67,7 @@ export default class TestCommand extends Command {
     this.debug = flags.debug;
     this.match = flags.match;
     this.verbose = flags.verbose;
+    this.timeout = flags.timeout;
 
     this.project = new Project({
       environment: 'test',
@@ -98,6 +104,9 @@ export default class TestCommand extends Command {
     }
     if (this.verbose) {
       args.push('--verbose');
+    }
+    if (this.timeout) {
+      args.push('--timeout', this.timeout);
     }
     this.tests = spawn('./node_modules/.bin/ava', args, {
       cwd: buildDir,
