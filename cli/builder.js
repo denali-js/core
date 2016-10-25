@@ -14,13 +14,22 @@ export default class BuildOrigin {
     this.dir = dir;
     this.project = project;
     this.lint = options.lint;
-    this.isDummy = options.isDummy;
+    this.environment = options.environment;
+
     this.pkg = require(path.join(this.dir, 'package.json'));
+  }
+
+  get isAddon() {
+    return this.pkg.keywords && this.pkg.keywords.includes('denali-addon');
+  }
+
+  get isProjectRoot() {
+    return this.project.dir === this.dir;
   }
 
   sourceDirs() {
     let dirs = [ 'app', 'config', 'lib' ];
-    if (this.project.environment === 'test') {
+    if (this.environment === 'test') {
       dirs.push('test');
     }
     return dirs;
@@ -46,13 +55,6 @@ export default class BuildOrigin {
         'test/dummy/**'
       ]
     };
-  }
-
-  treeForTest() {
-    if (this.isDummy) {
-      return '..';
-    }
-    return 'test';
   }
 
   toTree() {
@@ -90,9 +92,22 @@ export default class BuildOrigin {
     sourceTrees.push(new PackageTree(this.pkg));
     let mergedSource = new MergeTree(sourceTrees, { overwrite: true });
 
-    // If this is an addon builder, move the source into a node_modules folder
-    if (this.project.appBuilder !== this) {
-      mergedSource = new Funnel(mergedSource, { destDir: `node_modules/${ this.pkg.name }` });
+    if (this.isAddon) {
+      // If this is an addon, the project root, and we are building
+      // for "test", we want to move the tests from the addon up to the dummy
+      // app so they are actually run, but move everything else into
+      // node_modules like normal.
+      if (this.isProjectRoot && this.environment === 'test') {
+        let addonTests = new Funnel(mergedSource, { include: [ 'test/**/*' ] });
+        let addonWithoutTests = new Funnel(mergedSource, {
+          exclude: [ 'test/**/*' ],
+          destDir: `node_modules/${ this.pkg.name }`
+        });
+        mergedSource = new MergeTree([ addonWithoutTests, addonTests ]);
+      // If it's just any old addon, move it into the local node_modules folder
+      } else {
+        mergedSource = new Funnel(mergedSource, { destDir: `node_modules/${ this.pkg.name }` });
+      }
     }
 
     return mergedSource;

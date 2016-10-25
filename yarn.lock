@@ -1202,7 +1202,7 @@ broccoli-plugin, broccoli-plugin@^1.0.0:
     rimraf "^2.3.4"
     symlink-or-copy "^1.0.1"
 
-broccoli-slow-trees@^1.0.0:
+broccoli-slow-trees@^1.0.0, broccoli-slow-trees@1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/broccoli-slow-trees/-/broccoli-slow-trees-1.1.0.tgz#426c5724e008107e4573f73e8a9ca702916b78f7"
 
@@ -1569,7 +1569,7 @@ command-exists:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/command-exists/-/command-exists-1.0.2.tgz#1f0e104ed5f252d2b857cdd69b47cfedc95756e9"
 
-commander@^2.0.0, commander@^2.5.0, commander@^2.8.1, commander@^2.9.0:
+commander@^2.0.0, commander@^2.5.0, commander@^2.8.1, commander@^2.9.0, commander@2.9.0:
   version "2.9.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.9.0.tgz#9c99094176e12240cb22d6c5146098400fe0f7d4"
   dependencies:
@@ -1857,7 +1857,13 @@ cors@^2.7.1:
   dependencies:
     vary "^1"
 
-cross-spawn@^4:
+create-error-class@^3.0.1:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/create-error-class/-/create-error-class-3.0.2.tgz#06be7abef947a3f14a30fd610671d401bca8b7b6"
+  dependencies:
+    capture-stack-trace "^1.0.0"
+
+cross-spawn@^4, cross-spawn@^4.0.0:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-4.0.2.tgz#7b9247621c23adfdd3856004a823cbe397424d41"
   dependencies:
@@ -3746,7 +3752,7 @@ minimatch@0.3:
     lru-cache "2"
     sigmund "~1.0.0"
 
-minimist@^1.1.0, minimist@^1.1.3, minimist@^1.2.0, minimist@1.2.0:
+minimist@^1.1.0, minimist@^1.1.3, minimist@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.0.tgz#a35008b20f41383eec1fb914f4cd5df79a264284"
 
@@ -4552,11 +4558,7 @@ repeating@^2.0.0:
   dependencies:
     is-finite "^1.0.0"
 
-replaceall@^0.1.6:
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/replaceall/-/replaceall-0.1.6.tgz#81d81ac7aeb72d7f5c4942adf2697a3220688d8e"
-
-request@^2.65.0, request@2.75.0, request@2.x:
+request@^2.65.0, request@2.x:
   version "2.75.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.75.0.tgz#d2b8268a286da13eaa5d01adf5d18cc90f657d93"
   dependencies:

@@ -6,6 +6,7 @@ import broccoli from 'broccoli';
 import { Watcher } from 'broccoli/lib';
 import rimraf from 'rimraf';
 import MergeTree from 'broccoli-merge-trees';
+import printSlowNodes from 'broccoli-slow-trees';
 import { sync as copyDereferenceSync } from 'copy-dereference';
 import chalk from 'chalk';
 import ui from './ui';
@@ -20,25 +21,19 @@ export default class Project {
   constructor(options = {}) {
     this.environment = options.environment || 'development';
     this.dir = options.dir || process.cwd();
-    this.projectDir = this.dir;
     this.lint = options.lint;
     this.audit = options.audit;
 
-    let pkg = require(path.join(this.dir, 'package.json'));
-    if (pkg.keywords && pkg.keywords.includes('denali-addon')) {
-      this.addons = discoverAddons(this.dir, {
-        environment: this.environment,
-        preseededAddons: [ this.dir ]
-      });
-      this.isAddon = true;
-      this.dir = path.join(this.dir, 'test/dummy');
-    } else {
-      this.addons = discoverAddons(this.dir, {
-        environment: this.environment
-      });
-    }
-
+    this.pkg = require(path.join(this.dir, 'package.json'));
+    this.addons = discoverAddons(this.dir, {
+      environment: this.environment,
+      preseededAddons: this.isAddon ? [ this.dir ] : null
+    });
     this.buildTree = this._createBuildTree();
+  }
+
+  get isAddon() {
+    return this.pkg.keywords && this.pkg.keywords.includes('denali-addon');
   }
 
   build(outputDir = 'dist') {
@@ -46,7 +41,7 @@ export default class Project {
     let broccoliBuilder = new broccoli.Builder(this.buildTree);
     return broccoliBuilder.build()
       .then((results) => {
-        this._finishBuild(results.directory, outputDir);
+        this._finishBuild(results, outputDir);
       }).finally(() => {
         return broccoliBuilder.cleanup();
       }).catch((err) => {
@@ -75,7 +70,7 @@ export default class Project {
     process.on('SIGTERM', onExit);
 
     watcher.on('change', (results) => {
-      this._finishBuild(results.directory, outputDir);
+      this._finishBuild(results, outputDir);
       onBuild();
     });
 
@@ -140,14 +135,34 @@ export default class Project {
   }
 
   _createBuildTree() {
-    // Create a builder for the app itself first, so that addons can modify it
-    this.appBuilder = this._builderForDir(this.dir, { isDummy: this.isAddon });
-    // Create builders for each addon
-    let builders = this.addons.map((dir) => this._builderForDir(dir));
-    // Add the app builder last to ensure it overwrites any addon trees
-    builders.push(this.appBuilder);
-    let buildTrees = builders.map((builder) => builder.toTree());
-    return new MergeTree(buildTrees, { overwrite: true });
+    let appPath = this.isAddon ? path.join(this.dir, 'test', 'dummy') : this.dir;
+    let app = this._builderForDir(appPath, {
+      lint: this.lint,
+      environment: this.environment
+    });
+    let addons = this.addons.map((addonDir) => {
+      // By default, addons are built with the same environment as the consuming
+      // app, but with two exceptions:
+      // 1. If the consuming app env is "test", the addons are built with an env
+      //    of "development", since we only want to test the consuming app.
+      let environment = this.environment === 'test' ? 'development' : this.environment;
+      // 2. If this is an addon & dummy app, then we make a special case
+      //    exception for the addon itself. So if we run `denali test` in an
+      //    addon folder, it will build the dummy app and the addon under test
+      //    with an env of "test" (but all *other* addons will be "development")
+      if (addonDir === this.dir) {
+        environment = this.environment;
+      }
+      return this._builderForDir(addonDir, {
+        lint: addonDir === this.dir ? this.lint : false,
+        environment,
+        app
+      });
+    });
+
+    let trees = addons.map((addon) => addon.toTree());
+    trees.push(app.toTree());
+    return new MergeTree(trees, { overwrite: true });
   }
 
   _builderForDir(dir, options = {}) {
@@ -158,16 +173,16 @@ export default class Project {
     } else {
       BuilderClass = Builder;
     }
-    return new BuilderClass(dir, this, Object.assign({ lint: this.lint }, options));
+    return new BuilderClass(dir, this, options);
   }
 
   _finishBuild(results, outputDir) {
     rimraf.sync(outputDir);
-    copyDereferenceSync(results, outputDir);
-    this._linkDependencies(path.join(this.projectDir, 'node_modules'), path.join(outputDir, 'node_modules'));
-    ui.info('Build successful');
+    copyDereferenceSync(results.directory, outputDir);
+    this._linkDependencies(path.join(this.dir, 'node_modules'), path.join(outputDir, 'node_modules'));
+    printSlowNodes(results.graph);
     if (this.audit) {
-      let pkg = path.join(this.projectDir, 'package.json');
+      let pkg = path.join(this.dir, 'package.json');
       nsp.check({ package: pkg }, (err, vulnerabilities) => {
         if (err && [ 'ENOTFOUND', 'ECONNRESET' ].includes(err.code)) {
           ui.warn('Error trying to scan package dependencies for vulnerabilities with nsp, unable to reach server. Skipping scan ...');

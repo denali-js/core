@@ -69,6 +69,7 @@
     "broccoli-lint-eslint": "^2.7.0",
     "broccoli-merge-trees": "^1.1.4",
     "broccoli-plugin": "^1.2.2",
+    "broccoli-slow-trees": "1.1.0",
     "broccoli-stew": "^1.4.0",
     "chalk": "^1.1.1",
     "cli-table2": "^0.2.0",
