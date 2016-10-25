@@ -3,7 +3,7 @@ import path from 'path';
 import { CommandAcceptanceTest } from 'denali';
 
 test('server command > launches a server', async () => {
-  let server = new CommandAcceptanceTest('server');
+  let server = new CommandAcceptanceTest('server --port 3001');
 
   return server.spawn({
     env: {
@@ -18,7 +18,7 @@ test('server command > launches a server', async () => {
 test('server command > launches a server based on the dummy app in an addon', async () => {
   let generateAddon = new CommandAcceptanceTest('addon foobar', { populateWithDummy: false });
   await generateAddon.run();
-  let server = new CommandAcceptanceTest('server', {
+  let server = new CommandAcceptanceTest('server --port 3002', {
     dir: path.join(generateAddon.dir, 'foobar'),
     populateWithDummy: false
   });
