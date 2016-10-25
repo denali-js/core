@@ -4,12 +4,9 @@ export default class DenaliBuilder extends Builder {
 
   babelOptions() {
     let options = super.babelOptions(...arguments);
-    options.env = {
-      // Add code coverage support
-      test: {
-        plugins: [ 'istanbul' ]
-      }
-    };
+    if (this.environment === 'test') {
+      options.plugins.push('istanbul');
+    }
     return options;
   }
 
