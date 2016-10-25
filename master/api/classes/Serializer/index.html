@@ -217,9 +217,9 @@ sent from how that data is structured / rendered.</p>
           <div class='item-descriptor'>
             attributes<span class="type">:{String[]}</span>
             
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializer.js#L51'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializer.js#L50'>
               <span class='filename'>Defined in: lib/data/serializer.js</span>
-              <span class='line'>Line: 51</span>
+              <span class='line'>Line: 50</span>
             </a>
           </div>
         </h3>
@@ -228,7 +228,7 @@ sent from how that data is structured / rendered.</p>
           <div class='item-description'>The list of attribute names that should be serialized. Attributes not
 included in this list will be omitted from the final rendered payload.</div>
           <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializer.js#L51'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializer.js#L50'>
               Improve this documentation
             </a>
           </div>
@@ -242,9 +242,9 @@ included in this list will be omitted from the final rendered payload.</div>
           <div class='item-descriptor'>
             relationships<span class="type">:{Object}</span>
             
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializer.js#L60'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializer.js#L59'>
               <span class='filename'>Defined in: lib/data/serializer.js</span>
-              <span class='line'>Line: 60</span>
+              <span class='line'>Line: 59</span>
             </a>
           </div>
         </h3>
@@ -275,7 +275,7 @@ The model type of the related records.
 Specific serializers may also accept additional options in the relationship
 configuration to customize their response format.</div>
           <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializer.js#L60'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializer.js#L59'>
               Improve this documentation
             </a>
           </div>
@@ -288,7 +288,7 @@ configuration to customize their response format.</div>
       <div class='item method' id='serialize' >
         <h3 class='item-title'>
           <div class='item-descriptor'>
-            serialize<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>payload</span><span class='param-type type'>:Object[]|Error[]|Object|Error</span></span><span class='param'><span class='param-name'>options</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
+            serialize<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>response</span><span class='param-type type'>:Response</span></span><span class='param'><span class='param-name'>options</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
             
             <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializer.js#L18'>
               <span class='filename'>Defined in: lib/data/serializer.js</span>
@@ -298,15 +298,15 @@ configuration to customize their response format.</div>
         </h3>
         <div class='item-body'>
           <div class='item-header'>Description</div>
-          <div class='item-description'>Take the supplied payload of record(s) or error(s) and the supplied options
-and return a rendered a JSON response object.</div>
+          <div class='item-description'>Take the supplied Response instance and the supplied options and return a
+rendered a JSON response object.</div>
 
           <div class='item-header'>Parameters</div>
           
             <div class='params'>
               
                 <div class='param'>
-                  <div class='param-name'>payload</div><div class='param-type type'>:Object[]|Error[]|Object|Error</div>
+                  <div class='param-name'>response</div><div class='param-type type'>:Response</div>
                   
                 </div>
               
@@ -320,12 +320,7 @@ and return a rendered a JSON response object.</div>
 
           <div class='item-header'>Returns</div>
           
-            <div class='return'>
-              <div class='return-type type'>Object</div>
-              
-                <div class='return-description'>the JSON response object</div>
-              
-            </div>
+            <p class="no-return">Returns <code>undefined</code></p>
           
           <div class='improve'>
             <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializer.js#L18'>
@@ -342,9 +337,9 @@ and return a rendered a JSON response object.</div>
           <div class='item-descriptor'>
             parse<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>payload</span><span class='param-type type'>:Object</span></span><span class='param'><span class='param-name'>options</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializer.js#L31'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/serializer.js#L30'>
               <span class='filename'>Defined in: lib/data/serializer.js</span>
-              <span class='line'>Line: 31</span>
+              <span class='line'>Line: 30</span>
             </a>
           </div>
         </h3>
@@ -385,7 +380,7 @@ unchanged.</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializer.js#L31'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/serializer.js#L30'>
               Improve this documentation
             </a>
           </div>
