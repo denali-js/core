@@ -216,6 +216,7 @@ export default class Project {
       } catch (e) {
         if (e.message.match(/EEXIST/)) {
           if (isDir(path.join(source, 'node_modules'))) {
+            fs.mkdirSync(path.join(dest, 'node_modules'));
             this._linkDependencies(path.join(source, 'node_modules'), path.join(dest, 'node_modules'));
           }
         } else {
