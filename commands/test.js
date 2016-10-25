@@ -57,7 +57,7 @@ export default class TestCommand extends Command {
 
   run({ params, flags }) {
     this.files = params.files || 'test/**/*.js';
-    this.watch = flags.watch;
+    this.watch = flags.watch || flags.environment === 'development';
     this.port = flags.port;
     this.debug = flags.debug;
     this.match = flags.match;
@@ -69,7 +69,7 @@ export default class TestCommand extends Command {
       lint: !flags['skip-lint']
     });
 
-    if (flags.watch || flags.environment === 'development') {
+    if (this.watch) {
       this.project.watch({
         outputDir: flags.output,
         onBuild: () => {
@@ -114,12 +114,16 @@ export default class TestCommand extends Command {
       } else {
         ui.error('Tests failed! (▰˘︹˘▰)');
       }
-      ui.info('Waiting for changes to re-run ...');
+      if (this.watch) {
+        ui.info('Waiting for changes to re-run ...');
+      } else {
+        process.exit(code);
+      }
     });
     let cleanExit = () => {
       this.tests.kill();
-      process.exit();
     };
+    process.on('exit', cleanExit);
     process.on('SIGINT', cleanExit);
     process.on('SIGTERM', cleanExit);
   }
