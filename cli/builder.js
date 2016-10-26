@@ -85,9 +85,9 @@ export default class Builder {
 
     let sourceTrees = dirs.map((dir) => {
       let treeFor = this[`treeFor${ upperFirst(dir) }`] || this.treeFor;
-      let tree = treeFor.call(this, dir);
-      if (typeof tree !== 'string' || fs.existsSync(path.join(this.dir, tree))) {
-        return new Funnel(path.join(this.dir, tree), { annotation: dir, destDir: dir });
+      let tree = treeFor.call(this, path.join(this.dir, dir));
+      if (typeof tree !== 'string' || fs.existsSync(tree)) {
+        return new Funnel(tree, { annotation: dir, destDir: dir });
       }
       return false;
     }).filter(Boolean);
