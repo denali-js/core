@@ -75,6 +75,10 @@ export default class TestCommand extends Command {
       lint: !flags['skip-lint']
     });
 
+    process.on('exit', this.cleanExit.bind(this));
+    process.on('SIGINT', this.cleanExit.bind(this));
+    process.on('SIGTERM', this.cleanExit.bind(this));
+
     if (this.watch) {
       this.project.watch({
         outputDir: flags.output,
@@ -91,6 +95,12 @@ export default class TestCommand extends Command {
       .then(() => {
         this.runTests(flags.output);
       });
+    }
+  }
+
+  cleanExit() {
+    if (this.tests) {
+      this.tests.kill();
     }
   }
 
@@ -129,12 +139,6 @@ export default class TestCommand extends Command {
         process.exit(code);
       }
     });
-    let cleanExit = () => {
-      this.tests.kill();
-    };
-    process.on('exit', cleanExit);
-    process.on('SIGINT', cleanExit);
-    process.on('SIGTERM', cleanExit);
   }
 
 }
