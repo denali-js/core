@@ -22,5 +22,9 @@
   "devDependencies": {
     "ava": "^0.16.0",
     "babel-eslint": "^6.0.4"
+  },
+  "ava": {
+    "plugins": [],
+    "presets": []
   }
 }
