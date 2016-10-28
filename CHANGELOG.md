@@ -1,3 +1,21 @@
+<a name="0.0.12"></a>
+## [0.0.12](https://github.com/denali-js/denali/compare/v0.0.11...v0.0.12) (2016-10-28)
+
+
+### Bug Fixes
+
+* **test:** bump spawned command timeout to 10 freakin minutes ... ([1570b3e](https://github.com/denali-js/denali/commit/1570b3e))
+* remove npmignore and package.json "files" ([f6e7538](https://github.com/denali-js/denali/commit/f6e7538))
+* **test:** link local denali into generated fixture app, rather than relying on latest registry version ([d991483](https://github.com/denali-js/denali/commit/d991483))
+
+
+### Features
+
+* **test:** expose projectRoot on CommandAcceptanceTest class ([eb5b666](https://github.com/denali-js/denali/commit/eb5b666))
+* **test:** reject the spawned command promise when failOnStderr is true ([7c64a35](https://github.com/denali-js/denali/commit/7c64a35))
+
+
+
 <a name="0.0.11"></a>
 ## [0.0.11](https://github.com/denali-js/denali/compare/v0.0.10...v0.0.11) (2016-10-28)
 
