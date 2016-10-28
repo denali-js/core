@@ -1393,7 +1393,7 @@ img {
   font-family: "Inconsolata", "Monaco", "Anonymous", monospace; }
 
 .type {
-  color: #cccccc; }
+  color: #adadad; }
 
 .classitems {
   margin-bottom: 10em; }
@@ -1417,7 +1417,7 @@ img {
 .item-header {
   margin-top: 1.5em;
   margin-bottom: 0.25em;
-  color: #cccccc;
+  color: #b3b3b3;
   font-size: 0.7em;
   font-weight: 700;
   letter-spacing: 0.4px;
