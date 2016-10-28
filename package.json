@@ -9,10 +9,6 @@
     "email": "davewasmer@gmail.com",
     "url": "davewasmer.com"
   },
-  "files": [
-    "dist",
-    "bin"
-  ],
   "bin": {
     "denali": "bin/denali"
   },

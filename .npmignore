@@ -1,7 +1,0 @@
-test/
-guides/
-lib/
-.editorconfig
-.eslintrc
-.travis.yml
-gulpfile.js
