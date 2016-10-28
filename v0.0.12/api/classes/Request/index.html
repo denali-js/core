@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/">
+
+    <title> Denali.js - The best way to build robust APIs in Node </title>
+
+    <link href='//fonts.googleapis.com/css?family=Inconsolata|Bitter:400,700|Open+Sans:300,400,400italic,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-dropdown/2.0.3/jquery.dropdown.min.css" />
+  </head>
+  <body>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-2.2.2.min.js"><\/script>')</script>
+    <nav class="navbar">
+  <div class='container'>
+    <a href='.' class='navbar-brand'>
+      <img class='logo-light' src='images/logo.svg' alt='Denali'>
+      <span class='project-name'>Denali</span>
+    </a>
+
+    <div class="navbar-nav">
+      
+      <a class='nav-link' href='v0.0.12/guides/overview/quickstart'>Quickstart</a>
+      <a class='nav-link' href='v0.0.12/guides/overview/introduction'>Guides</a>
+      <a class='nav-link' href='v0.0.12/api/modules/denali'>API</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali' target='_blank'>Github</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali/issues' target='_blank'>Issues</a>
+    </div>
+  </div>
+</nav>
+
+
+<div class='container'>
+  <div class='row'>
+    <div class='api-nav col-md-3'>
+      <div class='nav-section'>
+  <div class='nav-header'>Version</div>
+  <div class='versions-menu-toggle' data-jq-dropdown='#versions-menu'>
+    v0.0.12 
+    <img class='versions-menu-caret' src='/images/caret.svg'>
+  </div>
+</div>
+
+      <label class='private-classes-toggle'>
+        <input type='checkbox' id='toggle-private-classes'>
+        Include Private
+      </label>
+      
+        
+      
+        
+          <div class='nav-section'>
+            <div class='nav-header'>cli</div>
+            
+              <a class='nav-link ' href='v0.0.12/api/classes/Blueprint' >Blueprint</a>
+            
+              <a class='nav-link ' href='v0.0.12/api/classes/Command' >Command</a>
+            
+          </div>
+        
+      
+        
+          <div class='nav-section'>
+            <div class='nav-header'>data</div>
+            
+              <a class='nav-link ' href='v0.0.12/api/classes/FlatSerializer' >FlatSerializer</a>
+            
+              <a class='nav-link ' href='v0.0.12/api/classes/JSONAPISerializer' >JSONAPISerializer</a>
+            
+              <a class='nav-link ' href='v0.0.12/api/classes/Attribute' >Attribute</a>
+            
+              <a class='nav-link ' href='v0.0.12/api/classes/HasManyRelationship' >HasManyRelationship</a>
+            
+              <a class='nav-link ' href='v0.0.12/api/classes/HasOneRelationship' >HasOneRelationship</a>
+            
+              <a class='nav-link ' href='v0.0.12/api/classes/Model' >Model</a>
+            
+              <a class='nav-link ' href='v0.0.12/api/classes/ORMAdapter' >ORMAdapter</a>
+            
+              <a class='nav-link ' href='v0.0.12/api/classes/Serializer' >Serializer</a>
+            
+          </div>
+        
+      
+        
+          <div class='nav-section'>
+            <div class='nav-header'>metal</div>
+            
+              <a class='nav-link ' href='v0.0.12/api/classes/eachPrototype' >eachPrototype</a>
+            
+              <a class='nav-link ' href='v0.0.12/api/classes/Instrumentation' >Instrumentation</a>
+            
+              <a class='nav-link ' href='v0.0.12/api/classes/mixin' >mixin</a>
+            
+              <a class='nav-link ' href='v0.0.12/api/classes/createMixin' >createMixin</a>
+            
+          </div>
+        
+      
+        
+          <div class='nav-section'>
+            <div class='nav-header'>runtime</div>
+            
+              <a class='nav-link ' href='v0.0.12/api/classes/Action' >Action</a>
+            
+              <a class='nav-link ' href='v0.0.12/api/classes/Addon' >Addon</a>
+            
+              <a class='nav-link ' href='v0.0.12/api/classes/Application' >Application</a>
+            
+              <a class='nav-link ' href='v0.0.12/api/classes/Container' >Container</a>
+            
+              <a class='nav-link ' href='v0.0.12/api/classes/Error' >Error</a>
+            
+              <a class='nav-link ' href='v0.0.12/api/classes/Logger' >Logger</a>
+            
+              <a class='nav-link ' href='v0.0.12/api/classes/Mailer' >Mailer</a>
+            
+              <a class='nav-link active' href='v0.0.12/api/classes/Request' >Request</a>
+            
+              <a class='nav-link ' href='v0.0.12/api/classes/Response' >Response</a>
+            
+              <a class='nav-link ' href='v0.0.12/api/classes/Router' >Router</a>
+            
+              <a class='nav-link ' href='v0.0.12/api/classes/Service' >Service</a>
+            
+          </div>
+        
+      
+    </div>
+    <div class='api-body col-md-9'>
+      <div class='class'>
+  <h1 class='class-name'>
+    
+    Request
+  </h1>
+
+  
+    <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.12/lib/runtime/request.js#L7'>
+      <span class='filename'>Defined in: lib/runtime/request.js</span>
+      <span class='line'>Line: 7</span>
+    </a>
+  
+
+  <div class='class-module'>
+    <strong>Module:</strong>
+    <a class='module' href='/v0.0.12/api/modules/runtime'>
+      <span class='class-module-name'>denali.runtime</span>
+    </a>
+  </div>
+
+  
+    <div class='class-description'><p>The Request class represents an incoming HTTP request (specifically, Node&#39;s
+IncomingMessage). It&#39;s designed with an express-compatible interface to allow
+interop with existing express middleware.</p>
+</div>
+  
+
+  <div class='display-controls'>
+    <label class='toggle'>
+      <input type='checkbox' id='toggle-private-members'>
+      Show Private
+    </label>
+    <label class='toggle'>
+      <input type='checkbox' id='toggle-deprecated-members'>
+      Show Deprecated
+    </label>
+  </div>
+  <div class='summary'>
+    <div class='summary-section'>
+      <div class='summary-header'>Methods</div>
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <a class='summary-link'  href='v0.0.12/api/classes/Request/#path'>path</a>
+        
+      
+        
+          <a class='summary-link'  href='v0.0.12/api/classes/Request/#get'>get</a>
+        
+      
+        
+          <a class='summary-link'  href='v0.0.12/api/classes/Request/#is'>is</a>
+        
+      
+    </div>
+    <div class='summary-section'>
+      <div class='summary-header'>Properties</div>
+      
+        
+          <a class='summary-link'  data-private-member=true  href='v0.0.12/api/classes/Request/#_incomingMessage'>_incomingMessage</a>
+        
+      
+        
+          <a class='summary-link'  href='v0.0.12/api/classes/Request/#method'>method</a>
+        
+      
+        
+          <a class='summary-link'  href='v0.0.12/api/classes/Request/#hostname'>hostname</a>
+        
+      
+        
+          <a class='summary-link'  href='v0.0.12/api/classes/Request/#ip'>ip</a>
+        
+      
+        
+          <a class='summary-link'  href='v0.0.12/api/classes/Request/#path'>path</a>
+        
+      
+        
+          <a class='summary-link'  href='v0.0.12/api/classes/Request/#query'>query</a>
+        
+      
+        
+          <a class='summary-link'  href='v0.0.12/api/classes/Request/#path'>path</a>
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+</div>
+
+<div class='classitems'>
+  
+    
+      <div class='item property' id='_incomingMessage' data-private-member=true>
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            _incomingMessage<span class="type">:{http.IncomingMessage}</span>
+            
+              <div class='private tag'>Private</div>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.12/lib/runtime/request.js#L21'>
+              <span class='filename'>Defined in: lib/runtime/request.js</span>
+              <span class='line'>Line: 21</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>The raw IncomingMessage instance from Node&#39;s http server</div>
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.12/lib/runtime/request.js#L21'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item property' id='method' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            method<span class="type">:{String}</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.12/lib/runtime/request.js#L64'>
+              <span class='filename'>Defined in: lib/runtime/request.js</span>
+              <span class='line'>Line: 64</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>The incoming request&#39;s method (lowercased).
+
+See https://nodejs.org/api/http.html#http_message_method</div>
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.12/lib/runtime/request.js#L64'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item property' id='hostname' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            hostname<span class="type">:{String}</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.12/lib/runtime/request.js#L76'>
+              <span class='filename'>Defined in: lib/runtime/request.js</span>
+              <span class='line'>Line: 76</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>The incoming request&#39;s hostname, taken from the request&#39;s Host header.</div>
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.12/lib/runtime/request.js#L76'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item property' id='ip' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            ip<span class="type">:{String}</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.12/lib/runtime/request.js#L87'>
+              <span class='filename'>Defined in: lib/runtime/request.js</span>
+              <span class='line'>Line: 87</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>The IP address of the incoming request.</div>
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.12/lib/runtime/request.js#L87'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item property' id='path' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            path<span class="type">:{String}</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.12/lib/runtime/request.js#L97'>
+              <span class='filename'>Defined in: lib/runtime/request.js</span>
+              <span class='line'>Line: 97</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>The incoming request&#39;s path.</div>
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.12/lib/runtime/request.js#L97'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item property' id='query' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            query<span class="type">:{String}</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.12/lib/runtime/request.js#L107'>
+              <span class='filename'>Defined in: lib/runtime/request.js</span>
+              <span class='line'>Line: 107</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>The incoming request&#39;s query parameters (parsed into JS objects).</div>
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.12/lib/runtime/request.js#L107'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item property' id='path' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            path<span class="type">:{String[]}</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.12/lib/runtime/request.js#L117'>
+              <span class='filename'>Defined in: lib/runtime/request.js</span>
+              <span class='line'>Line: 117</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>The incoming request&#39;s subdomains as an array.</div>
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.12/lib/runtime/request.js#L117'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+  
+    
+  
+    
+  
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <div class='item method' id='path' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            path<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>types</span><span class='param-type type'>:String|String[]</span></span></span><span class='param-paren'>)</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.12/lib/runtime/request.js#L128'>
+              <span class='filename'>Defined in: lib/runtime/request.js</span>
+              <span class='line'>Line: 128</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Check if a mime-type (or shorthand type, i.e. &#39;json&#39;) matches the incoming
+request&#39;s Accept header. You can supply multiple types (as separate args,
+or in an array) in order of preference, and the best match will be
+returned.
+
+See [accepts](https://www.npmjs.com/package/accepts).</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>types</div><div class='param-type type'>:String|String[]</div>
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <div class='return'>
+              <div class='return-type type'>String|Boolean</div>
+              
+                <div class='return-description'>The best match, or false if no match found</div>
+              
+            </div>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.12/lib/runtime/request.js#L128'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item method' id='get' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            get<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>header</span><span class='param-type type'>:String</span></span></span><span class='param-paren'>)</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.12/lib/runtime/request.js#L144'>
+              <span class='filename'>Defined in: lib/runtime/request.js</span>
+              <span class='line'>Line: 144</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Return the value of the given header (case-insensitive).</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>header</div><div class='param-type type'>:String</div>
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <div class='return'>
+              <div class='return-type type'>String</div>
+              
+                <div class='return-description'>the value of the given header</div>
+              
+            </div>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.12/lib/runtime/request.js#L144'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item method' id='is' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            is<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>types</span><span class='param-type type'>:String</span></span></span><span class='param-paren'>)</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.12/lib/runtime/request.js#L155'>
+              <span class='filename'>Defined in: lib/runtime/request.js</span>
+              <span class='line'>Line: 155</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Returns the matching type of the incoming request.
+
+See [type-is](https://www.npmjs.com/package/type-is).</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>types</div><div class='param-type type'>:String</div>
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <div class='return'>
+              <div class='return-type type'>String</div>
+              
+                <div class='return-description'>the matching type</div>
+              
+            </div>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.12/lib/runtime/request.js#L155'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+</div>
+
+<script>
+  $(function() {
+    [ 'private', 'deprecated' ].forEach(function(type) {
+      var $toggle = $('#toggle-' + type + '-members');
+      $toggle.on('change', function() {
+        if ($toggle.is(':checked')) {
+          $('[data-' + type + '-member]').css('display', 'block');
+        } else {
+          $('[data-' + type + '-member]').css('display', 'none');
+        }
+      });
+      if ($(window.location.hash).attr('data-' + type + '-member')) {
+        $toggle.click();
+      }
+    });
+  });
+</script>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function() {
+    var $privateClassToggle = $('#toggle-private-classes');
+    $privateClassToggle.on('change', function() {
+      if ($privateClassToggle.is(':checked')) {
+        $('.api-nav [data-private-class]').css('display', 'block');
+      } else {
+        $('.api-nav [data-private-class]').css('display', 'none');
+      }
+    });
+    {% if page.class.access == 'private' %}
+      $privateClassToggle.click();
+    {% endif %}
+  });
+</script>
+
+<footer class="footer">
+  <div class='container'>
+    Made with <img src='images/fox-and-beard.svg' class='fox-and-beard'> at
+    <a href='http://foxandbeard.co' target='_blank'>Fox and Beard</a>
+  </div>
+</footer>
+
+  <div id='versions-menu' class='versions-menu jq-dropdown jq-dropdown-tip'>
+    <ul class='jq-dropdown-menu'>
+      
+        <li>
+          
+            <a class='active'>v0.0.12 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.11/api/classes/Request'>v0.0.11 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.10/api/classes/Request'>v0.0.10 (canary)</a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.9/api/classes/Request'>v0.0.9 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.8/api/classes/Request'>v0.0.8 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.7/api/classes/Request'>v0.0.7 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/master/api/classes/Request'>master </a>
+          
+        </li>
+      
+    </ul>
+  </div>
+  <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery-dropdown/2.0.3/jquery.dropdown.min.js'></script>
+
+
+
+    <script>
+     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+     ga('create', 'UA-85043775-1', 'auto');
+     ga('send', 'pageview');
+    </script>
+  </body>
+</html>

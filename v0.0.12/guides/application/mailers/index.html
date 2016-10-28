@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/">
+
+    <title> Mailers  </title>
+
+    <link href='//fonts.googleapis.com/css?family=Inconsolata|Bitter:400,700|Open+Sans:300,400,400italic,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-dropdown/2.0.3/jquery.dropdown.min.css" />
+  </head>
+  <body>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-2.2.2.min.js"><\/script>')</script>
+    <nav class="navbar">
+  <div class='container'>
+    <a href='.' class='navbar-brand'>
+      <img class='logo-light' src='images/logo.svg' alt='Denali'>
+      <span class='project-name'>Denali</span>
+    </a>
+
+    <div class="navbar-nav">
+      
+      <a class='nav-link' href='v0.0.12/guides/overview/quickstart'>Quickstart</a>
+      <a class='nav-link' href='v0.0.12/guides/overview/introduction'>Guides</a>
+      <a class='nav-link' href='v0.0.12/api/modules/denali'>API</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali' target='_blank'>Github</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali/issues' target='_blank'>Issues</a>
+    </div>
+  </div>
+</nav>
+
+<div class='container'>
+  <div class="row">
+    <div class='guides-nav col-md-3'>
+      <div class='nav-section'>
+  <div class='nav-header'>Version</div>
+  <div class='versions-menu-toggle' data-jq-dropdown='#versions-menu'>
+    v0.0.12 
+    <img class='versions-menu-caret' src='/images/caret.svg'>
+  </div>
+</div>
+
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>Overview</div>
+          
+          
+            <a href='v0.0.12/guides/overview/introduction' class='nav-link'>Introduction</a>
+          
+            <a href='v0.0.12/guides/overview/quickstart' class='nav-link'>Quickstart</a>
+          
+            <a href='v0.0.12/guides/overview/app-structure' class='nav-link'>App Structure</a>
+          
+        </div>
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>Application</div>
+          
+          
+            <a href='v0.0.12/guides/application/routing' class='nav-link'>Routing</a>
+          
+            <a href='v0.0.12/guides/application/actions' class='nav-link'>Actions</a>
+          
+            <a href='v0.0.12/guides/application/services' class='nav-link'>Services</a>
+          
+            <a href='v0.0.12/guides/application/errors' class='nav-link'>Errors</a>
+          
+            <a href='v0.0.12/guides/application/mailers' class='nav-link'>Mailers</a>
+          
+        </div>
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>Data</div>
+          
+          
+            <a href='v0.0.12/guides/data/models' class='nav-link'>Models</a>
+          
+            <a href='v0.0.12/guides/data/serializers' class='nav-link'>Serializers</a>
+          
+            <a href='v0.0.12/guides/data/orm-adapters' class='nav-link'>ORM Adapters</a>
+          
+        </div>
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>Testing</div>
+          
+          
+            <a href='v0.0.12/guides/testing/integration' class='nav-link'>Integration</a>
+          
+            <a href='v0.0.12/guides/testing/unit' class='nav-link'>Unit Testing</a>
+          
+        </div>
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>Configuration</div>
+          
+          
+            <a href='v0.0.12/guides/configuration/environment' class='nav-link'>Environment</a>
+          
+            <a href='v0.0.12/guides/configuration/middleware' class='nav-link'>Middleware</a>
+          
+            <a href='v0.0.12/guides/configuration/initializers' class='nav-link'>Initializers</a>
+          
+        </div>
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>Utilities</div>
+          
+          
+            <a href='v0.0.12/guides/utilities/mixins' class='nav-link'>Mixins</a>
+          
+            <a href='v0.0.12/guides/utilities/addons' class='nav-link'>Addons</a>
+          
+            <a href='v0.0.12/guides/utilities/instrumentation' class='nav-link'>Instrumentation</a>
+          
+        </div>
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>CLI</div>
+          
+          
+            <a href='v0.0.12/guides/cli/generate' class='nav-link'>denali generate</a>
+          
+            <a href='v0.0.12/guides/cli/serve' class='nav-link'>denali serve</a>
+          
+            <a href='v0.0.12/guides/cli/test' class='nav-link'>denali test</a>
+          
+            <a href='v0.0.12/guides/cli/build' class='nav-link'>denali build</a>
+          
+            <a href='v0.0.12/guides/cli/addon' class='nav-link'>denali addon</a>
+          
+            <a href='v0.0.12/guides/cli/console' class='nav-link'>denali console</a>
+          
+        </div>
+      
+    </div>
+
+    <div class='col-md-9 guides-body copy'>
+      <a class="improve-btn" target="_blank" href="https://github.com/denali-js/denali/edit/master/guides/application/mailers.md">Improve this page</a>
+      <h1 id="mailers">Mailers</h1>
+<p>Most web applications of non-trivial size will need to send emails to users.
+Denali&#39;s Mailers provide a convention-based, out of the box solution that scales
+from simple transactional emails all the way up to complex digests, all while
+abstracting the emails from the method of sending (i.e. SES, Mandrill, Sendgrid,
+etc).</p>
+<h2 id="concepts">Concepts</h2>
+<p>Denali exposes a <code>Mailer</code> class, which represents an email that is sent. It
+captures all the associated logic of that email - if it needs to lookup data
+from a database, that happens in the Mailer class. Mailers are defined in
+<code>app/mailers/</code>.</p>
+<p>Each Mailer class is paired with template files to define the body of the email.
+By convention, the template files are stored right next to mailer files, and use
+the same name (but different extensions - one for the HTML version of the email,
+and one for the plain text version):</p>
+<pre><code>app/
+  mailers/
+    welcome<span class="hljs-selector-class">.js</span>   &lt;- The mailer class
+    welcome<span class="hljs-selector-class">.html</span> &lt;- The HTML version of the email <span class="hljs-selector-tag">body</span>
+    welcome<span class="hljs-selector-class">.txt</span>  &lt;- The plain text version of the email body
+</code></pre><p>It&#39;s not required to have both a plain text and HTML version of an email -
+either one is fine alone.</p>
+<h2 id="creating-a-mailer">Creating a Mailer</h2>
+<p>To get started sending emails, let&#39;s create a mailer. You can use the <code>generate</code>
+command in the Denali CLI to scaffold out a new mailer for you:</p>
+<pre><code>$ denali <span class="hljs-keyword">generate</span> mailer welcome
+</code></pre><p>This will create a blank mailer for us. In this case, we&#39;re building a welcome
+email to send after a user signs up. Now lets update the scaffolded templates
+with our welcome message:</p>
+<pre><code><span class="xml">// app/mailers/welcome.html
+<span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">content</span>=<span class="hljs-string">'text/html; charset=UTF-8'</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">'Content-Type'</span> /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Welcome to example.com, <span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="ruby"> user.name </span><span class="xml"><span class="hljs-tag">%&gt;</span>!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Thanks for joining and have a great day!<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></span>
+</code></pre><p>And our plain text version (it&#39;s usually a good idea to have both, since some
+email clients prefer plain text to HTML):</p>
+<pre><code><span class="hljs-comment">// app/mailers/welcome.txt</span>
+Welcome <span class="hljs-keyword">to</span> example.com, &lt;%= user.<span class="hljs-keyword">name</span> %&gt;!
+Thanks <span class="hljs-keyword">for</span> joining <span class="hljs-keyword">and</span> have a great day!
+</code></pre><p>Notice our template tags in both templates, where we dynamically insert the
+user&#39;s name into the template.</p>
+<p>Now, if we wanted to pull in additional data, we could override the <code>welcome.js</code>
+mailer&#39;s <code>send()</code> method, like this:</p>
+<pre><code><span class="hljs-comment">// app/mailers/welcome.js</span>
+<span class="hljs-keyword">import</span> { <span class="hljs-type">Mailer</span> } from <span class="hljs-symbol">'denal</span>i';
+
+export <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WelcomeMailer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Mailer</span> </span>{
+  send(user) {
+    let <span class="hljs-type">Topic</span> = <span class="hljs-keyword">this</span>.modelFor(<span class="hljs-symbol">'topi</span>c');
+    <span class="hljs-keyword">return</span> <span class="hljs-type">Topic</span>.findInteresting().then((interestingTopics) =&gt; {
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.mail({
+        to: user.email,
+        from: <span class="hljs-symbol">'notifications</span><span class="hljs-meta">@example</span>.com',
+        subject: <span class="hljs-symbol">'Welcome</span>!',
+        html: <span class="hljs-keyword">this</span>.template(<span class="hljs-symbol">'htm</span>l', { user, interestingTopics }),
+        text: <span class="hljs-keyword">this</span>.template(<span class="hljs-symbol">'tex</span>t', { user, interestingTopics })
+      });
+  }
+}
+</code></pre><p>Notice that we use <code>this.mail({ to, from, subject, html, text })</code> to actually
+send the email once we&#39;ve gathered all the relevant data.</p>
+<h2 id="sending-the-email">Sending the email</h2>
+<p>Now that we have a mailer ready to go, let&#39;s wire it up to a <code>users/sign-up</code>
+action so that new users will be sent a welcome email:</p>
+<pre><code><span class="hljs-comment">// app/actions/users/sign-up.js</span>
+respond(params) {
+  let User = <span class="hljs-keyword">this</span>.modelFor(<span class="hljs-string">'user'</span>);
+  <span class="hljs-keyword">return</span> User.create(params).then((newUser) =&gt; {
+    <span class="hljs-keyword">this</span>.mail(<span class="hljs-string">'welcome'</span>, newUser);
+    <span class="hljs-keyword">return</span> newUser;
+  });
+}
+</code></pre><p>As we can see, actions come with a <code>this.mail</code> method which invoke the named
+mailer with the data supplied (in this case, our new user record).</p>
+<p>Notice also that, despite <code>this.mail()</code> returning a Promise, we don&#39;t wait for
+it to finish the action. This let&#39;s us leverage Node&#39;s asynchronous behavior to
+finish the request as soon as possible rather than waiting for the email to
+finish before responding to the incoming request.</p>
+
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class='container'>
+    Made with <img src='images/fox-and-beard.svg' class='fox-and-beard'> at
+    <a href='http://foxandbeard.co' target='_blank'>Fox and Beard</a>
+  </div>
+</footer>
+
+  <div id='versions-menu' class='versions-menu jq-dropdown jq-dropdown-tip'>
+    <ul class='jq-dropdown-menu'>
+      
+        <li>
+          
+            <a class='active'>v0.0.12 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.11/guides/application/mailers'>v0.0.11 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.10/guides/application/mailers'>v0.0.10 (canary)</a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.9/guides/application/mailers'>v0.0.9 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.8/guides/application/mailers'>v0.0.8 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.7/guides/application/mailers'>v0.0.7 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/master/guides/application/mailers'>master </a>
+          
+        </li>
+      
+    </ul>
+  </div>
+  <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery-dropdown/2.0.3/jquery.dropdown.min.js'></script>
+
+
+
+    <script>
+     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+     ga('create', 'UA-85043775-1', 'auto');
+     ga('send', 'pageview');
+    </script>
+  </body>
+</html>

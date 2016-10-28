@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/">
+
+    <title> Serializers  </title>
+
+    <link href='//fonts.googleapis.com/css?family=Inconsolata|Bitter:400,700|Open+Sans:300,400,400italic,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-dropdown/2.0.3/jquery.dropdown.min.css" />
+  </head>
+  <body>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-2.2.2.min.js"><\/script>')</script>
+    <nav class="navbar">
+  <div class='container'>
+    <a href='.' class='navbar-brand'>
+      <img class='logo-light' src='images/logo.svg' alt='Denali'>
+      <span class='project-name'>Denali</span>
+    </a>
+
+    <div class="navbar-nav">
+      
+      <a class='nav-link' href='v0.0.12/guides/overview/quickstart'>Quickstart</a>
+      <a class='nav-link' href='v0.0.12/guides/overview/introduction'>Guides</a>
+      <a class='nav-link' href='v0.0.12/api/modules/denali'>API</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali' target='_blank'>Github</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali/issues' target='_blank'>Issues</a>
+    </div>
+  </div>
+</nav>
+
+<div class='container'>
+  <div class="row">
+    <div class='guides-nav col-md-3'>
+      <div class='nav-section'>
+  <div class='nav-header'>Version</div>
+  <div class='versions-menu-toggle' data-jq-dropdown='#versions-menu'>
+    v0.0.12 
+    <img class='versions-menu-caret' src='/images/caret.svg'>
+  </div>
+</div>
+
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>Overview</div>
+          
+          
+            <a href='v0.0.12/guides/overview/introduction' class='nav-link'>Introduction</a>
+          
+            <a href='v0.0.12/guides/overview/quickstart' class='nav-link'>Quickstart</a>
+          
+            <a href='v0.0.12/guides/overview/app-structure' class='nav-link'>App Structure</a>
+          
+        </div>
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>Application</div>
+          
+          
+            <a href='v0.0.12/guides/application/routing' class='nav-link'>Routing</a>
+          
+            <a href='v0.0.12/guides/application/actions' class='nav-link'>Actions</a>
+          
+            <a href='v0.0.12/guides/application/services' class='nav-link'>Services</a>
+          
+            <a href='v0.0.12/guides/application/errors' class='nav-link'>Errors</a>
+          
+            <a href='v0.0.12/guides/application/mailers' class='nav-link'>Mailers</a>
+          
+        </div>
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>Data</div>
+          
+          
+            <a href='v0.0.12/guides/data/models' class='nav-link'>Models</a>
+          
+            <a href='v0.0.12/guides/data/serializers' class='nav-link'>Serializers</a>
+          
+            <a href='v0.0.12/guides/data/orm-adapters' class='nav-link'>ORM Adapters</a>
+          
+        </div>
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>Testing</div>
+          
+          
+            <a href='v0.0.12/guides/testing/integration' class='nav-link'>Integration</a>
+          
+            <a href='v0.0.12/guides/testing/unit' class='nav-link'>Unit Testing</a>
+          
+        </div>
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>Configuration</div>
+          
+          
+            <a href='v0.0.12/guides/configuration/environment' class='nav-link'>Environment</a>
+          
+            <a href='v0.0.12/guides/configuration/middleware' class='nav-link'>Middleware</a>
+          
+            <a href='v0.0.12/guides/configuration/initializers' class='nav-link'>Initializers</a>
+          
+        </div>
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>Utilities</div>
+          
+          
+            <a href='v0.0.12/guides/utilities/mixins' class='nav-link'>Mixins</a>
+          
+            <a href='v0.0.12/guides/utilities/addons' class='nav-link'>Addons</a>
+          
+            <a href='v0.0.12/guides/utilities/instrumentation' class='nav-link'>Instrumentation</a>
+          
+        </div>
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>CLI</div>
+          
+          
+            <a href='v0.0.12/guides/cli/generate' class='nav-link'>denali generate</a>
+          
+            <a href='v0.0.12/guides/cli/serve' class='nav-link'>denali serve</a>
+          
+            <a href='v0.0.12/guides/cli/test' class='nav-link'>denali test</a>
+          
+            <a href='v0.0.12/guides/cli/build' class='nav-link'>denali build</a>
+          
+            <a href='v0.0.12/guides/cli/addon' class='nav-link'>denali addon</a>
+          
+            <a href='v0.0.12/guides/cli/console' class='nav-link'>denali console</a>
+          
+        </div>
+      
+    </div>
+
+    <div class='col-md-9 guides-body copy'>
+      <a class="improve-btn" target="_blank" href="https://github.com/denali-js/denali/edit/master/guides/data/serializers.md">Improve this page</a>
+      <h1 id="serializers">Serializers</h1>
+<p>Since Denali is API focused, it doesn&#39;t ship with any kind of view layer for
+rendering HTML. However, one way to think of Serializers is like the view layer
+for a JSON only API.</p>
+<p>When your app needs to send some data in a response, there&#39;s three problems to
+face:</p>
+<ol>
+<li><p><strong>What data to send</strong>: you&#39;ll often want to send only a subset of your
+record back (i.e. omitting a hashed password).</p>
+</li>
+<li><p><strong>Transforming the data</strong>: you may want to transform the content to make it
+easier to consume or to match consumer expectations (i.e. change underscore_
+keys to camelCaseKeys).</p>
+</li>
+<li><p><strong>Structuring the data</strong>: what is the structure of the response? Is there a
+root JSON wrapper? Does it conform to a spec, i.e. JSON-API 1.0?</p>
+</li>
+</ol>
+<p>Serializers address all of these problems. They select what data to send, apply
+transformations to that data (i.e. renaming keys, serializing values), and
+structure the result according to a particular output format.</p>
+<p>Typically, your API will have a standard output format (i.e. JSON-API 1.0). A
+good approach is to pick (or create) a base ApplicationSerializer class that
+renders that structure, much like we used a base ApplicationAction class.</p>
+<p>With a base ApplicationSerializer class in place, you&#39;ll then create a subclass
+for each model you have (PostSerializer, UserSerializer, etc). These subclasses
+tell Denali what attributes and relationships should be sent in a response that
+contains that particular model.</p>
+<h2 id="rendering-data-in-a-response">Rendering data in a response</h2>
+<p>Serializers render data based on <em>whitelists</em>. That means that if you want any
+part of your Model to render into JSON in the response body, you must specify
+it explicitly in that Model&#39;s Serializer. This ensures you won&#39;t
+accidentally return sensitive data in a response because you forgot to strip it
+out.</p>
+<p>Selecting which attributes to render is as simple as adding them to the
+attributes array on your serializer:</p>
+<pre><code class="lang-js">export <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserSerializer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ApplicationSerializer</span> </span>{
+
+  attributes = [ <span class="hljs-symbol">'firstNam</span>e', <span class="hljs-symbol">'lastNam</span>e' ];
+
+}
+</code></pre>
+<p>Relationships are slightly more complex.</p>
+<p>TODO documentation for relationship serializers</p>
+<h1 id="built-in-serializers">Built-in Serializers</h1>
+<p>Denali ships with two base serializers out of the box:</p>
+<ul>
+<li><p><strong>FlatSerializer</strong>, which renders models as simple JSON objects or arrays of
+objects. Related records are directly embedded under their relationship name.</p>
+</li>
+<li><p><strong>JSONAPISerializer</strong>, a [JSON-API 1.0] compliant serializer with support
+for meta, links, errors, and more.</p>
+</li>
+</ul>
+
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class='container'>
+    Made with <img src='images/fox-and-beard.svg' class='fox-and-beard'> at
+    <a href='http://foxandbeard.co' target='_blank'>Fox and Beard</a>
+  </div>
+</footer>
+
+  <div id='versions-menu' class='versions-menu jq-dropdown jq-dropdown-tip'>
+    <ul class='jq-dropdown-menu'>
+      
+        <li>
+          
+            <a class='active'>v0.0.12 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.11/guides/data/serializers'>v0.0.11 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.10/guides/data/serializers'>v0.0.10 (canary)</a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.9/guides/data/serializers'>v0.0.9 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.8/guides/data/serializers'>v0.0.8 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.7/guides/data/serializers'>v0.0.7 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/master/guides/data/serializers'>master </a>
+          
+        </li>
+      
+    </ul>
+  </div>
+  <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery-dropdown/2.0.3/jquery.dropdown.min.js'></script>
+
+
+
+    <script>
+     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+     ga('create', 'UA-85043775-1', 'auto');
+     ga('send', 'pageview');
+    </script>
+  </body>
+</html>
