@@ -4,6 +4,7 @@ import path from 'path';
 import Promise from 'bluebird';
 import findup from 'findup-sync';
 import rimraf from 'rimraf';
+import mkdirp from 'mkdirp';
 import { CommandAcceptanceTest } from 'denali';
 
 function addDependency(pkgDir, dependency, version) {
@@ -15,6 +16,7 @@ function addDependency(pkgDir, dependency, version) {
 
 function linkDependency(pkgDir, dependencyName, dependencyDir) {
   let dest = path.join(pkgDir, 'node_modules', dependencyName);
+  mkdirp.sync(path.dirname(dest));
   rimraf.sync(dest);
   fs.symlinkSync(dependencyDir, dest);
 }
