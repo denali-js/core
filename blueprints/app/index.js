@@ -23,6 +23,11 @@ export default class AppBlueprint extends Blueprint {
       description: 'Do not install dependencies on new app',
       defaultValue: false,
       type: Boolean
+    },
+    'use-npm': {
+      description: 'Use npm to install dependencies, even if yarn is available',
+      defaultValue: false,
+      type: Boolean
     }
   }
 
@@ -43,7 +48,7 @@ export default class AppBlueprint extends Blueprint {
     return Promise.resolve().then(() => {
       if (!flags['skip-deps']) {
         return commandExists('yarn').then((yarnExists) => {
-          if (yarnExists) {
+          if (yarnExists && !flags['use-npm']) {
             return run('yarn install', { cwd: name });
           }
           return run('npm install --loglevel=error', { cwd: name });

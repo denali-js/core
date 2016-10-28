@@ -25,13 +25,14 @@ test('addons > load recursively', async () => {
     env: { DENALI_ENV: 'development' }
   };
   // Generate a nested addon graph: my-app -> my-addon -> my-nested-addon
-  let app = new CommandAcceptanceTest('new my-app', options);
-  let addon = new CommandAcceptanceTest('addon my-addon', options);
-  let nestedAddon = new CommandAcceptanceTest('addon my-nested-addon', options);
+  let app = new CommandAcceptanceTest('new my-app --use-npm', options);
+  let addon = new CommandAcceptanceTest('addon my-addon --use-npm', options);
+  let nestedAddon = new CommandAcceptanceTest('addon my-nested-addon --use-npm', options);
   let appPath = path.join(app.dir, 'my-app');
   let addonPath = path.join(addon.dir, 'my-addon');
   let nestedAddonPath = path.join(nestedAddon.dir, 'my-nested-addon');
   await Promise.all([ app.run(), addon.run(), nestedAddon.run() ]);
+
   // Symlink this version of denali into each
   let denaliPath = path.dirname(path.dirname(findup('package.json')));
   linkDependency(appPath, 'denali', denaliPath);
