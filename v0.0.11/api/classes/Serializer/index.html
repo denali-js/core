@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/">
+
+    <title> Denali.js - The best way to build robust APIs in Node </title>
+
+    <link href='//fonts.googleapis.com/css?family=Inconsolata|Bitter:400,700|Open+Sans:300,400,400italic,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-dropdown/2.0.3/jquery.dropdown.min.css" />
+  </head>
+  <body>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-2.2.2.min.js"><\/script>')</script>
+    <nav class="navbar">
+  <div class='container'>
+    <a href='.' class='navbar-brand'>
+      <img class='logo-light' src='images/logo.svg' alt='Denali'>
+      <span class='project-name'>Denali</span>
+    </a>
+
+    <div class="navbar-nav">
+      
+      <a class='nav-link' href='v0.0.11/guides/overview/quickstart'>Quickstart</a>
+      <a class='nav-link' href='v0.0.11/guides/overview/introduction'>Guides</a>
+      <a class='nav-link' href='v0.0.11/api/modules/denali'>API</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali' target='_blank'>Github</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali/issues' target='_blank'>Issues</a>
+    </div>
+  </div>
+</nav>
+
+
+<div class='container'>
+  <div class='row'>
+    <div class='api-nav col-md-3'>
+      <div class='nav-section'>
+  <div class='nav-header'>Version</div>
+  <div class='versions-menu-toggle' data-jq-dropdown='#versions-menu'>
+    v0.0.11 
+    <img class='versions-menu-caret' src='/images/caret.svg'>
+  </div>
+</div>
+
+      <label class='private-classes-toggle'>
+        <input type='checkbox' id='toggle-private-classes'>
+        Include Private
+      </label>
+      
+        
+      
+        
+          <div class='nav-section'>
+            <div class='nav-header'>cli</div>
+            
+              <a class='nav-link ' href='v0.0.11/api/classes/Blueprint' >Blueprint</a>
+            
+              <a class='nav-link ' href='v0.0.11/api/classes/Command' >Command</a>
+            
+          </div>
+        
+      
+        
+          <div class='nav-section'>
+            <div class='nav-header'>data</div>
+            
+              <a class='nav-link ' href='v0.0.11/api/classes/FlatSerializer' >FlatSerializer</a>
+            
+              <a class='nav-link ' href='v0.0.11/api/classes/JSONAPISerializer' >JSONAPISerializer</a>
+            
+              <a class='nav-link ' href='v0.0.11/api/classes/Attribute' >Attribute</a>
+            
+              <a class='nav-link ' href='v0.0.11/api/classes/HasManyRelationship' >HasManyRelationship</a>
+            
+              <a class='nav-link ' href='v0.0.11/api/classes/HasOneRelationship' >HasOneRelationship</a>
+            
+              <a class='nav-link ' href='v0.0.11/api/classes/Model' >Model</a>
+            
+              <a class='nav-link ' href='v0.0.11/api/classes/ORMAdapter' >ORMAdapter</a>
+            
+              <a class='nav-link active' href='v0.0.11/api/classes/Serializer' >Serializer</a>
+            
+          </div>
+        
+      
+        
+          <div class='nav-section'>
+            <div class='nav-header'>metal</div>
+            
+              <a class='nav-link ' href='v0.0.11/api/classes/eachPrototype' >eachPrototype</a>
+            
+              <a class='nav-link ' href='v0.0.11/api/classes/Instrumentation' >Instrumentation</a>
+            
+              <a class='nav-link ' href='v0.0.11/api/classes/mixin' >mixin</a>
+            
+              <a class='nav-link ' href='v0.0.11/api/classes/createMixin' >createMixin</a>
+            
+          </div>
+        
+      
+        
+          <div class='nav-section'>
+            <div class='nav-header'>runtime</div>
+            
+              <a class='nav-link ' href='v0.0.11/api/classes/Action' >Action</a>
+            
+              <a class='nav-link ' href='v0.0.11/api/classes/Addon' >Addon</a>
+            
+              <a class='nav-link ' href='v0.0.11/api/classes/Application' >Application</a>
+            
+              <a class='nav-link ' href='v0.0.11/api/classes/Container' >Container</a>
+            
+              <a class='nav-link ' href='v0.0.11/api/classes/Error' >Error</a>
+            
+              <a class='nav-link ' href='v0.0.11/api/classes/Logger' >Logger</a>
+            
+              <a class='nav-link ' href='v0.0.11/api/classes/Mailer' >Mailer</a>
+            
+              <a class='nav-link ' href='v0.0.11/api/classes/Request' >Request</a>
+            
+              <a class='nav-link ' href='v0.0.11/api/classes/Response' >Response</a>
+            
+              <a class='nav-link ' href='v0.0.11/api/classes/Router' >Router</a>
+            
+              <a class='nav-link ' href='v0.0.11/api/classes/Service' >Service</a>
+            
+          </div>
+        
+      
+    </div>
+    <div class='api-body col-md-9'>
+      <div class='class'>
+  <h1 class='class-name'>
+    
+    Serializer
+  </h1>
+
+  
+    <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.11/lib/data/serializer.js#L1'>
+      <span class='filename'>Defined in: lib/data/serializer.js</span>
+      <span class='line'>Line: 1</span>
+    </a>
+  
+
+  <div class='class-module'>
+    <strong>Module:</strong>
+    <a class='module' href='/v0.0.11/api/modules/data'>
+      <span class='class-module-name'>denali.data</span>
+    </a>
+  </div>
+
+  
+    <div class='class-description'><p>Serializers allow you to customize what data is returned in the response and
+apply simple transformations to it. They allow you to decouple what data is
+sent from how that data is structured / rendered.</p>
+</div>
+  
+
+  <div class='display-controls'>
+    <label class='toggle'>
+      <input type='checkbox' id='toggle-private-members'>
+      Show Private
+    </label>
+    <label class='toggle'>
+      <input type='checkbox' id='toggle-deprecated-members'>
+      Show Deprecated
+    </label>
+  </div>
+  <div class='summary'>
+    <div class='summary-section'>
+      <div class='summary-header'>Methods</div>
+      
+        
+          <a class='summary-link'  href='v0.0.11/api/classes/Serializer/#serialize'>serialize</a>
+        
+      
+        
+          <a class='summary-link'  href='v0.0.11/api/classes/Serializer/#parse'>parse</a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class='summary-section'>
+      <div class='summary-header'>Properties</div>
+      
+        
+      
+        
+      
+        
+          <a class='summary-link'  href='v0.0.11/api/classes/Serializer/#attributes'>attributes</a>
+        
+      
+        
+          <a class='summary-link'  href='v0.0.11/api/classes/Serializer/#relationships'>relationships</a>
+        
+      
+    </div>
+  </div>
+</div>
+
+<div class='classitems'>
+  
+    
+  
+    
+  
+    
+      <div class='item property' id='attributes' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            attributes<span class="type">:{String[]}</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.11/lib/data/serializer.js#L50'>
+              <span class='filename'>Defined in: lib/data/serializer.js</span>
+              <span class='line'>Line: 50</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>The list of attribute names that should be serialized. Attributes not
+included in this list will be omitted from the final rendered payload.</div>
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.11/lib/data/serializer.js#L50'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item property' id='relationships' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            relationships<span class="type">:{Object}</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.11/lib/data/serializer.js#L59'>
+              <span class='filename'>Defined in: lib/data/serializer.js</span>
+              <span class='line'>Line: 59</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>An object with configuration on how to serialize relationships.
+Relationships that have no configuration present are omitted from the final
+rendered payload.
+
+Out of the box, two options are supported:
+
+**strategy**
+
+It has one of four possible values:
+
+  * `records`: embed all related records (1-n relationships)
+  * `record`: embed the related record (1-1 relationships)
+  * `ids`: include only the ids of related records (1-n relationships)
+  * `id`: include only the id of the related record (1-1 relationships)
+
+What the embedded records or ids look like is up to each serializer to
+determine.
+
+**type**
+
+The model type of the related records.
+
+Specific serializers may also accept additional options in the relationship
+configuration to customize their response format.</div>
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.11/lib/data/serializer.js#L59'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+  
+    
+      <div class='item method' id='serialize' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            serialize<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>response</span><span class='param-type type'>:Response</span></span><span class='param'><span class='param-name'>options</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.11/lib/data/serializer.js#L18'>
+              <span class='filename'>Defined in: lib/data/serializer.js</span>
+              <span class='line'>Line: 18</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Take the supplied Response instance and the supplied options and return a
+rendered a JSON response object.</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>response</div><div class='param-type type'>:Response</div>
+                  
+                </div>
+              
+                <div class='param'>
+                  <div class='param-name'>options</div><div class='param-type type'>:Object</div>
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <p class="no-return">Returns <code>undefined</code></p>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.11/lib/data/serializer.js#L18'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item method' id='parse' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            parse<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>payload</span><span class='param-type type'>:Object</span></span><span class='param'><span class='param-name'>options</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.11/lib/data/serializer.js#L30'>
+              <span class='filename'>Defined in: lib/data/serializer.js</span>
+              <span class='line'>Line: 30</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Take a serialized JSON document (i.e. an incoming request body), and
+perform any normalization required.
+
+The return value of this method is entirely up to the specific serializer,
+i.e. some may return the payload unchanged, others may tweak the structure,
+or some could even return actual ORM model instances.
+
+This method is optional - the default implementation returns the payload
+unchanged.</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>payload</div><div class='param-type type'>:Object</div>
+                  
+                </div>
+              
+                <div class='param'>
+                  <div class='param-name'>options</div><div class='param-type type'>:Object</div>
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <div class='return'>
+              <div class='return-type type'>Object</div>
+              
+            </div>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.11/lib/data/serializer.js#L30'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+  
+    
+  
+</div>
+
+<script>
+  $(function() {
+    [ 'private', 'deprecated' ].forEach(function(type) {
+      var $toggle = $('#toggle-' + type + '-members');
+      $toggle.on('change', function() {
+        if ($toggle.is(':checked')) {
+          $('[data-' + type + '-member]').css('display', 'block');
+        } else {
+          $('[data-' + type + '-member]').css('display', 'none');
+        }
+      });
+      if ($(window.location.hash).attr('data-' + type + '-member')) {
+        $toggle.click();
+      }
+    });
+  });
+</script>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function() {
+    var $privateClassToggle = $('#toggle-private-classes');
+    $privateClassToggle.on('change', function() {
+      if ($privateClassToggle.is(':checked')) {
+        $('.api-nav [data-private-class]').css('display', 'block');
+      } else {
+        $('.api-nav [data-private-class]').css('display', 'none');
+      }
+    });
+    {% if page.class.access == 'private' %}
+      $privateClassToggle.click();
+    {% endif %}
+  });
+</script>
+
+<footer class="footer">
+  <div class='container'>
+    Made with <img src='images/fox-and-beard.svg' class='fox-and-beard'> at
+    <a href='http://foxandbeard.co' target='_blank'>Fox and Beard</a>
+  </div>
+</footer>
+
+  <div id='versions-menu' class='versions-menu jq-dropdown jq-dropdown-tip'>
+    <ul class='jq-dropdown-menu'>
+      
+        <li>
+          
+            <a class='active'>v0.0.11 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.10/api/classes/Serializer'>v0.0.10 (canary)</a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.9/api/classes/Serializer'>v0.0.9 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.8/api/classes/Serializer'>v0.0.8 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.7/api/classes/Serializer'>v0.0.7 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/master/api/classes/Serializer'>master </a>
+          
+        </li>
+      
+    </ul>
+  </div>
+  <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery-dropdown/2.0.3/jquery.dropdown.min.js'></script>
+
+
+
+    <script>
+     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+     ga('create', 'UA-85043775-1', 'auto');
+     ga('send', 'pageview');
+    </script>
+  </body>
+</html>
