@@ -1,12 +1,11 @@
 #!/usr/bin/env node
-
 require('source-map-support').install();
 require('babel-polyfill');
 require('babel-register')({
-  presets: [ 'latest' ],
-  plugins: [
-    'transform-class-properties'
-  ]
+  ignore(filename) {
+    return filename.match(/node_modules/) &&
+           !filename.match(/node_modules\/denali/);
+  }
 });
 
 var semver = require('semver');
@@ -35,9 +34,11 @@ if (!pkgPath) {
   var localDenali;
   try {
     localDenali = resolve.sync('denali', { basedir: pkgDir });
+  } catch (e) {}
+  if (localDenali) {
     var localDenaliPkgDir = path.dirname(findup('package.json', { cwd: localDenali }));
     require(path.join(localDenaliPkgDir, 'commands', 'index')).default(localDenaliPkgDir);
-  } catch(e) {
+  } else {
     require('../commands/index').default();
   }
 }

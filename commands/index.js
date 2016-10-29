@@ -48,6 +48,9 @@ export default function run(localDenaliPath) {
 }
 
 function discoverCommands(dir) {
+  if (!fs.existsSync(dir)) {
+    return {};
+  }
   return fs.readdirSync(dir).filter((filename) => {
     return fs.statSync(path.join(dir, filename)).isFile() && path.extname(filename) === '.js';
   }).reduce((commands, filename) => {
