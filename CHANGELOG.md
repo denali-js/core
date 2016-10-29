@@ -1,3 +1,13 @@
+<a name="0.0.13"></a>
+## [0.0.13](https://github.com/denali-js/denali/compare/v0.0.12...v0.0.13) (2016-10-29)
+
+
+### Bug Fixes
+
+* **cli:** fix babel ignore to compile unlinked addons ([b1dc222](https://github.com/denali-js/denali/commit/b1dc222))
+
+
+
 <a name="0.0.12"></a>
 ## [0.0.12](https://github.com/denali-js/denali/compare/v0.0.11...v0.0.12) (2016-10-28)
 
