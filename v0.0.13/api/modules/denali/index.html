@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/">
+
+    <title> Denali.js - The best way to build robust APIs in Node </title>
+
+    <link href='//fonts.googleapis.com/css?family=Inconsolata|Bitter:400,700|Open+Sans:300,400,400italic,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-dropdown/2.0.3/jquery.dropdown.min.css" />
+  </head>
+  <body>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-2.2.2.min.js"><\/script>')</script>
+    <nav class="navbar">
+  <div class='container'>
+    <a href='.' class='navbar-brand'>
+      <img class='logo-light' src='images/logo.svg' alt='Denali'>
+      <span class='project-name'>Denali</span>
+    </a>
+
+    <div class="navbar-nav">
+      
+      <a class='nav-link' href='v0.0.13/guides/overview/quickstart'>Quickstart</a>
+      <a class='nav-link' href='v0.0.13/guides/overview/introduction'>Guides</a>
+      <a class='nav-link' href='v0.0.13/api/modules/denali'>API</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali' target='_blank'>Github</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali/issues' target='_blank'>Issues</a>
+    </div>
+  </div>
+</nav>
+
+
+<div class='container'>
+  <div class='row'>
+    <div class='api-nav col-md-3'>
+      <div class='nav-section'>
+  <div class='nav-header'>Version</div>
+  <div class='versions-menu-toggle' data-jq-dropdown='#versions-menu'>
+    v0.0.13 
+    <img class='versions-menu-caret' src='/images/caret.svg'>
+  </div>
+</div>
+
+      <label class='private-classes-toggle'>
+        <input type='checkbox' id='toggle-private-classes'>
+        Include Private
+      </label>
+      
+        
+      
+        
+          <div class='nav-section'>
+            <div class='nav-header'>cli</div>
+            
+              <a class='nav-link ' href='v0.0.13/api/classes/Blueprint' >Blueprint</a>
+            
+              <a class='nav-link ' href='v0.0.13/api/classes/Command' >Command</a>
+            
+          </div>
+        
+      
+        
+          <div class='nav-section'>
+            <div class='nav-header'>data</div>
+            
+              <a class='nav-link ' href='v0.0.13/api/classes/FlatSerializer' >FlatSerializer</a>
+            
+              <a class='nav-link ' href='v0.0.13/api/classes/JSONAPISerializer' >JSONAPISerializer</a>
+            
+              <a class='nav-link ' href='v0.0.13/api/classes/Attribute' >Attribute</a>
+            
+              <a class='nav-link ' href='v0.0.13/api/classes/HasManyRelationship' >HasManyRelationship</a>
+            
+              <a class='nav-link ' href='v0.0.13/api/classes/HasOneRelationship' >HasOneRelationship</a>
+            
+              <a class='nav-link ' href='v0.0.13/api/classes/Model' >Model</a>
+            
+              <a class='nav-link ' href='v0.0.13/api/classes/ORMAdapter' >ORMAdapter</a>
+            
+              <a class='nav-link ' href='v0.0.13/api/classes/Serializer' >Serializer</a>
+            
+          </div>
+        
+      
+        
+          <div class='nav-section'>
+            <div class='nav-header'>metal</div>
+            
+              <a class='nav-link ' href='v0.0.13/api/classes/eachPrototype' >eachPrototype</a>
+            
+              <a class='nav-link ' href='v0.0.13/api/classes/Instrumentation' >Instrumentation</a>
+            
+              <a class='nav-link ' href='v0.0.13/api/classes/mixin' >mixin</a>
+            
+              <a class='nav-link ' href='v0.0.13/api/classes/createMixin' >createMixin</a>
+            
+          </div>
+        
+      
+        
+          <div class='nav-section'>
+            <div class='nav-header'>runtime</div>
+            
+              <a class='nav-link ' href='v0.0.13/api/classes/Action' >Action</a>
+            
+              <a class='nav-link ' href='v0.0.13/api/classes/Addon' >Addon</a>
+            
+              <a class='nav-link ' href='v0.0.13/api/classes/Application' >Application</a>
+            
+              <a class='nav-link ' href='v0.0.13/api/classes/Container' >Container</a>
+            
+              <a class='nav-link ' href='v0.0.13/api/classes/Error' >Error</a>
+            
+              <a class='nav-link ' href='v0.0.13/api/classes/Logger' >Logger</a>
+            
+              <a class='nav-link ' href='v0.0.13/api/classes/Mailer' >Mailer</a>
+            
+              <a class='nav-link ' href='v0.0.13/api/classes/Request' >Request</a>
+            
+              <a class='nav-link ' href='v0.0.13/api/classes/Response' >Response</a>
+            
+              <a class='nav-link ' href='v0.0.13/api/classes/Router' >Router</a>
+            
+              <a class='nav-link ' href='v0.0.13/api/classes/Service' >Service</a>
+            
+          </div>
+        
+      
+    </div>
+    <div class='api-body col-md-9'>
+      <div class='module'>
+  <h1 class='module-name'>denali</h1>
+  
+    <div class='module-description'><p>This is the main module exported by Denali when it is loaded via
+ <code>require/import</code>.
+This exports convenient shortcuts to other modules within Denali.
+ Rather than having to <code>import Addon from &#39;denali/dist/lib/runtime/addon&#39;</code>,
+ you can just <code>import { Addon } from &#39;denali&#39;</code>.</p>
+<h2 id="exports">Exports</h2>
+<h3 id="-serializer-"><code>Serializer</code></h3>
+<p>Serializers are responsible for determining what data gets sent over the
+ wire, and how that data is rendered into a JSON response. Check out the
+ <a href="serializers">guides</a> for details.</p>
+<h3 id="-errors-"><code>Errors</code></h3>
+<p>An errors module based on
+ <a href="https://github.com/jshttp/http-errors">http-errors</a>. Useful for
+ standardizing how you handle error responses. Check out the <a href="errors">guides</a>
+ or the <a href="https://github.com/jshttp/http-errors">http-errors docs</a> for details.</p>
+</div>
+  
+
+  <h2 class='module-classes-header'>Classes</h2>
+  
+    <div class='module-class-link'>
+      <a href='v0.0.13/api/classes/Blueprint'>Blueprint</a>
+    </div>
+  
+    <div class='module-class-link'>
+      <a href='v0.0.13/api/classes/Command'>Command</a>
+    </div>
+  
+    <div class='module-class-link'>
+      <a href='v0.0.13/api/classes/FlatSerializer'>FlatSerializer</a>
+    </div>
+  
+    <div class='module-class-link'>
+      <a href='v0.0.13/api/classes/JSONAPISerializer'>JSONAPISerializer</a>
+    </div>
+  
+    <div class='module-class-link'>
+      <a href='v0.0.13/api/classes/Attribute'>Attribute</a>
+    </div>
+  
+    <div class='module-class-link'>
+      <a href='v0.0.13/api/classes/HasManyRelationship'>HasManyRelationship</a>
+    </div>
+  
+    <div class='module-class-link'>
+      <a href='v0.0.13/api/classes/HasOneRelationship'>HasOneRelationship</a>
+    </div>
+  
+    <div class='module-class-link'>
+      <a href='v0.0.13/api/classes/Model'>Model</a>
+    </div>
+  
+    <div class='module-class-link'>
+      <a href='v0.0.13/api/classes/ORMAdapter'>ORMAdapter</a>
+    </div>
+  
+    <div class='module-class-link'>
+      <a href='v0.0.13/api/classes/Serializer'>Serializer</a>
+    </div>
+  
+    <div class='module-class-link'>
+      <a href='v0.0.13/api/classes/eachPrototype'>eachPrototype</a>
+    </div>
+  
+    <div class='module-class-link'>
+      <a href='v0.0.13/api/classes/Instrumentation'>Instrumentation</a>
+    </div>
+  
+    <div class='module-class-link'>
+      <a href='v0.0.13/api/classes/mixin'>mixin</a>
+    </div>
+  
+    <div class='module-class-link'>
+      <a href='v0.0.13/api/classes/createMixin'>createMixin</a>
+    </div>
+  
+    <div class='module-class-link'>
+      <a href='v0.0.13/api/classes/Action'>Action</a>
+    </div>
+  
+    <div class='module-class-link'>
+      <a href='v0.0.13/api/classes/Addon'>Addon</a>
+    </div>
+  
+    <div class='module-class-link'>
+      <a href='v0.0.13/api/classes/Application'>Application</a>
+    </div>
+  
+    <div class='module-class-link'>
+      <a href='v0.0.13/api/classes/Container'>Container</a>
+    </div>
+  
+    <div class='module-class-link'>
+      <a href='v0.0.13/api/classes/Error'>Error</a>
+    </div>
+  
+    <div class='module-class-link'>
+      <a href='v0.0.13/api/classes/Logger'>Logger</a>
+    </div>
+  
+    <div class='module-class-link'>
+      <a href='v0.0.13/api/classes/Mailer'>Mailer</a>
+    </div>
+  
+    <div class='module-class-link'>
+      <a href='v0.0.13/api/classes/Request'>Request</a>
+    </div>
+  
+    <div class='module-class-link'>
+      <a href='v0.0.13/api/classes/Response'>Response</a>
+    </div>
+  
+    <div class='module-class-link'>
+      <a href='v0.0.13/api/classes/Router'>Router</a>
+    </div>
+  
+    <div class='module-class-link'>
+      <a href='v0.0.13/api/classes/Service'>Service</a>
+    </div>
+  
+</div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function() {
+    var $privateClassToggle = $('#toggle-private-classes');
+    $privateClassToggle.on('change', function() {
+      if ($privateClassToggle.is(':checked')) {
+        $('.api-nav [data-private-class]').css('display', 'block');
+      } else {
+        $('.api-nav [data-private-class]').css('display', 'none');
+      }
+    });
+    {% if page.class.access == 'private' %}
+      $privateClassToggle.click();
+    {% endif %}
+  });
+</script>
+
+<footer class="footer">
+  <div class='container'>
+    Made with <img src='images/fox-and-beard.svg' class='fox-and-beard'> at
+    <a href='http://foxandbeard.co' target='_blank'>Fox and Beard</a>
+  </div>
+</footer>
+
+  <div id='versions-menu' class='versions-menu jq-dropdown jq-dropdown-tip'>
+    <ul class='jq-dropdown-menu'>
+      
+        <li>
+          
+            <a class='active'>v0.0.13 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.12/api/modules/denali'>v0.0.12 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.11/api/modules/denali'>v0.0.11 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.10/api/modules/denali'>v0.0.10 (canary)</a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.9/api/modules/denali'>v0.0.9 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.8/api/modules/denali'>v0.0.8 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.7/api/modules/denali'>v0.0.7 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/master/api/modules/denali'>master </a>
+          
+        </li>
+      
+    </ul>
+  </div>
+  <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery-dropdown/2.0.3/jquery.dropdown.min.js'></script>
+
+
+
+    <script>
+     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+     ga('create', 'UA-85043775-1', 'auto');
+     ga('send', 'pageview');
+    </script>
+  </body>
+</html>
