@@ -220,10 +220,10 @@ send the email once we&#39;ve gathered all the relevant data.</p>
 action so that new users will be sent a welcome email:</p>
 <pre><code><span class="hljs-comment">// app/actions/users/sign-up.js</span>
 respond(params) {
-  let User = <span class="hljs-keyword">this</span>.modelFor(<span class="hljs-string">'user'</span>);
-  <span class="hljs-keyword">return</span> User.create(params).then((newUser) =&gt; {
-    <span class="hljs-keyword">this</span>.mail(<span class="hljs-string">'welcome'</span>, newUser);
-    <span class="hljs-keyword">return</span> newUser;
+  let User = <span class="hljs-built_in">this</span>.modelFor(<span class="hljs-string">'user'</span>);
+  <span class="hljs-keyword">return</span> User.create(params).then((<span class="hljs-keyword">new</span><span class="hljs-type">User</span>) =&gt; {
+    <span class="hljs-built_in">this</span>.mail(<span class="hljs-string">'welcome'</span>, <span class="hljs-keyword">new</span><span class="hljs-type">User</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span><span class="hljs-type">User</span>;
   });
 }
 </code></pre><p>As we can see, actions come with a <code>this.mail</code> method which invoke the named
