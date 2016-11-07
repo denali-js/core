@@ -71,6 +71,7 @@ export default class TestCommand extends Command {
     this.port = flags.port;
     this.debug = flags.debug;
     this.match = flags.match;
+    this.output = flags.output;
     this.verbose = flags.verbose;
     this.timeout = flags.timeout;
 
@@ -87,19 +88,31 @@ export default class TestCommand extends Command {
 
     if (this.watch) {
       this.project.watch({
-        outputDir: flags.output,
-        onBuild: () => {
+        outputDir: this.output,
+        // Don't let broccoli rebuild while tests are still running, or else
+        // we'll be removing the test files while in progress leading to cryptic
+        // errors.
+        beforeRebuild: () => {
           if (this.tests) {
-            this.tests.removeAllListeners('exit');
-            this.tests.kill();
+            return new Promise((resolve) => {
+              this.tests.removeAllListeners('exit');
+              this.tests.on('exit', () => {
+                delete this.tests;
+                resolve();
+              });
+              this.tests.kill();
+              ui.info('Changes detected, cancelling in-progress tests ...\n\n');
+            });
           }
-          this.runTests(flags.output);
+        },
+        onBuild: () => {
+          this.runTests();
         }
       });
     } else {
-      this.project.build(flags.output)
+      this.project.build()
       .then(() => {
-        this.runTests(flags.output);
+        this.runTests();
       });
     }
   }
@@ -110,7 +123,7 @@ export default class TestCommand extends Command {
     }
   }
 
-  runTests(buildDir) {
+  runTests() {
     let args = [ this.files, '!test/dummy/**/*' ];
     if (this.match) {
       args.push('--match', this.match);
@@ -125,7 +138,7 @@ export default class TestCommand extends Command {
       args.push('--timeout', this.timeout);
     }
     this.tests = spawn('./node_modules/.bin/ava', args, {
-      cwd: buildDir,
+      cwd: this.output,
       stdio: [ 'pipe', process.stdout, process.stderr ],
       env: assign({}, process.env, {
         PORT: this.port,
@@ -133,14 +146,16 @@ export default class TestCommand extends Command {
         NODE_ENV: this.project.environment
       })
     });
+    ui.info(`===> Running ${ this.project.pkg.name } tests ...`);
     this.tests.on('exit', (code) => {
       if (code === 0) {
-        ui.success('Tests passed! (๑˃̵ᴗ˂̵)و');
+        ui.success('\n===> Tests passed 👍');
       } else {
-        ui.error('Tests failed! (▰˘︹˘▰)');
+        ui.error('\n===> Tests failed 💥');
       }
+      delete this.tests;
       if (this.watch) {
-        ui.info('Waiting for changes to re-run ...');
+        ui.info('===> Waiting for changes to re-run ...\n\n');
       } else {
         process.exit(code);
       }
