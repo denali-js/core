@@ -14,7 +14,7 @@ module.exports = {
       'v0.0.6'
     ],
     channels: {
-      canary: 'v0.0.10'
+      canary: 'v0.0.13'
     },
     alias: {
       latest(versions) {
