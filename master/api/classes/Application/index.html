@@ -137,9 +137,9 @@
   </h1>
 
   
-    <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/runtime/application.js#L13'>
+    <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/runtime/application.js#L15'>
       <span class='filename'>Defined in: lib/runtime/application.js</span>
-      <span class='line'>Line: 13</span>
+      <span class='line'>Line: 15</span>
     </a>
   
 
@@ -169,6 +169,10 @@ loading, mounting, and launching stages of booting up.</p>
   <div class='summary'>
     <div class='summary-section'>
       <div class='summary-header'>Methods</div>
+      
+        
+          <a class='summary-link'  data-private-member=true  href='master/api/classes/Application/#createAddonFromDirectory'>createAddonFromDirectory</a>
+        
       
         
           <a class='summary-link'  data-private-member=true  href='master/api/classes/Application/#generateConfig'>generateConfig</a>
@@ -204,6 +208,8 @@ loading, mounting, and launching stages of booting up.</p>
       
         
       
+        
+      
     </div>
   </div>
 </div>
@@ -220,6 +226,59 @@ loading, mounting, and launching stages of booting up.</p>
   
     
   
+    
+  
+  
+    
+      <div class='item method' id='createAddonFromDirectory' data-private-member=true>
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            createAddonFromDirectory<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>directory</span><span class='param-type type'>:String</span></span></span><span class='param-paren'>)</span>
+            
+              <div class='private tag'>Private</div>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/runtime/application.js#L53'>
+              <span class='filename'>Defined in: lib/runtime/application.js</span>
+              <span class='line'>Line: 53</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Given a directory that contains an addon, load that addon and instantiate
+it&#39;s Addon class.</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>directory</div><div class='param-type type'>:String</div>
+                  
+                    <div class='param-description'>path to the directory containing the addon</div>
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <div class='return'>
+              <div class='return-type type'>Addon</div>
+              
+                <div class='return-description'>the instantiated Addon class representing that directory</div>
+              
+            </div>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/runtime/application.js#L53'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
   
     
       <div class='item method' id='generateConfig' data-private-member=true>
@@ -229,9 +288,9 @@ loading, mounting, and launching stages of booting up.</p>
             
               <div class='private tag'>Private</div>
             
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/runtime/application.js#L47'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/runtime/application.js#L87'>
               <span class='filename'>Defined in: lib/runtime/application.js</span>
-              <span class='line'>Line: 47</span>
+              <span class='line'>Line: 87</span>
             </a>
           </div>
         </h3>
@@ -260,7 +319,7 @@ registered in the container under `config:environment`.</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/runtime/application.js#L47'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/runtime/application.js#L87'>
               Improve this documentation
             </a>
           </div>
@@ -276,9 +335,9 @@ registered in the container under `config:environment`.</div>
             
               <div class='private tag'>Private</div>
             
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/runtime/application.js#L71'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/runtime/application.js#L111'>
               <span class='filename'>Defined in: lib/runtime/application.js</span>
-              <span class='line'>Line: 71</span>
+              <span class='line'>Line: 111</span>
             </a>
           </div>
         </h3>
@@ -296,7 +355,7 @@ registered in the container under `config:environment`.</div>
             <p class="no-return">Returns <code>undefined</code></p>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/runtime/application.js#L71'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/runtime/application.js#L111'>
               Improve this documentation
             </a>
           </div>
@@ -310,9 +369,9 @@ registered in the container under `config:environment`.</div>
           <div class='item-descriptor'>
             start<span class='param-paren'>(</span><span class='params'></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/runtime/application.js#L89'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/runtime/application.js#L129'>
               <span class='filename'>Defined in: lib/runtime/application.js</span>
-              <span class='line'>Line: 89</span>
+              <span class='line'>Line: 129</span>
             </a>
           </div>
         </h3>
@@ -336,7 +395,7 @@ and binds to the port to handle incoming HTTP requests.</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/runtime/application.js#L89'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/runtime/application.js#L129'>
               Improve this documentation
             </a>
           </div>
@@ -352,9 +411,9 @@ and binds to the port to handle incoming HTTP requests.</div>
             
               <div class='private tag'>Private</div>
             
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/runtime/application.js#L111'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/runtime/application.js#L151'>
               <span class='filename'>Defined in: lib/runtime/application.js</span>
-              <span class='line'>Line: 111</span>
+              <span class='line'>Line: 151</span>
             </a>
           </div>
         </h3>
@@ -385,7 +444,7 @@ configuration is present in config/environment.js</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/runtime/application.js#L111'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/runtime/application.js#L151'>
               Improve this documentation
             </a>
           </div>
@@ -401,9 +460,9 @@ configuration is present in config/environment.js</div>
             
               <div class='private tag'>Private</div>
             
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/runtime/application.js#L132'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/runtime/application.js#L172'>
               <span class='filename'>Defined in: lib/runtime/application.js</span>
-              <span class='line'>Line: 132</span>
+              <span class='line'>Line: 172</span>
             </a>
           </div>
         </h3>
@@ -429,7 +488,7 @@ initializers it should run before/after).</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/runtime/application.js#L132'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/runtime/application.js#L172'>
               Improve this documentation
             </a>
           </div>
@@ -489,7 +548,7 @@ initializers it should run before/after).</div>
       
         <li>
           
-            <a href='/v0.0.13/api/classes/Application'>v0.0.13 </a>
+            <a href='/v0.0.13/api/classes/Application'>v0.0.13 (canary)</a>
           
         </li>
       
@@ -507,7 +566,7 @@ initializers it should run before/after).</div>
       
         <li>
           
-            <a href='/v0.0.10/api/classes/Application'>v0.0.10 (canary)</a>
+            <a href='/v0.0.10/api/classes/Application'>v0.0.10 </a>
           
         </li>
       
