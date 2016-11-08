@@ -10,6 +10,7 @@
     "addon"
   ],
   "main": "app/addon.js",
+  "license": "MIT",
   "dependencies": {
     "babel-plugin-transform-async-to-generator": "^6.16.0",
     "babel-plugin-transform-class-properties": "^6.18.0",
