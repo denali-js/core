@@ -101,7 +101,7 @@ export default class TestCommand extends Command {
                 resolve();
               });
               this.tests.kill();
-              ui.info('Changes detected, cancelling in-progress tests ...\n\n');
+              ui.info('\n\n===> Changes detected, cancelling in-progress tests ...\n\n');
             });
           }
         },
