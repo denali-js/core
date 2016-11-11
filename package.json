@@ -68,7 +68,7 @@
     "cors": "^2.7.1",
     "dag-map": "^2.0.1",
     "dedent-js": "^1.0.1",
-    "denali-babel": "^0.0.2",
+    "denali-babel": "^0.0.4",
     "denali-eslint": "^0.0.3",
     "dotenv": "^2.0.0",
     "eslint": "3.8",
