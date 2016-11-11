@@ -25,6 +25,8 @@ export default class RootCommand extends Command {
     }
   };
 
+  runsInApp = null;
+
   run({ params, flags }, argTokens, commands) {
     if (flags.version) {
       this.printVersion();
@@ -37,9 +39,9 @@ export default class RootCommand extends Command {
     let localPkg;
     try {
       let localDir = resolve.sync('denali', { basedir: process.cwd() });
-      localPkg = require(path.join(localDir, '../package.json'));
+      localPkg = require(path.join(localDir, '../../package.json'));
     } catch (e) { /* ignore failed lookups */ }
-    let globalPkg = require('../../../package.json');
+    let globalPkg = require('../package.json');
     if (localPkg) {
       ui.info(`denali (local): ${ localPkg.version }`);
     }
