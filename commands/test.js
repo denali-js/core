@@ -62,6 +62,11 @@ export default class TestCommand extends Command {
       description: 'Print out an analysis of the build process, showing the slowest nodes.',
       defaultValue: false,
       type: Boolean
+    },
+    'fail-fast': {
+      description: 'Stop tests on the first failure',
+      defaultValue: false,
+      type: Boolean
     }
   };
 
@@ -74,6 +79,7 @@ export default class TestCommand extends Command {
     this.output = flags.output;
     this.verbose = flags.verbose;
     this.timeout = flags.timeout;
+    this.failFast = flags['fail-fast'];
 
     this.project = new Project({
       environment: 'test',
@@ -129,13 +135,17 @@ export default class TestCommand extends Command {
       args.push('--match', this.match);
     }
     if (this.debug) {
-      args.push('--inspect', '--debug-brk');
+      ui.warn('Debugging support for tests is blocked on the release of ava 0.17');
+      // args.unshift('--inspect', '--debug-brk');
     }
     if (this.verbose) {
-      args.push('--verbose');
+      args.unshift('--verbose');
     }
     if (this.timeout) {
-      args.push('--timeout', this.timeout);
+      args.unshift('--timeout', this.timeout);
+    }
+    if (this.failFast) {
+      args.unshift('--fail-fast');
     }
     this.tests = spawn('./node_modules/.bin/ava', args, {
       cwd: this.output,
