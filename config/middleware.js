@@ -6,7 +6,6 @@ import compression from 'compression';
 import cookies from 'cookie-parser';
 import cors from 'cors';
 import helmet from 'helmet';
-import requestid from 'express-request-id';
 import forceSSL from 'express-force-ssl';
 import morgan from 'morgan';
 import { json } from 'body-parser';
@@ -21,10 +20,6 @@ export default function baseMiddleware(router, application) {
 
   if (isEnabled('timing')) {
     router.use(timing());
-  }
-
-  if (isEnabled('requestid')) {
-    router.use(requestid());
   }
 
   if (isEnabled('logging')) {
