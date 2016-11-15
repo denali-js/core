@@ -834,7 +834,7 @@ babel-plugin-transform-regenerator@^6.16.0:
     babel-types "^6.16.0"
     private "~0.1.5"
 
-babel-plugin-transform-runtime@^6.3.13:
+babel-plugin-transform-runtime, babel-plugin-transform-runtime@^6.3.13:
   version "6.15.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-runtime/-/babel-plugin-transform-runtime-6.15.0.tgz#3d75b4d949ad81af157570273846fb59aeb0d57c"
   dependencies:
@@ -935,6 +935,13 @@ babel-register@^6.16.0:
     mkdirp "^0.5.1"
     path-exists "^1.0.0"
     source-map-support "^0.4.2"
+
+babel-runtime:
+  version "6.18.0"
+  resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.18.0.tgz#0f4177ffd98492ef13b9f823e9994a02584c9078"
+  dependencies:
+    core-js "^2.4.0"
+    regenerator-runtime "^0.9.5"
 
 babel-runtime@^6.0.0, babel-runtime@^6.11.6, babel-runtime@^6.3.19, babel-runtime@^6.9.0, babel-runtime@^6.9.1:
   version "6.11.6"

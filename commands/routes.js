@@ -47,10 +47,7 @@ export default class RoutesCommand extends Command {
           let methodRoutes = routes[method];
 
           methodRoutes.forEach((route) => {
-            // Only return routes with urls ending with a / since they are duplicated
-            if (route.spec.slice(-1) === '/') {
-              table.push([ `${ method.toUpperCase() } ${ route.spec }`, route.actionPath ]);
-            }
+            table.push([ `${ method.toUpperCase() } ${ route.spec.replace(/\(\/\)$/, '/') }`, route.actionPath ]);
           });
         });
 
