@@ -153,7 +153,8 @@ export default class TestCommand extends Command {
       env: assign({}, process.env, {
         PORT: this.port,
         DENALI_ENV: this.project.environment,
-        NODE_ENV: this.project.environment
+        NODE_ENV: this.project.environment,
+        DEBUG_COLORS: 1
       })
     });
     ui.info(`===> Running ${ this.project.pkg.name } tests ...`);
