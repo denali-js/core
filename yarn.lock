@@ -1979,15 +1979,16 @@ denali-babel@^0.0.1:
     eslint-config-denali "^1.1.0"
     lodash "^4.16.4"
 
-denali-babel@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/denali-babel/-/denali-babel-0.0.2.tgz#ad6970bc20d3ef52e77e4d731e70f97f9d9b52b7"
+denali-babel@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/denali-babel/-/denali-babel-0.0.4.tgz#5f80dc0404c7911271d24b9f15cc4351a8cbfe30"
   dependencies:
     babel-plugin-transform-async-to-generator "^6.16.0"
     babel-plugin-transform-class-properties "^6.18.0"
     babel-preset-latest "^6.16.0"
     bluebird "^3.4.6"
     broccoli-babel-transpiler "^6.0.0-alpha.2"
+    denali "0.0.13"
     eslint-config-denali "^1.1.0"
     lodash "^4.16.4"
 
