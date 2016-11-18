@@ -1966,9 +1966,9 @@ delegates@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/delegates/-/delegates-1.0.0.tgz#84c6e159b81904fdca59a0ef44cd870d31250f9a"
 
-denali-babel@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/denali-babel/-/denali-babel-0.0.1.tgz#cb122aad50b11783b41adc7176a7aac129c281a5"
+denali-babel:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/denali-babel/-/denali-babel-0.0.4.tgz#5f80dc0404c7911271d24b9f15cc4351a8cbfe30"
   dependencies:
     babel-plugin-transform-async-to-generator "^6.16.0"
     babel-plugin-transform-class-properties "^6.18.0"
@@ -1979,9 +1979,9 @@ denali-babel@^0.0.1:
     eslint-config-denali "^1.1.0"
     lodash "^4.16.4"
 
-denali-babel@^0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/denali-babel/-/denali-babel-0.0.4.tgz#5f80dc0404c7911271d24b9f15cc4351a8cbfe30"
+denali-babel@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/denali-babel/-/denali-babel-0.0.1.tgz#cb122aad50b11783b41adc7176a7aac129c281a5"
   dependencies:
     babel-plugin-transform-async-to-generator "^6.16.0"
     babel-plugin-transform-class-properties "^6.18.0"
