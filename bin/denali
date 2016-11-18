@@ -8,6 +8,8 @@ require('babel-register')({
   }
 });
 
+process.title = 'denali';
+
 var semver = require('semver');
 var chalk = require('chalk');
 
