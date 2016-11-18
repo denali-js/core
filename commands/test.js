@@ -67,6 +67,11 @@ export default class TestCommand extends Command {
       description: 'Stop tests on the first failure',
       defaultValue: false,
       type: Boolean
+    },
+    serial: {
+      description: 'Run tests serially',
+      defaultValue: false,
+      type: Boolean
     }
   };
 
@@ -80,6 +85,7 @@ export default class TestCommand extends Command {
     this.verbose = flags.verbose;
     this.timeout = flags.timeout;
     this.failFast = flags['fail-fast'];
+    this.serial = flags.serial;
 
     this.project = new Project({
       environment: 'test',
@@ -146,6 +152,9 @@ export default class TestCommand extends Command {
     }
     if (this.failFast) {
       args.unshift('--fail-fast');
+    }
+    if (this.serial) {
+      args.unshift('--serial');
     }
     this.tests = spawn('./node_modules/.bin/ava', args, {
       cwd: this.output,
