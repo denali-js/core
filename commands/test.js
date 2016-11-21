@@ -156,7 +156,7 @@ export default class TestCommand extends Command {
     if (this.serial) {
       args.unshift('--serial');
     }
-    this.tests = spawn('./node_modules/.bin/ava', args, {
+    this.tests = spawn('../node_modules/.bin/ava', args, {
       cwd: this.output,
       stdio: [ 'pipe', process.stdout, process.stderr ],
       env: assign({}, process.env, {
