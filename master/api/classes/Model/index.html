@@ -137,9 +137,9 @@
   </h1>
 
   
-    <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/model.js#L11'>
+    <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/model.js#L12'>
       <span class='filename'>Defined in: lib/data/model.js</span>
-      <span class='line'>Line: 11</span>
+      <span class='line'>Line: 12</span>
     </a>
   
 
@@ -224,15 +224,23 @@ Model) will translate and forward those calls to the underlying ORM adapter.</p>
         
       
         
-          <a class='summary-link'  href='master/api/classes/Model/#modelFor'>modelFor</a>
-        
-      
-        
           <a class='summary-link'  href='master/api/classes/Model/#eachAttribute'>eachAttribute</a>
         
       
         
+          <a class='summary-link'  href='master/api/classes/Model/#eachRelationship'>eachRelationship</a>
+        
+      
+        
           <a class='summary-link'  href='master/api/classes/Model/#modelFor'>modelFor</a>
+        
+      
+        
+          <a class='summary-link'  href='master/api/classes/Model/#modelFor'>modelFor</a>
+        
+      
+        
+          <a class='summary-link'  href='master/api/classes/Model/#service'>service</a>
         
       
         
@@ -258,19 +266,23 @@ Model) will translate and forward those calls to the underlying ORM adapter.</p>
         
       
         
-          <a class='summary-link'  href='master/api/classes/Model/#id'>id</a>
-        
-      
-        
-          <a class='summary-link'  href='master/api/classes/Model/#container'>container</a>
-        
-      
-        
           <a class='summary-link'  href='master/api/classes/Model/#adapter'>adapter</a>
         
       
         
+          <a class='summary-link'  href='master/api/classes/Model/#id'>id</a>
+        
+      
+        
+          <a class='summary-link'  href='master/api/classes/Model/#id'>id</a>
+        
+      
+        
           <a class='summary-link'  data-private-member=true  href='master/api/classes/Model/#record'>record</a>
+        
+      
+        
+      
         
       
         
@@ -307,9 +319,9 @@ Model) will translate and forward those calls to the underlying ORM adapter.</p>
           <div class='item-descriptor'>
             type<span class="type">:{String}</span>
             
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/model.js#L38'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/model.js#L39'>
               <span class='filename'>Defined in: lib/data/model.js</span>
-              <span class='line'>Line: 38</span>
+              <span class='line'>Line: 39</span>
             </a>
           </div>
         </h3>
@@ -320,7 +332,7 @@ the model, as well as in several other areas of Denali (i.e. serializers,
 ORM adapters, etc). Conventionally, types are dasherized versions of the
 model name (i.e. the BlogPost model&#39;s type would be `&#34;blog-post&#34;`).</div>
           <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/model.js#L38'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/model.js#L39'>
               Improve this documentation
             </a>
           </div>
@@ -340,9 +352,9 @@ model name (i.e. the BlogPost model&#39;s type would be `&#34;blog-post&#34;`).<
             
               <div class='private tag'>Private</div>
             
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/model.js#L115'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/model.js#L123'>
               <span class='filename'>Defined in: lib/data/model.js</span>
-              <span class='line'>Line: 115</span>
+              <span class='line'>Line: 123</span>
             </a>
           </div>
         </h3>
@@ -351,55 +363,7 @@ model name (i.e. the BlogPost model&#39;s type would be `&#34;blog-post&#34;`).<
           <div class='item-description'>The ORM adapter specific to this model type. Defaults to the application&#39;s
 ORM adapter if none for this specific model type is found.</div>
           <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/model.js#L115'>
-              Improve this documentation
-            </a>
-          </div>
-        </div>
-      </div>
-    
-  
-    
-      <div class='item property' id='id' >
-        <h3 class='item-title'>
-          <div class='item-descriptor'>
-            id<span class="type">:{Number|String}</span>
-            
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/model.js#L130'>
-              <span class='filename'>Defined in: lib/data/model.js</span>
-              <span class='line'>Line: 130</span>
-            </a>
-          </div>
-        </h3>
-        <div class='item-body'>
-          <div class='item-header'>Description</div>
-          <div class='item-description'>The id of the record</div>
-          <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/model.js#L130'>
-              Improve this documentation
-            </a>
-          </div>
-        </div>
-      </div>
-    
-  
-    
-      <div class='item property' id='container' >
-        <h3 class='item-title'>
-          <div class='item-descriptor'>
-            container<span class="type">:{Container}</span>
-            
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/model.js#L140'>
-              <span class='filename'>Defined in: lib/data/model.js</span>
-              <span class='line'>Line: 140</span>
-            </a>
-          </div>
-        </h3>
-        <div class='item-body'>
-          <div class='item-header'>Description</div>
-          <div class='item-description'>The application container</div>
-          <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/model.js#L140'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/model.js#L123'>
               Improve this documentation
             </a>
           </div>
@@ -413,9 +377,9 @@ ORM adapter if none for this specific model type is found.</div>
           <div class='item-descriptor'>
             adapter<span class="type">:{ORMAdapter}</span>
             
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/model.js#L150'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/model.js#L138'>
               <span class='filename'>Defined in: lib/data/model.js</span>
-              <span class='line'>Line: 150</span>
+              <span class='line'>Line: 138</span>
             </a>
           </div>
         </h3>
@@ -424,7 +388,55 @@ ORM adapter if none for this specific model type is found.</div>
           <div class='item-description'>The ORM adapter specific to this model type. Defaults to the application&#39;s
 ORM adapter if none for this specific model type is found.</div>
           <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/model.js#L150'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/model.js#L138'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item property' id='id' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            id<span class="type">:{Number|String}</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/model.js#L149'>
+              <span class='filename'>Defined in: lib/data/model.js</span>
+              <span class='line'>Line: 149</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>The id of the record</div>
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/model.js#L149'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item property' id='id' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            id<span class="type">:{Number|String}</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/model.js#L159'>
+              <span class='filename'>Defined in: lib/data/model.js</span>
+              <span class='line'>Line: 159</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Set the id of the record</div>
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/model.js#L159'>
               Improve this documentation
             </a>
           </div>
@@ -440,9 +452,9 @@ ORM adapter if none for this specific model type is found.</div>
             
               <div class='private tag'>Private</div>
             
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/model.js#L161'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/model.js#L169'>
               <span class='filename'>Defined in: lib/data/model.js</span>
-              <span class='line'>Line: 161</span>
+              <span class='line'>Line: 169</span>
             </a>
           </div>
         </h3>
@@ -451,12 +463,16 @@ ORM adapter if none for this specific model type is found.</div>
           <div class='item-description'>The underlying ORM adapter record. An opaque value to Denali, handled
 entirely by the ORM adapter.</div>
           <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/model.js#L161'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/model.js#L169'>
               Improve this documentation
             </a>
           </div>
         </div>
       </div>
+    
+  
+    
+  
     
   
     
@@ -490,9 +506,9 @@ entirely by the ORM adapter.</div>
           <div class='item-descriptor'>
             find<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>query</span><span class='param-type type'>:Number|String|Object|Function</span></span><span class='param'><span class='param-name'>options</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/model.js#L56'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/model.js#L60'>
               <span class='filename'>Defined in: lib/data/model.js</span>
-              <span class='line'>Line: 56</span>
+              <span class='line'>Line: 60</span>
             </a>
           </div>
         </h3>
@@ -546,7 +562,7 @@ null</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/model.js#L56'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/model.js#L60'>
               Improve this documentation
             </a>
           </div>
@@ -560,9 +576,9 @@ null</div>
           <div class='item-descriptor'>
             create<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>data</span><span class='param-type type'>:Object</span></span><span class='param'><span class='param-name'>options</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/model.js#L95'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/model.js#L102'>
               <span class='filename'>Defined in: lib/data/model.js</span>
-              <span class='line'>Line: 95</span>
+              <span class='line'>Line: 102</span>
             </a>
           </div>
         </h3>
@@ -597,7 +613,7 @@ null</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/model.js#L95'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/model.js#L102'>
               Improve this documentation
             </a>
           </div>
@@ -621,9 +637,9 @@ null</div>
           <div class='item-descriptor'>
             save<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>options</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/model.js#L226'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/model.js#L231'>
               <span class='filename'>Defined in: lib/data/model.js</span>
-              <span class='line'>Line: 226</span>
+              <span class='line'>Line: 231</span>
             </a>
           </div>
         </h3>
@@ -653,7 +669,7 @@ null</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/model.js#L226'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/model.js#L231'>
               Improve this documentation
             </a>
           </div>
@@ -667,9 +683,9 @@ null</div>
           <div class='item-descriptor'>
             delete<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>options</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/model.js#L238'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/model.js#L245'>
               <span class='filename'>Defined in: lib/data/model.js</span>
-              <span class='line'>Line: 238</span>
+              <span class='line'>Line: 245</span>
             </a>
           </div>
         </h3>
@@ -699,7 +715,7 @@ null</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/model.js#L238'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/model.js#L245'>
               Improve this documentation
             </a>
           </div>
@@ -713,9 +729,9 @@ null</div>
           <div class='item-descriptor'>
             getRelated<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>relationshipName</span><span class='param-type type'>:String</span></span><span class='param'><span class='param-name'>options</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/model.js#L249'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/model.js#L256'>
               <span class='filename'>Defined in: lib/data/model.js</span>
-              <span class='line'>Line: 249</span>
+              <span class='line'>Line: 256</span>
             </a>
           </div>
         </h3>
@@ -753,7 +769,7 @@ relationships), or an array of models (for hasMany relationships)</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/model.js#L249'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/model.js#L256'>
               Improve this documentation
             </a>
           </div>
@@ -767,9 +783,9 @@ relationships), or an array of models (for hasMany relationships)</div>
           <div class='item-descriptor'>
             setRelated<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>relationshipName</span><span class='param-type type'>:String</span></span><span class='param'><span class='param-name'>relatedModels</span><span class='param-type type'>:Object|Array</span></span><span class='param'><span class='param-name'>options</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/model.js#L271'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/model.js#L279'>
               <span class='filename'>Defined in: lib/data/model.js</span>
-              <span class='line'>Line: 271</span>
+              <span class='line'>Line: 279</span>
             </a>
           </div>
         </h3>
@@ -812,7 +828,7 @@ related records.</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/model.js#L271'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/model.js#L279'>
               Improve this documentation
             </a>
           </div>
@@ -826,9 +842,9 @@ related records.</div>
           <div class='item-descriptor'>
             addRelated<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>relationshipName</span><span class='param-type type'>:String</span></span><span class='param'><span class='param-name'>relatedModel</span><span class='param-type type'>:Object</span></span><span class='param'><span class='param-name'>options</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/model.js#L287'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/model.js#L295'>
               <span class='filename'>Defined in: lib/data/model.js</span>
-              <span class='line'>Line: 287</span>
+              <span class='line'>Line: 295</span>
             </a>
           </div>
         </h3>
@@ -870,7 +886,7 @@ related records.</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/model.js#L287'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/model.js#L295'>
               Improve this documentation
             </a>
           </div>
@@ -884,9 +900,9 @@ related records.</div>
           <div class='item-descriptor'>
             removeRelated<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>relationshipName</span><span class='param-type type'>:String</span></span><span class='param'><span class='param-name'>relatedModel</span><span class='param-type type'>:Object</span></span><span class='param'><span class='param-name'>options</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/model.js#L305'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/model.js#L313'>
               <span class='filename'>Defined in: lib/data/model.js</span>
-              <span class='line'>Line: 305</span>
+              <span class='line'>Line: 313</span>
             </a>
           </div>
         </h3>
@@ -928,51 +944,7 @@ related records.</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/model.js#L305'>
-              Improve this documentation
-            </a>
-          </div>
-        </div>
-      </div>
-    
-  
-    
-      <div class='item method' id='modelFor' >
-        <h3 class='item-title'>
-          <div class='item-descriptor'>
-            modelFor<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>type</span><span class='param-type type'>:String</span></span></span><span class='param-paren'>)</span>
-            
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/model.js#L323'>
-              <span class='filename'>Defined in: lib/data/model.js</span>
-              <span class='line'>Line: 323</span>
-            </a>
-          </div>
-        </h3>
-        <div class='item-body'>
-          <div class='item-header'>Description</div>
-          <div class='item-description'>Lookup a model class by type.</div>
-
-          <div class='item-header'>Parameters</div>
-          
-            <div class='params'>
-              
-                <div class='param'>
-                  <div class='param-name'>type</div><div class='param-type type'>:String</div>
-                  
-                </div>
-              
-            </div>
-          
-
-          <div class='item-header'>Returns</div>
-          
-            <div class='return'>
-              <div class='return-type type'>Model</div>
-              
-            </div>
-          
-          <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/model.js#L323'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/model.js#L313'>
               Improve this documentation
             </a>
           </div>
@@ -986,9 +958,9 @@ related records.</div>
           <div class='item-descriptor'>
             eachAttribute<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>fn</span><span class='param-type type'>:Function</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/model.js#L335'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/model.js#L331'>
               <span class='filename'>Defined in: lib/data/model.js</span>
-              <span class='line'>Line: 335</span>
+              <span class='line'>Line: 331</span>
             </a>
           </div>
         </h3>
@@ -1017,7 +989,52 @@ passing in the attribute name and attribute instance.</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/model.js#L335'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/model.js#L331'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item method' id='eachRelationship' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            eachRelationship<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>fn</span><span class='param-type type'>:Function</span></span></span><span class='param-paren'>)</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/model.js#L354'>
+              <span class='filename'>Defined in: lib/data/model.js</span>
+              <span class='line'>Line: 354</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Call the supplied callback function for each relationship on this model,
+passing in the relationship name and relationship instance.</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>fn</div><div class='param-type type'>:Function</div>
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <div class='return'>
+              <div class='return-type type'>Array</div>
+              
+            </div>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/model.js#L354'>
               Improve this documentation
             </a>
           </div>
@@ -1031,9 +1048,9 @@ passing in the attribute name and attribute instance.</div>
           <div class='item-descriptor'>
             modelFor<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>type</span><span class='param-type type'>:String</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/model.js#L358'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/model.js#L377'>
               <span class='filename'>Defined in: lib/data/model.js</span>
-              <span class='line'>Line: 358</span>
+              <span class='line'>Line: 377</span>
             </a>
           </div>
         </h3>
@@ -1061,7 +1078,51 @@ passing in the attribute name and attribute instance.</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/model.js#L358'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/model.js#L377'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item method' id='modelFor' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            modelFor<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>type</span><span class='param-type type'>:String</span></span></span><span class='param-paren'>)</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/model.js#L388'>
+              <span class='filename'>Defined in: lib/data/model.js</span>
+              <span class='line'>Line: 388</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Lookup a model class by type.</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>type</div><div class='param-type type'>:String</div>
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <div class='return'>
+              <div class='return-type type'>Model</div>
+              
+            </div>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/model.js#L388'>
               Improve this documentation
             </a>
           </div>
@@ -1075,9 +1136,9 @@ passing in the attribute name and attribute instance.</div>
           <div class='item-descriptor'>
             service<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>type</span><span class='param-type type'>:String</span></span></span><span class='param-paren'>)</span>
             
-            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/model.js#L369'>
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/model.js#L400'>
               <span class='filename'>Defined in: lib/data/model.js</span>
-              <span class='line'>Line: 369</span>
+              <span class='line'>Line: 400</span>
             </a>
           </div>
         </h3>
@@ -1105,7 +1166,51 @@ passing in the attribute name and attribute instance.</div>
             </div>
           
           <div class='improve'>
-            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/model.js#L369'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/model.js#L400'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item method' id='service' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            service<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>type</span><span class='param-type type'>:String</span></span></span><span class='param-paren'>)</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/master/lib/data/model.js#L411'>
+              <span class='filename'>Defined in: lib/data/model.js</span>
+              <span class='line'>Line: 411</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Lookup a service by type</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>type</div><div class='param-type type'>:String</div>
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <div class='return'>
+              <div class='return-type type'>Service</div>
+              
+            </div>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/master/lib/data/model.js#L411'>
               Improve this documentation
             </a>
           </div>
@@ -1162,6 +1267,12 @@ passing in the attribute name and attribute instance.</div>
 
   <div id='versions-menu' class='versions-menu jq-dropdown jq-dropdown-tip'>
     <ul class='jq-dropdown-menu'>
+      
+        <li>
+          
+            <a href='/v0.0.14/api/classes/Model'>v0.0.14 </a>
+          
+        </li>
       
         <li>
           
