@@ -4,6 +4,7 @@ import {
   MockRequest,
   MockResponse,
   Container,
+  Serializer,
   Action } from 'denali';
 
 test('Router > runs middleware before determining routing', async (t) => {
@@ -35,10 +36,10 @@ test('Router > does not attempt to serialize when action.serializer = false', as
       t.pass();
     }
   });
-  container.register('serializer:application', {
+  container.register('serializer:application', class extends Serializer {
     parse() {
       t.fail('Router should not have attempted to parse this request with a serializer');
-    },
+    }
     serialize() {
       t.fail('Router should not have attempted to serialize this response with a serializer');
     }

@@ -3,6 +3,8 @@ import {
   Action,
   Model,
   Container,
+  Serializer,
+  Service,
   FlatSerializer } from 'denali';
 import merge from 'lodash/merge';
 
@@ -61,7 +63,7 @@ test('Action > does not invoke the serializer if no response body was provided',
     }
   }
   let mock = mockReqRes();
-  mock.container.register('serializer:foo', {
+  mock.container.register('serializer:foo', class extends Serializer {
     serialize() {
       t.fail('Serializer should not be invoked');
     }
@@ -81,7 +83,7 @@ test('Action > uses a specified serializer type when provided', async (t) => {
     }
   }
   let mock = mockReqRes();
-  mock.container.register('serializer:foo', {
+  mock.container.register('serializer:foo', class extends Serializer {
     serialize() {
       t.pass();
     }
@@ -100,7 +102,7 @@ test('Action > renders with the error serializer if an error was rendered', asyn
     }
   }
   let mock = mockReqRes();
-  mock.container.register('serializer:error', {
+  mock.container.register('serializer:error', class extends Serializer {
     serialize() {
       t.pass();
     }
@@ -125,7 +127,7 @@ test('Action > should render with the model type serializer if a model was rende
       });
     }
   }
-  mock.container.register('serializer:foo', {
+  mock.container.register('serializer:foo', class extends Serializer {
     serialize() {
       t.pass();
     }
@@ -144,7 +146,7 @@ test('Action > should render with the application serializer if all options exha
       return {};
     }
   }
-  mock.container.register('serializer:application', {
+  mock.container.register('serializer:application', class extends Serializer {
     serialize() {
       t.pass();
     }
@@ -256,19 +258,20 @@ test('Action > content negotiation > respond with the content-type specific resp
 
 test('Action > #modelFor(type) > returns the model for a given type', async (t) => {
   let mock = mockReqRes();
-  mock.container.register('model:user', { type: 'user' });
+  class User extends Model {}
+  mock.container.register('model:user', User);
   let action = new Action(mock);
 
-  let User = action.modelFor('user');
-  t.is(User.type, 'user');
-  t.is(User.container, action.container);
+  let ContainerUser = action.modelFor('user');
+  t.is(ContainerUser.type, 'user');
 });
 
 test('Action > #service(name) > returns the service for a given service name', async (t) => {
   let mock = mockReqRes();
-  mock.container.register('service:mine', { type: 'mine' });
+  class MyService extends Service {}
+  mock.container.register('service:mine', MyService);
   let action = new Action(mock);
 
   let service = action.service('mine');
-  t.is(service.type, 'mine');
+  t.true(service instanceof MyService);
 });
