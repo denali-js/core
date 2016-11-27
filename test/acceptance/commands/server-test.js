@@ -17,9 +17,7 @@ test('server command > launches a server', async () => {
   linkDependency(path.join(server.dir, 'foobar'), 'denali', server.projectRoot);
 
   return server.spawn({
-    env: {
-      DENALI_ENV: 'development'
-    },
+    failOnStderr: true,
     checkOutput(stdout) {
       return stdout.indexOf('dummy@0.0.0 server up') > -1;
     }
@@ -36,9 +34,7 @@ test('server command > launches a server based on the dummy app in an addon', as
   });
 
   return server.spawn({
-    env: {
-      DENALI_ENV: 'development'
-    },
+    failOnStderr: true,
     checkOutput(stdout) {
       return stdout.indexOf('dummy@0.0.0 server up') > -1;
     }
