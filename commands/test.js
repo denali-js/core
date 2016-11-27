@@ -177,7 +177,8 @@ export default class TestCommand extends Command {
       if (this.watch) {
         ui.info('===> Waiting for changes to re-run ...\n\n');
       } else {
-        process.exit(code);
+        ui.info(`===> exiting with ${ code }`);
+        process.exitCode = code;
       }
     });
   }
