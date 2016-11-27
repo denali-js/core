@@ -50,7 +50,7 @@ export default class TestCommand extends Command {
     },
     verbose: {
       description: 'Print detailed output of the status of your test run',
-      defaultValue: false,
+      defaultValue: process.env.CI,
       type: Boolean
     },
     output: {
@@ -177,8 +177,8 @@ export default class TestCommand extends Command {
       if (this.watch) {
         ui.info('===> Waiting for changes to re-run ...\n\n');
       } else {
-        ui.info(`===> exiting with ${ code }`);
-        process.exitCode = code;
+        process.exitCode = code === null ? 1 : code;
+        ui.info(`===> exiting with ${ process.exitCode }`);
       }
     });
   }
