@@ -1,3 +1,70 @@
+# Change Log
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+<a name="0.1.0"></a>
+# [0.1.0](https://github.com/denali-js/denali/compare/v0.0.13...v0.1.0) (2016-11-27)
+
+
+### Bug Fixes
+
+* **cli:** change process title to denali ([06f8fed](https://github.com/denali-js/denali/commit/06f8fed))
+* **cli:** default beforeRebuild to noop; fixes #223 ([f7150ff](https://github.com/denali-js/denali/commit/f7150ff)), closes [#223](https://github.com/denali-js/denali/issues/223)
+* **cli:** default DEBUG_COLORS=1 for test command ([653ce7c](https://github.com/denali-js/denali/commit/653ce7c))
+* **cli:** ensure polyfill loads before the rest of the imports in lib/index.js; see #221 ([249d256](https://github.com/denali-js/denali/commit/249d256))
+* **cli:** fix version printing ([2cf7cfc](https://github.com/denali-js/denali/commit/2cf7cfc))
+* **cli:** Make sure cli ENVs are not overwritten by defaults (#226) ([7dd7f18](https://github.com/denali-js/denali/commit/7dd7f18)), closes [#213](https://github.com/denali-js/denali/issues/213)
+* **cli:** refactor test command to avoid concurrency issues with attempting to build while tests are still running ([99ccfbb](https://github.com/denali-js/denali/commit/99ccfbb))
+* **cli:** remove undefined index.js line from help menu (#207) ([eb85ffe](https://github.com/denali-js/denali/commit/eb85ffe))
+* **cli:** run processEach hooks _after_ processParent hooks ([f8894f4](https://github.com/denali-js/denali/commit/f8894f4))
+* **cli:** stop leaking event emitters for server command; fixes #215 (#218) ([8f2e16c](https://github.com/denali-js/denali/commit/8f2e16c)), closes [#215](https://github.com/denali-js/denali/issues/215) [#218](https://github.com/denali-js/denali/issues/218)
+* **cli:** stop the building spinner when the build errors ([5b79d08](https://github.com/denali-js/denali/commit/5b79d08))
+* **cli:** swallow babel-polyfill errors from loading twice; fixes #221 ([5c0910c](https://github.com/denali-js/denali/commit/5c0910c)), closes [#221](https://github.com/denali-js/denali/issues/221)
+* **data:** add sanity check for adapter returns from getRelated ([2deb3e4](https://github.com/denali-js/denali/commit/2deb3e4))
+* **data:** default model constructor data arg to empty obj ([02b9f60](https://github.com/denali-js/denali/commit/02b9f60))
+* **data:** ensure memory adapter methods are guaranteed async even when its a sync operation ([ae9ed3d](https://github.com/denali-js/denali/commit/ae9ed3d))
+* **data:** ensure type is passed to adapter methods ([ab06b76](https://github.com/denali-js/denali/commit/ab06b76))
+* **data:** fix inspect output for models, use eachAttribute ([4e1051f](https://github.com/denali-js/denali/commit/4e1051f))
+* **data:** fix relationship accessor method lookup ([a87f804](https://github.com/denali-js/denali/commit/a87f804))
+* **data:** return true to stop proxy from erroring ([8468c19](https://github.com/denali-js/denali/commit/8468c19))
+* **data:** use findone for hasone relationships ([b195422](https://github.com/denali-js/denali/commit/b195422))
+* **docs:** update to proper naming for addon (#208) ([e8374f8](https://github.com/denali-js/denali/commit/e8374f8))
+* change static classes to singletons, use per-container subclasses to embed container references ([1994d3a](https://github.com/denali-js/denali/commit/1994d3a))
+* ensure that babel-polyfill is always imported, no matter the invocation point ([57d476e](https://github.com/denali-js/denali/commit/57d476e))
+* **runtime:** stop using re-export syntax to avoid hoisting imports ([1a0a74b](https://github.com/denali-js/denali/commit/1a0a74b))
+* move denali back to regular deps in addon blueprint ([08f99d2](https://github.com/denali-js/denali/commit/08f99d2))
+* remove babel-runtime, tests fail with it (not sure why tbh) ([03e6c69](https://github.com/denali-js/denali/commit/03e6c69))
+* **runtime:** make availableForType() more strict in type lookups ([105903d](https://github.com/denali-js/denali/commit/105903d))
+* **runtime:** Remove the mailer (#212) ([398f3d4](https://github.com/denali-js/denali/commit/398f3d4))
+* **test:** add default value to app acceptance test helper method options ([6086f64](https://github.com/denali-js/denali/commit/6086f64))
+* **test:** fix app acceptance helper handling of request body ([4b81334](https://github.com/denali-js/denali/commit/4b81334))
+* **test:** fix app acceptance test helper paths and request sugar ([3a94f58](https://github.com/denali-js/denali/commit/3a94f58))
+* **test:** fix assumption that options.method existed ([b61884b](https://github.com/denali-js/denali/commit/b61884b))
+
+
+### Features
+
+* **blueprint:** add denali-build.js to app/addon blueprints ([8062dd4](https://github.com/denali-js/denali/commit/8062dd4))
+* **blueprint:** add MIT license to addon blueprint ([a35c2f5](https://github.com/denali-js/denali/commit/a35c2f5))
+* **blueprint:** add some helpful default config files to app & addon blueprints ([f549c96](https://github.com/denali-js/denali/commit/f549c96))
+* **cli:** add --serial flag to test command ([b257d59](https://github.com/denali-js/denali/commit/b257d59))
+* **cli:** add building spinner indicator ([9dff265](https://github.com/denali-js/denali/commit/9dff265))
+* **cli:** add fail-fast arg to test command ([3a57d80](https://github.com/denali-js/denali/commit/3a57d80))
+* **cli:** add ignoreVulnerabilities property to Builder class; fixes #209 ([1890e71](https://github.com/denali-js/denali/commit/1890e71)), closes [#209](https://github.com/denali-js/denali/issues/209)
+* **cli:** allow addons to modify builds (#214) ([209f33a](https://github.com/denali-js/denali/commit/209f33a))
+* **cli:** print-slow-trees flag for several commands (#205) ([cb8ba76](https://github.com/denali-js/denali/commit/cb8ba76))
+* **data:** add findOne to adapter api ([8dca36f](https://github.com/denali-js/denali/commit/8dca36f))
+* **data:** add initializer to allow ORM adapters to define their own internal models ([4f18c55](https://github.com/denali-js/denali/commit/4f18c55))
+* **data:** add Model.eachRelationship() ([27d3973](https://github.com/denali-js/denali/commit/27d3973))
+* **data:** add Model.findOne() ([9f24878](https://github.com/denali-js/denali/commit/9f24878))
+* **data:** add setId to adapter api ([1478d4e](https://github.com/denali-js/denali/commit/1478d4e))
+* add debug logging ([202a20a](https://github.com/denali-js/denali/commit/202a20a))
+* **runtime:** add request id via our request class ([5b9cf6f](https://github.com/denali-js/denali/commit/5b9cf6f))
+* **test:** add `environment` and `failOnStderr` options to ([29c9cca](https://github.com/denali-js/denali/commit/29c9cca))
+* **test:** improve spawn command failure output ([38dd2de](https://github.com/denali-js/denali/commit/38dd2de))
+
+
+
 <a name="0.0.13"></a>
 ## [0.0.13](https://github.com/denali-js/denali/compare/v0.0.12...v0.0.13) (2016-10-29)
 
