@@ -28,13 +28,13 @@ test('addons > load first-level addons only', async (t) => {
     populateWithDummy: false,
     env: { DENALI_ENV: 'development' }
   };
-  // Generate a nested addon graph: my-app -> my-addon -> my-nested-addon
-  let app = new CommandAcceptanceTest('new my-app --use-npm', options);
-  let addon = new CommandAcceptanceTest('addon my-addon --use-npm', options);
-  let nestedAddon = new CommandAcceptanceTest('addon my-nested-addon --use-npm', options);
-  let appPath = path.join(app.dir, 'my-app');
-  let addonPath = path.join(addon.dir, 'my-addon');
-  let nestedAddonPath = path.join(nestedAddon.dir, 'my-nested-addon');
+  // Generate a nested addon graph: my-denali-app -> my-denali-addon -> my-nested-denali-addon
+  let app = new CommandAcceptanceTest('new my-denali-app --use-npm', options);
+  let addon = new CommandAcceptanceTest('addon my-denali-addon --use-npm', options);
+  let nestedAddon = new CommandAcceptanceTest('addon my-nested-denali-addon --use-npm', options);
+  let appPath = path.join(app.dir, 'my-denali-app');
+  let addonPath = path.join(addon.dir, 'my-denali-addon');
+  let nestedAddonPath = path.join(nestedAddon.dir, 'my-nested-denali-addon');
   await Promise.all([ app.run(), addon.run(), nestedAddon.run() ]);
 
   // Symlink this version of denali into each
@@ -43,10 +43,10 @@ test('addons > load first-level addons only', async (t) => {
   linkDependency(addonPath, 'denali', denaliPath);
   linkDependency(nestedAddonPath, 'denali', denaliPath);
   // Symlink the generated addons into a dependency graph, a la npm link
-  addDependency(appPath, 'my-addon', '*');
-  linkDependency(appPath, 'my-addon', addonPath);
-  addDependency(addonPath, 'my-nested-addon', '*');
-  linkDependency(addonPath, 'my-nested-addon', nestedAddonPath);
+  addDependency(appPath, 'my-denali-addon', '*');
+  linkDependency(appPath, 'my-denali-addon', addonPath);
+  addDependency(addonPath, 'my-nested-denali-addon', '*');
+  linkDependency(addonPath, 'my-nested-denali-addon', nestedAddonPath);
   // Add our signal flag, an initializer that just logs something out
   fs.writeFileSync(path.join(addonPath, 'config', 'initializers', 'my-initializer.js'), `
     export default {
