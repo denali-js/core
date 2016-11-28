@@ -6,11 +6,11 @@ test('routes command > prints list of configured routes', async (t) => {
   let generate = new CommandAcceptanceTest('routes');
 
   let result = await generate.run();
-  t.true(result.stdout.includes(dedent`
+  t.is(result.stdout.trim(), dedent`
 ┌───────┬────────┐
 │ URL   │ ACTION │
 ├───────┼────────┤
 │ GET / │ index  │
 └───────┴────────┘
-  `));
+  `);
 });
