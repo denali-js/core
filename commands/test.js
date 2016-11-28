@@ -72,6 +72,11 @@ export default class TestCommand extends Command {
       description: 'Run tests serially',
       defaultValue: false,
       type: Boolean
+    },
+    concurrency: {
+      description: 'How many test files should run concurrently?',
+      defaultValue: 5,
+      type: Number
     }
   };
 
@@ -86,6 +91,7 @@ export default class TestCommand extends Command {
     this.timeout = flags.timeout;
     this.failFast = flags['fail-fast'];
     this.serial = flags.serial;
+    this.concurrency = flags.concurrency;
 
     this.project = new Project({
       environment: 'test',
@@ -136,7 +142,7 @@ export default class TestCommand extends Command {
   }
 
   runTests() {
-    let args = [ this.files, '!test/dummy/**/*' ];
+    let args = [ this.files, '!test/dummy/**/*', '--concurrency', this.concurrency ];
     if (this.match) {
       args.push('--match', this.match);
     }
