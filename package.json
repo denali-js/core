@@ -71,7 +71,7 @@
     "debug": "^2.3.2",
     "dedent-js": "^1.0.1",
     "denali-babel": "^0.0.5",
-    "denali-eslint": "^0.0.4",
+    "denali-eslint": "^0.0.6",
     "dotenv": "^2.0.0",
     "eslint": "3.8",
     "express-force-ssl": "^0.3.0",
