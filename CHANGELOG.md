@@ -2,8 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-<a name="0.1.0"></a>
-# [0.1.0](https://github.com/denali-js/denali/compare/v0.0.13...v0.1.0) (2016-11-27)
+<a name="0.0.15"></a>
+# [0.0.15](https://github.com/denali-js/denali/compare/v0.0.14...v0.0.15) (2016-11-30)
+
+
+### Bug Fixes
+
+* **blueprint:** allow blueprints to float on 0.0.x versions of denali-babel and denali-eslint ([7873709](https://github.com/denali-js/denali/commit/7873709))
+* **cli:** handle null exit code from test process ([1c42557](https://github.com/denali-js/denali/commit/1c42557))
+* **cli:** inline dummy denali-build, update blueprint deps ([7f73a1c](https://github.com/denali-js/denali/commit/7f73a1c))
+
+
+### Features
+
+* **cli:** add concurrency limit flag to tests, and limit denalis own concurrency to avoid CI OOM ([f096aa7](https://github.com/denali-js/denali/commit/f096aa7))
+* **cli:** add failOnStderr option to CommandAcceptanceTest.run() ([a8ad630](https://github.com/denali-js/denali/commit/a8ad630))
+* **cli:** debug log the builder graph ([48c80de](https://github.com/denali-js/denali/commit/48c80de))
+
+
+
+<a name="0.0.14"></a>
+# [0.0.14](https://github.com/denali-js/denali/compare/v0.0.13...v0.0.14) (2016-11-27)
 
 
 ### Bug Fixes
