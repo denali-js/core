@@ -10,7 +10,7 @@
     "node": ">=6.2.0"
   },
   "dependencies": {
-    "babel-plugin-transform-async-to-generator": "^6.16.0",
+    "babel-plugin-transform-runtime": "^6.15.0",
     "babel-plugin-transform-class-properties": "^6.18.0",
     "babel-preset-latest": "^6.16.0",
     "bluebird": "^3.4.6",
