@@ -6,7 +6,7 @@
   ],
   "ignore": [
     "blueprints/*/files/**",
-    "test/dummy/**"
+    "test/dummy/**/*"
   ],
   "env": {
     "test": {

@@ -1,20 +1,20 @@
-import { Builder } from 'denali';
+import { Builder } from './lib';
 import fs from 'fs';
 import path from 'path';
 import BabelTree from 'broccoli-babel-transpiler';
 import Funnel from 'broccoli-funnel';
 import MergeTree from 'broccoli-merge-trees';
-import LintTree from './lib/lint-tree';
+import LintTree from './lib/cli/lint-tree';
 
 export default class DenaliBuilder extends Builder {
 
   processSelf(tree, dir) {
-    tree = this.lint(tree, dir);
-    tree = this.transpile(tree, dir);
+    tree = this.lintTree(tree, dir);
+    tree = this.transpileTree(tree, dir);
     return tree;
   }
 
-  lint(tree, dir) {
+  lintTree(tree, dir) {
     if (this.project.lint) {
       // If it's in test environment, generate test modules for each linted file
       if (this.project.environment === 'test') {
@@ -28,7 +28,7 @@ export default class DenaliBuilder extends Builder {
     return tree;
   }
 
-  transpile(tree, dir) {
+  transpileTree(tree, dir) {
     let babelrcPath = path.join(dir, '.babelrc');
     let options;
     if (fs.existsSync(babelrcPath)) {

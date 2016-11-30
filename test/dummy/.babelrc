@@ -6,6 +6,6 @@
   ],
   "ignore": [
     "blueprints/*/files/**",
-    "test/dummy/**"
+    "test/dummy/**/*"
   ]
 }
