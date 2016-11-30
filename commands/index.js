@@ -44,7 +44,9 @@ export default function run(localDenaliPath) {
   let command = new commands[fullCommandName]();
 
   // Invoke the command
-  command._run(argTokens, commands);
+  command._run(argTokens, commands).catch((err) => {
+    ui.error(err.stack);
+  });
 }
 
 function discoverCommands(dir) {

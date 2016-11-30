@@ -1,7 +1,12 @@
 import dedent from 'dedent-js';
+import Promise from 'bluebird';
+import commandExistsCallback from 'command-exists';
 import ui from '../lib/cli/ui';
 import Command from '../lib/cli/command';
 import { exec } from 'child_process';
+
+const commandExists = Promise.promisify(commandExistsCallback);
+const run = Promise.promisify(exec);
 
 export default class InstallCommand extends Command {
 
@@ -18,18 +23,10 @@ export default class InstallCommand extends Command {
 
   flags = {};
 
-  run(params) {
-    this.startSpinner();
-    exec(`npm info ${ params.addonName }`, (err, stdout, stderr) => {
-      if (err) {
-        return this.fail(err);
-      }
-      if (stderr.length > 0) {
-        if (stderr.match(/Registry returned 404/)) {
-          return this.fail(`'${ params.addonName }' not found - no such npm module exists`);
-        }
-        return this.fail(stderr);
-      }
+  async run({ params }) {
+    let pkgManager = await commandExists('yarn') ? 'yarn' : 'npm';
+    try {
+      let stdout = await run(`npm info ${ params.addonName } --json`);
 
       let pkg = JSON.parse(stdout);
       let isAddon = pkg.keywords.includes('denali-addon');
@@ -37,22 +34,20 @@ export default class InstallCommand extends Command {
         return this.fail(`${ params.addonName } is not a Denali addon.`);
       }
 
-      this.installAddon(params.addonName);
-    });
-  }
-
-  installAddon(addonName) {
-    exec(`npm install --save ${ addonName }`, (err, stdout, stderr) => {
-      if (err || stderr.length > 0) {
-        return this.fail(err || stderr);
-      }
-      this.stopSpinner();
-    });
+      this.startSpinner(`Installing ${ pkg.name }@${ pkg.version }`);
+      let installCommand = pkgManager === 'yarn' ? 'yarn add' : 'npm install --save';
+      let [ , installStderr ] = await run(`${ installCommand } ${ params.addonName }`);
+      ui.raw('warn', installStderr);
+      this.spinner.succeed();
+    } catch (err) {
+      return this.fail(err);
+    }
   }
 
   fail(msg) {
-    this.stopSpinner();
     ui.error(msg);
+    this.spinner.text = 'Install failed';
+    this.spinner.fail();
     process.exit(1);
   }
 
