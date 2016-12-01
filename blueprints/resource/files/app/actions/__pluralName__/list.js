@@ -2,7 +2,7 @@ import ApplicationAction from '../application';
 
 export default class List<%= className %> extends ApplicationAction {
 
-  respond() {
+  async respond() {
     let <%= className %> = this.modelFor('<%= name %>');
     return <%= className %>.find();
   }

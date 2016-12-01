@@ -3,11 +3,11 @@ import ApplicationAction from '../application';
 
 export default class Destroy<%= className %> extends ApplicationAction {
 
-  respond(params) {
+  async respond(params) {
     let <%= className %> = this.modelFor('<%= name %>');
-    return <%= className %>.find(params.id)
-      .then((<%= camelCased %>) => <%= camelCased %>.delete())
-      .then(() => new Response(204));
+    let <%= camelCased %> = await <%= className %>.find(params.id);
+    await <%= camelCased %>.delete();
+    return new Response(204);
   }
 
 }
