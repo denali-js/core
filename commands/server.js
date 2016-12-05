@@ -78,7 +78,8 @@ export default class ServerCommand extends Command {
       environment: this.environment,
       printSlowTrees: flags['print-slow-trees'],
       audit: flags.audit || flags.environment === 'development',
-      lint: flags.lint || flags.environment !== 'production'
+      lint: flags.lint || flags.environment !== 'production',
+      buildDummy: true
     });
 
     process.on('exit', this.cleanExit.bind(this));

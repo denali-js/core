@@ -33,7 +33,8 @@ export default class RoutesCommand extends Command {
   run({ flags }) {
     let project = new Project({
       environment: flags.environment,
-      printSlowTrees: flags['print-slow-trees']
+      printSlowTrees: flags['print-slow-trees'],
+      buildDummy: true
     });
     project.createApplication().then((application) => {
       return application.runInitializers().then(() => {

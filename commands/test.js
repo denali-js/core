@@ -97,7 +97,8 @@ export default class TestCommand extends Command {
       environment: 'test',
       printSlowTrees: flags['print-slow-trees'],
       audit: !flags['skip-audit'],
-      lint: !flags['skip-lint']
+      lint: !flags['skip-lint'],
+      buildDummy: true
     });
 
     process.on('exit', this.cleanExit.bind(this));
