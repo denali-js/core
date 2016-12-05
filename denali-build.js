@@ -8,6 +8,14 @@ import LintTree from './lib/cli/lint-tree';
 
 export default class DenaliBuilder extends Builder {
 
+  isDevelopingAddon = true;
+
+  unbuiltDirs = [
+    'bin',
+    'blueprints',
+    'commands'
+  ];
+
   processSelf(tree, dir) {
     tree = this.lintTree(tree, dir);
     tree = this.transpileTree(tree, dir);

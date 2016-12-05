@@ -26,6 +26,9 @@
     "ava": "^0.16.0",
     "babel-eslint": "^6.0.4"
   },
+  "scripts": {
+    "prepublish": "echo \"Use 'denali publish' instead.\" && exit 1"
+  },
   "ava": {
     "plugins": [],
     "presets": []

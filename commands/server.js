@@ -1,9 +1,14 @@
+import fs from 'fs';
+import path from 'path';
 import dedent from 'dedent-js';
 import { spawn } from 'child_process';
 import ui from '../lib/cli/ui';
 import Command from '../lib/cli/command';
 import Project from '../lib/cli/project';
 import assign from 'lodash/assign';
+import createDebug from 'debug';
+
+const debug = createDebug('denali:commands:server');
 
 export default class ServerCommand extends Command {
 
@@ -70,6 +75,7 @@ export default class ServerCommand extends Command {
   }
 
   run({ flags }) {
+    debug('running server command');
     this.watch = flags.watch || flags.environment === 'development';
     this.port = flags.port;
     this.debug = flags.debug;
@@ -87,10 +93,12 @@ export default class ServerCommand extends Command {
     process.on('SIGTERM', this.cleanExit.bind(this));
 
     if (flags.watch || flags.environment === 'development') {
+      debug('starting watcher');
       this.project.watch({
         outputDir: flags.output,
         onBuild: () => {
           if (this.server) {
+            debug('killing existing server');
             this.server.removeAllListeners('exit');
             this.server.kill();
           }
@@ -98,6 +106,7 @@ export default class ServerCommand extends Command {
         }
       });
     } else {
+      debug('building project');
       this.project.build(flags.output)
       .then(() => {
         this.startServer(flags.output);
@@ -121,10 +130,19 @@ export default class ServerCommand extends Command {
     if (this.debug) {
       args.unshift('--inspect', '--debug-brk');
     }
-    this.server = spawn('node', args, {
+    if (!fs.existsSync(path.join('app', 'index.js'))) {
+      ui.error('Unable to start your application: missing app/index.js file');
+      return;
+    }
+    debug(`starting server process: ${ process.execPath } ${ args.join(' ') }`);
+    this.server = spawn(process.execPath, args, {
       cwd: dir,
       stdio: [ 'pipe', process.stdout, process.stderr ],
       env: assign({}, defaultEnvs, process.env)
+    });
+    this.server.on('error', (error) => {
+      ui.error('Unable to start your application:');
+      ui.error(error.stack);
     });
     this.server.on('exit', (code) => {
       let result = code === 0 ? 'exited' : 'crashed';

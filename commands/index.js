@@ -3,8 +3,12 @@ import path from 'path';
 import ui from '../lib/cli/ui';
 import findKey from 'lodash/findKey';
 import discoverAddons from '../lib/utils/discover-addons';
+import createDebug from 'debug';
+
+const debug = createDebug('denali:commands');
 
 export default function run(localDenaliPath) {
+  debug('discovering commands from addons');
   let commands = {};
 
   // Find addon commands
@@ -44,6 +48,7 @@ export default function run(localDenaliPath) {
   let command = new commands[fullCommandName]();
 
   // Invoke the command
+  debug('running command');
   command._run(argTokens, commands).catch((err) => {
     ui.error(err.stack);
   });
