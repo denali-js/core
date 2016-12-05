@@ -1,11 +1,16 @@
 {
-  "presets": [ "latest" ],
   "plugins": [
+    "transform-exponentiation-operator",
+    "transform-async-to-generator",
+    "syntax-trailing-function-commas",
+    "transform-es2015-template-literals",
+    "transform-es2015-spread",
+    "transform-es2015-shorthand-properties",
+    "transform-es2015-destructuring",
+    "transform-es2015-modules-commonjs",
     "transform-class-properties",
-    "transform-async-to-generator"
-  ],
-  "ignore": [
-    "blueprints/*/files/**",
-    "test/dummy/**/*"
+    "transform-regenerator",
+    "syntax-async-functions",
+    "transform-runtime"
   ]
 }
