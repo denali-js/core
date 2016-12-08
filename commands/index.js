@@ -5,7 +5,7 @@ import findKey from 'lodash/findKey';
 import discoverAddons from '../lib/utils/discover-addons';
 import createDebug from 'debug';
 
-const debug = createDebug('denali:commands');
+const debug = createDebug('denali:commands:index');
 
 export default function run(localDenaliPath) {
   debug('discovering commands from addons');

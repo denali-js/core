@@ -130,7 +130,7 @@ export default class ServerCommand extends Command {
     if (this.debug) {
       args.unshift('--inspect', '--debug-brk');
     }
-    if (!fs.existsSync(path.join('app', 'index.js'))) {
+    if (!fs.existsSync(path.join(dir, 'app', 'index.js'))) {
       ui.error('Unable to start your application: missing app/index.js file');
       return;
     }

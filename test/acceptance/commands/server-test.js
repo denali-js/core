@@ -14,10 +14,12 @@ function linkDependency(pkgDir, dependencyName, dependencyDir) {
 
 test('server command > launches a server', async () => {
   let server = new CommandAcceptanceTest('server --port 3001');
-  linkDependency(server.dir, 'denali', server.projectRoot);
 
   return server.spawn({
     failOnStderr: true,
+    env: {
+      DEBUG: null
+    },
     checkOutput(stdout) {
       return stdout.indexOf('dummy@0.0.0 server up') > -1;
     }
@@ -27,7 +29,7 @@ test('server command > launches a server', async () => {
 test('server command > launches a server based on the dummy app in an addon', async () => {
   let generateAddon = new CommandAcceptanceTest('addon my-denali-addon --use-npm', { populateWithDummy: false });
   await generateAddon.run();
-  linkDependency(path.join(generateAddon.dir, 'my-denali-addon'), 'denali', generateAddon.projectRoot);
+  linkDependency(path.join(generateAddon.dir, 'my-denali-addon'), 'denali', path.join(generateAddon.projectRoot, 'dist'));
   let server = new CommandAcceptanceTest('server --port 3002', {
     dir: path.join(generateAddon.dir, 'my-denali-addon'),
     populateWithDummy: false

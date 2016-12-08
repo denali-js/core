@@ -1,3 +1,4 @@
+import path from 'path';
 import dedent from 'dedent-js';
 import { spawn } from 'child_process';
 import ui from '../lib/cli/ui';
@@ -55,7 +56,7 @@ export default class TestCommand extends Command {
     },
     output: {
       description: 'The directory to write the compiled app to. Defaults to a tmp directory',
-      defaultValue: 'dist',
+      defaultValue: 'dist-test',
       type: String
     },
     'print-slow-trees': {
@@ -129,7 +130,7 @@ export default class TestCommand extends Command {
         }
       });
     } else {
-      this.project.build()
+      this.project.build(this.output)
       .then(() => {
         this.runTests();
       });
@@ -163,14 +164,16 @@ export default class TestCommand extends Command {
     if (this.serial) {
       args.unshift('--serial');
     }
-    this.tests = spawn('../node_modules/.bin/ava', args, {
+    let avaPath = path.join(process.cwd(), 'node_modules', '.bin', 'ava');
+    this.tests = spawn(avaPath, args, {
       cwd: this.output,
       stdio: [ 'pipe', process.stdout, process.stderr ],
       env: assign({}, process.env, {
         PORT: this.port,
         DENALI_ENV: this.project.environment,
         NODE_ENV: this.project.environment,
-        DEBUG_COLORS: 1
+        DEBUG_COLORS: 1,
+        DEBUG_FD: 1
       })
     });
     ui.info(`===> Running ${ this.project.pkg.name } tests ...`);

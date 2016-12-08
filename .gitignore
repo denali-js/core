@@ -5,6 +5,7 @@ tmp
 coverage
 npm-debug.log
 dist
+dist-test
 .sass-cache
 _site
 .nyc_output
