@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/">
+
+    <title> Denali.js - The best way to build robust APIs in Node </title>
+
+    <link href='//fonts.googleapis.com/css?family=Inconsolata|Bitter:400,700|Open+Sans:300,400,400italic,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-dropdown/2.0.3/jquery.dropdown.min.css" />
+  </head>
+  <body>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-2.2.2.min.js"><\/script>')</script>
+    <nav class="navbar">
+  <div class='container'>
+    <a href='.' class='navbar-brand'>
+      <img class='logo-light' src='images/logo.svg' alt='Denali'>
+      <span class='project-name'>Denali</span>
+    </a>
+
+    <div class="navbar-nav">
+      
+      <a class='nav-link' href='v0.0.15/guides/overview/quickstart'>Quickstart</a>
+      <a class='nav-link' href='v0.0.15/guides/overview/introduction'>Guides</a>
+      <a class='nav-link' href='v0.0.15/api/modules/denali'>API</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali' target='_blank'>Github</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali/issues' target='_blank'>Issues</a>
+    </div>
+  </div>
+</nav>
+
+
+<div class='container'>
+  <div class='row'>
+    <div class='api-nav col-md-3'>
+      <div class='nav-section'>
+  <div class='nav-header'>Version</div>
+  <div class='versions-menu-toggle' data-jq-dropdown='#versions-menu'>
+    v0.0.15 
+    <img class='versions-menu-caret' src='/images/caret.svg'>
+  </div>
+</div>
+
+      <label class='private-classes-toggle'>
+        <input type='checkbox' id='toggle-private-classes'>
+        Include Private
+      </label>
+      
+        
+      
+        
+          <div class='nav-section'>
+            <div class='nav-header'>cli</div>
+            
+              <a class='nav-link active' href='v0.0.15/api/classes/Blueprint' >Blueprint</a>
+            
+              <a class='nav-link ' href='v0.0.15/api/classes/Command' >Command</a>
+            
+          </div>
+        
+      
+        
+          <div class='nav-section'>
+            <div class='nav-header'>data</div>
+            
+              <a class='nav-link ' href='v0.0.15/api/classes/FlatSerializer' >FlatSerializer</a>
+            
+              <a class='nav-link ' href='v0.0.15/api/classes/JSONAPISerializer' >JSONAPISerializer</a>
+            
+              <a class='nav-link ' href='v0.0.15/api/classes/Attribute' >Attribute</a>
+            
+              <a class='nav-link ' href='v0.0.15/api/classes/HasManyRelationship' >HasManyRelationship</a>
+            
+              <a class='nav-link ' href='v0.0.15/api/classes/HasOneRelationship' >HasOneRelationship</a>
+            
+              <a class='nav-link ' href='v0.0.15/api/classes/Model' >Model</a>
+            
+              <a class='nav-link ' href='v0.0.15/api/classes/ORMAdapter' >ORMAdapter</a>
+            
+              <a class='nav-link ' href='v0.0.15/api/classes/Serializer' >Serializer</a>
+            
+          </div>
+        
+      
+        
+          <div class='nav-section'>
+            <div class='nav-header'>metal</div>
+            
+              <a class='nav-link ' href='v0.0.15/api/classes/eachPrototype' >eachPrototype</a>
+            
+              <a class='nav-link ' href='v0.0.15/api/classes/Instrumentation' >Instrumentation</a>
+            
+              <a class='nav-link ' href='v0.0.15/api/classes/mixin' >mixin</a>
+            
+              <a class='nav-link ' href='v0.0.15/api/classes/createMixin' >createMixin</a>
+            
+          </div>
+        
+      
+        
+          <div class='nav-section'>
+            <div class='nav-header'>runtime</div>
+            
+              <a class='nav-link ' href='v0.0.15/api/classes/Action' >Action</a>
+            
+              <a class='nav-link ' href='v0.0.15/api/classes/Addon' >Addon</a>
+            
+              <a class='nav-link ' href='v0.0.15/api/classes/Application' >Application</a>
+            
+              <a class='nav-link ' href='v0.0.15/api/classes/Container' >Container</a>
+            
+              <a class='nav-link ' href='v0.0.15/api/classes/Error' >Error</a>
+            
+              <a class='nav-link ' href='v0.0.15/api/classes/Logger' >Logger</a>
+            
+              <a class='nav-link ' href='v0.0.15/api/classes/Request' >Request</a>
+            
+              <a class='nav-link ' href='v0.0.15/api/classes/Response' >Response</a>
+            
+              <a class='nav-link ' href='v0.0.15/api/classes/Router' >Router</a>
+            
+              <a class='nav-link ' href='v0.0.15/api/classes/Service' >Service</a>
+            
+          </div>
+        
+      
+    </div>
+    <div class='api-body col-md-9'>
+      <div class='class'>
+  <h1 class='class-name'>
+    
+      <div class='class-private'>Private</div>
+    
+    Blueprint
+  </h1>
+
+  
+    <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.15/lib/cli/blueprint.js#L11'>
+      <span class='filename'>Defined in: lib/cli/blueprint.js</span>
+      <span class='line'>Line: 11</span>
+    </a>
+  
+
+  <div class='class-module'>
+    <strong>Module:</strong>
+    <a class='module' href='/v0.0.15/api/modules/cli'>
+      <span class='class-module-name'>denali.cli</span>
+    </a>
+  </div>
+
+  
+    <div class='class-description'><p>The Blueprint class manages generating code from a template, or &quot;blueprint&quot;.
+Blueprints have three main components:</p>
+<ul>
+<li><code>Blueprint.locals()</code> - used to generate data to fill in the the templates</li>
+<li>Templates, found under <code>&lt;blueprint dir&gt;/files</code>. These files are copied
+over into the project. The can contain ERB style interpolation to inject
+values from the <code>locals</code> data. Filenames can also contain variables,
+delimited by <code>__variable__</code></li>
+<li><code>Blueprint.postInstall()</code>, which runs after the copying operation is
+finished. This gives the blueprint a chance to perform additional steps
+that simple templating can&#39;t support (i.e. install an node module).</li>
+</ul>
+<p>The code generated by a blueprint can also be removed via the <code>destroy</code>
+command. That command will only remove files that exactly match the
+what the blueprint generates, so if you modify a file after it was generated,
+it won&#39;t be removed.</p>
+</div>
+  
+
+  <div class='display-controls'>
+    <label class='toggle'>
+      <input type='checkbox' id='toggle-private-members'>
+      Show Private
+    </label>
+    <label class='toggle'>
+      <input type='checkbox' id='toggle-deprecated-members'>
+      Show Deprecated
+    </label>
+  </div>
+  <div class='summary'>
+    <div class='summary-section'>
+      <div class='summary-header'>Methods</div>
+      
+        
+      
+        
+          <a class='summary-link'  href='v0.0.15/api/classes/Blueprint/#locals'>locals</a>
+        
+      
+        
+          <a class='summary-link'  href='v0.0.15/api/classes/Blueprint/#postInstall'>postInstall</a>
+        
+      
+        
+          <a class='summary-link'  href='v0.0.15/api/classes/Blueprint/#postUninstall'>postUninstall</a>
+        
+      
+        
+          <a class='summary-link'  href='v0.0.15/api/classes/Blueprint/#templateFiles'>templateFiles</a>
+        
+      
+        
+          <a class='summary-link'  data-private-member=true  href='v0.0.15/api/classes/Blueprint/#generate'>generate</a>
+        
+      
+        
+          <a class='summary-link'  data-private-member=true  href='v0.0.15/api/classes/Blueprint/#destroy'>destroy</a>
+        
+      
+    </div>
+    <div class='summary-section'>
+      <div class='summary-header'>Properties</div>
+      
+        
+          <a class='summary-link'  href='v0.0.15/api/classes/Blueprint/#description'>description</a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+</div>
+
+<div class='classitems'>
+  
+    
+      <div class='item property' id='description' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            description<span class="type">:String</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.15/lib/cli/blueprint.js#L37'>
+              <span class='filename'>Defined in: lib/cli/blueprint.js</span>
+              <span class='line'>Line: 37</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Description of what the blueprint does. Displayed when `denali generate`
+is run without arguments.</div>
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.15/lib/cli/blueprint.js#L37'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+  
+    
+  
+    
+      <div class='item method' id='locals' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            locals<span class='param-paren'>(</span><span class='params'></span><span class='param-paren'>)</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.15/lib/cli/blueprint.js#L54'>
+              <span class='filename'>Defined in: lib/cli/blueprint.js</span>
+              <span class='line'>Line: 54</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>A hook to generate data to be interpolated into the blueprint&#39;s template
+files.</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <p class="no-params">No parameters</p>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <div class='return'>
+              <div class='return-type type'>Object</div>
+              
+                <div class='return-description'>The data to use during templating</div>
+              
+            </div>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.15/lib/cli/blueprint.js#L54'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item method' id='postInstall' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            postInstall<span class='param-paren'>(</span><span class='params'></span><span class='param-paren'>)</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.15/lib/cli/blueprint.js#L65'>
+              <span class='filename'>Defined in: lib/cli/blueprint.js</span>
+              <span class='line'>Line: 65</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Runs after the templating step is complete, letting you make additional
+modifications (i.e. install a node module).</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <p class="no-params">No parameters</p>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <p class="no-return">Returns <code>undefined</code></p>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.15/lib/cli/blueprint.js#L65'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item method' id='postUninstall' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            postUninstall<span class='param-paren'>(</span><span class='params'></span><span class='param-paren'>)</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.15/lib/cli/blueprint.js#L73'>
+              <span class='filename'>Defined in: lib/cli/blueprint.js</span>
+              <span class='line'>Line: 73</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Runs when `denali destroy` is invoked, after the applicable template files
+have been removed. You should clean up / reverse any changes made in
+postInstall(), but only in a way that avoids removing user modifications.</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <p class="no-params">No parameters</p>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <p class="no-return">Returns <code>undefined</code></p>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.15/lib/cli/blueprint.js#L73'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item method' id='templateFiles' >
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            templateFiles<span class='param-paren'>(</span><span class='params'></span><span class='param-paren'>)</span>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.15/lib/cli/blueprint.js#L82'>
+              <span class='filename'>Defined in: lib/cli/blueprint.js</span>
+              <span class='line'>Line: 82</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Returns the path to this blueprints template files directory. Defaults to
+`files/`.</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <p class="no-params">No parameters</p>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <div class='return'>
+              <div class='return-type type'>String</div>
+              
+            </div>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.15/lib/cli/blueprint.js#L82'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item method' id='generate' data-private-member=true>
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            generate<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>args</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
+            
+              <div class='private tag'>Private</div>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.15/lib/cli/blueprint.js#L93'>
+              <span class='filename'>Defined in: lib/cli/blueprint.js</span>
+              <span class='line'>Line: 93</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Generate the blueprint. Generates the data to interpolate into the
+templates, then copies the template files over into the project. Finally,
+runs the postInstall hook.</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>args</div><div class='param-type type'>:Object</div>
+                  
+                    <div class='param-description'>the arguments to supply to the `locals()` method</div>
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <p class="no-return">Returns <code>undefined</code></p>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.15/lib/cli/blueprint.js#L93'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+    
+      <div class='item method' id='destroy' data-private-member=true>
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            destroy<span class='param-paren'>(</span><span class='params'><span class='param'><span class='param-name'>args</span><span class='param-type type'>:Object</span></span></span><span class='param-paren'>)</span>
+            
+              <div class='private tag'>Private</div>
+            
+            <a class='defined-in' href='https://github.com/denali-js/denali/blob/v0.0.15/lib/cli/blueprint.js#L130'>
+              <span class='filename'>Defined in: lib/cli/blueprint.js</span>
+              <span class='line'>Line: 130</span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'>Destroy the blueprint. Generates the data to interpolate into the
+templates, then deletes any unmodified files that were generated by this
+blueprint. Then runs the postUninstall hook.</div>
+
+          <div class='item-header'>Parameters</div>
+          
+            <div class='params'>
+              
+                <div class='param'>
+                  <div class='param-name'>args</div><div class='param-type type'>:Object</div>
+                  
+                    <div class='param-description'>the arguments to supply to the `locals()` method</div>
+                  
+                </div>
+              
+            </div>
+          
+
+          <div class='item-header'>Returns</div>
+          
+            <p class="no-return">Returns <code>undefined</code></p>
+          
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/denali-js/denali/edit/v0.0.15/lib/cli/blueprint.js#L130'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    
+  
+</div>
+
+<script>
+  $(function() {
+    [ 'private', 'deprecated' ].forEach(function(type) {
+      var $toggle = $('#toggle-' + type + '-members');
+      $toggle.on('change', function() {
+        if ($toggle.is(':checked')) {
+          $('[data-' + type + '-member]').css('display', 'block');
+        } else {
+          $('[data-' + type + '-member]').css('display', 'none');
+        }
+      });
+      if ($(window.location.hash).attr('data-' + type + '-member')) {
+        $toggle.click();
+      }
+    });
+  });
+</script>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function() {
+    var $privateClassToggle = $('#toggle-private-classes');
+    $privateClassToggle.on('change', function() {
+      if ($privateClassToggle.is(':checked')) {
+        $('.api-nav [data-private-class]').css('display', 'block');
+      } else {
+        $('.api-nav [data-private-class]').css('display', 'none');
+      }
+    });
+    {% if page.class.access == 'private' %}
+      $privateClassToggle.click();
+    {% endif %}
+  });
+</script>
+
+<footer class="footer">
+  <div class='container'>
+    Made with <img src='images/fox-and-beard.svg' class='fox-and-beard'> at
+    <a href='http://foxandbeard.co' target='_blank'>Fox and Beard</a>
+  </div>
+</footer>
+
+  <div id='versions-menu' class='versions-menu jq-dropdown jq-dropdown-tip'>
+    <ul class='jq-dropdown-menu'>
+      
+        <li>
+          
+            <a href='/v0.0.16/api/classes/Blueprint'>v0.0.16 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a class='active'>v0.0.15 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.14/api/classes/Blueprint'>v0.0.14 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.13/api/classes/Blueprint'>v0.0.13 (canary)</a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.12/api/classes/Blueprint'>v0.0.12 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.11/api/classes/Blueprint'>v0.0.11 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.10/api/classes/Blueprint'>v0.0.10 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.9/api/classes/Blueprint'>v0.0.9 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.8/api/classes/Blueprint'>v0.0.8 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.7/api/classes/Blueprint'>v0.0.7 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/master/api/classes/Blueprint'>master </a>
+          
+        </li>
+      
+    </ul>
+  </div>
+  <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery-dropdown/2.0.3/jquery.dropdown.min.js'></script>
+
+
+
+    <script>
+     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+     ga('create', 'UA-85043775-1', 'auto');
+     ga('send', 'pageview');
+    </script>
+  </body>
+</html>
