@@ -1,5 +1,9 @@
 try {
   module.exports = require('denali/denali-build');
 } catch (e) {
-  module.exports = require('../../denali-build');
+  if (e.message.includes('Cannot find module')) {
+    module.exports = require('../../denali-build');
+  } else {
+    throw e;
+  }
 }

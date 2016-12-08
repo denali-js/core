@@ -149,8 +149,7 @@ export default class TestCommand extends Command {
       args.push('--match', this.match);
     }
     if (this.debug) {
-      ui.warn('Debugging support for tests is blocked on the release of ava 0.17');
-      // args.unshift('--inspect', '--debug-brk');
+      args.unshift('--inspect', '--debug-brk');
     }
     if (this.verbose) {
       args.unshift('--verbose');

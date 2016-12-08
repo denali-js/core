@@ -16,6 +16,7 @@
   ],
   "ignore": [
     "dist/{app,config,lib}/**/*",
+    "dist-test/node_modules/*/{app,config,lib}/**/*",
     "blueprints/*/files/**",
     "test/dummy/**/*"
   ],
