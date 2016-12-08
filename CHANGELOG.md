@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.0.16"></a>
+# [0.0.16](https://github.com/denali-js/denali/compare/v0.0.15...v0.0.16) (2016-12-08)
+
+
+### Bug Fixes
+
+* **blueprint:** add babel-runtime, remove redundant async transform from default blueprints ([c13dff8](https://github.com/denali-js/denali/commit/c13dff8))
+* **blueprint:** bring resource blueprint up to latest ([c410072](https://github.com/denali-js/denali/commit/c410072))
+* **cli:** don't use es6 delimiters for blueprint templates ([a50c32e](https://github.com/denali-js/denali/commit/a50c32e))
+* **cli:** fix build command watch flag ([ccab077](https://github.com/denali-js/denali/commit/ccab077))
+* **cli:** fix install command ([18af3fb](https://github.com/denali-js/denali/commit/18af3fb))
+* **test:** ensure addon dependency can link properly, even when cyclical ([8842266](https://github.com/denali-js/denali/commit/8842266))
+* fix a couple test bugs, upgrade ava ([de25d9a](https://github.com/denali-js/denali/commit/de25d9a))
+* get tests passing for shallow builds ([6b9e841](https://github.com/denali-js/denali/commit/6b9e841))
+
+
+### Features
+
+* **cli:** allow addons to omit app/ directory ([e5e3cac](https://github.com/denali-js/denali/commit/e5e3cac))
+* **cli:** convert to shallow, precompiled builds ([9e5e20d](https://github.com/denali-js/denali/commit/9e5e20d))
+
+
+
 <a name="0.0.15"></a>
 # [0.0.15](https://github.com/denali-js/denali/compare/v0.0.14...v0.0.15) (2016-11-30)
 
