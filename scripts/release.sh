@@ -1,5 +1,2 @@
-set -e
-npm test
-standard-version
-npm publish
+bin/denali publish
 git push
