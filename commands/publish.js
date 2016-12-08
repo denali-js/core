@@ -1,6 +1,5 @@
 import path from 'path';
 import dedent from 'dedent-js';
-import ui from '../lib/cli/ui';
 import Promise from 'bluebird';
 import Command from '../lib/cli/command';
 import { exec } from 'child_process';
@@ -27,8 +26,8 @@ export default class PublishCommand extends Command {
     }
   };
 
-  async run({ params }) {
-    if (!params['skip-tests']) {
+  async run({ flags }) {
+    if (!flags['skip-tests']) {
       await this.runTests();
     }
     await this.build();
@@ -49,7 +48,7 @@ export default class PublishCommand extends Command {
   async build() {
     this.startSpinner('Building');
     try {
-      await run('npm build');
+      await run('npm run build');
     } catch (error) {
       this.stopSpinner('fail', 'Build failed, halting publish');
       throw error;

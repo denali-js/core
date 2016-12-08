@@ -34,6 +34,7 @@
     "standard-version": "^2.4.0"
   },
   "scripts": {
+    "build": "bin/denali build",
     "coverage": "scripts/coverage.sh",
     "deploy-docs": "scripts/deploy-docs.sh",
     "preversion": "scripts/preversion.sh",
