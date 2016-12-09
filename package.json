@@ -38,7 +38,6 @@
     "coverage": "scripts/coverage.sh",
     "deploy-docs": "scripts/deploy-docs.sh",
     "preversion": "scripts/preversion.sh",
-    "prepublish": "echo \"Use 'denali publish' instead.\" && exit 1",
     "release": "scripts/release.sh",
     "test": "scripts/test.sh"
   },
