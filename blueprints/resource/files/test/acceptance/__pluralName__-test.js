@@ -10,15 +10,15 @@ test('POST /<%= pluralHumanizedName %> > creates a <%= name %>', async (t) => {
       // Add the <%= name %> payload here
   });
 
-  t.equal(result.status, 201);
-  // t.equal(result.body.foo, 'bar');
+  t.is(result.status, 201);
+  // t.is(result.body.foo, 'bar');
 });
 
 test('GET /<%= pluralHumanizedName %> > should list <%= pluralHumanizedName %>', async (t) => {
   let result = await t.context.app.get('/<%= pluralName %>');
 
-  t.equal(result.status, 200);
-  // t.equal(result.body.foo, 'bar');
+  t.is(result.status, 200);
+  // t.is(result.body.foo, 'bar');
 });
 
 test('GET /<%= pluralHumanizedName %>/:id > should show a <%= name %>', async (t) => {
@@ -29,8 +29,8 @@ test('GET /<%= pluralHumanizedName %>/:id > should show a <%= name %>', async (t
 
   let result = await t.context.app.get(`/<%= pluralName %>/${ id }`);
 
-  t.equal(result.status, 200);
-  // t.equal(result.body.foo, 'bar');
+  t.is(result.status, 200);
+  // t.is(result.body.foo, 'bar');
 });
 
 test('PATCH /<%= pluralHumanizedName %>/:id > should update a <%= name %>', async (t) => {
@@ -43,8 +43,8 @@ test('PATCH /<%= pluralHumanizedName %>/:id > should update a <%= name %>', asyn
       // Add the <%= name %> payload here
   });
 
-  t.equal(result.status, 200);
-  // t.equal(result.body.foo, 'bar');
+  t.is(result.status, 200);
+  // t.is(result.body.foo, 'bar');
 });
 
 test('DELETE /<%= pluralHumanizedName %>/:id > should delete a <%= name %>', async (t) => {
@@ -55,5 +55,5 @@ test('DELETE /<%= pluralHumanizedName %>/:id > should delete a <%= name %>', asy
 
   let result = await t.context.app.delete(`/<%= pluralName %>/${ id }`);
 
-  t.equal(result.status, 204);
+  t.is(result.status, 204);
 });
