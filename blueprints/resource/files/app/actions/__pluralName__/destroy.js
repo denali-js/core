@@ -1,12 +1,12 @@
 import { Response } from 'denali';
 import ApplicationAction from '../application';
 
-export default class Destroy<%= className %> extends ApplicationAction {
+export default class Destroy<%= singular.className %> extends ApplicationAction {
 
   async respond(params) {
-    let <%= className %> = this.modelFor('<%= name %>');
-    let <%= camelCased %> = await <%= className %>.find(params.id);
-    await <%= camelCased %>.delete();
+    let <%= singular.className %> = this.modelFor('<%= singular.dasherized %>');
+    let <%= singular.camelCased %> = await <%= singular.className %>.findOne(params.id);
+    await <%= singular.camelCased %>.delete();
     return new Response(204);
   }
 

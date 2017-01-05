@@ -1,10 +1,10 @@
 import ApplicationAction from '../application';
 
-export default class List<%= className %> extends ApplicationAction {
+export default class List<%= singular.className %> extends ApplicationAction {
 
   async respond() {
-    let <%= className %> = this.modelFor('<%= name %>');
-    return <%= className %>.find();
+    let <%= singular.className %> = this.modelFor('<%= singular.dasherized %>');
+    return <%= singular.className %>.find();
   }
 
 }

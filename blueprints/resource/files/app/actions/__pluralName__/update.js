@@ -1,12 +1,12 @@
 import ApplicationAction from '../application';
 
-export default class Update<%= className %> extends ApplicationAction {
+export default class Update<%= singular.className %> extends ApplicationAction {
 
   async respond(params) {
-    let <%= className %> = this.modelFor('<%= name %>');
-    let <%= camelCased %> = await <%= className %>.find(params.id);
-    Object.assign(<%= camelCased %>, params);
-    return <%= camelCased %>.save();
+    let <%= singular.className %> = this.modelFor('<%= name %>');
+    let <%= singular.camelCased %> = await <%= singular.className %>.findOne(params.id);
+    Object.assign(<%= singular.camelCased %>, params);
+    return <%= singular.camelCased %>.save();
   }
 
 }

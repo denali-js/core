@@ -1,3 +1,3 @@
 import test from 'ava';
 
-test.todo('<%= className %>Model');
+test.todo('<%= sinular.className %> Model');

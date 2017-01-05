@@ -1,59 +1,60 @@
 import test from 'ava';
 import { AppAcceptanceTest } from 'denali';
 
-test.beforeEach('setup app', (t) => {
-  t.context.app = new AppAcceptanceTest();
-});
-
-test('POST /<%= pluralHumanizedName %> > creates a <%= name %>', async (t) => {
-  let result = await t.context.app.post('/<%= pluralName %>', {
-      // Add the <%= name %> payload here
+test('POST /<%= plural.dasherized %> > creates a <%= singular.humanized %>', async (t) => {
+  let app = new AppAcceptanceTest();
+  let result = await app.post('/<%= pluralName %>', {
+      // Add the <%= singular.humanized %> payload here
   });
 
   t.is(result.status, 201);
   // t.is(result.body.foo, 'bar');
 });
 
-test('GET /<%= pluralHumanizedName %> > should list <%= pluralHumanizedName %>', async (t) => {
-  let result = await t.context.app.get('/<%= pluralName %>');
+test('GET /<%= plural.dasherized %> > should list <%= plural.humanized %>', async (t) => {
+  let app = new AppAcceptanceTest();
+  let result = await app.get('/<%= pluralName %>');
 
   t.is(result.status, 200);
   // t.is(result.body.foo, 'bar');
 });
 
-test('GET /<%= pluralHumanizedName %>/:id > should show a <%= name %>', async (t) => {
-  let { body } = await t.context.app.post('/<%= pluralName %>', {
-      // Add the <%= name %> payload here
+test('GET /<%= plural.dasherized %>/:id > should show a <%= singular.humanized %>', async (t) => {
+  let app = new AppAcceptanceTest();
+  let { body } = await app.post('/<%= pluralName %>', {
+      // Add the <%= singular.humanized %> payload here
   });
   let id = body.data.id;
 
-  let result = await t.context.app.get(`/<%= pluralName %>/${ id }`);
+  let result = await app.get(`/<%= pluralName %>/${ id }`);
 
   t.is(result.status, 200);
   // t.is(result.body.foo, 'bar');
 });
 
-test('PATCH /<%= pluralHumanizedName %>/:id > should update a <%= name %>', async (t) => {
-  let { body } = await t.context.app.post('/<%= pluralName %>', {
-      // Add the <%= name %> payload here
+test('PATCH /<%= plural.dasherized %>/:id > should update a <%= singular.humanized %>', async (t) => {
+  let app = new AppAcceptanceTest();
+  let { body } = await app.post('/<%= pluralName %>', {
+      // Add the <%= singular.humanized %> payload here
   });
   let id = body.data.id;
 
-  let result = await t.context.app.patch(`/<%= pluralName %>/${ id }`, {
-      // Add the <%= name %> payload here
+  let result = await app.patch(`/<%= pluralName %>/${ id }`, {
+      // Add the <%= singular.humanized %> payload here
   });
 
   t.is(result.status, 200);
   // t.is(result.body.foo, 'bar');
 });
 
-test('DELETE /<%= pluralHumanizedName %>/:id > should delete a <%= name %>', async (t) => {
-  let { body } = await t.context.app.post('/<%= pluralName %>', {
-      // Add the <%= name %> payload here
+test('DELETE /<%= plural.dasherized %>/:id > should delete a <%= singular.humanized %>', async (t) => {
+  let app = new AppAcceptanceTest();
+  let { body } = await app.post('/<%= pluralName %>', {
+      // Add the <%= singular.humanized %> payload here
   });
   let id = body.data.id;
 
-  let result = await t.context.app.delete(`/<%= pluralName %>/${ id }`);
+  let result = await app.delete(`/<%= pluralName %>/${ id }`);
 
   t.is(result.status, 204);
 });

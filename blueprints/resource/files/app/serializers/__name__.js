@@ -1,6 +1,6 @@
 import ApplicationSerializer from './application';
 
-export default class <%= className %>Serializer extends ApplicationSerializer {
+export default class <%= singular.className %>Serializer extends ApplicationSerializer {
 
   attributes = [];
 

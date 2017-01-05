@@ -1,3 +1,3 @@
 import test from 'ava';
 
-test.todo('<%= className %>Serializer');
+test.todo('<%= singular.className %>Serializer');

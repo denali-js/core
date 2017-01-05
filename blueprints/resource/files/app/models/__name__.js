@@ -1,5 +1,8 @@
-// import { attr, hasOne, hasMany } from 'denali';
+import { attr /* , hasOne, hasMany */ } from 'denali';
 import ApplicationModel from './application';
 
-export default class <%= className %> extends ApplicationModel {
+export default class <%= singular.className %> extends ApplicationModel {
+
+  // static title = attr('text');
+
 }

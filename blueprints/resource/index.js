@@ -1,6 +1,7 @@
 import upperFirst from 'lodash/upperFirst';
 import camelCase from 'lodash/camelCase';
 import lowerCase from 'lodash/lowerCase';
+import kebabCase from 'lodash/kebabCase';
 import { singularize, pluralize } from 'inflection';
 import Blueprint from '../../lib/cli/blueprint';
 
@@ -13,12 +14,21 @@ export default class ResourceBlueprint extends Blueprint {
 
   locals({ name }) {
     name = pluralize(name);
-    return {
-      name: singularize(name),
+    let plural = {
+      name,
       camelCased: camelCase(name),
       className: upperFirst(camelCase(name)),
-      pluralName: pluralize(name),
-      pluralHumanizedName: lowerCase(name)
+      dasherized: kebabCase(name),
+      humanized: lowerCase(name)
     };
+    name = singularize(name);
+    let singular = {
+      name,
+      camelCased: camelCase(name),
+      className: upperFirst(camelCase(name)),
+      dasherized: kebabCase(name),
+      humanized: lowerCase(name)
+    };
+    return { plural, singular };
   }
 }
