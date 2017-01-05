@@ -3,7 +3,7 @@ import path from 'path';
 import { CommandAcceptanceTest, assertFileExists } from 'denali';
 
 test('addon command > generates an addon', async (t) => {
-  let addonCommand = new CommandAcceptanceTest('addon my-denali-addon --use-npm', { populateWithDummy: false });
+  let addonCommand = new CommandAcceptanceTest('addon my-denali-addon', { populateWithDummy: false });
   await addonCommand.run();
   assertFileExists(t, path.join(addonCommand.dir, 'my-denali-addon', 'app', 'addon.js'));
 });

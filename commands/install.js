@@ -35,7 +35,7 @@ export default class InstallCommand extends Command {
       }
 
       this.startSpinner(`Installing ${ pkg.name }@${ pkg.version }`);
-      let installCommand = pkgManager === 'yarn' ? 'yarn add' : 'npm install --save';
+      let installCommand = pkgManager === 'yarn' ? 'yarn add --mutex network' : 'npm install --save';
       let [ , installStderr ] = await run(`${ installCommand } ${ params.addonName }`);
       ui.raw('warn', installStderr);
       this.spinner.succeed();

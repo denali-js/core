@@ -49,7 +49,7 @@ export default class AppBlueprint extends Blueprint {
       if (!flags['skip-deps']) {
         return commandExists('yarn').then((yarnExists) => {
           if (yarnExists && !flags['use-npm']) {
-            return run('yarn install', { cwd: name });
+            return run('yarn install --mutex network', { cwd: name });
           }
           return run('npm install --loglevel=error', { cwd: name });
         }).then(() => {

@@ -27,7 +27,7 @@ test('server command > launches a server', async () => {
 });
 
 test('server command > launches a server based on the dummy app in an addon', async () => {
-  let generateAddon = new CommandAcceptanceTest('addon my-denali-addon --use-npm', { populateWithDummy: false });
+  let generateAddon = new CommandAcceptanceTest('addon my-denali-addon', { populateWithDummy: false });
   await generateAddon.run();
   linkDependency(path.join(generateAddon.dir, 'my-denali-addon'), 'denali', path.join(generateAddon.projectRoot, 'dist-test', 'node_modules', 'denali'));
   let server = new CommandAcceptanceTest('server --port 3002', {
