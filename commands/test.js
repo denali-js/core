@@ -56,7 +56,7 @@ export default class TestCommand extends Command {
     },
     output: {
       description: 'The directory to write the compiled app to. Defaults to a tmp directory',
-      defaultValue: 'dist-test',
+      defaultValue: path.join('tmp', 'test'),
       type: String
     },
     'print-slow-trees': {
