@@ -150,7 +150,7 @@
       <a class="improve-btn" target="_blank" href="https://github.com/denali-js/denali/edit/master/guides/data/orm-adapters.md">Improve this page</a>
       <h1 id="orm-adapters">ORM Adapters</h1>
 <p>Denali takes a somewhat unique approach to handling the data layer. Unlike most
-frameworks, it doesn&#39;t come bundled with a pre-chosen ORM, or attempt to build
+frameworks, it doesn&#39;t come bundled with a &quot;blessed&quot; ORM, or attempt to build
 it&#39;s own. Instead, Denali&#39;s Model class works with your ORM of choice by
 communicating with it through an ORM Adapter.</p>
 <p>This lets you bring your own ORM to your apps, while still enabling Denali to
@@ -173,56 +173,43 @@ your own! Just extend from the base <code>ORMAdapter</code> class, and implement
 the hooks:</p>
 <pre><code class="lang-js">export <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyCoolORMAdapter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ORMAdapter</span> </span>{
 
-  <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-title">find</span><span class="hljs-params">(type, query, options)</span> </span>{
+  async find(<span class="hljs-class"><span class="hljs-keyword">type</span>, <span class="hljs-title">query</span>) </span>{}
 
-  }
+  async findOne(<span class="hljs-class"><span class="hljs-keyword">type</span>, <span class="hljs-title">query</span>) </span>{}
 
-  <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-title">createRecord</span><span class="hljs-params">(type, data, options)</span> </span>{
+  buildRecord(<span class="hljs-class"><span class="hljs-keyword">type</span>, <span class="hljs-title">data</span>) </span>{}
 
-  }
+  idFor(model) {}
 
-  <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-title">idFor</span><span class="hljs-params">(model)</span> </span>{
+  setId() {}
 
-  }
+  getAttribute(model, property) {}
 
-  <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-title">getAttribute</span><span class="hljs-params">(model, property)</span> </span>{
+  setAttribute(model, property, value) {}
 
-  }
+  deleteAttribute(model, property) {}
 
-  <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-title">setAttribute</span><span class="hljs-params">(model, property)</span> </span>{
+  async getRelated(model, relationship, descriptor) {}
 
-  }
+  async setRelated(model, relationship, descriptor, relatedRecords) {}
 
-  <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-title">deleteAttribute</span><span class="hljs-params">(model, property)</span> </span>{
+  async addRelated(model, relationship, descriptor, relatedRecord) {}
 
-  }
+  async removeRelated(model, relationship, descriptor, relatedRecord) {}
 
-  <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-title">getRelated</span><span class="hljs-params">(model, relationship)</span> </span>{
+  async saveRecord(<span class="hljs-class"><span class="hljs-keyword">type</span>, <span class="hljs-title">model</span>) </span>{}
 
-  }
-
-  <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-title">setRelated</span><span class="hljs-params">(model, relationship)</span> </span>{
-
-  }
-
-  <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-title">removeRelated</span><span class="hljs-params">(model, relationship)</span> </span>{
-
-  }
-
-  <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-title">saveRecord</span><span class="hljs-params">(model, options)</span> </span>{
-
-  }
-
-  <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-title">deleteRecord</span><span class="hljs-params">(model, options)</span> </span>{
-
-  }
-
-  <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-title">define</span><span class="hljs-params">(Model)</span> </span>{
-
-  }
+  async deleteRecord(<span class="hljs-class"><span class="hljs-keyword">type</span>, <span class="hljs-title">model</span>) </span>{}
 
 }
 </code></pre>
+<h3 id="why-adapters-">Why Adapters?</h3>
+<p>It&#39;s important to understand why Denali uses an ORM adapter strategy for handling ORMs: <strong>the goal is <em>not</em> to allow you to swap out ORMs and/or databases with zero refactoring.</strong></p>
+<p>In fact, Denali views such a goal as harmful. If you could swap out ORMs and databases with zero refactoring, it must mean that the API is the same for both. This assumes that all databases are basically the same, and there&#39;s no real difference in the semantics of each.</p>
+<p>Of course, this is obviously false - different data stores offer wildly different semantics and characteristics. Ultimately, any attempt to create such an interface leads to a &quot;least common denominator&quot; API that leaves you missing out on the strengths of your particular stack.</p>
+<p>So Denali doesn&#39;t attempt to mask over these differences. In fact, you shouldn&#39;t be surprised if you find ORM/database specific code in your Denali app - that&#39;s okay! It&#39;s usually necessary to get the most from your backend.</p>
+<p>So, why does Denali deal with data at all? The answer is mostly: addons.</p>
+<p>Denali&#39;s ORM adapters and Model interface are mostly designed so that addons have a consistent way to interact with the data in your application in a basic way. It allows an addon like <a href="https://github.com/denali-js/denali-mailer">denali-auth</a> to store data like email confirmation tokens without the addon itself needing to anticipate every possible data store.</p>
 
     </div>
   </div>
