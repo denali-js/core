@@ -1,12 +1,6 @@
 #!/usr/bin/env node
 require('source-map-support').install();
-require('babel-register')({
-  ignore(filename) {
-    // ignore node_modules except for any packages prefixed with denali
-    return filename.match(/node_modules/) &&
-           !filename.match(/node_modules\/denali(-[^\/]+)?\/(?!node_modules)/);
-  }
-});
+require('babel-register');
 
 process.title = 'denali';
 

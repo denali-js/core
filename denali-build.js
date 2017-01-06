@@ -38,25 +38,10 @@ export default class DenaliBuilder extends Builder {
 
   transpileTree(tree, dir) {
     let babelrcPath = path.join(dir, '.babelrc');
-    let options;
-    if (fs.existsSync(babelrcPath)) {
-      options = JSON.parse(fs.readFileSync(babelrcPath, 'utf-8'));
-    } else {
-      options = {
-        presets: [ 'latest' ],
-        plugins: [
-          'transform-class-properties',
-          'transform-async-to-generator'
-        ],
-        ignore: [
-          'blueprints/*/files/**',
-          'test/dummy/**'
-        ]
-      };
-    }
+    let options = JSON.parse(fs.readFileSync(babelrcPath, 'utf-8'));
     options.sourceMaps = 'inline';
     options.sourceRoot = dir;
-    return new BabelTree(tree, options);
+    return new BabelTree(new Funnel(tree, { exclude: options.ignore }), options);
   }
 
 }
