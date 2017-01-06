@@ -1,7 +1,6 @@
 import dedent from 'dedent-js';
 import Command from '../lib/cli/command';
 import Project from '../lib/cli/project';
-import ui from '../lib/cli/ui';
 
 export default class BuildCommand extends Command {
 
@@ -47,10 +46,7 @@ export default class BuildCommand extends Command {
 
     if (flags.watch) {
       project.watch({
-        outputDir: flags.output,
-        onBuild() {
-          ui.info('Build complete');
-        }
+        outputDir: flags.output
       });
     } else {
       project.build(flags.output);

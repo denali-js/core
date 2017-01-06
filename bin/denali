@@ -22,6 +22,8 @@ var pkgPath = findup('package.json');
 
 // No package.json found, revert to global install
 if (!pkgPath) {
+  var pkg = require('../package.json');
+  console.log('denali ' + pkg.version + ' [global]');
   require('../commands/index').default();
 
 // Package.json found
@@ -36,8 +38,12 @@ if (!pkgPath) {
   // this in the denali repo itself
   if (localDenali && pkg.name !== 'denali') {
     var localDenaliPkgDir = path.dirname(findup('package.json', { cwd: localDenali }));
+    var pkg = require(path.join(localDenaliPkgDir, 'package.json'));
+    console.log('denali ' + pkg.version + ' [local]');
     require(path.join(localDenaliPkgDir, 'commands', 'index')).default(localDenaliPkgDir);
   } else {
+    var pkg = require('../package.json');
+    console.log('denali ' + pkg.version + ' [global]');
     require('../commands/index').default();
   }
 }

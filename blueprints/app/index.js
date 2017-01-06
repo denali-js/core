@@ -42,7 +42,6 @@ export default class AppBlueprint extends Blueprint {
 
   postInstall({ name }, flags) {
     let spinner = ora();
-    ui.info('');
     spinner.text = 'Installing dependencies ...';
     spinner.start();
     return Promise.resolve().then(() => {
@@ -53,8 +52,7 @@ export default class AppBlueprint extends Blueprint {
           }
           return run('npm install --loglevel=error', { cwd: name });
         }).then(() => {
-          spinner.stop();
-          ui.success('Installing dependencies ... done ✔');
+          spinner.succeed();
         }).catch((error) => {
           ui.error('Denali encountered a problem while trying to install the dependencies for your new app:');
           ui.error(error.stack || error.message || error);
@@ -69,9 +67,8 @@ export default class AppBlueprint extends Blueprint {
     }).then(() => {
       return run('git commit -am "Initial denali project scaffold"', { cwd: name, maxBuffer });
     }).then(() => {
-      spinner.stop();
-      ui.success('Setting up git repo ... done ✔');
-      ui.success('🏔 Installation complete!');
+      spinner.succeed();
+      ui.success('✨  Installation complete!');
       ui.info('');
       ui.info('To launch your application, just run:');
       ui.info('');

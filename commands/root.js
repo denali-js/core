@@ -42,8 +42,11 @@ export default class RootCommand extends Command {
       localPkg = require(path.join(localDir, '../../package.json'));
     } catch (e) { /* ignore failed lookups */ }
     let globalPkg = require('../package.json');
+    ui.info('===> Version Info');
     if (localPkg) {
       ui.info(`denali (local): ${ localPkg.version }`);
+    } else {
+      ui.info(`denali (local): no local installation found`);
     }
     ui.info(`denali (global): ${ globalPkg.version }`);
     ui.info(`node: ${ process.version }`);
