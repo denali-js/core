@@ -1,20 +1,20 @@
-import { Builder } from './lib';
-import fs from 'fs';
-import path from 'path';
-import BabelTree from 'broccoli-babel-transpiler';
-import Funnel from 'broccoli-funnel';
-import MergeTree from 'broccoli-merge-trees';
-import LintTree from './lib/cli/lint-tree';
+const { Builder } = require('./lib');
+const fs = require('fs');
+const path = require('path');
+const BabelTree = require('broccoli-babel-transpiler');
+const Funnel = require('broccoli-funnel');
+const MergeTree = require('broccoli-merge-trees');
+const LintTree = require('./lib/cli/lint-tree');
 
-export default class DenaliBuilder extends Builder {
+module.exports = class DenaliBuilder extends Builder {
 
-  isDevelopingAddon = true;
-
-  unbuiltDirs = [
-    'bin',
-    'blueprints',
-    'commands'
-  ];
+  constructor() {
+    super(...arguments);
+    this.isDevelopingAddon = true;
+    this.unbuiltDirs = [
+      'bin'
+    ];
+  }
 
   processSelf(tree, dir) {
     tree = this.lintTree(tree, dir);
@@ -44,4 +44,4 @@ export default class DenaliBuilder extends Builder {
     return new BabelTree(new Funnel(tree, { exclude: options.ignore }), options);
   }
 
-}
+};
