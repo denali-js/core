@@ -1,2 +1,2 @@
 bin/
-lib/cli/blueprints/*/files/**
+blueprints/*/files/**
