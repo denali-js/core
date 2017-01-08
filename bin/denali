@@ -1,6 +1,10 @@
 #!/usr/bin/env node
 require('source-map-support').install();
-require('babel-register');
+require('babel-register')({
+  ignore(filename) {
+    return filename.match(/node_modules/) || filename.match(/denali\/dist/);
+  }
+});
 
 process.title = 'denali';
 
