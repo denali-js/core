@@ -1,4 +1,4 @@
-const { Builder } = require('denali');
+import { Builder } from 'denali';
 
-module.exports = class <%= className %>Builder extends Builder {
+export default class <%= className %>Builder extends Builder {
 }
