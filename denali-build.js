@@ -9,7 +9,7 @@ import LintTree from './lib/cli/lint-tree';
 
 export default class DenaliBuilder extends Builder {
 
-  isDevelopingAddon = true;
+  isDevelopingAddon = false;
 
   unbuiltDirs = [
     'bin'

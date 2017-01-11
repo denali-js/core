@@ -105,7 +105,7 @@ export default class TestCommand extends Command {
 
     if (this.watch) {
       this.project.watch({
-        outputDir: this.output,
+        outputDir: this.flags.output,
         // Don't let broccoli rebuild while tests are still running, or else
         // we'll be removing the test files while in progress leading to cryptic
         // errors.
@@ -127,7 +127,7 @@ export default class TestCommand extends Command {
         }
       });
     } else {
-      this.project.build(this.output)
+      this.project.build(this.flags.output)
       .then(() => {
         this.runTests();
       });
@@ -163,15 +163,14 @@ export default class TestCommand extends Command {
       args.unshift('--serial');
     }
     this.tests = spawn(avaPath, args, {
-      cwd: this.output,
+      cwd: this.flags.output,
       stdio: [ 'pipe', process.stdout, process.stderr ],
       env: assign({}, process.env, {
         PORT: this.port,
         DENALI_LEAVE_TMP: this.flags.litter,
         DENALI_ENV: this.project.environment,
         NODE_ENV: this.project.environment,
-        DEBUG_COLORS: 1,
-        DEBUG_FD: 1
+        DEBUG_COLORS: 1
       })
     });
     ui.info(`===> Running ${ this.project.pkg.name } tests ...`);
