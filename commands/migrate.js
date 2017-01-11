@@ -36,13 +36,14 @@ export default class MigrateCommand extends Command {
     });
     let application = await project.createApplication();
     let db = knex(application.config.migrations.db);
+    let migrationsDir = path.join(project.dir, 'config', 'migrations');
     if (flags.rollback) {
-      await db.migrate.rollback();
+      await db.migrate.rollback({ directory: migrationsDir });
     } else if (flags.redo) {
-      await db.migrate.rollback();
-      await db.migrate.latest();
+      await db.migrate.rollback({ directory: migrationsDir });
+      await db.migrate.latest({ directory: migrationsDir });
     } else {
-      await db.migrate.latest();
+      await db.migrate.latest({ directory: migrationsDir });
     }
   }
 
