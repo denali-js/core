@@ -69,6 +69,11 @@ export default class TestCommand extends Command {
       defaultValue: false,
       type: Boolean
     },
+    litter: {
+      description: 'Do not clean up tmp directories created during testing (useful for debugging)',
+      defaultValue: false,
+      type: Boolean
+    },
     serial: {
       description: 'Run tests serially',
       defaultValue: false,
@@ -162,6 +167,7 @@ export default class TestCommand extends Command {
       stdio: [ 'pipe', process.stdout, process.stderr ],
       env: assign({}, process.env, {
         PORT: this.port,
+        DENALI_LEAVE_TMP: this.flags.litter,
         DENALI_ENV: this.project.environment,
         NODE_ENV: this.project.environment,
         DEBUG_COLORS: 1,

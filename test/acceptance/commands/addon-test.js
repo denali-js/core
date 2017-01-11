@@ -1,11 +1,17 @@
 import test from 'ava';
 import path from 'path';
-import { CommandAcceptanceTest, assertFileExists } from 'denali';
+import fs from 'fs';
+import { CommandAcceptanceTest } from 'denali';
 
 test('addon command > generates an addon', async (t) => {
-  let addonCommand = new CommandAcceptanceTest('addon my-denali-addon', { populateWithDummy: false });
+  let addonCommand = new CommandAcceptanceTest('addon my-denali-addon', {
+    name: 'addon-command',
+    failOnStderr: true,
+    populateWithDummy: false
+  });
   await addonCommand.run();
-  assertFileExists(t, path.join(addonCommand.dir, 'my-denali-addon', 'app', 'addon.js'));
+  let addonFilePath = path.join(addonCommand.dir, 'my-denali-addon', 'app', 'addon.js');
+  t.true(fs.existsSync(addonFilePath), `${ addonFilePath } should exist`);
 });
 
 test.todo('addon command > fills in the addon name');

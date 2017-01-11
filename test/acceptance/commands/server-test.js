@@ -13,7 +13,7 @@ function linkDependency(pkgDir, dependencyName, dependencyDir) {
 }
 
 test('server command > launches a server', async () => {
-  let server = new CommandAcceptanceTest('server --port 3001');
+  let server = new CommandAcceptanceTest('server --port 3001', { name: 'launches-a-server' });
 
   return server.spawn({
     failOnStderr: true,
