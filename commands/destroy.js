@@ -5,6 +5,7 @@ import { padEnd } from 'lodash';
 import ui from '../lib/cli/ui';
 import Command from '../lib/cli/command';
 import Project from '../lib/cli/project';
+import Blueprint from '../lib/cli/blueprint';
 
 export default class DestroyCommand extends Command {
 
@@ -28,11 +29,9 @@ export default class DestroyCommand extends Command {
       this.printHelp();
     } else {
       let project = new Project();
-      let blueprintDir = project.findBlueprint(params.blueprintName);
-      let Blueprint = require(blueprintDir).default;
-      let blueprint = new Blueprint(blueprintDir);
-      let blueprintArgs = this.parseArgs.call(blueprint, argTokens.slice(1));
-      blueprint.destroy(blueprintArgs);
+      let blueprint = Blueprint.instanceFor(project, params.blueprintName);
+      let args = this.parseArgs.call(blueprint, argTokens.slice(1));
+      blueprint.destroy(args);
     }
   }
 
@@ -42,8 +41,8 @@ export default class DestroyCommand extends Command {
     let blueprints = fs.readdirSync(path.join(__dirname, '..', 'blueprints'));
     let pad = blueprints.reduce((length, name) => Math.max(length, name.length), 0);
     blueprints.forEach((blueprintName) => {
-      const Blueprint = require(`../blueprints/${ blueprintName }`).default;
-      ui.info(`  ${ padEnd(blueprintName, pad) }  ${ Blueprint.description }`);
+      const BlueprintClass = require(`../blueprints/${ blueprintName }`).default;
+      ui.info(`  ${ padEnd(blueprintName, pad) }  ${ BlueprintClass.description }`);
     });
   }
 
