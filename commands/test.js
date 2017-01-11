@@ -20,9 +20,9 @@ export default class TestCommand extends Command {
 
   flags = {
     debug: {
-      description: 'Run the server in debug mode',
-      defaultValue: false,
-      type: Boolean
+      description: 'The test file you want to debug. Can only debug one file at a time.',
+      defaultValue: null,
+      type: String
     },
     watch: {
       description: 'Re-run the tests when the source files change',
@@ -82,17 +82,9 @@ export default class TestCommand extends Command {
   };
 
   run({ params, flags }) {
+    this.flags = flags;
+    flags.watch = flags.watch || flags.environment === 'development';
     this.files = params.files || 'test/**/*.js';
-    this.watch = flags.watch || flags.environment === 'development';
-    this.port = flags.port;
-    this.debug = flags.debug;
-    this.match = flags.match;
-    this.output = flags.output;
-    this.verbose = flags.verbose;
-    this.timeout = flags.timeout;
-    this.failFast = flags['fail-fast'];
-    this.serial = flags.serial;
-    this.concurrency = flags.concurrency;
 
     this.project = new Project({
       environment: 'test',
@@ -144,26 +136,27 @@ export default class TestCommand extends Command {
   }
 
   runTests() {
-    let args = [ this.files, '!test/dummy/**/*', '--concurrency', this.concurrency ];
-    if (this.match) {
-      args.push('--match', this.match);
+    let avaPath = path.join(process.cwd(), 'node_modules', '.bin', 'ava');
+    let args = [ this.files, '!test/dummy/**/*', '--concurrency', this.flags.concurrency ];
+    if (this.flags.debug) {
+      avaPath = process.execPath;
+      args = [ '--inspect', '--debug-brk', path.join(process.cwd(), 'node_modules', 'ava', 'profile.js'), this.flags.debug ];
     }
-    if (this.debug) {
-      args.unshift('--inspect', '--debug-brk');
+    if (this.flags.match) {
+      args.push('--match', this.flags.match);
     }
-    if (this.verbose) {
+    if (this.flags.verbose) {
       args.unshift('--verbose');
     }
-    if (this.timeout) {
-      args.unshift('--timeout', this.timeout);
+    if (this.flags.timeout) {
+      args.unshift('--timeout', this.flags.timeout);
     }
-    if (this.failFast) {
+    if (this.flags['fail-fast']) {
       args.unshift('--fail-fast');
     }
-    if (this.serial) {
+    if (this.flags.serial) {
       args.unshift('--serial');
     }
-    let avaPath = path.join(process.cwd(), 'node_modules', '.bin', 'ava');
     this.tests = spawn(avaPath, args, {
       cwd: this.output,
       stdio: [ 'pipe', process.stdout, process.stderr ],
