@@ -1,10 +1,10 @@
-import ora from 'ora';
 import Promise from 'bluebird';
 import { exec } from 'child_process';
 import startCase from 'lodash/startCase';
 import commandExistsCallback from 'command-exists';
 import ui from '../../lib/cli/ui';
 import Blueprint from '../../lib/cli/blueprint';
+import spinner from '../../lib/utils/spinner';
 import pkg from '../../package.json';
 
 const run = Promise.promisify(exec);
@@ -41,9 +41,7 @@ export default class AppBlueprint extends Blueprint {
   }
 
   postInstall({ name }, flags) {
-    let spinner = ora();
-    spinner.text = 'Installing dependencies ...';
-    spinner.start();
+    spinner.start('Installing dependencies ...');
     return Promise.resolve().then(() => {
       if (!flags['skip-deps']) {
         return commandExists('yarn').then((yarnExists) => {
@@ -59,16 +57,15 @@ export default class AppBlueprint extends Blueprint {
         });
       }
     }).then(() => {
-      spinner.text = 'Setting up git repo ...';
-      spinner.start();
+      spinner.start('Setting up git repo ...');
       return run('git init', { cwd: name, maxBuffer });
     }).then(() => {
       return run('git add .', { cwd: name, maxBuffer });
     }).then(() => {
       return run('git commit -am "Initial denali project scaffold"', { cwd: name, maxBuffer });
     }).then(() => {
-      spinner.succeed();
-      ui.success('✨  Installation complete!');
+      spinner.succeed('Setting up git repo ... done');
+      spinner.succeed('✨  Installation complete!');
       ui.info('');
       ui.info('To launch your application, just run:');
       ui.info('');
