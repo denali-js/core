@@ -2,6 +2,7 @@ import path from 'path';
 import dedent from 'dedent-js';
 import Promise from 'bluebird';
 import Command from '../lib/cli/command';
+import spinner from '../lib/utils/spinner';
 import { exec } from 'child_process';
 
 const run = Promise.promisify(exec);
@@ -35,37 +36,37 @@ export default class PublishCommand extends Command {
   }
 
   async runTests() {
-    this.startSpinner('Running tests');
+    spinner.start('Running tests');
     try {
       await run('npm test');
     } catch (error) {
-      this.stopSpinner('fail', 'Tests failed, halting publish');
+      spinner.fail('Tests failed, halting publish');
       throw error;
     }
-    this.stopSpinner('succeed', 'Tests passed');
+    spinner.succeed('Tests passed');
   }
 
   async build() {
-    this.startSpinner('Building');
+    spinner.start('Building');
     try {
       await run('npm run build');
     } catch (error) {
-      this.stopSpinner('fail', 'Build failed, halting publish');
+      spinner.fail('Build failed, halting publish');
       throw error;
     }
-    this.stopSpinner('succeed', 'Addon built');
+    spinner.succeed('Addon built');
   }
 
   async publish() {
-    this.startSpinner('Publishing');
+    spinner.start('Publishing');
     try {
       await run('npm publish', { cwd: path.join(process.cwd(), 'dist') });
     } catch (error) {
-      this.stopSpinner('fail', 'Publish failed');
+      spinner.fail('Publish failed');
       throw error;
     }
     let pkg = require(path.join(process.cwd(), 'package.json'));
-    this.stopSpinner('succeed', `${ pkg.name } ${ pkg.version } published!`);
+    spinner.succeed(`${ pkg.name } ${ pkg.version } published!`);
   }
 
 }
