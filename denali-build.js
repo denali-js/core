@@ -48,7 +48,9 @@ export default class DenaliBuilder extends Builder {
     let options = JSON.parse(fs.readFileSync(babelrcPath, 'utf-8'));
     options.sourceMaps = 'inline';
     options.sourceRoot = dir;
-    return new BabelTree(new Funnel(tree, { exclude: options.ignore }), options);
+    let filesToTranspile = new Funnel(tree, { exclude: options.ignore });
+    let transpiled = new BabelTree(filesToTranspile, options);
+    return new MergeTree([ tree, transpiled ], { overwrite: true });
   }
 
 }
