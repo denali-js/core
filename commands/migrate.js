@@ -1,3 +1,4 @@
+import path from 'path';
 import dedent from 'dedent-js';
 import Command from '../lib/cli/command';
 import Project from '../lib/cli/project';
