@@ -32,4 +32,12 @@ export default class ResourceBlueprint extends Blueprint {
     return { plural, singular };
   }
 
+  postInstall({ name }) {
+    this.addRoute('resource', singularize(name));
+  }
+
+  postUninstall({ name }) {
+    this.removeRoute('resource', singularize(name));
+  }
+
 }

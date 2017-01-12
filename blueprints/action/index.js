@@ -9,6 +9,14 @@ export default class ActionBlueprint extends Blueprint {
 
   params = [ 'name' ];
 
+  flags = {
+    method: {
+      description: 'The HTTP method to use for the route to this action',
+      default: 'post',
+      type: String
+    }
+  };
+
   locals({ name }) {
     let levels = name.split('/').map(() => '..');
     levels.pop();
@@ -22,5 +30,13 @@ export default class ActionBlueprint extends Blueprint {
       className: upperFirst(camelCase(name)),
       nesting: levels
     };
+  }
+
+  postInstall({ name }, { method = 'post' }) {
+    this.addRoute(method.toLowerCase(), `/${ name }`, name);
+  }
+
+  postUninstall({ name }, { method = 'post' }) {
+    this.removeRoute(method.toLowerCase(), `/${ name }`, name);
   }
 }
