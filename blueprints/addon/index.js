@@ -41,7 +41,7 @@ export default class AddonBlueprint extends Blueprint {
 
   postInstall({ name }, flags) {
     ui.info('');
-    spinner.start('Installing npm dependencies ...');
+    spinner.start('Installing dependencies');
     return Promise.resolve().then(() => {
       if (!flags['skip-deps']) {
         return commandExists('yarn').then((yarnExists) => {
@@ -50,24 +50,19 @@ export default class AddonBlueprint extends Blueprint {
           }
           return run('npm install --loglevel=error', { cwd: name });
         }).then(() => {
-          spinner.succeed('Installing dependencies ... done');
+          spinner.succeed();
         });
       }
     }).then(() => {
-      spinner.start('Setting up git repo ...');
+      spinner.start('Setting up git repo');
       return run('git init', { cwd: name });
     }).then(() => {
       return run('git add .', { cwd: name });
     }).then(() => {
       return run('git commit -am "Initial denali project scaffold"', { cwd: name });
     }).then(() => {
-      spinner.succeed('Setting up git repo ... done');
-      spinner.succeed('Installation complete! ✨');
-      ui.info('');
-      ui.info('To launch your application, just run:');
-      ui.info('');
-      ui.info(`  $ cd ${ name } && denali server`);
-      ui.info('');
+      spinner.succeed();
+      ui.success('✨ ${ name } created');
     });
   }
 

@@ -41,7 +41,7 @@ export default class AppBlueprint extends Blueprint {
   }
 
   postInstall({ name }, flags) {
-    spinner.start('Installing dependencies ...');
+    spinner.start('Installing dependencies');
     return Promise.resolve().then(() => {
       if (!flags['skip-deps']) {
         return commandExists('yarn').then((yarnExists) => {
@@ -57,15 +57,15 @@ export default class AppBlueprint extends Blueprint {
         });
       }
     }).then(() => {
-      spinner.start('Setting up git repo ...');
+      spinner.start('Setting up git repo');
       return run('git init', { cwd: name, maxBuffer });
     }).then(() => {
       return run('git add .', { cwd: name, maxBuffer });
     }).then(() => {
       return run('git commit -am "Initial denali project scaffold"', { cwd: name, maxBuffer });
     }).then(() => {
-      spinner.succeed('Setting up git repo ... done');
-      spinner.succeed('✨  Installation complete!');
+      spinner.succeed();
+      ui.success(`✨  ${ name } created`);
       ui.info('');
       ui.info('To launch your application, just run:');
       ui.info('');
