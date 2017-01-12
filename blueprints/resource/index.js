@@ -31,4 +31,5 @@ export default class ResourceBlueprint extends Blueprint {
     };
     return { plural, singular };
   }
+
 }
