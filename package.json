@@ -31,6 +31,7 @@
     "babel-register": "^6.18.0",
     "broccoli-concat": "^3.0.5",
     "codeclimate-test-reporter": "^0.4.0",
+    "eslint-config-denali": "^1.2.0",
     "nyc": "^8.1.0",
     "rimraf": "^2.4.2",
     "standard-version": "^2.4.0"
@@ -83,7 +84,6 @@
     "dedent-js": "^1.0.1",
     "dotenv": "^2.0.0",
     "eslint": "^3.11.1",
-    "eslint-config-denali": "^1.2.0",
     "express-force-ssl": "^0.3.0",
     "findup-sync": "^0.4.0",
     "glob": "^7.0.3",
