@@ -83,6 +83,7 @@
     "dedent-js": "^1.0.1",
     "dotenv": "^2.0.0",
     "eslint": "^3.11.1",
+    "eslint-config-denali": "^1.2.0",
     "express-force-ssl": "^0.3.0",
     "findup-sync": "^0.4.0",
     "glob": "^7.0.3",
