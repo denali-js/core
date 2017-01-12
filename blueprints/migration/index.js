@@ -1,4 +1,6 @@
 import Blueprint from '../../lib/cli/blueprint';
+import moment from 'moment';
+import assert from 'assert';
 
 export default class MigrationBlueprint extends Blueprint {
 
@@ -8,9 +10,9 @@ export default class MigrationBlueprint extends Blueprint {
   params = [ 'name' ];
 
   locals({ name }) {
-    return {
-      name
-    };
+    assert(name, 'You must provide a name for this migration');
+    let filename = `${ moment().format('YYYY-MM-DD-HH-MM-SS') }-${ name }`;
+    return { name, filename };
   }
 
 }

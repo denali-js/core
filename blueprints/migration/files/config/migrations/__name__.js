@@ -1,7 +1,9 @@
-export function up(knex, Promise) {
-  // apply the migration
-};
+export async function up(knex) {
+  return knex.schema.createTable('posts', (posts) => {
+    post.text('title');
+  });
+}
 
-export function down(knex, Promise) {
-  // roll back the migration
-};
+export async function down(knex) {
+  return knex.schema.dropTable('posts');
+}

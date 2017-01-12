@@ -1,7 +1,9 @@
+import assert from 'assert';
 import path from 'path';
 import dedent from 'dedent-js';
 import Command from '../lib/cli/command';
 import Project from '../lib/cli/project';
+import spinner from '../lib/utils/spinner';
 import knex from 'knex';
 
 export default class MigrateCommand extends Command {
@@ -36,16 +38,25 @@ export default class MigrateCommand extends Command {
       buildDummy: true
     });
     let application = await project.createApplication();
+    assert(application.config.migrations && application.config.migrations.db, 'DB connection info is missing. You must supply the knex connection info in config.migrations.db.');
     let db = knex(application.config.migrations.db);
     let migrationsDir = path.join(project.dir, 'config', 'migrations');
     if (flags.rollback) {
+      spinner.start('Rolling back last migration');
       await db.migrate.rollback({ directory: migrationsDir });
+      spinner.succeed('Migrations complete');
     } else if (flags.redo) {
+      spinner.start('Rolling back and replaying last migration');
       await db.migrate.rollback({ directory: migrationsDir });
       await db.migrate.latest({ directory: migrationsDir });
+      spinner.succeed('Migrations complete');
     } else {
+      spinner.start('Running migrations to latest');
       await db.migrate.latest({ directory: migrationsDir });
+      spinner.succeed('Migrations complete');
+
     }
+    await db.destroy();
   }
 
 }
