@@ -130,7 +130,7 @@ export default class TestCommand extends Command {
       this.project.build(this.flags.output)
       .then(() => {
         this.runTests();
-      }).catch((e) => {
+      }).catch(() => {
         process.exitCode = 1;
       });
     }

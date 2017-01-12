@@ -29,7 +29,7 @@ export default class DenaliBuilder extends Builder {
         lintTestTree = new Funnel(lintTestTree, { destDir: 'test/lint' });
         lintTestTree = new Concat(lintTestTree, {
           outputFile: 'test/linting.js',
-          header: `import test from 'ava';\ntest('Linting', (t) => {`,
+          header: `import test from 'ava';\ntest('source passes eslint', (t) => {`,
           footer: '});',
           inputFiles: [ '**/*.lint-test.js' ],
           sourceMapConfig: { enabled: true },
