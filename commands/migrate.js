@@ -4,7 +4,13 @@ import dedent from 'dedent-js';
 import Command from '../lib/cli/command';
 import Project from '../lib/cli/project';
 import spinner from '../lib/utils/spinner';
-import knex from 'knex';
+import tryRequire from '../lib/utils/try-require';
+import commandExistsCallback from 'command-exists';
+import Promise from 'bluebird';
+import { exec } from 'child_process';
+const run = Promise.promisify(exec);
+
+const commandExists = Promise.promisify(commandExistsCallback);
 
 export default class MigrateCommand extends Command {
 
@@ -32,6 +38,18 @@ export default class MigrateCommand extends Command {
   allowExtraArgs = false;
 
   async run({ flags }) {
+    let knex = tryRequire('knex');
+    if (!knex) {
+      spinner.start('Installing knex (required for migrations)');
+      let yarnExists = await commandExists('yarn');
+      if (yarnExists) {
+        await run('yarn add knex');
+      } else {
+        await run('npm install --save knex');
+      }
+      knex = require('knex');
+      spinner.succeed('Knex installed');
+    }
     let project = new Project({
       environment: flags.environment,
       printSlowTrees: flags['print-slow-trees'],
