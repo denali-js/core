@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/">
+
+    <title> ORM Adapters  </title>
+
+    <link href='//fonts.googleapis.com/css?family=Inconsolata|Bitter:400,700|Open+Sans:300,400,400italic,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-dropdown/2.0.3/jquery.dropdown.min.css" />
+  </head>
+  <body>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-2.2.2.min.js"><\/script>')</script>
+    <nav class="navbar">
+  <div class='container'>
+    <a href='.' class='navbar-brand'>
+      <img class='logo-light' src='images/logo.svg' alt='Denali'>
+      <span class='project-name'>Denali</span>
+    </a>
+
+    <div class="navbar-nav">
+      
+      <a class='nav-link' href='v0.0.19/guides/overview/quickstart'>Quickstart</a>
+      <a class='nav-link' href='v0.0.19/guides/overview/introduction'>Guides</a>
+      <a class='nav-link' href='v0.0.19/api/modules/denali'>API</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali' target='_blank'>Github</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali/issues' target='_blank'>Issues</a>
+    </div>
+  </div>
+</nav>
+
+<div class='container'>
+  <div class="row">
+    <div class='guides-nav col-md-3'>
+      <div class='nav-section'>
+  <div class='nav-header'>Version</div>
+  <div class='versions-menu-toggle' data-jq-dropdown='#versions-menu'>
+    v0.0.19 
+    <img class='versions-menu-caret' src='/images/caret.svg'>
+  </div>
+</div>
+
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>Overview</div>
+          
+          
+            <a href='v0.0.19/guides/overview/introduction' class='nav-link'>Introduction</a>
+          
+            <a href='v0.0.19/guides/overview/quickstart' class='nav-link'>Quickstart</a>
+          
+            <a href='v0.0.19/guides/overview/app-structure' class='nav-link'>App Structure</a>
+          
+        </div>
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>Application</div>
+          
+          
+            <a href='v0.0.19/guides/application/routing' class='nav-link'>Routing</a>
+          
+            <a href='v0.0.19/guides/application/actions' class='nav-link'>Actions</a>
+          
+            <a href='v0.0.19/guides/application/services' class='nav-link'>Services</a>
+          
+            <a href='v0.0.19/guides/application/errors' class='nav-link'>Errors</a>
+          
+            <a href='v0.0.19/guides/application/mailers' class='nav-link'>Mailers</a>
+          
+        </div>
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>Data</div>
+          
+          
+            <a href='v0.0.19/guides/data/models' class='nav-link'>Models</a>
+          
+            <a href='v0.0.19/guides/data/serializers' class='nav-link'>Serializers</a>
+          
+            <a href='v0.0.19/guides/data/orm-adapters' class='nav-link'>ORM Adapters</a>
+          
+        </div>
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>Testing</div>
+          
+          
+            <a href='v0.0.19/guides/testing/integration' class='nav-link'>Integration</a>
+          
+            <a href='v0.0.19/guides/testing/unit' class='nav-link'>Unit Testing</a>
+          
+        </div>
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>Configuration</div>
+          
+          
+            <a href='v0.0.19/guides/configuration/environment' class='nav-link'>Environment</a>
+          
+            <a href='v0.0.19/guides/configuration/middleware' class='nav-link'>Middleware</a>
+          
+            <a href='v0.0.19/guides/configuration/initializers' class='nav-link'>Initializers</a>
+          
+        </div>
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>Utilities</div>
+          
+          
+            <a href='v0.0.19/guides/utilities/mixins' class='nav-link'>Mixins</a>
+          
+            <a href='v0.0.19/guides/utilities/addons' class='nav-link'>Addons</a>
+          
+            <a href='v0.0.19/guides/utilities/instrumentation' class='nav-link'>Instrumentation</a>
+          
+        </div>
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>CLI</div>
+          
+          
+            <a href='v0.0.19/guides/cli/generate' class='nav-link'>denali generate</a>
+          
+            <a href='v0.0.19/guides/cli/serve' class='nav-link'>denali serve</a>
+          
+            <a href='v0.0.19/guides/cli/test' class='nav-link'>denali test</a>
+          
+            <a href='v0.0.19/guides/cli/build' class='nav-link'>denali build</a>
+          
+            <a href='v0.0.19/guides/cli/addon' class='nav-link'>denali addon</a>
+          
+            <a href='v0.0.19/guides/cli/console' class='nav-link'>denali console</a>
+          
+        </div>
+      
+    </div>
+
+    <div class='col-md-9 guides-body copy'>
+      <a class="improve-btn" target="_blank" href="https://github.com/denali-js/denali/edit/master/guides/data/orm-adapters.md">Improve this page</a>
+      <h1 id="orm-adapters">ORM Adapters</h1>
+<p>Denali takes a somewhat unique approach to handling the data layer. Unlike most
+frameworks, it doesn&#39;t come bundled with a &quot;blessed&quot; ORM, or attempt to build
+it&#39;s own. Instead, Denali&#39;s Model class works with your ORM of choice by
+communicating with it through an ORM Adapter.</p>
+<p>This lets you bring your own ORM to your apps, while still enabling Denali to
+understand your data model. This is good news for your app, since it lets you
+pick the right ORM for the job and leverage the strengths of the specific data
+store backing your app, rather than relying on a lowest-common-denominator data
+layer.</p>
+<h2 id="available-orm-adapters">Available ORM Adapters</h2>
+<p>Several popular ORMs have Denali adapters ready to go. Just add them to your
+project via <code>$ denali install &lt;adapter package name&gt;</code>, and set the <code>ormAdapter</code>
+property in your <code>config/environment.js</code> file to the ORM&#39;s name.</p>
+<ul>
+<li><a href="https://github.com/denali-js/denali-node-orm2"><code>node-orm2</code></a> (beta)</li>
+<li><del><code>Sequelize</code></del> (coming soon)</li>
+<li><del><code>Bookshelf</code></del> (coming soon)</li>
+</ul>
+<h2 id="creating-an-orm-adapter">Creating an ORM Adapter</h2>
+<p>Want to use an ORM that doesn&#39;t have an adapter yet? It&#39;s fairly easy to write
+your own! Just extend from the base <code>ORMAdapter</code> class, and implement each of
+the hooks:</p>
+<pre><code class="lang-js">export <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyCoolORMAdapter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ORMAdapter</span> </span>{
+
+  async find(<span class="hljs-class"><span class="hljs-keyword">type</span>, <span class="hljs-title">query</span>) </span>{}
+
+  async findOne(<span class="hljs-class"><span class="hljs-keyword">type</span>, <span class="hljs-title">query</span>) </span>{}
+
+  buildRecord(<span class="hljs-class"><span class="hljs-keyword">type</span>, <span class="hljs-title">data</span>) </span>{}
+
+  idFor(model) {}
+
+  setId() {}
+
+  getAttribute(model, property) {}
+
+  setAttribute(model, property, value) {}
+
+  deleteAttribute(model, property) {}
+
+  async getRelated(model, relationship, descriptor) {}
+
+  async setRelated(model, relationship, descriptor, relatedRecords) {}
+
+  async addRelated(model, relationship, descriptor, relatedRecord) {}
+
+  async removeRelated(model, relationship, descriptor, relatedRecord) {}
+
+  async saveRecord(<span class="hljs-class"><span class="hljs-keyword">type</span>, <span class="hljs-title">model</span>) </span>{}
+
+  async deleteRecord(<span class="hljs-class"><span class="hljs-keyword">type</span>, <span class="hljs-title">model</span>) </span>{}
+
+}
+</code></pre>
+<h3 id="why-adapters-">Why Adapters?</h3>
+<p>It&#39;s important to understand why Denali uses an ORM adapter strategy for handling ORMs: <strong>the goal is <em>not</em> to allow you to swap out ORMs and/or databases with zero refactoring.</strong></p>
+<p>In fact, Denali views such a goal as harmful. If you could swap out ORMs and databases with zero refactoring, it must mean that the API is the same for both. This assumes that all databases are basically the same, and there&#39;s no real difference in the semantics of each.</p>
+<p>Of course, this is obviously false - different data stores offer wildly different semantics and characteristics. Ultimately, any attempt to create such an interface leads to a &quot;least common denominator&quot; API that leaves you missing out on the strengths of your particular stack.</p>
+<p>So Denali doesn&#39;t attempt to mask over these differences. In fact, you shouldn&#39;t be surprised if you find ORM/database specific code in your Denali app - that&#39;s okay! It&#39;s usually necessary to get the most from your backend.</p>
+<p>So, why does Denali deal with data at all? The answer is mostly: addons.</p>
+<p>Denali&#39;s ORM adapters and Model interface are mostly designed so that addons have a consistent way to interact with the data in your application in a basic way. It allows an addon like <a href="https://github.com/denali-js/denali-mailer">denali-auth</a> to store data like email confirmation tokens without the addon itself needing to anticipate every possible data store.</p>
+
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class='container'>
+    Made with <img src='images/fox-and-beard.svg' class='fox-and-beard'> at
+    <a href='http://foxandbeard.co' target='_blank'>Fox and Beard</a>
+  </div>
+</footer>
+
+  <div id='versions-menu' class='versions-menu jq-dropdown jq-dropdown-tip'>
+    <ul class='jq-dropdown-menu'>
+      
+        <li>
+          
+            <a class='active'>v0.0.19 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.18/guides/data/orm-adapters'>v0.0.18 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.16/guides/data/orm-adapters'>v0.0.16 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.15/guides/data/orm-adapters'>v0.0.15 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.14/guides/data/orm-adapters'>v0.0.14 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.13/guides/data/orm-adapters'>v0.0.13 (canary)</a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.12/guides/data/orm-adapters'>v0.0.12 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.11/guides/data/orm-adapters'>v0.0.11 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.10/guides/data/orm-adapters'>v0.0.10 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.9/guides/data/orm-adapters'>v0.0.9 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.8/guides/data/orm-adapters'>v0.0.8 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.7/guides/data/orm-adapters'>v0.0.7 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/master/guides/data/orm-adapters'>master </a>
+          
+        </li>
+      
+    </ul>
+  </div>
+  <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery-dropdown/2.0.3/jquery.dropdown.min.js'></script>
+
+
+
+    <script>
+     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+     ga('create', 'UA-85043775-1', 'auto');
+     ga('send', 'pageview');
+    </script>
+  </body>
+</html>
