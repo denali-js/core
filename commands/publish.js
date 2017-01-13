@@ -28,10 +28,10 @@ export default class PublishCommand extends Command {
   };
 
   async run({ flags }) {
+    await this.build();
     if (!flags['skip-tests']) {
       await this.runTests();
     }
-    await this.build();
     await this.publish();
   }
 
