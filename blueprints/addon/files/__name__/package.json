@@ -29,6 +29,7 @@
     "denali": "<%= denaliVersion %>",
     "denali-babel": "0.0.x",
     "denali-eslint": "0.0.x",
+    "in-publish": "^2.0.0",
     "lodash": "^4.16.4"
   },
   "devDependencies": {
@@ -40,6 +41,7 @@
     "presets": []
   },
   "scripts": {
-    "prepublish": "echo \"Use 'denali publish' instead.\" && exit 1"
+    "build": "denali build",
+    "prepublish": "in-publish && echo \"Use 'denali publish' instead.\" && exit 1 || not-in-publish"
   }
 }

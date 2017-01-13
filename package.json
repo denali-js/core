@@ -43,7 +43,7 @@
     "preversion": "scripts/preversion.sh",
     "release": "scripts/release.sh",
     "test": "scripts/test.sh",
-    "prepublish": "echo \"Use 'denali publish' instead.\" && exit 1"
+    "prepublish": "in-publish && echo \"Use 'denali publish' instead.\" && exit 1 || not-in-publish"
   },
   "license": "MIT",
   "dependencies": {
@@ -90,6 +90,7 @@
     "glob": "^7.0.3",
     "helmet": "^2.3.0",
     "http-errors": "^1.4.0",
+    "in-publish": "^2.0.0",
     "inflection": "^1.8.0",
     "js-string-escape": "^1.0.1",
     "jscodeshift": "^0.3.30",
