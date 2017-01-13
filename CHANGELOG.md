@@ -2,6 +2,43 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.0.17"></a>
+# [0.0.17](https://github.com/denali-js/denali/compare/v0.0.16...v0.0.17) (2017-01-13)
+
+
+### Bug Fixes
+
+* **blueprint:** fix addon blueprint babel config ([e3462d1](https://github.com/denali-js/denali/commit/e3462d1))
+* **blueprint:** fix outdated variable references in resource blueprint ([3925a95](https://github.com/denali-js/denali/commit/3925a95))
+* **blueprint:** fix resource blueprint name patterns ([6148436](https://github.com/denali-js/denali/commit/6148436))
+* **blueprint:** update package.jsons to reflect minimal babel plugin set ([a3b8a9a](https://github.com/denali-js/denali/commit/a3b8a9a))
+* **cli:** build failures should cause test command to exit with non-zero code ([ae48297](https://github.com/denali-js/denali/commit/ae48297))
+* **cli:** convert back to flat published addons, babel-register for denali-build.js ([a505f3b](https://github.com/denali-js/denali/commit/a505f3b))
+* **cli:** fix flag handling in test command ([fd80091](https://github.com/denali-js/denali/commit/fd80091))
+* **cli:** fix routes test to account for denali version printing ([1d47003](https://github.com/denali-js/denali/commit/1d47003))
+* convert Denali's own denali-build.js to un-transpiled syntax ([3054c0b](https://github.com/denali-js/denali/commit/3054c0b))
+* **cli:** retain non-transpiled files in denali's own build ([a8b9ebc](https://github.com/denali-js/denali/commit/a8b9ebc))
+* use absolute path for instantiating project applications, improve failure messages ([23a260a](https://github.com/denali-js/denali/commit/23a260a))
+* **cli:** tweak project handling to account for tmp holding dummy apps during tests ([371fea7](https://github.com/denali-js/denali/commit/371fea7))
+* **util:** default spinner success message to the current spinner text ([b78e1d6](https://github.com/denali-js/denali/commit/b78e1d6))
+
+
+### Features
+
+* **blueprint:** add migration blueprint ([33578f9](https://github.com/denali-js/denali/commit/33578f9))
+* **blueprint:** add orm-adapter blueprint ([6bcc07c](https://github.com/denali-js/denali/commit/6bcc07c))
+* **blueprint:** add/remove routes from blueprints via jscodeshift ([8b6d7e4](https://github.com/denali-js/denali/commit/8b6d7e4))
+* **cli:** add --litter flag to retain tmp dirs after tests finish ([aae9cba](https://github.com/denali-js/denali/commit/aae9cba))
+* **cli:** add glob support to packageFiles array ([9707af8](https://github.com/denali-js/denali/commit/9707af8))
+* **cli:** add migrate command ([7df3e4d](https://github.com/denali-js/denali/commit/7df3e4d))
+* **cli:** add publish command ([f62c6c2](https://github.com/denali-js/denali/commit/f62c6c2))
+* install knex on the fly in migrate command ([b5ba1eb](https://github.com/denali-js/denali/commit/b5ba1eb))
+* **cli:** move default test output folder into tmp ([7e25fd3](https://github.com/denali-js/denali/commit/7e25fd3))
+* **data:** add some sanity-check assertions to JSONAPISerializer parsing ([f895e3b](https://github.com/denali-js/denali/commit/f895e3b))
+* **data:** add support for setting id to memory adapter ([367f135](https://github.com/denali-js/denali/commit/367f135))
+
+
+
 <a name="0.0.16"></a>
 # [0.0.16](https://github.com/denali-js/denali/compare/v0.0.15...v0.0.16) (2016-12-08)
 
