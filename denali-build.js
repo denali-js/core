@@ -17,7 +17,7 @@ export default class DenaliBuilder extends Builder {
 
   constructor() {
     super(...arguments);
-    this.ignoreVulnerabilities.push('jscodeshift@0.3.30');
+    this.ignoreVulnerabilities.push([ 'jscodeshift@0.3.30' ]);
   }
 
   processSelf(tree, dir) {
