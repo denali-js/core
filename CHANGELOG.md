@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.0.20"></a>
+# [0.0.20](https://github.com/denali-js/denali/compare/v0.0.19...v0.0.20) (2017-01-14)
+
+
+### Bug Fixes
+
+* **blueprint:** add .env to app .gitignore ([07bb420](https://github.com/denali-js/denali/commit/07bb420))
+* **blueprint:** t.equal -> t.is in app blueprint ([d4dc1ff](https://github.com/denali-js/denali/commit/d4dc1ff))
+* **cli:** add null check for prepublish script (i.e. apps do not have it) ([6001cf8](https://github.com/denali-js/denali/commit/6001cf8))
+
+
+### Features
+
+* **cli:** allow semver range checking for ignoredVulnerabilities ([81fb67a](https://github.com/denali-js/denali/commit/81fb67a))
+* **cli:** skip build, nsp checks, etc when environment is production ([65207c6](https://github.com/denali-js/denali/commit/65207c6))
+
+
+
 <a name="0.0.19"></a>
 ## [0.0.19](https://github.com/denali-js/denali/compare/v0.0.18...v0.0.19) (2017-01-13)
 
