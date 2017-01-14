@@ -32,11 +32,6 @@ export default class ServerCommand extends Command {
   params = [];
 
   flags = {
-    environment: {
-      description: 'The environment to run as, i.e. `production` (defaults to $DENALI_ENV, $NODE_ENV, or development)',
-      defaultValue: process.env.DENALI_ENV || process.env.NODE_ENV || 'development',
-      type: String
-    },
     debug: {
       description: 'Run in debug mode (add the --debug flag to node, launch node-inspector)',
       defaultValue: false,
@@ -67,6 +62,11 @@ export default class ServerCommand extends Command {
       defaultValue: 'dist',
       type: String
     },
+    production: {
+      description: 'Start the server in production mode: skip the build (assumes the app was prebuilt), skips nsp audits, runs with DENALI_ENV=production',
+      defaultValue: false,
+      type: Boolean
+    },
     'print-slow-trees': {
       description: 'Print out an analysis of the build process, showing the slowest nodes.',
       defaultValue: false,
@@ -76,15 +76,20 @@ export default class ServerCommand extends Command {
 
   run({ flags }) {
     debug('running server command');
-    this.watch = flags.watch || flags.environment === 'development';
+    this.environment = flags.production ? 'production' : process.env.DENALI_ENV || process.env.NODE_ENV || 'development';
+    this.watch = flags.watch || this.environment === 'development';
     this.port = flags.port;
     this.debug = flags.debug;
+
+    if (this.environment === 'production') {
+      return this.startServer(flags.output);
+    }
 
     this.project = new Project({
       environment: this.environment,
       printSlowTrees: flags['print-slow-trees'],
-      audit: flags.audit || flags.environment === 'development',
-      lint: flags.lint || flags.environment !== 'production',
+      audit: flags.audit || this.environment === 'development',
+      lint: flags.lint || this.environment !== 'production',
       buildDummy: true
     });
 
@@ -92,7 +97,7 @@ export default class ServerCommand extends Command {
     process.on('SIGINT', this.cleanExit.bind(this));
     process.on('SIGTERM', this.cleanExit.bind(this));
 
-    if (flags.watch || flags.environment === 'development') {
+    if (flags.watch || this.environment === 'development') {
       debug('starting watcher');
       this.project.watch({
         outputDir: flags.output,
@@ -124,8 +129,8 @@ export default class ServerCommand extends Command {
     let args = [ 'app/index.js' ];
     let defaultEnvs = {
       PORT: this.port,
-      DENALI_ENV: this.project.environment,
-      NODE_ENV: this.project.environment
+      DENALI_ENV: this.environment,
+      NODE_ENV: this.environment
     };
     if (this.debug) {
       args.unshift('--inspect', '--debug-brk');
@@ -144,10 +149,12 @@ export default class ServerCommand extends Command {
       ui.error('Unable to start your application:');
       ui.error(error.stack);
     });
-    this.server.on('exit', (code) => {
-      let result = code === 0 ? 'exited' : 'crashed';
-      ui.error(`Server ${ result }. waiting for changes to restart ...`);
-    });
+    if (this.watch) {
+      this.server.on('exit', (code) => {
+        let result = code === 0 ? 'exited' : 'crashed';
+        ui.error(`Server ${ result }. waiting for changes to restart ...`);
+      });
+    }
   }
 
 }
