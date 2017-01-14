@@ -15,11 +15,6 @@ export default class DenaliBuilder extends Builder {
     'bin'
   ];
 
-  constructor() {
-    super(...arguments);
-    this.ignoreVulnerabilities.push([ 'jscodeshift@0.3.30' ]);
-  }
-
   processSelf(tree, dir) {
     tree = this.lintTree(tree, dir);
     tree = this.transpileTree(tree, dir);
