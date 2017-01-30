@@ -88,7 +88,6 @@ export default class TestCommand extends Command {
 
   run({ params, flags }) {
     this.flags = flags;
-    flags.watch = flags.watch || flags.environment === 'development';
     this.files = params.files || 'test/**/*.js';
 
     this.project = new Project({
@@ -103,7 +102,7 @@ export default class TestCommand extends Command {
     process.on('SIGINT', this.cleanExit.bind(this));
     process.on('SIGTERM', this.cleanExit.bind(this));
 
-    if (this.watch) {
+    if (this.flags.watch) {
       this.project.watch({
         outputDir: this.flags.output,
         // Don't let broccoli rebuild while tests are still running, or else
