@@ -11,7 +11,7 @@ export default class MigrationBlueprint extends Blueprint {
 
   locals({ name }) {
     assert(name, 'You must provide a name for this migration');
-    let filename = `${ moment().format('YYYY-MM-DD-HH-MM-SS') }-${ name }`;
+    let filename = `${ moment().format('X') }-${ name }`;
     return { name, filename };
   }
 

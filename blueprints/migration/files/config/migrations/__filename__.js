@@ -1,5 +1,5 @@
 export async function up(knex) {
-  return knex.schema.createTable('posts', (posts) => {
+  return knex.schema.createTable('posts', (post) => {
     post.text('title');
   });
 }
