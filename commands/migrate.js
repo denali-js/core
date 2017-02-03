@@ -30,6 +30,11 @@ export default class MigrateCommand extends Command {
       description: 'Shortcut for rolling back then migrating up again. If used with --step, it will replay that many migrations. If used with --version, it will roll back to that version then replay. If neither, defaults to --step 1',
       defaultValue: false,
       type: Boolean
+    },
+    environment: {
+      description: 'The environment configuration to use for connecting to the database',
+      defaultValue: 'development',
+      type: String
     }
   };
 
