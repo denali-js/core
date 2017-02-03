@@ -1,19 +1,29 @@
-import { Builder } from './lib';
-import fs from 'fs';
-import path from 'path';
-import BabelTree from 'broccoli-babel-transpiler';
-import Funnel from 'broccoli-funnel';
-import MergeTree from 'broccoli-merge-trees';
-import Concat from 'broccoli-concat';
-import LintTree from './lib/cli/lint-tree';
+// This is necessary because when denali is building itself, it needs to peek
+// into dist/ to get the transpiled versions. When it's being used as a dep,
+// this file is being loaded from the dist/ folder already.
+let denaliLibPath;
+if (process.cwd() === __dirname) {
+  denaliLibPath = 'dist/lib';
+} else {
+  denaliLibPath = 'lib';
+}
 
-export default class DenaliBuilder extends Builder {
+const path = require('path');
+const Builder = require(`./${ path.join(denaliLibPath, 'cli/builder') }`).default;
+const LintTree = require(`./${ path.join(denaliLibPath, 'cli/lint-tree') }`).default;
+const fs = require('fs');
+const BabelTree = require('broccoli-babel-transpiler');
+const Funnel = require('broccoli-funnel');
+const MergeTree = require('broccoli-merge-trees');
+const Concat = require('broccoli-concat');
 
-  isDevelopingAddon = false;
+module.exports = class DenaliBuilder extends Builder {
 
-  unbuiltDirs = [
-    'bin'
-  ];
+  constructor() {
+    super(...arguments);
+    this.isDevelopingAddon = false;
+    this.unbuiltDirs.push('bin');
+  }
 
   processSelf(tree, dir) {
     tree = this.lintTree(tree, dir);
@@ -53,4 +63,4 @@ export default class DenaliBuilder extends Builder {
     return new MergeTree([ tree, transpiled ], { overwrite: true });
   }
 
-}
+};
