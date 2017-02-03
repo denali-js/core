@@ -3,6 +3,9 @@ import Response from '../../lib/runtime/response';
 import fs from 'fs';
 import path from 'path';
 import template from 'lodash/template';
+import createDebug from 'debug';
+
+const debug = createDebug('denali:app:error-action');
 
 const errorHTML = fs.readFileSync(path.join(__dirname, '..', 'assets', 'error.html'), 'utf-8');
 const errorHTMLTemplate = template(errorHTML, { variable: 'data' });
@@ -31,6 +34,7 @@ export default class ErrorAction extends Action {
   }
 
   respondWithJson() {
+    debug('Client requested JSON, preparing error as JSON payload');
     return this.prepareError();
   }
 
@@ -56,6 +60,7 @@ export default class ErrorAction extends Action {
       // TODO log request ID as well
       this.logger.error(error.stack || error.message);
     }
+    debug('Error prepared: %o', error);
     return new Response(error.status || 500, error, { raw: true });
   }
 
