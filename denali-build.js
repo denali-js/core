@@ -12,7 +12,7 @@ const path = require('path');
 const Builder = require(`./${ path.join(denaliLibPath, 'cli/builder') }`).default;
 const LintTree = require(`./${ path.join(denaliLibPath, 'cli/lint-tree') }`).default;
 const fs = require('fs');
-const BabelTree = require('broccoli-babel-transpiler');
+const TypescriptTree = require('broccoli-typescript-compiler');
 const Funnel = require('broccoli-funnel');
 const MergeTree = require('broccoli-merge-trees');
 const Concat = require('broccoli-concat');
@@ -54,12 +54,10 @@ module.exports = class DenaliBuilder extends Builder {
   }
 
   transpileTree(tree, dir) {
-    let babelrcPath = path.join(dir, '.babelrc');
-    let options = JSON.parse(fs.readFileSync(babelrcPath, 'utf-8'));
-    options.sourceMaps = 'inline';
-    options.sourceRoot = dir;
+    let tsconfigPath = path.join(dir, 'tsconfig.json');
+    let options = JSON.parse(fs.readFileSync(tsconfigPath, 'utf-8'));
     let filesToTranspile = new Funnel(tree, { exclude: options.ignore });
-    let transpiled = new BabelTree(filesToTranspile, options);
+    let transpiled = new TypescriptTree(filesToTranspile, { tsconfig: options });
     return new MergeTree([ tree, transpiled ], { overwrite: true });
   }
 

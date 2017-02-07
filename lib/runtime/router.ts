@@ -1,0 +1,504 @@
+import * as ware from 'ware';
+import { IncomingMessage, ServerResponse } from 'http';
+import { pluralize } from 'inflection';
+import { fromNode } from 'bluebird';
+import * as typeis from 'type-is';
+import * as createDebug from 'debug';
+import Errors from './errors';
+import Route from './route';
+import Request, { Method } from './request';
+import ensureArray from '../utils/ensure-array';
+import DenaliObject from '../metal/object';
+import Logger from './logger';
+import Container from './container';
+import Action from './action';
+import Serializer from '../data/serializer';
+import {
+  find,
+  forEach
+ } from 'lodash';
+
+const debug = createDebug('denali:router');
+
+interface RoutesCache {
+  get: Route[],
+  post: Route[],
+  put: Route[],
+  patch: Route[],
+  delete: Route[],
+  head: Route[],
+  options: Route[]
+};
+
+interface MiddlewareFn {
+  (req: IncomingMessage, res: ServerResponse, next: Function): void;
+}
+
+interface ResourceOptions {
+  /**
+   * Should routes for related resources be generated? If true, routes will be generated following
+   * the JSON-API recommendations for relationship URLs.
+   *
+   * @type {boolean}
+   * @see {@link http://jsonapi.org/recommendations/#urls-relationships|JSON-API URL Recommendatiosn}
+   */
+  related?: boolean;
+  /**
+   * A list of action types to _not_ generate.
+   *
+   * @type {string[]}
+   */
+  except?: string[];
+  /**
+   * A list of action types that should be the _only_ ones generated.
+   *
+   * @type {string[]}
+   */
+  only?: string[];
+}
+
+interface RouterDSL {
+  get: (pattern: string, action: string, params: {}) => void;
+  post: (pattern: string, action: string, params: {}) => void;
+  put: (pattern: string, action: string, params: {}) => void;
+  patch: (pattern: string, action: string, params: {}) => void;
+  delete: (pattern: string, action: string, params: {}) => void;
+  head: (pattern: string, action: string, params: {}) => void;
+  options: (pattern: string, action: string, params: {}) => void;
+  resource: (resourceName: string, options: ResourceOptions) => void;
+}
+
+/**
+ * The Router handles incoming requests, sending them to the appropriate action. It's also
+ * responsible for defining routes in the first place - it's passed into the `config/routes.js`
+ * file's exported function as the first argument.
+ *
+ * @export
+ * @class Router
+ * @extends {DenaliObject}
+ * @implements {RouterDSL}
+ * @module denali
+ * @submodule runtime
+ */
+export default class Router extends DenaliObject implements RouterDSL {
+
+  /**
+   * The cache of available routes.
+   *
+   * @private
+   * @type {RoutesCache}
+   */
+  private routes: RoutesCache = {
+    get: [],
+    post: [],
+    put: [],
+    patch: [],
+    delete: [],
+    head: [],
+    options: []
+  };
+
+  /**
+   * The internal generic middleware handler, responsible for building and executing the middleware
+   * chain.
+   *
+   * @private
+   * @type {ware}
+   */
+  private middleware: any = (<() => any>ware)();
+
+  /**
+   * @private
+   * @type {Container}
+   */
+  private container: Container;
+
+  /**
+   * @private
+   * @type {Logger}
+   */
+  private logger: Logger;
+
+  /**
+   * @private
+   * @type {*}
+   */
+  private config: any;
+
+  /**
+   * Creates an instance of Router.
+   *
+   * @param {{ container: Container, logger: Logger }} options
+   */
+  constructor(options: { container: Container, logger: Logger }) {
+    super();
+    this.container = options.container;
+    this.logger = options.logger;
+    this.config = this.container.config;
+  }
+
+  /**
+   * Helper method to invoke the function exported by `config/routes.js` in the context of the
+   * current router instance.
+   *
+   * @param {(router: Router) => void} fn
+   */
+  public map(fn: (router: Router) => void): void {
+    debug('mapping routes');
+    fn(this);
+  }
+
+  /**
+   * Takes an incoming request and it's response from an HTTP server, prepares them, runs the
+   * generic middleware first, hands them off to the appropriate action given the incoming URL, and
+   * finally renders the response.
+   *
+   * @public
+   * @param {IncomingMessage} req
+   * @param {ServerResponse} res
+   * @returns
+   */
+  public async handle(req: IncomingMessage, res: ServerResponse): Promise<void> {
+    let request = new Request(req);
+    try {
+
+      debug(`[${ request.id }]: ${ request.method.toUpperCase() } ${ request.path }`);
+      await fromNode((cb) => this.middleware.run(req, response, cb));
+
+      debug(`[${ request.id }]: routing request`);
+      let routes = this.routes[request.method];
+      for (let i = 0; i < routes.length; i += 1) {
+        request.params = routes[i].match(request.path);
+        if (request.params) {
+          request.route = routes[i];
+          break;
+        }
+      }
+      if (!request.route) {
+        debug(`[${ request.id }]: ${ request.method } ${ request.path } did match any route. Available ${ request.method } routes:\n${ routes.map((r) => r.spec).join(',\n') }`);
+        throw new Errors.NotFound('Route not recognized');
+      }
+
+      // eslint-disable-next-line new-cap
+      let action: Action = new (<any>request.route.action)({
+        request,
+        logger: this.logger,
+        container: this.container
+      });
+
+      let serializer: Serializer | false;
+      if (action.serializer != null) {
+        if (typeof action.serializer === 'string') {
+          serializer = this.container.lookup(`serializer:${ action.serializer }`);
+        } else if (action.serializer === false) {
+          serializer = null;
+        } else {
+          serializer = action.serializer;
+        }
+      } else {
+        serializer = this.container.lookup('serializer:application');
+      }
+
+      if (typeis.hasBody(request) && serializer) {
+        debug(`[${ request.id }]: parsing request body`);
+        request.body = serializer.parse(request.body);
+      }
+
+      debug(`[${ request.id }]: running action`);
+      let response = await action.run();
+
+      debug(`[${ request.id }]: setting response status code to ${ response.status }`);
+      res.statusCode = response.status;
+      res.setHeader('X-Request-Id', request.id);
+
+      if (response.body) {
+        debug(`[${ request.id }]: writing response body`);
+        res.setHeader('Content-type', response.contentType);
+        if (this.config.environment !== 'production') {
+          res.write(JSON.stringify(response.body, null, 2));
+        } else {
+          res.write(JSON.stringify(response.body));
+        }
+      }
+
+      res.end();
+      debug(`[${ request.id }]: response finished`);
+
+    } catch (error) {
+      return this.handleError(request, res, error);
+    }
+  }
+
+  /**
+   * Takes a request, response, and an error and hands off to the generic application level error
+   * action.
+   *
+   * @private
+   * @param {Request} request
+   * @param {ServerResponse} res
+   * @param {Error} error
+   * @returns
+   */
+  private handleError(request: Request, res: ServerResponse, error: Error) {
+    let ErrorAction = this.container.lookup('action:error');
+    let errorAction = new ErrorAction({
+      request,
+      response: res,
+      error,
+      logger: this.logger,
+      container: this.container
+    });
+    return errorAction.run();
+  }
+
+  /**
+   * Add the supplied middleware function to the generic middleware stack that runs prior to action
+   * handling.
+   *
+   * @param {MiddlewareFn} middleware
+   */
+  public use(middleware: MiddlewareFn): void {
+    this.middleware.use(middleware);
+  }
+
+  /**
+   * Add a route to the application. Maps a method and URL pattern to an action, with optional
+   * additional parameters.
+   *
+   * URL patterns can use:
+   *
+   *  * Dynamic segments, i.e. `'foo/:bar'`
+   *  * Wildcard segments, i.e. `'foo/*bar'`, captures the rest of the URL up
+   *    to the querystring
+   *  * Optional groups, i.e. `'foo(/:bar)'`
+   *
+   * @param {Method} method
+   * @param {string} rawPattern
+   * @param {string} actionPath
+   * @param {*} [params]
+   */
+  public route(method: Method, rawPattern: string, actionPath: string, params?: any) {
+    // Ensure leading slashes
+    let normalizedPattern = rawPattern.replace(/^([^/])/, '/$1');
+    // Remove hardcoded trailing slashes
+    normalizedPattern = normalizedPattern.replace(/\/$/, '');
+    // Ensure optional trailing slashes
+    normalizedPattern = `${ normalizedPattern }(/)`;
+    // Add route
+    let ActionClass = this.container.lookup(`action:${ actionPath }`);
+    let route = new Route(normalizedPattern);
+    route.actionPath = actionPath;
+    route.action = ActionClass;
+    route.additionalParams = params;
+    if (!route.action) {
+      throw new Error(`No action found at ${ actionPath }`);
+    }
+    this.routes[method].push(route);
+  }
+
+  /**
+   * Shorthand for `this.route('get', ...arguments)`
+   *
+   * @param {string} rawPattern
+   * @param {string} actionPath
+   * @param {*} [params]
+   */
+  public get(rawPattern: string, actionPath: string, params?: any): void {
+    this.route('get', rawPattern, actionPath, params);
+  }
+
+  /**
+   * Shorthand for `this.route('post', ...arguments)`
+   *
+   * @param {string} rawPattern
+   * @param {string} actionPath
+   * @param {*} [params]
+   */
+  public post(rawPattern: string, actionPath: string, params?: any): void{
+    this.route('post', rawPattern, actionPath, params);
+  }
+
+  /**
+   * Shorthand for `this.route('put', ...arguments)`
+   *
+   * @param {string} rawPattern
+   * @param {string} actionPath
+   * @param {*} [params]
+   */
+  public put(rawPattern: string, actionPath: string, params?: any): void {
+    this.route('put', rawPattern, actionPath, params);
+  }
+
+  /**
+   * Shorthand for `this.route('patch', ...arguments)`
+   *
+   * @param {string} rawPattern
+   * @param {string} actionPath
+   * @param {*} [params]
+   */
+  public patch(rawPattern: string, actionPath: string, params?: any): void {
+    this.route('patch', rawPattern, actionPath, params);
+  }
+
+  /**
+   * Shorthand for `this.route('delete', ...arguments)`
+   *
+   * @param {string} rawPattern
+   * @param {string} actionPath
+   * @param {*} [params]
+   */
+  public delete(rawPattern: string, actionPath: string, params?: any): void {
+    this.route('delete', rawPattern, actionPath, params);
+  }
+
+  /**
+   * Shorthand for `this.route('head', ...arguments)`
+   *
+   * @param {string} rawPattern
+   * @param {string} actionPath
+   * @param {*} [params]
+   */
+  public head(rawPattern: string, actionPath: string, params?: any): void {
+    this.route('head', rawPattern, actionPath, params);
+  }
+
+  /**
+   * Shorthand for `this.route('options', ...arguments)`
+   *
+   * @param {string} rawPattern
+   * @param {string} actionPath
+   * @param {*} [params]
+   */
+  public options(rawPattern: string, actionPath: string, params?: any): void {
+    this.route('options', rawPattern, actionPath, params);
+  }
+
+  /**
+   * Create all the CRUD routes for a given resource and it's relationships. Based on the JSON-API
+   * recommendations for URL design.
+   *
+   * The `options` argument lets you pass in `only` or `except` arrays to define exceptions. Action
+   * names included in `only` will be the only ones generated, while names included in `except` will
+   * be omitted.
+   *
+   * Set `options.related = false` to disable relationship routes.
+   *
+   * If no options are supplied, the following routes are generated (assuming a
+   * 'books' resource as an example):
+   *
+   *   * `GET /books`
+   *   * `POST /books`
+   *   * `GET /books/:id`
+   *   * `PATCH /books/:id`
+   *   * `DELETE /books/:id`
+   *   * `GET /books/:id/:relation`
+   *   * `GET /books/:id/relationships/:relation`
+   *   * `PATCH /books/:id/relationships/:relation`
+   *   * `POST /books/:id/relationships/:relation`
+   *   * `DELETE /books/:id/relationships/:relation`
+   *
+   * See http://jsonapi.org/recommendations/#urls for details.
+   *
+   * @param {string} resourceName
+   * @param {ResourceOptions} [options={}]
+   */
+  public resource(resourceName: string, options: ResourceOptions = {}): void {
+    let plural = pluralize(resourceName);
+    let collection = `/${ plural }`;
+    let resource = `${ collection }/:id`;
+    let relationship = `${ resource }/relationships/:relation`;
+    let related = `${ resource }/:relation`;
+
+    if (!options.related) {
+      options.except = [ 'related', 'fetch-related', 'replace-related', 'add-related', 'remove-related' ].concat(options.except);
+    }
+
+    let hasWhitelist = Boolean(options.only);
+    options.only = ensureArray(options.only);
+    options.except = ensureArray(options.except);
+
+    function include(action: string) {
+      let whitelisted = options.only.includes(action);
+      let blacklisted = options.except.includes(action);
+      return !blacklisted && (
+        (hasWhitelist && whitelisted) ||
+        !hasWhitelist
+      );
+    }
+
+    [
+      [ 'list', 'get', collection ],
+      [ 'create', 'post', collection ],
+      [ 'show', 'get', resource ],
+      [ 'update', 'patch', resource ],
+      [ 'destroy', 'delete', resource ],
+      [ 'related', 'get', related ],
+      [ 'fetch-related', 'get', relationship ],
+      [ 'replace-related', 'patch', relationship ],
+      [ 'add-related', 'post', relationship ],
+      [ 'remove-related', 'delete', relationship ]
+    ].forEach((routeTemplate: [ string, Method, string ]) => {
+      let [ action, method, url ] = routeTemplate;
+      if (include(action)) {
+        let routeMethod = <(url: string, action: string) => void>this[method];
+        routeMethod.call(this, url, `${ plural }/${ action }`);
+      }
+    });
+  }
+
+  [methodName: string]: any;
+
+  /**
+   * Enables easy route namespacing. You can supply a method which takes a single argument that
+   * works just like the `router` argument in your `config/routes.js`, or you can use the return
+   * value just like the router.
+   *
+   *   router.namespace('users', (namespace) => {
+   *     namespace.get('sign-in');
+   *   });
+   *   // or ...
+   *   let namespace = router.namespace('users');
+   *   namespace.get('sign-in');
+   *
+   * @param {string} namespace
+   * @param {(wrapper: {}) => void} fn
+   */
+  public namespace(namespace: string, fn: (wrapper: {}) => void): void {
+    // eslint-disable-next-line consistent-this
+    let router = this;
+    if (namespace.endsWith('/')) {
+      namespace = namespace.slice(0, namespace.length - 1);
+    }
+    // TODO add sanitization in case `pattern` has leading slash, or `namespace` has trailing
+    let wrapper: RouterDSL = {
+      get(pattern: string, actionPath, params) {
+        router.route('get', `${ namespace }/${ pattern.replace(/^\//, '') }`, actionPath, params);
+      },
+      post(pattern: string, actionPath, params) {
+        router.route('post', `${ namespace }/${ pattern.replace(/^\//, '') }`, actionPath, params);
+      },
+      put(pattern: string, actionPath, params) {
+        router.route('put', `${ namespace }/${ pattern.replace(/^\//, '') }`, actionPath, params);
+      },
+      patch(pattern: string, actionPath, params) {
+        router.route('patch', `${ namespace }/${ pattern.replace(/^\//, '') }`, actionPath, params);
+      },
+      delete(pattern: string, actionPath, params) {
+        router.route('delete', `${ namespace }/${ pattern.replace(/^\//, '') }`, actionPath, params);
+      },
+      head(pattern: string, actionPath, params) {
+        router.route('head', `${ namespace }/${ pattern.replace(/^\//, '') }`, actionPath, params);
+      },
+      options(pattern: string, actionPath, params) {
+        router.route('options', `${ namespace }/${ pattern.replace(/^\//, '') }`, actionPath, params);
+      },
+      resource(resourceName: string, options: ResourceOptions) {
+        router.resource.call(this, resourceName, options);
+      }
+    };
+    if (fn) {
+      fn(wrapper);
+    }
+  }
+
+}
