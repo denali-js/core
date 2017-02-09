@@ -58,13 +58,6 @@ import CommandAcceptanceTest from './test/command-acceptance';
 import MockRequest from './test/mock-request';
 import MockResponse from './test/mock-response';
 
-// CLI
-import Blueprint from './cli/blueprint';
-import Builder from './cli/builder';
-import Command from './cli/command';
-import PackageTree from './cli/package-tree';
-import Project from './cli/project';
-
 export {
   attr,
   hasMany,
@@ -99,12 +92,5 @@ export {
   BlueprintAcceptanceTest,
   CommandAcceptanceTest,
   MockRequest,
-  MockResponse,
-
-  // CLI
-  Blueprint,
-  Builder,
-  Command,
-  PackageTree,
-  Project
+  MockResponse
 };

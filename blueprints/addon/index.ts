@@ -4,11 +4,8 @@ import {
   startCase
 } from 'lodash';
 import cmdExists from 'command-exists';
-import ui from '../../lib/cli/ui';
-import Blueprint from '../../lib/cli/blueprint';
-import spinner from '../../lib/utils/spinner';
+import { Blueprint, ui, spinner } from 'denali-cli';
 import pkg from '../../package.json';
-import { CommandOptions } from '../../lib/cli/command';
 
 const run = Bluebird.promisify<[ string, string ], string, ExecOptions>(exec);
 const commandExists = Bluebird.promisify<boolean, string>(cmdExists);
@@ -18,26 +15,23 @@ export default class AddonBlueprint extends Blueprint {
   static blueprintName = 'addon';
   static description = 'Creates a new addon project, initializes git and installs dependencies';
 
-  params = [ 'name' ];
+  static params = '<name>';
 
   flags = {
     'skip-deps': {
       description: 'Do not install dependencies on new addon',
       defaultValue: false,
-      type: Boolean
+      type: 'boolean'
     },
     'use-npm': {
       description: 'Use npm to install dependencies, even if yarn is available',
       defaultValue: false,
-      type: Boolean
+      type: 'boolean'
     }
   }
 
-  locals(options: CommandOptions) {
-    let name = options.params.name;
-    if (Array.isArray(name)) {
-      name = name[0];
-    }
+  locals(argv: any) {
+    let name = argv.name;
     return {
       name,
       className: startCase(name).replace(/\s/g, ''),
@@ -46,16 +40,13 @@ export default class AddonBlueprint extends Blueprint {
     };
   }
 
-  async postInstall(options: CommandOptions) {
-    let name = options.params.name;
-    if (Array.isArray(name)) {
-      name = name[0];
-    }
+  async postInstall(argv: any) {
+    let name = argv.name;
     ui.info('');
     spinner.start('Installing dependencies');
-    if (!options.flags['skip-deps']) {
+    if (!argv.skipDeps) {
       let yarnExists: boolean = await commandExists('yarn');
-      if (yarnExists && !options.flags['use-npm']) {
+      if (yarnExists && !argv.useNpm) {
         await run('yarn install', { cwd: name });
       } else {
         await run('npm install --loglevel=error', { cwd: name });

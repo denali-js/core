@@ -5,21 +5,17 @@ import {
   kebabCase
 } from 'lodash';
 import { singularize, pluralize } from 'inflection';
-import Blueprint from '../../lib/cli/blueprint';
-import { CommandOptions } from '../../lib/cli/command';
+import { Blueprint } from 'denali-cli';
 
 export default class ResourceBlueprint extends Blueprint {
 
   static blueprintName = 'resource';
   static description = 'Generates a model, serializer, CRUD actions, and tests for a resource';
 
-  params = [ 'name' ];
+  static params = '<name>';
 
-  locals(options: CommandOptions) {
-    let name = options.params.name;
-    if (Array.isArray(name)) {
-      name = name[0];
-    }
+  locals(argv: any) {
+    let name = argv.name;
     name = pluralize(name);
     let plural = {
       name,
@@ -39,20 +35,12 @@ export default class ResourceBlueprint extends Blueprint {
     return { plural, singular };
   }
 
-  async postInstall(options: CommandOptions) {
-    let name = options.params.name;
-    if (Array.isArray(name)) {
-      name = name[0];
-    }
-    this.addRoute('resource', singularize(name));
+  async postInstall(argv: any) {
+    this.addRoute('resource', singularize(argv.name));
   }
 
-  async postUninstall(options: CommandOptions) {
-    let name = options.params.name;
-    if (Array.isArray(name)) {
-      name = name[0];
-    }
-    this.removeRoute('resource', singularize(name));
+  async postUninstall(argv: any) {
+    this.removeRoute('resource', singularize(argv.name));
   }
 
 }

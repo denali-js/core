@@ -1,23 +1,19 @@
-import Blueprint from '../../lib/cli/blueprint';
+import { Blueprint } from 'denali-cli';
 import { singularize } from 'inflection';
 import {
   upperFirst,
   camelCase
 } from 'lodash';
-import { CommandOptions } from '../../lib/cli/command';
 
 export default class ORMAdapterBlueprint extends Blueprint {
 
   static blueprintName = 'orm-adapter';
   static description = 'Generates a blank ORM adapter with stubs for all the required methods';
 
-  params = [ 'name' ];
+  static params = '<name>';
 
-  locals(options: CommandOptions) {
-    let name = options.params.name;
-    if (Array.isArray(name)) {
-      name = name[0];
-    }
+  locals(argv: any) {
+    let name = argv.name;
     name = singularize(name);
     return {
       name,

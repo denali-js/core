@@ -2,21 +2,17 @@ import {
   upperFirst,
   camelCase
 } from 'lodash';
-import Blueprint from '../../lib/cli/blueprint';
-import { CommandOptions } from '../../lib/cli/command';
+import { Blueprint } from 'denali-cli';
 
 export default class ModelBlueprint extends Blueprint {
 
   static blueprintName = 'model';
   static description = 'Generates a blank model';
 
-  params = [ 'name' ];
+  static params = '<name>';
 
-  locals(options: CommandOptions) {
-    let name = options.params.name;
-    if (Array.isArray(name)) {
-      name = name[0];
-    }
+  locals(argv: any) {
+    let name = argv.name;
     return {
       name,
       className: upperFirst(camelCase(name))

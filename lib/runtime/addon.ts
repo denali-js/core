@@ -6,7 +6,7 @@ import eachDir from '../utils/each-dir';
 import isDir from '../utils/is-dir';
 import requireDir from '../utils/require-dir';
 import tryRequire from '../utils/try-require';
-import withoutExt from '../utils/without-ext';
+import stripExtension from 'strip-extension';
 import {
   forEach,
   omit
@@ -189,7 +189,7 @@ export default class Addon extends DenaliObject {
       let allConfigFiles = requireDir(this.configDir, { recurse: false });
       let extraConfigFiles = omit(allConfigFiles, 'environment', 'middleware', 'routes');
       forEach(extraConfigFiles, (configModule, configFilename) => {
-        let configModulename = withoutExt(configFilename);
+        let configModulename = stripExtension(configFilename);
         this.container.register(`config:${ configModulename }`, configModule);
       });
     }
@@ -293,7 +293,7 @@ export default class Addon extends DenaliObject {
         let type = singularize(dirname);
 
         glob.sync('**/*', { cwd: dir }).forEach((filepath) => {
-          let modulepath = withoutExt(filepath);
+          let modulepath = stripExtension(filepath);
           if (filepath.endsWith('.js')) {
             let Class = require(path.join(dir, filepath));
             Class = Class.default || Class;
