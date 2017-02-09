@@ -1,13 +1,13 @@
-import * as accepts from 'accepts';
-import * as typeis from 'type-is';
+import accepts from 'accepts';
+import typeis from 'type-is';
 import {
   dropRight,
   uniq,
   isArray
 } from 'lodash';
-import * as url from 'url';
-import * as http from 'http';
-import * as uuid from 'node-uuid';
+import url from 'url';
+import http from 'http';
+import uuid from 'node-uuid';
 import DenaliObject from '../metal/object';
 import Route from './route';
 
@@ -52,6 +52,7 @@ export default class Request extends DenaliObject {
   public route: Route;
   public params: any;
   public body: any;
+  public _originalAction: string;
 
   /**
    * Creates an instance of Request based on the supplied IncomingMessage
@@ -142,11 +143,7 @@ export default class Request extends DenaliObject {
    * @returns {(string | boolean)}
    */
   accepts(serverAcceptedTypes: string[]): string | boolean {
-    let matchingTypes = accepts(this._incomingMessage).type(serverAcceptedTypes);
-    if (isArray(matchingTypes)) {
-      return matchingTypes[0];
-    }
-    return matchingTypes;
+    return accepts(this._incomingMessage).type(serverAcceptedTypes);
   }
 
   /**

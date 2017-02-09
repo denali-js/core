@@ -8,7 +8,7 @@ import {
 import ORMAdapter from '../orm-adapter';
 import Model from '../model';
 import { RelationshipDescriptor } from '../descriptors';
-import * as assert from 'assert';
+import assert from 'assert';
 
 let guid = 0;
 

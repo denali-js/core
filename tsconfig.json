@@ -1,0 +1,31 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+      "module": "commonjs",
+      "moduleResolution": "node",
+      "target": "es6",
+      "noImplicitAny": true,
+      "sourceMap": false,
+      "allowJs": true,
+      "allowSyntheticDefaultImports": true,
+      "importHelpers": true,
+      "inlineSourceMap": true,
+      "inlineSources": true,
+      "outDir": "dist",
+      "lib": ["es2017"],
+      "baseUrl": ".",
+      "skipLibCheck": true,
+      "paths": {
+        "denali": [ "lib/index.ts" ]
+      }
+  },
+  "include": [
+    "lib/**/*",
+    "app/**/*",
+    "blueprints/*/index.ts",
+    "commands/**/*",
+    "config/**/*",
+    "test/**/*"
+  ],
+  "exclude": [ "blueprints/*/files/**" ]
+}

@@ -1,8 +1,8 @@
 import Instrumentation from '../metal/instrumentation';
 import Model from '../data/model';
 import Response from './response';
-import * as http from 'http';
-import * as createDebug from 'debug';
+import http from 'http';
+import createDebug from 'debug';
 import {
   assign,
   capitalize,
@@ -12,7 +12,7 @@ import {
   compact,
   map
 } from 'lodash';
-import * as assert from 'assert';
+import assert from 'assert';
 import eachPrototype from '../metal/each-prototype';
 import DenaliObject from '../metal/object';
 import Request from './request';
@@ -28,7 +28,7 @@ class PreemptiveRender {}
 PreemptiveRender.prototype = Object.create(Error.prototype);
 PreemptiveRender.prototype.constructor = PreemptiveRender;
 
-interface ActionOptions {
+export interface ActionOptions {
   request: Request;
   response: http.ServerResponse;
   logger: Logger;
@@ -36,7 +36,7 @@ interface ActionOptions {
 }
 
 interface Responder {
-  (params: any): Response;
+  (params: any): Response | { [key: string]: any } | void;
 }
 
 /**
@@ -315,11 +315,8 @@ abstract class Action extends DenaliObject {
   /**
    * The default responder method. You should override this method with whatever logic is needed to
    * respond to the incoming request.
-   *
-   * @abstract
-   * @type {Responder}
    */
-  abstract respond: Responder;
+  abstract respond(params: any): Response | { [key: string]: any } | void;
 
   /**
    * Cached list of before filters that should be executed.

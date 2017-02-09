@@ -9,7 +9,7 @@ export default class MockResponse extends Transform {
   _headers: { [key: string]: string } = {};
   _buffers: Buffer[] = [];
 
-  constructor(finish: () => void) {
+  constructor(finish?: () => void) {
     super();
     if (typeof finish === 'function') {
       this.on('finish', finish);

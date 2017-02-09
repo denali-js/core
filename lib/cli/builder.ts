@@ -1,5 +1,5 @@
-import * as fs from 'fs';
-import * as path from 'path';
+import fs from 'fs';
+import path from 'path';
 import {
   upperFirst
 } from 'lodash';
@@ -9,7 +9,7 @@ import PackageTree from './package-tree';
 import DenaliObject from '../metal/object';
 import discoverAddons from '../utils/discover-addons';
 import Project from './project';
-import * as createDebug from 'debug';
+import createDebug from 'debug';
 
 const debug = createDebug('denali:builder');
 

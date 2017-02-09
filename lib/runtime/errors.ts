@@ -1,4 +1,4 @@
-import * as Errors from 'http-errors';
+import Errors from 'http-errors';
 
 /**
  * Denali uses the **http-errors** package for handling HTTP errors. Check [it's

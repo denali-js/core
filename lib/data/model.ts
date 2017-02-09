@@ -1,11 +1,11 @@
-import * as assert from 'assert';
-import * as createDebug from 'debug';
+import assert from 'assert';
+import createDebug from 'debug';
 import { pluralize } from 'inflection';
 import {
   kebabCase,
   startCase,
   lowerFirst } from 'lodash';
-import * as Bluebird from 'bluebird';
+import Bluebird from 'bluebird';
 import DenaliObject from '../metal/object';
 import ORMAdapter from './orm-adapter';
 import Service from '../runtime/service';

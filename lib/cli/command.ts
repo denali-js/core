@@ -1,4 +1,4 @@
-import * as path from 'path';
+import path from 'path';
 import findup = require('findup-sync');
 import ui from './ui';
 import {
@@ -27,8 +27,8 @@ interface CommandFlag {
   type?: Function;
 }
 
-interface AllCommands {
-  [commandName: string]: Command;
+export interface AllCommands {
+  [commandName: string]: typeof Command;
 }
 
 /**
@@ -49,6 +49,7 @@ abstract class Command extends DenaliObject {
    */
   static description: string = null;
   static longDescription: string = null;
+  static hidden: boolean = false;
 
   /**
    * An array of positional paramters to this command. For example,

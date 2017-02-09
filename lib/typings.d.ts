@@ -14,7 +14,12 @@ declare module "dedent-js";
 declare module "eslint";
 declare module "nsp";
 declare module "ware";
+declare module "arrify";
 declare module "type-is";
+declare module "try-require";
+declare module "is-directory";
+declare module "strip-extension";
+declare module "wordwrap";
 declare module "broccoli";
 declare module "broccoli/lib" {
   class Watcher {
@@ -24,3 +29,5 @@ declare module "broccoli/lib" {
 }
 declare module "broccoli-slow-trees";
 declare module "copy-dereference";
+declare module "command-exists";
+declare module "cli-table2";

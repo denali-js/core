@@ -1,10 +1,10 @@
-import * as path from 'path';
-import * as fs from 'fs';
-import * as chalk from 'chalk';
+import path from 'path';
+import fs from 'fs';
+import chalk from 'chalk';
 import walk from 'walk-sync';
 import codeshift from 'jscodeshift';
-import * as mkdirp from 'mkdirp';
-import * as rimraf from 'rimraf';
+import mkdirp from 'mkdirp';
+import rimraf from 'rimraf';
 import ui from './ui';
 import isDir from '../utils/is-dir';
 import discoverAddons from '../utils/discover-addons';
@@ -43,7 +43,7 @@ interface BlueprintsCollection {
 export default class Blueprint extends DenaliObject {
 
   static findBlueprints(project: Project): BlueprintsCollection {
-    let addons = discoverAddons(project.dir, { environment: project.environment });
+    let addons = discoverAddons(project.dir);
     // Search every addon plus project app, with precedence given to the app
     let blueprintOrigins = addons.concat([ project.dir ]);
     return blueprintOrigins.reduce((blueprints, originDir) => {
@@ -64,7 +64,7 @@ export default class Blueprint extends DenaliObject {
     }, {});
   }
 
-  static instanceFor(project: Project, name: string): Blueprint | boolean {
+  static instanceFor(project: Project, name: string): Blueprint | false {
     let blueprints = this.findBlueprints(project);
     let blueprintDir = blueprints[name];
     if (!blueprintDir) {
@@ -216,7 +216,7 @@ export default class Blueprint extends DenaliObject {
     await this.postUninstall(options);
   }
 
-  addRoute(method: string, urlPattern: string, actionPath: string, ...args: any[]): void {
+  addRoute(method: string, urlPattern: string, actionPath?: string, ...args: any[]): void {
     let routesFilepath = path.join(process.cwd(), 'config', 'routes.js');
     let routesSource = fs.readFileSync(routesFilepath, 'utf-8');
     let j = codeshift;
@@ -254,7 +254,7 @@ export default class Blueprint extends DenaliObject {
     fs.writeFileSync(routesFilepath, ast.toSource({ quote: 'single' }));
   }
 
-  removeRoute(method: string, urlPattern: string, actionPath: string, ...args: any[]): void {
+  removeRoute(method: string, urlPattern: string, actionPath?: string, ...args: any[]): void {
     let routesFilepath = path.join(process.cwd(), 'config', 'routes.js');
     let routesSource = fs.readFileSync(routesFilepath, 'utf-8');
     let j = codeshift;

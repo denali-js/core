@@ -1,8 +1,8 @@
-import * as path from 'path';
-import * as fs from 'fs';
+import path from 'path';
+import fs from 'fs';
 import { sync as resolveSync } from 'resolve';
 import findup = require('findup-sync');
-import * as createDebug from 'debug';
+import createDebug from 'debug';
 import {
   find,
   forIn

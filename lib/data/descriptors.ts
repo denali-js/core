@@ -56,7 +56,7 @@ class Attribute extends Descriptor {
 
 }
 
-export function attr(type: string, options: any) {
+export function attr(type: string, options?: any) {
   return new Attribute(type, options);
 }
 

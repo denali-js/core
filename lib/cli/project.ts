@@ -1,22 +1,22 @@
-import * as fs from 'fs';
-import * as path from 'path';
-import * as dedent from 'dedent-js';
+import fs from 'fs';
+import path from 'path';
+import dedent from 'dedent-js';
 import nsp from 'nsp';
 import broccoli from 'broccoli';
-import * as rimraf from 'rimraf';
+import rimraf from 'rimraf';
 import printSlowNodes from 'broccoli-slow-trees';
 import { sync as copyDereferenceSync } from 'copy-dereference';
-import * as chalk from 'chalk';
+import chalk from 'chalk';
 import MergeTree from 'broccoli-merge-trees';
 import Funnel from 'broccoli-funnel';
-import * as createDebug from 'debug';
+import createDebug from 'debug';
 import {
   noop,
   after,
   dropWhile,
   takeWhile
 } from 'lodash';
-import * as semver from 'semver';
+import semver from 'semver';
 import ui from './ui';
 import Builder, { Tree } from './builder';
 import Watcher from './watcher';
@@ -39,7 +39,7 @@ interface ProjectOptions {
 
 interface WatchOptions {
   outputDir: string;
-  onBuild: (project: Project) => void;
+  onBuild?: (project: Project) => void;
   beforeRebuild?:  () => Promise<void> | void;
 }
 
@@ -64,7 +64,7 @@ export default class Project extends DenaliObject {
 
   rootBuilder: Builder;
 
-  constructor(options: ProjectOptions) {
+  constructor(options: ProjectOptions = {}) {
     super();
     this.dir = options.dir || process.cwd();
     debug(`creating project for ${ this.dir }`);

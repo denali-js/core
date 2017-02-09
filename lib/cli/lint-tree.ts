@@ -1,8 +1,8 @@
-import * as path from 'path';
+import path from 'path';
 import escape from 'js-string-escape';
 import Filter from 'broccoli-filter';
 import { CLIEngine } from 'eslint';
-import * as chalk from 'chalk';
+import chalk from 'chalk';
 import dedent from 'dedent-js';
 import { Tree } from './builder';
 

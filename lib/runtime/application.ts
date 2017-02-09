@@ -1,8 +1,8 @@
-import * as path from 'path';
-import * as http from 'http';
-import * as https from 'https';
+import path from 'path';
+import http from 'http';
+import https from 'https';
 import { each, all } from 'bluebird';
-import * as dotenv from 'dotenv';
+import dotenv from 'dotenv';
 import {
   values
 } from 'lodash';

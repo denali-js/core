@@ -1,11 +1,11 @@
-import * as fs from 'fs';
-import * as assert from 'assert';
-import * as path from 'path';
+import fs from 'fs';
+import assert from 'assert';
+import path from 'path';
 import { exec, spawn, ChildProcess } from 'child_process';
-import * as tmp from 'tmp';
+import tmp from 'tmp';
 import dedent from 'dedent-js';
 import copyDir from '../utils/copy-dir';
-import * as createDebug from 'debug';
+import createDebug from 'debug';
 import DenaliObject from '../metal/object';
 
 const debug = createDebug('denali:test:command-acceptance');
@@ -92,8 +92,8 @@ export default class CommandAcceptanceTest extends DenaliObject {
     checkOutput: (stdout: string, stderr: string, dir: string) => boolean,
     failOnStderr?: boolean,
     env?: any,
-    pollInterval: number,
-    timeout: number
+    pollInterval?: number,
+    timeout?: number
   }): Promise<void> {
     return <any>new Promise((resolve, reject) => {
 

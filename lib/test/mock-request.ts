@@ -17,7 +17,7 @@ export default class MockRequest extends Transform {
     remoteAddress: '123.45.67.89'
   };
 
-  constructor(options: { method: string, url: string, headers: { [key: string]: string } }) {
+  constructor(options: { method?: string, url?: string, headers?: { [key: string]: string } } = {}) {
     super();
     this._writableState.objectMode = true;
     this._readableState.objectMode = false;

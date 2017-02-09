@@ -1,4 +1,4 @@
-import * as RouteParser from 'route-parser';
+import RouteParser from 'route-parser';
 import Action from './action';
 
 export default class Route extends RouteParser {

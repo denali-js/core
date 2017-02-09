@@ -1,9 +1,9 @@
-import * as ware from 'ware';
+import ware from 'ware';
 import { IncomingMessage, ServerResponse } from 'http';
 import { pluralize } from 'inflection';
 import { fromNode } from 'bluebird';
-import * as typeis from 'type-is';
-import * as createDebug from 'debug';
+import typeis from 'type-is';
+import createDebug from 'debug';
 import Errors from './errors';
 import Route from './route';
 import Request, { Method } from './request';
@@ -27,7 +27,8 @@ interface RoutesCache {
   patch: Route[],
   delete: Route[],
   head: Route[],
-  options: Route[]
+  options: Route[],
+  [method: string]: Route[]
 };
 
 interface MiddlewareFn {
@@ -85,10 +86,9 @@ export default class Router extends DenaliObject implements RouterDSL {
   /**
    * The cache of available routes.
    *
-   * @private
    * @type {RoutesCache}
    */
-  private routes: RoutesCache = {
+  routes: RoutesCache = {
     get: [],
     post: [],
     put: [],
@@ -163,7 +163,7 @@ export default class Router extends DenaliObject implements RouterDSL {
     try {
 
       debug(`[${ request.id }]: ${ request.method.toUpperCase() } ${ request.path }`);
-      await fromNode((cb) => this.middleware.run(req, response, cb));
+      await fromNode((cb) => this.middleware.run(req, res, cb));
 
       debug(`[${ request.id }]: routing request`);
       let routes = this.routes[request.method];

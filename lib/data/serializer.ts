@@ -36,7 +36,7 @@ abstract class Serializer extends DenaliObject {
    * @param {Response} response
    * @param {*} [options]
    */
-  public abstract async serialize(response: Response, options?: any): Promise<void>;
+  public abstract serialize(response: Response, options?: any): Promise<void> | void;
 
   /**
    * Take a serialized JSON document (i.e. an incoming request body), and perform any normalization

@@ -1,11 +1,11 @@
-import * as chalk from 'chalk';
+import chalk from 'chalk';
 import {
   identity,
   padStart
 } from 'lodash';
 import DenaliObject from '../metal/object';
 
-type LogLevel = 'info' | 'warn' | 'error';
+type LogLevel = 'success' | 'info' | 'warn' | 'error';
 
 interface ColorsMap {
   [level: string]: chalk.ChalkChain;
@@ -54,6 +54,7 @@ export default class Logger extends DenaliObject {
    * @type {ColorsMap}
    */
   public colors: ColorsMap = {
+    success: chalk.green,
     info: chalk.white,
     warn: chalk.yellow,
     error: chalk.red
@@ -84,6 +85,10 @@ export default class Logger extends DenaliObject {
    */
   public error(msg: any): void {
     this.log('error', msg);
+  }
+
+  public success(msg: any): void {
+    this.log('success', msg);
   }
 
   /**
