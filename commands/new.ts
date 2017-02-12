@@ -1,21 +1,15 @@
-import dedent from 'dedent-js';
-import path from 'path';
-import Command, { CommandOptions } from '../lib/cli/command';
-import AppBlueprint from '../blueprints/app';
+import unwrap from '../lib/utils/unwrap';
+import GenerateCommand from './generate';
+import { Blueprint } from 'denali-cli';
 
-export default class NewCommand extends Command {
+export default class NewCommand extends GenerateCommand {
 
   static commandName = 'new';
   static description = 'Create a new denali app';
-  static longDescription = dedent`
+  static longDescription = unwrap`
     Scaffolds a new Denali application in a child directory using the given name.
     Takes care of setting up a git repo and installing npm dependencies as well.`;
 
-  allowExtraArgs = true;
-
-  async run(options: CommandOptions, argTokens: string[]) {
-    let blueprint = new AppBlueprint(path.join(__dirname, '..', 'blueprints', 'app'));
-    await blueprint.generate(this.parseArgs.call(blueprint, argTokens));
-  }
+  static params = '<name>';
 
 }
