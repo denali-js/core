@@ -1,7 +1,7 @@
 import Action, { ActionOptions } from '../../lib/runtime/action';
 import Response from '../../lib/runtime/response';
-import fs from 'fs';
-import path from 'path';
+import fs from 'fs-extra';
+import * as path from 'path';
 import {
   template
 } from 'lodash';

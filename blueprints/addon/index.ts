@@ -1,11 +1,12 @@
-import Bluebird from 'bluebird';
+import * as Bluebird from 'bluebird';
 import { exec, ExecOptions } from 'child_process';
 import {
   startCase
 } from 'lodash';
-import cmdExists from 'command-exists';
+import * as cmdExists from 'command-exists';
 import { Blueprint, ui, spinner } from 'denali-cli';
 import pkg from '../../package.json';
+import unwrap from '../../lib/utils/unwrap';
 
 const run = Bluebird.promisify<[ string, string ], string, ExecOptions>(exec);
 const commandExists = Bluebird.promisify<boolean, string>(cmdExists);
@@ -14,19 +15,27 @@ export default class AddonBlueprint extends Blueprint {
 
   static blueprintName = 'addon';
   static description = 'Creates a new addon project, initializes git and installs dependencies';
+  static longDescription = unwrap`
+    Usage: denali generate addon <name> [options]
+
+    Scaffolds a new addon. Sets up the correct directory structure, initializes a git repo, and
+    installs the necessary dependencies.
+
+    Guides: http://denali.js.org/master/guides/utilities/addons/
+  `;
 
   static params = '<name>';
 
-  flags = {
+  static flags = {
     'skip-deps': {
       description: 'Do not install dependencies on new addon',
       defaultValue: false,
-      type: 'boolean'
+      type: <any>'boolean'
     },
     'use-npm': {
       description: 'Use npm to install dependencies, even if yarn is available',
       defaultValue: false,
-      type: 'boolean'
+      type: <any>'boolean'
     }
   }
 

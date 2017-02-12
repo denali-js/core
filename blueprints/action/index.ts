@@ -3,19 +3,28 @@ import {
   camelCase,
 } from 'lodash';
 import { Blueprint } from 'denali-cli';
+import unwrap from '../../lib/utils/unwrap';
 
 export default class ActionBlueprint extends Blueprint {
 
   static blueprintName = 'action';
   static description = "Generates an action and it's unit & integration tests";
+  static longDescription = unwrap`
+    Usage: denali generate action <name> [options]
+
+    Generates an action with the given name (can be a deeply nested path), along with unit test
+    stubs.
+
+    Guides: http://denali.js.org/master/guides/application/actions/
+  `;
 
   static params = '<name>';
 
-  flags = {
+  static flags = {
     method: {
       description: 'The HTTP method to use for the route to this action',
       default: 'post',
-      type: 'string'
+      type: <any>'string'
     }
   };
 

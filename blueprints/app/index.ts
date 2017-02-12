@@ -1,11 +1,12 @@
-import Bluebird from 'bluebird';
-import { exec, ExecOptions } from 'child_process';
 import {
   startCase
 } from 'lodash';
-import cmdExists from 'command-exists';
+import * as Bluebird from 'bluebird';
+import { exec, ExecOptions } from 'child_process';
+import * as cmdExists from 'command-exists';
 import { Blueprint, ui, spinner } from 'denali-cli';
-import pkg from '../../package.json';
+import pkg = require('../../package.json');
+import unwrap from '../../lib/utils/unwrap';
 
 const run = Bluebird.promisify<[ string, string ], string, ExecOptions>(exec);
 const commandExists = Bluebird.promisify<boolean, string>(cmdExists);
@@ -15,19 +16,27 @@ export default class AppBlueprint extends Blueprint {
 
   static blueprintName = 'app';
   static description = 'Creates a new app, initializes git and installs dependencies';
+  static longDescription = unwrap`
+    Usage: denali generate app <name> [options]
+
+    Scaffolds a new app. Sets up the correct directory structure, initializes a git repo, and
+    installs the necessary dependencies.
+
+    Guides: http://denali.js.org/master/guides/overview/app-structure/
+  `;
 
   static params = '<name>';
 
-  flags = {
-    'skip-deps': {
+  static flags = {
+    skipDeps: {
       description: 'Do not install dependencies on new app',
       defaultValue: false,
-      type: 'boolean'
+      type: (<any>'boolean')
     },
-    'use-npm': {
+    useNpm: {
       description: 'Use npm to install dependencies, even if yarn is available',
       defaultValue: false,
-      type: 'boolean'
+      type: (<any>'boolean')
     }
   }
 
@@ -37,7 +46,7 @@ export default class AppBlueprint extends Blueprint {
       name,
       className: startCase(name).replace(/\s/g, ''),
       humanizedName: startCase(name),
-      denaliVersion: pkg.version
+      denaliVersion: (<any>pkg).version
     };
   }
 

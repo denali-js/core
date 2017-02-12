@@ -6,11 +6,19 @@ import {
 } from 'lodash';
 import { singularize, pluralize } from 'inflection';
 import { Blueprint } from 'denali-cli';
+import unwrap from '../../lib/utils/unwrap';
 
 export default class ResourceBlueprint extends Blueprint {
 
   static blueprintName = 'resource';
   static description = 'Generates a model, serializer, CRUD actions, and tests for a resource';
+  static longDescription = unwrap`
+    Usage: denali generate resource <name> [options]
+
+    Generates a complete, end-to-end RESTful resource scaffold. This includes a Model to represent
+    the data, a Serializer to determine how to send it over the wire, CRUD actions for manipulating
+    the resource, and tests for all of the above.
+  `;
 
   static params = '<name>';
 
