@@ -1,4 +1,4 @@
-import path from 'path';
+import * as path from 'path';
 import http from 'http';
 import https from 'https';
 import { each, all } from 'bluebird';
@@ -11,8 +11,8 @@ import topsort from '../utils/topsort';
 import Router from './router';
 import Logger from './logger';
 import Container from './container';
-import discoverAddons from '../utils/discover-addons';
-import tryRequire from '../utils/try-require';
+import findPlugins from 'find-plugins';
+import tryRequire from 'try-require';
 
 interface ApplicationOptions {
   router?: Router;
@@ -98,16 +98,18 @@ export default class Application extends Addon {
    * @returns {Addon[]}
    */
   private buildAddons(preseededAddons: string[]): Addon[] {
-    return discoverAddons(this.dir, { preseededAddons }).map((dir) => {
-      let pkg;
+    return findPlugins({
+      modulesDir: path.join(this.dir, 'node_modules'),
+      pkg: path.join(this.dir, 'package.json'),
+      include: preseededAddons
+    }).map((addon) => {
       let AddonClass;
       try {
-        pkg = require(path.join(dir, 'package.json'));
-        AddonClass = tryRequire(path.join(dir, 'app', 'addon.js'));
+        AddonClass = tryRequire(path.join(addon.dir, 'app', 'addon.js'));
         AddonClass = AddonClass || Addon;
       } catch (e) {
         /* eslint-disable no-console */
-        console.error(`Error loading an addon from ${ dir }:`);
+        console.error(`Error loading an addon from ${ addon.dir }:`);
         console.error(e);
         /* eslint-enable no-console */
         throw e;
@@ -117,8 +119,8 @@ export default class Application extends Addon {
         environment: this.environment,
         container: this.container,
         logger: this.logger,
-        dir,
-        pkg
+        dir: addon.dir,
+        pkg: addon.pkg
       });
     });
   }
