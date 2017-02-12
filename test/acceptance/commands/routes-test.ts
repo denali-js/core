@@ -1,5 +1,5 @@
 import test from 'ava';
-import dedent from 'dedent-js';
+import * as dedent from 'dedent-js';
 import { CommandAcceptanceTest } from 'denali';
 
 test('routes command > prints list of configured routes', async (t) => {

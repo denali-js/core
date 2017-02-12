@@ -1,10 +1,9 @@
-import fs from 'fs';
+import fs from 'fs-extra';
 import assert from 'assert';
-import path from 'path';
+import * as path from 'path';
 import { exec, spawn, ChildProcess } from 'child_process';
 import tmp from 'tmp';
-import dedent from 'dedent-js';
-import copyDir from '../utils/copy-dir';
+import * as dedent from 'dedent-js';
 import createDebug from 'debug';
 import DenaliObject from '../metal/object';
 
@@ -56,7 +55,7 @@ export default class CommandAcceptanceTest extends DenaliObject {
     let tmpNodeModules = path.join(this.dir, 'node_modules');
     assert(!fs.existsSync(tmpNodeModules), 'You tried to run a CommandAcceptanceTest against a directory that already has an app in it. Did you forget to specify { populateWithDummy: false }?');
     // Copy over the dummy app
-    copyDir(dummy, this.dir);
+    fs.copySync(dummy, this.dir);
     // Symlink the addon itself as a dependency of the dummy app. The compiled
     // dummy app will have the compiled addon it it's node_modules
     fs.mkdirSync(tmpNodeModules);

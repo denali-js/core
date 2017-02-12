@@ -5,7 +5,7 @@ import {
   kebabCase,
   startCase,
   lowerFirst } from 'lodash';
-import Bluebird from 'bluebird';
+import * as Bluebird from 'bluebird';
 import DenaliObject from '../metal/object';
 import ORMAdapter from './orm-adapter';
 import Service from '../runtime/service';

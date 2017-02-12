@@ -1,11 +1,11 @@
-import path from 'path';
-import fs from 'fs';
+import * as path from 'path';
+import fs from 'fs-extra';
 import glob from 'glob';
 import findup = require('findup-sync');
 import eachDir from '../utils/each-dir';
-import isDir from '../utils/is-dir';
+import { sync as isDirectory } from 'is-directory';
 import requireDir from '../utils/require-dir';
-import tryRequire from '../utils/try-require';
+import tryRequire from 'try-require';
 import stripExtension from 'strip-extension';
 import {
   forEach,
@@ -185,7 +185,7 @@ export default class Addon extends DenaliObject {
     let config = this.loadConfigFile('environment') || function() {
       return {};
     };
-    if (isDir(this.configDir)) {
+    if (isDirectory(this.configDir)) {
       let allConfigFiles = requireDir(this.configDir, { recurse: false });
       let extraConfigFiles = omit(allConfigFiles, 'environment', 'middleware', 'routes');
       forEach(extraConfigFiles, (configModule, configFilename) => {
@@ -217,7 +217,7 @@ export default class Addon extends DenaliObject {
    */
   protected loadInitializers(): void {
     let initializersDir = path.join(this.configDir, 'initializers');
-    if (isDir(initializersDir)) {
+    if (isDirectory(initializersDir)) {
       let initializers = requireDir(initializersDir);
       forEach(initializers, (initializer, name) => {
         this.container.register(`initializer:${ name }`, initializer);

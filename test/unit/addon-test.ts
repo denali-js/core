@@ -1,5 +1,5 @@
 import test from 'ava';
-import path from 'path';
+import * as path from 'path';
 import { Addon, Container, Service } from 'denali';
 
 test('Addon > #loadApp > Singletons are instantiated', async (t) => {

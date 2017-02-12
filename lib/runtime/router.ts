@@ -7,7 +7,7 @@ import createDebug from 'debug';
 import Errors from './errors';
 import Route from './route';
 import Request, { Method } from './request';
-import ensureArray from '../utils/ensure-array';
+import ensureArray = require('arrify');
 import DenaliObject from '../metal/object';
 import Logger from './logger';
 import Container from './container';

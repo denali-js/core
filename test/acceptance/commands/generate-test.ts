@@ -1,6 +1,6 @@
 import test from 'ava';
-import fs from 'fs';
-import path from 'path';
+import fs from 'fs-extra';
+import * as path from 'path';
 import { CommandAcceptanceTest } from 'denali';
 
 test('generate command > generates a blueprint', async (t) => {

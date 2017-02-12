@@ -1,5 +1,5 @@
 import assert from 'assert';
-import path from 'path';
+import * as path from 'path';
 import { singularize, pluralize } from 'inflection';
 import Serializer from '../serializer';
 import Model from '../model';

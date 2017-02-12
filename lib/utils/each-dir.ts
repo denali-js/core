@@ -1,5 +1,5 @@
-import fs from 'fs';
-import path from 'path';
+import fs from 'fs-extra';
+import * as path from 'path';
 
 export default function eachDir(dirpath: string, fn: (childpath: string) => void): void {
   fs.readdirSync(dirpath).forEach((childpath) => {

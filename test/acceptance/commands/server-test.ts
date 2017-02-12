@@ -1,6 +1,6 @@
 import test from 'ava';
-import path from 'path';
-import fs from 'fs';
+import * as path from 'path';
+import fs from 'fs-extra';
 import mkdirp from 'mkdirp';
 import rimraf from 'rimraf';
 import { CommandAcceptanceTest } from 'denali';
