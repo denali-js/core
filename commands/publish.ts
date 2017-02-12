@@ -1,8 +1,7 @@
-import path from 'path';
-import dedent from 'dedent-js';
-import Bluebird from 'bluebird';
-import Command, { CommandOptions } from '../lib/cli/command';
-import spinner from '../lib/utils/spinner';
+import * as path from 'path';
+import unwrap from '../lib/utils/unwrap';
+import * as Bluebird from 'bluebird';
+import { ui, spinner, Command, Project } from 'denali-cli';
 import { exec, ExecOptions } from 'child_process';
 
 const run = Bluebird.promisify<[ string, string ], string, ExecOptions>(exec);
@@ -11,25 +10,23 @@ export default class PublishCommand extends Command {
 
   static commandName = 'publish';
   static description = 'Publish an addon to the npm registry.';
-  static longDescription = dedent`
+  static longDescription = unwrap`
     Publishes an addon to the npm registry. Runs tests builds the
     addon, and publishes the dist/ directory to the registry.`;
 
-  runsInApp = true;
+  static runsInApp = true;
 
-  params: string[] = [];
-
-  flags = {
-    'skip-tests': {
+  static flags = {
+    skipTests: {
       description: 'Do not run tests before publishing',
       defaultValue: false,
-      type: Boolean
+      type: <any>'boolean'
     }
   };
 
-  async run(options: CommandOptions) {
+  async run(argv: any) {
     await this.build();
-    if (!options.flags['skip-tests']) {
+    if (!argv.skipTests) {
       await this.runTests();
     }
     await this.publish();

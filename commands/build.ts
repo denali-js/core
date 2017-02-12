@@ -1,55 +1,52 @@
-import dedent from 'dedent-js';
-import Command, { CommandOptions } from '../lib/cli/command';
-import Project from '../lib/cli/project';
+import { ui, Command, Project } from 'denali-cli';
+import unwrap from '../lib/utils/unwrap';
 
 export default class BuildCommand extends Command {
 
   static commandName = 'build';
-  static description = 'Compile your app into optimized ES5 code';
-  static longDescription = dedent`
-    Takes your app's ES201X source code and produces compiled, sourcemapped, and
-    optimized output compatible with Node 6.`;
+  static description = 'Compile your app';
+  static longDescription = unwrap`
+    Compiles your app based on your denali-build.js file, as well as any build-related addons.
+  `;
 
-  params: string[] = [];
-
-  flags = {
+  static flags = {
     environment: {
       description: 'The target environment to build for.',
       defaultValue: 'development',
-      type: String
+      type: <any>'string'
     },
     output: {
       description: 'The directory to build into',
       defaultValue: 'dist',
-      type: String
+      type: <any>'string'
     },
     watch: {
       description: 'Continuously watch the source files and rebuild on changes',
       defaultValue: false,
-      type: Boolean
+      type: <any>'boolean'
     },
-    'print-slow-trees': {
+    printSlowTrees: {
       description: 'Print out an analysis of the build process, showing the slowest nodes.',
       defaultValue: false,
-      type: Boolean
+      type: <any>'boolean'
     }
   };
 
   runsInApp = true;
 
-  async run(options: CommandOptions) {
+  async run(argv: any) {
     let project = new Project({
-      environment: options.flags.environment,
-      printSlowTrees: options.flags['print-slow-trees'],
-      lint: options.flags.environment !== 'production'
+      environment: argv.environment,
+      printSlowTrees: argv.printSlowTrees,
+      lint: argv.environment !== 'production'
     });
 
-    if (options.flags.watch) {
+    if (argv.watch) {
       project.watch({
-        outputDir: <string>options.flags.output
+        outputDir: <string>argv.output
       });
     } else {
-      await project.build(options.flags.output);
+      await project.build(argv.output);
     }
   }
 

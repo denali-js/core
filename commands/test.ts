@@ -1,106 +1,98 @@
-import path from 'path';
-import dedent from 'dedent-js';
-import { spawn, ChildProcess } from 'child_process';
-import ui from '../lib/cli/ui';
-import Command, { CommandOptions, CommandFlags } from '../lib/cli/command';
-import Project from '../lib/cli/project';
 import {
   assign
 } from 'lodash';
+import * as path from 'path';
+import unwrap from '../lib/utils/unwrap';
+import { spawn, ChildProcess } from 'child_process';
+import { ui, Command, Project } from 'denali-cli';
 
 export default class TestCommand extends Command {
 
   static commandName = 'test';
   static description = "Run your app's test suite";
-  static longDescription = dedent`
+  static longDescription = unwrap`
     Runs your app's test suite, and can optionally keep re-running it on each file
     change (--watch).`;
 
-  runsInApp = true;
+  static runsInApp = true;
 
-  params = [ 'files' ];
+  static params = '[files...]';
 
-  flags: CommandFlags = {
+  static flags = {
     debug: {
       description: 'The test file you want to debug. Can only debug one file at a time.',
-      defaultValue: null,
-      type: String
+      type: <any>'string'
     },
     watch: {
       description: 'Re-run the tests when the source files change',
       defaultValue: false,
-      type: Boolean
+      type: <any>'boolean'
     },
     match: {
       description: 'Filter which tests run based on the supplied regex pattern',
-      defaultValue: null,
-      type: String
+      type: <any>'string'
     },
     timeout: {
       description: 'Set the timeout for all tests, i.e. --timeout 10s, --timeout 2m',
-      defaultValue: null,
-      type: String
+      type: <any>'string'
     },
-    'skip-lint': {
+    skipLint: {
       description: 'Skip linting the app source files',
       defaultValue: false,
-      type: Boolean
+      type: <any>'boolean'
     },
-    'skip-audit': {
+    skipAudit: {
       description: 'Skip auditing your package.json for vulnerabilites',
       defaultValue: false,
-      type: Boolean
+      type: <any>'boolean'
     },
     verbose: {
       description: 'Print detailed output of the status of your test run',
       defaultValue: process.env.CI,
-      type: Boolean
+      type: <any>'boolean'
     },
     output: {
       description: 'The directory to write the compiled app to. Defaults to a tmp directory',
       defaultValue: path.join('tmp', 'test'),
-      type: String
+      type: <any>'string'
     },
-    'print-slow-trees': {
+    printSlowTrees: {
       description: 'Print out an analysis of the build process, showing the slowest nodes.',
       defaultValue: false,
-      type: Boolean
+      type: <any>'boolean'
     },
-    'fail-fast': {
+    failFast: {
       description: 'Stop tests on the first failure',
       defaultValue: false,
-      type: Boolean
+      type: <any>'boolean'
     },
     litter: {
       description: 'Do not clean up tmp directories created during testing (useful for debugging)',
       defaultValue: false,
-      type: Boolean
+      type: <any>'boolean'
     },
     serial: {
       description: 'Run tests serially',
       defaultValue: false,
-      type: Boolean
+      type: <any>'boolean'
     },
     concurrency: {
       description: 'How many test files should run concurrently?',
       defaultValue: 5,
-      type: Number
+      type: <any>'number'
     }
   };
 
   tests: ChildProcess;
 
-  async run(options: CommandOptions) {
-    let files = options.params.files || 'test/**/*.js';
-    if (typeof files === 'string') {
-      files = [ files ];
-    }
+  async run(argv: any) {
+    let files = argv.files || 'test/**/*.js';
 
     let project = new Project({
       environment: 'test',
-      printSlowTrees: options.flags['print-slow-trees'],
-      audit: !options.flags['skip-audit'],
-      lint: !options.flags['skip-lint'],
+      printSlowTrees: argv.printSlowTrees,
+      audit: !argv.skipAudit,
+      lint: !argv.skipLint,
       buildDummy: true
     });
 
@@ -108,9 +100,9 @@ export default class TestCommand extends Command {
     process.on('SIGINT', this.cleanExit.bind(this));
     process.on('SIGTERM', this.cleanExit.bind(this));
 
-    if (options.flags.watch) {
+    if (argv.watch) {
       project.watch({
-        outputDir: options.flags.output,
+        outputDir: argv.output,
         // Don't let broccoli rebuild while tests are still running, or else
         // we'll be removing the test files while in progress leading to cryptic
         // errors.
@@ -127,12 +119,12 @@ export default class TestCommand extends Command {
             });
           }
         },
-        onBuild: this.runTests.bind(this, files, project, options)
+        onBuild: this.runTests.bind(this, files, project, argv)
       });
     } else {
       try {
-        await project.build(options.flags.output)
-        this.runTests(files, project, options);
+        await project.build(argv.output)
+        this.runTests(files, project, argv);
       } catch (error) {
         process.exitCode = 1;
       }
@@ -145,34 +137,34 @@ export default class TestCommand extends Command {
     }
   }
 
-  runTests(files: string[], project: Project, options: CommandOptions) {
+  runTests(files: string[], project: Project, argv: any) {
     let avaPath = path.join(process.cwd(), 'node_modules', '.bin', 'ava');
-    let args = files.concat([ '!test/dummy/**/*', '--concurrency', options.flags.concurrency ]);
-    if (options.flags.debug) {
+    let args = files.concat([ '!test/dummy/**/*', '--concurrency', argv.concurrency ]);
+    if (argv.debug) {
       avaPath = process.execPath;
-      args = [ '--inspect', '--debug-brk', path.join(process.cwd(), 'node_modules', 'ava', 'profile.js'), options.flags.debug ];
+      args = [ '--inspect', '--debug-brk', path.join(process.cwd(), 'node_modules', 'ava', 'profile.js'), argv.debug ];
     }
-    if (options.flags.match) {
-      args.push('--match', options.flags.match);
+    if (argv.match) {
+      args.push('--match', argv.match);
     }
-    if (options.flags.verbose) {
+    if (argv.verbose) {
       args.unshift('--verbose');
     }
-    if (options.flags.timeout) {
-      args.unshift('--timeout', options.flags.timeout);
+    if (argv.timeout) {
+      args.unshift('--timeout', argv.timeout);
     }
-    if (options.flags['fail-fast']) {
+    if (argv.failFast) {
       args.unshift('--fail-fast');
     }
-    if (options.flags.serial) {
+    if (argv.serial) {
       args.unshift('--serial');
     }
     this.tests = spawn(avaPath, args, {
-      cwd: options.flags.output,
+      cwd: argv.output,
       stdio: [ 'pipe', process.stdout, process.stderr ],
       env: assign({}, process.env, {
-        PORT: options.flags.port,
-        DENALI_LEAVE_TMP: options.flags.litter,
+        PORT: argv.port,
+        DENALI_LEAVE_TMP: argv.litter,
         DENALI_ENV: project.environment,
         NODE_ENV: project.environment,
         DEBUG_COLORS: 1
@@ -186,13 +178,12 @@ export default class TestCommand extends Command {
         ui.error('\n===> Tests failed 💥');
       }
       delete this.tests;
-      if (options.flags.watch) {
+      if (argv.watch) {
         ui.info('===> Waiting for changes to re-run ...\n\n');
-      } else {
-        process.exitCode = code === null ? 1 : code;
-        ui.info(`===> exiting with ${ process.exitCode }`);
-      }
+       } else {
+         process.exitCode = code === null ? 1 : code;
+         ui.info(`===> exiting with ${ process.exitCode }`);
+       }
     });
   }
-
 }

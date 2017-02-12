@@ -1,14 +1,12 @@
-import fs from 'fs';
-import path from 'path';
-import dedent from 'dedent-js';
-import { spawn, ChildProcess } from 'child_process';
-import ui from '../lib/cli/ui';
-import Command, { CommandOptions, CommandFlags } from '../lib/cli/command';
-import Project from '../lib/cli/project';
-import createDebug from 'debug';
 import {
   assign
 } from 'lodash';
+import fs from 'fs-extra';
+import * as path from 'path';
+import unwrap from '../lib/utils/unwrap';
+import { spawn, ChildProcess } from 'child_process';
+import { ui, Command, Project } from 'denali-cli';
+import createDebug from 'debug';
 
 const debug = createDebug('denali:commands:server');
 
@@ -16,7 +14,7 @@ export default class ServerCommand extends Command {
 
   static commandName = 'server';
   static description = 'Runs the denali server for local or production use.';
-  static longDescription = dedent`
+  static longDescription = unwrap`
     Launches the Denali server running your application.
 
     In a development environment, the server does several things:
@@ -29,69 +27,64 @@ export default class ServerCommand extends Command {
 
      * the server will fork worker processes to maximize CPU core usage`;
 
-  runsInApp = true;
+  static runsInApp = true;
 
-  params: string[] = [];
-
-  flags: CommandFlags = {
+  static flags = {
     debug: {
       description: 'Run in debug mode (add the --debug flag to node, launch node-inspector)',
       defaultValue: false,
-      type: Boolean
+      type: <any>'boolean'
     },
     watch: {
       description: 'Restart the server when the source files change (default: true in development)',
-      defaultValue: null,
-      type: Boolean
+      type: <any>'boolean'
     },
     port: {
       description: 'The port the HTTP server should bind to (default: 3000)',
       defaultValue: 3000,
-      type: Number
+      type: <any>'number'
     },
     lint: {
       description: 'Lint the app source files (default: true in development)',
-      defaultValue: null,
-      type: Boolean
+      type: <any>'boolean'
     },
     audit: {
       description: 'Auditing your package.json for vulnerabilites (default: true in development)',
-      defaultValue: null,
-      type: Boolean
+      type: <any>'boolean'
     },
     output: {
       description: 'The directory to write the compiled app to. Defaults to a tmp directory',
       defaultValue: 'dist',
-      type: String
+      type: <any>'string'
     },
     production: {
       description: 'Start the server in production mode: skip the build (assumes the app was prebuilt), skips nsp audits, runs with DENALI_ENV=production',
       defaultValue: false,
-      type: Boolean
+      type: <any>'boolean'
     },
-    'print-slow-trees': {
+    printSlowTrees: {
       description: 'Print out an analysis of the build process, showing the slowest nodes.',
       defaultValue: false,
-      type: Boolean
+      type: <any>'boolean'
     }
   }
 
   server: ChildProcess;
 
-  async run(options: CommandOptions) {
+  async run(argv: any) {
     debug('running server command');
-    let environment = options.flags.environment = options.flags.production ? 'production' : process.env.DENALI_ENV || process.env.NODE_ENV || 'development';
-    options.flags.watch = options.flags.watch || environment === 'development';
+    let environment = argv.environment = argv.production ? 'production' : process.env.DENALI_ENV || process.env.NODE_ENV || 'development';
+    argv.watch = argv.watch || environment === 'development';
 
     if (environment === 'production') {
-      return this.startServer(options);
+      return this.startServer(argv);
     }
 
     let project = new Project({
       environment,
-      printSlowTrees: options.flags['print-slow-trees'],
-      audit: options.flags.audit || environment === 'development',
-      lint: options.flags.lint ||environment !== 'production',
+      printSlowTrees: argv.printSlowTrees,
+      audit: argv.audit || environment === 'development',
+      lint: argv.lint ||environment !== 'production',
       buildDummy: true
     });
 
@@ -99,23 +92,23 @@ export default class ServerCommand extends Command {
     process.on('SIGINT', this.cleanExit.bind(this));
     process.on('SIGTERM', this.cleanExit.bind(this));
 
-    if (options.flags.watch || environment === 'development') {
+    if (argv.watch || environment === 'development') {
       debug('starting watcher');
       project.watch({
-        outputDir: options.flags.output,
+        outputDir: argv.output,
         onBuild: () => {
           if (this.server) {
             debug('killing existing server');
             this.server.removeAllListeners('exit');
             this.server.kill();
           }
-          this.startServer(options);
+          this.startServer(argv);
         }
       });
     } else {
       debug('building project');
-      await project.build(options.flags.output);
-      this.startServer(options);
+      await project.build(argv.output);
+      this.startServer(argv);
     }
   }
 
@@ -125,15 +118,15 @@ export default class ServerCommand extends Command {
     }
   }
 
-  startServer(options: CommandOptions) {
-    let dir = options.flags.output;
+  startServer(argv: any) {
+    let dir = argv.output;
     let args = [ 'app/index.js' ];
     let defaultEnvs = {
-      PORT: options.flags.port,
-      DENALI_ENV: options.flags.environment,
-      NODE_ENV: options.flags.environment
+      PORT: argv.port,
+      DENALI_ENV: argv.environment,
+      NODE_ENV: argv.environment
     };
-    if (options.flags.debug) {
+    if (argv.debug) {
       args.unshift('--inspect', '--debug-brk');
     }
     if (!fs.existsSync(path.join(dir, 'app', 'index.js'))) {
@@ -150,7 +143,7 @@ export default class ServerCommand extends Command {
       ui.error('Unable to start your application:');
       ui.error(error.stack);
     });
-    if (options.flags.watch) {
+    if (argv.watch) {
       this.server.on('exit', (code) => {
         let result = code === 0 ? 'exited' : 'crashed';
         ui.error(`Server ${ result }. waiting for changes to restart ...`);

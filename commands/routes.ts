@@ -1,42 +1,39 @@
-import dedent from 'dedent-js';
+import unwrap from '../lib/utils/unwrap';
 import CliTable from 'cli-table2';
-import ui from '../lib/cli/ui';
-import Command, { CommandOptions } from '../lib/cli/command';
-import Project from '../lib/cli/project';
+import { ui, Command, Project } from 'denali-cli';
+import Application from '../lib/runtime/application';
 
 export default class RoutesCommand extends Command {
 
   static commandName = 'routes';
   static description = 'Display all defined routes within your application.';
-  static longDescription = dedent`
+  static longDescription = unwrap`
     Displays routes from your application and any routes added by addons.
     Display shows the method, endpoint, and the action associated to that
     route.`;
 
-  runsInApp = true;
+  static runsInApp = true;
 
-  params: string[] = [];
-
-  flags = {
+  static flags = {
     environment: {
       description: 'The target environment to build for.',
       defaultValue: 'development',
-      type: String
+      type: <any>'string'
     },
     'print-slow-trees': {
       description: 'Print out an analysis of the build process, showing the slowest nodes.',
       defaultValue: false,
-      type: Boolean
+      type: <any>'boolean'
     }
   };
 
-  async run(options: CommandOptions) {
+  async run(argv: any) {
     let project = new Project({
-      environment: options.flags.environment,
-      printSlowTrees: options.flags['print-slow-trees'],
+      environment: argv.environment,
+      printSlowTrees: argv.printSlowTrees,
       buildDummy: true
     });
-    let application = await project.createApplication();
+    let application: Application = await project.createApplication();
     await application.runInitializers();
     let routes = application.router.routes;
     let methods = Object.keys(routes);
