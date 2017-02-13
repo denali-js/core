@@ -1,5 +1,8 @@
-import { ui, Command, Project } from 'denali-cli';
+import { ui, spinner, Command, Project } from 'denali-cli';
 import unwrap from '../lib/utils/unwrap';
+import * as createDebug from 'debug';
+
+const debug = createDebug('denali:commands:build');
 
 export default class BuildCommand extends Command {
 
@@ -46,7 +49,12 @@ export default class BuildCommand extends Command {
         outputDir: <string>argv.output
       });
     } else {
-      await project.build(argv.output);
+      try {
+        await project.build(argv.output);
+      } catch (error) {
+        spinner.fail('Build failed');
+        ui.error(error.stack);
+      }
     }
   }
 
