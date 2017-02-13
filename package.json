@@ -30,6 +30,7 @@
     "nyc": "^10.1.2",
     "rimraf": "^2.4.2",
     "standard-version": "^2.4.0",
+    "tslint": "^4.4.2",
     "typescript": "2.2.0"
   },
   "scripts": {
