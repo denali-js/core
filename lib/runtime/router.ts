@@ -3,7 +3,7 @@ import { IncomingMessage, ServerResponse } from 'http';
 import { pluralize } from 'inflection';
 import { fromNode } from 'bluebird';
 import typeis from 'type-is';
-import createDebug from 'debug';
+import * as createDebug from 'debug';
 import Errors from './errors';
 import Route from './route';
 import Request, { Method } from './request';

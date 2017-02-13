@@ -1,5 +1,5 @@
-import assert from 'assert';
-import createDebug from 'debug';
+import * as assert from 'assert';
+import * as createDebug from 'debug';
 import { pluralize } from 'inflection';
 import {
   kebabCase,

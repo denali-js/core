@@ -1,12 +1,12 @@
 import {
   assign
 } from 'lodash';
-import fs from 'fs-extra';
+import * as fs from 'fs-extra';
 import * as path from 'path';
 import unwrap from '../lib/utils/unwrap';
 import { spawn, ChildProcess } from 'child_process';
 import { ui, Command, Project } from 'denali-cli';
-import createDebug from 'debug';
+import * as createDebug from 'debug';
 
 const debug = createDebug('denali:commands:server');
 

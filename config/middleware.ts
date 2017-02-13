@@ -2,13 +2,13 @@ import {
   defaults,
   defaultsDeep
 } from 'lodash';
-import timing from 'response-time';
-import compression from 'compression';
-import cookies from 'cookie-parser';
-import cors from 'cors';
-import helmet from 'helmet';
+import * as timing from 'response-time';
+import * as compression from 'compression';
+import * as cookies from 'cookie-parser';
+import * as cors from 'cors';
+import * as helmet from 'helmet';
 // import forceSSL from 'express-force-ssl';
-import morgan from 'morgan';
+import * as morgan from 'morgan';
 import { json } from 'body-parser';
 import { IncomingMessage, ServerResponse } from 'http';
 import Router from '../lib/runtime/router';

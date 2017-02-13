@@ -1,5 +1,5 @@
 import test from 'ava';
-import fs from 'fs-extra';
+import * as fs from 'fs-extra';
 import * as path from 'path';
 import { CommandAcceptanceTest } from 'denali';
 

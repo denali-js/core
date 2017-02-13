@@ -1,6 +1,6 @@
 import { Blueprint } from 'denali-cli';
-import moment from 'moment';
-import assert from 'assert';
+import * as moment from 'moment';
+import * as assert from 'assert';
 import unwrap from '../../lib/utils/unwrap';
 
 export default class MigrationBlueprint extends Blueprint {

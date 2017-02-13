@@ -1,6 +1,6 @@
 import test from 'ava';
 import * as path from 'path';
-import fs from 'fs-extra';
+import * as fs from 'fs-extra';
 import { CommandAcceptanceTest } from 'denali';
 
 test('addon command > generates an addon', async (t) => {

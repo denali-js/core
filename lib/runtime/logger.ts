@@ -1,8 +1,8 @@
-import chalk from 'chalk';
 import {
   identity,
   padStart
 } from 'lodash';
+import * as chalk from 'chalk';
 import DenaliObject from '../metal/object';
 
 type LogLevel = 'success' | 'info' | 'warn' | 'error';

@@ -1,6 +1,6 @@
 import * as path from 'path';
-import fs from 'fs-extra';
-import glob from 'glob';
+import * as fs from 'fs-extra';
+import * as glob from 'glob';
 import findup = require('findup-sync');
 import eachDir from '../utils/each-dir';
 import { sync as isDirectory } from 'is-directory';
@@ -12,7 +12,7 @@ import {
   omit
  } from 'lodash';
 import { singularize } from 'inflection';
-import createDebug from 'debug';
+import * as createDebug from 'debug';
 import DenaliObject from '../metal/object';
 import Container from './container';
 import Logger from './logger';

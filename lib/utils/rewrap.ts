@@ -1,6 +1,6 @@
 import unwrap from './unwrap';
 import wrap from 'wordwrap';
-import tty from 'tty';
+import * as tty from 'tty';
 import {
   flatten,
   zip

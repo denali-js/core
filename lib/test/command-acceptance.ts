@@ -1,10 +1,10 @@
-import fs from 'fs-extra';
-import assert from 'assert';
+import * as fs from 'fs-extra';
+import * as assert from 'assert';
 import * as path from 'path';
 import { exec, spawn, ChildProcess } from 'child_process';
-import tmp from 'tmp';
+import * as tmp from 'tmp';
 import * as dedent from 'dedent-js';
-import createDebug from 'debug';
+import * as createDebug from 'debug';
 import DenaliObject from '../metal/object';
 
 const debug = createDebug('denali:test:command-acceptance');

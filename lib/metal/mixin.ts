@@ -1,4 +1,4 @@
-import assert from 'assert';
+import * as assert from 'assert';
 
 export interface MixinApplicator {
   (...args: any[]): MixinApplicator;

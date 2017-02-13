@@ -1,4 +1,4 @@
-import fs from 'fs-extra';
+import * as fs from 'fs-extra';
 import * as path from 'path';
 
 export default function eachDir(dirpath: string, fn: (childpath: string) => void): void {

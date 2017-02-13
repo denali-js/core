@@ -6,7 +6,9 @@ import {
   Serializer,
   Service,
   FlatSerializer } from 'denali';
-import merge from 'lodash/merge';
+import {
+  merge
+} from 'lodash';
 import Response from '../../lib/runtime/response';
 
 function mockReqRes(overrides?: any): any {

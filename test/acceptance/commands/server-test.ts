@@ -1,12 +1,13 @@
 import test from 'ava';
 import * as path from 'path';
-import fs from 'fs-extra';
-import mkdirp from 'mkdirp';
-import rimraf from 'rimraf';
+import * as fs from 'fs-extra';
+import * as mkdirp from 'mkdirp';
+import * as rimraf from 'rimraf';
 import { CommandAcceptanceTest } from 'denali';
 
 function linkDependency(pkgDir: string, dependencyName: string, dependencyDir: string) {
   let dest = path.join(pkgDir, 'node_modules', dependencyName);
+  // use fs-extra
   mkdirp.sync(path.dirname(dest));
   rimraf.sync(dest);
   fs.symlinkSync(dependencyDir, dest);

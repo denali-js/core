@@ -1,4 +1,4 @@
-import assert from 'assert';
+import * as assert from 'assert';
 import * as path from 'path';
 import unwrap from '../lib/utils/unwrap';
 import { ui, spinner, Command, Project } from 'denali-cli';

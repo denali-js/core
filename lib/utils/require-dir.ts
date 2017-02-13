@@ -1,5 +1,5 @@
-import fs from 'fs-extra';
-import path from 'path';
+import * as fs from 'fs-extra';
+import * as path from 'path';
 import walk from 'walk-sync';
 
 export default function requireDir(dirpath: string, options: { recurse?: false } = {}): { [moduleName: string]: any } {

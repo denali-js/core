@@ -1,11 +1,11 @@
 import Action, { ActionOptions } from '../../lib/runtime/action';
 import Response from '../../lib/runtime/response';
-import fs from 'fs-extra';
+import * as fs from 'fs-extra';
 import * as path from 'path';
 import {
   template
 } from 'lodash';
-import createDebug from 'debug';
+import * as createDebug from 'debug';
 
 const debug = createDebug('denali:app:error-action');
 

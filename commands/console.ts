@@ -1,10 +1,10 @@
 import {
   assign
 } from 'lodash';
-import repl from 'repl';
+import * as repl from 'repl';
 import unwrap from '../lib/utils/unwrap';
 import rewrap from '../lib/utils/rewrap';
-import chalk from 'chalk';
+import * as chalk from 'chalk';
 import { ui, Command, Project } from 'denali-cli';
 
 export default class ConsoleCommand extends Command {

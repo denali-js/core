@@ -1,10 +1,9 @@
-import assert from 'assert';
+import * as assert from 'assert';
 import { singularize } from 'inflection';
 import Serializer from '../serializer';
 import Model from '../model';
 import Response from '../../runtime/response';
 import { HasManyRelationship, RelationshipDescriptor } from '../descriptors';
-import Errors from 'http-errors';
 import {
   isArray,
   assign,
