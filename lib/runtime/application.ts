@@ -86,8 +86,7 @@ export default class Application extends Addon {
    */
   private buildAddons(preseededAddons: string[]): Addon[] {
     return findPlugins({
-      modulesDir: path.join(this.dir, 'node_modules'),
-      pkg: path.join(this.dir, 'package.json'),
+      dir: this.dir,
       include: preseededAddons
     }).map((addon) => {
       let AddonClass;
