@@ -21,14 +21,14 @@ import {
 const debug = createDebug('denali:router');
 
 interface RoutesCache {
-  get: Route[],
-  post: Route[],
-  put: Route[],
-  patch: Route[],
-  delete: Route[],
-  head: Route[],
-  options: Route[],
-  [method: string]: Route[]
+  get: Route[];
+  post: Route[];
+  put: Route[];
+  patch: Route[];
+  delete: Route[];
+  head: Route[];
+  options: Route[];
+  [method: string]: Route[];
 };
 
 interface MiddlewareFn {
@@ -40,33 +40,29 @@ interface ResourceOptions {
    * Should routes for related resources be generated? If true, routes will be generated following
    * the JSON-API recommendations for relationship URLs.
    *
-   * @type {boolean}
-   * @see {@link http://jsonapi.org/recommendations/#urls-relationships|JSON-API URL Recommendatiosn}
+   * @see {@link http://jsonapi.org/recommendations/#urls-relationships|JSON-API URL
+   * Recommendatiosn}
    */
   related?: boolean;
   /**
    * A list of action types to _not_ generate.
-   *
-   * @type {string[]}
    */
   except?: string[];
   /**
    * A list of action types that should be the _only_ ones generated.
-   *
-   * @type {string[]}
    */
   only?: string[];
 }
 
 interface RouterDSL {
-  get: (pattern: string, action: string, params: {}) => void;
-  post: (pattern: string, action: string, params: {}) => void;
-  put: (pattern: string, action: string, params: {}) => void;
-  patch: (pattern: string, action: string, params: {}) => void;
-  delete: (pattern: string, action: string, params: {}) => void;
-  head: (pattern: string, action: string, params: {}) => void;
-  options: (pattern: string, action: string, params: {}) => void;
-  resource: (resourceName: string, options: ResourceOptions) => void;
+  get(pattern: string, action: string, params: {}): void;
+  post(pattern: string, action: string, params: {}): void;
+  put(pattern: string, action: string, params: {}): void;
+  patch(pattern: string, action: string, params: {}): void;
+  delete(pattern: string, action: string, params: {}): void;
+  head(pattern: string, action: string, params: {}): void;
+  options(pattern: string, action: string, params: {}): void;
+  resource(resourceName: string, options: ResourceOptions): void;
 }
 
 /**
@@ -74,10 +70,6 @@ interface RouterDSL {
  * responsible for defining routes in the first place - it's passed into the `config/routes.js`
  * file's exported function as the first argument.
  *
- * @export
- * @class Router
- * @extends {DenaliObject}
- * @implements {RouterDSL}
  * @module denali
  * @submodule runtime
  */
@@ -85,10 +77,8 @@ export default class Router extends DenaliObject implements RouterDSL {
 
   /**
    * The cache of available routes.
-   *
-   * @type {RoutesCache}
    */
-  routes: RoutesCache = {
+  public routes: RoutesCache = {
     get: [],
     post: [],
     put: [],
@@ -101,35 +91,19 @@ export default class Router extends DenaliObject implements RouterDSL {
   /**
    * The internal generic middleware handler, responsible for building and executing the middleware
    * chain.
-   *
-   * @private
-   * @type {ware}
    */
   private middleware: any = (<() => any>ware)();
 
   /**
-   * @private
-   * @type {Container}
-   */
-  private container: Container;
-
-  /**
-   * @private
-   * @type {Logger}
+   * The application logger instance
    */
   private logger: Logger;
 
   /**
-   * @private
-   * @type {*}
+   * The application config
    */
   private config: any;
 
-  /**
-   * Creates an instance of Router.
-   *
-   * @param {{ container: Container, logger: Logger }} options
-   */
   constructor(options: { container: Container, logger: Logger }) {
     super();
     this.container = options.container;
@@ -140,8 +114,6 @@ export default class Router extends DenaliObject implements RouterDSL {
   /**
    * Helper method to invoke the function exported by `config/routes.js` in the context of the
    * current router instance.
-   *
-   * @param {(router: Router) => void} fn
    */
   public map(fn: (router: Router) => void): void {
     debug('mapping routes');
@@ -152,11 +124,6 @@ export default class Router extends DenaliObject implements RouterDSL {
    * Takes an incoming request and it's response from an HTTP server, prepares them, runs the
    * generic middleware first, hands them off to the appropriate action given the incoming URL, and
    * finally renders the response.
-   *
-   * @public
-   * @param {IncomingMessage} req
-   * @param {ServerResponse} res
-   * @returns
    */
   public async handle(req: IncomingMessage, res: ServerResponse): Promise<void> {
     let request = new Request(req);
@@ -232,12 +199,6 @@ export default class Router extends DenaliObject implements RouterDSL {
   /**
    * Takes a request, response, and an error and hands off to the generic application level error
    * action.
-   *
-   * @private
-   * @param {Request} request
-   * @param {ServerResponse} res
-   * @param {Error} error
-   * @returns
    */
   private handleError(request: Request, res: ServerResponse, error: Error) {
     let ErrorAction = this.container.lookup('action:error');
@@ -254,8 +215,6 @@ export default class Router extends DenaliObject implements RouterDSL {
   /**
    * Add the supplied middleware function to the generic middleware stack that runs prior to action
    * handling.
-   *
-   * @param {MiddlewareFn} middleware
    */
   public use(middleware: MiddlewareFn): void {
     this.middleware.use(middleware);
@@ -267,15 +226,10 @@ export default class Router extends DenaliObject implements RouterDSL {
    *
    * URL patterns can use:
    *
-   *  * Dynamic segments, i.e. `'foo/:bar'`
-   *  * Wildcard segments, i.e. `'foo/*bar'`, captures the rest of the URL up
+   * * Dynamic segments, i.e. `'foo/:bar'` * Wildcard segments, i.e. `'foo/*bar'`, captures the rest
+   * of the URL up
    *    to the querystring
-   *  * Optional groups, i.e. `'foo(/:bar)'`
-   *
-   * @param {Method} method
-   * @param {string} rawPattern
-   * @param {string} actionPath
-   * @param {*} [params]
+   * * Optional groups, i.e. `'foo(/:bar)'`
    */
   public route(method: Method, rawPattern: string, actionPath: string, params?: any) {
     // Ensure leading slashes
@@ -298,10 +252,6 @@ export default class Router extends DenaliObject implements RouterDSL {
 
   /**
    * Shorthand for `this.route('get', ...arguments)`
-   *
-   * @param {string} rawPattern
-   * @param {string} actionPath
-   * @param {*} [params]
    */
   public get(rawPattern: string, actionPath: string, params?: any): void {
     this.route('get', rawPattern, actionPath, params);
@@ -309,21 +259,13 @@ export default class Router extends DenaliObject implements RouterDSL {
 
   /**
    * Shorthand for `this.route('post', ...arguments)`
-   *
-   * @param {string} rawPattern
-   * @param {string} actionPath
-   * @param {*} [params]
    */
-  public post(rawPattern: string, actionPath: string, params?: any): void{
+  public post(rawPattern: string, actionPath: string, params?: any): void {
     this.route('post', rawPattern, actionPath, params);
   }
 
   /**
    * Shorthand for `this.route('put', ...arguments)`
-   *
-   * @param {string} rawPattern
-   * @param {string} actionPath
-   * @param {*} [params]
    */
   public put(rawPattern: string, actionPath: string, params?: any): void {
     this.route('put', rawPattern, actionPath, params);
@@ -331,10 +273,6 @@ export default class Router extends DenaliObject implements RouterDSL {
 
   /**
    * Shorthand for `this.route('patch', ...arguments)`
-   *
-   * @param {string} rawPattern
-   * @param {string} actionPath
-   * @param {*} [params]
    */
   public patch(rawPattern: string, actionPath: string, params?: any): void {
     this.route('patch', rawPattern, actionPath, params);
@@ -342,10 +280,6 @@ export default class Router extends DenaliObject implements RouterDSL {
 
   /**
    * Shorthand for `this.route('delete', ...arguments)`
-   *
-   * @param {string} rawPattern
-   * @param {string} actionPath
-   * @param {*} [params]
    */
   public delete(rawPattern: string, actionPath: string, params?: any): void {
     this.route('delete', rawPattern, actionPath, params);
@@ -353,10 +287,6 @@ export default class Router extends DenaliObject implements RouterDSL {
 
   /**
    * Shorthand for `this.route('head', ...arguments)`
-   *
-   * @param {string} rawPattern
-   * @param {string} actionPath
-   * @param {*} [params]
    */
   public head(rawPattern: string, actionPath: string, params?: any): void {
     this.route('head', rawPattern, actionPath, params);
@@ -364,10 +294,6 @@ export default class Router extends DenaliObject implements RouterDSL {
 
   /**
    * Shorthand for `this.route('options', ...arguments)`
-   *
-   * @param {string} rawPattern
-   * @param {string} actionPath
-   * @param {*} [params]
    */
   public options(rawPattern: string, actionPath: string, params?: any): void {
     this.route('options', rawPattern, actionPath, params);
@@ -383,8 +309,8 @@ export default class Router extends DenaliObject implements RouterDSL {
    *
    * Set `options.related = false` to disable relationship routes.
    *
-   * If no options are supplied, the following routes are generated (assuming a
-   * 'books' resource as an example):
+   * If no options are supplied, the following routes are generated (assuming a 'books' resource as
+   * an example):
    *
    *   * `GET /books`
    *   * `POST /books`
@@ -398,9 +324,6 @@ export default class Router extends DenaliObject implements RouterDSL {
    *   * `DELETE /books/:id/relationships/:relation`
    *
    * See http://jsonapi.org/recommendations/#urls for details.
-   *
-   * @param {string} resourceName
-   * @param {ResourceOptions} [options={}]
    */
   public resource(resourceName: string, options: ResourceOptions = {}): void {
     let plural = pluralize(resourceName);
@@ -417,6 +340,9 @@ export default class Router extends DenaliObject implements RouterDSL {
     options.only = ensureArray(options.only);
     options.except = ensureArray(options.except);
 
+    /**
+     * Check if the given action should be generated based on the whitelist/blacklist options
+     */
     function include(action: string) {
       let whitelisted = options.only.includes(action);
       let blacklisted = options.except.includes(action);
@@ -459,9 +385,6 @@ export default class Router extends DenaliObject implements RouterDSL {
    *   // or ...
    *   let namespace = router.namespace('users');
    *   namespace.get('sign-in');
-   *
-   * @param {string} namespace
-   * @param {(wrapper: {}) => void} fn
    */
   public namespace(namespace: string, fn: (wrapper: {}) => void): void {
     // eslint-disable-next-line consistent-this
@@ -470,6 +393,7 @@ export default class Router extends DenaliObject implements RouterDSL {
       namespace = namespace.slice(0, namespace.length - 1);
     }
     // TODO add sanitization in case `pattern` has leading slash, or `namespace` has trailing
+    // tslint:disable:completed-docs
     let wrapper: RouterDSL = {
       get(pattern: string, actionPath, params) {
         router.route('get', `${ namespace }/${ pattern.replace(/^\//, '') }`, actionPath, params);
@@ -496,6 +420,7 @@ export default class Router extends DenaliObject implements RouterDSL {
         router.resource.call(this, resourceName, options);
       }
     };
+    // tslint:enable:completed-docs
     if (fn) {
       fn(wrapper);
     }

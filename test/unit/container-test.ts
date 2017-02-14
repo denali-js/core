@@ -1,3 +1,4 @@
+/* tslint:disable:completed-docs no-empty no-invalid-this member-access */
 import test from 'ava';
 import { Container } from 'denali';
 
@@ -27,7 +28,7 @@ test('Container > #lookupAll(type) > returns an object with all the modules of t
 test('Container > singletons > should instantiate a singleton', async (t) => {
   let container = new Container();
   class Class {
-    static singleton = true
+    static singleton = true;
   }
   container.register('foo:bar', new Class());
 

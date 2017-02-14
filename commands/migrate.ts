@@ -10,15 +10,19 @@ import { exec, ExecOptions } from 'child_process';
 const run = Bluebird.promisify<[ string, string ], string>(exec);
 const commandExists = Bluebird.promisify<boolean, string>(cmdExists);
 
+/**
+ * Run migrations to update your database schema
+ */
 export default class MigrateCommand extends Command {
 
-  static commandName = 'migrate';
-  static description = 'Run migrations to update your database schema';
-  static longDescription = unwrap`
+  /* tslint:disable:completed-docs typedef */
+  public static commandName = 'migrate';
+  public static description = 'Run migrations to update your database schema';
+  public static longDescription = unwrap`
     Runs (or rolls back) schema migrations for your database. Typically only
     applies when use SQL-based databases.`;
 
-  static flags = {
+  public static flags = {
     rollback: {
       description: 'Rollback the latest migration, or latest --step migrations. Defaults to 1 step.',
       defaultValue: false,
@@ -36,9 +40,9 @@ export default class MigrateCommand extends Command {
     }
   };
 
-  static runsInApp = true;
+  public static runsInApp = true;
 
-  async run(argv: any) {
+  public async run(argv: any) {
     let knex = tryRequire('knex');
     if (!knex) {
       spinner.start('Installing knex (required for migrations)');

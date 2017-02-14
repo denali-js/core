@@ -6,11 +6,15 @@ import {
 } from 'lodash';
 import unwrap from '../../lib/utils/unwrap';
 
+/**
+ * Generates a blank ORM adapter with stubs for all the required methods
+ */
 export default class ORMAdapterBlueprint extends Blueprint {
 
-  static blueprintName = 'orm-adapter';
-  static description = 'Generates a blank ORM adapter with stubs for all the required methods';
-  static longDescription = unwrap`
+  /* tslint:disable:completed-docs typedef */
+  public static blueprintName = 'orm-adapter';
+  public static description = 'Generates a blank ORM adapter with stubs for all the required methods';
+  public static longDescription = unwrap`
     Usage: denali generate orm-adapter <name> [options]
 
     Generates a new ORM adapter with stubs for all the required adapter methods. Note: this is
@@ -20,9 +24,9 @@ export default class ORMAdapterBlueprint extends Blueprint {
     Guides: http://denali.js.org/master/guides/data/orm-adapters/
   `;
 
-  static params = '<name>';
+  public static params = '<name>';
 
-  locals(argv: any) {
+  public locals(argv: any) {
     let name = argv.name;
     name = singularize(name);
     return {

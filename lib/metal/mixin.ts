@@ -37,10 +37,6 @@ export interface MixinFactory {
  * mixin properties/methods. When these mixin factory functions are applied, they are called in
  * order, with the result of the last mixin feeding into the base class of the next mixin factory.
  *
- * @export
- * @param {Function} baseClass
- * @param {...MixinApplicator[]} mixins
- * @returns {Function}
  * @module denali
  * @submodule metal
  */
@@ -65,16 +61,12 @@ export default function mixin(baseClass: Function, ...mixins: MixinApplicator[])
  * and once the mixin factory function is invoked, it will be provided as an additional argument:
  *
  *     createMixin((BaseClass, options) => {
- *
- * @export
- * @param {MixinFactory} mixinFactory
- * @returns {MixinApplicator}
  */
 export function createMixin(mixinFactory: MixinFactory): MixinApplicator {
   let cacheMixinArguments = <MixinApplicator>function(...args: any[]): MixinApplicator {
     cacheMixinArguments._args.push(...args);
     return cacheMixinArguments;
-  }
+  };
   cacheMixinArguments._args = [];
   cacheMixinArguments._factory = mixinFactory;
   return cacheMixinArguments;

@@ -7,6 +7,7 @@ import * as compression from 'compression';
 import * as cookies from 'cookie-parser';
 import * as cors from 'cors';
 import * as helmet from 'helmet';
+// TODO: reimplement this
 // import forceSSL from 'express-force-ssl';
 import * as morgan from 'morgan';
 import { json } from 'body-parser';
@@ -14,11 +15,20 @@ import { IncomingMessage, ServerResponse } from 'http';
 import Router from '../lib/runtime/router';
 import Application from '../lib/runtime/application';
 
-export default function baseMiddleware(router: Router, application: Application) {
+/**
+ * Denali ships with several base middleware included, each of which can be enabled/disabled
+ * individually through config options.
+ */
+export default function baseMiddleware(router: Router, application: Application): void {
 
   let config = application.config;
 
-  function isEnabled(prop: string) {
+  /**
+   * Returns true if the given property either does not exist on the config object, or it does exist
+   * and it's `enabled` property is not `false`. All the middleware here are opt out, so to disable
+   * you must define set that middleware's root config property to `{ enabled: false }`
+   */
+  function isEnabled(prop: string): boolean {
     return !config[prop] || (config[prop] && config[prop].enabled !== false);
   }
 
@@ -29,7 +39,8 @@ export default function baseMiddleware(router: Router, application: Application)
   if (isEnabled('logging')) {
     let defaultLoggingFormat = application.environment === 'production' ? 'combined' : 'dev';
     let defaultLoggingOptions = {
-      skip() {
+      // tslint:disable-next-line:completed-docs
+      skip(): boolean {
         return application.environment === 'test';
       }
     };
@@ -57,7 +68,7 @@ export default function baseMiddleware(router: Router, application: Application)
   }
 
   if (isEnabled('csp')) {
-    let cspConfig: any = defaultsDeep(config.csp, {
+    let cspConfig: any = defaultsDeep<{ [key: string]: any }, { [key: string]: any }>(config.csp, {
       directives: { reportUri: '/_report-csp-violations' },
       reportOnly: application.environment === 'development',
       disableAndroid: true

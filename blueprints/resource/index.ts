@@ -8,11 +8,15 @@ import { singularize, pluralize } from 'inflection';
 import { Blueprint } from 'denali-cli';
 import unwrap from '../../lib/utils/unwrap';
 
+/**
+ * Generates a model, serializer, CRUD actions, and tests for a resource
+ */
 export default class ResourceBlueprint extends Blueprint {
 
-  static blueprintName = 'resource';
-  static description = 'Generates a model, serializer, CRUD actions, and tests for a resource';
-  static longDescription = unwrap`
+  /* tslint:disable:completed-docs typedef */
+  public static blueprintName = 'resource';
+  public static description = 'Generates a model, serializer, CRUD actions, and tests for a resource';
+  public static longDescription = unwrap`
     Usage: denali generate resource <name> [options]
 
     Generates a complete, end-to-end RESTful resource scaffold. This includes a Model to represent
@@ -20,9 +24,9 @@ export default class ResourceBlueprint extends Blueprint {
     the resource, and tests for all of the above.
   `;
 
-  static params = '<name>';
+  public static params = '<name>';
 
-  locals(argv: any) {
+  public locals(argv: any) {
     let name = argv.name;
     name = pluralize(name);
     let plural = {
@@ -43,11 +47,11 @@ export default class ResourceBlueprint extends Blueprint {
     return { plural, singular };
   }
 
-  async postInstall(argv: any) {
+  public async postInstall(argv: any) {
     this.addRoute('resource', singularize(argv.name));
   }
 
-  async postUninstall(argv: any) {
+  public async postUninstall(argv: any) {
     this.removeRoute('resource', singularize(argv.name));
   }
 

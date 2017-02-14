@@ -6,19 +6,23 @@ import unwrap from '../lib/utils/unwrap';
 import { spawn, ChildProcess } from 'child_process';
 import { ui, Command, Project } from 'denali-cli';
 
+/**
+ * Run your app's test suite
+ */
 export default class TestCommand extends Command {
 
-  static commandName = 'test';
-  static description = "Run your app's test suite";
-  static longDescription = unwrap`
+  /* tslint:disable:completed-docs typedef */
+  public static commandName = 'test';
+  public static description = "Run your app's test suite";
+  public static longDescription = unwrap`
     Runs your app's test suite, and can optionally keep re-running it on each file
     change (--watch).`;
 
-  static runsInApp = true;
+  public static runsInApp = true;
 
-  static params = '[files...]';
+  public static params = '[files...]';
 
-  static flags = {
+  public static flags = {
     debug: {
       description: 'The test file you want to debug. Can only debug one file at a time.',
       type: <any>'string'
@@ -83,9 +87,9 @@ export default class TestCommand extends Command {
     }
   };
 
-  tests: ChildProcess;
+  public tests: ChildProcess;
 
-  async run(argv: any) {
+  public async run(argv: any) {
     let files = argv.files || 'test/**/*.js';
 
     let project = new Project({
@@ -106,7 +110,7 @@ export default class TestCommand extends Command {
         // Don't let broccoli rebuild while tests are still running, or else
         // we'll be removing the test files while in progress leading to cryptic
         // errors.
-        beforeRebuild: () => {
+        beforeRebuild: async () => {
           if (this.tests) {
             return new Promise<void>((resolve) => {
               this.tests.removeAllListeners('exit');
@@ -123,7 +127,7 @@ export default class TestCommand extends Command {
       });
     } else {
       try {
-        await project.build(argv.output)
+        await project.build(argv.output);
         this.runTests(files, project, argv);
       } catch (error) {
         process.exitCode = 1;
@@ -131,13 +135,13 @@ export default class TestCommand extends Command {
     }
   }
 
-  cleanExit() {
+  protected cleanExit() {
     if (this.tests) {
       this.tests.kill();
     }
   }
 
-  runTests(files: string[], project: Project, argv: any) {
+  protected runTests(files: string[], project: Project, argv: any) {
     let avaPath = path.join(process.cwd(), 'node_modules', '.bin', 'ava');
     let args = files.concat([ '!test/dummy/**/*', '--concurrency', argv.concurrency ]);
     if (argv.debug) {
@@ -171,7 +175,7 @@ export default class TestCommand extends Command {
       })
     });
     ui.info(`===> Running ${ project.pkg.name } tests ...`);
-    this.tests.on('exit', (code) => {
+    this.tests.on('exit', (code: number | null) => {
       if (code === 0) {
         ui.success('\n===> Tests passed 👍');
       } else {
@@ -181,7 +185,7 @@ export default class TestCommand extends Command {
       if (argv.watch) {
         ui.info('===> Waiting for changes to re-run ...\n\n');
        } else {
-         process.exitCode = code === null ? 1 : code;
+         process.exitCode = code == null ? 1 : code;
          ui.info(`===> exiting with ${ process.exitCode }`);
        }
     });

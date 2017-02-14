@@ -12,9 +12,19 @@ const debug = createDebug('denali:app:error-action');
 const errorHTML = fs.readFileSync(path.join(__dirname, '..', 'assets', 'error.html'), 'utf-8');
 const errorHTMLTemplate = template(errorHTML, { variable: 'data' });
 
+/**
+ * The default error action. When Denali encounters an error while processing a request, it will
+ * attempt to hand off that error to the `error` action, which can determine how to respond. This is
+ * a good spot to do things like report the error to an error-tracking service, sanitize the error
+ * response based on environment (i.e. a full stack trace in dev, but limited info in prod), etc.
+ *
+ * @export
+ * @class ErrorAction
+ * @extends {Action}
+ */
 export default class ErrorAction extends Action {
 
-  get originalAction() {
+  get originalAction(): string {
     return this.request._originalAction;
   }
 
@@ -23,24 +33,34 @@ export default class ErrorAction extends Action {
     this.error = options.error;
   }
 
-  // In case the incoming request doesn't have a Content-type header, it will
-  // land here, so default to respondWithJson()
-  respond(): Response {
+  /**
+   * Respond with JSON by default
+   */
+  public respond(): Response {
     return this.respondWithJson();
   }
 
-  respondWithHtml(): Response {
+  /**
+   * Render an HTML template with the error details
+   */
+  public respondWithHtml(): Response {
     let response = this.prepareError();
     let html = errorHTMLTemplate({ error: response.body });
     return new Response(response.status || 500, html, { contentType: 'text/html', raw: true });
   }
 
-  respondWithJson(): Response {
+  /**
+   * Render the error details as a JSON payload
+   */
+  public respondWithJson(): Response {
     debug('Client requested JSON, preparing error as JSON payload');
     return this.prepareError();
   }
 
-  prepareError(): Response {
+  /**
+   * Prepare the error for rendering. Santize the details of the error in production.
+   */
+  protected prepareError(): Response {
     let error = this.error;
     // Ensure a default status code of 500
     error.status = error.statusCode = this.error.statusCode || 500;
@@ -66,7 +86,10 @@ export default class ErrorAction extends Action {
     return new Response(error.status || 500, error, { raw: true });
   }
 
-  includeDebugInfo(): boolean {
+  /**
+   * Should the response include details about the error (i.e. a full stack trace)?
+   */
+  protected includeDebugInfo(): boolean {
     return this.config.logging && this.config.logging.showDebuggingInfo;
   }
 

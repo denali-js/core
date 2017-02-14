@@ -3,11 +3,15 @@ import * as moment from 'moment';
 import * as assert from 'assert';
 import unwrap from '../../lib/utils/unwrap';
 
+/**
+ * Generates a database schema migration
+ */
 export default class MigrationBlueprint extends Blueprint {
 
-  static blueprintName = 'migration';
-  static description = 'Generates a migration';
-  static longDescription = unwrap`
+  /* tslint:disable:completed-docs typedef */
+  public static blueprintName = 'migration';
+  public static description = 'Generates a database schema migration';
+  public static longDescription = unwrap`
     Usage: denali generate migration <name> [options]
 
     Generates a new blank migration. The filename will include the current Unix timestamp to ensure
@@ -16,9 +20,9 @@ export default class MigrationBlueprint extends Blueprint {
     Guides: http://denali.js.org/master/guides/data/migrations/
   `;
 
-  static params = '<name>';
+  public static params = '<name>';
 
-  locals(argv: any) {
+  public locals(argv: any) {
     let name = argv.name;
     assert(name, 'You must provide a name for this migration');
     let filename = `${ moment().format('X') }-${ name }`;

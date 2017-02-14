@@ -15,20 +15,15 @@ import { RelationshipDescriptor } from './descriptors';
 const debug = createDebug('denali:model');
 
 /**
- * The Model class is the core of Denali's unique approach to data and ORMs.
- * It acts as a wrapper and translation layer that provides a unified interface
- * to access and manipulate data, but translates those interactions into ORM
- * specific operations via ORM adapters.
+ * The Model class is the core of Denali's unique approach to data and ORMs. It acts as a wrapper
+ * and translation layer that provides a unified interface to access and manipulate data, but
+ * translates those interactions into ORM specific operations via ORM adapters.
  *
- * Models are able to maintain their relatively clean interface thanks to the
- * way the constructor actually returns a Proxy which wraps the Model instance,
- * rather than the Model instance directly. This means you can directly get and
- * set properties on your records, and the record (which is a Proxy-wrapped
- * Model) will translate and forward those calls to the underlying ORM adapter.
+ * Models are able to maintain their relatively clean interface thanks to the way the constructor
+ * actually returns a Proxy which wraps the Model instance, rather than the Model instance directly.
+ * This means you can directly get and set properties on your records, and the record (which is a
+ * Proxy-wrapped Model) will translate and forward those calls to the underlying ORM adapter.
  *
- * @export
- * @class Model
- * @extends {DenaliObject}
  * @module denali
  * @submodule data
  */
@@ -36,28 +31,18 @@ export default class Model extends DenaliObject {
 
   [key: string]: any;
 
-  container: Container;
-  static container: Container;
-
   /**
    * An internal cache of all attributes defined on this model.
-   *
-   * @private
-   * @static
-   * @type {string[]}
    */
   private static _attributesCache: string[] = null;
 
   /**
-   * The type of the Model class. This string is used as the container name for
-   * the model, as well as in several other areas of Denali (i.e. serializers,
-   * ORM adapters, etc). Conventionally, types are dasherized versions of the
-   * model name (i.e. the BlogPost model's type would be `"blog-post"`).
+   * The type of the Model class. This string is used as the container name for the model, as well
+   * as in several other areas of Denali (i.e. serializers, ORM adapters, etc). Conventionally,
+   * types are dasherized versions of the model name (i.e. the BlogPost model's type would be
+   * `"blog-post"`).
    *
    * @readonly
-   * @public
-   * @static
-   * @type {string}
    */
   public static get type(): string {
     let name = this.name;
@@ -71,20 +56,13 @@ export default class Model extends DenaliObject {
    * Alias for this.constructor.type
    *
    * @readonly
-   * @public
-   * @type {string}
    */
   public get type(): string {
     return (<typeof Model>this.constructor).type;
   }
 
   /**
-   *
-   *
-   * @static
-   * @param {*} id
-   * @param {*} options
-   * @returns {Promise<Model>}
+   * Find a single record by it's id.
    */
   public static async find(id: any, options?: any): Promise<Model> {
     debug(`${ this.type } find: ${ id }`);
@@ -94,11 +72,7 @@ export default class Model extends DenaliObject {
   }
 
   /**
-   *
-   *
-   * @static
-   * @param {*} options
-   * @returns {Promise<Model[]>}
+   * Find all records of this type.
    */
   public static async all(options?: any): Promise<Model[]> {
     debug(`${ this.type } all`);
@@ -109,12 +83,8 @@ export default class Model extends DenaliObject {
   }
 
   /**
-   *
-   *
-   * @static
-   * @param {*} query
-   * @param {*} options
-   * @returns {Promise<Model[]>}
+   * Query for records of this type that match the given criteria. The format of the criteria is
+   * determined by the ORM adapter used for this model.
    */
   public static async query(query: any, options?: any): Promise<Model[]> {
     debug(`${ this.type } query: ${ query }`);
@@ -126,12 +96,8 @@ export default class Model extends DenaliObject {
   }
 
   /**
-   *
-   *
-   * @static
-   * @param {*} query
-   * @param {*} options
-   * @returns {Promise<Model>}
+   * Find a single record that matches the given criteria. The format of the criteria is determined
+   * by the ORM adapter used for this model.
    */
   public static async findOne(query: any, options?: any): Promise<Model> {
     debug(`${ this.type } findOne: ${ query }`);
@@ -145,31 +111,21 @@ export default class Model extends DenaliObject {
 
   /**
    * Create a new record and immediately persist it.
-   *
-   * @static
-   * @param {*} data
-   * @param {*} options
-   * @returns {Promise<Model>}
    */
   public static async create(data: any, options?: any): Promise<Model> {
     debug(`creating ${ this.type }`);
-    return await Bluebird.try(() => {
-      let instance = new this({}, options);
-      // We do this here, rather than in buildRecord, in case some of the data
-      // supplied isn't an actual attribute (which means it will get set on
-      // the wrapper proxy this way).
-      Object.assign(instance, data);
-      return instance.save();
-    });
+    let instance = new this({}, options);
+    // We do this here, rather than in buildRecord, in case some of the data supplied isn't an
+    // actual attribute (which means it will get set on the wrapper proxy this way).
+    Object.assign(instance, data);
+    return await instance.save();
   }
 
   /**
-   * The ORM adapter specific to this model type. Defaults to the application's
-   * ORM adapter if none for this specific model type is found.
+   * The ORM adapter specific to this model type. Defaults to the application's ORM adapter if none
+   * for this specific model type is found.
    *
    * @readonly
-   * @static
-   * @type {ORMAdapter}
    */
   public static get adapter(): ORMAdapter {
     let adapter = this.container.lookup(`orm-adapter:${ this.type }`);
@@ -178,11 +134,10 @@ export default class Model extends DenaliObject {
   }
 
   /**
-   * The ORM adapter specific to this model type. Defaults to the application's
-   * ORM adapter if none for this specific model type is found.
+   * The ORM adapter specific to this model type. Defaults to the application's ORM adapter if none
+   * for this specific model type is found.
    *
    * @readonly
-   * @type {ORMAdapter}
    */
   public get adapter(): ORMAdapter {
     return (<typeof Model>this.constructor).adapter;
@@ -190,9 +145,6 @@ export default class Model extends DenaliObject {
 
   /**
    * The id of the record
-   *
-   * @public
-   * @type {*}
    */
   public get id(): any {
     return this.adapter.idFor(this);
@@ -202,23 +154,19 @@ export default class Model extends DenaliObject {
   }
 
   /**
-   * The underlying ORM adapter record. An opaque value to Denali, handled
-   * entirely by the ORM adapter.
-   *
-   * @type {*}
+   * The underlying ORM adapter record. An opaque value to Denali, handled entirely by the ORM
+   * adapter.
    */
   public record: any = null;
 
   /**
    * Creates an instance of Model.
-   *
-   * @param {*} [data={}]
-   * @param {*} options
    */
   constructor(data: any = {}, options?: any) {
     super();
     this.record = this.adapter.buildRecord(this.type, data, options);
 
+    // tslint:disable:completed-docs
     return new Proxy(this, {
 
       get(model: Model, property: string): any {
@@ -239,8 +187,7 @@ export default class Model extends DenaliObject {
             }
           }
         }
-        // It's not an attribute or a relationship method, so let the model
-        // respond normally
+        // It's not an attribute or a relationship method, so let the model respond normally
         return model[property];
       },
 
@@ -266,39 +213,27 @@ export default class Model extends DenaliObject {
       }
 
     });
+    // tslint:enable:completed-docs
   }
 
   /**
    * Persist this model.
-   *
-   * @param {*} options
-   * @returns {Promise<Model>}
    */
   public async save(options?: any): Promise<Model> {
-    return await Bluebird.try(async () => {
-      debug(`saving ${ this.type }`);
-      await this.adapter.saveRecord(this, options);
-      return this;
-    })
+    debug(`saving ${ this.type }`);
+    await this.adapter.saveRecord(this, options);
+    return this;
   }
 
   /**
    * Delete this model.
-   *
-   * @param {*} options
-   * @returns {Promise<void>}
    */
   public async delete(options?: any): Promise<void> {
-    return await Bluebird.try(() => this.adapter.deleteRecord(this, options));
+    await this.adapter.deleteRecord(this, options);
   }
 
   /**
    * Returns the related record(s) for the given relationship.
-   *
-   * @param {string} relationshipName
-   * @param {*} [query]
-   * @param {*} [options]
-   * @returns
    */
   public async getRelated(relationshipName: string, query?: any, options?: any): Promise<Model|Model[]> {
     let descriptor = (<any>this.constructor)[relationshipName] || (<any>this.constructor)[pluralize(relationshipName)];
@@ -317,52 +252,32 @@ export default class Model extends DenaliObject {
   }
 
   /**
-   * Replaces the related records for the given relationship with the supplied
-   * related records.
-   *
-   * @param {string} relationshipName
-   * @param {(Model|Model[])} relatedModels
-   * @param {*} [options]
-   * @returns
+   * Replaces the related records for the given relationship with the supplied related records.
    */
   public async setRelated(relationshipName: string, relatedModels: Model|Model[], options?: any): Promise<void> {
     let descriptor = (<any>this.constructor)[relationshipName] || (<any>this.constructor)[pluralize(relationshipName)];
-    await Bluebird.try(() => this.adapter.setRelated(this, relationshipName, descriptor, relatedModels, options));
+    await this.adapter.setRelated(this, relationshipName, descriptor, relatedModels, options);
   }
 
   /**
    * Add a related record to a hasMany relationship.
-   *
-   * @param {string} relationshipName
-   * @param {Model} relatedModel
-   * @param {*} [options]
    */
   public async addRelated(relationshipName: string, relatedModel: Model, options?: any): Promise<void> {
     let descriptor = (<any>this.constructor)[relationshipName] || (<any>this.constructor)[pluralize(relationshipName)];
-    let results = await Bluebird.try(() => this.adapter.addRelated(this, relationshipName, descriptor, relatedModel, options));
+    await this.adapter.addRelated(this, relationshipName, descriptor, relatedModel, options);
   }
 
   /**
    * Remove the given record from the hasMany relationship
-   *
-   * @param {string} relationshipName
-   * @param {Model} relatedModel
-   * @param {*} [options]
-   * @returns {Promise<void>}
    */
   public async removeRelated(relationshipName: string, relatedModel: Model, options?: any): Promise<void> {
     let descriptor = (<any>this.constructor)[relationshipName] || (<any>this.constructor)[pluralize(relationshipName)];
-    await Bluebird.try(() => this.adapter.removeRelated(this, relationshipName, descriptor, relatedModel, options))
+    await this.adapter.removeRelated(this, relationshipName, descriptor, relatedModel, options);
   }
 
   /**
-   * Call the supplied callback function for each attribute on this model,
-   * passing in the attribute name and attribute instance.
-   *
-   * @static
-   * @template T
-   * @param {(attributeName: string, value: any) => T} fn
-   * @returns {T[]}
+   * Call the supplied callback function for each attribute on this model, passing in the attribute
+   * name and attribute instance.
    */
   public static eachAttribute<T>(fn: (attributeName: string, value: any) => T): T[] {
     if (!this.hasOwnProperty('_attributesCache') || this._attributesCache == null) {
@@ -378,16 +293,15 @@ export default class Model extends DenaliObject {
     });
   }
 
-  static _relationshipsCache: string[];
+  /**
+   * A list of relationships found on this model, so we can avoid iterating over all static
+   * properties every time.
+   */
+  private static _relationshipsCache: string[];
 
   /**
-   * Call the supplied callback function for each relationship on this model,
-   * passing in the relationship name and relationship instance.
-   *
-   * @static
-   * @template T
-   * @param {(relationshipName: string, descriptor: RelationshipDescriptor) => T} fn
-   * @returns {T[]}
+   * Call the supplied callback function for each relationship on this model, passing in the
+   * relationship name and relationship instance.
    */
   public static eachRelationship<T>(fn: (relationshipName: string, descriptor: RelationshipDescriptor) => T): T[] {
     if (!this.hasOwnProperty('_relationshipsCache') || this._relationshipsCache == null) {
@@ -405,10 +319,6 @@ export default class Model extends DenaliObject {
 
   /**
    * Lookup a model class by type.
-   *
-   * @public
-   * @param {string} type
-   * @returns {typeof Model}
    */
   public modelFor(type: string): typeof Model {
     return this.container.lookup(`model:${ type }`);
@@ -416,10 +326,6 @@ export default class Model extends DenaliObject {
 
   /**
    * Lookup a model class by type.
-   *
-   * @static
-   * @param {string} type
-   * @returns {Model}
    */
   public static modelFor(type: string): Model {
     return this.container.lookup(`model:${ type }`);
@@ -427,9 +333,6 @@ export default class Model extends DenaliObject {
 
   /**
    * Lookup a service by type
-   *
-   * @param {string} type
-   * @returns {Service}
    */
   public service(type: string): Service {
     return this.container.lookup(`service:${ type }`);
@@ -437,17 +340,14 @@ export default class Model extends DenaliObject {
 
   /**
    * Lookup a service by type
-   *
-   * @static
-   * @param {string} type
-   * @returns {Service}
    */
   public static service(type: string): Service {
     return this.container.lookup(`service:${ type }`);
   }
 
   /**
-   * @returns {string}
+   * Return an human-friendly string representing this Model instance, with a summary of it's
+   * attributes
    */
   public inspect(): string {
     let attributesSummary: string[] = (<typeof Model>this.constructor).eachAttribute((attr) => {
@@ -457,9 +357,9 @@ export default class Model extends DenaliObject {
   }
 
   /**
-   * @returns {string}
+   * Return an human-friendly string representing this Model instance
    */
-  toString(): string {
+  public toString(): string {
     return `<${ startCase(this.type) }:${ this.id == null ? '-new-' : this.id }>`;
   }
 

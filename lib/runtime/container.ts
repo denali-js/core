@@ -3,7 +3,7 @@ import {
   upperFirst,
   camelCase,
   keys,
-  merge,
+  merge
 } from 'lodash';
 import DenaliObject from '../metal/object';
 import Logger from './logger';
@@ -39,13 +39,10 @@ type Constructor<T> = new(...args: any[]) => T;
 /**
  * The Container houses all the various classes that makeup a Denali app's
  *
- * runtime. It holds references to the modules themselves, as well as managing
- * lookup logic (i.e. some types of classes fall back to a generic "application"
- * class if a more specific one is not found.
+ * runtime. It holds references to the modules themselves, as well as managing lookup logic (i.e.
+ * some types of classes fall back to a generic "application" class if a more specific one is not
+ * found.
  *
- * @export
- * @class Container
- * @extends {DenaliObject}
  * @module denali
  * @submodule runtime
  */
@@ -53,25 +50,16 @@ export default class Container extends DenaliObject {
 
   /**
    * An internal cache of lookups and their resolved values
-   *
-   * @private
-   * @type {ModuleRegistry}
    */
   private _cache: ModuleRegistry = {};
 
   /**
    * The internal cache of available references
-   *
-   * @private
-   * @type {ModuleRegistry}
    */
   private _registry: ModuleRegistry = {};
 
   /**
    * A reference to the application config
-   *
-   * @readonly
-   * @type {*}
    */
   public get config(): any {
     return this.lookup('config:environment');
@@ -79,9 +67,6 @@ export default class Container extends DenaliObject {
 
   /**
    * A reference to the application logger
-   *
-   * @readonly
-   * @type {Logger}
    */
   public get logger(): Logger {
     return this.lookup('logger:main');
@@ -89,9 +74,6 @@ export default class Container extends DenaliObject {
 
   /**
    * Register a value under the given `fullName` for later use.
-   *
-   * @param {string} name
-   * @param {*} value
    */
   public register(name: string, value: any): void {
     let parsedName = this.parseName(name);
@@ -99,11 +81,7 @@ export default class Container extends DenaliObject {
   }
 
   /**
-   * Lookup a value in the container. Uses type specific lookup logic if
-   * available.
-   *
-   * @param {string} name
-   * @returns {*}
+   * Lookup a value in the container. Uses type specific lookup logic if available.
    */
   public lookup(name: string): any {
     let parsedName = this.parseName(name);
@@ -117,11 +95,8 @@ export default class Container extends DenaliObject {
    * Lookup all modules of a specific type in the container. Returns an object of all the modules
    * keyed by their module path (i.e. `role:employees/manager` would be found under
    * `lookupAll('role')['employees/manager']`
-   *
-   * @param {string} type
-   * @returns {{ [moduleName: string]: any }}
    */
-  lookupAll(type: string): { [moduleName: string]: any } {
+  public lookupAll(type: string): { [moduleName: string]: any } {
     return keys(this._registry).filter((fullName) => {
       return this.parseName(fullName).type === type;
     }).reduce((typeMap: ModuleRegistry, fullName) => {
@@ -131,10 +106,9 @@ export default class Container extends DenaliObject {
   }
 
   /**
-   * @private
-   * @param {ParsedName} parsedName
-   * @param {LookupOptions} [options={ containerize: false, singleton: false }]
-   * @returns
+   * The base lookup method that most other lookup methods delegate to. Attempts to lookup a cached
+   * resolution for the parsedName provided. If none is found, performs the lookup and caches it
+   * for future retrieval
    */
   private _lookupOther(parsedName: ParsedName, options: LookupOptions = { containerize: false, singleton: false }) {
     // Cache all this containerization / singleton instantiation, etc
@@ -175,9 +149,7 @@ export default class Container extends DenaliObject {
   }
 
   /**
-   * @private
-   * @param {ParsedName} parsedName
-   * @returns {Model}
+   * Lookup a model
    */
   private lookupModel(parsedName: ParsedName): Model {
     return this._lookupOther(parsedName, {
@@ -186,9 +158,7 @@ export default class Container extends DenaliObject {
   }
 
   /**
-   * @private
-   * @param {ParsedName} parsedName
-   * @returns {Service}
+   * Lookup a service
    */
   private lookupService(parsedName: ParsedName): Service {
     return this._lookupOther(parsedName, {
@@ -198,9 +168,8 @@ export default class Container extends DenaliObject {
   }
 
   /**
-   * @private
-   * @param {ParsedName} parsedName
-   * @returns {OrmAdapter}
+   * Lookup an ORM adapter. If not found, falls back to the application ORM adapter as determined
+   * by the `ormAdapter` config property.
    */
   private lookupOrmAdapter(parsedName: ParsedName): OrmAdapter {
     return this._lookupOther(parsedName, {
@@ -216,9 +185,7 @@ export default class Container extends DenaliObject {
   }
 
   /**
-   * @private
-   * @param {ParsedName} parsedName
-   * @returns {Serializer}
+   * Lookup a serializer. Falls back to the application serializer if not found.
    */
   private lookupSerializer(parsedName: ParsedName): Serializer {
     return this._lookupOther(parsedName, {
@@ -229,11 +196,10 @@ export default class Container extends DenaliObject {
   }
 
   /**
-   * @private
-   * @param {any} Class
-   * @returns {*}
+   * Inject a reference to this container into the looked up class
    */
   // See https://github.com/Microsoft/TypeScript/pull/13743#issue-203908151
+  // tslint:disable
   private _containerizeClass<T extends Constructor<{}>>(Class: T) {
     let container = this; // eslint-disable-line consistent-this
     class ContaineredClass extends Class {
@@ -247,13 +213,10 @@ export default class Container extends DenaliObject {
     });
     return ContaineredClass;
   }
+  // tslint:enable
 
   /**
    * Take the supplied name which can come in several forms, and normalize it.
-   *
-   * @private
-   * @param {string} name
-   * @returns {ParsedName}
    */
   private parseName(name: string): ParsedName {
     let [ type, modulePath ] = name.split(':');
@@ -270,6 +233,9 @@ export default class Container extends DenaliObject {
 }
 
 
+/**
+ * If the value is a function, execute it and return the value, otherwise, return the value itself.
+ */
 function result(value: any): any {
   if (typeof value === 'function') {
     return value();

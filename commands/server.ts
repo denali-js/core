@@ -10,11 +10,15 @@ import * as createDebug from 'debug';
 
 const debug = createDebug('denali:commands:server');
 
+/**
+ * Runs the denali server for local or production use.
+ */
 export default class ServerCommand extends Command {
 
-  static commandName = 'server';
-  static description = 'Runs the denali server for local or production use.';
-  static longDescription = unwrap`
+  /* tslint:disable:completed-docs typedef */
+  public static commandName = 'server';
+  public static description = 'Runs the denali server for local or production use.';
+  public static longDescription = unwrap`
     Launches the Denali server running your application.
 
     In a development environment, the server does several things:
@@ -27,9 +31,9 @@ export default class ServerCommand extends Command {
 
      * the server will fork worker processes to maximize CPU core usage`;
 
-  static runsInApp = true;
+  public static runsInApp = true;
 
-  static flags = {
+  public static flags = {
     debug: {
       description: 'Run in debug mode (add the --debug flag to node, launch node-inspector)',
       defaultValue: false,
@@ -67,24 +71,25 @@ export default class ServerCommand extends Command {
       defaultValue: false,
       type: <any>'boolean'
     }
-  }
+  };
 
-  server: ChildProcess;
+  public server: ChildProcess;
 
-  async run(argv: any) {
+  public async run(argv: any) {
     debug('running server command');
     let environment = argv.environment = argv.production ? 'production' : process.env.DENALI_ENV || process.env.NODE_ENV || 'development';
     argv.watch = argv.watch || environment === 'development';
 
     if (environment === 'production') {
-      return this.startServer(argv);
+      this.startServer(argv);
+      return;
     }
 
     let project = new Project({
       environment,
       printSlowTrees: argv.printSlowTrees,
       audit: argv.audit || environment === 'development',
-      lint: argv.lint ||environment !== 'production',
+      lint: argv.lint || environment !== 'production',
       buildDummy: true
     });
 
@@ -112,13 +117,13 @@ export default class ServerCommand extends Command {
     }
   }
 
-  cleanExit() {
+  protected cleanExit() {
     if (this.server) {
       this.server.kill();
     }
   }
 
-  startServer(argv: any) {
+  protected startServer(argv: any) {
     let dir = argv.output;
     let args = [ 'app/index.js' ];
     let defaultEnvs = {

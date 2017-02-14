@@ -7,15 +7,19 @@ import rewrap from '../lib/utils/rewrap';
 import * as chalk from 'chalk';
 import { ui, Command, Project } from 'denali-cli';
 
+/**
+ * Launch a REPL with your application loaded
+ */
 export default class ConsoleCommand extends Command {
 
-  static commandName = 'console';
-  static description = 'Launch a REPL with your application loaded';
-  static longDescription = unwrap`
+  /* tslint:disable:completed-docs typedef */
+  public static commandName = 'console';
+  public static description = 'Launch a REPL with your application loaded';
+  public static longDescription = unwrap`
     Starts a REPL (Read-Eval-Print Loop) with your application initialized and
     loaded into memory. Type \`.help\` in the REPL environment for more details.`;
 
-  static flags = {
+  public static flags = {
     environment: {
       description: 'The target environment to build for.',
       defaultValue: 'development',
@@ -28,9 +32,9 @@ export default class ConsoleCommand extends Command {
     }
   };
 
-  runsInApp = true;
+  public static runsInApp = true;
 
-  async run(argv: any) {
+  public async run(argv: any) {
     ui.info(`Loading ${ argv.environment } environment. Type '.help' for details`);
     let project = new Project({
       environment: argv.environment,
@@ -52,7 +56,7 @@ export default class ConsoleCommand extends Command {
     });
 
     let context = {
-      application: application,
+      application,
       container: application.container,
       modelFor(type: string) {
         return application.container.lookup(`model:${ type }`);
@@ -63,7 +67,7 @@ export default class ConsoleCommand extends Command {
     consoleRepl.defineCommand('help', {
       help: '',
       action() {
-        // eslint-disable-next-line no-console
+        // tslint:disable-next-line:no-console
         console.log(rewrap`
           Welcome to the Denali console!
 

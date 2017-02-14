@@ -10,7 +10,7 @@ interface RelationshipsConfigs {
 export interface RelationshipConfig {
   strategy?: 'embed' | 'id';
   key?: string;
-  serializer?: string
+  serializer?: string;
 }
 
 /**
@@ -18,23 +18,14 @@ export interface RelationshipConfig {
  * transformations to it. They allow you to decouple what data is sent from how that data is
  * structured / rendered.
  *
- * @export
- * @class Serializer
- * @extends {DenaliObject}
  * @module denali
  * @submodule data
  */
 abstract class Serializer extends DenaliObject {
 
-  protected container: Container;
-
   /**
    * Take the supplied Response instance and the supplied options and return a rendered a JSON
    * response object.
-   *
-   * @abstract
-   * @param {Response} response
-   * @param {*} [options]
    */
   public abstract serialize(response: Response, options?: any): Promise<void> | void;
 
@@ -48,8 +39,7 @@ abstract class Serializer extends DenaliObject {
    *
    * This method is optional - the default implementation returns the payload unchanged.
    *
-   * @param {*} payload
-   * @returns {*}
+   * @param payload The incoming request body
    */
   public parse(payload: any): any {
     return payload;
@@ -58,9 +48,6 @@ abstract class Serializer extends DenaliObject {
   /**
    * The list of attribute names that should be serialized. Attributes not included in this list
    * will be omitted from the final rendered payload.
-   *
-   * @protected
-   * @type {string[]}
    */
   protected attributes: string[] = [];
 
@@ -78,9 +65,6 @@ abstract class Serializer extends DenaliObject {
    *   * `id`: include only the id of the related record(s)
    *
    * What the embedded records or ids look like is up to each serializer to determine.
-   *
-   * @protected
-   * @type {RelationshipsConfigs}
    */
   protected relationships: RelationshipsConfigs = {};
 

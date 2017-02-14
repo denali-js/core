@@ -5,19 +5,16 @@ import {
 import * as chalk from 'chalk';
 import DenaliObject from '../metal/object';
 
-type LogLevel = 'success' | 'info' | 'warn' | 'error';
+type LogLevel = 'info' | 'warn' | 'error';
 
 interface ColorsMap {
   [level: string]: chalk.ChalkChain;
 }
 
 /**
- * A simple Logger class that adds timestamps and supports multiple levels of
- * logging, colorized output, and control over verbosity.
+ * A simple Logger class that adds timestamps and supports multiple levels of logging, colorized
+ * output, and control over verbosity.
  *
- * @export
- * @class Logger
- * @extends {DenaliObject}
  * @module denali
  * @submodule runtime
  */
@@ -25,22 +22,16 @@ export default class Logger extends DenaliObject {
 
   /**
    * Default log level if none specified.
-   *
-   * @type {LogLevel}
    */
   public loglevel: LogLevel;
 
   /**
    * Specify if logs should be colorized.
-   *
-   * @type {boolean}
    */
-  public colorize: boolean = true;
+  public colorize = true;
 
   /**
    * Available log levels that can be used.
-   *
-   * @type {LogLevel[]}
    */
   public levels: LogLevel[] = [
     'info',
@@ -50,11 +41,8 @@ export default class Logger extends DenaliObject {
 
   /**
    * Color map for the available levels.
-   *
-   * @type {ColorsMap}
    */
   public colors: ColorsMap = {
-    success: chalk.green,
     info: chalk.white,
     warn: chalk.yellow,
     error: chalk.red
@@ -62,8 +50,6 @@ export default class Logger extends DenaliObject {
 
   /**
    * Log at the 'info' level.
-   *
-   * @param {*} msg
    */
   public info(msg: any): void {
     this.log('info', msg);
@@ -71,8 +57,6 @@ export default class Logger extends DenaliObject {
 
   /**
    * Log at the 'warn' level.
-   *
-   * @param {*} msg
    */
   public warn(msg: any): void {
     this.log('warn', msg);
@@ -80,22 +64,13 @@ export default class Logger extends DenaliObject {
 
   /**
    * Log at the 'error' level.
-   *
-   * @param {*} msg
    */
   public error(msg: any): void {
     this.log('error', msg);
   }
 
-  public success(msg: any): void {
-    this.log('success', msg);
-  }
-
   /**
    * Log a message to the logger at a specific log level.
-   *
-   * @param {LogLevel} level
-   * @param {*} msg
    */
   public log(level: LogLevel, msg: any): void {
     if (arguments.length !== 1) {
@@ -113,9 +88,9 @@ export default class Logger extends DenaliObject {
       msg = colorizer(msg);
       levelLabel = colorizer(levelLabel);
     }
-    /* eslint-disable no-console */
+    /* tslint:disable:no-console */
     console.log(`[${ timestamp }] ${ levelLabel } - ${ msg }`);
-    /* eslint-enable no-console */
+    /* tslint:enable:no-console */
   }
 
 }

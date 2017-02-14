@@ -7,20 +7,24 @@ import { exec } from 'child_process';
 const run = Bluebird.promisify<[ string, string ], string>(exec);
 const commandExists = Bluebird.promisify<boolean, string>(cmdExists);
 
+/**
+ * Install an addon in your app.
+ */
 export default class InstallCommand extends Command {
 
-  static commandName = 'install';
-  static description = 'Install an addon in your app.';
-  static longDescription = unwrap`
+  /* tslint:disable:completed-docs typedef */
+  public static commandName = 'install';
+  public static description = 'Install an addon in your app.';
+  public static longDescription = unwrap`
     Installs the supplied addon in the project. Essentially a shortcut for
     \`npm install --save <addon>\`, with sanity checking that the project actually is
     a Denali addon.`;
 
-  static runsInApp = true;
+  public static runsInApp = true;
 
-  static params = '<addonName>';
+  public static params = '<addonName>';
 
-  async run(argv: any) {
+  public async run(argv: any) {
     let pkgManager = await commandExists('yarn') ? 'yarn' : 'npm';
     try {
       let [ stdout, stderr ] = await run(`npm info ${ argv.addonName } --json`);
@@ -28,7 +32,8 @@ export default class InstallCommand extends Command {
       let pkg = JSON.parse(stdout);
       let isAddon = pkg.keywords.includes('denali-addon');
       if (!isAddon) {
-        return this.fail(`${ argv.addonName } is not a Denali addon.`);
+        this.fail(`${ argv.addonName } is not a Denali addon.`);
+        return;
       }
 
       spinner.start(`Installing ${ pkg.name }@${ pkg.version }`);
@@ -37,11 +42,12 @@ export default class InstallCommand extends Command {
       ui.warn(installStderr);
       spinner.succeed();
     } catch (err) {
-      return this.fail(err);
+      this.fail(err);
+      return;
     }
   }
 
-  fail(msg: string) {
+  private fail(msg: string) {
     ui.error(msg);
     spinner.fail('Install failed');
     process.exit(1);

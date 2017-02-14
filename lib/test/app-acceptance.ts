@@ -10,9 +10,21 @@ import MockResponse from './mock-response';
 import DenaliObject from '../metal/object';
 import Application from '../runtime/application';
 
+/**
+ * The AppAcceptance class represents an app acceptance test. It spins up an in-memory instance of
+ * the application under test, and exposes methods to submit simulated requests to the application,
+ * and get the response. This helps keep acceptance tests lightweight and easily parallelizable,
+ * since they don't need to bind to an actual port.
+ *
+ * @module denali
+ * @submodule test
+ */
 export class AppAcceptance extends DenaliObject {
 
-  application: Application;
+  /**
+   * The application instance under test
+   */
+  public application: Application;
 
   constructor() {
     super();
@@ -26,18 +38,32 @@ export class AppAcceptance extends DenaliObject {
     });
   }
 
-  start(): Promise<void> {
-    return this.application.runInitializers();
+  /**
+   * Start the application (note: this won't actually start the HTTP server, but performs all the
+   * other startup work for you).
+   */
+  public async start(): Promise<void> {
+    await this.application.runInitializers();
   }
 
-  _injections: { [fullName: string]: any } = {};
+  /**
+   * An internal registry of container injections.
+   */
+  protected _injections: { [fullName: string]: any } = {};
 
-  headers: { [name: string]: string } = {
+  /**
+   * Default headers that are applied to each request. Useful for handling API-wide content-types,
+   * sessions, etc.
+   */
+  public headers: { [name: string]: string } = {
     Accept: 'application/json',
     'Content-Type': 'application/json'
   };
 
-  async request(options: { method: string, url: string, body?: any, headers?: { [key: string]: string } }) {
+  /**
+   * Submit a simulated HTTP request to the application.
+   */
+  public async request(options: { method: string, url: string, body?: any, headers?: { [key: string]: string } }): Promise<{ status: number, body: any }> {
     let body: any = null;
     if (options.body) {
       body = typeof options.body === 'string' ? options.body : JSON.stringify(options.body);
@@ -49,82 +75,131 @@ export class AppAcceptance extends DenaliObject {
       url: options.url,
       headers: assign({}, this.headers, options.headers)
     });
-    return new Promise((resolve, reject) => {
+    return new Promise<{ status: number, body: any }>((resolve, reject) => {
       let res = new MockResponse(() => {
         let resBody = res._getString();
         if (res.statusCode < 500) {
           try {
             resBody = res._getJSON();
-          } catch (e) {} // eslint-disable-line no-empty
-          resolve({ status: res.statusCode, body: resBody });
+          } finally {
+            resolve({ status: res.statusCode, body: resBody });
+          }
         } else {
           resBody = resBody.replace(/\\n/g, '\n');
           reject(new Error(`Request failed - ${ req.method.toUpperCase() } ${ req.url } returned a ${ res.statusCode }:\n${ resBody }`));
         }
       });
 
+      // tslint:disable-next-line:no-floating-promises
       this.application.router.handle(<any>req, <any>res);
 
+      let SIMULATED_WRITE_DELAY = 10;
       setTimeout(() => {
         if (body) {
           req.write(body);
         }
         req.end();
-      }, 10);
+      }, SIMULATED_WRITE_DELAY);
     });
   }
 
-  get(url: string, options = {}): Promise<{ status: number, body: any }> {
+  /**
+   * Send a simulated GET request
+   */
+  public async get(url: string, options = {}): Promise<{ status: number, body: any }> {
     return this.request(Object.assign(options, { url, method: 'get' }));
   }
-  head(url: string, options = {}): Promise<{ status: number, body: any }> {
+  /**
+   * Send a simulated HEAD request
+   */
+  public async head(url: string, options = {}): Promise<{ status: number, body: any }> {
     return this.request(Object.assign(options, { url, method: 'head' }));
   }
-  delete(url: string, options = {}): Promise<{ status: number, body: any }> {
+  /**
+   * Send a simulated DELETE request
+   */
+  public async delete(url: string, options = {}): Promise<{ status: number, body: any }> {
     return this.request(Object.assign(options, { url, method: 'delete' }));
   }
-  post(url: string, body: any, options = {}): Promise<{ status: number, body: any }> {
+  /**
+   * Send a simulated POST request
+   */
+  public async post(url: string, body: any, options = {}): Promise<{ status: number, body: any }> {
     return this.request(Object.assign(options, { url, body, method: 'post' }));
   }
-  put(url: string, body: any, options = {}): Promise<{ status: number, body: any }> {
+  /**
+   * Send a simulated PUT request
+   */
+  public async put(url: string, body: any, options = {}): Promise<{ status: number, body: any }> {
     return this.request(Object.assign(options, { url, body, method: 'put' }));
   }
-  patch(url: string, body: string, options = {}): Promise<{ status: number, body: any }> {
+  /**
+   * Send a simulated PATCH request
+   */
+  public async patch(url: string, body: string, options = {}): Promise<{ status: number, body: any }> {
     return this.request(Object.assign(options, { url, body, method: 'patch' }));
   }
 
-  getHeader(name: string): string {
+  /**
+   * Get the current value of a default header
+   */
+  public getHeader(name: string): string {
     return this.headers[name];
   }
 
-  setHeader(name: string, value: string): void {
+  /**
+   * Set a default header value
+   */
+  public setHeader(name: string, value: string): void {
     this.headers[name] = value;
   }
 
-  removeHeader(name: string): void {
+  /**
+   * Remove a default header value
+   */
+  public removeHeader(name: string): void {
     delete this.headers[name];
   }
 
-  lookup(name: string): any {
+  /**
+   * Lookup an entry in the test application container
+   */
+  public lookup(name: string): any {
     return this.application.container.lookup(name);
   }
 
-  inject(name: string, value: any): void {
+  /**
+   * Overwrite an entry in the test application container. Use `restore()` to restore the original
+   * container entry later.
+   */
+  public inject(name: string, value: any): void {
     this._injections[name] = this.application.container.lookup(name);
     this.application.container.register(name, value);
   }
 
-  restore(name: string): void {
+  /**
+   * Restore the original container entry for an entry that was previously overwritten by `inject()`
+   */
+  public restore(name: string): void {
     this.application.container.register(name, this._injections[name]);
     delete this._injections[name];
   }
 
-  shutdown(): Promise<void> {
-    return this.application.shutdown();
+  /**
+   * Shut down the test application, cleaning up any resources in use
+   */
+  public async shutdown(): Promise<void> {
+    await this.application.shutdown();
   }
 
 }
 
+/**
+ * A helper method for setting up an app acceptance test. Adds beforeEach/afterEach hooks to the
+ * current ava test suite which will setup and teardown the acceptance test. They also setup a test
+ * transaction and roll it back once the test is finished (for the ORM adapters that support it), so
+ * your test data won't pollute the database.
+ */
 export default function appAcceptanceTest(ava: any) {
 
   ava.beforeEach(async (t: any) => {

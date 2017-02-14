@@ -5,11 +5,15 @@ import {
 import { Blueprint } from 'denali-cli';
 import unwrap from '../../lib/utils/unwrap';
 
+/**
+ * Generates a blank serializer
+ */
 export default class SerializerBlueprint extends Blueprint {
 
-  static blueprintName = 'serializer';
-  static description = 'Generates a blank serializer';
-  static longDescription = unwrap`
+  /* tslint:disable:completed-docs typedef */
+  public static blueprintName = 'serializer';
+  public static description = 'Generates a blank serializer';
+  public static longDescription = unwrap`
     Usage: denali generate serializer <name> [options]
 
     Generates a blank serializer for the given model.
@@ -17,9 +21,9 @@ export default class SerializerBlueprint extends Blueprint {
     Guides: http://denali.js.org/master/guides/data/serializers/
   `;
 
-  static params = '<name>';
+  public static params = '<name>';
 
-  locals(argv: any) {
+  public locals(argv: any) {
     let name = argv.name;
     return {
       name,

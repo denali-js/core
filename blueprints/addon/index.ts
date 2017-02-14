@@ -11,11 +11,15 @@ import unwrap from '../../lib/utils/unwrap';
 const run = Bluebird.promisify<[ string, string ], string, ExecOptions>(exec);
 const commandExists = Bluebird.promisify<boolean, string>(cmdExists);
 
+/**
+ * Creates a new addon project, initializes git and installs dependencies
+ */
 export default class AddonBlueprint extends Blueprint {
 
-  static blueprintName = 'addon';
-  static description = 'Creates a new addon project, initializes git and installs dependencies';
-  static longDescription = unwrap`
+  /* tslint:disable:completed-docs typedef */
+  public static blueprintName = 'addon';
+  public static description = 'Creates a new addon project, initializes git and installs dependencies';
+  public static longDescription = unwrap`
     Usage: denali generate addon <name> [options]
 
     Scaffolds a new addon. Sets up the correct directory structure, initializes a git repo, and
@@ -24,9 +28,9 @@ export default class AddonBlueprint extends Blueprint {
     Guides: http://denali.js.org/master/guides/utilities/addons/
   `;
 
-  static params = '<name>';
+  public static params = '<name>';
 
-  static flags = {
+  public static flags = {
     'skip-deps': {
       description: 'Do not install dependencies on new addon',
       defaultValue: false,
@@ -37,9 +41,9 @@ export default class AddonBlueprint extends Blueprint {
       defaultValue: false,
       type: <any>'boolean'
     }
-  }
+  };
 
-  locals(argv: any) {
+  public locals(argv: any) {
     let name = argv.name;
     return {
       name,
@@ -49,7 +53,7 @@ export default class AddonBlueprint extends Blueprint {
     };
   }
 
-  async postInstall(argv: any) {
+  public async postInstall(argv: any) {
     let name = argv.name;
     ui.info('');
     spinner.start('Installing dependencies');

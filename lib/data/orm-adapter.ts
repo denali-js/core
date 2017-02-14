@@ -3,178 +3,140 @@ import Model from './model';
 import { RelationshipDescriptor } from './descriptors';
 
 /**
- * The ORMAdapter class is responsible for enabling Denali to communicate with
- * the ORM of your choice. It does this by boiling down the possible actions
- * that a user might before against a Model that would involve persistence into
- * a set of basic operations. Your adapter then implements these operations, and
- * Denali can build on top of that.
+ * The ORMAdapter class is responsible for enabling Denali to communicate with the ORM of your
+ * choice. It does this by boiling down the possible actions that a user might before against a
+ * Model that would involve persistence into a set of basic operations. Your adapter then implements
+ * these operations, and Denali can build on top of that.
  *
- * @export
- * @class ORMAdapter
- * @extends {DenaliObject}
  * @module denali
  * @submodule data
  */
 abstract class ORMAdapter extends DenaliObject {
 
   /**
-   * Find a record by ID, basic query, or adapter-specific query.
-   *
-   * To find a single record by it's id, just call:
-   *
-   *     Post.find(1)
-   *
-   * Denali also allows users to supply simple queries in a universal format
-   * of an object with properties:
-   *
-   *     Post.find({ title: 'foo' })
-   *
-   * This allows basic querying regardless of the ORM used. However, for more
-   * advanced use cases, rather than trying to design a single interface that
-   * could support all ORMs, Denali simply defers to ORM specific syntax via
-   * a query function:
-   *
-   *     Post.find((myQueryBuilder) => {
-   *       return myQueryBuilder.foo('bar');
-   *     });
-   *
-   * This approach allows you to provide ultimately flexibility for querying
-   * (the arguments to the query function are supplied by you and can be ORM
-   * specific).
-   *
-   * The `options` argument allows for additional, orthogonal options in case
-   * your ORM needs it. It's treated as an opaque, pass through value by Deanli.
-   *
-   * @abstract
-   * @param {string} type
-   * @param {*} id
-   * @param {*} options
-   * @returns {Promise<any>}
+   * Find a record by id.
    */
-  abstract find(type: string, id: any, options: any): Promise<any>;
-
-  abstract findOne(type: string, query: any, options: any): Promise<any>;
-
-  abstract all(type: string, options: any): Promise<any[]>;
-
-  abstract query(type: string, query: any, options: any): Promise<any[]>;
+  public abstract async find(type: string, id: any, options: any): Promise<any>;
 
   /**
-   * Return the id for the given record.
-   *
-   * @abstract
-   * @param {Model} model
-   * @returns {*}
+   * Find a single record that matches the given query.
    */
-  abstract idFor(model: Model): any;
+  public abstract async findOne(type: string, query: any, options: any): Promise<any>;
 
-  abstract setId(model: Model, value: any): void;
+  /**
+   * Find all records of this type.
+   */
+  public abstract async all(type: string, options: any): Promise<any[]>;
 
-  abstract buildRecord(type: string, data: any, options: any): any;
+  /**
+   * Find all records that match the given query.
+   */
+  public abstract async query(type: string, query: any, options: any): Promise<any[]>;
+
+  /**
+   * Return the id for the given model.
+   */
+  public abstract idFor(model: Model): any;
+
+  /**
+   * Set the id for the given model.
+   */
+  public abstract setId(model: Model, value: any): void;
+
+  /**
+   * Build an internal record instance of the given type with the given data. Note that this method
+   * should return the internal, ORM representation of the record, not a Denali Model.
+   */
+  public abstract buildRecord(type: string, data: any, options: any): any;
 
   /**
    * Return the value for the given attribute on the given record.
-   *
-   * @abstract
-   * @param {Model} model
-   * @param {string} attribute
-   * @returns {*}
    */
-  abstract getAttribute(model: Model, attribute: string): any;
+  public abstract getAttribute(model: Model, attribute: string): any;
 
   /**
    * Set the value for the given attribute on the given record.
    *
-   * @abstract
-   * @param {Model} model
-   * @param {string} attribute
-   * @param {*} value
-   * @returns {boolean} should return true if set operation was successful
+   * @returns returns true if set operation was successful
    */
-  abstract setAttribute(model: Model, attribute: string, value: any): boolean;
+  public abstract setAttribute(model: Model, attribute: string, value: any): boolean;
 
   /**
-   * Delete the value for the given attribute on the given record. The
-   * semantics of this may behave slightly differently depending on backend -
-   * SQL databases may NULL out the value, while document stores like Mongo may
-   * actually delete the key from the document (rather than just nulling it out)
+   * Delete the value for the given attribute on the given record. The semantics of this may behave
+   * slightly differently depending on backend - SQL databases may NULL out the value, while
+   * document stores like Mongo may actually delete the key from the document (rather than just
+   * nulling it out)
    *
-   * @abstract
-   * @param {Model} model
-   * @param {string} attribute
-   * @returns {boolean} should return true if delete operation was successful
+   * @returns returns true if delete operation was successful
    */
-  abstract deleteAttribute(model: Model, attribute: string): boolean;
+  public abstract deleteAttribute(model: Model, attribute: string): boolean;
 
   /**
    * Return the related record(s) for the given relationship.
    *
-   * @abstract
-   * @param {Model} model
-   * @param {string} relationship
-   * @param {RelationshipDescriptor} descriptor
+   * @param model The model whose related records are being fetched
+   * @param relationship The name of the relationship on the model that should be fetched
+   * @param descriptor The RelationshipDescriptor of the relationship being fetch
+   * @param query An optional query to filter the related records by
    */
-  abstract getRelated(model: Model, relationship: string, descriptor: RelationshipDescriptor, query: any, options: any): Promise<any|any[]>;
+  public abstract async getRelated(model: Model, relationship: string, descriptor: RelationshipDescriptor, query: any, options: any): Promise<any|any[]>;
 
   /**
-   * Set the related record(s) for the given relationship.
+   * Set the related record(s) for the given relationship. Note: for has-many relationships, the
+   * entire set of existing related records should be replaced by the supplied records. The old
+   * related records should be "unlinked" in their relationship. Whether that results in the
+   * deletion of those old records is up to the ORM adapter, although it is recommended that they
+   * not be deleted unless the user has explicitly expressed that intent.
    *
-   * @abstract
-   * @param {Model} model
-   * @param {string} relationship
-   * @param {RelationshipDescriptor} descriptor
-   * @param {*} related
+   * @param model The model whose related records are being altered
+   * @param relationship The name of the relationship on the model that should be altered
+   * @param descriptor The RelationshipDescriptor of the relationship being altered
+   * @param related The related record(s) that should be linked to the given relationship
    */
-  abstract setRelated(model: Model, relationship: string, descriptor: RelationshipDescriptor, related: any, options: any): Promise<void>;
+  public abstract async setRelated(model: Model, relationship: string, descriptor: RelationshipDescriptor, related: any, options: any): Promise<void>;
 
   /**
-   * Add a related record to a hasMany relationship.
+   * Add related record(s) to a hasMany relationship. Existing related records should remain
+   * unaltered.
    *
-   * @abstract
-   * @param {Model} model
-   * @param {string} relationship
-   * @param {RelationshipDescriptor} descriptor
-   * @param {*} related
+   * @param model The model whose related records are being altered
+   * @param relationship The name of the relationship on the model that should be altered
+   * @param descriptor The RelationshipDescriptor of the relationship being altered
+   * @param related The related record(s) that should be linked to the given relationship
    */
-  abstract addRelated(model: Model, relationship: string, descriptor: RelationshipDescriptor, related: Model|Model[], options: any): Promise<void>;
+  public abstract async addRelated(model: Model, relationship: string, descriptor: RelationshipDescriptor, related: Model|Model[], options: any): Promise<void>;
 
   /**
-   * Remove a related record from a hasMany relationship.
+   * Remove related record(s) from a hasMany relationship. Note: The removed related records should
+   * be "unlinked" in their relationship. Whether that results in the deletion of those old records
+   * is up to the ORM adapter, although it is recommended that they not be deleted unless the user
+   * has explicitly expressed that intent.
    *
-   * @abstract
-   * @param {Model} model
-   * @param {string} relationship
-   * @param {RelationshipDescriptor} descriptor
-   * @param {*} related
+   * @param model The model whose related records are being altered
+   * @param relationship The name of the relationship on the model that should be altered
+   * @param descriptor The RelationshipDescriptor of the relationship being altered
+   * @param related The related record(s) that should be removed from the relationship; if not
+   *                provided, then all related records should be removed
    */
-  abstract removeRelated(model: Model, relationship: string, descriptor: RelationshipDescriptor, related:Model|Model[], options: any): Promise<void>;
+  public abstract async removeRelated(model: Model, relationship: string, descriptor: RelationshipDescriptor, related: Model|Model[]|null, options: any): Promise<void>;
 
   /**
-   * Persist the supplied record.
-   *
-   * @abstract
-   * @param {Model} model
-   * @param {*} options
+   * Persist the supplied model.
    */
-  abstract saveRecord(model: Model, options: any): Promise<void>;
+  public abstract async saveRecord(model: Model, options: any): Promise<void>;
 
   /**
-   * Delete the supplied record from the persistent data store.
-   *
-   * @abstract
-   * @param {Model} model
-   * @param {*} options
+   * Delete the supplied model from the persistent data store.
    */
-  abstract deleteRecord(model: Model, options: any): Promise<void>;
+  public abstract async deleteRecord(model: Model, options: any): Promise<void>;
 
   /**
-   * Takes a Denali Model class and defines an ORM specific model class, and/or
-   * any other ORM specific setup that might be required for that Model.
-   *
-   * @abstract
-   * @param {Model[]} models
+   * Takes an array of Denali Models and defines an ORM specific model class, and/or any other ORM
+   * specific setup that might be required for that Model.
    */
-  abstract defineModels(models: Model[]): Promise<void>;
+  public async defineModels(models: typeof Model[]): Promise<void> {
+    // defaults to no-op
+  };
 
 }
 

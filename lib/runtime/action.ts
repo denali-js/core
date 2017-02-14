@@ -24,6 +24,11 @@ import Serializer from '../data/serializer';
 
 const debug = createDebug('denali:action');
 
+/**
+ * An error used to break the chain of promises created by running filters. Indicates that a before
+ * filter returned a value which will be rendered as the response, and that the remaining filters
+ * and the responder method should not be run.
+ */
 class PreemptiveRender {}
 PreemptiveRender.prototype = Object.create(Error.prototype);
 PreemptiveRender.prototype.constructor = PreemptiveRender;
@@ -53,9 +58,6 @@ interface Responder {
  * request params and can return a promise which will be waited on before continuing. Filters are
  * inheritable, so child classes will run filters added by parent classes.
  *
- * @abstract
- * @class Action
- * @extends {DenaliObject}
  * @module denali
  * @submodule runtime
  */
@@ -63,19 +65,11 @@ abstract class Action extends DenaliObject {
 
   /**
    * Cached list of responder formats this action class supports.
-   *
-   * @private
-   * @static
-   * @type {string[]}
    */
   private static _formats: string[];
 
   /**
    * Cache the list of available formats this action can respond to.
-   *
-   * @private
-   * @static
-   * @returns {string[]}
    */
   private static formats(): string[] {
     if (!this._formats) {
@@ -104,9 +98,6 @@ abstract class Action extends DenaliObject {
    * If a before filter returns any value (or returns a promise which resolves to any value) other
    * than null or undefined, Denali will attempt to render that response and halt further processing
    * of the request (including remaining before filters).
-   *
-   * @static
-   * @type {string[]}
    */
   public static before: string[] = [];
 
@@ -116,9 +107,6 @@ abstract class Action extends DenaliObject {
    *
    * Filters can be synchronous, or return a promise (which will pause the before/respond/after
    * chain until it resolves).
-   *
-   * @static
-   * @type {string[]}
    */
   public static after: string[] = [];
 
@@ -128,37 +116,26 @@ abstract class Action extends DenaliObject {
    * By default if the response is of type Error it will use the 'error' serializer. On the other
    * hand if it's a Model, it will use that model's serializer. Otherwise, it will use the
    * 'application' serializer.
-   *
-   * @type {string}
    */
   public serializer: string | false = null;
 
   /**
-   * @type {*}
+   * The application config
    */
   public config: any;
 
   /**
-   * @type {Container}
-   */
-  public container: Container;
-
-  /**
    * The incoming Request that this Action is responding to.
-   *
-   * @type {Request}
    */
   public request: Request;
 
   /**
-   * @type {Logger}
+   * The application logger instance
    */
   public logger: Logger;
 
   /**
    * Creates an Action that will respond to the given Request.
-   *
-   * @param {ActionOptions} options
    */
   constructor(options: ActionOptions) {
     super();
@@ -170,9 +147,6 @@ abstract class Action extends DenaliObject {
 
   /**
    * Fetch a model class by it's type string, i.e. 'post' => PostModel
-   *
-   * @param {string} type
-   * @returns {Model}
    */
   public modelFor(type: string): Model {
     return this.container.lookup(`model:${ type }`);
@@ -180,9 +154,6 @@ abstract class Action extends DenaliObject {
 
   /**
    * Fetch a service by it's container name, i.e. 'email' => 'services/email.js'
-   *
-   * @param {string} type
-   * @returns {Service}
    */
   public service(type: string): Service {
     return this.container.lookup(`service:${ type }`);
@@ -194,10 +165,6 @@ abstract class Action extends DenaliObject {
    *   * a Model instance
    *   * an array of Model instances
    *   * a Denali.Response instance
-   *
-   * @private
-   * @param {Response} response
-   * @returns {Response}
    */
   private async render(response: Response): Promise<Response> {
     debug(`[${ this.request.id }]: rendering`);
@@ -234,8 +201,6 @@ abstract class Action extends DenaliObject {
    *
    * You shouldn't invoke this directly - Denali will automatically wire up your routes to this
    * method.
-   *
-   * @returns {Promise<Response>}
    */
   public async run(): Promise<Response> {
     // Merge all available params into a single convenience object. The original params (query,
@@ -246,7 +211,7 @@ abstract class Action extends DenaliObject {
       this.request.query,
       this.request.body
     ];
-    let params = assign({}, ...paramSources);
+    let params = assign<any>({}, ...paramSources);
 
     // Content negotiation. Pick the best responder method based on the incoming content type and
     // the available responder types.
@@ -289,8 +254,6 @@ abstract class Action extends DenaliObject {
    *
    * If the Accept header is "Accept: * / *", then the generic `respond()` method is selected.
    * Otherwise, attempt to find the best responder method based on the mime types.
-   *
-   * @returns {Responder}
    */
   public _pickBestResponder(): Responder {
     let responder: Responder = this.respond;
@@ -316,24 +279,17 @@ abstract class Action extends DenaliObject {
    * The default responder method. You should override this method with whatever logic is needed to
    * respond to the incoming request.
    */
-  abstract respond(params: any): Response | { [key: string]: any } | void;
+  public abstract respond(params: any): Response | { [key: string]: any } | void;
 
   /**
    * Cached list of before filters that should be executed.
-   *
-   * @static
-   * @type {string[]}
    */
-  static _before: string[];
+  protected static _before: string[];
 
   /**
    * Cached list of after filters that should be executed.
-   *
-   * @static
-   * @type {string[]}
-   * @memberOf Action
    */
-  static _after: string[];
+  protected static _after: string[];
 
   /**
    * Walk the prototype chain of this Action instance to find all the `before` and `after` arrays to
@@ -343,9 +299,6 @@ abstract class Action extends DenaliObject {
    * on each request.
    *
    * Throws if it encounters the name of a filter method that doesn't exist.
-   *
-   * @private
-   * @returns {{ beforeChain: string[], afterChain: string[] }}
    */
   private _buildFilterChains(): { beforeChain: string[], afterChain: string[] } {
     let ActionClass = <typeof Action>this.constructor;
@@ -372,11 +325,6 @@ abstract class Action extends DenaliObject {
 
   /**
    * Invokes the filters in the supplied chain in sequence.
-   *
-   * @private
-   * @param {string[]} chain
-   * @param {*} params
-   * @returns {Promise<void>}
    */
   private async _invokeFilters(chain: string[], params: any, haltable: boolean): Promise<void> {
     chain = chain.slice(0);
@@ -394,7 +342,7 @@ abstract class Action extends DenaliObject {
       let filterResult = await filter.call(this, params);
       if (haltable && filterResult != null) {
         debug(`[${ this.request.id }]: \`${ filterName }\` preempted the action, rendering the returned value`);
-        this.render(filterResult);
+        await this.render(filterResult);
         throw new PreemptiveRender();
       }
       instrumentation.finish();

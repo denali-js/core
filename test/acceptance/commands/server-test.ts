@@ -1,3 +1,4 @@
+/* tslint:disable:completed-docs no-empty no-invalid-this member-access */
 import test from 'ava';
 import * as path from 'path';
 import * as fs from 'fs-extra';
@@ -30,9 +31,6 @@ test('server command > launches a server', async () => {
 test('server command > launches a server based on the dummy app in an addon', async () => {
   let generateAddon = new CommandAcceptanceTest('addon my-denali-addon', { populateWithDummy: false });
   let { stderr } = await generateAddon.run();
-  if (stderr) {
-    console.warn(stderr); // eslint-disable-line no-console
-  }
   linkDependency(path.join(generateAddon.dir, 'my-denali-addon'), 'denali', path.join(process.cwd(), 'node_modules', 'denali'));
   let server = new CommandAcceptanceTest('server --port 3002', {
     dir: path.join(generateAddon.dir, 'my-denali-addon'),

@@ -1,3 +1,4 @@
+/* tslint:disable:completed-docs no-empty no-invalid-this member-access */
 import test from 'ava';
 import {
   Action,
@@ -214,6 +215,7 @@ test('Action > filters > error out when an non-existent filter was specified', a
   }
   let action = new TestAction(mockReqRes());
 
+  // tslint:disable-next-line:no-floating-promises
   t.throws(action.run.bind(action));
 });
 

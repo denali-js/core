@@ -3,18 +3,22 @@ import CliTable from 'cli-table2';
 import { ui, Command, Project } from 'denali-cli';
 import Application from '../lib/runtime/application';
 
+/**
+ * Display all defined routes within your application.
+ */
 export default class RoutesCommand extends Command {
 
-  static commandName = 'routes';
-  static description = 'Display all defined routes within your application.';
-  static longDescription = unwrap`
+  /* tslint:disable:completed-docs typedef */
+  public static commandName = 'routes';
+  public static description = 'Display all defined routes within your application.';
+  public static longDescription = unwrap`
     Displays routes from your application and any routes added by addons.
     Display shows the method, endpoint, and the action associated to that
     route.`;
 
-  static runsInApp = true;
+  public static runsInApp = true;
 
-  static flags = {
+  public static flags = {
     environment: {
       description: 'The target environment to build for.',
       defaultValue: 'development',
@@ -27,7 +31,7 @@ export default class RoutesCommand extends Command {
     }
   };
 
-  async run(argv: any) {
+  public async run(argv: any) {
     let project = new Project({
       environment: argv.environment,
       printSlowTrees: argv.printSlowTrees,

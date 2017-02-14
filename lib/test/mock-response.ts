@@ -2,8 +2,17 @@ import { Transform } from 'stream';
 import { STATUS_CODES } from 'http';
 import { forEach } from 'lodash';
 
+/**
+ * A mock response used to simluate the server response to mock requests during tests. You shouldn't
+ * need to instantiate these directly - instead, use an AppAcceptance test.
+ *
+ * @module denali
+ * @submodule test
+ */
 export default class MockResponse extends Transform {
 
+  // Mock internals of ServerResponse
+  // tslint:disable:completed-docs member-access
   statusCode = 200;
   statusMessage = STATUS_CODES[200];
   _headers: { [key: string]: string } = {};

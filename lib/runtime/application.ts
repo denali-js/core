@@ -26,18 +26,15 @@ interface ApplicationOptions {
 
 interface Initializer {
   name: string;
-  initialize: (application: Application) => Promise<any>;
+  initialize(application: Application): Promise<any>;
   before?: string | string[];
   after?: string | string[];
 }
 
 /**
- * Application instances are specialized Addons, designed to kick off the
- * loading, mounting, and launching stages of booting up.
+ * Application instances are specialized Addons, designed to kick off the loading, mounting, and
+ * launching stages of booting up.
  *
- * @export
- * @class Application
- * @extends {Addon}
  * @module denali
  * @submodule runtime
  */
@@ -45,24 +42,19 @@ export default class Application extends Addon {
 
   /**
    * The Router instance for this Application.
-   *
-   * @type {Router}
    */
   public router: Router;
 
   /**
    * The application config
-   *
-   * @type {*}
    */
   public config: any;
 
   /**
-   * Creates an instance of Application. Note that the Application won't start immediately - you
-   * must call `application.start()`
-   *
-   * @param {ApplicationOptions} options
+   * The container instance for the entire application
    */
+  public container: Container;
+
   constructor(options: ApplicationOptions) {
     if (!options.container) {
       options.container = new Container();
@@ -90,12 +82,7 @@ export default class Application extends Addon {
   }
 
   /**
-   * Given a directory that contains an addon, load that addon and instantiate
-   * it's Addon class.
-   *
-   * @private
-   * @param {string[]} preseededAddons
-   * @returns {Addon[]}
+   * Given a directory that contains an addon, load that addon and instantiate it's Addon class.
    */
   private buildAddons(preseededAddons: string[]): Addon[] {
     return findPlugins({
@@ -108,10 +95,10 @@ export default class Application extends Addon {
         AddonClass = tryRequire(path.join(addon.dir, 'app', 'addon.js'));
         AddonClass = AddonClass || Addon;
       } catch (e) {
-        /* eslint-disable no-console */
+        /* tslint:disable:no-console */
         console.error(`Error loading an addon from ${ addon.dir }:`);
         console.error(e);
-        /* eslint-enable no-console */
+        /* tslint:enable:no-console */
         throw e;
       }
       AddonClass = <typeof Addon>(AddonClass.default || AddonClass);
@@ -126,16 +113,18 @@ export default class Application extends Addon {
   }
 
   /**
-   * Take the loaded environment config functions, and execute them.
-   * Application config is executed first, and the returned config object is
-   * handed off to the addon config files, which add their configuration by
-   * mutating that same object.
+   * Take the loaded environment config functions, and execute them. Application config is executed
+   * first, and the returned config object is handed off to the addon config files, which add their
+   * configuration by mutating that same object.
    *
-   * The resulting final config is stored at `application.config`, and is
-   * registered in the container under `config:environment`.
+   * The resulting final config is stored at `application.config`, and is registered in the
+   * container under `config:environment`.
    *
-   * @private
-   * @returns {*}
+   * This is invoked before the rest of the addons are loaded for 2 reasons:
+   *
+   * - The config values for the application could theoretically impact the addon loading process
+   * - Addons are given a chance to modify the application config, so it must be loaded before they
+   *   are.
    */
   private generateConfig(): any {
     dotenv.config({ silent: true });
@@ -150,15 +139,12 @@ export default class Application extends Addon {
 
   /**
    * Assemble middleware and routes
-   *
-   * @private
    */
   private compileRouter(): void {
     this.addons.forEach((addon) => {
       addon._middleware(this.router, this);
     });
     this._middleware(this.router, this);
-
     this._routes(this.router);
     this.addons.reverse().forEach((addon) => {
       addon._routes(this.router);
@@ -166,10 +152,8 @@ export default class Application extends Addon {
   }
 
   /**
-   * Start the Denali server. Runs all initializers, creates an HTTP server,
-   * and binds to the port to handle incoming HTTP requests.
-   *
-   * @returns {Promise<void>}
+   * Start the Denali server. Runs all initializers, creates an HTTP server, and binds to the port
+   * to handle incoming HTTP requests.
    */
   public async start(): Promise<void> {
     let port = this.config.server.port || 3000;
@@ -186,15 +170,11 @@ export default class Application extends Addon {
   }
 
   /**
-   * Creates an HTTP or HTTPS server, depending on whether or not SSL
-   * configuration is present in config/environment.js
-   *
-   * @private
-   * @param {number} port
-   * @returns {Promise<{}>}
+   * Creates an HTTP or HTTPS server, depending on whether or not SSL configuration is present in
+   * config/environment.js
    */
-  private createServer(port: number): Promise<{}> {
-    return new Promise((resolve) => {
+  private async createServer(port: number): Promise<void> {
+    await new Promise((resolve) => {
       // TODO create both http & https if redirect-to-ssl is enabled
       let handler = this.router.handle.bind(this.router);
       if (this.config.server.ssl) {
@@ -206,29 +186,26 @@ export default class Application extends Addon {
   }
 
   /**
-   * Lookup all initializers and run them in sequence. Initializers can
-   * override the default load order by including `before` or `after`
-   * properties on the exported class (the name or array of names of the other
-   * initializers it should run before/after).
-    *
-    * @returns {Promise<void>}
-    */
-   async runInitializers(): Promise<void> {
+   * Lookup all initializers and run them in sequence. Initializers can override the default load
+   * order by including `before` or `after` properties on the exported class (the name or array of
+   * names of the other initializers it should run before/after).
+   */
+  public async runInitializers(): Promise<void> {
     let initializers = <Initializer[]>topsort(values(this.container.lookupAll('initializer')));
-    await each(initializers, (initializer: Initializer) => {
-      initializer.initialize(this);
+    await each(initializers, async (initializer: Initializer) => {
+      await initializer.initialize(this);
     });
   }
 
   /**
    * Shutdown the application gracefully (i.e. close external database connections, drain in-flight
    * requests, etc)
-   *
-   * @returns
    */
   // TODO drain requests from HTTP server
-  async shutdown(): Promise<void> {
-    await all(this.addons.map((addon) => addon.shutdown(this)));
+  public async shutdown(): Promise<void> {
+    await all(this.addons.map(async (addon) => {
+      await addon.shutdown(this);
+    }));
   }
 
 }

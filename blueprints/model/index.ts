@@ -5,11 +5,15 @@ import {
 import { Blueprint } from 'denali-cli';
 import unwrap from '../../lib/utils/unwrap';
 
+/**
+ * Generates a blank model
+ */
 export default class ModelBlueprint extends Blueprint {
 
-  static blueprintName = 'model';
-  static description = 'Generates a blank model';
-  static longDescription = unwrap`
+  /* tslint:disable:completed-docs typedef */
+  public static blueprintName = 'model';
+  public static description = 'Generates a blank model';
+  public static longDescription = unwrap`
     Usage: denali generate model <name> [options]
 
     Generates a blank model, along with a serializer for that model, and unit tests for both.
@@ -17,9 +21,9 @@ export default class ModelBlueprint extends Blueprint {
     Guides: http://denali.js.org/master/guides/data/models/
   `;
 
-  static params = '<name>';
+  public static params = '<name>';
 
-  locals(argv: any) {
+  public locals(argv: any) {
     let name = argv.name;
     return {
       name,

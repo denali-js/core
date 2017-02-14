@@ -1,8 +1,17 @@
 import { Transform } from 'stream';
 import { without, toString, mapValues, mapKeys, flatten, toPairs } from 'lodash';
 
+/**
+ * A mock request used to simluate an HTTP request to the application during tests. You shouldn't
+ * need to instantiate these directly - instead, use an AppAcceptance test.
+ *
+ * @module denali
+ * @submodule test
+ */
 export default class MockRequest extends Transform {
 
+  // Mock internals of IncomingMessage
+  // tslint:disable:completed-docs member-access
   method: string;
   url: string;
   headers: {
@@ -10,12 +19,21 @@ export default class MockRequest extends Transform {
   };
   rawHeaders: string[];
 
-  _writableState: any
-  _readableState: any
+  _writableState: any;
+  _readableState: any;
 
   socket = {
     remoteAddress: '123.45.67.89'
   };
+
+  protected _transform(chunk: string | Buffer | {}, encoding: string, next: () => void) {
+    if (typeof chunk !== 'string' && !Buffer.isBuffer(chunk)) {
+      chunk = JSON.stringify(chunk);
+    }
+    this.push(chunk);
+    next();
+  }
+  // tslint:enable:completed-docs
 
   constructor(options: { method?: string, url?: string, headers?: { [key: string]: string } } = {}) {
     super();
@@ -42,14 +60,6 @@ export default class MockRequest extends Transform {
       delete this.headers['content-type'];
       this.rawHeaders = without(this.rawHeaders, 'content-type');
     }
-  }
-
-  _transform(chunk: string | Buffer | {}, encoding: string, next: () => void) {
-    if (typeof chunk !== 'string' && !Buffer.isBuffer(chunk)) {
-      chunk = JSON.stringify(chunk);
-    }
-    this.push(chunk);
-    next();
   }
 
 }

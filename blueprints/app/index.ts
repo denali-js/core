@@ -10,13 +10,18 @@ import unwrap from '../../lib/utils/unwrap';
 
 const run = Bluebird.promisify<[ string, string ], string, ExecOptions>(exec);
 const commandExists = Bluebird.promisify<boolean, string>(cmdExists);
-const maxBuffer = 400 * 1024;
+const ONE_KB = 1024;
+const maxBuffer = 400 * ONE_KB;
 
+/**
+ * Creates a new app, initializes git and installs dependencies.
+ */
 export default class AppBlueprint extends Blueprint {
 
-  static blueprintName = 'app';
-  static description = 'Creates a new app, initializes git and installs dependencies';
-  static longDescription = unwrap`
+  /* tslint:disable:completed-docs typedef */
+  public static blueprintName = 'app';
+  public static description = 'Creates a new app, initializes git and installs dependencies';
+  public static longDescription = unwrap`
     Usage: denali generate app <name> [options]
 
     Scaffolds a new app. Sets up the correct directory structure, initializes a git repo, and
@@ -25,22 +30,22 @@ export default class AppBlueprint extends Blueprint {
     Guides: http://denali.js.org/master/guides/overview/app-structure/
   `;
 
-  static params = '<name>';
+  public static params = '<name>';
 
-  static flags = {
+  public static flags = {
     skipDeps: {
       description: 'Do not install dependencies on new app',
       defaultValue: false,
-      type: (<any>'boolean')
+      type: <any>'boolean'
     },
     useNpm: {
       description: 'Use npm to install dependencies, even if yarn is available',
       defaultValue: false,
-      type: (<any>'boolean')
+      type: <any>'boolean'
     }
-  }
+  };
 
-  locals(argv: any) {
+  public locals(argv: any) {
     let name = argv.name;
     return {
       name,
@@ -50,7 +55,7 @@ export default class AppBlueprint extends Blueprint {
     };
   }
 
-  async postInstall(argv: any) {
+  public async postInstall(argv: any) {
     let name = argv.name;
     spinner.start('Installing dependencies');
     if (!argv.skipDeps) {

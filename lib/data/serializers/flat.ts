@@ -1,38 +1,32 @@
-import * as assert from 'assert';
-import { singularize } from 'inflection';
-import Serializer from '../serializer';
-import Model from '../model';
-import Response from '../../runtime/response';
-import { HasManyRelationship, RelationshipDescriptor } from '../descriptors';
 import {
   isArray,
   assign,
   mapValues,
   forEach,
   isUndefined } from 'lodash';
+import * as assert from 'assert';
+import { singularize } from 'inflection';
+import Serializer from '../serializer';
+import Model from '../model';
+import Response from '../../runtime/response';
+import { HasManyRelationship, RelationshipDescriptor } from '../descriptors';
 
 /**
  * Renders the payload as a flat JSON object or array at the top level. Related
- * records are embedded.
+ * models are embedded.
  *
- * @export
- * @class FlatSerializer
- * @extends {Serializer}
  * @module denali
  * @submodule data
  */
 export default class FlatSerializer extends Serializer {
 
   /**
-   * @type {string}
+   * The default content type to apply to responses formatted by this serializer
    */
-  public contentType: string = 'application/json';
+  public contentType = 'application/json';
 
   /**
-   * Renders the payload, either a primary data payload or an error payload.
-   *
-   * @param {Response} response
-   * @param {*} [options={}]
+   * Renders the payload, either a primary data model(s) or an error payload.
    */
   public async serialize(response: Response, options: any = {}): Promise<void> {
     if (response.body instanceof Error) {
@@ -43,33 +37,24 @@ export default class FlatSerializer extends Serializer {
   }
 
   /**
-   * Renders a primary data payload (a record or array of records).
-   *
-   * @param {*} payload
-   * @param {*} [options]
-   * @returns {*}
+   * Renders a primary data payload (a model or array of models).
    */
-  public renderPrimary(payload: any, options?: any): any {
+  protected renderPrimary(payload: Model|Model[], options?: any): any {
     if (isArray(payload)) {
-      return payload.map((record) => {
-        return this.renderRecord(record, options);
+      return payload.map((model) => {
+        return this.renderModel(model, options);
       });
     }
-    return this.renderRecord(payload, options);
+    return this.renderModel(payload, options);
   }
 
   /**
-   * Renders an individual record
-   *
-   * @protected
-   * @param {any} record
-   * @param {any} options
-   * @returns
+   * Renders an individual model
    */
-  protected renderRecord(record: any, options?: any): any {
-    let id = record.id;
-    let attributes = this.serializeAttributes(record, options);
-    let relationships = this.serializeRelationships(record, options);
+  public renderModel(model: Model, options?: any): any {
+    let id = model.id;
+    let attributes = this.serializeAttributes(model, options);
+    let relationships = this.serializeRelationships(model, options);
     relationships = mapValues(relationships, (relationship) => {
       return relationship.data;
     });
@@ -77,20 +62,15 @@ export default class FlatSerializer extends Serializer {
   }
 
   /**
-   * Serialize the attributes for a given record
-   *
-   * @protected
-   * @param {*} record
-   * @param {*} [options]
-   * @returns {*}
+   * Serialize the attributes for a given model
    */
-  protected serializeAttributes(record: any, options?: any): any {
+  protected serializeAttributes(model: Model, options?: any): any {
     let serializedAttributes: any = {};
     this.attributes.forEach((attributeName) => {
       let key = this.serializeAttributeName(attributeName);
-      let rawValue = record[attributeName];
+      let rawValue = model[attributeName];
       if (!isUndefined(rawValue)) {
-        let value = this.serializeAttributeValue(rawValue, key, record);
+        let value = this.serializeAttributeValue(rawValue, key, model);
         serializedAttributes[key] = value;
       }
     });
@@ -100,10 +80,6 @@ export default class FlatSerializer extends Serializer {
   /**
    * Transform attribute names into their over-the-wire representation. Default
    * behavior uses the attribute name as-is.
-   *
-   * @protected
-   * @param {string} attributeName
-   * @returns {string}
    */
   protected serializeAttributeName(attributeName: string): string {
     return attributeName;
@@ -114,62 +90,47 @@ export default class FlatSerializer extends Serializer {
    * changing how certain types of values are serialized, i.e. Date objects.
    *
    * The default implementation returns the attribute's value unchanged.
-   *
-   * @protected
-   * @param {*} value
-   * @param {string} key
-   * @param {*} record
-   * @returns {*}
    */
-  protected serializeAttributeValue(value: any, key: string, record: any): any {
+  protected serializeAttributeValue(value: any, key: string, model: any): any {
     return value;
   }
 
   /**
-   *
-   *
-   * @protected
-   * @param {*} record
-   * @param {*} [options={}]
+   * Serialize the relationships for a given model
    */
-  protected serializeRelationships(record: any, options?: any) {
+  protected serializeRelationships(model: any, options?: any): { [key: string]: any } {
     let serializedRelationships: { [key: string ]: any } = {};
 
     // The result of this.relationships is a whitelist of which relationships
     // should be serialized, and the configuration for their serialization
     forEach(this.relationships, (config, relationshipName) => {
       let key = config.key || this.serializeRelationshipName(relationshipName);
-      let descriptor = record.constructor[relationshipName];
-      assert(descriptor, `You specified a '${ relationshipName }' relationship in your ${ record.constructor.type } serializer, but no such relationship is defined on the ${ record.constructor.type } model`);
-      serializedRelationships[key] = this.serializeRelationship(config, descriptor, record, options);
+      let descriptor = model.constructor[relationshipName];
+      assert(descriptor, `You specified a '${ relationshipName }' relationship in your ${ model.constructor.type } serializer, but no such relationship is defined on the ${ model.constructor.type } model`);
+      serializedRelationships[key] = this.serializeRelationship(config, descriptor, model, options);
     });
+
+    return serializedRelationships;
   }
 
   /**
-   *
-   *
-   * @protected
-   * @param {*} config
-   * @param {Descriptor} descriptor
-   * @param {*} record
-   * @param {*} [options]
-   * @returns
+   * Serializes a relationship
    */
-  protected serializeRelationship(config: any, descriptor: RelationshipDescriptor, record: any, options?: any) {
-    if (isArray(record)) {
-      if (record[0] instanceof Model) {
+  protected serializeRelationship(config: any, descriptor: RelationshipDescriptor, model: any, options?: any) {
+    if (isArray(model)) {
+      if (model[0] instanceof Model) {
         let relatedSerializer = this.container.lookup(`serializer:${ descriptor.type }`);
-        return record.map((relatedRecord) => {
+        return model.map((relatedRecord) => {
           return relatedSerializer.renderRecord(relatedRecord, options);
         });
       }
-      return record;
+      return model;
     }
-    if (record instanceof Model) {
+    if (model instanceof Model) {
       let relatedSerializer = this.container.lookup(`serializer:${ descriptor.type }`);
-      return relatedSerializer.renderRecord(record, options);
+      return relatedSerializer.renderRecord(model, options);
     }
-    return record;
+    return model;
   }
 
   /**

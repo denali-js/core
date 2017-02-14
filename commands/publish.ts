@@ -6,17 +6,21 @@ import { exec, ExecOptions } from 'child_process';
 
 const run = Bluebird.promisify<[ string, string ], string, ExecOptions>(exec);
 
+/**
+ * Publish an addon to the npm registry.
+ */
 export default class PublishCommand extends Command {
 
-  static commandName = 'publish';
-  static description = 'Publish an addon to the npm registry.';
-  static longDescription = unwrap`
+  /* tslint:disable:completed-docs typedef */
+  public static commandName = 'publish';
+  public static description = 'Publish an addon to the npm registry.';
+  public static longDescription = unwrap`
     Publishes an addon to the npm registry. Runs tests builds the
     addon, and publishes the dist/ directory to the registry.`;
 
-  static runsInApp = true;
+  public static runsInApp = true;
 
-  static flags = {
+  public static flags = {
     skipTests: {
       description: 'Do not run tests before publishing',
       defaultValue: false,
@@ -24,7 +28,7 @@ export default class PublishCommand extends Command {
     }
   };
 
-  async run(argv: any) {
+  public async run(argv: any) {
     await this.build();
     if (!argv.skipTests) {
       await this.runTests();
@@ -32,7 +36,7 @@ export default class PublishCommand extends Command {
     await this.publish();
   }
 
-  async runTests() {
+  protected async runTests() {
     spinner.start('Running tests');
     try {
       await run('npm test', {});
@@ -43,7 +47,7 @@ export default class PublishCommand extends Command {
     spinner.succeed('Tests passed');
   }
 
-  async build() {
+  protected async build() {
     spinner.start('Building');
     try {
       await run('npm run build', {});
@@ -54,7 +58,7 @@ export default class PublishCommand extends Command {
     spinner.succeed('Addon built');
   }
 
-  async publish() {
+  protected async publish() {
     spinner.start('Publishing');
     try {
       await run('npm publish', { cwd: path.join(process.cwd(), 'dist') });

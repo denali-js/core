@@ -4,15 +4,19 @@ import * as createDebug from 'debug';
 
 const debug = createDebug('denali:commands:build');
 
+/**
+ * Compile your app
+ */
 export default class BuildCommand extends Command {
 
-  static commandName = 'build';
-  static description = 'Compile your app';
-  static longDescription = unwrap`
+  /* tslint:disable:completed-docs typedef */
+  public static commandName = 'build';
+  public static description = 'Compile your app';
+  public static longDescription = unwrap`
     Compiles your app based on your denali-build.js file, as well as any build-related addons.
   `;
 
-  static flags = {
+  public static flags = {
     environment: {
       description: 'The target environment to build for.',
       defaultValue: 'development',
@@ -35,9 +39,9 @@ export default class BuildCommand extends Command {
     }
   };
 
-  runsInApp = true;
+  public runsInApp = true;
 
-  async run(argv: any) {
+  public async run(argv: any) {
     let project = new Project({
       environment: argv.environment,
       printSlowTrees: argv.printSlowTrees,

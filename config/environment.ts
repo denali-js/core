@@ -1,4 +1,4 @@
-module.exports = function baseConfig(environment: string, appConfig: any) {
+module.exports = function baseConfig(environment: string, appConfig: any): void {
   if (!appConfig.logging) {
     appConfig.logging = {};
   }

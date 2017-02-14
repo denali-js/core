@@ -9,19 +9,75 @@ import DenaliObject from '../metal/object';
 
 const debug = createDebug('denali:test:command-acceptance');
 
+const MINUTE = 60 * 1000;
+
+/**
+ * A CommandAcceptanceTest allows you to test commands included in you app or addon. It makes it
+ * easy to setup a clean test directory with fixture files, run your command, and test either the
+ * console output of your command or the state of the filesystem after the command finishes.
+ *
+ * @module denali
+ * @submodule test
+ */
 export default class CommandAcceptanceTest extends DenaliObject {
 
-  command: string;
-  dir: string;
-  environment: string;
-  projectRoot: string;
-  projectPkg: any;
-  denaliPath: string;
+  /**
+   * The command to invoke, i.e. 'build' would test the invocation of '$ denali build'
+   */
+  public command: string;
 
-  spawnedCommand: ChildProcess;
-  pollOutput: NodeJS.Timer;
-  fallbackTimeout: NodeJS.Timer;
+  /**
+   * The test directory generated to test this command. If it's not provided to the constructor,
+   * Denali will create a tmp directory inside the 'tmp' directory in your project root.
+   */
+  public dir: string;
 
+  /**
+   * The default DENALI_ENV to invoke the command with. Defaults to development.
+   */
+  public environment: string;
+
+  /**
+   * The root directory of the project under test.
+   */
+  protected projectRoot: string;
+
+  /**
+   * The package.json of the project under test.
+   */
+  protected projectPkg: any;
+
+  /**
+   * The path to the denali executable file that will be used when invoking the command
+   */
+  protected denaliPath: string;
+
+  /**
+   * When testing via the `.spawn()` method, this will be the spawned ChildProcess
+   */
+  protected spawnedCommand: ChildProcess;
+
+  /**
+   * The interval that checks the spawn output
+   */
+  protected pollOutput: NodeJS.Timer;
+
+  /**
+   * A fallback timer which will fail the test if the spawned process doesn't emit passing output
+   * in a certain amount of time.
+   */
+  protected fallbackTimeout: NodeJS.Timer;
+
+  /**
+   * @param options.dir Force the test to use this directory as the test directory. Useful if you
+   *                    want to customize the fixture directory structure before running
+   * @param options.name A string to include in the generated tmp directory name. Useful when
+   *                     combined with the `denali test --litter` option, which will leave the tmp
+   *                     directories behind, making it easier to inspect what's happening in a
+   *                     CommandAcceptanceTest
+   * @param options.populateWithDummy Should the test directory be populated with a copy of the
+   *                                  dummy app?
+   */
   constructor(command: string, options: { dir?: string, environment?: string, name?: string, populateWithDummy?: boolean } = {}) {
     super();
     this.command = command;
@@ -49,7 +105,10 @@ export default class CommandAcceptanceTest extends DenaliObject {
     }
   }
 
-  populateWithDummy(): void {
+  /**
+   * Copy the dummy app into our test directory
+   */
+  public populateWithDummy(): void {
     debug(`populating tmp directory for "${ this.command }" command with dummy app`);
     let dummy = path.join(this.projectRoot, 'test', 'dummy');
     let tmpNodeModules = path.join(this.dir, 'node_modules');
@@ -63,8 +122,14 @@ export default class CommandAcceptanceTest extends DenaliObject {
     debug('tmp directory populated');
   }
 
-  run(options: { failOnStderr?: boolean, env?: any } = {}): Promise<{ stdout: string, stderr: string, dir: string }> {
-    return new Promise((resolve, reject) => {
+  /**
+   * Invoke the command and return promise that resolves with the output of the command. Useful for
+   * commands that have a definitely completion (i.e. 'build', not 'serve')
+   *
+   * @param options.failOnStderr Should any output to stderr result in a rejected promise?
+   */
+  public async run(options: { failOnStderr?: boolean, env?: any } = {}): Promise<{ stdout: string, stderr: string, dir: string }> {
+    return new Promise<{ stdout: string, stderr: string, dir: string }>((resolve, reject) => {
       exec(`${ this.denaliPath } ${ this.command }`, {
         env: Object.assign({}, process.env, {
           DENALI_ENV: this.environment,
@@ -80,15 +145,28 @@ export default class CommandAcceptanceTest extends DenaliObject {
             ====> stderr:
             ${ stderr }
           `;
-          return reject(err);
+          reject(err);
+        } else {
+          resolve({ stdout, stderr, dir: this.dir });
         }
-        resolve({ stdout, stderr, dir: this.dir });
       });
     });
   }
 
-  spawn(options: {
-    checkOutput: (stdout: string, stderr: string, dir: string) => boolean,
+  /**
+   * Invoke the command and poll the output every options.pollInterval. Useful for commands that
+   * have a definitely completion (i.e. 'build', not 'serve'). Each poll of the output will run the
+   * supplied options.checkOutput method, passing in the stdout and stderr buffers. If the
+   * options.checkOutput method returns a truthy value, the returned promise will resolve.
+   * Otherwise, it will continue to poll the output until options.timeout elapses, after which the
+   * returned promsie will reject.
+   *
+   * @param options.failOnStderr Should any output to stderr result in a rejected promise?
+   * @param options.checkOutput A function invoked with the stdout and stderr buffers of the invoked
+   *                            command, and should return true if the output passes
+   */
+  public async spawn(options: {
+    checkOutput(stdout: string, stderr: string, dir: string): boolean,
     failOnStderr?: boolean,
     env?: any,
     pollInterval?: number,
@@ -147,7 +225,7 @@ export default class CommandAcceptanceTest extends DenaliObject {
       }, options.pollInterval || 50);
 
       // Ensure the test fails if we don't pass the test after a while
-      let timeout = options.timeout || (process.env.CI ? 10 * 60 * 1000 : 3 * 60 * 1000);
+      let timeout = options.timeout || (process.env.CI ? 10 * MINUTE : 3 * MINUTE);
       this.fallbackTimeout = setTimeout(() => {
         process.removeListener('exit', cleanup);
         this.cleanup();
@@ -164,7 +242,10 @@ export default class CommandAcceptanceTest extends DenaliObject {
     });
   }
 
-  cleanup() {
+  /**
+   * Internal cleanup method to clean up timers and processes.
+   */
+  private cleanup() {
     this.spawnedCommand.kill();
     clearInterval(this.pollOutput);
     clearTimeout(this.fallbackTimeout);

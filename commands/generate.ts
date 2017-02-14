@@ -4,11 +4,15 @@ import {
 import { ui, Command, Project, Blueprint } from 'denali-cli';
 import unwrap from '../lib/utils/unwrap';
 
+/**
+ * Scaffold code for your app.
+ */
 export default class GenerateCommand extends Command {
 
-  static commandName = 'generate';
-  static description = 'Scaffold code for your app.';
-  static longDescription = unwrap`
+  /* tslint:disable:completed-docs typedef */
+  public static commandName = 'generate';
+  public static description = 'Scaffold code for your app.';
+  public static longDescription = unwrap`
     Usage: denali generate <blueprint> [options]
 
     Generates code from the given blueprint. Blueprints are templates used by the
@@ -16,9 +20,9 @@ export default class GenerateCommand extends Command {
     addons).
   `;
 
-  static params = '<blueprint>';
+  public static params = '<blueprint>';
 
-  static configureSubcommands(yargs: any, context: { name: string, isLocal: boolean }) {
+  protected static configureSubcommands(yargs: any, context: { name: string, isLocal: boolean }) {
     Blueprint.findBlueprints(yargs, merge({ action: 'generate' }, context));
   }
 

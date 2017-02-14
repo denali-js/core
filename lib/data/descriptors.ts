@@ -1,16 +1,22 @@
 import DenaliObject from '../metal/object';
 
+/**
+ * Base Descriptor class
+ */
 export class Descriptor extends DenaliObject {
 
+  /**
+   * What kind of descriptor is this? Used by subclasses to differentiate easily between types.
+   */
   public type: string;
 
+  /**
+   * Generic options object that can be used to supply Denali or ORM specific config options.
+   */
   public options: any;
 
   /**
    * Creates an instance of Descriptor.
-   *
-   * @param {string} type
-   * @param {*} [options]
    */
   constructor(type: string, options?: any) {
     super();
@@ -42,21 +48,22 @@ export class Descriptor extends DenaliObject {
  *   these are used solely by your ORM adapter, there are no additional options
  *   that Denali expects itself.
  *
- * @class Attribute
- * @extends {Descriptor}
  * @module denali
  * @submodule data
  */
 class Attribute extends Descriptor {
 
   /**
-   * @type {boolean}
+   * Convenience flag for checking if this is an attribute
    */
-  public isAttribute: boolean = true;
+  public isAttribute = true;
 
 }
 
-export function attr(type: string, options?: any) {
+/**
+ * Syntax sugar factory method for creating Attributes
+ */
+export function attr(type: string, options?: any): Attribute {
   return new Attribute(type, options);
 }
 
@@ -82,27 +89,27 @@ export function attr(type: string, options?: any) {
  *   these are used solely by your ORM adapter, there are no additional options
  *   that Denali expects itself.
  *
- * @export
- * @class HasManyRelationship
- * @extends {Descriptor}
  * @module denali
  * @submodule data
  */
 export class HasManyRelationship extends Descriptor {
 
   /**
-   * @type {boolean}
+   * Convenience flag for checking if this is a relationship
    */
-  public isRelationship: boolean = true;
+  public isRelationship = true;
 
   /**
-   * @type {('hasMany' | 'hasOne')}
+   * Relationship mode, i.e. 1 -> 1 or 1 -> N
    */
   public mode: 'hasMany' | 'hasOne' = 'hasMany';
 
 }
 
-export function hasMany(type: string, options: any) {
+/**
+ * Syntax sugar factory function for creating HasManyRelationships
+ */
+export function hasMany(type: string, options: any): HasManyRelationship {
   return new HasManyRelationship(type, options);
 }
 
@@ -127,26 +134,27 @@ export function hasMany(type: string, options: any) {
  *   these are used solely by your ORM adapter, there are no additional options
  *   that Denali expects itself.
  *
- * @class HasOneRelationship
- * @constructor
  * @module denali
  * @submodule data
  */
 class HasOneRelationship extends Descriptor {
 
   /**
-   * @type {boolean}
+   * Convenience flag for checking if this is a relationship
    */
-  public isRelationship: boolean = true;
+  public isRelationship = true;
 
   /**
-   * @type {('hasMany' | 'hasOne')}
+   * Relationship mode, i.e. 1 -> 1 or 1 -> N
    */
   public mode: 'hasMany' | 'hasOne' = 'hasOne';
 
 }
 
-export function hasOne(type: string, options: any) {
+/**
+ * Syntax sugar factory function for creating HasOneRelationships
+ */
+export function hasOne(type: string, options: any): HasOneRelationship {
   return new HasOneRelationship(type, options);
 }
 

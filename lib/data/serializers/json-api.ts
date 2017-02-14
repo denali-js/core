@@ -23,9 +23,13 @@ import {
   uniqBy
 } from 'lodash';
 
+/**
+ * Ensures that the value is only set if it exists, so we avoid creating iterable keys on obj for
+ * undefined values.
+ */
 function setIfNotEmpty(obj: any, key: string, value: any): void {
   if (!isEmpty(value)) {
-    set(obj, key, value);
+    set<any, string, any>(obj, key, value);
   }
 }
 
@@ -38,79 +42,49 @@ interface JsonApiDocument {
   included?: JsonApiResourceObject[];
 }
 
-/**
- * @interface JsonApiError
- */
 interface JsonApiError {
   /**
    * A unique identifier for this particular occurrence of the problem
-   *
-   * @type {string}
-    */
-  id?: string;
-  /**
-   * @type {{ about?: JsonApiLink }}
    */
+  id?: string;
   links?: {
     /**
      * A link that leads to further details about this particular occurrence of the problemA
-     *
-     * @type {JsonApiLink}
      */
     about?: JsonApiLink;
   };
   /**
    * The HTTP status code applicable to this problem, expressed as a string value
-   *
-   * @type {string}
    */
   status?: string;
   /**
    * An application-specific error code, expressed as a string value
-   *
-   * @type {string}
    */
   code?: string;
   /**
    * A short, human-readable summary of the problem that SHOULD NOT change from occurrence to
    * occurrence of the problem, except for purposes of localization
-   *
-   * @type {string}
    */
   title?: string;
   /**
    * A human-readable explanation specific to this occurrence of the problem. Like title, this
    * field’s value can be localized
-   *
-   * @type {string}
    */
   detail?: string;
   /**
    * An object containing references to the source of the error
-   *
-   * @type {{
-   *     pointer?: string;
-   *     parameter?: string;
-   *   }}
    */
   source?: {
     /**
      * A JSON Pointer [RFC6901] to the associated entity in the request document [e.g. "/data" for a
      * primary data object, or "/data/attributes/title" for a specific attribute]
-     *
-     * @type {string}
      */
     pointer?: string;
     /**
      * A string indicating which URI query parameter caused the error
-     *
-     * @type {string}
      */
     parameter?: string;
   };
-  /**
-   * @type {JsonApiMeta}
-   */
   meta?: JsonApiMeta;
 }
 
@@ -128,14 +102,12 @@ interface JsonApiAttributes {
 }
 
 interface JsonApiRelationships {
-  [relationshipName: string]: JsonApiRelationship
+  [relationshipName: string]: JsonApiRelationship;
 }
 
 interface JsonApiRelationship {
   /**
    * Links for this relationship. Should contain at least a "self" or "related" link.
-   *
-   * @type {JsonApiLinks}
    */
   links?: JsonApiLinks;
   data?: JsonApiRelationshipData;
@@ -161,50 +133,38 @@ interface JsonApiLinks {
    * relationship URL would disconnect the person from the article without deleting the people
    * resource itself. When fetched successfully, this link returns the linkage for the related
    * resources as its primary data
-   *
-   * @type {JsonApiLink}
    */
-  self?: JsonApiLink,
+  self?: JsonApiLink;
   /**
    * A “related resource link” provides access to resource objects linked in a relationship. When
    * fetched, the related resource object(s) are returned as the response’s primary data.
-   *
-   * @type {JsonApiLink}
    */
-  related?: JsonApiLink
+  related?: JsonApiLink;
   [key: string]: JsonApiLink;
 }
 
 type JsonApiLink = string | {
   href: string,
   meta: JsonApiMeta
-}
+};
 
 interface Options {
   /**
    * An array of Models you want to ensure are included in the "included" sideload. Note that the
    * spec requires "full-linkage" - i.e. any Models you include here must be referenced by a
    * resource identifier elsewhere in the payload - to maintain full compliance.
-   *
-   * @type {Model[]}
    */
   included?: Model[];
   /**
    * Any top level metadata to send with the response.
-   *
-   * @type {JsonApiMeta}
    */
   meta?: JsonApiMeta;
   /**
    * Any top level links to send with the response.
-   *
-   * @type {JsonApiLinks}
    */
   links?: JsonApiLinks;
   /**
    * Configuration for each relationship.
-   *
-   * @type {*}
    */
   relationships?: any;
   [key: string]: any;
@@ -212,8 +172,6 @@ interface Options {
 
 /**
  * Used internally to simplify passing arguments required by all functions.
- *
- * @interface Context
  */
 interface Context {
   response: Response;
@@ -224,10 +182,6 @@ interface Context {
 /**
  * Renders the payload according to the JSONAPI 1.0 spec, including related resources, included
  * records, and support for meta and links.
- *
- * @export
- * @class JSONAPISerializer
- * @extends {Serializer}
  * @module denali
  * @submodule data
  */
@@ -235,17 +189,12 @@ export default class JSONAPISerializer extends Serializer {
 
   /**
    * The default content type to use for any responses rendered by this serializer.
-   *
-   * @type {string}
    */
-  public contentType: string = 'application/vnd.api+json';
+  public contentType = 'application/vnd.api+json';
 
   /**
    * Take a response body (a model, an array of models, or an Error) and render it as a JSONAPI
    * compliant document
-   *
-   * @param {Response} response
-   * @param {*} [options]
    */
   public async serialize(response: Response, options?: any): Promise<void> {
     let context: Context = {
@@ -265,9 +214,6 @@ export default class JSONAPISerializer extends Serializer {
 
   /**
    * Render the primary payload for a JSONAPI document (either a model or array of models).
-   *
-   * @protected
-   * @param {Context} context
    */
   protected async renderPrimary(context: Context): Promise<void> {
     let payload = context.response.body;
@@ -280,10 +226,6 @@ export default class JSONAPISerializer extends Serializer {
 
   /**
    * Render the primary data for the document, either a single Model or a single Error.
-   *
-   * @protected
-   * @param {Context} context
-   * @param {*} payload
    */
   protected async renderPrimaryObject(context: Context, payload: any): Promise<void> {
     if (payload instanceof Error) {
@@ -295,10 +237,6 @@ export default class JSONAPISerializer extends Serializer {
 
   /**
    * Render the primary data for the document, either an array of Models or Errors
-   *
-   * @protected
-   * @param {Context} context
-   * @param {*} payload
    */
   protected async renderPrimaryArray(context: Context, payload: any): Promise<void> {
     if (payload[0] instanceof Error) {
@@ -316,9 +254,6 @@ export default class JSONAPISerializer extends Serializer {
 
   /**
    * Render any included records supplied by the options into the top level of the document
-   *
-   * @protected
-   * @param {Context} context
    */
   protected async renderIncluded(context: Context): Promise<void> {
     if (context.options.included) {
@@ -332,9 +267,6 @@ export default class JSONAPISerializer extends Serializer {
   /**
    * Render top level meta object for a document. Default uses meta supplied in options call to
    * res.render().
-   *
-   * @protected
-   * @param {Context} context
    */
   protected renderMeta(context: Context): void {
     if (context.options.meta) {
@@ -344,9 +276,6 @@ export default class JSONAPISerializer extends Serializer {
 
   /**
    * Render top level links object for a document. Defaults to the links supplied in options.
-   *
-   * @protected
-   * @param {Context} context
    */
   protected renderLinks(context: Context): void {
     if (context.options.links) {
@@ -356,9 +285,6 @@ export default class JSONAPISerializer extends Serializer {
 
   /**
    * Render the version of JSONAPI supported.
-   *
-   * @protected
-   * @param {Context} context
    */
   protected renderVersion(context: Context): void {
     context.document.jsonapi = {
@@ -368,11 +294,6 @@ export default class JSONAPISerializer extends Serializer {
 
   /**
    * Render the supplied record as a resource object.
-   *
-   * @protected
-   * @param {Context} context
-   * @param {Model} record
-   * @returns {JsonApiResourceObject}
    */
   protected async renderRecord(context: Context, record: Model): Promise<JsonApiResourceObject> {
     assert(record, `Cannot serialize ${ record }. You supplied ${ record } instead of a Model instance.`);
@@ -390,11 +311,6 @@ export default class JSONAPISerializer extends Serializer {
 
   /**
    * Returns the JSONAPI attributes object representing this record's relationships
-   *
-   * @protected
-   * @param {Context} context
-   * @param {Model} record
-   * @returns {JsonApiAttributes}
    */
   protected attributesForRecord(context: Context, record: Model): JsonApiAttributes {
     let serializedAttributes: JsonApiAttributes = {};
@@ -413,11 +329,6 @@ export default class JSONAPISerializer extends Serializer {
    * The JSONAPI spec recommends (but does not require) that property names be dasherized. The
    * default implementation of this serializer therefore does that, but you can override this method
    * to use a different approach.
-   *
-   * @protected
-   * @param {Context} context
-   * @param {string} name
-   * @returns {string}
    */
   protected serializeAttributeName(context: Context, name: string): string {
     return kebabCase(name);
@@ -428,13 +339,6 @@ export default class JSONAPISerializer extends Serializer {
    * of values are serialized, i.e. Date objects.
    *
    * The default implementation returns the attribute's value unchanged.
-   *
-   * @protected
-   * @param {Context} context
-   * @param {*} value
-   * @param {string} key
-   * @param {Model} record
-   * @returns {*}
    */
   protected serializeAttributeValue(context: Context, value: any, key: string, record: Model): any {
     return value;
@@ -442,11 +346,6 @@ export default class JSONAPISerializer extends Serializer {
 
   /**
    * Returns the JSONAPI relationships object representing this record's relationships
-   *
-   * @protected
-   * @param {Context} context
-   * @param {Model} record
-   * @returns {Promise<JsonApiRelationships>}
    */
   protected async relationshipsForRecord(context: Context, record: Model): Promise<JsonApiRelationships> {
     let serializedRelationships: JsonApiRelationships = {};
@@ -454,8 +353,7 @@ export default class JSONAPISerializer extends Serializer {
     // The result of this.relationships is a whitelist of which relationships should be serialized,
     // and the configuration for their serialization
     let relationshipNames = Object.keys(this.relationships);
-    for (let i = 0; i < relationshipNames.length; i++) {
-      let name = relationshipNames[i];
+    for (let name of relationshipNames) {
       let config = this.relationships[name];
       let key = config.key || this.serializeRelationshipName(context, name);
       let descriptor = (<any>record.constructor)[name];
@@ -468,11 +366,6 @@ export default class JSONAPISerializer extends Serializer {
 
   /**
    * Convert the relationship name to it's "over-the-wire" format. Defaults to dasherizing it.
-   *
-   * @protected
-   * @param {Context} context
-   * @param {string} name
-   * @returns {string}
    */
   protected serializeRelationshipName(context: Context, name: string): string {
     return kebabCase(name);
@@ -482,15 +375,6 @@ export default class JSONAPISerializer extends Serializer {
    * Takes the serializer config and the model's descriptor for a relationship, and returns the
    * serialized relationship object. Also sideloads any full records if the relationship is so
    * configured.
-   *
-   *
-   * @protected
-   * @param {Context} context
-   * @param {string} name
-   * @param {RelationshipConfig} config
-   * @param {RelationshipDescriptor} descriptor
-   * @param {Model} record
-   * @returns {Promise<JsonApiRelationship>}
    */
   protected async serializeRelationship(context: Context, name: string, config: RelationshipConfig, descriptor: RelationshipDescriptor, record: Model): Promise<JsonApiRelationship> {
     let relationship: JsonApiRelationship = {};
@@ -502,14 +386,6 @@ export default class JSONAPISerializer extends Serializer {
 
   /**
    * Returns the serialized form of the related Models for the given record and relationship.
-   *
-   * @protected
-   * @param {Context} context
-   * @param {string} name
-   * @param {RelationshipConfig} config
-   * @param {RelationshipDescriptor} descriptor
-   * @param {Model} record
-   * @returns {Promise<JsonApiRelationshipData>}
    */
   protected async dataForRelationship(context: Context, name: string, config: RelationshipConfig, descriptor: RelationshipDescriptor, record: Model): Promise<JsonApiRelationshipData> {
     let relatedData = await record.getRelated(name);
@@ -524,16 +400,6 @@ export default class JSONAPISerializer extends Serializer {
   /**
    * Given a related record, return the resource object for that record, and sideload the record as
    * well.
-   *
-   *
-   * @protected
-   * @param {Context} context
-   * @param {string} name
-   * @param {Model} relatedRecord
-   * @param {RelationshipConfig} config
-   * @param {RelationshipDescriptor} descriptor
-   * @param {Model} record
-   * @returns {JsonApiResourceIdentifier}
    */
   protected async dataForRelatedRecord(context: Context, name: string, relatedRecord: Model, config: RelationshipConfig, descriptor: RelationshipDescriptor, record: Model): Promise<JsonApiResourceIdentifier> {
     await this.includeRecord(context, name, relatedRecord, config, descriptor);
@@ -546,14 +412,6 @@ export default class JSONAPISerializer extends Serializer {
   /**
    * Takes a relationship descriptor and the record it's for, and returns any links for that
    * relationship for that record. I.e. '/books/1/author'
-   *
-   * @protected
-   * @param {Context} context
-   * @param {string} name
-   * @param {RelationshipConfig} config
-   * @param {RelationshipDescriptor} descriptor
-   * @param {Model} record
-   * @returns {JsonApiLinks}
    */
   protected linksForRelationship(context: Context, name: string, config: RelationshipConfig, descriptor: RelationshipDescriptor, record: Model): JsonApiLinks {
     let recordSelfLink = this.linksForRecord(context, record).self;
@@ -571,25 +429,14 @@ export default class JSONAPISerializer extends Serializer {
 
   /**
    * Returns any meta for a given relationship and record. No meta included by default.
-   *
-   * @protected
-   * @param {Context} context
-   * @param {string} name
-   * @param {RelationshipConfig} config
-   * @param {RelationshipDescriptor} descriptor
-   * @param {Model} record
-   * @returns {(JsonApiMeta | void)}
    */
-  protected metaForRelationship(context: Context, name: string, config: RelationshipConfig, descriptor: RelationshipDescriptor, record: Model): JsonApiMeta | void {}
+  protected metaForRelationship(context: Context, name: string, config: RelationshipConfig, descriptor: RelationshipDescriptor, record: Model): JsonApiMeta | void {
+    // defaults to no meta content
+  }
 
   /**
    * Returns links for a particular record, i.e. self: "/books/1". Default implementation assumes
    * the URL for a particular record maps to that type's `show` action, i.e. `books/show`.
-   *
-   * @protected
-   * @param {Context} context
-   * @param {Model} record
-   * @returns {JsonApiLinks}
    */
   protected linksForRecord(context: Context, record: Model): JsonApiLinks {
     let router: Router = this.container.lookup('router:main');
@@ -599,23 +446,13 @@ export default class JSONAPISerializer extends Serializer {
 
   /**
    * Returns meta for a particular record.
-   *
-   * @protected
-   * @param {Context} context
-   * @param {Model} record
-   * @returns {(void | JsonApiMeta)}
    */
-  protected metaForRecord(context: Context, record: Model): void | JsonApiMeta {}
+  protected metaForRecord(context: Context, record: Model): void | JsonApiMeta {
+    // defaults to no meta
+  }
 
   /**
    * Sideloads a record into the top level "included" array
-   *
-   * @protected
-   * @param {Context} context
-   * @param {string} name
-   * @param {Model} relatedRecord
-   * @param {RelationshipConfig} config
-   * @param {RelationshipDescriptor} descriptor
    */
   protected async includeRecord(context: Context, name: string, relatedRecord: Model, config: RelationshipConfig, descriptor: RelationshipDescriptor): Promise<void> {
     if (!isArray(context.document.included)) {
@@ -629,11 +466,6 @@ export default class JSONAPISerializer extends Serializer {
 
   /**
    * Render the supplied error
-   *
-   * @protected
-   * @param {Context} context
-   * @param {*} error
-   * @returns {JsonApiError}
    */
   protected renderError(context: Context, error: any): JsonApiError {
     let renderedError = {
@@ -652,11 +484,6 @@ export default class JSONAPISerializer extends Serializer {
   /**
    * Given an error, return a JSON Pointer, a URL query param name, or other info indicating the
    * source of the error.
-   *
-   * @protected
-   * @param {Context} context
-   * @param {*} error
-   * @returns {string}
    */
   protected sourceForError(context: Context, error: any): string {
     return error.source;
@@ -665,11 +492,6 @@ export default class JSONAPISerializer extends Serializer {
   /**
    * Return the meta for a given error object. You could use this for example, to return debug
    * information in development environments.
-   *
-   * @protected
-   * @param {Context} context
-   * @param {*} error
-   * @returns {(JsonApiMeta | void)}
    */
   protected metaForError(context: Context, error: any): JsonApiMeta | void {
     return error.meta;
@@ -678,19 +500,13 @@ export default class JSONAPISerializer extends Serializer {
   /**
    * Return a links object for an error. You could use this to link to a bug tracker report of the
    * error, for example.
-   *
-   * @protected
-   * @param {Context} context
-   * @param {*} error
-   * @returns {(JsonApiLinks | void)}
    */
-  protected linksForError(context: Context, error: any): JsonApiLinks | void {}
+  protected linksForError(context: Context, error: any): JsonApiLinks | void {
+    // defaults to no links
+  }
 
   /**
    * Remove duplicate entries from the sideloaded data.
-   *
-   * @protected
-   * @param {Context} context
    */
   protected dedupeIncluded(context: Context): void {
     if (isArray(context.document.included)) {
@@ -706,10 +522,6 @@ export default class JSONAPISerializer extends Serializer {
    *
    * The parse method here retains the JSONAPI document structure (i.e. data, included, links, meta,
    * etc), only modifying resource objects in place.
-   *
-   * @param {*} payload
-   * @param {*} [options]
-   * @returns {*}
    */
   public parse(payload: any, options?: any): any {
     try {
@@ -738,10 +550,6 @@ export default class JSONAPISerializer extends Serializer {
   /**
    * Takes a JSON-API resource object and hands it off for parsing to the serializer specific to
    * that object's type.
-   *
-   * @private
-   * @param {JsonApiResourceObject} resource
-   * @returns {*}
    */
   private _parseResource(resource: JsonApiResourceObject): any {
     assert(typeof resource.type === 'string', 'Invalid resource object encountered (missing `type` - see http://jsonapi.org/format/#document-resource-object-identification)');
@@ -755,10 +563,6 @@ export default class JSONAPISerializer extends Serializer {
   /**
    * Parse a single resource object from a JSONAPI document. The resource object could come from the
    * top level `data` payload, or from the sideloaded `included` records.
-   *
-   * @protected
-   * @param {JsonApiResourceObject} resource
-   * @returns {*}
    */
   protected parseResource(resource: JsonApiResourceObject): any {
     setIfNotEmpty(resource, 'id', this.parseId(resource.id));
@@ -769,10 +573,6 @@ export default class JSONAPISerializer extends Serializer {
 
   /**
    * Parse a resource object id
-   *
-   * @protected
-   * @param {string} id
-   * @returns {*}
    */
   protected parseId(id: string): any {
     return id;
@@ -780,10 +580,6 @@ export default class JSONAPISerializer extends Serializer {
 
   /**
    * Parse a resource object's type string
-   *
-   * @protected
-   * @param {string} type
-   * @returns {string}
    */
   protected parseType(type: string): string {
     return singularize(type);
@@ -792,10 +588,6 @@ export default class JSONAPISerializer extends Serializer {
   /**
    * Parse a resource object's attributes. By default, this converts from the JSONAPI recommended
    * dasheried keys to camelCase.
-   *
-   * @protected
-   * @param {JsonApiAttributes} attrs
-   * @returns {*}
    */
   protected parseAttributes(attrs: JsonApiAttributes): any {
     return mapKeys(attrs, (value, key) => {
@@ -806,10 +598,6 @@ export default class JSONAPISerializer extends Serializer {
   /**
    * Parse a resource object's relationships. By default, this converts from the JSONAPI recommended
    * dasheried keys to camelCase.
-   *
-   * @protected
-   * @param {JsonApiRelationships} relationships
-   * @returns {*}
    */
   protected parseRelationships(relationships: JsonApiRelationships): any {
     return mapKeys(relationships, (value, key) => {
