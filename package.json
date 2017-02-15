@@ -36,6 +36,7 @@
   "scripts": {
     "build": "denali build",
     "lint": "tslint --project tsconfig.json -c tslint.json --type-check | sed \"s|$PWD/||\"",
+    "bootstrap": "tsc && cp package.json dist/",
     "coverage": "scripts/coverage.sh",
     "deploy-docs": "scripts/deploy-docs.sh",
     "preversion": "scripts/preversion.sh",
