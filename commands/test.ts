@@ -29,7 +29,7 @@ export default class TestCommand extends Command {
     },
     watch: {
       description: 'Re-run the tests when the source files change',
-      defaultValue: false,
+      default: false,
       type: <any>'boolean'
     },
     match: {
@@ -42,47 +42,47 @@ export default class TestCommand extends Command {
     },
     skipLint: {
       description: 'Skip linting the app source files',
-      defaultValue: false,
+      default: false,
       type: <any>'boolean'
     },
     skipAudit: {
       description: 'Skip auditing your package.json for vulnerabilites',
-      defaultValue: false,
+      default: false,
       type: <any>'boolean'
     },
     verbose: {
       description: 'Print detailed output of the status of your test run',
-      defaultValue: process.env.CI,
+      default: process.env.CI,
       type: <any>'boolean'
     },
     output: {
       description: 'The directory to write the compiled app to. Defaults to a tmp directory',
-      defaultValue: path.join('tmp', 'test'),
+      default: path.join('tmp', 'test'),
       type: <any>'string'
     },
     printSlowTrees: {
       description: 'Print out an analysis of the build process, showing the slowest nodes.',
-      defaultValue: false,
+      default: false,
       type: <any>'boolean'
     },
     failFast: {
       description: 'Stop tests on the first failure',
-      defaultValue: false,
+      default: false,
       type: <any>'boolean'
     },
     litter: {
       description: 'Do not clean up tmp directories created during testing (useful for debugging)',
-      defaultValue: false,
+      default: false,
       type: <any>'boolean'
     },
     serial: {
       description: 'Run tests serially',
-      defaultValue: false,
+      default: false,
       type: <any>'boolean'
     },
     concurrency: {
       description: 'How many test files should run concurrently?',
-      defaultValue: 5,
+      default: 5,
       type: <any>'number'
     }
   };

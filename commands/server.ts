@@ -36,7 +36,7 @@ export default class ServerCommand extends Command {
   public static flags = {
     debug: {
       description: 'Run in debug mode (add the --debug flag to node, launch node-inspector)',
-      defaultValue: false,
+      default: false,
       type: <any>'boolean'
     },
     watch: {
@@ -45,7 +45,7 @@ export default class ServerCommand extends Command {
     },
     port: {
       description: 'The port the HTTP server should bind to (default: 3000)',
-      defaultValue: 3000,
+      default: 3000,
       type: <any>'number'
     },
     lint: {
@@ -58,17 +58,17 @@ export default class ServerCommand extends Command {
     },
     output: {
       description: 'The directory to write the compiled app to. Defaults to a tmp directory',
-      defaultValue: 'dist',
+      default: 'dist',
       type: <any>'string'
     },
     production: {
       description: 'Start the server in production mode: skip the build (assumes the app was prebuilt), skips nsp audits, runs with DENALI_ENV=production',
-      defaultValue: false,
+      default: false,
       type: <any>'boolean'
     },
     printSlowTrees: {
       description: 'Print out an analysis of the build process, showing the slowest nodes.',
-      defaultValue: false,
+      default: false,
       type: <any>'boolean'
     }
   };

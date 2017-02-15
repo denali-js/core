@@ -25,17 +25,17 @@ export default class MigrateCommand extends Command {
   public static flags = {
     rollback: {
       description: 'Rollback the latest migration, or latest --step migrations. Defaults to 1 step.',
-      defaultValue: false,
+      default: false,
       type: <any>'boolean'
     },
     redo: {
       description: 'Shortcut for rolling back then migrating up again. If used with --step, it will replay that many migrations. If used with --version, it will roll back to that version then replay. If neither, defaults to --step 1',
-      defaultValue: false,
+      default: false,
       type: <any>'boolean'
     },
     environment: {
       description: 'The environment configuration to use for connecting to the database',
-      defaultValue: 'development',
+      default: 'development',
       type: <any>'boolean'
     }
   };

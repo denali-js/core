@@ -23,7 +23,7 @@ export default class PublishCommand extends Command {
   public static flags = {
     skipTests: {
       description: 'Do not run tests before publishing',
-      defaultValue: false,
+      default: false,
       type: <any>'boolean'
     }
   };

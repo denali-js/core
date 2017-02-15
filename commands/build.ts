@@ -19,22 +19,22 @@ export default class BuildCommand extends Command {
   public static flags = {
     environment: {
       description: 'The target environment to build for.',
-      defaultValue: 'development',
+      default: 'development',
       type: <any>'string'
     },
     output: {
       description: 'The directory to build into',
-      defaultValue: 'dist',
+      default: 'dist',
       type: <any>'string'
     },
     watch: {
       description: 'Continuously watch the source files and rebuild on changes',
-      defaultValue: false,
+      default: false,
       type: <any>'boolean'
     },
     printSlowTrees: {
       description: 'Print out an analysis of the build process, showing the slowest nodes.',
-      defaultValue: false,
+      default: false,
       type: <any>'boolean'
     }
   };

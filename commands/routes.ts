@@ -21,12 +21,12 @@ export default class RoutesCommand extends Command {
   public static flags = {
     environment: {
       description: 'The target environment to build for.',
-      defaultValue: 'development',
+      default: 'development',
       type: <any>'string'
     },
     'print-slow-trees': {
       description: 'Print out an analysis of the build process, showing the slowest nodes.',
-      defaultValue: false,
+      default: false,
       type: <any>'boolean'
     }
   };
