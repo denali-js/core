@@ -1,5 +1,3 @@
-import { Service } from 'denali';
+const { Service } = require('denali');
 
-export default class TestService extends Service {
-  name = 'test service';
-}
+module.exports = class TestService extends Service { }

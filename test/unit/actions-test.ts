@@ -123,7 +123,8 @@ test('Action > should render with the model type serializer if a model was rende
     respond() {
       t.pass();
       return new Proxy({
-        constructor: { type: 'foo' }
+        constructor: { type: 'foo' },
+        type: 'foo'
       }, {
         getPrototypeOf() {
           return Model.prototype;
@@ -216,13 +217,14 @@ test('Action > filters > error out when an non-existent filter was specified', a
   let action = new TestAction(mockReqRes());
 
   // tslint:disable-next-line:no-floating-promises
-  t.throws(action.run.bind(action));
+  t.throws(action.run());
 });
 
 test('Action > filters > should render the returned value of a before filter (if that value != null)', async (t) => {
   t.plan(1);
   class TestAction extends Action {
     static before = [ 'preempt' ];
+    serializer = false;
     respond() {
       t.fail('Filter should have preempted this responder method');
     }

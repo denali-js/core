@@ -5,7 +5,7 @@ import { CommandAcceptanceTest } from 'denali';
 
 
 test.beforeEach('generate an action to destroy', async (t) => {
-  let generate = new CommandAcceptanceTest('generate action foobar');
+  let generate = new CommandAcceptanceTest('generate action foobar', { name: 'destroy-command' });
   t.context.dir = generate.dir;
   t.context.generatedFilepath = path.join(generate.dir, 'app', 'actions', 'foobar.js');
   await generate.run();

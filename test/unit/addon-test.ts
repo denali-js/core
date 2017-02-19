@@ -1,13 +1,14 @@
 import test from 'ava';
 import * as path from 'path';
-import { Addon, Container, Service } from 'denali';
+import { Logger, Addon, Container, Service } from 'denali';
 
 test('Addon > #loadApp > Singletons are instantiated', async (t) => {
   let dir = path.join(__dirname, '..', 'fixtures', 'addon');
   let container = new Container();
+  let logger = new Logger();
   let addon = new Addon({
     environment: 'development',
-    logger: container.logger,
+    logger,
     container,
     dir
   });
@@ -16,5 +17,4 @@ test('Addon > #loadApp > Singletons are instantiated', async (t) => {
   let service = container.lookup('service:test');
 
   t.true(service instanceof Service, 'Has correct baseclass');
-  t.is(service.name, 'test service', 'Is instantiated');
 });
