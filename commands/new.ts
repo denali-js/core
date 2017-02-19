@@ -1,19 +1,29 @@
-import unwrap from '../lib/utils/unwrap';
-import GenerateCommand from './generate';
-import { Blueprint } from 'denali-cli';
+import {
+  assign
+} from 'lodash';
+import * as path from 'path';
+import { Command, Blueprint } from 'denali-cli';
+import AppBlueprint from '../blueprints/app/index';
+
 
 /**
  * Create a new denali app
  */
-export default class NewCommand extends GenerateCommand {
+export default class NewCommand extends Command {
 
   /* tslint:disable:completed-docs typedef */
   public static commandName = 'new';
-  public static description = 'Create a new denali app';
-  public static longDescription = unwrap`
-    Scaffolds a new Denali application in a child directory using the given name.
-    Takes care of setting up a git repo and installing npm dependencies as well.`;
+  public static description = AppBlueprint.description;
+  public static longDescription = AppBlueprint.longDescription;
+  public static params = AppBlueprint.params;
+  public static flags = AppBlueprint.flags;
 
-  public static params = '<name>';
+  public static runsInApp = false;
+
+  public async run(argv: any) {
+    AppBlueprint.dir = path.join(__dirname, '..', 'blueprints', 'app');
+    let appBlueprint = new AppBlueprint({});
+    await appBlueprint.generate(argv);
+  }
 
 }
