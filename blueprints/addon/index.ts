@@ -56,22 +56,23 @@ export default class AddonBlueprint extends Blueprint {
   public async postInstall(argv: any) {
     let name = argv.name;
     ui.info('');
-    spinner.start('Installing dependencies');
     if (!argv.skipDeps) {
       let yarnExists: boolean = await commandExists('yarn');
       if (yarnExists && !argv.useNpm) {
+        await spinner.start('Installing dependencies with yarn');
         await run('yarn install', { cwd: name });
       } else {
+        await spinner.start('Installing dependencies with npm');
         await run('npm install --loglevel=error', { cwd: name });
       }
     }
-    spinner.succeed();
-    spinner.start('Setting up git repo');
+    await spinner.succeed('Dependencies installed');
+    await spinner.start('Setting up git repo');
     await run('git init', { cwd: name });
     await run('git add .', { cwd: name });
     await run('git commit -am "Initial denali project scaffold"', { cwd: name });
-    spinner.succeed();
-    spinner.finish('✨', `${ name } created`);
+    await spinner.succeed('Git repo initialized');
+    await ui.info(`📦  ${ name } addon created!`);
   }
 
 }

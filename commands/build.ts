@@ -56,7 +56,7 @@ export default class BuildCommand extends Command {
       try {
         await project.build(argv.output);
       } catch (error) {
-        spinner.fail('Build failed');
+        await spinner.fail('Build failed');
         ui.error(error.stack);
       }
     }

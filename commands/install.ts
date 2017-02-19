@@ -32,25 +32,24 @@ export default class InstallCommand extends Command {
       let pkg = JSON.parse(stdout);
       let isAddon = pkg.keywords.includes('denali-addon');
       if (!isAddon) {
-        this.fail(`${ argv.addonName } is not a Denali addon.`);
+        await this.fail(`${ argv.addonName } is not a Denali addon.`);
         return;
       }
 
-      spinner.start(`Installing ${ pkg.name }@${ pkg.version }`);
+      await spinner.start(`Installing ${ pkg.name }@${ pkg.version }`);
       let installCommand = pkgManager === 'yarn' ? 'yarn add --mutex network' : 'npm install --save';
       let [ , installStderr ] = await run(`${ installCommand } ${ argv.addonName }`);
       ui.warn(installStderr);
-      spinner.succeed();
+      await spinner.succeed();
     } catch (err) {
-      this.fail(err);
-      return;
+      await this.fail(err);
     }
   }
 
-  private fail(msg: string) {
+  private async fail(msg: string) {
     ui.error(msg);
-    spinner.fail('Install failed');
-    process.exit(1);
+    await spinner.fail('Install failed');
+    await process.exit(1);
   }
 
 }

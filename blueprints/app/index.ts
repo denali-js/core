@@ -57,27 +57,33 @@ export default class AppBlueprint extends Blueprint {
 
   public async postInstall(argv: any) {
     let name = argv.name;
-    spinner.start('Installing dependencies');
     if (!argv.skipDeps) {
       try {
         let yarnExists = await commandExists('yarn');
         if (yarnExists && !argv.useNpm) {
+          await spinner.start('Installing dependencies with yarn');
           await run('yarn install --mutex network', { cwd: name });
         } else {
+          await spinner.start('Installing dependencies with npm');
           await run('npm install --loglevel=error', { cwd: name });
         }
-        spinner.succeed();
+        await spinner.succeed('Dependencies installed');
       } catch (error) {
         ui.error('Denali encountered a problem while trying to install the dependencies for your new app:');
         ui.error(error.stack || error.message || error);
       }
     }
-    spinner.start('Setting up git repo');
-    await run('git init', { cwd: name, maxBuffer });
-    await run('git add .', { cwd: name, maxBuffer });
-    await run('git commit -am "Initial denali project scaffold"', { cwd: name, maxBuffer });
-    spinner.succeed();
-    spinner.finish('✨', ` ${ name } created`);
+    await spinner.start('Setting up git repo');
+    try {
+      await run('git init', { cwd: name, maxBuffer });
+      await run('git add .', { cwd: name, maxBuffer });
+      await run('git commit -am "Initial denali project scaffold"', { cwd: name, maxBuffer });
+    } catch (e) {
+      ui.error('Unable to initialize a git repo in your new app:');
+      ui.error(e.stack);
+    }
+    await spinner.succeed('Git repo initialized');
+    ui.info(`📦  ${ name } created!`);
     ui.info('');
     ui.info('To launch your application, just run:');
     ui.info('');

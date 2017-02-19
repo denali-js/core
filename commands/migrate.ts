@@ -45,7 +45,7 @@ export default class MigrateCommand extends Command {
   public async run(argv: any) {
     let knex = tryRequire('knex');
     if (!knex) {
-      spinner.start('Installing knex (required for migrations)');
+      await spinner.start('Installing knex (required for migrations)');
       let yarnExists = await commandExists('yarn');
       if (yarnExists) {
         await run('yarn add knex');
@@ -53,7 +53,7 @@ export default class MigrateCommand extends Command {
         await run('npm install --save knex');
       }
       knex = require('knex');
-      spinner.succeed('Knex installed');
+      await spinner.succeed('Knex installed');
     }
     let project = new Project({
       environment: argv.environment,
@@ -65,20 +65,20 @@ export default class MigrateCommand extends Command {
     let migrationsDir = path.join(application.dir, 'config', 'migrations');
     try {
       if (argv.rollback) {
-        spinner.start('Rolling back last migration');
+        await spinner.start('Rolling back last migration');
         await db.migrate.rollback({ directory: migrationsDir });
       } else if (argv.redo) {
-        spinner.start('Rolling back and replaying last migration');
+        await spinner.start('Rolling back and replaying last migration');
         await db.migrate.rollback({ directory: migrationsDir });
         await db.migrate.latest({ directory: migrationsDir });
       } else {
-        spinner.start('Running migrations to latest');
+        await spinner.start('Running migrations to latest');
         await db.migrate.latest({ directory: migrationsDir });
       }
       let newVersion = await db.migrate.currentVersion();
-      spinner.succeed(`Migrated to ${ newVersion }`);
+      await spinner.succeed(`Migrated to ${ newVersion }`);
     } catch (error) {
-      spinner.fail(`Migrations failed:\n${ error.stack }`);
+      await spinner.fail(`Migrations failed:\n${ error.stack }`);
     } finally {
       await db.destroy();
     }
