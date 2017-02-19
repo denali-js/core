@@ -14,6 +14,11 @@ import { RelationshipDescriptor } from './descriptors';
 abstract class ORMAdapter extends DenaliObject {
 
   /**
+   * ORM Adapters should be singletons
+   */
+  static singleton = true;
+
+  /**
    * Find a record by id.
    */
   public abstract async find(type: string, id: any, options: any): Promise<any>;

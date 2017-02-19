@@ -24,6 +24,11 @@ export interface RelationshipConfig {
 abstract class Serializer extends DenaliObject {
 
   /**
+   * Serializers should be singletons
+   */
+  static singleton = true;
+
+  /**
    * Take the supplied Response instance and the supplied options and return a rendered a JSON
    * response object.
    */

@@ -117,10 +117,10 @@ export default class Container extends DenaliObject {
 
       // If lookup succeeded, handle any first-time lookup chores
       if (Class) {
-        if (options.containerize) {
+        if (Class.containerize || options.containerize) {
           Class = this._containerizeClass(Class);
         }
-        if (Class.singleton) {
+        if (Class.singleton || options.singleton) {
           Class = new Class();
         }
 
@@ -149,32 +149,11 @@ export default class Container extends DenaliObject {
   }
 
   /**
-   * Lookup a model
-   */
-  private lookupModel(parsedName: ParsedName): Model {
-    return this._lookupOther(parsedName, {
-      containerize: true
-    });
-  }
-
-  /**
-   * Lookup a service
-   */
-  private lookupService(parsedName: ParsedName): Service {
-    return this._lookupOther(parsedName, {
-      containerize: true,
-      singleton: true
-    });
-  }
-
-  /**
    * Lookup an ORM adapter. If not found, falls back to the application ORM adapter as determined
    * by the `ormAdapter` config property.
    */
   private lookupOrmAdapter(parsedName: ParsedName): OrmAdapter {
     return this._lookupOther(parsedName, {
-      containerize: true,
-      singleton: true,
       fallback: () => {
         if (!this.config.ormAdapter) {
           throw new Error('No default ORM adapter was defined in supplied in config.ormAdapter!');
@@ -189,8 +168,6 @@ export default class Container extends DenaliObject {
    */
   private lookupSerializer(parsedName: ParsedName): Serializer {
     return this._lookupOther(parsedName, {
-      containerize: true,
-      singleton: true,
       fallback: 'serializer:application'
     });
   }

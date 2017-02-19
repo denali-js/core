@@ -26,4 +26,9 @@ export default class DenaliObject {
    */
   protected container: Container;
 
+  /**
+   * Flag the object to have container references injected
+   */
+  static containerize = true;
+
 }
