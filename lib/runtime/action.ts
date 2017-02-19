@@ -121,7 +121,7 @@ abstract class Action extends DenaliObject {
    * hand if it's a Model, it will use that model's serializer. Otherwise, it will use the
    * 'application' serializer.
    */
-  public serializer: string | false = null;
+  public serializer: string | boolean = null;
 
   /**
    * The application config
@@ -170,7 +170,7 @@ abstract class Action extends DenaliObject {
    *   * an array of Model instances
    *   * a Denali.Response instance
    */
-  private async render(response: Response): Promise<Response> {
+  private async render(response: any): Promise<Response> {
     debug(`[${ this.request.id }]: rendering`);
     if (!(response instanceof Response)) {
       debug(`[${ this.request.id }]: wrapping returned value in a Response`);
@@ -239,11 +239,14 @@ abstract class Action extends DenaliObject {
       debug(`[${ this.request.id }]: running before filters`);
       await this._invokeFilters(beforeChain, params, true);
       debug(`[${ this.request.id }]: running responder`);
-      let response = await render(await respond(params));
+      let result = await respond(params);
+      response = await render(result);
       debug(`[${ this.request.id }]: running after filters`);
       await this._invokeFilters(afterChain, params, false);
     } catch (error) {
-      if (!(error instanceof PreemptiveRender)) {
+      if (error instanceof PreemptiveRender) {
+        response = error.response;
+      } else {
         throw error;
       }
     } finally {
@@ -346,8 +349,8 @@ abstract class Action extends DenaliObject {
       let filterResult = await filter.call(this, params);
       if (haltable && filterResult != null) {
         debug(`[${ this.request.id }]: \`${ filterName }\` preempted the action, rendering the returned value`);
-        await this.render(filterResult);
-        throw new PreemptiveRender();
+        let response = await this.render(filterResult);
+        throw new PreemptiveRender(response);
       }
       instrumentation.finish();
     }
