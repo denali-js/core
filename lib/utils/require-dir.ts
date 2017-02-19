@@ -1,6 +1,6 @@
 import * as fs from 'fs-extra';
 import * as path from 'path';
-import walk from 'walk-sync';
+import * as walk from 'walk-sync';
 
 /**
  * Recursively require every .js file in a directory. Returns an object whose keys are the filepaths

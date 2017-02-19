@@ -5,8 +5,8 @@ import findup = require('findup-sync');
 import eachDir from '../utils/each-dir';
 import { sync as isDirectory } from 'is-directory';
 import requireDir from '../utils/require-dir';
-import tryRequire from 'try-require';
-import stripExtension from 'strip-extension';
+import * as tryRequire from 'try-require';
+import * as stripExtension from 'strip-extension';
 import {
   forEach,
   omit,

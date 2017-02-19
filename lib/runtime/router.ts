@@ -1,8 +1,8 @@
-import ware from 'ware';
+import * as ware from 'ware';
 import { IncomingMessage, ServerResponse } from 'http';
 import { pluralize } from 'inflection';
 import { fromNode } from 'bluebird';
-import typeis from 'type-is';
+import * as typeis from 'type-is';
 import * as createDebug from 'debug';
 import Errors from './errors';
 import Route from './route';
@@ -99,16 +99,10 @@ export default class Router extends DenaliObject implements RouterDSL {
    */
   private logger: Logger;
 
-  /**
-   * The application config
-   */
-  private config: any;
-
   constructor(options: { container: Container, logger: Logger }) {
     super();
     this.container = options.container;
     this.logger = options.logger;
-    this.config = this.container.config;
   }
 
   /**
@@ -160,7 +154,7 @@ export default class Router extends DenaliObject implements RouterDSL {
         } else if (action.serializer === false) {
           serializer = null;
         } else {
-          serializer = action.serializer;
+          serializer = <Serializer | false>action.serializer;
         }
       } else {
         serializer = this.container.lookup('serializer:application');
@@ -201,11 +195,12 @@ export default class Router extends DenaliObject implements RouterDSL {
    * action.
    */
   private handleError(request: Request, res: ServerResponse, error: Error) {
+    request.params = request.params || {};
+    request.params.error = error;
     let ErrorAction = this.container.lookup('action:error');
     let errorAction = new ErrorAction({
       request,
       response: res,
-      error,
       logger: this.logger,
       container: this.container
     });

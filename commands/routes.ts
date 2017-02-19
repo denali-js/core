@@ -1,5 +1,5 @@
 import unwrap from '../lib/utils/unwrap';
-import CliTable from 'cli-table2';
+import * as CliTable from 'cli-table2';
 import { ui, Command, Project } from 'denali-cli';
 import Application from '../lib/runtime/application';
 
