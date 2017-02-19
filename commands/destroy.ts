@@ -20,7 +20,7 @@ export default class DestroyCommand extends Command {
   public static params = '<blueprint>';
 
   protected static configureSubcommands(yargs: any, context: { name: string, isLocal: boolean }) {
-    Blueprint.findBlueprints(yargs, merge({ action: 'destroy' }, context));
+    return Blueprint.findAndConfigureBlueprints(yargs, merge({ action: 'destroy' }, context));
   }
 
 }
