@@ -15,8 +15,8 @@ export default class TestCommand extends Command {
   public static commandName = 'test';
   public static description = "Run your app's test suite";
   public static longDescription = unwrap`
-    Runs your app's test suite, and can optionally keep re-running it on each file
-    change (--watch).`;
+    Runs your app's test suite, and can optionally keep re-running it on each file change (--watch).
+  `;
 
   public static runsInApp = true;
 
@@ -90,7 +90,22 @@ export default class TestCommand extends Command {
   public tests: ChildProcess;
 
   public async run(argv: any) {
-    let files = argv.files || 'test/**/*.js';
+    let files = argv.files;
+    if (files.length === 0) {
+      files.push('test/**/*.js');
+    }
+    // Filter for .js files only
+    files = files.filter((pattern: string) => {
+      let isValidJsPattern = pattern.endsWith('*') || pattern.endsWith('.js');
+      if (!isValidJsPattern) {
+        ui.warn(unwrap`
+          If you want to run specific test files, you must use the .js extension. You supplied
+          ${ pattern }. Denali will build your test files before running them, so you need to use
+          the compiled filename which ends in .js
+        `);
+      }
+      return isValidJsPattern;
+    });
 
     let project = new Project({
       environment: 'test',
