@@ -1,11 +1,14 @@
-import ApplicationAction from './application';
+const ApplicationAction = require('./application');
 
-export default class IndexAction extends ApplicationAction {
+module.exports = class IndexAction extends ApplicationAction {
 
-  serializer = false;
+  constructor() {
+    super(...arguments);
+    this.serializer = false;
+  }
 
   respond() {
     return { message: 'Welcome to Denali!' };
   }
 
-}
+};

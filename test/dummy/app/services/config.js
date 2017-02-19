@@ -1,5 +1,10 @@
-import { Service } from 'denali';
+const { Service } = require('denali');
 
-export default class ConfigService extends Service {
-  name = 'dummy';
+module.exports = class ConfigService extends Service {
+
+  constructor() {
+    super(...arguments);
+    this.name = 'dummy';
+  }
+
 }

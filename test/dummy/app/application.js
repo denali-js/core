@@ -1,4 +1,3 @@
-import { Application } from 'denali';
+const { Application } = require('denali');
 
-export default class DummyApplication extends Application {
-}
+module.exports = class DummyApplication extends Application {};
