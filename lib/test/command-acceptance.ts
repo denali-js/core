@@ -88,17 +88,9 @@ export default class CommandAcceptanceTest extends DenaliObject {
     this.environment = options.environment || 'development';
     this.projectRoot = path.dirname(path.dirname(process.cwd()));
     this.projectPkg = require(path.join(this.projectRoot, 'package.json'));
-    this.denaliPath = path.join(this.projectRoot, 'node_modules', 'denali', 'bin', 'denali');
-
-    // This is a special case for when we are running Denali's own test suite.
-    // In _every_ other scenario (app or addon running tests), Denali would be
-    // a dependency, and therefore node_modules/.bin/denali should exist. But
-    // when running Denali's own test suite, that won't exist, since Denali
-    // isn't a dependency of itself. So we special case this to find the actual
-    // executable instead.
-    if (!fs.existsSync(this.denaliPath)) {
-      this.denaliPath = path.join(process.cwd(), 'node_modules', 'denali', 'bin', 'denali');
-    }
+    // We don't use node_modules/.bin/denali because if denali-cli is linked in via yarn, it doesn't
+    // add the binary symlinks to .bin. See https://github.com/yarnpkg/yarn/issues/2493
+    this.denaliPath = path.join(this.projectRoot, 'node_modules', 'denali-cli', 'dist', 'bin', 'denali');
 
     if (options.populateWithDummy !== false) {
       this.populateWithDummy();
@@ -207,7 +199,7 @@ export default class CommandAcceptanceTest extends DenaliObject {
         if (stderrBuffer.length > 0 && options.failOnStderr) {
           process.removeListener('exit', cleanup);
           this.cleanup();
-          let error = new Error('Command printed to stderr, and failOnStderr enabled:\n');
+          let error = new Error(`'${ this.command }' printed to stderr with failOnStderr enabled:\n`);
           error.message += dedent`
             ====> stdout:
             ${ stdoutBuffer }
