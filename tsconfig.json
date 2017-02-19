@@ -12,6 +12,7 @@
       "outDir": "dist",
       "baseUrl": ".",
       "skipLibCheck": true,
+      "sourceRoot": ".",
       "paths": {
         "denali": [ "lib/index.ts" ]
       }
