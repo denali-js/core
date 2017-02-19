@@ -29,9 +29,13 @@ const debug = createDebug('denali:action');
  * filter returned a value which will be rendered as the response, and that the remaining filters
  * and the responder method should not be run.
  */
-class PreemptiveRender {}
-PreemptiveRender.prototype = Object.create(Error.prototype);
-PreemptiveRender.prototype.constructor = PreemptiveRender;
+class PreemptiveRender extends Error {
+  public response: Response;
+  constructor(response: Response) {
+    super();
+    this.response = response;
+  }
+}
 
 export interface ActionOptions {
   request: Request;
