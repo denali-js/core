@@ -23,7 +23,7 @@ export default class Logger extends DenaliObject {
   /**
    * Default log level if none specified.
    */
-  public loglevel: LogLevel;
+  public loglevel: LogLevel = 'info';
 
   /**
    * Specify if logs should be colorized.
@@ -73,10 +73,6 @@ export default class Logger extends DenaliObject {
    * Log a message to the logger at a specific log level.
    */
   public log(level: LogLevel, msg: any): void {
-    if (arguments.length !== 1) {
-      msg = level;
-      level = this.loglevel;
-    }
     if (this.levels.indexOf(level) === -1) {
       level = this.loglevel;
     }
