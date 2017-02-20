@@ -159,7 +159,7 @@ router.<span class="hljs-built_in">get</span>(<span class="hljs-string">'/foo'</
 <p>The router also exposes a <code>resource()</code> method for quickly adding an entire suite
 of endpoints for a given resource (it follows the <a href="http://jsonapi.org/recommendations/#urls">JSON-API recommendations for
 URL design</a>):</p>
-<pre><code class="lang-js"><span class="hljs-keyword">this</span>.resource(<span class="hljs-string">'post'</span>);
+<pre><code class="lang-js"><span class="hljs-selector-tag">router</span><span class="hljs-selector-class">.resource</span>(<span class="hljs-string">'post'</span>);
 </code></pre>
 <p>will generate the following routes:</p>
 <table>
