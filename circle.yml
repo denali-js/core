@@ -4,7 +4,7 @@ general:
       - gh-pages
 machine:
   node:
-    version: 6.2
+    version: 6.9
   environment:
     YARN_VERSION: 0.18.1
     PATH: "${PATH}:${HOME}/.yarn/bin:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"
