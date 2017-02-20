@@ -5,7 +5,7 @@ import {
 } from 'lodash';
 import * as cmdExists from 'command-exists';
 import { Blueprint, ui, spinner } from 'denali-cli';
-import pkg from '../../package.json';
+import * as pkg from '../../package.json';
 import unwrap from '../../lib/utils/unwrap';
 
 const run = Bluebird.promisify<[ string, string ], string, ExecOptions>(exec);

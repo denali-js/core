@@ -1,4 +1,4 @@
-const Builder = require('denali').Builder;
+const { Builder } = require('denali-cli');
 
 module.exports = class <%= className %>Builder extends Builder {
 }
