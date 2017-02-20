@@ -1,3 +1,5 @@
 set -e
 rm -rf tmp dist
-NODE_ENV=test nyc ./bin/denali test --concurrency 2 --verbose "$@"
+npm run bootstrap
+denali build
+NODE_ENV=test nyc denali test --concurrency 2 --verbose "$@"
