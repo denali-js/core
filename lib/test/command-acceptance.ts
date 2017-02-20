@@ -63,8 +63,8 @@ export default class CommandAcceptanceTest extends DenaliObject {
   protected pollOutput: NodeJS.Timer;
 
   /**
-   * A fallback timer which will fail the test if the spawned process doesn't emit passing output
-   * in a certain amount of time.
+   * A fallback timer which will fail the test if the spawned process doesn't emit passing output in
+   * a certain amount of time.
    */
   protected fallbackTimeout: NodeJS.Timer;
 
@@ -83,7 +83,7 @@ export default class CommandAcceptanceTest extends DenaliObject {
     this.command = command;
     this.dir = options.dir || (<any>tmp.dirSync({
       unsafeCleanup: !process.env.DENALI_LEAVE_TMP,
-      template: path.resolve(`../test-${ options.name || 'command-acceptance' }-XXXXXX`)
+      prefix: `test-${ options.name || 'command-acceptance' }`
     })).name;
     this.environment = options.environment || 'development';
     this.projectRoot = path.dirname(path.dirname(process.cwd()));
@@ -107,9 +107,12 @@ export default class CommandAcceptanceTest extends DenaliObject {
     assert(!fs.existsSync(tmpNodeModules), 'You tried to run a CommandAcceptanceTest against a directory that already has an app in it. Did you forget to specify { populateWithDummy: false }?');
     // Copy over the dummy app
     fs.copySync(dummy, this.dir);
-    // Symlink the addon itself as a dependency of the dummy app. The compiled
-    // dummy app will have the compiled addon it it's node_modules
+    // Symlink the addon itself as a dependency of the dummy app. The compiled dummy app will have
+    // the compiled addon in it's node_modules
     fs.mkdirSync(tmpNodeModules);
+    fs.readdirSync(path.join(this.projectRoot, 'node_modules')).forEach((nodeModuleEntry) => {
+      fs.symlinkSync(path.join(this.projectRoot, 'node_modules', nodeModuleEntry), path.join(tmpNodeModules, nodeModuleEntry));
+    });
     fs.symlinkSync(path.join(this.projectRoot, 'tmp', 'test', 'node_modules', this.projectPkg.name), path.join(tmpNodeModules, this.projectPkg.name));
     debug('tmp directory populated');
   }
