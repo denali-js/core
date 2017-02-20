@@ -220,7 +220,7 @@ export default class CommandAcceptanceTest extends DenaliObject {
       }, options.pollInterval || 50);
 
       // Ensure the test fails if we don't pass the test after a while
-      let timeout = options.timeout || (process.env.CI ? 10 * MINUTE : 3 * MINUTE);
+      let timeout = options.timeout || (process.env.CI ? 5 * MINUTE : 3 * MINUTE);
       this.fallbackTimeout = setTimeout(() => {
         process.removeListener('exit', cleanup);
         this.cleanup();
