@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/">
+
+    <title> Quickstart  </title>
+
+    <link href='//fonts.googleapis.com/css?family=Inconsolata|Bitter:400,700|Open+Sans:300,400,400italic,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-dropdown/2.0.3/jquery.dropdown.min.css" />
+  </head>
+  <body>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-2.2.2.min.js"><\/script>')</script>
+    <nav class="navbar">
+  <div class='container'>
+    <a href='.' class='navbar-brand'>
+      <img class='logo-light' src='images/logo.svg' alt='Denali'>
+      <span class='project-name'>Denali</span>
+    </a>
+
+    <div class="navbar-nav">
+      
+      <a class='nav-link' href='v0.0.17/guides/overview/quickstart'>Quickstart</a>
+      <a class='nav-link' href='v0.0.17/guides/overview/introduction'>Guides</a>
+      <a class='nav-link' href='v0.0.17/api/modules/denali'>API</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali' target='_blank'>Github</a>
+      <a class='nav-link' href='https://github.com/denali-js/denali/issues' target='_blank'>Issues</a>
+    </div>
+  </div>
+</nav>
+
+<div class='container'>
+  <div class="row">
+    <div class='guides-nav col-md-3'>
+      <div class='nav-section'>
+  <div class='nav-header'>Version</div>
+  <div class='versions-menu-toggle' data-jq-dropdown='#versions-menu'>
+    v0.0.17 
+    <img class='versions-menu-caret' src='/images/caret.svg'>
+  </div>
+</div>
+
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>Overview</div>
+          
+          
+            <a href='v0.0.17/guides/overview/introduction' class='nav-link'>Introduction</a>
+          
+            <a href='v0.0.17/guides/overview/quickstart' class='nav-link'>Quickstart</a>
+          
+            <a href='v0.0.17/guides/overview/app-structure' class='nav-link'>App Structure</a>
+          
+        </div>
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>Application</div>
+          
+          
+            <a href='v0.0.17/guides/application/routing' class='nav-link'>Routing</a>
+          
+            <a href='v0.0.17/guides/application/actions' class='nav-link'>Actions</a>
+          
+            <a href='v0.0.17/guides/application/services' class='nav-link'>Services</a>
+          
+            <a href='v0.0.17/guides/application/errors' class='nav-link'>Errors</a>
+          
+            <a href='v0.0.17/guides/application/mailers' class='nav-link'>Mailers</a>
+          
+        </div>
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>Data</div>
+          
+          
+            <a href='v0.0.17/guides/data/models' class='nav-link'>Models</a>
+          
+            <a href='v0.0.17/guides/data/serializers' class='nav-link'>Serializers</a>
+          
+            <a href='v0.0.17/guides/data/orm-adapters' class='nav-link'>ORM Adapters</a>
+          
+        </div>
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>Testing</div>
+          
+          
+            <a href='v0.0.17/guides/testing/integration' class='nav-link'>Integration</a>
+          
+            <a href='v0.0.17/guides/testing/unit' class='nav-link'>Unit Testing</a>
+          
+        </div>
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>Configuration</div>
+          
+          
+            <a href='v0.0.17/guides/configuration/environment' class='nav-link'>Environment</a>
+          
+            <a href='v0.0.17/guides/configuration/middleware' class='nav-link'>Middleware</a>
+          
+            <a href='v0.0.17/guides/configuration/initializers' class='nav-link'>Initializers</a>
+          
+        </div>
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>Utilities</div>
+          
+          
+            <a href='v0.0.17/guides/utilities/mixins' class='nav-link'>Mixins</a>
+          
+            <a href='v0.0.17/guides/utilities/addons' class='nav-link'>Addons</a>
+          
+            <a href='v0.0.17/guides/utilities/instrumentation' class='nav-link'>Instrumentation</a>
+          
+        </div>
+      
+        <div class="nav-section">
+          
+            <div class='nav-header'>CLI</div>
+          
+          
+            <a href='v0.0.17/guides/cli/generate' class='nav-link'>denali generate</a>
+          
+            <a href='v0.0.17/guides/cli/serve' class='nav-link'>denali serve</a>
+          
+            <a href='v0.0.17/guides/cli/test' class='nav-link'>denali test</a>
+          
+            <a href='v0.0.17/guides/cli/build' class='nav-link'>denali build</a>
+          
+            <a href='v0.0.17/guides/cli/addon' class='nav-link'>denali addon</a>
+          
+            <a href='v0.0.17/guides/cli/console' class='nav-link'>denali console</a>
+          
+        </div>
+      
+    </div>
+
+    <div class='col-md-9 guides-body copy'>
+      <a class="improve-btn" target="_blank" href="https://github.com/denali-js/denali/edit/master/guides/overview/quickstart.md">Improve this page</a>
+      <h1 id="getting-started">Getting Started</h1>
+<p>It&#39;s that ever-favorite first project for a server side framework: let&#39;s build a basic blogging application!</p>
+<h2 id="installation">Installation</h2>
+<p>First off, make sure you install Denali globally via npm:</p>
+<pre><code class="lang-sh">$ npm <span class="hljs-keyword">install</span> -g denali
+</code></pre>
+<h2 id="scaffolding-our-application">Scaffolding our application</h2>
+<blockquote>
+<p>Note: Denali requires you to use Node 6.0 or greater.</p>
+</blockquote>
+<p>Next, let&#39;s use Denali&#39;s handy scaffolding tools to create a blank slate for us to start from:</p>
+<pre><code class="lang-sh">$ denali new blog
+create blog/<span class="hljs-selector-class">.babelrc</span>
+create blog/<span class="hljs-selector-class">.editorconfig</span>
+create blog/<span class="hljs-selector-class">.env</span>
+create blog/<span class="hljs-selector-class">.eslintignore</span>
+create blog/<span class="hljs-selector-class">.eslintrc</span>
+create blog/<span class="hljs-selector-class">.gitattributes</span>
+create blog/<span class="hljs-selector-class">.gitignore</span>
+create blog/<span class="hljs-selector-class">.nvmrc</span>
+create blog/<span class="hljs-selector-class">.travis</span><span class="hljs-selector-class">.yml</span>
+create blog/CHANGELOG<span class="hljs-selector-class">.md</span>
+create blog/README<span class="hljs-selector-class">.md</span>
+create blog/app/actions/application<span class="hljs-selector-class">.js</span>
+create blog/app/actions/index<span class="hljs-selector-class">.js</span>
+create blog/app/application<span class="hljs-selector-class">.js</span>
+create blog/app/index<span class="hljs-selector-class">.js</span>
+create blog/app/models/application<span class="hljs-selector-class">.js</span>
+create blog/app/serializers/application<span class="hljs-selector-class">.js</span>
+create blog/app/services/<span class="hljs-selector-class">.gitkeep</span>
+create blog/config/environment<span class="hljs-selector-class">.js</span>
+create blog/config/initializers/<span class="hljs-selector-class">.gitkeep</span>
+create blog/config/middleware<span class="hljs-selector-class">.js</span>
+create blog/config/routes<span class="hljs-selector-class">.js</span>
+create blog/denali-build<span class="hljs-selector-class">.js</span>
+create blog/package<span class="hljs-selector-class">.json</span>
+create blog/test/<span class="hljs-selector-class">.eslintrc</span>
+create blog/test/helpers/<span class="hljs-selector-class">.gitkeep</span>
+create blog/test/integration/index-test<span class="hljs-selector-class">.js</span>
+create blog/test/unit/<span class="hljs-selector-class">.gitkeep</span>
+✔ Installing dependencies
+✔ Setting up git repo
+✨  blog created
+
+To launch your application, just run:
+
+  $ cd blog &amp;&amp; denali server
+</code></pre>
+<p>Go ahead and follow that last instruction:</p>
+<pre><code class="lang-txt">$ cd <span class="hljs-keyword">blog
+</span>$ denali server
+✔ <span class="hljs-keyword">blog </span><span class="hljs-keyword">build </span>complete (<span class="hljs-number">1</span>.<span class="hljs-number">829</span>s)
+[<span class="hljs-number">2017</span>-<span class="hljs-number">01</span>-<span class="hljs-number">12</span>T17:<span class="hljs-number">36</span>:<span class="hljs-number">52</span>.<span class="hljs-number">437</span>Z] <span class="hljs-meta">INFO</span> - <span class="hljs-keyword">blog@0.0.1 </span>server up on port <span class="hljs-number">3000</span>
+</code></pre>
+<p>Perfect! You&#39;ve got your first Denali app up and running. Now let&#39;s see it in action. Hit the root endpoint with curl:</p>
+<pre><code class="lang-txt"><span class="hljs-variable">$ </span>curl <span class="hljs-symbol">localhost:</span><span class="hljs-number">3000</span>
+
+  <span class="hljs-string">"message"</span>: <span class="hljs-string">"Welcome to Denali!"</span>
+}
+</code></pre>
+<blockquote>
+<p><strong>Heads up!</strong> Notice that we didn&#39;t visit that localhost URL in the browser. That&#39;s because Denali is designed to build <strong>APIs</strong> rather than HTML rendering applications. If you are looking for Node framework to build a server rendered web application, you might want to try something like Sails.js or Express.</p>
+</blockquote>
+<p>Great, we got an app up and running! Now that&#39;s cool, but it&#39;s not <em>that</em> cool Let&#39;s crack open the scaffolded code to see how we got that welcome message, and how to add our own code.</p>
+<h3 id="directory-structure">Directory structure</h3>
+<p>The <code>denali new</code> command did a lot of setup for us. It created the following directory structure:</p>
+<pre><code class="lang-txt">blog/
+  app/
+    actions/
+      application<span class="hljs-selector-class">.js</span>
+      index<span class="hljs-selector-class">.js</span>
+    models/
+      application<span class="hljs-selector-class">.js</span>
+    serializers/
+      application<span class="hljs-selector-class">.js</span>
+    services/
+    application<span class="hljs-selector-class">.js</span>
+    index<span class="hljs-selector-class">.js</span>
+  config/
+    initializers/
+    environment<span class="hljs-selector-class">.js</span>
+    middleware<span class="hljs-selector-class">.js</span>
+    routes<span class="hljs-selector-class">.js</span>
+  test/
+    acceptance/
+      index-test<span class="hljs-selector-class">.js</span>
+    helpers/
+    unit/
+    <span class="hljs-selector-class">.eslintrc</span>
+  <span class="hljs-selector-class">.babelrc</span>
+  <span class="hljs-selector-class">.editorconfig</span>
+  <span class="hljs-selector-class">.env</span>
+  <span class="hljs-selector-class">.eslintignore</span>
+  <span class="hljs-selector-class">.eslintrc</span>
+  <span class="hljs-selector-class">.gitattributes</span>
+  <span class="hljs-selector-class">.gitignore</span>
+  <span class="hljs-selector-class">.nvmrc</span>
+  <span class="hljs-selector-class">.travis</span><span class="hljs-selector-class">.yml</span>
+  CHANGELOG<span class="hljs-selector-class">.md</span>
+  denali-build<span class="hljs-selector-class">.js</span>
+  package<span class="hljs-selector-class">.json</span>
+  README.md
+</code></pre>
+<p>There&#39;s a lot there, but for now, let&#39;s open up the <code>config/routes.js</code> to see how that root endpoint is being handled:</p>
+<pre><code class="lang-js"><span class="hljs-comment">// config/routes.js</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">drawRoutes</span>(<span class="hljs-params">router</span>) </span>{
+
+  router.get(<span class="hljs-string">'/'</span>, <span class="hljs-string">'index'</span>);
+
+}
+</code></pre>
+<p>This should look somewhat familiar if you used frameworks like Rails before. The <code>router.get(&#39;/&#39;, &#39;index&#39;)</code> method tells Denali to respond to <code>GET /</code> with the <code>index</code> action.</p>
+<p>In <code>app/actions/index.js</code>, we can see how that is handled:</p>
+<pre><code class="lang-js"><span class="hljs-comment">// app/actions/index.js</span>
+<span class="hljs-keyword">import</span> <span class="hljs-type">ApplicationAction</span> from './application';
+
+export <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">IndexAction</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ApplicationAction</span> </span>{
+
+  serializer = <span class="hljs-literal">false</span>;
+
+  respond() {
+    <span class="hljs-keyword">return</span> { message: <span class="hljs-symbol">'Welcome</span> to <span class="hljs-type">Denali</span>!' };
+  }
+
+}
+</code></pre>
+<p>Let&#39;s break down what&#39;s going on here:</p>
+<ul>
+<li><p><code>import ApplicationAction from &#39;./application&#39;;</code> - we import the <code>ApplicationAction</code> to use as our common base class. You could import the base <code>Action</code> class from the <code>denali</code> module directly, but having a base class for all actions in your app is handy (and common convention).</p>
+</li>
+<li><p><code>serializer = false</code> - this tells Denali to skip the serializer when rendering the response. More on this in a bit, but for now, it basically means Denali will simply <code>JSON.stringify()</code> your response.</p>
+</li>
+<li><p><code>respond()</code> - the <code>respond()</code> method is the meat of any action. It defines how the action responds to an incoming request.</p>
+</li>
+<li><p><code>return { ... }</code> - Denali will respond to the incoming request with whatever you return from the <code>respond()</code> method. If you return a promise (or mark the method as async via <code>async respond() { ... }</code>), Denali will respond with the resolved value of that promise.</p>
+</li>
+</ul>
+<p>The end result here is an action which will always respond with the same JSON object that we saw above: <code>{ &quot;message&quot;: &quot;Welcome to Denali!&quot; }</code>.</p>
+<h2 id="adding-a-resource">Adding a resource</h2>
+<p>Now let&#39;s get a bit more creative. Our blog API is going to need to store and retrieve our blog posts. Let&#39;s create a <code>post</code> resource to enable that.</p>
+<blockquote>
+<p>Normally, you&#39;d probably store these in some kind of database (i.e. Mongo, Postgres, MySQL, etc). Denali is <strong>database agnostic</strong> though. So for now, we&#39;ll use plain ol&#39; JS objects (a.k.a. POJOs). But you can easily substitute your own models in later. For more details, check out the <a href="../../data/models">Data guides</a>.</p>
+</blockquote>
+<p>To start, let&#39;s use that handy scaffolding tool again:</p>
+<pre><code class="lang-sh">$ denali <span class="hljs-keyword">generate</span> resource post
+</code></pre>
+<p>This scaffold creates several files:</p>
+<ul>
+<li><p>A set of <strong>actions</strong> in <code>app/actions/posts/</code> for this resource with the basic CRUD operations stubbed out. These files are where you&#39;ll implement your application logic to respond to a particular request. We saw these above.</p>
+</li>
+<li><p>A <strong>serializer</strong> to determine how your posts will be rendered in the response. We&#39;ll learn more about this in a bit.</p>
+</li>
+<li><p>A <strong>model</strong> to represent your posts.</p>
+</li>
+<li><p>A placeholder <strong>acceptance test suite</strong> for this resource. Denali comes with a first-class testing environment ready to go.</p>
+</li>
+</ul>
+<p>If we open up <code>app/actions/posts/list.js</code> now, you can see the stubbed out actions:</p>
+<pre><code class="lang-js">  <span class="hljs-comment">// app/actions/posts/list.js</span>
+  export <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ListPosts</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ApplicationAction</span> </span>{
+    respond() {
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-type">Errors</span>.<span class="hljs-type">NotImplemented</span>();
+    }
+  }
+</code></pre>
+<p>Let&#39;s go ahead and implement that list action now. We&#39;ll just hardcode the posts into the response for now:</p>
+<pre><code class="lang-js"><span class="hljs-comment">// app/controllers/posts.js</span>
+
+  serializer = <span class="hljs-literal">false</span>;
+
+  respond() {
+    <span class="hljs-keyword">return</span> ([
+      {
+        <span class="hljs-attribute">id:</span><span class="hljs-string"> 1,
+        title</span>: <span class="hljs-string">'Denali is awesome'</span>
+      },
+      {
+        <span class="hljs-attribute">id:</span><span class="hljs-string"> 2,
+        title</span>: <span class="hljs-string">'You are awesome!'</span>
+      }
+      ]);
+  }
+</code></pre>
+<p>Great! Let&#39;s hit that endpoint now:</p>
+<pre><code class="lang-sh"><span class="hljs-string">$ </span>curl localhost:<span class="hljs-number">3000</span>/posts
+[
+  {
+    <span class="hljs-comment">"id"</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-comment">"title"</span>: <span class="hljs-comment">"Denali is awesome"</span>
+  },
+  {
+    <span class="hljs-comment">"id"</span>: <span class="hljs-number">2</span>,
+    <span class="hljs-comment">"title"</span>: <span class="hljs-comment">"You are awesome!"</span>
+  }
+]
+</code></pre>
+<h2 id="adding-a-database">Adding a database</h2>
+<p>Hardcoded JSON still isn&#39;t all that interesting. Let&#39;s integrate with a data store so consumers of the API can actually manipulate the data.</p>
+<h5 id="a-quick-diversion-about-how-denali-handles-models-and-data">A quick diversion about how Denali handles models and data</h5>
+<p>Denali takes a somewhat unique approach. Most frameworks ship with some kind of Object Relational Mapper (ORM) baked right in. It transforms rows from a database into objects you can manipulate.</p>
+<p>Here&#39;s the thing: <strong>ORMs are hard. <em>Really hard.</em></strong> To make matters worse, there&#39;s <strong>no generally accepted &quot;good&quot; ORM for Node.js</strong>.</p>
+<p>With this in mind, Denali purposefully <strong>does not ship with an ORM</strong>. Instead, Denali&#39;s Models are essentially a thin adapter layer that lets you plug your own ORM in instead.</p>
+<p>There&#39;s lots of reasons why this is a powerful approach, but those are covered in the Data guides. For now, let&#39;s forge ahead and setup our data store.</p>
+<h3 id="the-memory-adapter">The Memory Adapter</h3>
+<p>Denali ships with an in-memory data store and ORM adapter, which can be useful for testing and debugging use cases. It&#39;s the default ORM for newly scaffolded projects, so it&#39;s already setup and ready to go. We&#39;ll use it now to get going without needing to setup an actual database.</p>
+<h3 id="orm-adapters">ORM Adapters</h3>
+<p>The provided memory adapter should not be used for production applications - data will not be saved across server restarts, and the performance is likely quite poor.</p>
+<p>When you are ready to integrate with a database, take a look at the various <a href="../../data/orm-adapters">ORM adapters available for Denali</a> for details on installing and configuring each.</p>
+<h2 id="adding-a-model">Adding a model</h2>
+<p>The resource generator we ran above already added a blank Post model for us in <code>app/models/post.js</code>. Let&#39;s open that up, and add a <code>title</code> attribute so we can store the title of each blog post:</p>
+<pre><code class="lang-js">
+<span class="hljs-keyword">import</span> { attr <span class="hljs-comment">/* , hasOne, hasMany */</span> } from <span class="hljs-symbol">'denal</span>i';
+<span class="hljs-keyword">import</span> <span class="hljs-type">ApplicationModel</span> from './application';
+
+export <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Post</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ApplicationModel</span> </span>{
+
+  static title = attr(<span class="hljs-symbol">'tex</span>t'); <span class="hljs-comment">// &lt;- add this</span>
+
+}
+</code></pre>
+<p>Okay, let&#39;s break this one down. First up, we follow the same pattern of having
+a base &quot;Application&quot; class that we did with Actions. We also import the <code>attr()</code> helper from Denali, which is used to define an attribute on the model:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> { attr <span class="hljs-comment">/* , hasOne, hasMany */</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">'denali'</span>;
+<span class="hljs-keyword">import</span> ApplicationModel <span class="hljs-keyword">from</span> <span class="hljs-string">'./application'</span>;
+</code></pre>
+<p>Next, we create our <code>title</code> attribute. Two things to note here:</p>
+<ol>
+<li>Here, and elsewhere, Denali makes heavy use of the class properties syntax, and,</li>
+<li>Attributes are declared as static properties</li>
+</ol>
+<pre><code class="lang-js"><span class="hljs-attribute">  static title</span> = attr(<span class="hljs-string">'text'</span>);
+</code></pre>
+<p>Now, back in our actions, we can see that the resource scaffold added code that will lookup all posts via <code>Post.find()</code>. Because <code>Post.find()</code> returns a promise that will resolve with the posts from the database, we can simply return that call to <code>Post.find()</code> directly from our respond method. Denali will automatically wait for the returned promise to resolve, and will then render the resulting value:</p>
+<pre><code class="lang-js"><span class="hljs-comment">// app/actions/posts/list.js</span>
+  respond() {
+    let Post = <span class="hljs-keyword">this</span>.modelFor(<span class="hljs-string">'post'</span>);
+    <span class="hljs-keyword">return</span> Post.find();
+  }
+</code></pre>
+<p>Over in our create action, we can let the user create new blog posts too:</p>
+<pre><code class="lang-js"><span class="hljs-comment">// app/actions/posts/create.js</span>
+  respond(<span class="hljs-keyword">params</span>) {
+    <span class="hljs-keyword">let</span> Post = <span class="hljs-keyword">this</span>.modelFor(<span class="hljs-string">'post'</span>);
+    <span class="hljs-keyword">return</span> Post.create(<span class="hljs-keyword">params</span>);
+  }
+</code></pre>
+<p>Great! Now we can create and list all the Posts in our in-memory data store.
+Let&#39;s test it out:</p>
+<pre><code class="lang-sh">$ curl localhost:<span class="hljs-number">3000</span>/posts -X POST -d <span class="hljs-string">'{"</span>title<span class="hljs-string">": "</span>My first post!<span class="hljs-string">"}'</span>
+
+{
+  <span class="hljs-string">"id"</span>: <span class="hljs-number">1</span>
+}
+</code></pre>
+<p>Looks like our Post was created! But if we look closely - our post&#39;s title (<code>&quot;My first post!&quot;</code>) wasn&#39;t returned. And if we check the post listing endpoint (<code>GET /posts</code>):</p>
+<pre><code class="lang-sh"><span class="hljs-variable">$ </span>curl <span class="hljs-symbol">localhost:</span><span class="hljs-number">3000</span>/posts
+
+[
+  {
+    <span class="hljs-string">"id"</span>: <span class="hljs-number">1</span>
+  }
+]
+</code></pre>
+<p><strong>It&#39;s missing there too. What&#39;s going on here?</strong></p>
+<h2 id="working-with-serializers">Working with Serializers</h2>
+<p>The reason our <code>title</code> field was missing was because we didn&#39;t tell Denali that we wanted it returned. We do this with serializers.</p>
+<p>In Denali, a serializer takes a payload object (or array), and transforms it into the string of JSON to send back in the response.</p>
+<p>By default, serializers are configured with a whitelist of allowed attributes. Since we haven&#39;t touched our <code>post</code> serializer yet, the <code>title</code> attribute isn&#39;t in that whitelist, so it gets stripped out of all our responses by default.</p>
+<p>Let&#39;s fix that now by adding it to the whitelist:</p>
+<pre><code class="lang-js"><span class="hljs-comment">// app/serializers/post.js</span>
+<span class="hljs-keyword">import</span> <span class="hljs-type">ApplicationSerializer</span> from './application';
+
+export <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PostSerializer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ApplicationSerializer</span> </span>{
+
+  attributes = [ <span class="hljs-symbol">'titl</span>e' ];
+
+}
+</code></pre>
+<p>And now let&#39;s try to list the posts again:</p>
+<pre><code class="lang-sh"><span class="hljs-variable">$ </span>curl <span class="hljs-symbol">localhost:</span><span class="hljs-number">3000</span>/posts
+
+[
+  {
+    <span class="hljs-string">"id"</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-string">"title"</span>: <span class="hljs-string">"My first post!"</span>
+  }
+]
+</code></pre>
+<p>There it is! Our blog is off to a promising start.</p>
+<h2 id="next-steps">Next Steps</h2>
+<p>Congrats, you made it through the quickstart guide. From here, you can:</p>
+<ul>
+<li>Check out the rest of the guides to learn more about the different parts of the framework</li>
+<li>Dive into the API documentation to get into the gritty details</li>
+<li>Explore the <a href="https://github.com/denali-js/denali">heavily commented source code</a></li>
+</ul>
+
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class='container'>
+    Made with <img src='images/fox-and-beard.svg' class='fox-and-beard'> at
+    <a href='http://foxandbeard.co' target='_blank'>Fox and Beard</a>
+  </div>
+</footer>
+
+  <div id='versions-menu' class='versions-menu jq-dropdown jq-dropdown-tip'>
+    <ul class='jq-dropdown-menu'>
+      
+        <li>
+          
+            <a href='/v0.0.20/guides/overview/quickstart'>v0.0.20 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.19/guides/overview/quickstart'>v0.0.19 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.18/guides/overview/quickstart'>v0.0.18 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a class='active'>v0.0.17 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.16/guides/overview/quickstart'>v0.0.16 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.15/guides/overview/quickstart'>v0.0.15 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.14/guides/overview/quickstart'>v0.0.14 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.13/guides/overview/quickstart'>v0.0.13 (canary)</a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.12/guides/overview/quickstart'>v0.0.12 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.11/guides/overview/quickstart'>v0.0.11 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.10/guides/overview/quickstart'>v0.0.10 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.9/guides/overview/quickstart'>v0.0.9 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.8/guides/overview/quickstart'>v0.0.8 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/v0.0.7/guides/overview/quickstart'>v0.0.7 </a>
+          
+        </li>
+      
+        <li>
+          
+            <a href='/master/guides/overview/quickstart'>master </a>
+          
+        </li>
+      
+    </ul>
+  </div>
+  <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery-dropdown/2.0.3/jquery.dropdown.min.js'></script>
+
+
+
+    <script>
+     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+     ga('create', 'UA-85043775-1', 'auto');
+     ga('send', 'pageview');
+    </script>
+  </body>
+</html>
