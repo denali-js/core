@@ -60,7 +60,7 @@ export default class AddonBlueprint extends Blueprint {
       let yarnExists: boolean = await commandExists('yarn');
       if (yarnExists && !argv.useNpm) {
         await spinner.start('Installing dependencies with yarn');
-        await run('yarn install', { cwd: name });
+        await run('yarn add --mutex network', { cwd: name });
       } else {
         await spinner.start('Installing dependencies with npm');
         await run('npm install --loglevel=error', { cwd: name });

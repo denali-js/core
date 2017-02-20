@@ -48,7 +48,7 @@ export default class MigrateCommand extends Command {
       await spinner.start('Installing knex (required for migrations)');
       let yarnExists = await commandExists('yarn');
       if (yarnExists) {
-        await run('yarn add knex');
+        await run('yarn add knex --mutex network');
       } else {
         await run('npm install --save knex');
       }

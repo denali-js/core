@@ -62,7 +62,7 @@ export default class AppBlueprint extends Blueprint {
         let yarnExists = await commandExists('yarn');
         if (yarnExists && !argv.useNpm) {
           await spinner.start('Installing dependencies with yarn');
-          await run('yarn install --mutex network', { cwd: name });
+          await run('yarn add --mutex network', { cwd: name });
         } else {
           await spinner.start('Installing dependencies with npm');
           await run('npm install --loglevel=error', { cwd: name });
