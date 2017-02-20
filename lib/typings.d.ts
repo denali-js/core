@@ -1,8 +1,4 @@
-declare module "*.json" {
-  const value: any;
-  export default value;
-}
-
+declare module "*.json";
 declare module "walk-sync";
 declare module "jscodeshift";
 declare module "broccoli-funnel";
