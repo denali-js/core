@@ -3,10 +3,14 @@ const { Builder, ui } = require(`denali-cli`);
 const Plugin = require('broccoli-plugin');
 const Funnel = require('broccoli-funnel');
 const MergeTree = require('broccoli-merge-trees');
+// const TypescriptTree = require('broccoli-typescript-compiler');
 const { exec } = require('child_process');
 // const Concat = require('broccoli-concat');
 
 class TypescriptTree extends Plugin {
+  constructor(tree, options) {
+    return super([tree], options);
+  }
   build() {
     return new Promise((resolve, reject) => {
       exec(path.join(process.cwd(), 'node_modules/.bin/tsc') + ' --outDir ' + this.outputPath, {
@@ -64,7 +68,8 @@ module.exports = class DenaliBuilder extends Builder {
   // }
 
   transpileTree(tree) {
-    let transpiled = new TypescriptTree([ tree ], { annotation: 'compile typescript' });
+    let tsconfig = require(path.join(process.cwd(), 'tsconfig.json'));
+    let transpiled = new TypescriptTree(tree, { tsconfig });
     let withoutTS = new Funnel(tree, {
       exclude: [ '**/*.ts' ]
     });
