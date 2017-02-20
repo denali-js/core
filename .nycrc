@@ -1,7 +1,9 @@
 {
-  "include": [
-    "lib/**/*.js"
+  "exclude": [
+    "**/blueprints/*/files/**",
+    "test/**",
+    "tmp/**"
   ],
-  "sourceMap": false,
-  "instrument": false
+  "reporter": "json",
+  "all": true
 }

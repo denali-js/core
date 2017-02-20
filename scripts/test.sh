@@ -1,5 +1,5 @@
 set -e
-rm -rf tmp dist
+rm -rf tmp dist coverage .nyc_output
 npm run bootstrap
 cd dist
 yarn link
