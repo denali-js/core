@@ -30,7 +30,9 @@ test('server command > launches a server', async () => {
 
 test('server command > launches a server based on the dummy app in an addon', async () => {
   let generateAddon = new CommandAcceptanceTest('generate addon my-denali-addon', { name: 'server-command-dummy-app', populateWithDummy: false });
-  let { stderr } = await generateAddon.run();
+  console.log(generateAddon.dir);
+  let { stdout, stderr } = await generateAddon.run();
+  console.log(stdout, stderr);
   linkDependency(path.join(generateAddon.dir, 'my-denali-addon'), 'denali', path.join(process.cwd(), 'node_modules', 'denali'));
   let server = new CommandAcceptanceTest('server --port 3002', {
     dir: path.join(generateAddon.dir, 'my-denali-addon'),
@@ -39,7 +41,8 @@ test('server command > launches a server based on the dummy app in an addon', as
 
   return server.spawn({
     failOnStderr: true,
-    checkOutput(stdout) {
+    checkOutput(stdout, stderr) {
+      console.log(stdout, stderr);
       return stdout.indexOf('dummy@0.0.0 server up') > -1;
     }
   });
