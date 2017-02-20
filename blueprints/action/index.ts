@@ -32,6 +32,8 @@ export default class ActionBlueprint extends Blueprint {
     }
   };
 
+  public static runsInApp = true;
+
   public locals(argv: any): any {
     let name = argv.name;
     let levels = name.split('/').map(() => '..');
