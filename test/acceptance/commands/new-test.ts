@@ -5,8 +5,7 @@ import * as fs from 'fs-extra';
 import { CommandAcceptanceTest } from 'denali';
 
 test('new command > generates an app', async (t) => {
-  t.plan(2);
-  let newCommand = new CommandAcceptanceTest('new my-denali-app', { populateWithDummy: false });
+  let newCommand = new CommandAcceptanceTest('new my-denali-app', { populateWithDummy: false, name: 'new-command' });
   let generatedFilepath = path.join(newCommand.dir, 'my-denali-app', 'app', 'application.js');
 
   await newCommand.run();
