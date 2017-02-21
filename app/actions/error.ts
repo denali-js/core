@@ -6,6 +6,7 @@ import {
   template
 } from 'lodash';
 import * as createDebug from 'debug';
+import * as assert from 'assert';
 
 const debug = createDebug('denali:app:error-action');
 
@@ -28,23 +29,18 @@ export default class ErrorAction extends Action {
     return this.request._originalAction;
   }
 
-  constructor(options: ActionOptions & { error: any }) {
-    super(options);
-    this.error = options.error;
-  }
-
   /**
    * Respond with JSON by default
    */
-  public respond(): Response {
-    return this.respondWithJson();
+  public respond(params: any): Response {
+    return this.respondWithJson(params);
   }
 
   /**
    * Render an HTML template with the error details
    */
-  public respondWithHtml(): Response {
-    let response = this.prepareError();
+  public respondWithHtml(params: any): Response {
+    let response = this.prepareError(params.error);
     let html = errorHTMLTemplate({ error: response.body });
     return new Response(response.status || 500, html, { contentType: 'text/html', raw: true });
   }
@@ -52,23 +48,23 @@ export default class ErrorAction extends Action {
   /**
    * Render the error details as a JSON payload
    */
-  public respondWithJson(): Response {
+  public respondWithJson(params: any): Response {
     debug('Client requested JSON, preparing error as JSON payload');
-    return this.prepareError();
+    return this.prepareError(params.error);
   }
 
   /**
    * Prepare the error for rendering. Santize the details of the error in production.
    */
-  protected prepareError(): Response {
-    let error = this.error;
+  protected prepareError(error: any): Response {
+    assert(error, 'Error action must be invoked with an error as a param');
     // Ensure a default status code of 500
-    error.status = error.statusCode = this.error.statusCode || 500;
+    error.status = error.statusCode = error.statusCode || 500;
     // If debugging info is allowed, attach some debugging info to standard
     // locations.
     if (this.includeDebugInfo()) {
       error.meta = {
-        stack: this.error.stack,
+        stack: error.stack,
         action: this.originalAction
       };
     // Otherwise, sanitize the output
