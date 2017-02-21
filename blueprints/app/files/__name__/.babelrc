@@ -8,7 +8,6 @@
     "transform-es2015-shorthand-properties",
     "transform-es2015-destructuring",
     "transform-class-properties",
-    "transform-es2015-classes",
     "transform-es2015-modules-commonjs",
     "transform-regenerator",
     "syntax-async-functions",
