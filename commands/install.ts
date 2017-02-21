@@ -1,7 +1,7 @@
 import unwrap from '../lib/utils/unwrap';
 import * as Bluebird from 'bluebird';
 import * as cmdExists from 'command-exists';
-import { ui, spinner, Command, Project } from 'denali-cli';
+import { ui, spinner, Command, Project, Blueprint } from 'denali-cli';
 import { exec } from 'child_process';
 
 const run = Bluebird.promisify<[ string, string ], string>(exec);

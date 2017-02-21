@@ -22,7 +22,7 @@ export default class NewCommand extends Command {
 
   public async run(argv: any) {
     AppBlueprint.dir = path.join(__dirname, '..', 'blueprints', 'app');
-    let appBlueprint = new AppBlueprint({});
+    let appBlueprint = new AppBlueprint();
     await appBlueprint.generate(argv);
   }
 

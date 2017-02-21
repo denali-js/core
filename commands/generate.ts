@@ -22,8 +22,8 @@ export default class GenerateCommand extends Command {
 
   public static params = '<blueprint>';
 
-  protected static configureSubcommands(yargs: any, context: { name: string, isLocal: boolean }) {
-    return Blueprint.findAndConfigureBlueprints(yargs, merge({ action: 'generate' }, context));
+  protected static configureSubcommands(commandName: string, yargs: any, projectPkg: any) {
+    return Blueprint.findAndConfigureBlueprints(yargs, 'generate', projectPkg);
   }
 
 }
