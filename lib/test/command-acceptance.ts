@@ -133,8 +133,10 @@ export default class CommandAcceptanceTest extends DenaliObject {
         cwd: this.dir
       }, (err, stdout, stderr) => {
         if (err || (options.failOnStderr && stderr.length > 0)) {
-          err = err || new Error();
+          err = err || new Error('\n');
           err.message += dedent`
+            "$ denali ${ this.command }" failed with the following output:
+            ====> cwd: ${ this.dir }
             ====> stdout:
             ${ stdout }
             ====> stderr:
@@ -204,6 +206,7 @@ export default class CommandAcceptanceTest extends DenaliObject {
           this.cleanup();
           let error = new Error(`'${ this.command }' printed to stderr with failOnStderr enabled:\n`);
           error.message += dedent`
+            ====> cwd: ${ this.dir }
             ====> stdout:
             ${ stdoutBuffer }
             ====> stderr:
