@@ -2,6 +2,63 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.0.21"></a>
+# [0.0.21](https://github.com/denali-js/denali/compare/v0.0.20...v0.0.21) (2017-02-21)
+
+
+### Bug Fixes
+
+* **app:** fix default error action to accept error via params rather than constructor ([aea74d5](https://github.com/denali-js/denali/commit/aea74d5))
+* **blueprint:** remove action "integration" tests ([91f8fce](https://github.com/denali-js/denali/commit/91f8fce))
+* **blueprint:** remove classes transform from app blueprint ([48f004b](https://github.com/denali-js/denali/commit/48f004b))
+* **blueprint:** wrap git commands with try/catch in addon blueprint (#253) ([e04d818](https://github.com/denali-js/denali/commit/e04d818))
+* **blueprints:** bump maxbuffer for postinstall shell commands ([498a450](https://github.com/denali-js/denali/commit/498a450))
+* **blueprints:** clean up blueprints, add extended descriptions ([6bead6b](https://github.com/denali-js/denali/commit/6bead6b))
+* add default log level to avoid not having a log level defined ([30203c5](https://github.com/denali-js/denali/commit/30203c5))
+* **blueprints:** fix migration blueprint typos, use unix timestamps for better sorting ([eceaa66](https://github.com/denali-js/denali/commit/eceaa66))
+* **blueprints:** use devdeps, denali-cli where appropriate ([7cf6b44](https://github.com/denali-js/denali/commit/7cf6b44))
+* **cli:** convert denali-build.js to vanilla syntax in blueprints (#245) ([8955c8f](https://github.com/denali-js/denali/commit/8955c8f))
+* **cli:** fix watch flag for test command ([db8b7fc](https://github.com/denali-js/denali/commit/db8b7fc))
+* **cli:** improve error handling for migration command ([3be72e2](https://github.com/denali-js/denali/commit/3be72e2))
+* **commands:** clean up non-blueprint based commands ([4142cbc](https://github.com/denali-js/denali/commit/4142cbc))
+* **commands:** ensure publish command awaits spinner commands ([b98a99c](https://github.com/denali-js/denali/commit/b98a99c))
+* **commands:** fix default value arg name ([b5dffdf](https://github.com/denali-js/denali/commit/b5dffdf))
+* **runtime:** don't break hasOwnProperty in container (#243) ([3f620e1](https://github.com/denali-js/denali/commit/3f620e1)), closes [#242](https://github.com/denali-js/denali/issues/242)
+* use async api for cli spinner to ensure correct order of log messages ([cce72ec](https://github.com/denali-js/denali/commit/cce72ec))
+* **runtime:** fix config reference on router ([ec85647](https://github.com/denali-js/denali/commit/ec85647))
+* add missing super() calls for classes that now inherit from DenaliObject ([290650b](https://github.com/denali-js/denali/commit/290650b))
+* convert some incorrect default imports -> splat import ([8af3070](https://github.com/denali-js/denali/commit/8af3070))
+* ensure action blueprint runs in app only ([9bd73b4](https://github.com/denali-js/denali/commit/9bd73b4))
+* ensure yarn add is always invoked with --mutex ([03795db](https://github.com/denali-js/denali/commit/03795db))
+* fix container handling of singletons ([3f70766](https://github.com/denali-js/denali/commit/3f70766))
+* fix import types, use OSS modules for some basic tasks ([e59e606](https://github.com/denali-js/denali/commit/e59e606))
+* fix json typing ([f7303d9](https://github.com/denali-js/denali/commit/f7303d9))
+* fix lint errors for denali-build blueprint files ([d956fbb](https://github.com/denali-js/denali/commit/d956fbb))
+* fix new app command, hardcode to core blueprint for now ([d907e94](https://github.com/denali-js/denali/commit/d907e94))
+* fix some incorrect types, ensure preemptive renders correctly return a response ([9c80761](https://github.com/denali-js/denali/commit/9c80761))
+* **runtime:** fix import syntax ([39b11a1](https://github.com/denali-js/denali/commit/39b11a1))
+* move command acceptance test tmp dir to OS tmp dir to avoid runsInApp conflicts ([6382c86](https://github.com/denali-js/denali/commit/6382c86))
+* no need to special case the denali binary with the CLI separated ([62bff8d](https://github.com/denali-js/denali/commit/62bff8d))
+* yarn add -> yarn install ([1eaac75](https://github.com/denali-js/denali/commit/1eaac75))
+
+
+### Features
+
+* add "default" blueprints for addons that are invoked on install ([6f4bae5](https://github.com/denali-js/denali/commit/6f4bae5))
+* **commands:** leverage new blueprint arg parsing ([6e4cbcb](https://github.com/denali-js/denali/commit/6e4cbcb))
+* add DenaliObject base class for easier mixin syntax ([8e7a60b](https://github.com/denali-js/denali/commit/8e7a60b))
+* add skip-post-install flags to blueprints ([230f30e](https://github.com/denali-js/denali/commit/230f30e))
+* log out cwd for failed command acceptance tests ([0bd9cdf](https://github.com/denali-js/denali/commit/0bd9cdf))
+* **blueprints:** add acceptance-test blueprint ([bf636e0](https://github.com/denali-js/denali/commit/bf636e0))
+* **cli:** allow migrate command to target a specific environment ([8a8c72f](https://github.com/denali-js/denali/commit/8a8c72f))
+* **commands:** add ability to run specific test files only ([dd97e65](https://github.com/denali-js/denali/commit/dd97e65))
+* **commands:** remove addon command (just run the blueprint) ([7966cd1](https://github.com/denali-js/denali/commit/7966cd1))
+* **data:** separate out different querying methods into `find`, `all`, `query`, and `findOne` ([ffcaee1](https://github.com/denali-js/denali/commit/ffcaee1))
+* **metal:** check class static props for containerize/singleton flags when instantiating via the container ([235cff1](https://github.com/denali-js/denali/commit/235cff1))
+* **test:** wrap AppAcceptance class with helper method that handles transactions as well ([c4338fc](https://github.com/denali-js/denali/commit/c4338fc))
+
+
+
 <a name="0.0.20"></a>
 # [0.0.20](https://github.com/denali-js/denali/compare/v0.0.19...v0.0.20) (2017-01-14)
 
