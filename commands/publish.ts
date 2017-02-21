@@ -37,37 +37,37 @@ export default class PublishCommand extends Command {
   }
 
   protected async runTests() {
-    spinner.start('Running tests');
+    await spinner.start('Running tests');
     try {
       await run('npm test', {});
     } catch (error) {
-      spinner.fail('Tests failed, halting publish');
+      await spinner.fail('Tests failed, halting publish');
       throw error;
     }
-    spinner.succeed('Tests passed');
+    await spinner.succeed('Tests passed');
   }
 
   protected async build() {
-    spinner.start('Building');
+    await spinner.start('Building');
     try {
       await run('npm run build', {});
     } catch (error) {
-      spinner.fail('Build failed, halting publish');
+      await spinner.fail('Build failed, halting publish');
       throw error;
     }
-    spinner.succeed('Addon built');
+    await spinner.succeed('Addon built');
   }
 
   protected async publish() {
-    spinner.start('Publishing');
+    await spinner.start('Publishing');
     try {
       await run('npm publish', { cwd: path.join(process.cwd(), 'dist') });
     } catch (error) {
-      spinner.fail('Publish failed');
+      await spinner.fail('Publish failed');
       throw error;
     }
     let pkg = require(path.join(process.cwd(), 'package.json'));
-    spinner.succeed(`${ pkg.name } ${ pkg.version } published!`);
+    await spinner.succeed(`${ pkg.name } ${ pkg.version } published!`);
   }
 
 }
