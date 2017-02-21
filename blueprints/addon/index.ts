@@ -10,6 +10,8 @@ import unwrap from '../../lib/utils/unwrap';
 
 const run = Bluebird.promisify<[ string, string ], string, ExecOptions>(exec);
 const commandExists = Bluebird.promisify<boolean, string>(cmdExists);
+const ONE_KB = 1024;
+const maxBuffer = 400 * ONE_KB;
 
 /**
  * Creates a new addon project, initializes git and installs dependencies
@@ -60,18 +62,18 @@ export default class AddonBlueprint extends Blueprint {
       let yarnExists: boolean = await commandExists('yarn');
       if (yarnExists && !argv.useNpm) {
         await spinner.start('Installing dependencies with yarn');
-        await run('yarn install --mutex network', { cwd: name });
+        await run('yarn install --mutex network', { cwd: name, maxBuffer });
       } else {
         await spinner.start('Installing dependencies with npm');
-        await run('npm install --loglevel=error', { cwd: name });
+        await run('npm install --loglevel=error', { cwd: name, maxBuffer });
       }
     }
     await spinner.succeed('Dependencies installed');
     await spinner.start('Setting up git repo');
     try {
-      await run('git init', { cwd: name });
-      await run('git add .', { cwd: name });
-      await run('git commit -am "Initial denali project scaffold"', { cwd: name });
+      await run('git init', { cwd: name, maxBuffer });
+      await run('git add .', { cwd: name, maxBuffer });
+      await run('git commit -am "Initial denali project scaffold"', { cwd: name, maxBuffer });
     } catch (e) {
       ui.error('Unable to initialize a git repo in your new app:');
       ui.error(e.stack);
