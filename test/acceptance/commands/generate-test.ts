@@ -5,7 +5,7 @@ import * as path from 'path';
 import { CommandAcceptanceTest } from 'denali';
 
 test('generate command > generates a blueprint', async (t) => {
-  let generate = new CommandAcceptanceTest('generate action foobar', { name: 'generate-command' });
+  let generate = new CommandAcceptanceTest('generate action foobar --skip-post-install', { name: 'generate-command' });
   let generatedFilepath = path.join(generate.dir, 'app', 'actions', 'foobar.js');
 
   await generate.run();

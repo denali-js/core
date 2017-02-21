@@ -22,6 +22,14 @@ export default class GenerateCommand extends Command {
 
   public static params = '<blueprint>';
 
+  public static flags = {
+    skipPostInstall: {
+      description: "Don't run any post install hooks for the blueprint",
+      default: false,
+      type: <any>'boolean'
+    }
+  };
+
   protected static configureSubcommands(commandName: string, yargs: any, projectPkg: any) {
     return Blueprint.findAndConfigureBlueprints(yargs, 'generate', projectPkg);
   }

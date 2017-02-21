@@ -19,6 +19,14 @@ export default class DestroyCommand extends Command {
 
   public static params = '<blueprint>';
 
+  public static flags = {
+    skipPostUninstall: {
+      description: "Don't run any post uninstall hooks for the blueprint",
+      default: false,
+      type: <any>'boolean'
+    }
+  };
+
   protected static configureSubcommands(commandName: string, yargs: any, projectPkg: any) {
     return Blueprint.findAndConfigureBlueprints(yargs, 'destroy', projectPkg);
   }
