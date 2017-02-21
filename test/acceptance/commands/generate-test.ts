@@ -8,7 +8,7 @@ test('generate command > generates a blueprint', async (t) => {
   let generate = new CommandAcceptanceTest('generate action foobar --skip-post-install', { name: 'generate-command' });
   let generatedFilepath = path.join(generate.dir, 'app', 'actions', 'foobar.js');
 
-  await generate.run();
+  await generate.run({ failOnStderr: true });
   t.true(fs.existsSync(generatedFilepath), 'file should be generated');
 });
 
