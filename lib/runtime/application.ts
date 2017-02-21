@@ -12,7 +12,9 @@ import Router from './router';
 import Logger from './logger';
 import Container from './container';
 import findPlugins from 'find-plugins';
-import tryRequire from 'try-require';
+import * as createDebug from 'debug';
+
+const debug = createDebug('denali:application');
 
 interface ApplicationOptions {
   router?: Router;
@@ -88,26 +90,28 @@ export default class Application extends Addon {
     return findPlugins({
       dir: this.dir,
       include: preseededAddons
-    }).map((addon) => {
+    }).map((plugin) => {
       let AddonClass;
       try {
-        AddonClass = tryRequire(path.join(addon.dir, 'app', 'addon.js'));
+        AddonClass = tryRequire(path.join(plugin.dir, 'app', 'addon.js'));
         AddonClass = AddonClass || Addon;
       } catch (e) {
         /* tslint:disable:no-console */
-        console.error(`Error loading an addon from ${ addon.dir }:`);
+        console.error(`Error loading an addon from ${ plugin.dir }:`);
         console.error(e);
         /* tslint:enable:no-console */
         throw e;
       }
       AddonClass = <typeof Addon>(AddonClass.default || AddonClass);
-      return new AddonClass({
+      let addon = new AddonClass({
         environment: this.environment,
         container: this.container,
         logger: this.logger,
-        dir: addon.dir,
-        pkg: addon.pkg
+        dir: plugin.dir,
+        pkg: plugin.pkg
       });
+      debug(`Addon: ${ addon.pkg.name }@${ addon.pkg.version } (${ addon.dir }) `);
+      return addon;
     });
   }
 

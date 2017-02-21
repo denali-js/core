@@ -87,7 +87,7 @@ export default class Addon extends DenaliObject {
   /**
    * The package.json for this addon
    */
-  protected pkg: any;
+  public pkg: any;
 
   /**
    * Internal cache of the configuration that is specific to this addon
@@ -159,6 +159,7 @@ export default class Addon extends DenaliObject {
    * depth-first recursive.
    */
   public load(): void {
+    debug(`loading ${ this.pkg.name }`);
     this.loadInitializers();
     this.loadMiddleware();
     this.loadApp();

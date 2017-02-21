@@ -140,6 +140,8 @@ export default class Container extends DenaliObject {
         if (options.original) {
           message += `. Fallback lookup '${ options.original.fullName }' was also not found.`;
         }
+        message += `\nAvailable "${ parsedName.type }" container entries:\n`;
+        message += Object.keys(this.lookupAll(parsedName.type));
         throw new Error(message);
       }
 
