@@ -175,7 +175,7 @@ export default class Router extends DenaliObject implements RouterDSL {
       if (response.body) {
         debug(`[${ request.id }]: writing response body`);
         res.setHeader('Content-type', response.contentType);
-        if (this.config.environment !== 'production') {
+        if (this.container.config.environment !== 'production') {
           res.write(JSON.stringify(response.body, null, 2));
         } else {
           res.write(JSON.stringify(response.body));
