@@ -18,6 +18,8 @@ dependencies:
       else
         echo "The correct version of Yarn is already installed."
       fi
+    - git config --global user.email "davewasmer@gmail.com"
+    - git config --global user.name "Dave Wasmer"
   override:
     - yarn install
   cache_directories:
