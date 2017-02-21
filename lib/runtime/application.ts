@@ -12,6 +12,7 @@ import Router from './router';
 import Logger from './logger';
 import Container from './container';
 import findPlugins from 'find-plugins';
+import * as tryRequire from 'try-require';
 import * as createDebug from 'debug';
 
 const debug = createDebug('denali:application');
@@ -89,6 +90,7 @@ export default class Application extends Addon {
   private buildAddons(preseededAddons: string[]): Addon[] {
     return findPlugins({
       dir: this.dir,
+      keyword: 'denali-addon',
       include: preseededAddons
     }).map((plugin) => {
       let AddonClass;
