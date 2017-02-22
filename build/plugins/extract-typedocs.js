@@ -6,6 +6,7 @@ const Plugin = require('broccoli-plugin');
 const forIn = require('lodash/forIn');
 const filter = require('lodash/filter');
 const loadJSON = require('../lib/load-json');
+const spinner = require('../lib/spinner');
 
 module.exports = class ExtractTypedocs extends Plugin {
   constructor(versions) {
@@ -17,16 +18,15 @@ module.exports = class ExtractTypedocs extends Plugin {
     versions.forEach((version) => {
       let versionDir = path.join(this.inputPaths[0], version);
       let outputPath = path.join(this.outputPath, version, 'data.json');
-      console.log('analyze', version);
-      console.log('==> install dependencies for', version);
-      execSync(`yarn`, { cwd: versionDir, stdio: 'inherit' });
-      console.log('==> extract inline docs for ', version);
-      execSync(`typedoc --ignoreCompilerErrors --tsconfig ${ path.join(versionDir, 'tsconfig.json') } --json ${ outputPath } ${ versionDir }`, {
-        cwd: versionDir,
-        stdio: 'inherit'
-      });
+      spinner.start(`extracting inline docs for ${ version } - installing dependencies`);
+      execSync(`yarn`, { cwd: versionDir });
+      spinner.succeed();
+      spinner.start(`extracting inline docs for ${ version } - running typedoc`);
+      execSync(`typedoc --ignoreCompilerErrors --tsconfig ${ path.join(versionDir, 'tsconfig.json') } --json ${ outputPath } ${ versionDir }`, { cwd: versionDir, });
+      spinner.succeed();
       let data = loadJSON(outputPath);
       this.normalizeData(data, versionDir);
+      spinner.succeed(`Found ${ data.exportedItems.length } documented items across ${ Object.keys(data.packages).length } packages`);
       fs.writeFileSync(outputPath, JSON.stringify(data));
     });
   }
@@ -36,8 +36,14 @@ module.exports = class ExtractTypedocs extends Plugin {
     data.children.forEach((file) => {
       (file.children || []).forEach((item) => {
         if (item.flags.isExported) {
-          if (item.comment) {
-            let pkg = (item.comment.tags || []).find((i) => i.tag === 'package');
+          let comment;
+          if (item.kindString === 'Function') {
+            comment = item.signatures[0].comment;
+          } else {
+            comment = item.comment;
+          }
+          if (comment) {
+            let pkg = (comment.tags || []).find((i) => i.tag === 'package');
             if (pkg) {
               packages[pkg.tag] = packages[pkg.tag] || [];
               packages[pkg.tag].push({ item, file });

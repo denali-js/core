@@ -8,7 +8,8 @@ const forIn = require('lodash/forIn');
 const globalData = require('./global-data');
 
 const ejsOptions = {
-  filename: path.resolve(path.join(__dirname, '..', '..', 'src', 'includes', '-fake-template-name'))
+  // This is necessary so that ejs will find our real includes, since it looks relative to this filename
+  root: path.resolve(path.join(__dirname, '..', '..', 'src', 'includes'))
 };
 
 const helpers = {
@@ -34,10 +35,29 @@ module.exports = function compile(templatePath, data = {}, outputPath) {
       compiled = marked(compiled);
     }
     // Compile EJS
-    compiled = ejs.compile(compiled, ejsOptions);
+    try {
+      compiled = ejs.compile(compiled, ejsOptions);
+    } catch(e) {
+      console.error('Template failed to compile!');
+      console.error('==> Template:', templatePath);
+      console.error('==> Destination:', outputPath);
+      console.error('==> Data:\n', data);
+      console.error('==> Error:');
+      throw e;
+    }
     template = function runTemplate(...datas) {
       let mergedData = Object.assign(...datas, templateSource.attributes);
-      let result = compiled(mergedData);
+      let result;
+      try {
+        result = compiled(mergedData);
+      } catch(e) {
+        console.error('Templating failed!');
+        console.error('==> Template:', templatePath);
+        console.error('==> Destination:', outputPath);
+        console.error('==> Data:\n', data);
+        console.error('==> Error:');
+        throw e;
+      }
       // Render into a layout if specified
       if (mergedData.layout) {
         let layoutPath = path.join('src', 'layouts', mergedData.layout + '.ejs');

@@ -2,10 +2,12 @@ const fs = require('fs');
 const compile = require('../lib/compile');
 const forIn = require('lodash/forIn');
 const kebabCase = require('lodash/kebabCase');
+const camelCase = require('lodash/camelCase');
 const path = require('path');
 const assert = require('assert');
 const Plugin = require('broccoli-plugin');
 const buildVersionMeta = require('../lib/build-version-meta');
+const spinner = require('../lib/spinner');
 
 
 module.exports = class CompileAPIDocs extends Plugin {
@@ -24,19 +26,20 @@ module.exports = class CompileAPIDocs extends Plugin {
       return version;
     });
     versions.forEach((version) => {
-      console.log('compile api docs', version.ref);
+      spinner.start(`compiling inline docs for ${ version.ref }`);
       let outputDir = path.join(this.outputPath, version.name, 'api');
 
       version.data.exportedItems.forEach(({ item, file }) => {
-        let template = path.join(templatesDir, 'api', `${ kebabCase(type) }.ejs`);
-        let outputFile = path.join(outputDir, klass.package, klass.name, 'index.html');
+        let template = path.join(templatesDir, 'api', `${ kebabCase(item.kindString) }.ejs`);
+        let outputFile = path.join(outputDir, item.package, kebabCase(item.name), 'index.html');
         let templateData = {
-          klass,
+          [camelCase(item.kindString).replace('class', 'klass')]: item,
           version,
           versions,
-          url: path.join('api', klass.package, klass.name)
+          url: path.join('api', item.package, kebabCase(item.name))
         };
         compile(template, templateData, outputFile);
+        spinner.succeed(`generated ${ item.package }/${ kebabCase(item.name) } - ${ version.ref }`);
       });
     });
   }

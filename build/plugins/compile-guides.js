@@ -7,6 +7,7 @@ const fs = require('fs-extra');
 const assert = require('assert');
 const Plugin = require('broccoli-plugin');
 const buildVersionMeta = require('../lib/build-version-meta');
+const spinner = require('../lib/spinner');
 
 
 module.exports = class CompileGuides extends Plugin {
@@ -19,7 +20,7 @@ module.exports = class CompileGuides extends Plugin {
     let versionDirs = fs.readdirSync(this.inputPaths[0]);
     let versions = buildVersionMeta(versionDirs, this.versionConfig);
     versions.forEach((version) => {
-      console.log('compile guides', version.ref);
+      spinner.start(`compiling guides for ${ version.ref }`);
       let guidesDir = path.join(this.inputPaths[0], version.ref, 'guides');
       let manifest = loadJSON(path.join(guidesDir, 'manifest.json'));
       let outputDir = path.join(this.outputPath, version.name, 'guides');
@@ -51,6 +52,8 @@ module.exports = class CompileGuides extends Plugin {
           compile(guidePath, guideData, outputFile);
         });
       });
+
+      spinner.succeed();
     });
   }
 };
