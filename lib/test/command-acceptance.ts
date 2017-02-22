@@ -16,8 +16,7 @@ const MINUTE = 60 * 1000;
  * easy to setup a clean test directory with fixture files, run your command, and test either the
  * console output of your command or the state of the filesystem after the command finishes.
  *
- * @module denali
- * @submodule test
+ * @package test
  */
 export default class CommandAcceptanceTest extends DenaliObject {
 

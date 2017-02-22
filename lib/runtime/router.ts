@@ -70,8 +70,7 @@ interface RouterDSL {
  * responsible for defining routes in the first place - it's passed into the `config/routes.js`
  * file's exported function as the first argument.
  *
- * @module denali
- * @submodule runtime
+ * @package runtime
  */
 export default class Router extends DenaliObject implements RouterDSL {
 

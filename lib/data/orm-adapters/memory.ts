@@ -16,8 +16,7 @@ let guid = 0;
  * An in-memory ORM adapter for getting started quickly, testing, and debugging. Should **not** be
  * used for production data.
  *
- * @module denali
- * @submodule data
+ * @package data
  */
 export default class MemoryAdapter extends ORMAdapter {
 

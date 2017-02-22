@@ -10,8 +10,7 @@ import DenaliObject from '../metal/object';
  * singletons, makes user intent clear, and paves the way for introducing
  * additional common functionality in future versions of Denali.
  *
- * @module denali
- * @submodule runtime
+ * @package runtime
  */
 export default class Service extends DenaliObject {
 

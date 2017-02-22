@@ -18,8 +18,7 @@ export interface RelationshipConfig {
  * transformations to it. They allow you to decouple what data is sent from how that data is
  * structured / rendered.
  *
- * @module denali
- * @submodule data
+ * @package data
  */
 abstract class Serializer extends DenaliObject {
 

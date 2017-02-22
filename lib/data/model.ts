@@ -24,8 +24,7 @@ const debug = createDebug('denali:model');
  * This means you can directly get and set properties on your records, and the record (which is a
  * Proxy-wrapped Model) will translate and forward those calls to the underlying ORM adapter.
  *
- * @module denali
- * @submodule data
+ * @package data
  */
 export default class Model extends DenaliObject {
 

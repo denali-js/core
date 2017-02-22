@@ -37,8 +37,7 @@ export interface MixinFactory {
  * mixin properties/methods. When these mixin factory functions are applied, they are called in
  * order, with the result of the last mixin feeding into the base class of the next mixin factory.
  *
- * @module denali
- * @submodule metal
+ * @package metal
  */
 export default function mixin(baseClass: Function, ...mixins: MixinApplicator[]): Function {
   return mixins.reduce((currentBase: Function, mixinFactory: MixinApplicator) => {

@@ -22,7 +22,6 @@
  * standardizing how you handle error responses. Check out the [guides](errors)
  * or the [http-errors docs](https://github.com/jshttp/http-errors) for details.
  *
- * @module denali
  * @main denali
  */
 

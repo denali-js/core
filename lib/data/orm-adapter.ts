@@ -8,8 +8,7 @@ import { RelationshipDescriptor } from './descriptors';
  * Model that would involve persistence into a set of basic operations. Your adapter then implements
  * these operations, and Denali can build on top of that.
  *
- * @module denali
- * @submodule data
+ * @package data
  */
 abstract class ORMAdapter extends DenaliObject {
 

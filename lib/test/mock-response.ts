@@ -6,8 +6,7 @@ import { forEach } from 'lodash';
  * A mock response used to simluate the server response to mock requests during tests. You shouldn't
  * need to instantiate these directly - instead, use an AppAcceptance test.
  *
- * @module denali
- * @submodule test
+ * @package test
  */
 export default class MockResponse extends Transform {
 

@@ -18,8 +18,7 @@ import { merge } from 'lodash';
  *       }
  *     }
  *
- * @module denali
- * @submodule metal
+ * @package metal
  */
 export default class InstrumentationEvent {
 

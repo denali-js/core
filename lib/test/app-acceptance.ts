@@ -16,8 +16,7 @@ import Application from '../runtime/application';
  * and get the response. This helps keep acceptance tests lightweight and easily parallelizable,
  * since they don't need to bind to an actual port.
  *
- * @module denali
- * @submodule test
+ * @package test
  */
 export class AppAcceptance extends DenaliObject {
 

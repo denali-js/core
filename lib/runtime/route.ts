@@ -4,8 +4,7 @@ import Action from './action';
 /**
  * Extends the base RouteParser Route class with some additional properties that Denali tacks on.
  *
- * @module denali
- * @submodule runtime
+ * @package runtime
  */
 export default class Route extends RouteParser {
 

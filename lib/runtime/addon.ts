@@ -59,8 +59,7 @@ export interface AddonOptions {
  *       "after": [ "cool-addon-name" ]
  *     }
  *
- * @module denali
- * @submodule runtime
+ * @package runtime
  */
 export default class Addon extends DenaliObject {
 

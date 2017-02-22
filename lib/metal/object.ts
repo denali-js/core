@@ -4,8 +4,7 @@ import Container from '../runtime/container';
 /**
  * The base object class for Denali classes. Adds mixin support.
  *
- * @module denali
- * @submodule metal
+ * @package metal
  */
 export default class DenaliObject {
 

@@ -15,8 +15,7 @@ import { HasManyRelationship, RelationshipDescriptor } from '../descriptors';
  * Renders the payload as a flat JSON object or array at the top level. Related
  * models are embedded.
  *
- * @module denali
- * @submodule data
+ * @package data
  */
 export default class FlatSerializer extends Serializer {
 

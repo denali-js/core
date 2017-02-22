@@ -11,8 +11,7 @@
  * @export
  * @param {*} obj
  * @param {(prototype: any) => void} fn
- * @module denali
- * @submodule metal
+ * @package metal
  */
 export default function eachPrototype(obj: any, fn: (prototype: any) => void) {
   let prototype = obj;

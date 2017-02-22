@@ -15,8 +15,7 @@ interface ColorsMap {
  * A simple Logger class that adds timestamps and supports multiple levels of logging, colorized
  * output, and control over verbosity.
  *
- * @module denali
- * @submodule runtime
+ * @package runtime
  */
 export default class Logger extends DenaliObject {
 

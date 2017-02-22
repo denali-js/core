@@ -5,8 +5,7 @@ import { without, toString, mapValues, mapKeys, flatten, toPairs } from 'lodash'
  * A mock request used to simluate an HTTP request to the application during tests. You shouldn't
  * need to instantiate these directly - instead, use an AppAcceptance test.
  *
- * @module denali
- * @submodule test
+ * @package test
  */
 export default class MockRequest extends Transform {
 

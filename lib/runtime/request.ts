@@ -18,8 +18,7 @@ export type Method = 'get' | 'post' | 'put' | 'patch' | 'delete' | 'head' | 'opt
  * It's designed with an express-compatible interface to allow interop with existing express
  * middleware.
  *
- * @module denali
- * @submodule runtime
+ * @package runtime
  */
 export default class Request extends DenaliObject {
 

@@ -48,8 +48,7 @@ export class Descriptor extends DenaliObject {
  *   these are used solely by your ORM adapter, there are no additional options
  *   that Denali expects itself.
  *
- * @module denali
- * @submodule data
+ * @package data
  */
 class Attribute extends Descriptor {
 
@@ -89,8 +88,7 @@ export function attr(type: string, options?: any): Attribute {
  *   these are used solely by your ORM adapter, there are no additional options
  *   that Denali expects itself.
  *
- * @module denali
- * @submodule data
+ * @package data
  */
 export class HasManyRelationship extends Descriptor {
 
@@ -134,8 +132,7 @@ export function hasMany(type: string, options: any): HasManyRelationship {
  *   these are used solely by your ORM adapter, there are no additional options
  *   that Denali expects itself.
  *
- * @module denali
- * @submodule data
+ * @package data
  */
 class HasOneRelationship extends Descriptor {
 

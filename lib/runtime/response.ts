@@ -10,8 +10,7 @@ import * as http from 'http';
  * this class from your action's responder method to render a response with a custom status code,
  * headers, or body.
  *
- * @module denali
- * @submodule runtime
+ * @package runtime
  */
 export default class Response extends DenaliObject {
 

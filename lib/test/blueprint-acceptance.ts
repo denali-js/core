@@ -4,8 +4,7 @@ import CommandAcceptanceTest from './command-acceptance';
  * A specialized version of a CommandAcceptanceTest which tests the generate / destroy invocations
  * of a specific blueprint.
  *
- * @module denali
- * @submodule test
+ * @package test
  */
 export default class BlueprintAcceptanceTest extends CommandAcceptanceTest {
 

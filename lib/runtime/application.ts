@@ -38,8 +38,7 @@ interface Initializer {
  * Application instances are specialized Addons, designed to kick off the loading, mounting, and
  * launching stages of booting up.
  *
- * @module denali
- * @submodule runtime
+ * @package runtime
  */
 export default class Application extends Addon {
 

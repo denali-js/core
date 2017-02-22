@@ -62,8 +62,7 @@ interface Responder {
  * request params and can return a promise which will be waited on before continuing. Filters are
  * inheritable, so child classes will run filters added by parent classes.
  *
- * @module denali
- * @submodule runtime
+ * @package runtime
  */
 abstract class Action extends DenaliObject {
 

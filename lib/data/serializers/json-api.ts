@@ -182,8 +182,8 @@ interface Context {
 /**
  * Renders the payload according to the JSONAPI 1.0 spec, including related resources, included
  * records, and support for meta and links.
- * @module denali
- * @submodule data
+ *
+ * @package data
  */
 export default class JSONAPISerializer extends Serializer {
 

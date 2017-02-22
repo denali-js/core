@@ -43,8 +43,7 @@ type Constructor<T> = new(...args: any[]) => T;
  * some types of classes fall back to a generic "application" class if a more specific one is not
  * found.
  *
- * @module denali
- * @submodule runtime
+ * @package runtime
  */
 export default class Container extends DenaliObject {
 
