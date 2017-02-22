@@ -9,6 +9,8 @@ import { ui, Command, Project } from 'denali-cli';
 
 /**
  * Launch a REPL with your application loaded
+ *
+ * @package commands
  */
 export default class ConsoleCommand extends Command {
 

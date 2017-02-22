@@ -9,6 +9,8 @@ const commandExists = Bluebird.promisify<boolean, string>(cmdExists);
 
 /**
  * Install an addon in your app.
+ *
+ * @package commands
  */
 export default class InstallCommand extends Command {
 

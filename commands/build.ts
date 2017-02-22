@@ -6,6 +6,8 @@ const debug = createDebug('denali:commands:build');
 
 /**
  * Compile your app
+ *
+ * @package commands
  */
 export default class BuildCommand extends Command {
 

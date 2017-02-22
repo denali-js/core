@@ -11,6 +11,11 @@ import * as uuid from 'node-uuid';
 import DenaliObject from '../metal/object';
 import Route from './route';
 
+/**
+ * Available HTTP methods (lowercased)
+ *
+ * @package runtime
+ */
 export type Method = 'get' | 'post' | 'put' | 'patch' | 'delete' | 'head' | 'options';
 
 /**

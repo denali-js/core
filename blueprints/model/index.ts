@@ -7,6 +7,8 @@ import unwrap from '../../lib/utils/unwrap';
 
 /**
  * Generates a blank model
+ *
+ * @package blueprints
  */
 export default class ModelBlueprint extends Blueprint {
 

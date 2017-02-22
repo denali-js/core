@@ -8,6 +8,8 @@ const run = Bluebird.promisify<[ string, string ], string, ExecOptions>(exec);
 
 /**
  * Publish an addon to the npm registry.
+ *
+ * @package commands
  */
 export default class PublishCommand extends Command {
 

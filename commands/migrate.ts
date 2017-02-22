@@ -12,6 +12,8 @@ const commandExists = Bluebird.promisify<boolean, string>(cmdExists);
 
 /**
  * Run migrations to update your database schema
+ *
+ * @package commands
  */
 export default class MigrateCommand extends Command {
 

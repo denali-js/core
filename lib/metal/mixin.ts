@@ -60,6 +60,8 @@ export default function mixin(baseClass: Function, ...mixins: MixinApplicator[])
  * and once the mixin factory function is invoked, it will be provided as an additional argument:
  *
  *     createMixin((BaseClass, options) => {
+ *
+ * @package metal
  */
 export function createMixin(mixinFactory: MixinFactory): MixinApplicator {
   let cacheMixinArguments = <MixinApplicator>function(...args: any[]): MixinApplicator {

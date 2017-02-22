@@ -15,6 +15,8 @@ const maxBuffer = 400 * ONE_KB;
 
 /**
  * Creates a new app, initializes git and installs dependencies.
+ *
+ * @package blueprints
  */
 export default class AppBlueprint extends Blueprint {
 

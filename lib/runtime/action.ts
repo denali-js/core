@@ -37,6 +37,11 @@ class PreemptiveRender extends Error {
   }
 }
 
+/**
+ * Constructor options for Action class
+ *
+ * @package runtime
+ */
 export interface ActionOptions {
   request: Request;
   response: http.ServerResponse;

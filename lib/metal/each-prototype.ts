@@ -8,9 +8,6 @@
  * accumulating a value, we let each child class wipe out it's parent value, and rebuild the
  * accumulated value manually via this kind of prototype walking.
  *
- * @export
- * @param {*} obj
- * @param {(prototype: any) => void} fn
  * @package metal
  */
 export default function eachPrototype(obj: any, fn: (prototype: any) => void) {

@@ -3,6 +3,8 @@ import unwrap from '../../lib/utils/unwrap';
 
 /**
  * Generates a blank service
+ *
+ * @package blueprints
  */
 export default class ServiceBlueprint extends Blueprint {
 

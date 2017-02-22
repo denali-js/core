@@ -6,6 +6,8 @@ import unwrap from '../../lib/utils/unwrap';
 
 /**
  * Generates a model, serializer, CRUD actions, and tests for a resource
+ *
+ * @package blueprints
  */
 export default class ResourceBlueprint extends Blueprint {
 

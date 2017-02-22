@@ -6,6 +6,8 @@ import unwrap from '../lib/utils/unwrap';
 
 /**
  * Remove scaffolded code from your app
+ *
+ * @package commands
  */
 export default class DestroyCommand extends Command {
 

@@ -7,6 +7,11 @@ interface RelationshipsConfigs {
   [ relationshipName: string ]: RelationshipConfig;
 }
 
+/**
+ * Configuration for how a serializer should serialize a relationship
+ *
+ * @package data
+ */
 export interface RelationshipConfig {
   strategy?: 'embed' | 'id';
   key?: string;

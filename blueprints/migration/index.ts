@@ -5,6 +5,8 @@ import unwrap from '../../lib/utils/unwrap';
 
 /**
  * Generates a database schema migration
+ *
+ * @package blueprints
  */
 export default class MigrationBlueprint extends Blueprint {
 

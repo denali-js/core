@@ -2,6 +2,8 @@ import DenaliObject from '../metal/object';
 
 /**
  * Base Descriptor class
+ *
+ * @package data
  */
 export class Descriptor extends DenaliObject {
 
@@ -61,6 +63,8 @@ class Attribute extends Descriptor {
 
 /**
  * Syntax sugar factory method for creating Attributes
+ *
+ * @package data
  */
 export function attr(type: string, options?: any): Attribute {
   return new Attribute(type, options);
@@ -106,6 +110,8 @@ export class HasManyRelationship extends Descriptor {
 
 /**
  * Syntax sugar factory function for creating HasManyRelationships
+ *
+ * @package data
  */
 export function hasMany(type: string, options: any): HasManyRelationship {
   return new HasManyRelationship(type, options);
@@ -150,6 +156,8 @@ class HasOneRelationship extends Descriptor {
 
 /**
  * Syntax sugar factory function for creating HasOneRelationships
+ *
+ * @package data
  */
 export function hasOne(type: string, options: any): HasOneRelationship {
   return new HasOneRelationship(type, options);

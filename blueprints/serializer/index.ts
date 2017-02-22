@@ -7,6 +7,8 @@ import unwrap from '../../lib/utils/unwrap';
 
 /**
  * Generates a blank serializer
+ *
+ * @package blueprints
  */
 export default class SerializerBlueprint extends Blueprint {
 

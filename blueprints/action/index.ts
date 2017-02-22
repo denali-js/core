@@ -7,6 +7,8 @@ import unwrap from '../../lib/utils/unwrap';
 
 /**
  * Generate an new action class + tests.
+ *
+ * @package blueprints
  */
 export default class ActionBlueprint extends Blueprint {
 

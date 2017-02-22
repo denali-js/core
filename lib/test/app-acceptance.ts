@@ -198,6 +198,8 @@ export class AppAcceptance extends DenaliObject {
  * current ava test suite which will setup and teardown the acceptance test. They also setup a test
  * transaction and roll it back once the test is finished (for the ORM adapters that support it), so
  * your test data won't pollute the database.
+ *
+ * @package test
  */
 export default function appAcceptanceTest(ava: any) {
 

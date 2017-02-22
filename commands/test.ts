@@ -8,6 +8,8 @@ import { ui, Command, Project } from 'denali-cli';
 
 /**
  * Run your app's test suite
+ *
+ * @package commands
  */
 export default class TestCommand extends Command {
 

@@ -8,6 +8,8 @@ import unwrap from '../../lib/utils/unwrap';
 
 /**
  * Generates a blank ORM adapter with stubs for all the required methods
+ *
+ * @package blueprints
  */
 export default class ORMAdapterBlueprint extends Blueprint {
 

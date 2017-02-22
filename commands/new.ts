@@ -8,6 +8,8 @@ import AppBlueprint from '../blueprints/app/index';
 
 /**
  * Create a new denali app
+ *
+ * @package commands
  */
 export default class NewCommand extends Command {
 

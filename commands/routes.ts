@@ -5,6 +5,8 @@ import Application from '../lib/runtime/application';
 
 /**
  * Display all defined routes within your application.
+ *
+ * @package commands
  */
 export default class RoutesCommand extends Command {
 

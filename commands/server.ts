@@ -12,6 +12,8 @@ const debug = createDebug('denali:commands:server');
 
 /**
  * Runs the denali server for local or production use.
+ *
+ * @package commands
  */
 export default class ServerCommand extends Command {
 

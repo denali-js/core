@@ -6,6 +6,8 @@ import unwrap from '../lib/utils/unwrap';
 
 /**
  * Scaffold code for your app.
+ *
+ * @package commands
  */
 export default class GenerateCommand extends Command {
 

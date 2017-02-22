@@ -22,6 +22,11 @@ import Application from './application';
 
 const debug = createDebug('denali:runtime:addon');
 
+/**
+ * Constructor options for Addon class
+ *
+ * @package runtime
+ */
 export interface AddonOptions {
   environment: string;
   dir: string;
