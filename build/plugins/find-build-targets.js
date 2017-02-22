@@ -13,14 +13,19 @@ module.exports = class FindBuildTargets extends Plugin {
   build() {
     let branches = execSync('git branch --list').toString().split('\n').map((row) => {
       return row.slice(2);
+    }).filter((branch) => this.versionConfig.branches.includes(branch));
+    let tags = execSync('git tag --list').toString().split('\n').filter((tag) => {
+      if (!Boolean(semver.valid(tag))) {
+        return false;
+      }
+      let matchesASkipTagPattern = false;
+      this.versionConfig.skipTags.forEach((skipPattern) => {
+        if (semver.satisfies(tag, skipPattern)) {
+          matchesASkipTagPattern = true;
+        }
+      });
     });
-    let tags = execSync('git tag --list').toString().split('\n');
-    let refs = branches.concat(tags).filter((ref) => {
-      let isSemverTag = Boolean(semver.valid(ref));
-      let isNotSkipped = !(this.versionConfig.skip || []).includes(ref);
-      let isTargetBranch = this.versionConfig.branches.includes(ref);
-      return isNotSkipped && (isSemverTag || isTargetBranch);
-    });
+    let refs = branches.concat(tags);
     refs.forEach((ref) => {
       let outputPath = path.join(this.outputPath, ref);
       fs.writeFileSync(outputPath, ref);

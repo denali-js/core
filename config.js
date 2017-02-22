@@ -8,13 +8,11 @@ module.exports = {
     branches: [
       'master'
     ],
-    skip: [
-      'v0.0.4',
-      'v0.0.5',
-      'v0.0.6'
+    skipTags: [
+      '<0.0.21'
     ],
     channels: {
-      canary: 'v0.0.13'
+      canary: 'v0.0.21'
     },
     alias: {
       latest(versions) {

@@ -1,0 +1,161 @@
+---
+layout: api
+---
+<div class='class'>
+  <h1 class='class-name'>
+    <% if (klass.access === 'private') { %>
+      <div class='class-private'>Private</div>
+    <% } %>
+    <%= klass.name %>
+  </h1>
+
+  <% if (klass.file) { %>
+    <a class='defined-in' href='https://github.com/<%= repo %>/blob/<%= version.ref %>/<%= klass.file  %>#L<%= klass.line %>'>
+      <span class='filename'>Defined in: <%= klass.file %></span>
+      <span class='line'>Line: <%= klass.line %></span>
+    </a>
+  <% } %>
+
+  <div class='class-module'>
+    <strong>Module:</strong>
+    <a class='module' href='/<%= version.name %>/api/modules/<%= klass.submodule %>'>
+      <span class='class-module-name'><%= klass.module %>.<%= klass.submodule %></span>
+    </a>
+  </div>
+
+  <% if (klass.description) { %>
+    <div class='class-description'><%- markdown(klass.description) %></div>
+  <% } %>
+
+  <div class='display-controls'>
+    <label class='toggle'>
+      <input type='checkbox' id='toggle-private-members'>
+      Show Private
+    </label>
+    <label class='toggle'>
+      <input type='checkbox' id='toggle-deprecated-members'>
+      Show Deprecated
+    </label>
+  </div>
+  <div class='summary'>
+    <div class='summary-section'>
+      <div class='summary-header'>Methods</div>
+      <% klass.classitems.forEach((item) => { %>
+        <% if (item.itemtype === 'method') { %>
+          <a class='summary-link' <% if (item.access === 'private') { %> data-private-member=true <% } %> href='<%= version.name %>/api/classes/<%= klass.name %>/#<%= encodeURIComponent(item.name) %>'><%= item.name %></a>
+        <% } %>
+      <% }) %>
+    </div>
+    <div class='summary-section'>
+      <div class='summary-header'>Properties</div>
+      <% klass.classitems.forEach((item) => { %>
+        <% if (item.itemtype === 'property') { %>
+          <a class='summary-link' <% if (item.access === 'private') { %> data-private-member=true <% } %> href='<%= version.name %>/api/classes/<%= klass.name %>/#<%= encodeURIComponent(item.name) %>'><%= item.name %></a>
+        <% } %>
+      <% }) %>
+    </div>
+  </div>
+</div>
+
+<div class='classitems'>
+  <% klass.classitems.forEach((item) => { %>
+    <% if (item.itemtype == 'property') { %>
+      <div class='item property' id='<%= encodeURIComponent(item.name) %>' <% if (item.access === 'private') { %>data-private-member=true<% } %>>
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            <%= item.name %><span class="type">:<%= item.type %></span>
+            <% if (item.access == 'private') { %>
+              <div class='private tag'>Private</div>
+            <% } %>
+            <a class='defined-in' href='https://github.com/<%= repo %>/blob/<%= version.ref %>/<%= item.file %>#L<%= item.line %>'>
+              <span class='filename'>Defined in: <%= item.file %></span>
+              <span class='line'>Line: <%= item.line %></span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'><%= item.description %></div>
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/<%= repo %>/edit/<%= version.ref %>/<%= item.file %>#L<%= item.line %>'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    <% } %>
+  <% }) %>
+  <% klass.classitems.forEach((item) => { %>
+    <% if (item.itemtype == 'method') { %>
+      <div class='item method' id='<%= encodeURIComponent(item.name) %>' <% if (item.access === 'private') { %>data-private-member=true<% } %>>
+        <h3 class='item-title'>
+          <div class='item-descriptor'>
+            <%= item.name %><span class='param-paren'>(</span><span class='params'><% (item.params || []).forEach((param) => { %><span class='param'><span class='param-name'><%= param.name %></span><span class='param-type type'>:<%= param.type %></span></span><% }) %></span><span class='param-paren'>)</span>
+            <% if (item.access == 'private') { %>
+              <div class='private tag'>Private</div>
+            <% } %>
+            <a class='defined-in' href='https://github.com/<%= repo %>/blob/<%= version.ref %>/<%= item.file %>#L<%= item.line %>'>
+              <span class='filename'>Defined in: <%= item.file %></span>
+              <span class='line'>Line: <%= item.line %></span>
+            </a>
+          </div>
+        </h3>
+        <div class='item-body'>
+          <div class='item-header'>Description</div>
+          <div class='item-description'><%= item.description %></div>
+
+          <div class='item-header'>Parameters</div>
+          <% if (item.params) { %>
+            <div class='params'>
+              <% (item.params || []).forEach((param) => { %>
+                <div class='param'>
+                  <div class='param-name'><%= param.name %></div><div class='param-type type'>:<%= param.type %></div>
+                  <% if (param.description !== '') { %>
+                    <div class='param-description'><%= param.description %></div>
+                  <% } %>
+                </div>
+              <% }) %>
+            </div>
+          <% } else { %>
+            <p class="no-params">No parameters</p>
+          <% } %>
+
+          <div class='item-header'>Returns</div>
+          <% if (item.return) { %>
+            <div class='return'>
+              <div class='return-type type'><%= item.return.type %></div>
+              <% if (item.return.description !== '') { %>
+                <div class='return-description'><%= item.return.description %></div>
+              <% } %>
+            </div>
+          <% } else { %>
+            <p class="no-return">Returns <code>undefined</code></p>
+          <% } %>
+          <div class='improve'>
+            <a target='_blank' href='https://github.com/<%= repo %>/edit/<%= version.ref %>/<%= item.file %>#L<%= item.line %>'>
+              Improve this documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    <% } %>
+  <% }) %>
+</div>
+
+<script>
+  $(function() {
+    [ 'private', 'deprecated' ].forEach(function(type) {
+      var $toggle = $('#toggle-' + type + '-members');
+      $toggle.on('change', function() {
+        if ($toggle.is(':checked')) {
+          $('[data-' + type + '-member]').css('display', 'block');
+        } else {
+          $('[data-' + type + '-member]').css('display', 'none');
+        }
+      });
+      if ($(window.location.hash).attr('data-' + type + '-member')) {
+        $toggle.click();
+      }
+    });
+  });
+</script>

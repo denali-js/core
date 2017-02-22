@@ -1,6 +1,7 @@
 const fs = require('fs');
 const compile = require('../lib/compile');
 const forIn = require('lodash/forIn');
+const kebabCase = require('lodash/kebabCase');
 const path = require('path');
 const assert = require('assert');
 const Plugin = require('broccoli-plugin');
@@ -26,28 +27,14 @@ module.exports = class CompileAPIDocs extends Plugin {
       console.log('compile api docs', version.ref);
       let outputDir = path.join(this.outputPath, version.name, 'api');
 
-      // Classes
-      forIn(version.data.classes, (klass) => {
-        let template = path.join(templatesDir, 'api', 'class.ejs');
-        let outputFile = path.join(outputDir, 'classes', klass.name, 'index.html');
+      version.data.exportedItems.forEach(({ item, file }) => {
+        let template = path.join(templatesDir, 'api', `${ kebabCase(type) }.ejs`);
+        let outputFile = path.join(outputDir, klass.package, klass.name, 'index.html');
         let templateData = {
           klass,
           version,
           versions,
-          url: path.join('api', 'classes', klass.name)
-        };
-        compile(template, templateData, outputFile);
-      });
-
-      // Modules
-      forIn(version.data.modules, (mod) => {
-        let template = path.join(templatesDir, 'api', 'module.ejs');
-        let outputFile = path.join(outputDir, 'modules', mod.name, 'index.html');
-        let templateData = {
-          mod,
-          version,
-          versions,
-          url: path.join('api', 'modules', mod.name)
+          url: path.join('api', klass.package, klass.name)
         };
         compile(template, templateData, outputFile);
       });

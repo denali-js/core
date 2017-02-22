@@ -17,7 +17,7 @@
     "lodash": "^4.13.1",
     "marked": "^0.3.5",
     "semver": "^5.2.0",
-    "yuidocjs": "^0.10.2"
+    "typedoc": "^0.5.7"
   },
   "devDependencies": {
     "broccoli": "^0.16.9"
