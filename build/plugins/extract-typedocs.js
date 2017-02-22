@@ -15,10 +15,16 @@ module.exports = class ExtractTypedocs extends Plugin {
   build() {
     let versions = fs.readdirSync(this.inputPaths[0]);
     versions.forEach((version) => {
-      console.log('analyze', version);
       let versionDir = path.join(this.inputPaths[0], version);
       let outputPath = path.join(this.outputPath, version, 'data.json');
-      execSync(`node_modules/.bin/typedoc --json ${ outputPath } ${ versionDir }`);
+      console.log('analyze', version);
+      console.log('==> install dependencies for', version);
+      execSync(`yarn`, { cwd: versionDir, stdio: 'inherit' });
+      console.log('==> extract inline docs for ', version);
+      execSync(`typedoc --ignoreCompilerErrors --tsconfig ${ path.join(versionDir, 'tsconfig.json') } --json ${ outputPath } ${ versionDir }`, {
+        cwd: versionDir,
+        stdio: 'inherit'
+      });
       let data = loadJSON(outputPath);
       this.normalizeData(data, versionDir);
       fs.writeFileSync(outputPath, JSON.stringify(data));
@@ -29,7 +35,7 @@ module.exports = class ExtractTypedocs extends Plugin {
     let exportedItems = data.exportedItems = [];
     data.children.forEach((file) => {
       (file.children || []).forEach((item) => {
-        if (item.isExported) {
+        if (item.flags.isExported) {
           if (item.comment) {
             let pkg = (item.comment.tags || []).find((i) => i.tag === 'package');
             if (pkg) {
