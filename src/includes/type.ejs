@@ -1,0 +1,9 @@
+<% if (type) { %>
+  <% if (type.type === 'reference') { %>
+    <a href="<%= urlForReference(type, version) %>">
+      <%= type.name %>
+    </a>
+  <% } else { %>
+    <%= type.name %>
+  <% } %>
+<% } %>

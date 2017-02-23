@@ -18,15 +18,17 @@ let targets = new FindBuildTargets(config.versions);
 let versions = new CheckoutVersions(targets);
 let typedocs = new ExtractTypedocs(versions);
 
-let includes = mv(path.join('src', 'includes'), 'includes');
+let includesDir = path.join('src', 'includes');
 let templatesDir = path.join('src', 'templates');
+let layoutsDir = path.join('src', 'layouts');
 
-let apidocs = new CompileAPIDocs(typedocs, { templatesDir, includes, versionConfig: config.versions });
-let guides = new CompileGuides(versions, { templatesDir, includes, versionConfig: config.versions });
+let apidocs = new CompileAPIDocs([ typedocs, templatesDir, layoutsDir, includesDir ], config.versions);
+let guides = new CompileGuides([ versions, templatesDir, layoutsDir, includesDir ], config.versions);
 let docs = new MergeTree([ guides, apidocs ]);
 let aliases = new CreateVersionAliases(docs, config.versions);
 
-let pages = new CompileStaticPages(new MergeTree([ 'src/pages', includes ]));
+let pagesDir = path.join('src', 'pages');
+let pages = new CompileStaticPages([ pagesDir, layoutsDir, includesDir ]);
 let sass = new MergeTree([ 'bower_components', 'src/styles' ]);
 let styles = new SassPlugin([ sass ], 'app.scss', 'styles.css');
 let assets = 'src/public';

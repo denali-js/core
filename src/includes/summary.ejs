@@ -1,0 +1,5 @@
+<% if (commentFor(item).shortText) { %>
+  <div class='summary'>
+    <%- markdown(commentFor(item).shortText) %>
+  </div>
+<% } %>

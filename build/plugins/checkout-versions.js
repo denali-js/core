@@ -2,7 +2,7 @@ const path = require('path');
 const { execSync } = require('child_process');
 const fs = require('fs-extra');
 const assert = require('assert');
-const Plugin = require('broccoli-plugin');
+const Plugin = require('broccoli-caching-writer');
 const spinner = require('../lib/spinner');
 
 module.exports = class CheckoutVersions extends Plugin {

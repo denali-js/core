@@ -10,15 +10,13 @@ layout: page
         <input type='checkbox' id='toggle-private-classes'>
         Include Private
       </label>
-      <% forIn(version.data.modules, (moduleData, moduleName) => { %>
-        <% if (moduleData.is_submodule) { %>
-          <div class='nav-section'>
-            <div class='nav-header'><%= moduleData.name %></div>
-            <% forIn(moduleData.classes, (classData, className) => { %>
-              <a class='nav-link <% if (locals.klass && locals.klass.name == className) { %>active<% } %>' href='<%= version.name %>/api/classes/<%= encodeURIComponent(className) %>' <% if (classData.access === 'private') { %>data-private-class=true<% } %>><%= className %></a>
-            <% }) %>
-          </div>
-        <% } %>
+      <% forIn(version.data.packages, (items, name) => { %>
+        <div class='nav-section'>
+          <div class='nav-header'><%= name %></div>
+          <% items.forEach(({ item }) => { %>
+            <%= item.name %>
+          <% }) %>
+        </div>
       <% }) %>
     </div>
     <div class='api-body col-md-9'>

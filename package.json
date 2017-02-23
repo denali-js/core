@@ -4,6 +4,7 @@
   "description": "The Denali docs are a Jekyll site. The source files are on the `docs` branch, and it leverages the `_plugins/yuidoc.rb` plugin to read the documentation source from the various source branches and tags. The `deploy.sh` script on the `docs` branch will build the docs, copy them to this (`gh-pages`) branch, commit and push them up.",
   "main": "Brocfile.js",
   "dependencies": {
+    "broccoli-caching-writer": "^3.0.3",
     "broccoli-cli": "^1.0.0",
     "broccoli-filter": "^1.2.3",
     "broccoli-merge-trees": "^1.1.2",
@@ -18,7 +19,8 @@
     "marked": "^0.3.5",
     "ora": "^1.1.0",
     "semver": "^5.2.0",
-    "typedoc": "^0.5.7"
+    "typedoc": "^0.5.7",
+    "walk-sync": "^0.3.1"
   },
   "devDependencies": {
     "broccoli": "^0.16.9"

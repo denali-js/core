@@ -1,7 +1,7 @@
 const path = require('path');
 const fs = require('fs-extra');
 const { execSync } = require('child_process');
-const Plugin = require('broccoli-plugin');
+const Plugin = require('broccoli-caching-writer');
 const semver = require('semver');
 
 module.exports = class FindBuildTargets extends Plugin {

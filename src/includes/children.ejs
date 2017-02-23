@@ -1,0 +1,12 @@
+<div class='classitems'>
+  <% parent.children.forEach((item) => { %>
+    <% if (item.kindString == 'Property') { %>
+      <%- include('/child-property', { property: item, parent: parent }) %>
+    <% } %>
+  <% }) %>
+  <% parent.children.forEach((item) => { %>
+    <% if (item.kindString == 'Method') { %>
+      <%- include('/child-function', { func: item, parent: parent }) %>
+    <% } %>
+  <% }) %>
+</div>

@@ -2,7 +2,7 @@ const path = require('path');
 const { execSync } = require('child_process');
 const fs = require('fs-extra');
 const assert = require('assert');
-const Plugin = require('broccoli-plugin');
+const Plugin = require('broccoli-caching-writer');
 const forIn = require('lodash/forIn');
 const filter = require('lodash/filter');
 const loadJSON = require('../lib/load-json');
@@ -45,9 +45,10 @@ module.exports = class ExtractTypedocs extends Plugin {
           if (comment) {
             let pkg = (comment.tags || []).find((i) => i.tag === 'package');
             if (pkg) {
-              packages[pkg.tag] = packages[pkg.tag] || [];
-              packages[pkg.tag].push({ item, file });
-              item.package = pkg.text;
+              pkg = pkg.text.trim();
+              packages[pkg] = packages[pkg] || [];
+              packages[pkg].push({ item, file });
+              item.package = pkg;
               exportedItems.push({ item, file });
             } else {
               console.warn(`${ item.name } in ${ file.name } is exported, but is missing a package tag`);
