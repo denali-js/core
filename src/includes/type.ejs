@@ -1,9 +1,7 @@
 <% if (type) { %>
-  <% if (type.type === 'reference') { %>
-    <a href="<%= urlForReference(type, version) %>">
-      <%= type.name %>
-    </a>
+  <% if (type.type === 'reference' && version.data.exportedItems.find(({ item }) => item.id === type.id)) { %>
+    <a href="<%= urlForReference(type, version) %>"><%= type.name %><% if (type.typeArguments) { %>&lt;<%- type.typeArguments.map((t) => include('/type', { type: t })).join(', ').trim() %>&gt;<% } %></a>
   <% } else { %>
-    <%= type.name %>
+    <%= type.name %><% if (type.typeArguments) { %>&lt;<%- type.typeArguments.map((t) => include('/type', { type: t })).join(', ').trim() %>&gt;<% } %>
   <% } %>
 <% } %>

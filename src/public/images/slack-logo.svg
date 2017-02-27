@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="145px" height="145px" viewBox="0 0 145 145" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>slack-logo</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-5" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="slack-logo">
+            <rect id="Rectangle-2" fill="#FFFFFF" x="0" y="0" width="145" height="145" rx="10"></rect>
+            <rect id="Rectangle" fill="#EDB725" style="mix-blend-mode: multiply;" transform="translate(94.198871, 64.963876) rotate(-19.000000) translate(-94.198871, -64.963876) " x="83.1988709" y="7.96387606" width="22" height="114" rx="11"></rect>
+            <rect id="Rectangle-Copy" fill="#49C49F" style="mix-blend-mode: multiply;" transform="translate(50.705016, 79.940011) rotate(-19.000000) translate(-50.705016, -79.940011) " x="39.7050164" y="22.9400112" width="22" height="114" rx="11"></rect>
+            <rect id="Rectangle" fill="#E51870" style="mix-blend-mode: multiply;" transform="translate(79.940011, 94.198871) rotate(-289.000000) translate(-79.940011, -94.198871) " x="68.9400112" y="37.1988709" width="22" height="114" rx="11"></rect>
+            <rect id="Rectangle-Copy" fill="#82D3E1" style="mix-blend-mode: multiply;" transform="translate(64.963876, 50.705016) rotate(-289.000000) translate(-64.963876, -50.705016) " x="53.9638761" y="-6.29498363" width="22" height="114" rx="11"></rect>
+        </g>
+    </g>
+</svg>

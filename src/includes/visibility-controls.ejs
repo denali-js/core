@@ -1,0 +1,42 @@
+<div class='visibility-controls'>
+  <label class='toggle' id='toggle-private'>
+    <input type='checkbox'>
+    <div class="toggle-control" style='visibility:hidden'></div>
+    Show Private
+  </label>
+  <label class='toggle' id='toggle-deprecated'>
+    <input type='checkbox'>
+    <div class="toggle-control" style='visibility:hidden'></div>
+    Show Deprecated
+  </label>
+  <label class='toggle' id='toggle-inherited'>
+    <input type='checkbox'>
+    <div class="toggle-control" style='visibility:hidden'></div>
+    Show Inherited
+  </label>
+</div>
+<script type='text/javascript'>
+  var deprecatedToggle = document.getElementById('toggle-deprecated');
+  if (visibilityStatus.deprecated) {
+    deprecatedToggle.children[0].checked = true;
+  }
+  deprecatedToggle.onchange = toggleVisibility.bind(null, 'deprecated');
+
+  var privateToggle = document.getElementById('toggle-private');
+  if (visibilityStatus.private) {
+    privateToggle.children[0].checked = true;
+  }
+  privateToggle.onchange = toggleVisibility.bind(null, 'private');
+
+  var inheritedToggle = document.getElementById('toggle-inherited')
+  if (visibilityStatus.inherited) {
+    inheritedToggle.children[0].checked = true;
+  }
+  inheritedToggle.children[1].style = '';
+
+  setTimeout(function() {
+    deprecatedToggle.children[1].style = '';
+    privateToggle.children[1].style = '';
+    inheritedToggle.onchange = toggleVisibility.bind(null, 'inherited');
+  }, 0);
+</script>

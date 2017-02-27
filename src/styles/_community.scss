@@ -1,0 +1,59 @@
+.community {
+  flex: 1 auto;
+  background: linear-gradient(to bottom, darken($brand-primary, 8%), $brand-primary);
+  color: $white;
+
+  a {
+    color: inherit;
+  }
+
+  .container {
+    align-items: center;
+    padding-top: 4em;
+    padding-bottom: 4em;
+  }
+
+  .navbar {
+    align-self: stretch;
+    background-color: transparent;
+
+    .brand {
+      font-size: 1.75em;
+    }
+  }
+
+  .hero {
+    padding-top: 8em;
+
+    .headline {
+      font-size: 3em;
+      font-weight: 200;
+      text-align: center;
+
+      strong {
+        font-weight: inherit;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .resources {
+    display: flex;
+    text-align: center;
+  }
+
+  .resource {
+    margin: 2em;
+  }
+
+  .resource-graphic {
+    width: 10em;
+    background-color: $white;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba($black, 0.2);
+
+    img {
+      width: 8em;
+    }
+  }
+}

@@ -2,15 +2,7 @@
 layout: api
 ---
 <div class='type-alias'>
-  <h1 class='name'>
-    <%- include('/private-tag', { item: typeAlias }) %>
-    <%= typeAlias.name %>
-  </h1>
 
-  <%- include('/defined-in-link', { item: typeAlias}) %>
+  <%- include('/overview', { item: typeAlias}) %>
 
-  <div class='package'><%= typeAlias.package %></div>
-
-  <%- include('/summary', { item: typeAlias}) %>
-  <%- include('/description', { item: typeAlias}) %>
 </div>

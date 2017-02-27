@@ -1,25 +1,37 @@
 ---
-layout: page
+layout: default
 ---
-<div class='container'>
-  <div class="row">
-    <div class='guides-nav col-md-3'>
-      <%- include('/version-dropdown') %>
+<%- include('/navbar') %>
+<div class="docs">
+  <div class="docs-nav">
+    <%- include('/version-dropdown') %>
+    <div class="nav">
       <% categories.forEach((category) => { %>
-        <div class="nav-section">
-          <% if (category.name !== 'Uncategorized') { %>
-            <div class='nav-header'><%= category.name %></div>
-          <% } %>
-          <% category.guides.forEach((guide) => { %>
-            <a href='<%= version.name %>/guides/<%= category.dir %>/<%= guide.name %>' class='nav-link'><%= guide.data.title %></a>
-          <% }) %>
-        </div>
+        <% if (category.name !== 'Uncategorized') { %>
+          <div class="nav-header"><%= category.name %></div>
+        <% } %>
+        <% category.guides.forEach((guide) => { %>
+          <a href='/<%= version.name %>/guides/<%= category.dir %>/<%= guide.name %>' class='nav-link'><%= guide.data.title %></a>
+        <% }) %>
       <% }) %>
     </div>
-
-    <div class='col-md-9 guides-body copy'>
-      <a class="improve-btn" target="_blank" href="https://github.com/<%= repo %>/edit/master/guides/<%= guide.category.dir %>/<%= guide.name %>.md">Improve this page</a>
-      <%- content %>
+  </div>
+  <div class="docs-body">
+    <div class="docs-header">
+      <h1 class="item-title"><%= guide.data.title %></h1>
+      <div class="item-type"><%= guide.category.dir %></div>
+      <%- include('/search') %>
+    </div>
+    <div class="docs-main">
+      <div class='docs-content guide'>
+        <%- content %>
+      </div>
+      <div class="in-page-nav">
+        <% guide.toc.forEach((entry) => { %>
+          <a class="nav-link guide-toc-level-<%= entry.lvl %>" href="#<%= entry.slug %>"><%= entry.content %></a>
+        <% }) %>
+        <a href="https://github.com/<%= repo %>/edit/master/guides/<%= guide.category.dir %>/<%= guide.name %>.md" class="improve-button">Improve This Page</a>
+      </div>
     </div>
   </div>
 </div>

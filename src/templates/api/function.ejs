@@ -1,18 +1,17 @@
 ---
 layout: api
 ---
-<div class='function'>
-  <h1 class='name'>
-    <%- include('/private-tag', { item: func }) %>
-    <%= func.name %>
-  </h1>
+<div class='docs-content func'>
 
-  <%- include('/defined-in-link', { item: func }) %>
-
-  <div class='package'><%= func.package %></div>
-
-  <%- include('/summary', { item: func}) %>
-  <%- include('/description', { item: func}) %>
+  <%- include('/overview', { item: func}) %>
+  <%- include('/child-function', { func }) %>
 
 </div>
 
+<div class="in-page-nav">
+
+  <a class="nav-link section-link" href='#overview'>Overview</a>
+
+  <a href="https://github.com/<%= repo %>/edit/master/<%= sourceFile(func) %>" class="improve-button">Improve This Page</a>
+
+</div>

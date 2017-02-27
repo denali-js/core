@@ -11,13 +11,41 @@ marked.setOptions({
 
 let helpers = {
   forIn,
+  kebabCase,
   markdown: marked,
-  hasTag(item, tagName) {
+  inspect: require('util').inspect,
+  getTag(item, tagName) {
     let comment = helpers.commentFor(item);
     if (!comment || !comment.tags) {
       return false;
     }
-    return comment.tags.find((t) => t.tag === tagName);
+    let tag = comment.tags.find((t) => t.tag === tagName);
+    if (tag) {
+      return tag.text;
+    }
+    return false;
+  },
+  isDeprecated(item) {
+    return Boolean(helpers.getTag(item, 'deprecated'));
+  },
+  isPrivate(item) {
+    return !Boolean(helpers.getTag(item, 'since'));
+  },
+  isInherited(item) {
+    return Boolean(item.inheritedFrom);
+  },
+  visibilityClassesFor(item) {
+    let classes = '';
+    if (helpers.isDeprecated(item)) {
+      classes += 'deprecated-item';
+    }
+    if (helpers.isPrivate(item)) {
+      classes += 'private-item';
+    }
+    if (helpers.isInherited(item)) {
+      classes += 'inherited-item';
+    }
+    return classes;
   },
   sourceFile(item) {
     return item.sources[0].fileName.split('/').slice(2).join('/');
@@ -49,6 +77,34 @@ let helpers = {
       return '/api/' + version.ref + '/' + referencedExportedItem.item.package + '/' + kebabCase(referencedExportedItem.item.name);
     }
     return '';
+  },
+  urlForItem(item, version) {
+    return `/${ version.name }/api/${ item.package }/${ kebabCase(item.name) }`;
+  },
+  filterChildren(item, conditions) {
+    return item.children.filter((child) => {
+      let doesChildMatch = true;
+      if (conditions.kind) {
+        doesChildMatch = doesChildMatch && child.kindString.toLowerCase() === conditions.kind;
+      }
+      if (conditions.static != null) {
+        doesChildMatch = doesChildMatch && ((conditions.static && child.flags.isStatic) || (!conditions.static && !child.flags.isStatic));
+      }
+      return doesChildMatch;
+    });
+  },
+  signatureFor(method) {
+    let signature = '(';
+    let params = (method.signatures[0].parameters || []).map((param) => {
+      let name = param.name;
+      if (param.flags && param.flags.isRest) {
+        name = `...${ name }`;
+      }
+      return name;
+    });
+    signature += params.join(', ');
+    signature += ')';
+    return signature;
   }
 };
 

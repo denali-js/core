@@ -8,6 +8,7 @@ const assert = require('assert');
 const Plugin = require('broccoli-caching-writer');
 const buildVersionMeta = require('../lib/build-version-meta');
 const spinner = require('../lib/spinner');
+const toc = require('markdown-toc');
 
 
 module.exports = class CompileGuides extends Plugin {
@@ -30,9 +31,11 @@ module.exports = class CompileGuides extends Plugin {
         category.guides = category.guides.map((guideName) => {
           let guidePath = path.join(guidesDir, category.dir, guideName + '.md');
           let rawGuide = fs.readFileSync(guidePath, 'utf-8');
+          let parsedRawGuide = frontmatter(rawGuide);
           return {
             name: guideName,
-            data: frontmatter(rawGuide).attributes,
+            data: parsedRawGuide.attributes,
+            toc: toc(parsedRawGuide.body).json,
             category: category
           };
         });

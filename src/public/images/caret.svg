@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="10px" height="7px" viewBox="0 0 10 7" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 40.1 (33804) - http://www.bohemiancoding.com/sketch -->
-    <title>Path</title>
+<svg width="11px" height="7px" viewBox="0 0 11 7" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>Path 3</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <polygon id="Path" fill="#424242" points="4.37101822 5.49264069 5.078125 6.19974747 5.78523178 5.49264069 9.32076569 1.95710678 7.90655212 0.542893219 4.37101822 4.07842712 5.78523178 4.07842712 2.24969788 0.542893219 0.835484313 1.95710678"></polygon>
+        <g id="Artboard" transform="translate(-139.000000, -131.000000)" stroke-width="2" stroke="#647390">
+            <polyline id="Path-3" transform="translate(144.210938, 131.753906) rotate(-45.000000) translate(-144.210938, -131.753906) " points="141.210938 128.753906 141.210938 134.753906 147.210938 134.753906"></polyline>
+        </g>
     </g>
 </svg>

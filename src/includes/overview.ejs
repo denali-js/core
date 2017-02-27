@@ -1,0 +1,12 @@
+<div class="overview" id="overview">
+  <% if (commentFor(item).shortText) { %>
+    <div class='summary'>
+      <%- markdown(commentFor(item).shortText) %>
+    </div>
+  <% } %>
+  <% if (commentFor(item).text) { %>
+    <div class='description'>
+      <%- markdown(commentFor(item).text) %>
+    </div>
+  <% } %>
+</div>

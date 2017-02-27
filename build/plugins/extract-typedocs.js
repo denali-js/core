@@ -3,6 +3,7 @@ const { execSync } = require('child_process');
 const fs = require('fs-extra');
 const assert = require('assert');
 const Plugin = require('broccoli-caching-writer');
+const trim = require('lodash/trim');
 const forIn = require('lodash/forIn');
 const filter = require('lodash/filter');
 const loadJSON = require('../lib/load-json');
@@ -33,6 +34,11 @@ module.exports = class ExtractTypedocs extends Plugin {
   normalizeData(data, root) {
     let packages = data.packages = {};
     let exportedItems = data.exportedItems = [];
+    // The input dir for this broccoli tree is a symlink to the output dir of the previous tree.
+    // Typedoc seems to create duplicate top-level file entries in the extracted json, one with
+    // the symlinked path and one with the real path. So here we filter it down to one or the other
+    // (doesn't matter which).
+    data.children = data.children.filter((file) => file.name.includes('extract_typedocs-input'));
     data.children.forEach((file) => {
       (file.children || []).forEach((item) => {
         if (item.flags.isExported) {
@@ -45,11 +51,27 @@ module.exports = class ExtractTypedocs extends Plugin {
           if (comment) {
             let pkg = (comment.tags || []).find((i) => i.tag === 'package');
             if (pkg) {
+              exportedItems.push({ item, file });
+
+              // Sort into it's package
               pkg = pkg.text.trim();
               packages[pkg] = packages[pkg] || [];
               packages[pkg].push({ item, file });
               item.package = pkg;
-              exportedItems.push({ item, file });
+
+              if (item.kindString === 'Class') {
+                // Use a Blueprint's blueprintName as it's name
+                if (item.extendedTypes && item.extendedTypes[0].name === 'Blueprint') {
+                  let blueprintName = item.children.find((i) => i.name === 'blueprintName');
+                  item.name = blueprintName ? trim(blueprintName.defaultValue, '`\'"') : item.name;
+                }
+
+                // Use a Command's commandName as it's name
+                if (item.extendedTypes && item.extendedTypes[0].name === 'Command') {
+                  let commandName = item.children.find((i) => i.name === 'commandName');
+                  item.name = commandName ? trim(commandName.defaultValue, '`\'"') : item.name;
+                }
+              }
             } else {
               console.warn(`${ item.name } in ${ file.name } is exported, but is missing a package tag`);
             }

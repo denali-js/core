@@ -1,12 +1,45 @@
-<div class='classitems'>
-  <% parent.children.forEach((item) => { %>
-    <% if (item.kindString == 'Property') { %>
-      <%- include('/child-property', { property: item, parent: parent }) %>
-    <% } %>
-  <% }) %>
-  <% parent.children.forEach((item) => { %>
-    <% if (item.kindString == 'Method') { %>
-      <%- include('/child-function', { func: item, parent: parent }) %>
-    <% } %>
-  <% }) %>
+<div class='members'>
+  <% let staticProperties = filterChildren(parent, { kind: 'property', static: true }) %>
+  <% if (staticProperties.length > 0) { %>
+    <div class="members-group">
+      <div class="members-header">Static Properties</div>
+      <hr>
+      <% staticProperties.forEach((property) => { %>
+        <%- include('/child-property', { property, parent: parent }) %>
+      <% }) %>
+    </div>
+  <% } %>
+
+  <% let staticMethods = filterChildren(parent, { kind: 'method', static: true }) %>
+  <% if (staticMethods.length > 0) { %>
+    <div class="members-group">
+      <div class="members-header">Static Methods</div>
+      <hr>
+      <% staticMethods.forEach((func) => { %>
+        <%- include('/child-function', { func, parent: parent }) %>
+      <% }) %>
+    </div>
+  <% } %>
+
+  <% let properties = filterChildren(parent, { kind: 'property', static: false }) %>
+  <% if (properties.length > 0) { %>
+    <div class="members-group">
+      <div class="members-header">Properties</div>
+      <hr>
+      <% properties.forEach((property) => { %>
+        <%- include('/child-property', { property, parent: parent }) %>
+      <% }) %>
+    </div>
+  <% } %>
+
+  <% let methods = filterChildren(parent, { kind: 'method', static: false }) %>
+  <% if (methods.length > 0) { %>
+    <div class="members-group">
+      <div class="members-header">Methods</div>
+      <hr>
+      <% methods.forEach((func) => { %>
+        <%- include('/child-function', { func, parent: parent }) %>
+      <% }) %>
+    </div>
+  <% } %>
 </div>

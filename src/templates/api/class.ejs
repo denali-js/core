@@ -1,21 +1,49 @@
 ---
 layout: api
 ---
-<div class='class'>
-  <h1 class='name'>
-    <%- include('/private-tag', { item: klass }) %>
-    <%= klass.name %>
-  </h1>
+<div class='docs-content class'>
 
-  <%- include('/defined-in-link', { item: klass}) %>
-
-  <div class='package'><%= klass.package %></div>
-
-  <%- include('/summary', { item: klass}) %>
-  <%- include('/description', { item: klass}) %>
-
-  <%- include('/children-visibility-controls') %>
-  <%- include('/children-summary', { parent: klass }) %>
+  <%- include('/overview', { item: klass}) %>
   <%- include('/children', { parent: klass }) %>
+
+</div>
+
+<div class="in-page-nav">
+
+  <a class="nav-link section-link" href='#overview'>Overview</a>
+
+  <% let staticProperties = filterChildren(klass, { kind: 'property', static: true }) %>
+  <% if (staticProperties.length > 0) { %>
+    <div class="nav-header">Static Properties</div>
+    <% staticProperties.forEach((property) => { %>
+      <a href="./#<%= kebabCase(property.name) %>" class="nav-link <%= visibilityClassesFor(item) %>"><%= property.name %></a>
+    <% }) %>
+  <% } %>
+
+  <% let staticMethods = filterChildren(klass, { kind: 'method', static: true }) %>
+  <% if (staticMethods.length > 0) { %>
+    <div class="nav-header">Static Methods</div>
+    <% staticMethods.forEach((method) => { %>
+      <a href="./#<%= kebabCase(method.name) %>" class="nav-link <%= visibilityClassesFor(item) %>"><%= method.name %>()</a>
+    <% }) %>
+  <% } %>
+
+  <% let properties = filterChildren(klass, { kind: 'property', static: false }) %>
+  <% if (properties.length > 0) { %>
+    <div class="nav-header">Properties</div>
+    <% properties.forEach((property) => { %>
+      <a href="./#<%= kebabCase(property.name) %>" class="nav-link <%= visibilityClassesFor(item) %>"><%= property.name %></a>
+    <% }) %>
+  <% } %>
+
+  <% let methods = filterChildren(klass, { kind: 'method', static: false }) %>
+  <% if (methods.length > 0) { %>
+    <div class="nav-header">Methods</div>
+    <% methods.forEach((method) => { %>
+      <a href="./#<%= kebabCase(method.name) %>" class="nav-link <%= visibilityClassesFor(item) %>"><%= method.name %>()</a>
+    <% }) %>
+  <% } %>
+
+  <a href="https://github.com/<%= repo %>/edit/master/<%= sourceFile(klass) %>" class="improve-button">Improve This Page</a>
 
 </div>

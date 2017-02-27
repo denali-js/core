@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="145px" height="145px" viewBox="0 0 145 145" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>stack-overflow-logo</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-5" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="stack-overflow-logo">
+            <rect id="Rectangle-2" fill="#FFFFFF" x="0" y="0" width="145" height="145" rx="10"></rect>
+            <g id="so-icon" transform="translate(28.000000, 20.000000)" fill-rule="nonzero">
+                <g id="Group">
+                    <polygon id="Shape" fill="#BCBBBB" points="76.7351351 96.9363636 76.7351351 68.4636364 86.2040541 68.4636364 86.2040541 106.386364 0.737837838 106.386364 0.737837838 68.4636364 10.2067568 68.4636364 10.2067568 96.9363636"></polygon>
+                    <path d="M20.6594595,65.7636364 L67.1432432,75.4590909 L69.1108108,66.1318182 L22.627027,56.4363636 L20.6594595,65.7636364 Z M26.8081081,43.6727273 L69.8486486,63.6772727 L73.7837838,55.0863636 L30.7432432,34.9590909 L26.8081081,43.6727273 Z M38.7364865,22.5636364 L75.2594595,52.8772727 L81.2851351,45.6363636 L44.7621622,15.3227273 L38.7364865,22.5636364 Z M62.3472973,0.104545455 L54.722973,5.75 L83.0067568,43.7954545 L90.6310811,38.15 L62.3472973,0.104545455 Z M19.6756757,87.3636364 L67.1432432,87.3636364 L67.1432432,77.9136364 L19.6756757,77.9136364 L19.6756757,87.3636364 Z" id="Shape" fill="#F48023"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

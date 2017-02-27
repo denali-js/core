@@ -1,127 +1,65 @@
-$enable-flex: 1;
-
-$container-max-widths: (
-  sm: 576px,
-  md: 750px,
-  lg: 850px,
-  xl: 850px
-);
-
-$font-family-monospace: 'Inconsolata', 'Monaco', 'Anonymous', monospace;
-$font-family-sans-serif: 'Open Sans', 'Helvetica Neue', Helvetica, sans-serif;
-$font-family-headings: 'Bitter';
+@import 'normalize';
 
 $white: #fff;
 $black: #000;
+$off-white: #C1C7CF;
+$brand-primary: #414F71;
+$dark-gray: #272822;
+$monospaced: 'Overpass Mono', monospace;
+$text: #31415C;
 
-$gray: #888;
-$gray-lighter: #ccc;
-$gray-lightest: #eee;
-
-$brand-yellow: #FFFA89;
-$brand-red: #FE8787;
-$brand-orange: #FEC988;
-$brand-cyan: #8AF4FF;
-$brand-green: #8AFEA0;
-$brand-blue: #928BFF;
-
-$brand-primary: #324753;
-$brand-secondary: #00C3B1;
-
-$body-color: #444;
-$text-muted: #999;
-$text-inverse: $white;
-$link-color: #6CB5F9;
-
-$font-size-root: 14px;
-
-$border-color: #444;
-
-$pre-bg: #444;
-$pre-color: $white;
-
-$navbar-color: $body-color;
-
-@mixin flex {
-  display: flex;
-  flex: none;
-}
-
-@import 'bootstrap/scss/bootstrap-reboot';
-@import 'bootstrap/scss/bootstrap-grid';
-
-@import 'buttons';
-
-// See https://github.com/twbs/bootstrap/issues/19123
-[class^="col-"] {
-  min-width: 0;
-}
-
-h1,h2,h3,h4,h5,h6 {
-  font-family: $font-family-headings;
-}
-
-pre {
-  flex: 1 1 auto;
-  padding: 1em;
-  background: $pre-bg;
-  color: $pre-color;
-  white-space: normal;
-}
-
-code {
-  white-space: pre;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
+* {
+  box-sizing: border-box;
 }
 
 html, body {
-  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  color: $text;
+  font-family: 'Overpass', sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: #8397F5;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 1em;
 }
 
 .container {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.navbar + .container {
-  flex: 1 1 auto;
-}
-
-img {
-  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 960px;
+  margin: 0 auto;
 }
 
 .footer {
-  padding: 1em 0;
-  color: $text-muted;
-
-  .container {
-    @include flex;
-    justify-content: center;
-  }
+  display: flex;
+  align-items: center;
+  margin-top: 8em;
+  margin-bottom: 4em;
 
   .fox-and-beard {
-    margin: 0 0.3em;
+    width: 1em;
+    margin: 0 0.5em;
   }
 
   a {
-    margin: 0 0.3em;
-    color: inherit;
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-    }
+    margin-left: 0.25em;
   }
 }
 
+@import 'buttons';
 @import 'navbar';
+@import 'version-dropdown';
 @import 'code';
-@import 'guides';
-@import 'api';
+@import 'docs';
+@import 'docs-children';
 @import 'homepage';
+@import 'community';

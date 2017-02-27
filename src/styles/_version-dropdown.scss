@@ -1,0 +1,48 @@
+.versions {
+  display: flex;
+  position: relative;
+  flex: 0 0 auto;
+  flex-direction: column;
+  justify-content: center;
+  height: 5em;
+  padding: 0 1.5em;
+  border-bottom: 1px solid rgba($black, 0.2);
+
+  .versions-label {
+    color: $off-white;
+    font-weight: 700;
+    font-size: 0.8em;
+    text-transform: uppercase;
+  }
+
+  .versions-toggle {
+    display: block;
+    font-size: 1.2em;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .versions-menu {
+    display: block;
+    position: absolute;
+    top: calc(100% - 0.5em);
+    left: 0.5em;
+    width: calc(100% - 2em);
+    padding: 1em 0;
+    border-radius: 3px;
+    background-color: darken($brand-primary, 15%);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 18px;
+  }
+
+  .versions-menu-link {
+    display: block;
+    padding: 0.5em 1em;
+    color: inherit;
+    font-weight: 700;
+    text-decoration: none;
+
+    &:hover {
+      background-color: rgba($white, 0.1);
+    }
+  }
+}

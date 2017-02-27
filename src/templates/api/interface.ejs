@@ -1,21 +1,33 @@
 ---
 layout: api
 ---
-<div class='interface'>
-  <h1 class='name'>
-    <%- include('/private-tag', { item: interface }) %>
-    <%= interface.name %>
-  </h1>
+<div class='docs-content interface'>
 
-  <%- include('/defined-in-link', { item: interface}) %>
-
-  <div class='package'><%= interface.package %></div>
-
-  <%- include('/summary', { item: interface}) %>
-  <%- include('/description', { item: interface}) %>
-
-  <%- include('/children-visibility-controls') %>
-  <%- include('/children-summary', { parent: interface }) %>
+  <%- include('/overview', { item: interface }) %>
   <%- include('/children', { parent: interface }) %>
+
+</div>
+
+<div class="in-page-nav">
+
+  <a class="nav-link section-link" href='#overview'>Overview</a>
+
+  <% let properties = filterChildren(interface, { kind: 'property', static: false }) %>
+  <% if (properties.length > 0) { %>
+    <div class="nav-header">Properties</div>
+    <% properties.forEach((property) => { %>
+      <a href="./#<%= kebabCase(property.name) %>" class="nav-link <%= visibilityClassesFor(item) %>"><%= property.name %></a>
+    <% }) %>
+  <% } %>
+
+  <% let methods = filterChildren(interface, { kind: 'method', static: false }) %>
+  <% if (methods.length > 0) { %>
+    <div class="nav-header">Methods</div>
+    <% methods.forEach((method) => { %>
+      <a href="./#<%= kebabCase(method.name) %>" class="nav-link <%= visibilityClassesFor(item) %>"><%= method.name %>()</a>
+    <% }) %>
+  <% } %>
+
+  <a href="https://github.com/<%= repo %>/edit/master/<%= sourceFile(interface) %>" class="improve-button">Improve This Page</a>
 
 </div>

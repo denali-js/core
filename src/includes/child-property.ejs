@@ -1,19 +1,20 @@
-<div class='item property' id='<%= encodeURIComponent(property.name) %>' <% if (hasTag(property, 'since')) { %>data-private-member=true<% } %>>
-  <h3 class='item-title'>
-    <div class='item-descriptor'>
-      <%= property.name %><span class="type">:<%- include('/type', { type: property.type }) %></span>
-      <%- include('/private-tag', { item: property }) %>
-      <%- include('/defined-in-link', { item: property }) %>
-    </div>
-  </h3>
-  <div class='item-body'>
-    <div class='item-header'>Description</div>
-    <%- include('/summary', { item: property }) %>
-    <%- include('/description', { item: property }) %>
-    <div class='improve'>
-      <a target='_blank' href='https://github.com/<%= repo %>/edit/<%= version.ref %>/<%= sourceFile(property) %>#L<%= sourceLine(property) %>'>
-        Improve this documentation
+<div class='member property' id='<%= encodeURIComponent(kebabCase(property.name)) %>' <% if (isPrivate(property)) { %>data-private-member=true<% } %>>
+  <div class="member-details">
+    <h3 class='member-title'>
+      <%= property.name %>
+      <span class="type"><%- include('/type', { type: property.type }) %></span>
+    </h3>
+    <%- include('/defined-in-link', { item: property }) %>
+    <div class='member-body'>
+      <%- include('/overview', { item: property }) %>
+      <a class='improve' target='_blank' href='https://github.com/<%= repo %>/edit/<%= version.ref %>/<%= sourceFile(property) %>#L<%= sourceLine(property) %>'>
+        improve this documentation
       </a>
     </div>
+  </div>
+  <div class="member-tags">
+    <%- include('/deprecated-tag', { item: property }) %>
+    <%- include('/private-tag', { item: property }) %>
+    <%- include('/inherited-tag', { item: property }) %>
   </div>
 </div>

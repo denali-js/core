@@ -1,33 +1,45 @@
-<div class='item function' id='<%= encodeURIComponent(func.name) %>' <% if (hasTag(func, 'since')) { %>data-private-member=true<% } %>>
-  <h3 class='item-title'>
-    <div class='item-descriptor'>
-      <%= func.name %><span class='param-paren'>(</span><span class='params'><% (func.params || []).forEach((param) => { %><span class='param'><span class='param-name'><%= param.name %></span><span class='param-type type'>:<%= param.type %></span></span><% }) %></span><span class='param-paren'>)</span>
-      <%- include('/private-tag', { item: func }) %>
-      <%- include('/defined-in-link', { item: func }) %>
-    </div>
-  </h3>
-  <div class='item-body'>
-    <div class='item-header'>Description</div>
-    <%- include('/description', { item: func }) %>
+<div class='member function' id='<%= encodeURIComponent(kebabCase(func.name)) %>' <% if (isPrivate(func)) { %>data-private-member=true<% } %>>
+  <div class="member-details">
+    <h3 class='member-title'>
+      <%= func.name %><%= signatureFor(func) %>
+      <span class="type"><%- include('/type', { type: func.signatures[0].type }) %></span>
+    </h3>
+    <%- include('/defined-in-link', { item: func }) %>
 
-    <div class='item-header'>Parameters</div>
-    <div class='params'>
-      <% (func.signatures[0].parameters || []).forEach((parameter) => { %>
-        <div class='param'>
-          <div class='param-name'><%= parameter.name %></div><div class='param-type type'>:<%- include('/type', { type: parameter.type }) %></div>
-          <%- include('/description', { item: parameter }) %>
+    <div class="member-body">
+      <%- include('/overview', { item: func }) %>
+
+      <% if (func.signatures[0].parameters) { %>
+        <div class='member-header'>Parameters</div>
+        <div class='params'>
+          <% (func.signatures[0].parameters || []).forEach((parameter) => { %>
+            <div class='param'>
+              <span class='param-name'><%= parameter.name %></span><span class='param-type type'><%- include('/type', { type: parameter.type }) %></span>
+              <%- include('/overview', { item: parameter }) %>
+            </div>
+          <% }) %>
         </div>
-      <% }) %>
-    </div>
+      <% } %>
 
-    <div class='item-header'>Returns</div>
-    <div class='return'>
-      <div class='return-type type'><%- include('/type', { type: func.signatures[0].type }) %></div>
-    </div>
-    <div class='improve'>
-      <a target='_blank' href='https://github.com/<%= repo %>/edit/<%= version.ref %>/<%= sourceFile(func) %>#L<%= sourceLine(func) %>'>
-        Improve this documentation
+      <div class='member-header'>Returns</div>
+      <div class='return'>
+        <span class='return-type type'><%- include('/type', { type: func.signatures[0].type }) %></span>
+        <% if (func.signatures[0].comment && func.signatures[0].comment.returns) { %>
+          <span class="return-description">
+            <%= func.signatures[0].comment.returns %>
+          </span>
+        <% } %>
+      </div>
+
+      <a class='improve' target='_blank' href='https://github.com/<%= repo %>/edit/<%= version.ref %>/<%= sourceFile(func) %>#L<%= sourceLine(func) %>'>
+        improve this documentation
       </a>
+
     </div>
+  </div>
+  <div class="member-tags">
+    <%- include('/deprecated-tag', { item: func }) %>
+    <%- include('/private-tag', { item: func }) %>
+    <%- include('/inherited-tag', { item: func }) %>
   </div>
 </div>

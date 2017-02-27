@@ -35,12 +35,20 @@ module.exports = class CompileAPIDocs extends Plugin {
       spinner.start(`compiling inline docs for ${ version.ref }`);
       let outputDir = path.join(this.outputPath, version.name, 'api');
 
+      // Compile the index page
+      let indexTemplate = path.join(templatesDir, 'api', 'index.ejs');
+      let indexOutput = path.join(outputDir, 'index.html');
+      let indexData = { version, versions };
+      compile(indexTemplate, layoutsDir, includesDir, indexData, indexOutput);
+
+      // Compile each exported item's page
       version.data.exportedItems.forEach(({ item, file }) => {
         let template = path.join(templatesDir, 'api', `${ kebabCase(item.kindString) }.ejs`);
         let outputFile = path.join(outputDir, item.package, kebabCase(item.name), 'index.html');
         let localItemName = itemLocalNameMap[item.kindString];
         let templateData = {
           [localItemName]: item,
+          item,
           file,
           version,
           versions,

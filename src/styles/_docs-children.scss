@@ -1,0 +1,247 @@
+.docs-content {
+
+  > .overview {
+    margin-bottom: 3em;
+
+    .summary {
+      font-size: 1.3em;
+      line-height: 1.6;
+    }
+  }
+
+  .members {
+
+    .members-header {
+      display: inline-block;
+      position: relative;
+      margin-top: 2em;
+      padding-right: 1em;
+      background-color: $white;
+      color: $off-white;
+      font-size: 0.85em;
+      font-weight: 900;
+      text-transform: uppercase;
+      z-index: 2;
+
+      & + hr {
+        display: block;
+        position: relative;
+        top: -1.3em;
+        height: 2px;
+        margin-bottom: 1em;
+        border: none;
+        border-top: 1px solid rgba($black, 0.1);
+        border-bottom: 1px solid rgba($black, 0.1);
+        z-index: 1;
+
+        & + .member {
+          padding-top: 0;
+        }
+      }
+    }
+  }
+
+  .member {
+    display: flex;
+    padding: 2em 0;
+    border-bottom: 1px solid rgba($black, 0.05);
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    .member-details {
+      display: flex;
+      flex: 1 0 auto;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .member-title {
+      margin-top: 0;
+      margin-bottom: 0;
+      font-size: 1.4em;
+      font-weight: 900;
+
+      .type {
+        color: $off-white;
+        font-size: 0.75em;
+
+        a {
+          color: inherit;
+
+          &:hover {
+            color: darken($off-white, 10%);
+          }
+        }
+      }
+    }
+
+    .defined-in {
+      margin-bottom: 1em;
+
+      a {
+        display: inline-block;
+        margin-right: 1em;
+        color: $off-white;
+        font-size: 0.85em;
+        font-weight: 400;
+        text-decoration: none;
+
+        &:hover {
+          color: darken($off-white, 20%);
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .overview p:last-child {
+      margin-bottom: 0;
+    }
+
+    .member-header {
+      color: $off-white;
+      font-size: 0.8em;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .params {
+      margin-top: 0.5em;
+      margin-bottom: 1.5em;
+
+      .param {
+        margin: 0.25em 0 0.5em;
+      }
+      .param-name {
+        font-weight: 700;
+      }
+      .param-type {
+        color: $off-white;
+        font-weight: 700;
+        font-size: 0.85em;
+
+        a {
+          color: inherit;
+        }
+      }
+      .overview {
+        .description, p:first-child {
+          margin-top: 0;
+        }
+      }
+    }
+
+    .return {
+      margin-bottom: 1.5em;
+    }
+
+    .return-type {
+      color: $off-white;
+      font-weight: 700;
+      font-size: 0.85em;
+
+      a {
+        color: inherit;
+      }
+    }
+
+    .improve {
+      display: block;
+      margin-top: 1em;
+      color: $off-white;
+      font-size: 0.85em;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .member-tags {
+      display: flex;
+      flex: 0 0 auto;
+      flex-direction: column;
+      align-items: flex-end;
+
+      .tag {
+        margin-bottom: 0.5em;
+      }
+    }
+
+  }
+}
+
+.docs-content.func .member {
+  .member-title, .defined-in {
+    display: none;
+  }
+}
+
+.docs-content.index {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .api-index-welcome {
+    max-width: 30em;
+    margin-bottom: 10em;
+    font-size: 1.3em;
+    text-align: center;
+  }
+
+  .api-index-welcome-graphic {
+    margin-bottom: 2em;
+  }
+}
+
+.docs-content.guide {
+  font-size: 1.2em;
+
+  p > code {
+    padding: 0.1em 0.3em;
+    border-radius: 2px;
+    background-color: mix($white, $brand-primary, 85%);
+    font-size: 0.9em;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th {
+    padding: 0.8em 0.7em;
+    font-size: 0.8em;
+    text-align: left;
+    text-transform: uppercase;
+  }
+
+  tbody td {
+    padding: 0.4em 0.7em;
+    border-top: 1px solid rgba($brand-primary, 0.1);
+  }
+
+  tbody tr:nth-child(odd) td {
+    background-color: rgba($brand-primary, 0.05);
+  }
+
+  tbody tr:hover td {
+    background-color: rgba($brand-primary, 0.08);
+  }
+
+  blockquote {
+    padding: 1.5em 2em;
+    border-left: 10px solid $off-white;
+    background-color: mix($white, $off-white, 85%);
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  h5, h6 {
+    font-size: 1em;
+  }
+}

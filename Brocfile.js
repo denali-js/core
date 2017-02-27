@@ -1,7 +1,6 @@
 const path = require('path');
 const { mv } = require('broccoli-stew');
 const MergeTree = require('broccoli-merge-trees');
-const SassPlugin = require('broccoli-sass');
 const globalData = require('./build/lib/global-data');
 const FindBuildTargets = require('./build/plugins/find-build-targets');
 const CheckoutVersions = require('./build/plugins/checkout-versions');
@@ -10,6 +9,7 @@ const CompileAPIDocs = require('./build/plugins/compile-api-docs');
 const CompileGuides = require('./build/plugins/compile-guides');
 const CreateVersionAliases = require('./build/plugins/create-version-aliases');
 const CompileStaticPages = require('./build/plugins/compile-static-pages');
+const stylesTree = require('./build/plugins/styles');
 
 const config = require('./config.js');
 Object.assign(globalData, config.data);
@@ -29,8 +29,7 @@ let aliases = new CreateVersionAliases(docs, config.versions);
 
 let pagesDir = path.join('src', 'pages');
 let pages = new CompileStaticPages([ pagesDir, layoutsDir, includesDir ]);
-let sass = new MergeTree([ 'bower_components', 'src/styles' ]);
-let styles = new SassPlugin([ sass ], 'app.scss', 'styles.css');
+let styles = stylesTree('src/styles');
 let assets = 'src/public';
 
 let result = new MergeTree([ docs, aliases, pages, styles, assets ]);

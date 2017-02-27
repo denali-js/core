@@ -62,15 +62,25 @@ layout: default
   </div>
   <div class="docs-body">
     <div class="docs-header">
-      <h1 class="item-title"><%= item.name %><% if (item.signatures) { %><%= signatureFor(item) %><% } %></h1>
-      <a class="item-file" href="https://github.com/<%= repo %>/blob/<%= version.ref %>/<%= sourceFile(item) %>#L<%= sourceLine(item) %>"><%= sourceFile(item) %></a>
-      <%- include('/private-tag', { item }) %>
-      <div class="item-type"><%= item.kindString %></div>
+      <h1 class="item-title">API Reference</h1>
+      <div class="item-type"><%= version.name %></div>
       <%- include('/search') %>
       <%- include('/visibility-controls') %>
     </div>
     <div class="docs-main">
-      <%- content %>
+      <div class='docs-content index'>
+        <div class="api-index-welcome">
+          <img src="/images/api-index-welcome-graphic.svg" class="api-index-welcome-graphic">
+          <p>
+            <strong>Welcome to the Denali API reference documentation.</strong>
+          </p>
+          <p>
+            Use the left nav to browse the various parts of the framework, or search the docs using
+            the search bar above. You can also toggle whether or not you want to show or hide docs
+            for deprecated, private, and inherited APIs using the controls above.
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </div>

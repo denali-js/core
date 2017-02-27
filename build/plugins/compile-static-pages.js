@@ -12,13 +12,14 @@ let versionConfig = {
 
 module.exports = class CompileStaticPages extends Plugin {
   constructor([ pagesDir, layoutsDir, includesDir ]) {
-    super([ pagesDir, layoutsDir, includesDir ], { annotation: 'compile guides' });
+    super([ pagesDir, layoutsDir, includesDir ], { annotation: 'compile pages' });
   }
 
   build() {
     let [ pagesDir, layoutsDir, includesDir ] = this.inputPaths;
     walkSync(pagesDir, { directories: false }).forEach((filepath) => {
-      compile(path.join(pagesDir, filepath), layoutsDir, includesDir, versionConfig);
+      let destPath = path.join(this.outputPath, filepath);
+      compile(path.join(pagesDir, filepath), layoutsDir, includesDir, versionConfig, destPath);
     });
   }
 };

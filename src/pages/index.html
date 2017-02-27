@@ -2,103 +2,73 @@
 layout: default
 ---
 <div class='homepage'>
-  <%- include('/header') %>
-  <div class="hero">
-    <div class="container">
+  <div class="container">
+    <%- include('/navbar') %>
+    <div class="hero">
       <h1 class="headline">
-        The best way to build <strong>robust</strong> APIs in Node
+        A robust Node.js framework<br>for building <strong>ambitious</strong> APIs.
       </h1>
-      <div class="lead">
-        Denali is an opinionated Node.js framework that lets you focus on
-        shipping APIs, <br> instead of bikeshedding about the plumbing.
-      </div>
       <div class="terminal">
-        <div class="terminal-title">
-          <div class="terminal-title-button">&nbsp;</div>
-          <div class="terminal-title-button">&nbsp;</div>
-          <div class="terminal-title-button">&nbsp;</div>
+        <div class="terminal-window-controls">
+          <div class="terminal-window-control">&nbsp;</div>
+          <div class="terminal-window-control">&nbsp;</div>
+          <div class="terminal-window-control">&nbsp;</div>
         </div>
-        <pre>
-          <code>$ npm install -g denali
-$ denali new my-api
-$ cd my-api &amp;&amp; denali serve</code>
-        </pre>
+        <div class="asciicast-container">
+          <script type="text/javascript" src="https://asciinema.org/a/66g7q5ibbwkkmkeva27rl1qrv.js" id="asciicast-66g7q5ibbwkkmkeva27rl1qrv" async
+                  data-theme="monokai"
+                  data-autoplay="1"
+                  data-speed="2"
+                  data-loop="1"></script>
+        </div>
       </div>
     </div>
+    <div class="alpha-warning">
+      <h4 class="warning-title">Heads up!</h4>
+      Denali is still in alpha. We don't recommend using it for production apps
+      just yet. Check out the <a href='https://github.com/<%= repo %>/milestones/v0.1.0-beta.1'>road to beta</a>
+      to see what's left!
+    </div>
+    <hr>
+    <div class='features'>
+      <img src="/images/features-graphic.svg" alt="" class="feature-graphic">
+      <div class='features-body'>
+
+        <div class="feature">
+          <h2 class="feature-headline">Data Flexibility</h2>
+          <p class="feature-description">
+            Thanks to it's unique <a href="latest/guides/data/models">model</a> +
+            <a href="latest/guides/data/orm-adapters">adapter</a> approach, Denali let's you use
+            whatever ORM you want. And Denali Addons will work with it out of the box. You can even
+            use multiple ORMs in the same project to fully leverage the strengths of each data store
+            (a.k.a polyglot persistence).
+          </p>
+        </div>
+
+        <div class="feature">
+          <h2 class="feature-headline">Developer Happiness</h2>
+          <p class="feature-description">
+            Denali ships with a top-notch CLI which can run
+            <a href="latest/guides/cli/serve">reload-on-change development server</a>,
+            <a href="latest/guides/cli/generate">scaffold new code</a>,
+            <a href="latest/guides/cli/test">run tests</a>, and more. Extensibility is baked into the
+            core as well, with <a href="latest/guides/cli/addon">Addons</a> providing a powerful,
+            zero-configuration approach to sharing and leveraging community code.
+          </p>
+        </div>
+
+        <div class="feature">
+          <h2 class="feature-headline">API First</h2>
+          <p class="feature-description">
+            You won't find any templating languages, views, partials, etc. Denali is unapologetically
+            API first. First class support for <a href="latest/guides/data/serializers">JSON
+            serializers</a>, <a href="latest/guides/application/routing">RESTful routing</a>, and
+            powerful <a href="latest/guides/testing/acceptance">testing helpers</a> make building APIs
+            easier than ever.
+          </p>
+        </div>
+      </div>
+    </div>
+    <%- include('/footer') %>
   </div>
-  <div class="alpha-warning">
-    <div class="container">
-      <img src="images/warning.svg" class="warning-icon">
-      <div class="warning-body">
-        <h4 class="warning-title">Heads up!</h4>
-        Denali is still in alpha. We don't recommend using it for production apps
-        just yet. Check out the <a href='https://github.com/<%= repo %>/milestones/v0.1.0-beta.1'>road to beta</a>
-        to see what's left!
-      </div>
-    </div>
-  </div>
-  <div class='container features'>
-
-    <div class='row feature'>
-      <div class='col-md-6'>
-        <img class='feature-graphic' src='images/api-first.svg'>
-      </div>
-      <div class='col-md-6'>
-        <h2>API-first</h2>
-        <p class="feature-description">
-          You won't find any templating languages, views, or other HTML
-          rendering support out of the box. Denali is unapologetically focused
-          on APIs first. First class support for
-          <a href="latest/guides/data/serializers/">JSON serializers</a>,
-          <a href="latest/guides/application/routing">RESTful routing</a>,
-          and <a href="latest/guides/testing/integration">powerful testing helpers</a>
-          make building APIs easier than ever.
-        </p>
-      </div>
-    </div>
-
-    <div class='row feature'>
-      <div class="col-md-6">
-        <img class='feature-graphic' src='images/developer-happiness.svg'>
-      </div>
-      <div class='col-md-6'>
-        <h2>Developer happiness</h2>
-        <p class="feature-description">
-          Denali ships with a top-notch CLI which can run
-          <a href="latest/guides/cli/serve">reload-on-change development server</a>,
-          <a href="latest/guides/cli/generate">scaffold new code</a>,
-          <a href="latest/guides/cli/test">run tests</a>, and more. Extensibility
-          is baked into the core as well, with
-          <a href="latest/guides/cli/addon">Addons</a> providing a powerful
-          approach to incorporating third party code.
-        </p>
-      </div>
-    </div>
-
-    <div class="row feature">
-      <div class='col-md-6'>
-        <img class='feature-graphic' src='images/data-flexibility.svg'>
-      </div>
-      <div class='col-md-6'>
-        <h2>Data Flexibility</h2>
-        <p class="feature-description">
-          Thanks to it's unique <a href="latest/guides/data/models">model</a> +
-          <a href="latest/guides/data/orm-adapters">adapter</a> approach, Denali
-          let's you use whatever ORM you want. And Denali Addons will
-          work with it out of the box. You can even use multiple ORMs in the
-          same project to fully leverage the strengths of each data store
-          (a.k.a polyglot persistence).
-        </p>
-      </div>
-    </div>
-
-    <div class="cta">
-      <h2 class="cta-header">Sound Interesting?</h2>
-      <a class='cta-btn' href='latest/guides/overview/introduction'>
-        Check out the Guides
-      </a>
-    </div>
-
-  </div>
-  <%- include('/footer') %>
 </div>

@@ -1,7 +1,28 @@
-<div class='nav-section'>
-  <div class='nav-header'>Version</div>
-  <div class='versions-menu-toggle' data-jq-dropdown='#versions-menu'>
+<div class="versions">
+  <div class='versions-label'>Version</div>
+  <div class='versions-toggle' id='versions-toggle'>
     <%= version.name %> <%= version.channel ? '(' + version.channel + ')' : '' %>
     <img class='versions-menu-caret' src='/images/caret.svg'>
   </div>
+  <div class="versions-menu" id="versions-menu" style='display:none'>
+    <% versions.forEach((v) => { %>
+      <a class="versions-menu-link" data-version="<%= v.name %>">
+        <%= version.name %> <%= version.channel ? '(' + version.channel + ')' : '' %>
+      </a>
+    <% }); %>
+  </div>
 </div>
+<script type="text/javascript">
+
+  var toggle = document.getElementById('versions-toggle');
+  var menu = document.getElementById('versions-menu');
+  toggle.onclick = function toggleVersionsMenu() {
+    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+  };
+
+  var versionLinks = document.querySelectorAll('#versions-menu .versions-menu-link');
+  versionLinks.forEach(function(link) {
+    link.href = window.location.pathname.replace('<%= version.name %>', link.getAttribute('data-version')) + window.location.hash;
+  });
+
+</script>
