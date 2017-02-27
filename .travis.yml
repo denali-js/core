@@ -12,6 +12,7 @@ after_success:
   - unzip awscli-bundle.zip
   - ./awscli-bundle/install -b ~/bin/aws
   - export PATH=~/bin:$PATH
+  - aws configure set preview.cloudfront true
   - npm run deploy-docs
 sudo: false
 cache:
