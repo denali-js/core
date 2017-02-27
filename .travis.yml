@@ -8,12 +8,9 @@ before_script:
   - git config --global user.name "Dave Wasmer"
 after_success:
   - npm run coverage
+  - pip install awscli
   - npm run deploy-docs
 sudo: false
 cache:
   directories:
     - node_modules
-env:
-  global:
-    - ENCRYPTION_LABEL: "7693aa8e5aff"
-    - COMMIT_AUTHOR_EMAIL: "davewasmer@gmail.com"

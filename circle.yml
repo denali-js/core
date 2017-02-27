@@ -25,11 +25,3 @@ dependencies:
   cache_directories:
     - ~/.yarn
     - ~/.cache/yarn
-test:
-  post:
-    - npm run coverage
-deployment:
-  docs:
-    branch: master
-    commands:
-      - npm run deploy-docs
