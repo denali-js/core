@@ -27,7 +27,7 @@
   },
   "scripts": {
     "build": "rm -rf dist && broccoli build dist",
-    "deploy": "aws s3 sync dist s3://denalijs.org --acl public-read",
+    "deploy": "aws s3 sync dist s3://denalijs.org --acl public-read && aws cloudfront create-invalidation --distribution-id E16OE54CHGZ4HW --paths '/*'",
     "serve": "broccoli serve"
   },
   "repository": {
