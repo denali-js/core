@@ -1,7 +1,7 @@
 <div class='member property' id='<%= encodeURIComponent(kebabCase(property.name)) %>' <% if (isPrivate(property)) { %>data-private-member=true<% } %>>
   <div class="member-details">
     <h3 class='member-title'>
-      <%= property.name %>
+      <a href="#<%= encodeURIComponent(kebabCase(property.name)) %>" class="member-self-link"><%= property.name %></a>
       <span class="type"><%- include('/type', { type: property.type }) %></span>
     </h3>
     <%- include('/defined-in-link', { item: property }) %>

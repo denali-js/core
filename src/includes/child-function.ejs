@@ -1,7 +1,7 @@
 <div class='member function' id='<%= encodeURIComponent(kebabCase(func.name)) %>' <% if (isPrivate(func)) { %>data-private-member=true<% } %>>
   <div class="member-details">
     <h3 class='member-title'>
-      <%= func.name %><%= signatureFor(func) %>
+      <a href="#<%= encodeURIComponent(kebabCase(func.name)) %>" class="member-self-link"><%= func.name %><%= signatureFor(func) %></a>
       <span class="type"><%- include('/type', { type: func.signatures[0].type }) %></span>
     </h3>
     <%- include('/defined-in-link', { item: func }) %>
