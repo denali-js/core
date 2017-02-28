@@ -54,7 +54,7 @@ let helpers = {
     return item.sources[0].line;
   },
   commentFor(item) {
-    if (item.kindString === 'function') {
+    if (item.kindString === 'Function' || item.kindString === 'Method') {
       return item.signatures[0].comment || {};
     }
     return item.comment || {};
