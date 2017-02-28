@@ -95,7 +95,7 @@
     "dag-map": "^2.0.2",
     "debug": "^2.6.1",
     "dedent-js": "^1.0.1",
-    "denali-cli": "~0.0.7",
+    "denali-cli": "~0.0.9",
     "dotenv": "^2.0.0",
     "eslint": "^3.15.0",
     "express-force-ssl": "^0.3.0",
