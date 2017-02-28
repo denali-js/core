@@ -62,10 +62,15 @@ layout: default
   </div>
   <div class="docs-body">
     <div class="docs-header">
-      <h1 class="item-title"><%= item.name %><% if (item.signatures) { %><%= signatureFor(item) %><% } %></h1>
+      <h1 class="item-title">
+        <% if (item.package) { %>
+          <span class="item-package"><%= item.package %></span>
+        <% } %>
+        <%= item.name %><% if (item.signatures) { %><%= signatureFor(item) %><% } %>
+      </h1>
       <a class="item-file" href="https://github.com/<%= repo %>/blob/<%= version.ref %>/<%= sourceFile(item) %>#L<%= sourceLine(item) %>"><%= sourceFile(item) %></a>
-      <%- include('/private-tag', { item }) %>
       <div class="item-type"><%= item.kindString %></div>
+      <%- include('/private-tag', { item }) %>
       <%- include('/search') %>
       <%- include('/visibility-controls') %>
     </div>
