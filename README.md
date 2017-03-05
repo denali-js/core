@@ -1,5 +1,6 @@
 # Denali
 
+[![Greenkeeper badge](greenkeeper-image)](greenkeeper-url)
 [![NPM version][npm-image]][npm-url]
 [![Build Status][travis-image]][travis-url]
 [![Coverage][coverage-image]][coverage-url]
@@ -98,3 +99,5 @@ MIT © [Dave Wasmer](http://davewasmer.com)
 [sv-url]: https://github.com/conventional-changelog/standard-version
 [sv-image]: https://img.shields.io/badge/release-standard%20version-brightgreen.svg?style=flat-square
 
+[greenkeeper-image]: https://badges.greenkeeper.io/denali-js/denali.svg
+[greenkeeper-url]: https://greenkeeper.io/
