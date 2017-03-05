@@ -65,19 +65,6 @@ export default function baseMiddleware(router: Router, application: Application)
     router.use(cors(config.cors));
   }
 
-  if (isEnabled('csp')) {
-    let cspConfig: any = defaultsDeep<{ [key: string]: any }, { [key: string]: any }>(config.csp, {
-      directives: { reportUri: '/_report-csp-violations' },
-      reportOnly: application.environment === 'development',
-      disableAndroid: true
-    });
-    router.use(helmet.contentSecurityPolicy(cspConfig));
-    if (config.csp && config.csp.useDummyReportingEndpoint) {
-      // TODO create an action in the app/ dir to handle this (allows for user overrides then too)
-      // router.post(cspConfig.directives.reportUri, (req: IncomingMessage, res: ServerResponse) => res.sendStatus(200));
-    }
-  }
-
   if (isEnabled('xssFilter')) {
     router.use(helmet.xssFilter());
   }
