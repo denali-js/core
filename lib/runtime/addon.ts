@@ -26,6 +26,7 @@ const debug = createDebug('denali:runtime:addon');
  * Constructor options for Addon class
  *
  * @package runtime
+ * @since 0.1.0
  */
 export interface AddonOptions {
   environment: string;
@@ -65,16 +66,21 @@ export interface AddonOptions {
  *     }
  *
  * @package runtime
+ * @since 0.1.0
  */
 export default class Addon extends DenaliObject {
 
   /**
    * The current environment for the app, i.e. 'development'
+   *
+   * @since 0.1.0
    */
   public environment: string;
 
   /**
    * The root directory on the filesystem for this addon
+   *
+   * @since 0.1.0
    */
   public dir: string;
 
@@ -85,6 +91,8 @@ export default class Addon extends DenaliObject {
 
   /**
    * The application logger instance
+   *
+   * @since 0.1.0
    */
   protected logger: Logger;
 
@@ -113,6 +121,8 @@ export default class Addon extends DenaliObject {
   /**
    * The app directory for this addon. Override to customize where the app directory is stored in
    * your addon.
+   *
+   * @since 0.1.0
    */
   get appDir(): string {
     return path.join(this.dir, 'app');
@@ -121,6 +131,8 @@ export default class Addon extends DenaliObject {
   /**
    * The config directory for this addon. Override this to customize where the config files are
    * stored in your addon.
+   *
+   * @since 0.1.0
    */
   public get configDir(): string {
     return path.join(this.dir, 'config');
@@ -129,6 +141,8 @@ export default class Addon extends DenaliObject {
   /**
    * The name of the addon. Override this to use a different name than the package name for your
    * addon.
+   *
+   * @since 0.1.0
    */
   public get name(): string {
     return (this.pkg && this.pkg.name) || 'anonymous-addon';
@@ -262,6 +276,8 @@ export default class Addon extends DenaliObject {
   /**
    * A hook to perform any shutdown actions necessary to gracefully exit the application, i.e. close
    * database/socket connections.
+   *
+   * @since 0.1.0
    */
   public async shutdown(application: Application): Promise<void> {
     // defaults to noop

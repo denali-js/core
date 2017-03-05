@@ -27,7 +27,15 @@ interface ApplicationOptions {
   pkg?: any;
 }
 
-interface Initializer {
+/**
+ * Initializers are run before the application starts up. You are given the application instance,
+ * and if you need to perform async operations, you can return a Promise. You can configure
+ * initializer order by specifying the names of initializers that should come before or after your
+ * initializer.
+ *
+ * @since 0.1.0
+ */
+export interface Initializer {
   name: string;
   initialize(application: Application): Promise<any>;
   before?: string | string[];
@@ -49,11 +57,15 @@ export default class Application extends Addon {
 
   /**
    * The application config
+   *
+   * @since 0.1.0
    */
   public config: any;
 
   /**
    * The container instance for the entire application
+   *
+   * @since 0.1.0
    */
   public container: Container;
 
@@ -158,6 +170,8 @@ export default class Application extends Addon {
   /**
    * Start the Denali server. Runs all initializers, creates an HTTP server, and binds to the port
    * to handle incoming HTTP requests.
+   *
+   * @since 0.1.0
    */
   public async start(): Promise<void> {
     let port = this.config.server.port || 3000;
@@ -192,6 +206,8 @@ export default class Application extends Addon {
    * Lookup all initializers and run them in sequence. Initializers can override the default load
    * order by including `before` or `after` properties on the exported class (the name or array of
    * names of the other initializers it should run before/after).
+   *
+   * @since 0.1.0
    */
   public async runInitializers(): Promise<void> {
     let initializers = <Initializer[]>topsort(values(this.container.lookupAll('initializer')));
@@ -203,8 +219,9 @@ export default class Application extends Addon {
   /**
    * Shutdown the application gracefully (i.e. close external database connections, drain in-flight
    * requests, etc)
+   *
+   * @since 0.1.0
    */
-  // TODO drain requests from HTTP server
   public async shutdown(): Promise<void> {
     await all(this.addons.map(async (addon) => {
       await addon.shutdown(this);

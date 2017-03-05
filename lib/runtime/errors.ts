@@ -5,5 +5,6 @@ import * as Errors from 'http-errors';
  * documentation](https://github.com/jshttp/http-errors) for how to use it.
  *
  * @package runtime
+ * @since 0.1.0
  */
 export default Errors;

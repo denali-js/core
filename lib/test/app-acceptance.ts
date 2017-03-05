@@ -17,6 +17,7 @@ import Application from '../runtime/application';
  * since they don't need to bind to an actual port.
  *
  * @package test
+ * @since 0.1.0
  */
 export class AppAcceptance extends DenaliObject {
 
@@ -40,6 +41,8 @@ export class AppAcceptance extends DenaliObject {
   /**
    * Start the application (note: this won't actually start the HTTP server, but performs all the
    * other startup work for you).
+   *
+   * @since 0.1.0
    */
   public async start(): Promise<void> {
     await this.application.runInitializers();
@@ -53,6 +56,8 @@ export class AppAcceptance extends DenaliObject {
   /**
    * Default headers that are applied to each request. Useful for handling API-wide content-types,
    * sessions, etc.
+   *
+   * @since 0.1.0
    */
   public headers: { [name: string]: string } = {
     Accept: 'application/json',
@@ -61,6 +66,8 @@ export class AppAcceptance extends DenaliObject {
 
   /**
    * Submit a simulated HTTP request to the application.
+   *
+   * @since 0.1.0
    */
   public async request(options: { method: string, url: string, body?: any, headers?: { [key: string]: string } }): Promise<{ status: number, body: any }> {
     let body: any = null;
@@ -104,36 +111,48 @@ export class AppAcceptance extends DenaliObject {
 
   /**
    * Send a simulated GET request
+   *
+   * @since 0.1.0
    */
   public async get(url: string, options = {}): Promise<{ status: number, body: any }> {
     return this.request(Object.assign(options, { url, method: 'get' }));
   }
   /**
    * Send a simulated HEAD request
+   *
+   * @since 0.1.0
    */
   public async head(url: string, options = {}): Promise<{ status: number, body: any }> {
     return this.request(Object.assign(options, { url, method: 'head' }));
   }
   /**
    * Send a simulated DELETE request
+   *
+   * @since 0.1.0
    */
   public async delete(url: string, options = {}): Promise<{ status: number, body: any }> {
     return this.request(Object.assign(options, { url, method: 'delete' }));
   }
   /**
    * Send a simulated POST request
+   *
+   * @since 0.1.0
    */
   public async post(url: string, body: any, options = {}): Promise<{ status: number, body: any }> {
     return this.request(Object.assign(options, { url, body, method: 'post' }));
   }
   /**
    * Send a simulated PUT request
+   *
+   * @since 0.1.0
    */
   public async put(url: string, body: any, options = {}): Promise<{ status: number, body: any }> {
     return this.request(Object.assign(options, { url, body, method: 'put' }));
   }
   /**
    * Send a simulated PATCH request
+   *
+   * @since 0.1.0
    */
   public async patch(url: string, body: string, options = {}): Promise<{ status: number, body: any }> {
     return this.request(Object.assign(options, { url, body, method: 'patch' }));
@@ -141,6 +160,8 @@ export class AppAcceptance extends DenaliObject {
 
   /**
    * Get the current value of a default header
+   *
+   * @since 0.1.0
    */
   public getHeader(name: string): string {
     return this.headers[name];
@@ -148,6 +169,8 @@ export class AppAcceptance extends DenaliObject {
 
   /**
    * Set a default header value
+   *
+   * @since 0.1.0
    */
   public setHeader(name: string, value: string): void {
     this.headers[name] = value;
@@ -155,6 +178,8 @@ export class AppAcceptance extends DenaliObject {
 
   /**
    * Remove a default header value
+   *
+   * @since 0.1.0
    */
   public removeHeader(name: string): void {
     delete this.headers[name];
@@ -162,6 +187,8 @@ export class AppAcceptance extends DenaliObject {
 
   /**
    * Lookup an entry in the test application container
+   *
+   * @since 0.1.0
    */
   public lookup(name: string): any {
     return this.application.container.lookup(name);
@@ -170,6 +197,8 @@ export class AppAcceptance extends DenaliObject {
   /**
    * Overwrite an entry in the test application container. Use `restore()` to restore the original
    * container entry later.
+   *
+   * @since 0.1.0
    */
   public inject(name: string, value: any): void {
     this._injections[name] = this.application.container.lookup(name);
@@ -178,6 +207,8 @@ export class AppAcceptance extends DenaliObject {
 
   /**
    * Restore the original container entry for an entry that was previously overwritten by `inject()`
+   *
+   * @since 0.1.0
    */
   public restore(name: string): void {
     this.application.container.register(name, this._injections[name]);
@@ -186,6 +217,8 @@ export class AppAcceptance extends DenaliObject {
 
   /**
    * Shut down the test application, cleaning up any resources in use
+   *
+   * @since 0.1.0
    */
   public async shutdown(): Promise<void> {
     await this.application.shutdown();
@@ -200,6 +233,7 @@ export class AppAcceptance extends DenaliObject {
  * your test data won't pollute the database.
  *
  * @package test
+ * @since 0.1.0
  */
 export default function appAcceptanceTest(ava: any) {
 

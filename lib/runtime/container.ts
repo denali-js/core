@@ -44,6 +44,7 @@ type Constructor<T> = new(...args: any[]) => T;
  * found.
  *
  * @package runtime
+ * @since 0.1.0
  */
 export default class Container extends DenaliObject {
 
@@ -59,6 +60,8 @@ export default class Container extends DenaliObject {
 
   /**
    * A reference to the application config
+   *
+   * @since 0.1.0
    */
   public get config(): any {
     return this.lookup('config:environment');
@@ -66,6 +69,8 @@ export default class Container extends DenaliObject {
 
   /**
    * A reference to the application logger
+   *
+   * @since 0.1.0
    */
   public get logger(): Logger {
     return this.lookup('logger:main');
@@ -73,6 +78,8 @@ export default class Container extends DenaliObject {
 
   /**
    * Register a value under the given `fullName` for later use.
+   *
+   * @since 0.1.0
    */
   public register(name: string, value: any): void {
     let parsedName = this.parseName(name);
@@ -81,6 +88,8 @@ export default class Container extends DenaliObject {
 
   /**
    * Lookup a value in the container. Uses type specific lookup logic if available.
+   *
+   * @since 0.1.0
    */
   public lookup(name: string): any {
     let parsedName = this.parseName(name);
@@ -94,6 +103,8 @@ export default class Container extends DenaliObject {
    * Lookup all modules of a specific type in the container. Returns an object of all the modules
    * keyed by their module path (i.e. `role:employees/manager` would be found under
    * `lookupAll('role')['employees/manager']`
+   *
+   * @since 0.1.0
    */
   public lookupAll(type: string): { [moduleName: string]: any } {
     return keys(this._registry).filter((fullName) => {

@@ -68,6 +68,7 @@ interface Responder {
  * inheritable, so child classes will run filters added by parent classes.
  *
  * @package runtime
+ * @since 0.1.0
  */
 abstract class Action extends DenaliObject {
 
@@ -106,6 +107,8 @@ abstract class Action extends DenaliObject {
    * If a before filter returns any value (or returns a promise which resolves to any value) other
    * than null or undefined, Denali will attempt to render that response and halt further processing
    * of the request (including remaining before filters).
+   *
+   * @since 0.1.0
    */
   public static before: string[] = [];
 
@@ -115,6 +118,8 @@ abstract class Action extends DenaliObject {
    *
    * Filters can be synchronous, or return a promise (which will pause the before/respond/after
    * chain until it resolves).
+   *
+   * @since 0.1.0
    */
   public static after: string[] = [];
 
@@ -124,21 +129,29 @@ abstract class Action extends DenaliObject {
    * By default if the response is of type Error it will use the 'error' serializer. On the other
    * hand if it's a Model, it will use that model's serializer. Otherwise, it will use the
    * 'application' serializer.
+   *
+   * @since 0.1.0
    */
   public serializer: string | boolean = null;
 
   /**
    * The application config
+   *
+   * @since 0.1.0
    */
   public config: any;
 
   /**
    * The incoming Request that this Action is responding to.
+   *
+   * @since 0.1.0
    */
   public request: Request;
 
   /**
    * The application logger instance
+   *
+   * @since 0.1.0
    */
   public logger: Logger;
 
@@ -155,6 +168,8 @@ abstract class Action extends DenaliObject {
 
   /**
    * Fetch a model class by it's type string, i.e. 'post' => PostModel
+   *
+   * @since 0.1.0
    */
   public modelFor(type: string): Model {
     return this.container.lookup(`model:${ type }`);
@@ -162,6 +177,8 @@ abstract class Action extends DenaliObject {
 
   /**
    * Fetch a service by it's container name, i.e. 'email' => 'services/email.js'
+   *
+   * @since 0.1.0
    */
   public service(type: string): Service {
     return this.container.lookup(`service:${ type }`);
@@ -289,6 +306,8 @@ abstract class Action extends DenaliObject {
   /**
    * The default responder method. You should override this method with whatever logic is needed to
    * respond to the incoming request.
+   *
+   * @since 0.1.0
    */
   public abstract respond(params: any): Response | { [key: string]: any } | void;
 

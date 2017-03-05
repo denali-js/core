@@ -15,6 +15,7 @@ import Route from './route';
  * Available HTTP methods (lowercased)
  *
  * @package runtime
+ * @since 0.1.0
  */
 export type Method = 'get' | 'post' | 'put' | 'patch' | 'delete' | 'head' | 'options';
 
@@ -24,11 +25,14 @@ export type Method = 'get' | 'post' | 'put' | 'patch' | 'delete' | 'head' | 'opt
  * middleware.
  *
  * @package runtime
+ * @since 0.1.0
  */
 export default class Request extends DenaliObject {
 
   /**
    * A UUID generated unqiue to this request. Useful for tracing a request through the application.
+   *
+   * @since 0.1.0
    */
   public id: string;
 
@@ -44,16 +48,22 @@ export default class Request extends DenaliObject {
 
   /**
    * The route parser route that was matched
+   *
+   * @since 0.1.0
    */
   public route: Route;
 
   /**
    * The requests params extracted from the route parser (i.e. just the URL segement params)
+   *
+   * @since 0.1.0
    */
   public params: any;
 
   /**
    * The incoming request body, buffered and parsed by the serializer (if applicable)
+   *
+   * @since 0.1.0
    */
   public body: any;
 
@@ -72,6 +82,8 @@ export default class Request extends DenaliObject {
 
   /**
    * The HTTP method of the request, lowercased
+   *
+   * @since 0.1.0
    */
   public get method(): Method {
     return <Method>this._incomingMessage.method.toLowerCase();
@@ -79,6 +91,8 @@ export default class Request extends DenaliObject {
 
   /**
    * The host name specified in the request (not including port number)
+   *
+   * @since 0.1.0
    */
   public get hostname(): string {
     let host = this._incomingMessage.headers.Host;
@@ -87,6 +101,8 @@ export default class Request extends DenaliObject {
 
   /**
    * The IP address of the incoming request's connection
+   *
+   * @since 0.1.0
    */
   public get ip(): string {
     return this._incomingMessage.socket.remoteAddress;
@@ -94,6 +110,8 @@ export default class Request extends DenaliObject {
 
   /**
    * The path extracted from the URL of the incoming request.
+   *
+   * @since 0.1.0
    */
   public get path(): string {
     return this.parsedUrl.pathname;
@@ -101,6 +119,8 @@ export default class Request extends DenaliObject {
 
   /**
    * The query params supplied with the request URL, parsed into an object
+   *
+   * @since 0.1.0
    */
   public get query(): { [key: string]: string } {
     return this.parsedUrl.query;
@@ -108,6 +128,8 @@ export default class Request extends DenaliObject {
 
   /**
    * The headers of the incoming request
+   *
+   * @since 0.1.0
    */
   public get headers(): { [key: string]: string } {
     return this._incomingMessage.headers;
@@ -117,6 +139,8 @@ export default class Request extends DenaliObject {
    * An array of subdomains of the incoming request:
    *     // GET foo.bar.example.com
    *     request.subdomains  // [ 'foo', 'bar' ]
+   *
+   * @since 0.1.0
    */
   public get subdomains(): string[] {
     // Drop the tld and root domain name
@@ -126,6 +150,8 @@ export default class Request extends DenaliObject {
   /**
    * Returns the best match for content types, or false if no match is possible. See the docs for
    * the `accepts` module on npm for more details.
+   *
+   * @since 0.1.0
    */
   public accepts(serverAcceptedTypes: string[]): string | boolean {
     return accepts(this._incomingMessage).type(serverAcceptedTypes);
@@ -133,6 +159,8 @@ export default class Request extends DenaliObject {
 
   /**
    * Gets the value of a header.
+   *
+   * @since 0.1.0
    */
   public get(header: string): string {
     return this._incomingMessage.headers[header.toLowerCase()];
@@ -140,6 +168,8 @@ export default class Request extends DenaliObject {
 
   /**
    * Checks if the request matches the supplied content types. See type-is module for details.
+   *
+   * @since 0.1.0
    */
   public is(...types: string[]): string | boolean {
     return <string|boolean>typeis(this._incomingMessage, types);

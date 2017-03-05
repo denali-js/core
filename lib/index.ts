@@ -4,25 +4,9 @@
  * `require/import`.
  *
  * This exports convenient shortcuts to other modules within Denali.
- * Rather than having to `import Addon from 'denali/dist/lib/runtime/addon'`,
+ * Rather than having to `import Addon from 'denali/lib/runtime/addon'`,
  * you can just `import { Addon } from 'denali'`.
  *
- * ## Exports
- *
- * ### `Serializer`
- *
- * Serializers are responsible for determining what data gets sent over the
- * wire, and how that data is rendered into a JSON response. Check out the
- * [guides](serializers) for details.
- *
- * ### `Errors`
- *
- * An errors module based on
- * [http-errors](https://github.com/jshttp/http-errors). Useful for
- * standardizing how you handle error responses. Check out the [guides](errors)
- * or the [http-errors docs](https://github.com/jshttp/http-errors) for details.
- *
- * @main denali
  */
 
 // Data

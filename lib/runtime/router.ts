@@ -71,6 +71,7 @@ interface RouterDSL {
  * file's exported function as the first argument.
  *
  * @package runtime
+ * @since 0.1.0
  */
 export default class Router extends DenaliObject implements RouterDSL {
 
@@ -107,6 +108,8 @@ export default class Router extends DenaliObject implements RouterDSL {
   /**
    * Helper method to invoke the function exported by `config/routes.js` in the context of the
    * current router instance.
+   *
+   * @since 0.1.0
    */
   public map(fn: (router: Router) => void): void {
     debug('mapping routes');
@@ -139,7 +142,6 @@ export default class Router extends DenaliObject implements RouterDSL {
         throw new Errors.NotFound('Route not recognized');
       }
 
-      // eslint-disable-next-line new-cap
       let action: Action = new (<any>request.route.action)({
         request,
         logger: this.logger,
@@ -209,6 +211,8 @@ export default class Router extends DenaliObject implements RouterDSL {
   /**
    * Add the supplied middleware function to the generic middleware stack that runs prior to action
    * handling.
+   *
+   * @since 0.1.0
    */
   public use(middleware: MiddlewareFn): void {
     this.middleware.use(middleware);
@@ -224,6 +228,8 @@ export default class Router extends DenaliObject implements RouterDSL {
    * of the URL up
    *    to the querystring
    * * Optional groups, i.e. `'foo(/:bar)'`
+   *
+   * @since 0.1.0
    */
   public route(method: Method, rawPattern: string, actionPath: string, params?: any) {
     // Ensure leading slashes
@@ -246,6 +252,8 @@ export default class Router extends DenaliObject implements RouterDSL {
 
   /**
    * Shorthand for `this.route('get', ...arguments)`
+   *
+   * @since 0.1.0
    */
   public get(rawPattern: string, actionPath: string, params?: any): void {
     this.route('get', rawPattern, actionPath, params);
@@ -253,6 +261,8 @@ export default class Router extends DenaliObject implements RouterDSL {
 
   /**
    * Shorthand for `this.route('post', ...arguments)`
+   *
+   * @since 0.1.0
    */
   public post(rawPattern: string, actionPath: string, params?: any): void {
     this.route('post', rawPattern, actionPath, params);
@@ -260,6 +270,8 @@ export default class Router extends DenaliObject implements RouterDSL {
 
   /**
    * Shorthand for `this.route('put', ...arguments)`
+   *
+   * @since 0.1.0
    */
   public put(rawPattern: string, actionPath: string, params?: any): void {
     this.route('put', rawPattern, actionPath, params);
@@ -267,6 +279,8 @@ export default class Router extends DenaliObject implements RouterDSL {
 
   /**
    * Shorthand for `this.route('patch', ...arguments)`
+   *
+   * @since 0.1.0
    */
   public patch(rawPattern: string, actionPath: string, params?: any): void {
     this.route('patch', rawPattern, actionPath, params);
@@ -274,6 +288,8 @@ export default class Router extends DenaliObject implements RouterDSL {
 
   /**
    * Shorthand for `this.route('delete', ...arguments)`
+   *
+   * @since 0.1.0
    */
   public delete(rawPattern: string, actionPath: string, params?: any): void {
     this.route('delete', rawPattern, actionPath, params);
@@ -281,6 +297,8 @@ export default class Router extends DenaliObject implements RouterDSL {
 
   /**
    * Shorthand for `this.route('head', ...arguments)`
+   *
+   * @since 0.1.0
    */
   public head(rawPattern: string, actionPath: string, params?: any): void {
     this.route('head', rawPattern, actionPath, params);
@@ -288,6 +306,8 @@ export default class Router extends DenaliObject implements RouterDSL {
 
   /**
    * Shorthand for `this.route('options', ...arguments)`
+   *
+   * @since 0.1.0
    */
   public options(rawPattern: string, actionPath: string, params?: any): void {
     this.route('options', rawPattern, actionPath, params);
@@ -318,6 +338,8 @@ export default class Router extends DenaliObject implements RouterDSL {
    *   * `DELETE /books/:id/relationships/:relation`
    *
    * See http://jsonapi.org/recommendations/#urls for details.
+   *
+   * @since 0.1.0
    */
   public resource(resourceName: string, options: ResourceOptions = {}): void {
     let plural = pluralize(resourceName);
@@ -381,7 +403,6 @@ export default class Router extends DenaliObject implements RouterDSL {
    *   namespace.get('sign-in');
    */
   public namespace(namespace: string, fn: (wrapper: {}) => void): void {
-    // eslint-disable-next-line consistent-this
     let router = this;
     if (namespace.endsWith('/')) {
       namespace = namespace.slice(0, namespace.length - 1);

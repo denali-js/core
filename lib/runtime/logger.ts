@@ -16,16 +16,21 @@ interface ColorsMap {
  * output, and control over verbosity.
  *
  * @package runtime
+ * @since 0.1.0
  */
 export default class Logger extends DenaliObject {
 
   /**
    * Default log level if none specified.
+   *
+   * @since 0.1.0
    */
   public loglevel: LogLevel = 'info';
 
   /**
    * Specify if logs should be colorized.
+   *
+   * @since 0.1.0
    */
   public colorize = true;
 
@@ -49,6 +54,8 @@ export default class Logger extends DenaliObject {
 
   /**
    * Log at the 'info' level.
+   *
+   * @since 0.1.0
    */
   public info(msg: any): void {
     this.log('info', msg);
@@ -56,6 +63,8 @@ export default class Logger extends DenaliObject {
 
   /**
    * Log at the 'warn' level.
+   *
+   * @since 0.1.0
    */
   public warn(msg: any): void {
     this.log('warn', msg);
@@ -63,6 +72,8 @@ export default class Logger extends DenaliObject {
 
   /**
    * Log at the 'error' level.
+   *
+   * @since 0.1.0
    */
   public error(msg: any): void {
     this.log('error', msg);
