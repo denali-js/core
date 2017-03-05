@@ -179,7 +179,6 @@ export default class Application extends Addon {
    */
   private async createServer(port: number): Promise<void> {
     await new Promise((resolve) => {
-      // TODO create both http & https if redirect-to-ssl is enabled
       let handler = this.router.handle.bind(this.router);
       if (this.config.server.ssl) {
         https.createServer(this.config.server.ssl, handler).listen(port, resolve);

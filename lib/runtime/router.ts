@@ -386,7 +386,6 @@ export default class Router extends DenaliObject implements RouterDSL {
     if (namespace.endsWith('/')) {
       namespace = namespace.slice(0, namespace.length - 1);
     }
-    // TODO add sanitization in case `pattern` has leading slash, or `namespace` has trailing
     // tslint:disable:completed-docs
     let wrapper: RouterDSL = {
       get(pattern: string, actionPath, params) {

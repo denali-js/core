@@ -7,8 +7,6 @@ import * as compression from 'compression';
 import * as cookies from 'cookie-parser';
 import * as cors from 'cors';
 import * as helmet from 'helmet';
-// TODO: reimplement this
-// import forceSSL from 'express-force-ssl';
 import * as morgan from 'morgan';
 import { json } from 'body-parser';
 import { IncomingMessage, ServerResponse } from 'http';
@@ -98,15 +96,6 @@ export default function baseMiddleware(router: Router, application: Application)
 
   if (isEnabled('noSniff')) {
     router.use(helmet.noSniff());
-  }
-
-  if (config.server && config.server.ssl && config.server.ssl.required) {
-    // TODO homeroll this? or figure out what support / patching is needed to work with non-express
-    // router.use((req, res, next) => {
-    //   res.locals = res.locals || {};
-    //   res.locals.forceSSLOptions = { enable301Redirects: config.server.ssl.required === 'redirect' };
-    //   forceSSL(req, res, next);
-    // });
   }
 
   if (isEnabled('bodyParser')) {

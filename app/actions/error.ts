@@ -75,7 +75,6 @@ export default class ErrorAction extends Action {
       delete error.stack;
     }
     if (this.config.environment !== 'test') {
-      // TODO log request ID as well
       this.logger.error(error.stack || error.message);
     }
     debug('Error prepared: %o', error);

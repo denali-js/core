@@ -114,8 +114,7 @@ export default class Addon extends DenaliObject {
    * The app directory for this addon. Override to customize where the app directory is stored in
    * your addon.
    */
-  // TODO Rename to appDir
-  get mainDir(): string {
+  get appDir(): string {
     return path.join(this.dir, 'app');
   }
 
@@ -231,10 +230,10 @@ export default class Addon extends DenaliObject {
    */
   protected loadApp(): void {
     debug(`loading app for ${ this.pkg.name }`);
-    if (fs.existsSync(this.mainDir)) {
-      eachDir(this.mainDir, (dirname) => {
+    if (fs.existsSync(this.appDir)) {
+      eachDir(this.appDir, (dirname) => {
         debug(`loading ${ dirname } for ${ this.pkg.name }`);
-        let dir = path.join(this.mainDir, dirname);
+        let dir = path.join(this.appDir, dirname);
         let type = singularize(dirname);
 
         glob.sync('**/*', { cwd: dir }).forEach((filepath) => {
