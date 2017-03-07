@@ -142,6 +142,24 @@ abstract class ORMAdapter extends DenaliObject {
     // defaults to no-op
   };
 
+  /**
+   * The current test transaction, if applicable
+   */
+  public testTransaction: any;
+
+  /**
+   * Start a transaction that will wrap a test, and be rolled back afterwards. If the data store
+   * doesn't support transactions, just omit this method. Only one test transaction will be opened
+   * per process, and the ORM adapter is responsible for keeping track of that transaction so it
+   * can later be rolled back.
+   */
+  public async startTestTransaction?(): Promise<void>;
+
+  /**
+   * Roll back the test transaction.
+   */
+  public async rollbackTestTransaction?(): Promise<void>;
+
 }
 
 export default ORMAdapter;
