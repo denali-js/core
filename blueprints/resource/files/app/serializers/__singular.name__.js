@@ -4,6 +4,6 @@ export default class <%= singular.className %>Serializer extends ApplicationSeri
 
   attributes = [];
 
-  relationships = [];
+  relationships = {};
 
 }

@@ -4,7 +4,7 @@ export default class List<%= plural.className %> extends ApplicationAction {
 
   async respond() {
     let <%= singular.className %> = this.modelFor('<%= singular.dasherized %>');
-    return <%= singular.className %>.find();
+    return <%= singular.className %>.all();
   }
 
 }
