@@ -122,6 +122,7 @@ export default class Router extends DenaliObject implements RouterDSL {
    * finally renders the response.
    */
   public async handle(req: IncomingMessage, res: ServerResponse): Promise<void> {
+    let response;
     let request = new Request(req);
     try {
 
@@ -161,41 +162,41 @@ export default class Router extends DenaliObject implements RouterDSL {
         serializer = this.container.lookup('serializer:application');
       }
 
-      if (typeis.hasBody(request) && serializer) {
+      if (typeis.hasBody(request) && request.body && serializer) {
         debug(`[${ request.id }]: parsing request body`);
         request.body = serializer.parse(request.body);
       }
 
       debug(`[${ request.id }]: running action`);
-      let response = await action.run();
-
-      debug(`[${ request.id }]: setting response status code to ${ response.status }`);
-      res.statusCode = response.status;
-      res.setHeader('X-Request-Id', request.id);
-
-      if (response.body) {
-        debug(`[${ request.id }]: writing response body`);
-        res.setHeader('Content-type', response.contentType);
-        if (this.container.config.environment !== 'production') {
-          res.write(JSON.stringify(response.body, null, 2));
-        } else {
-          res.write(JSON.stringify(response.body));
-        }
-      }
-
-      res.end();
-      debug(`[${ request.id }]: response finished`);
+      response = await action.run();
 
     } catch (error) {
-      return this.handleError(request, res, error);
+      response = await this.handleError(request, res, error);
     }
+
+    debug(`[${ request.id }]: setting response status code to ${ response.status }`);
+    res.statusCode = response.status;
+    res.setHeader('X-Request-Id', request.id);
+
+    if (response.body) {
+      debug(`[${ request.id }]: writing response body`);
+      res.setHeader('Content-type', response.contentType);
+      if (this.container.config.environment !== 'production') {
+        res.write(JSON.stringify(response.body, null, 2));
+      } else {
+        res.write(JSON.stringify(response.body));
+      }
+    }
+
+    res.end();
+    debug(`[${ request.id }]: response finished`);
   }
 
   /**
    * Takes a request, response, and an error and hands off to the generic application level error
    * action.
    */
-  private handleError(request: Request, res: ServerResponse, error: Error) {
+  private async handleError(request: Request, res: ServerResponse, error: Error) {
     request.params = request.params || {};
     request.params.error = error;
     let ErrorAction = this.container.lookup('action:error');
