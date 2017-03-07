@@ -121,6 +121,12 @@ export default class Model extends DenaliObject {
   }
 
   /**
+   * Marks the Model as an abstract base model, so ORM adapters can know not to create tables or
+   * other supporting infrastructure.
+   */
+  public static abstract = false;
+
+  /**
    * The ORM adapter specific to this model type. Defaults to the application's ORM adapter if none
    * for this specific model type is found.
    *
