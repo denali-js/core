@@ -2,8 +2,6 @@
 title: Middleware
 ---
 
-# Middleware
-
 The Node community has developed a rich ecosystem of Connect and Express
 compatible middleware functions. Denali lets you leverage the power of this open
 source community by providing a simple integration point to plug these

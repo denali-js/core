@@ -2,14 +2,47 @@
 title: Models
 ---
 
+Denali's Models are actually just thin wrappers over your own ORM's model
+instances. They leverage
+[Proxies](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)
+to let your ORM's methods and properties to continue to work, while guaranteeing
+a basic common interface across all ORMs.
 
-# Models
+## Understanding Denali's Data Layer
 
-Denali's Models are actually just thin wrappers over your own ORM's model instances. They leverage [Proxies](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) to let your ORM's methods and properties to continue to work, while guaranteeing a basic common interface across all ORMs.
+It's important to understand Denali's data layer to get the most out of the
+framework. And the most important commonly misunderstood concept is that Denali
+Models are there to allow you to swap out databases without refactoring your
+app.
+
+**This is incorrect.** In fact, Denali takes the stance that the _goal itself is
+a red herring_.
+
+If your app can swap databases with zero refactoring, that either means:
+
+1. The underlying databases are equivalent in their querying and storage
+semantics (rarely the case), or
+2. You were using some lowest common denominator of the two database that is
+equivalent (which means you weren't using the strengths of your original
+database)
+
+Denali is built around the assumption that different databases have different
+tradeoffs, and the future of data storage is polyglot. Thus, it doesn't make
+sense to mask these differences behind a lowest common denominator.
+
+Instead, Denali's Models aim to provide a simple interface for basic data
+persistence operations primarly _for addons_. This allows addons to interact
+with your data store without needing to write their own adapters for every
+possbility.
+
+So if you find yourself skipping past Denali's Model API (as we'll explore
+below) in your application, and using lots of database specific features and
+syntax - **that's a good thing**. Don't shy away from it!
 
 ## Defining a Model
 
-Models are defined in the `app/models/` folder. Conventionally, models extend from a common base, the ApplicationModel:
+Models are defined in the `app/models/` folder. Conventionally, models extend
+from a common base, the ApplicationModel:
 
 ```js
 // app/models/application.js
@@ -34,7 +67,11 @@ export default class Post extends ApplicationModel {
 }
 ```
 
-Here we started out by adding a `title` attribute to our Post model. We use the `attr()` method exported by Denali to define an attribute. The single argument is the data type of that attribute.
+Here we started out by adding a `title` attribute to our Post model. We use the
+`attr()` method exported by Denali to define an attribute. The single argument
+is the data type of that attribute. Note the `static` keyword - attributes and
+relationships should be defined statically, while instance properties will
+contain the actual values for a given record.
 
 ### Data Types
 
@@ -46,11 +83,17 @@ Denali provides a common base set of data types for most ORM adapters:
 * `boolean`
 * `object`
 
-In addition to the basic data types, your ORM adapter can support additional, more specialized data types (i.e. `integer` rather than `number`).
+In addition to the basic data types, your ORM adapter can support additional,
+more specialized data types (i.e. `integer` rather than `number`).
 
-Keep in mind that each ORM adapter decides for itself how best to implement these common data types, and it may be more performant to go with an ORM-specific type in some cases. For example, ORMs for SQL based data stores should implement the `number` data type as a `float` or `double` rather than an `integer`, since JavaScript numbers are floating point.
+Keep in mind that each ORM adapter decides for itself how best to implement
+these common data types, and it may be more performant to go with an
+ORM-specific type in some cases. For example, ORMs for SQL based data stores
+should implement the `number` data type as a `float` or `double` rather than an
+`integer`, since JavaScript numbers are floating point.
 
-The value of the common base set of data types is that it allows addons that manage data attributes to safely assume a certain subset of data types.
+The value of the common base set of data types is that it allows addons that
+manage data attributes to safely assume a certain subset of data types.
 
 ### Relationships
 
@@ -72,30 +115,57 @@ export default class Post extends ApplicationModel {
 
 ## Querying Data
 
-Models expose the `.find()` static method for querying data. It has a few basic forms:
+Models expose a few methods for querying data:
 
 ```js
 // Find post with id 1
 Post.find(1);
 
 // Find posts that match the filter
-Post.find({ title: 'My cool post' });
+Post.query({ title: 'My cool post' });
 
 // Find posts using ORM specific querying
-Post.find((/* Your ORM can pass in arguments, i.e. a query builder */) => {
+Post.query((/* Your ORM can pass in arguments, i.e. a query builder */) => {
   // You can use ORM-specific syntax here
 });
+
+// Find all posts
+Post.all()
+
+// Find the first post that matches the supplied query (an object or
+// ORM-specific function)
+Post.findOne()
 ```
 
-The second and third forms are ORM-specific - you should consult your ORM adapter's docs for details on the semantics and querying interfaces.
-
-Models also expose the `.findOne()` static method, which is just syntatic sugar for:
+Once you have a record, you can read attributes directly:
 
 ```js
-let posts = await Post.find({ foo: 'bar' });
-posts[0];
+let post = Post.find(1);
+console.log(post.title);
+// > "Denali is a tall mountain"
 ```
+
+To read related data, you should use the `get[Relationship]` getters:
+
+```js
+let post = Post.find(1);
+post.getAuthor().then((author) => {
+  console.log(author)
+  // <Author:17 name="Dave">
+});
+
+// or with async/await syntax:
+
+await post.getAuthor();
+```
+
+For one-to-one style relationships, you can use `set[Relationship]` to set the
+related record. For one-to-many style relationships, you can use
+`set[Relationship]` to replace the entire relationship at once, or
+`add[Relationship]` and `remove[Relationship]` to operate on a single member
+of the relationship at a time.
 
 ## Saving Data
 
-Models expose a `.save()` instance method that returns a promise which resolves or rejects when the save operation is complete.
+Models expose a `.save()` instance method that returns a promise which resolves
+or rejects when the save operation is complete.

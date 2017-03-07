@@ -1,11 +1,6 @@
 ---
-layout: guide
 title: Serializers
-category: Data
-after: Models
 ---
-
-# Serializers
 
 Since Denali is API focused, it doesn't ship with any kind of view layer for
 rendering HTML. However, one way to think of Serializers is like the view layer

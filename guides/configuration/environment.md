@@ -3,7 +3,15 @@ title: Environment
 ---
 
 The environment config file (`config/environment.js`) holds the configuration
-that varies between environments. By default, it looks like:
+that varies between environments. It should export a function that takes a
+single `environment` argument (the string value of the current environment),
+and returns a configuration object populated with whatever values are
+appropriate.
+
+Denali also supports `.env` files - if you create a `.env` file with variables
+defined one-per-line, `NAME=VALUE`, then those variables will be loaded into
+`process.env` before your `config/environment.js` file is executed:
+
 
 ```js
 export default function environmentConfig(environment) {
@@ -13,7 +21,7 @@ export default function environmentConfig(environment) {
       detached: process.env.DETACHED
     },
     database: {
-
+      url: process.env.DATABASE_URL // <- could be defined in /.env
     }
   };
 
@@ -43,4 +51,3 @@ export default function environmentConfig(environment) {
   return config;
 }
 ```
-

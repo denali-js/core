@@ -2,9 +2,27 @@
 title: Errors
 ---
 
-# Errors
+Denali exposes common HTTP error classes for you to use throughout your app.
+These error classes provide a standardized way to communicate various failure
+scenarios throughout your entire codebase.
 
-**Coming soon ...**
+Errors are automatically created with the correct HTTP status code, and Denali
+will use the status code when sending the response if you return the error from
+your action's responder method:
 
-We are hard at work fleshing out the remaining docs. Want to help? Just click
-the "Improve this page" link and chip in!
+```js
+import { Action, Errors } from 'denali';
+
+export default class NotFoundAction extends Action {
+
+  // Will send a 404 Not Found response. The response body will be formatted by
+  // your application serializer.
+  respond() {
+    return new Errors.NotFound('The resource you request was not found');
+  }
+
+}
+```
+
+All defined HTTP error status codes (i.e. status codes 400 and above) are
+implemented.

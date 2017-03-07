@@ -2,8 +2,6 @@
 title: Routing
 ---
 
-# Routing
-
 Routing in Denali should feel familiar to anyone with experience in modern
 server side frameworks. Routes are defined in `config/routes.js`.
 
