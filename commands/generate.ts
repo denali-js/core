@@ -3,6 +3,7 @@ import {
 } from 'lodash';
 import { ui, Command, Project, Blueprint } from 'denali-cli';
 import unwrap from '../lib/utils/unwrap';
+import * as yargs from 'yargs';
 
 /**
  * Scaffold code for your app.
@@ -32,7 +33,7 @@ export default class GenerateCommand extends Command {
     }
   };
 
-  protected static configureSubcommands(commandName: string, yargs: any, projectPkg: any) {
+  protected static configureSubcommands(commandName: string, yargs: any, projectPkg: any): yargs.Argv {
     return Blueprint.findAndConfigureBlueprints(yargs, 'generate', projectPkg);
   }
 

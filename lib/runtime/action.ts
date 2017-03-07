@@ -49,7 +49,7 @@ export interface ActionOptions {
   container: Container;
 }
 
-interface Responder {
+export interface Responder {
   (params: any): Response | { [key: string]: any } | void;
 }
 

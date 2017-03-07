@@ -5,11 +5,7 @@ import {
 import * as chalk from 'chalk';
 import DenaliObject from '../metal/object';
 
-type LogLevel = 'info' | 'warn' | 'error';
-
-interface ColorsMap {
-  [level: string]: chalk.ChalkChain;
-}
+export type LogLevel = 'info' | 'warn' | 'error';
 
 /**
  * A simple Logger class that adds timestamps and supports multiple levels of logging, colorized
@@ -46,7 +42,7 @@ export default class Logger extends DenaliObject {
   /**
    * Color map for the available levels.
    */
-  public colors: ColorsMap = {
+  public colors: { [level: string]: chalk.ChalkChain } = {
     info: chalk.white,
     warn: chalk.yellow,
     error: chalk.red

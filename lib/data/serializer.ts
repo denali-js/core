@@ -3,10 +3,6 @@ import { exec } from 'child_process';
 import Response from '../runtime/response';
 import Container from '../runtime/container';
 
-interface RelationshipsConfigs {
-  [ relationshipName: string ]: RelationshipConfig;
-}
-
 /**
  * Configuration for how a serializer should serialize a relationship
  *
@@ -75,7 +71,7 @@ abstract class Serializer extends DenaliObject {
    *
    * What the embedded records or ids look like is up to each serializer to determine.
    */
-  protected relationships: RelationshipsConfigs = {};
+  protected relationships: { [ relationshipName: string ]: RelationshipConfig } = {};
 
 }
 

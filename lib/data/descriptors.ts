@@ -51,8 +51,9 @@ export class Descriptor extends DenaliObject {
  *   that Denali expects itself.
  *
  * @package data
+ * @since 0.1.0
  */
-class Attribute extends Descriptor {
+export class Attribute extends Descriptor {
 
   /**
    * Convenience flag for checking if this is an attribute
@@ -65,6 +66,7 @@ class Attribute extends Descriptor {
  * Syntax sugar factory method for creating Attributes
  *
  * @package data
+ * @since 0.1.0
  */
 export function attr(type: string, options?: any): Attribute {
   return new Attribute(type, options);
@@ -93,6 +95,7 @@ export function attr(type: string, options?: any): Attribute {
  *   that Denali expects itself.
  *
  * @package data
+ * @since 0.1.0
  */
 export class HasManyRelationship extends Descriptor {
 
@@ -112,6 +115,7 @@ export class HasManyRelationship extends Descriptor {
  * Syntax sugar factory function for creating HasManyRelationships
  *
  * @package data
+ * @since 0.1.0
  */
 export function hasMany(type: string, options: any): HasManyRelationship {
   return new HasManyRelationship(type, options);
@@ -139,8 +143,9 @@ export function hasMany(type: string, options: any): HasManyRelationship {
  *   that Denali expects itself.
  *
  * @package data
+ * @since 0.1.0
  */
-class HasOneRelationship extends Descriptor {
+export class HasOneRelationship extends Descriptor {
 
   /**
    * Convenience flag for checking if this is a relationship
@@ -158,6 +163,7 @@ class HasOneRelationship extends Descriptor {
  * Syntax sugar factory function for creating HasOneRelationships
  *
  * @package data
+ * @since 0.1.0
  */
 export function hasOne(type: string, options: any): HasOneRelationship {
   return new HasOneRelationship(type, options);

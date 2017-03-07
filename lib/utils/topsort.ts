@@ -1,6 +1,6 @@
 import DAG from 'dag-map';
 
-interface Vertex {
+export interface Vertex {
   name: string;
   before: string | string[];
   after: string | string[];

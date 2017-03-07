@@ -20,7 +20,7 @@ import {
 
 const debug = createDebug('denali:router');
 
-interface RoutesCache {
+export interface RoutesCache {
   get: Route[];
   post: Route[];
   put: Route[];
@@ -31,11 +31,11 @@ interface RoutesCache {
   [method: string]: Route[];
 };
 
-interface MiddlewareFn {
+export interface MiddlewareFn {
   (req: IncomingMessage, res: ServerResponse, next: Function): void;
 }
 
-interface ResourceOptions {
+export interface ResourceOptions {
   /**
    * Should routes for related resources be generated? If true, routes will be generated following
    * the JSON-API recommendations for relationship URLs.
@@ -54,7 +54,7 @@ interface ResourceOptions {
   only?: string[];
 }
 
-interface RouterDSL {
+export interface RouterDSL {
   get(pattern: string, action: string, params: {}): void;
   post(pattern: string, action: string, params: {}): void;
   put(pattern: string, action: string, params: {}): void;

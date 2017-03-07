@@ -17,9 +17,12 @@ import * as createDebug from 'debug';
 
 const debug = createDebug('denali:application');
 
-interface ApplicationOptions {
+/**
+ * Options for instantiating an application
+ */
+export interface ApplicationOptions {
   router?: Router;
-  addons: string[];
+  addons?: string[];
   container?: Container;
   environment: string;
   dir: string;

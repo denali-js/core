@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+      "declaration": true,
       "module": "commonjs",
       "moduleResolution": "node",
       "target": "ES2016",

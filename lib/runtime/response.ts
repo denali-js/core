@@ -37,7 +37,7 @@ export default class Response extends DenaliObject {
    */
   public options: any;
 
-  constructor(status: number, body: any, options: any = {}) {
+  constructor(status: number, body?: any, options: any = {}) {
     super();
     assert(isNumber(status), 'You must at least supply a status code when creating a response');
     this.status = status;

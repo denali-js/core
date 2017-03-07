@@ -10,7 +10,7 @@
  */
 
 // Data
-import { attr, hasMany, hasOne } from './data/descriptors';
+import { attr, hasMany, hasOne, RelationshipDescriptor, Attribute } from './data/descriptors';
 import Model from './data/model';
 import ORMAdapter from './data/orm-adapter';
 import Serializer from './data/serializer';
@@ -45,6 +45,8 @@ export {
   attr,
   hasMany,
   hasOne,
+  RelationshipDescriptor,
+  Attribute,
   Model,
   ORMAdapter,
   Serializer,

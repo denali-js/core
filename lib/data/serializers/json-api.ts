@@ -33,7 +33,7 @@ function setIfNotEmpty(obj: any, key: string, value: any): void {
   }
 }
 
-interface JsonApiDocument {
+export interface JsonApiDocument {
   data?: JsonApiResourceObject | JsonApiResourceObject[] | JsonApiResourceIdentifier | JsonApiResourceIdentifier[];
   errors?: JsonApiError[];
   meta?: JsonApiMeta;
@@ -42,7 +42,7 @@ interface JsonApiDocument {
   included?: JsonApiResourceObject[];
 }
 
-interface JsonApiError {
+export interface JsonApiError {
   /**
    * A unique identifier for this particular occurrence of the problem
    */
@@ -88,7 +88,7 @@ interface JsonApiError {
   meta?: JsonApiMeta;
 }
 
-interface JsonApiResourceObject {
+export interface JsonApiResourceObject {
   id: string;
   type: string;
   attributes?: JsonApiAttributes;
@@ -97,15 +97,15 @@ interface JsonApiResourceObject {
   meta?: JsonApiMeta;
 }
 
-interface JsonApiAttributes {
+export interface JsonApiAttributes {
   [key: string]: any;
 }
 
-interface JsonApiRelationships {
+export interface JsonApiRelationships {
   [relationshipName: string]: JsonApiRelationship;
 }
 
-interface JsonApiRelationship {
+export interface JsonApiRelationship {
   /**
    * Links for this relationship. Should contain at least a "self" or "related" link.
    */
@@ -114,19 +114,19 @@ interface JsonApiRelationship {
   meta?: JsonApiMeta;
 }
 
-type JsonApiRelationshipData = JsonApiResourceIdentifier | JsonApiResourceIdentifier[];
+export type JsonApiRelationshipData = JsonApiResourceIdentifier | JsonApiResourceIdentifier[];
 
-interface JsonApiResourceIdentifier {
+export interface JsonApiResourceIdentifier {
   id: string;
   type: string;
   meta?: JsonApiMeta;
 }
 
-interface JsonApiMeta {
+export interface JsonApiMeta {
   [key: string]: any;
 }
 
-interface JsonApiLinks {
+export interface JsonApiLinks {
   /**
    * A link for the resource or relationship itself. This link allows the client to directly
    * manipulate the resource or relationship. For example, removing an author through an article’s
@@ -143,12 +143,12 @@ interface JsonApiLinks {
   [key: string]: JsonApiLink;
 }
 
-type JsonApiLink = string | {
+export type JsonApiLink = string | {
   href: string,
   meta: JsonApiMeta
 };
 
-interface Options {
+export interface Options {
   /**
    * An array of Models you want to ensure are included in the "included" sideload. Note that the
    * spec requires "full-linkage" - i.e. any Models you include here must be referenced by a
@@ -173,7 +173,7 @@ interface Options {
 /**
  * Used internally to simplify passing arguments required by all functions.
  */
-interface Context {
+export interface Context {
   response: Response;
   options: Options;
   document: JsonApiDocument;
