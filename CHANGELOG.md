@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.0.22"></a>
+# [0.0.22](https://github.com/denali-js/denali/compare/v0.0.21...v0.0.22) (2017-03-07)
+
+
+### Bug Fixes
+
+* add Container#availableForType, fix define-orm-models initializer (#258) ([64e1cd5](https://github.com/denali-js/denali/commit/64e1cd5)), closes [#258](https://github.com/denali-js/denali/issues/258)
+* remove CSP middleware, doesn't make sense for an API ([aa1e0cc](https://github.com/denali-js/denali/commit/aa1e0cc))
+* **blueprint:** ensure blueprint .gitignore files are handled correctly (#252) ([28fb119](https://github.com/denali-js/denali/commit/28fb119)), closes [#239](https://github.com/denali-js/denali/issues/239)
+* **blueprints:** misc blueprint updates ([a1777ec](https://github.com/denali-js/denali/commit/a1777ec))
+* **data:** add abstract property to model base class ([141a155](https://github.com/denali-js/denali/commit/141a155))
+* **data:** add start/rollback test transaction method stubs to base orm adapter class ([bcec982](https://github.com/denali-js/denali/commit/bcec982))
+* **runtime:** fix error action rendering ([0d6e3f7](https://github.com/denali-js/denali/commit/0d6e3f7))
+
+
+### Features
+
+* **commands:** improve install command output ([d03c0ad](https://github.com/denali-js/denali/commit/d03c0ad))
+
+
+
 <a name="0.0.21"></a>
 # [0.0.21](https://github.com/denali-js/denali/compare/v0.0.20...v0.0.21) (2017-02-21)
 
