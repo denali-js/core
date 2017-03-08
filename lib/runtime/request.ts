@@ -65,7 +65,12 @@ export default class Request extends DenaliObject {
    *
    * @since 0.1.0
    */
-  public body: any;
+  public get body(): object {
+    return (<any>this._incomingMessage).body;
+  }
+  public set body(value) {
+    (<any>this._incomingMessage).body = value;
+  }
 
   /**
    * The name of the original action that was invoked for this request. Used when an error occurs
