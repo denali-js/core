@@ -2,7 +2,7 @@ import * as assert from 'assert';
 import * as path from 'path';
 import unwrap from '../lib/utils/unwrap';
 import { ui, spinner, Command, Project } from 'denali-cli';
-import tryRequire from 'try-require';
+import * as tryRequire from 'try-require';
 import * as cmdExists from 'command-exists';
 import * as Bluebird from 'bluebird';
 import { exec, ExecOptions } from 'child_process';
