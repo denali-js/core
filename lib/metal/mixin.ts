@@ -39,8 +39,8 @@ export interface MixinFactory {
  *
  * @package metal
  */
-export default function mixin(baseClass: Function, ...mixins: MixinApplicator[]): Function {
-  return mixins.reduce((currentBase: Function, mixinFactory: MixinApplicator) => {
+export default function mixin(baseClass: Function, ...mixins: MixinApplicator[]): any {
+  return <any>mixins.reduce((currentBase: Function, mixinFactory: MixinApplicator) => {
     let appliedClass = mixinFactory._factory(currentBase, ...mixinFactory._args);
     assert(typeof appliedClass === 'function', `Invalid mixin (${ appliedClass }) - did you forget to return your mixin class from the createMixin method?`);
     return appliedClass;

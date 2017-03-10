@@ -11,8 +11,8 @@ export default class DenaliObject {
   /**
    * Apply mixins using this class as the base class. Pure syntactic sugar for the `mixin` helper.
    */
-  public static mixin(...mixins: MixinApplicator[]): Function {
-    return mixin(this, ...mixins);
+  public static mixin(...mixins: MixinApplicator[]): any {
+    return <any>mixin(this, ...mixins);
   }
 
   /**
