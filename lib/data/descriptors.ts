@@ -117,7 +117,7 @@ export class HasManyRelationship extends Descriptor {
  * @package data
  * @since 0.1.0
  */
-export function hasMany(type: string, options: any): HasManyRelationship {
+export function hasMany(type: string, options?: any): HasManyRelationship {
   return new HasManyRelationship(type, options);
 }
 
@@ -165,7 +165,7 @@ export class HasOneRelationship extends Descriptor {
  * @package data
  * @since 0.1.0
  */
-export function hasOne(type: string, options: any): HasOneRelationship {
+export function hasOne(type: string, options?: any): HasOneRelationship {
   return new HasOneRelationship(type, options);
 }
 
