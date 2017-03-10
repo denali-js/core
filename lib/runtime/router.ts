@@ -99,6 +99,11 @@ export default class Router extends DenaliObject implements RouterDSL {
    */
   private logger: Logger;
 
+  /**
+   * The application container
+   */
+  public container: Container;
+
   constructor(options: { container: Container, logger: Logger }) {
     super();
     this.container = options.container;
@@ -425,7 +430,7 @@ export default class Router extends DenaliObject implements RouterDSL {
    *   let namespace = router.namespace('users');
    *   namespace.get('sign-in');
    */
-  public namespace(namespace: string, fn: (wrapper: {}) => void): void {
+  public namespace(namespace: string, fn: (wrapper: RouterDSL) => void): void {
     let router = this;
     if (namespace.endsWith('/')) {
       namespace = namespace.slice(0, namespace.length - 1);
