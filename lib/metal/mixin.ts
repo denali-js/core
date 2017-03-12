@@ -1,13 +1,13 @@
 import * as assert from 'assert';
 
-export interface MixinApplicator {
-  (...args: any[]): MixinApplicator;
+export interface MixinApplicator<T, U extends T> {
+  (...args: any[]): MixinApplicator<T, U>;
   _args: any[];
-  _factory: MixinFactory;
+  _factory: MixinFactory<T, U>;
 };
 
-export interface MixinFactory {
- (base: Function, ...args: any[]): Function;
+export interface MixinFactory<T, U extends T> {
+ (baseClass: T, ...args: any[]): U;
 }
 
 /**
@@ -39,8 +39,8 @@ export interface MixinFactory {
  *
  * @package metal
  */
-export default function mixin(baseClass: Function, ...mixins: MixinApplicator[]): any {
-  return <any>mixins.reduce((currentBase: Function, mixinFactory: MixinApplicator) => {
+export default function mixin(baseClass: Function, ...mixins: any[]): any {
+  return <any>mixins.reduce((currentBase: Function, mixinFactory: MixinApplicator<any, any>) => {
     let appliedClass = mixinFactory._factory(currentBase, ...mixinFactory._args);
     assert(typeof appliedClass === 'function', `Invalid mixin (${ appliedClass }) - did you forget to return your mixin class from the createMixin method?`);
     return appliedClass;
@@ -63,8 +63,8 @@ export default function mixin(baseClass: Function, ...mixins: MixinApplicator[])
  *
  * @package metal
  */
-export function createMixin(mixinFactory: MixinFactory): MixinApplicator {
-  let cacheMixinArguments = <MixinApplicator>function(...args: any[]): MixinApplicator {
+export function createMixin<T, U extends T>(mixinFactory: MixinFactory<T, U>): MixinApplicator<T, U> {
+  let cacheMixinArguments = <MixinApplicator<T, U>>function(...args: any[]): MixinApplicator<T, U> {
     cacheMixinArguments._args.push(...args);
     return cacheMixinArguments;
   };
