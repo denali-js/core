@@ -19,7 +19,7 @@ import JSONAPISerializer from './data/serializers/json-api';
 
 // Metal
 import Instrumentation from './metal/instrumentation';
-import mixin, { createMixin } from './metal/mixin';
+import mixin, { createMixin, MixinFactory, MixinApplicator } from './metal/mixin';
 import eachPrototype from './metal/each-prototype';
 
 // Runtime
@@ -57,6 +57,8 @@ export {
   Instrumentation,
   mixin,
   createMixin,
+  MixinFactory,
+  MixinApplicator,
   eachPrototype,
 
   // Runtime
