@@ -156,6 +156,13 @@ abstract class Action extends DenaliObject {
   public logger: Logger;
 
   /**
+   * The application container
+   *
+   * @since 0.1.0
+   */
+  public container: Container;
+
+  /**
    * Creates an Action that will respond to the given Request.
    */
   constructor(options: ActionOptions) {
