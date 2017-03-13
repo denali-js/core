@@ -1,5 +1,5 @@
 import unwrap from './unwrap';
-import wrap from 'wordwrap';
+import * as wrap from 'wordwrap';
 import * as tty from 'tty';
 import {
   flatten,
