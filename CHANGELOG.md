@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.0.23"></a>
+## [0.0.23](https://github.com/denali-js/denali/compare/v0.0.22...v0.0.23) (2017-03-13)
+
+
+### Bug Fixes
+
+* **commands:** fix import syntax in migrate command ([9a52015](https://github.com/denali-js/denali/commit/9a52015))
+* **data:** make descriptor options optional ([f7fb571](https://github.com/denali-js/denali/commit/f7fb571))
+* **metal:** export mixin internals so addons can tweak ([8323de5](https://github.com/denali-js/denali/commit/8323de5))
+* **metal:** fix mixin typing to support correct typing ([96b213a](https://github.com/denali-js/denali/commit/96b213a))
+* **metal:** fix typings for DenalObject.mixin ([9702f9d](https://github.com/denali-js/denali/commit/9702f9d))
+* **metal:** make mixins return <any> so consumers can coerce with interfaces and intersection types (since Typescript does not support our mixin factory style methods ([099e8e0](https://github.com/denali-js/denali/commit/099e8e0))
+* **runtime:** action container should be public ([6e383b7](https://github.com/denali-js/denali/commit/6e383b7))
+* **runtime:** add body accessors to request class ([f7180a0](https://github.com/denali-js/denali/commit/f7180a0))
+* **runtime:** fix a couple typing issues ([d66715e](https://github.com/denali-js/denali/commit/d66715e))
+
+
+
 <a name="0.0.22"></a>
 # [0.0.22](https://github.com/denali-js/denali/compare/v0.0.21...v0.0.22) (2017-03-07)
 
