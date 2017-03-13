@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.0.26"></a>
+## [0.0.26](https://github.com/denali-js/denali/compare/v0.0.25...v0.0.26) (2017-03-13)
+
+
+### Bug Fixes
+
+* **commands:** fix server port env default ([cad2ab5](https://github.com/denali-js/denali/commit/cad2ab5))
+
+
+
 <a name="0.0.25"></a>
 ## [0.0.25](https://github.com/denali-js/denali/compare/v0.0.24...v0.0.25) (2017-03-13)
 
