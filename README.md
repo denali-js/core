@@ -100,4 +100,4 @@ MIT © [Dave Wasmer](http://davewasmer.com)
 [sv-image]: https://img.shields.io/badge/release-standard%20version-brightgreen.svg?style=flat-square
 
 [greenkeeper-image]: https://badges.greenkeeper.io/denali-js/denali.svg
-[greenkeeper-url]: https://greenkeeper.io/
+[greenkeeper-url]: https://greenkeeper.io
