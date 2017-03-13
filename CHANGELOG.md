@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.0.25"></a>
+## [0.0.25](https://github.com/denali-js/denali/compare/v0.0.24...v0.0.25) (2017-03-13)
+
+
+### Bug Fixes
+
+* drop DENALI_ENV ([5be8454](https://github.com/denali-js/denali/commit/5be8454))
+* ensure consistent environment handling ([4bc0446](https://github.com/denali-js/denali/commit/4bc0446))
+* **utils:** fix wordwrap import ([e6e0ad2](https://github.com/denali-js/denali/commit/e6e0ad2))
+
+
+
 <a name="0.0.24"></a>
 ## [0.0.24](https://github.com/denali-js/denali/compare/v0.0.23...v0.0.24) (2017-03-13)
 
