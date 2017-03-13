@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.0.24"></a>
+## [0.0.24](https://github.com/denali-js/denali/compare/v0.0.23...v0.0.24) (2017-03-13)
+
+
+### Bug Fixes
+
+* **app:** log out error _before_ potentially sanitizing it ([588fb13](https://github.com/denali-js/denali/commit/588fb13))
+
+
+
 <a name="0.0.23"></a>
 ## [0.0.23](https://github.com/denali-js/denali/compare/v0.0.22...v0.0.23) (2017-03-13)
 
