@@ -53,7 +53,7 @@ export default class ServerCommand extends Command {
     },
     port: {
       description: 'The port the HTTP server should bind to (default: process.env.PORT or 3000)',
-      default: 3000,
+      default: process.env.PORT || 3000,
       type: <any>'number'
     },
     skipBuild: {
