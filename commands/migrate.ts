@@ -25,6 +25,11 @@ export default class MigrateCommand extends Command {
     applies when use SQL-based databases.`;
 
   public static flags = {
+    environment: {
+      description: 'The target environment to build for.',
+      default: process.env.NODE_ENV || 'development',
+      type: <any>'string'
+    },
     rollback: {
       description: 'Rollback the latest migration, or latest --step migrations. Defaults to 1 step.',
       default: false,
@@ -33,11 +38,6 @@ export default class MigrateCommand extends Command {
     redo: {
       description: 'Shortcut for rolling back then migrating up again. If used with --step, it will replay that many migrations. If used with --version, it will roll back to that version then replay. If neither, defaults to --step 1',
       default: false,
-      type: <any>'boolean'
-    },
-    environment: {
-      description: 'The environment configuration to use for connecting to the database',
-      default: 'development',
       type: <any>'boolean'
     }
   };

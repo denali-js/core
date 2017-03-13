@@ -21,7 +21,7 @@ export default class BuildCommand extends Command {
   public static flags = {
     environment: {
       description: 'The target environment to build for.',
-      default: 'development',
+      default: process.env.NODE_ENV || 'development',
       type: <any>'string'
     },
     output: {
@@ -31,6 +31,16 @@ export default class BuildCommand extends Command {
     },
     watch: {
       description: 'Continuously watch the source files and rebuild on changes',
+      default: false,
+      type: <any>'boolean'
+    },
+    skipLint: {
+      description: 'Skip linting the app source files',
+      default: false,
+      type: <any>'boolean'
+    },
+    skipAudit: {
+      description: 'Skip auditing your package.json for vulnerabilites',
       default: false,
       type: <any>'boolean'
     },
@@ -47,7 +57,8 @@ export default class BuildCommand extends Command {
     let project = new Project({
       environment: argv.environment,
       printSlowTrees: argv.printSlowTrees,
-      lint: argv.environment !== 'production'
+      lint: !argv.skipLint,
+      audit: !argv.skipAudit
     });
 
     if (argv.watch) {

@@ -1,5 +1,6 @@
 import {
-  assign
+  clone,
+  merge
 } from 'lodash';
 import * as fs from 'fs-extra';
 import * as path from 'path';
@@ -36,6 +37,11 @@ export default class ServerCommand extends Command {
   public static runsInApp = true;
 
   public static flags = {
+    environment: {
+      description: 'The target environment to build for.',
+      default: process.env.NODE_ENV || 'development',
+      type: <any>'string'
+    },
     debug: {
       description: 'Run in debug mode (add the --debug flag to node, launch node-inspector)',
       default: false,
@@ -46,16 +52,23 @@ export default class ServerCommand extends Command {
       type: <any>'boolean'
     },
     port: {
-      description: 'The port the HTTP server should bind to (default: 3000)',
+      description: 'The port the HTTP server should bind to (default: process.env.PORT or 3000)',
       default: 3000,
       type: <any>'number'
     },
-    lint: {
-      description: 'Lint the app source files (default: true in development)',
+    skipBuild: {
+      description: "Don't build the app before launching the server. Useful in production if you prebuild the app before deploying. Implies --skip-lint and --skip-audit.",
+      default: false,
       type: <any>'boolean'
     },
-    audit: {
-      description: 'Auditing your package.json for vulnerabilites (default: true in development)',
+    skipLint: {
+      description: 'Skip linting the app source files',
+      default: false,
+      type: <any>'boolean'
+    },
+    skipAudit: {
+      description: 'Skip auditing your package.json for vulnerabilites',
+      default: false,
       type: <any>'boolean'
     },
     output: {
@@ -64,7 +77,7 @@ export default class ServerCommand extends Command {
       type: <any>'string'
     },
     production: {
-      description: 'Start the server in production mode: skip the build (assumes the app was prebuilt), skips nsp audits, runs with DENALI_ENV=production',
+      description: 'Shorthand for "--skip-build --environment production"',
       default: false,
       type: <any>'boolean'
     },
@@ -79,19 +92,22 @@ export default class ServerCommand extends Command {
 
   public async run(argv: any) {
     debug('running server command');
-    let environment = argv.environment = argv.production ? 'production' : process.env.DENALI_ENV || process.env.NODE_ENV || 'development';
-    argv.watch = argv.watch || environment === 'development';
+    if (argv.production) {
+      argv.skipBuild = true;
+      argv.environment = 'production';
+    }
+    argv.watch = argv.watch || argv.environment === 'development';
 
-    if (environment === 'production') {
+    if (argv.skipBuild) {
       this.startServer(argv);
       return;
     }
 
     let project = new Project({
-      environment,
+      environment: argv.environment,
       printSlowTrees: argv.printSlowTrees,
-      audit: argv.audit || environment === 'development',
-      lint: argv.lint || environment !== 'production',
+      audit: !argv.skipAudit,
+      lint: !argv.skipLint,
       buildDummy: true
     });
 
@@ -99,7 +115,7 @@ export default class ServerCommand extends Command {
     process.on('SIGINT', this.cleanExit.bind(this));
     process.on('SIGTERM', this.cleanExit.bind(this));
 
-    if (argv.watch || environment === 'development') {
+    if (argv.watch) {
       debug('starting watcher');
       project.watch({
         outputDir: argv.output,
@@ -128,11 +144,6 @@ export default class ServerCommand extends Command {
   protected startServer(argv: any) {
     let dir = argv.output;
     let args = [ 'app/index.js' ];
-    let defaultEnvs = {
-      PORT: argv.port,
-      DENALI_ENV: argv.environment,
-      NODE_ENV: argv.environment
-    };
     if (argv.debug) {
       args.unshift('--inspect', '--debug-brk');
     }
@@ -141,10 +152,17 @@ export default class ServerCommand extends Command {
       return;
     }
     debug(`starting server process: ${ process.execPath } ${ args.join(' ') }`);
+    let defaultEnvs = {
+      PORT: argv.port,
+      NODE_ENV: argv.environment
+    };
     this.server = spawn(process.execPath, args, {
       cwd: dir,
       stdio: [ 'pipe', process.stdout, process.stderr ],
-      env: assign({}, defaultEnvs, process.env)
+      env: merge(clone(process.env), {
+        PORT: argv.port,
+        NODE_ENV: argv.environment
+      })
     });
     this.server.on('error', (error) => {
       ui.error('Unable to start your application:');

@@ -24,7 +24,7 @@ export default class ConsoleCommand extends Command {
   public static flags = {
     environment: {
       description: 'The target environment to build for.',
-      default: 'development',
+      default: process.env.NODE_ENV || 'development',
       type: <any>'string'
     },
     printSlowTrees: {
