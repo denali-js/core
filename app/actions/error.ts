@@ -58,6 +58,9 @@ export default class ErrorAction extends Action {
    */
   protected prepareError(error: any): Response {
     assert(error, 'Error action must be invoked with an error as a param');
+    if (this.config.environment !== 'test') {
+      this.logger.error(error.stack || error.message);
+    }
     // Ensure a default status code of 500
     error.status = error.statusCode = error.statusCode || 500;
     // If debugging info is allowed, attach some debugging info to standard
@@ -73,9 +76,6 @@ export default class ErrorAction extends Action {
         error.message = 'Internal Error';
       }
       delete error.stack;
-    }
-    if (this.config.environment !== 'test') {
-      this.logger.error(error.stack || error.message);
     }
     debug('Error prepared: %o', error);
     return new Response(error.status || 500, error, { raw: true });
