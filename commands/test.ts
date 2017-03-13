@@ -186,7 +186,6 @@ export default class TestCommand extends Command {
       env: assign({}, process.env, {
         PORT: argv.port,
         DENALI_LEAVE_TMP: argv.litter,
-        DENALI_ENV: project.environment,
         NODE_ENV: project.environment,
         DEBUG_COLORS: 1
       })

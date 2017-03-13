@@ -5,7 +5,7 @@ import Application from './application';
 sourcemaps.install();
 
 let application = new Application({
-  environment: process.env.DENALI_ENV || process.env.NODE_ENV || 'development',
+  environment: process.env.NODE_ENV || 'development',
   dir: path.dirname(__dirname)
 });
 

@@ -30,7 +30,7 @@ export class AppAcceptance extends DenaliObject {
     super();
     let compiledPath = process.cwd();
     let ApplicationClass: typeof Application = require(path.join(compiledPath, 'app/application')).default;
-    let environment = process.env.DENALI_ENV || process.env.NODE_ENV || 'test';
+    let environment = process.env.NODE_ENV || 'test';
     this.application = new Application({
       environment,
       dir: compiledPath,

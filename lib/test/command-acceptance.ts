@@ -32,7 +32,7 @@ export default class CommandAcceptanceTest extends DenaliObject {
   public dir: string;
 
   /**
-   * The default DENALI_ENV to invoke the command with. Defaults to development.
+   * The default NODE_ENV to invoke the command with. Defaults to development.
    */
   public environment: string;
 
@@ -126,7 +126,6 @@ export default class CommandAcceptanceTest extends DenaliObject {
     return new Promise<{ stdout: string, stderr: string, dir: string }>((resolve, reject) => {
       exec(`${ this.denaliPath } ${ this.command }`, {
         env: Object.assign({}, process.env, {
-          DENALI_ENV: this.environment,
           NODE_ENV: this.environment
         }, options.env || {}),
         cwd: this.dir
@@ -172,7 +171,6 @@ export default class CommandAcceptanceTest extends DenaliObject {
 
       this.spawnedCommand = spawn(this.denaliPath, this.command.split(' '), {
         env: Object.assign({}, process.env, {
-          DENALI_ENV: this.environment,
           NODE_ENV: this.environment
         }, options.env || {}),
         cwd: this.dir,
