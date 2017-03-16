@@ -15,3 +15,8 @@ dependencies:
     - yarn install
   cache_directories:
     - ~/.cache/yarn
+deployment:
+  greenkeeper:
+    branch: /greenkeeper\/.*/
+    commands:
+      - yarn run update-yarn-lock-file

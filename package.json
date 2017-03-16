@@ -29,6 +29,7 @@
     "broccoli-merge-trees": "^2.0.0",
     "broccoli-plugin": "^1.3.0",
     "broccoli-typescript-compiler": "^1.0.1",
+    "circleci-update-yarn-lock": "^3.1.0",
     "codeclimate-test-reporter": "^0.4.0",
     "nyc": "^10.1.2",
     "rimraf": "^2.4.2",
@@ -45,7 +46,8 @@
     "preversion": "scripts/preversion.sh",
     "release": "scripts/release.sh",
     "test": "scripts/test.sh",
-    "prepublish": "in-publish && echo \"Use 'denali publish' instead.\" && exit 1 || not-in-publish"
+    "prepublish": "in-publish && echo \"Use 'denali publish' instead.\" && exit 1 || not-in-publish",
+    "update-yarn-lock-file": "update-yarn-lock-file"
   },
   "license": "MIT",
   "dependencies": {
