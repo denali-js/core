@@ -66,7 +66,7 @@ export default class Model extends DenaliObject {
   public static async find(id: any, options?: any): Promise<Model> {
     debug(`${ this.type } find: ${ id }`);
     assert(id != null, `You must pass an id to Model.find(id)`);
-    let result = await this.adapter.find(this.type, id, options);
+    let result = await this._adapter.find(this.type, id, options);
     return new this(result);
   }
 
@@ -75,7 +75,7 @@ export default class Model extends DenaliObject {
    */
   public static async all(options?: any): Promise<Model[]> {
     debug(`${ this.type } all`);
-    let result = await this.adapter.all(this.type, options);
+    let result = await this._adapter.all(this.type, options);
     return result.map((record) => {
       return new this(record);
     });
@@ -88,7 +88,7 @@ export default class Model extends DenaliObject {
   public static async query(query: any, options?: any): Promise<Model[]> {
     debug(`${ this.type } query: ${ query }`);
     assert(query != null, `You must pass a query to Model.query(conditions)`);
-    let result = await this.adapter.query(this.type, query, options);
+    let result = await this._adapter.query(this.type, query, options);
     return result.map((record) => {
       return new this(record);
     });
@@ -101,7 +101,7 @@ export default class Model extends DenaliObject {
   public static async findOne(query: any, options?: any): Promise<Model> {
     debug(`${ this.type } findOne: ${ query }`);
     assert(query != null, `You must pass a query to Model.findOne(conditions)`);
-    let record = await this.adapter.findOne(this.type, query, options);
+    let record = await this._adapter.findOne(this.type, query, options);
     if (record) {
       return new this(record);
     }
@@ -127,14 +127,20 @@ export default class Model extends DenaliObject {
   public static abstract = false;
 
   /**
-   * The ORM adapter specific to this model type. Defaults to the application's ORM adapter if none
-   * for this specific model type is found.
+   * The name of the ORM adapter to use for this model.
+   */
+  public static adapter: string;
+
+  /**
+   * The ORM adapter to use with this model, derived from `adapter`. Defaults to the application's
+   * ORM adapter if not defined;
    *
    * @readonly
    */
-  public static get adapter(): ORMAdapter {
-    let adapter = this.container.lookup(`orm-adapter:${ this.type }`);
-    assert(adapter, `No adapter found for ${ this.type }! Available adapters: ${ this.container.availableForType('orm-adapter') }`);
+  public static get _adapter(): ORMAdapter {
+    let adapterName: string = this.adapter || this.container.config.ormAdapter;
+    let adapter: ORMAdapter = this.container.lookup(`orm-adapter:${ adapterName }`);
+    assert(adapter, `No adapter found for ${ adapterName }! Available adapters: ${ this.container.availableForType('orm-adapter') }`);
     return adapter;
   }
 
@@ -144,18 +150,18 @@ export default class Model extends DenaliObject {
    *
    * @readonly
    */
-  public get adapter(): ORMAdapter {
-    return (<typeof Model>this.constructor).adapter;
+  public get _adapter(): ORMAdapter {
+    return (<typeof Model>this.constructor)._adapter;
   }
 
   /**
    * The id of the record
    */
   public get id(): any {
-    return this.adapter.idFor(this);
+    return this._adapter.idFor(this);
   }
   public set id(value: any) {
-    this.adapter.setId(this, value);
+    this._adapter.setId(this, value);
   }
 
   /**
@@ -169,7 +175,7 @@ export default class Model extends DenaliObject {
    */
   constructor(data: any = {}, options?: any) {
     super();
-    this.record = this.adapter.buildRecord(this.type, data, options);
+    this.record = this._adapter.buildRecord(this.type, data, options);
 
     // tslint:disable:completed-docs
     return new Proxy(this, {
@@ -179,7 +185,7 @@ export default class Model extends DenaliObject {
           // Return the attribute value if that's what is requested
           let descriptor = (<any>model.constructor)[property];
           if (descriptor && descriptor.isAttribute) {
-            return model.adapter.getAttribute(model, property);
+            return model._adapter.getAttribute(model, property);
           }
           // Forward relationship related methods to their generic counterparts
           let relatedMethodParts = property.match(/^(get|set|add|remove)(\w+)/);
@@ -200,7 +206,7 @@ export default class Model extends DenaliObject {
         // Set attribute values
         let descriptor = (<any>model.constructor)[property];
         if (descriptor && descriptor.isAttribute) {
-          return model.adapter.setAttribute(model, property, value);
+          return model._adapter.setAttribute(model, property, value);
         }
         // Otherwise just set the model property directly
         model[property] = value;
@@ -211,7 +217,7 @@ export default class Model extends DenaliObject {
         // Delete the attribute
         let descriptor = (<any>model.constructor)[property];
         if (descriptor && descriptor.isAttribute) {
-          return model.adapter.deleteAttribute(model, property);
+          return model._adapter.deleteAttribute(model, property);
         }
         // Otherwise just delete the model property directly
         return delete model[property];
@@ -226,7 +232,7 @@ export default class Model extends DenaliObject {
    */
   public async save(options?: any): Promise<Model> {
     debug(`saving ${ this.type }`);
-    await this.adapter.saveRecord(this, options);
+    await this._adapter.saveRecord(this, options);
     return this;
   }
 
@@ -234,7 +240,7 @@ export default class Model extends DenaliObject {
    * Delete this model.
    */
   public async delete(options?: any): Promise<void> {
-    await this.adapter.deleteRecord(this, options);
+    await this._adapter.deleteRecord(this, options);
   }
 
   /**
@@ -247,7 +253,7 @@ export default class Model extends DenaliObject {
       options = query;
       query = null;
     }
-    let results = await this.adapter.getRelated(this, relationshipName, descriptor, query, options);
+    let results = await this._adapter.getRelated(this, relationshipName, descriptor, query, options);
     let RelatedModel = this.modelFor(descriptor.type);
     if (!Array.isArray(results)) {
       assert(descriptor.mode === 'hasOne', 'The ORM adapter returned an array for a hasOne relationship - it should return either the record or null');
@@ -261,7 +267,7 @@ export default class Model extends DenaliObject {
    */
   public async setRelated(relationshipName: string, relatedModels: Model|Model[], options?: any): Promise<void> {
     let descriptor = (<any>this.constructor)[relationshipName] || (<any>this.constructor)[pluralize(relationshipName)];
-    await this.adapter.setRelated(this, relationshipName, descriptor, relatedModels, options);
+    await this._adapter.setRelated(this, relationshipName, descriptor, relatedModels, options);
   }
 
   /**
@@ -269,7 +275,7 @@ export default class Model extends DenaliObject {
    */
   public async addRelated(relationshipName: string, relatedModel: Model, options?: any): Promise<void> {
     let descriptor = (<any>this.constructor)[relationshipName] || (<any>this.constructor)[pluralize(relationshipName)];
-    await this.adapter.addRelated(this, relationshipName, descriptor, relatedModel, options);
+    await this._adapter.addRelated(this, relationshipName, descriptor, relatedModel, options);
   }
 
   /**
@@ -277,7 +283,7 @@ export default class Model extends DenaliObject {
    */
   public async removeRelated(relationshipName: string, relatedModel: Model, options?: any): Promise<void> {
     let descriptor = (<any>this.constructor)[relationshipName] || (<any>this.constructor)[pluralize(relationshipName)];
-    await this.adapter.removeRelated(this, relationshipName, descriptor, relatedModel, options);
+    await this._adapter.removeRelated(this, relationshipName, descriptor, relatedModel, options);
   }
 
   /**

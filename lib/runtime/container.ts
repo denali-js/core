@@ -162,21 +162,6 @@ export default class Container extends DenaliObject {
   }
 
   /**
-   * Lookup an ORM adapter. If not found, falls back to the application ORM adapter as determined
-   * by the `ormAdapter` config property.
-   */
-  private lookupOrmAdapter(parsedName: ParsedName): OrmAdapter {
-    return this._lookupOther(parsedName, {
-      fallback: () => {
-        if (!this.config.ormAdapter) {
-          throw new Error('No default ORM adapter was defined in supplied in config.ormAdapter!');
-        }
-        return `orm-adapter:${ this.config.ormAdapter }`;
-      }
-    });
-  }
-
-  /**
    * Lookup a serializer. Falls back to the application serializer if not found.
    */
   private lookupSerializer(parsedName: ParsedName): Serializer {
