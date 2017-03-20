@@ -30,7 +30,15 @@ module.exports = class CompileGuides extends Plugin {
       manifest.categories.forEach((category) => {
         category.guides = category.guides.map((guideName) => {
           let guidePath = path.join(guidesDir, category.dir, guideName + '.md');
-          let rawGuide = fs.readFileSync(guidePath, 'utf-8');
+          let rawGuide;
+          try {
+            rawGuide = fs.readFileSync(guidePath, 'utf-8');
+          } catch (e) {
+            if (e.code === 'ENOENT') {
+              throw new Error(`The guides manifest file lists a "${ category.dir }/${ guideName }" guide, but ${ guidePath } does not exist!`);
+            }
+            throw e;
+          }
           let parsedRawGuide = frontmatter(rawGuide);
           return {
             name: guideName,
