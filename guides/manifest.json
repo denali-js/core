@@ -16,8 +16,7 @@
         "routing",
         "actions",
         "services",
-        "errors",
-        "mailers"
+        "errors"
       ]
     },
     {
@@ -53,18 +52,6 @@
         "mixins",
         "addons",
         "instrumentation"
-      ]
-    },
-    {
-      "dir": "cli",
-      "name": "CLI",
-      "guides": [
-        "generate",
-        "serve",
-        "test",
-        "build",
-        "addon",
-        "console"
       ]
     }
   ]
