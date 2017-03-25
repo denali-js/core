@@ -2,7 +2,6 @@ import * as path from 'path';
 import * as http from 'http';
 import * as https from 'https';
 import { each, all } from 'bluebird';
-import * as dotenv from 'dotenv';
 import {
   values
 } from 'lodash';
@@ -146,7 +145,6 @@ export default class Application extends Addon {
    *   are.
    */
   private generateConfig(): any {
-    dotenv.config();
     let config = this._config(this.environment);
     config.environment = this.environment;
     this.container.register('config:environment', config);
