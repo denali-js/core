@@ -86,7 +86,7 @@ $ curl localhost:3000
 
 > **Heads up!** Notice that we didn't visit that localhost URL in the browser. That's because Denali is designed to build **APIs** rather than HTML rendering applications. If you are looking for Node framework to build a server rendered web application, you might want to try something like Sails.js or Express.
 
-Great, we got an app up and running! Now that's cool, but it's not _that_ cool Let's crack open the scaffolded code to see how we got that welcome message, and how to add our own code.
+Great, we got an app up and running! Now that's cool, but it's not _that_ cool. Let's crack open the scaffolded code to see how we got that welcome message, and how to add our own code.
 
 
 ### Directory structure
