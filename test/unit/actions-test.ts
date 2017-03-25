@@ -6,11 +6,13 @@ import {
   Container,
   Serializer,
   Service,
-  FlatSerializer } from 'denali';
+  FlatSerializer,
+  Parser,
+  ParsedRequest,
+  Response } from 'denali';
 import {
   merge
 } from 'lodash';
-import Response from '../../lib/runtime/response';
 
 function mockReqRes(overrides?: any): any {
   let container = new Container();
@@ -40,28 +42,23 @@ function mockReqRes(overrides?: any): any {
   }, overrides);
 }
 
-test('Action > invokes respond() with params', async (t) => {
+test('Action > invokes respond() with argument supplied to run()', async (t) => {
   t.plan(3);
   class TestAction extends Action {
-    async respond(params: any) {
-      t.true(params.query);
-      t.true(params.body);
+    parser = 'test';
+    async respond({ foo }: any) {
+      t.true(foo);
       t.pass();
     }
   }
-  let action = new TestAction(mockReqRes({
-    request: {
-      query: { query: true },
-      body: { body: true }
-    }
-  }));
-  return action.run();
+  let action = new TestAction(mockReqRes());
+  return action.run(<any>{ foo: true });
 });
 
-test('Action > does not invoke the serializer if no response body was provided', async (t) => {
+test('Action > does not invoke the parser if no response body was provided', async (t) => {
   t.plan(1);
   class TestAction extends Action {
-    serializer = 'foo';
+    parser = 'foo';
     respond() {
       t.pass();
     }
@@ -139,7 +136,7 @@ test('Action > should render with the model type serializer if a model was rende
   });
   let action = new TestAction(mock);
 
-  return action.run();
+  return action.run(mock);
 });
 
 test('Action > should render with the application serializer if all options exhausted', async (t) => {

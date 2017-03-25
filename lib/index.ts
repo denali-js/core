@@ -14,6 +14,7 @@ import { attr, hasMany, hasOne, RelationshipDescriptor, Attribute } from './data
 import Model from './data/model';
 import ORMAdapter from './data/orm-adapter';
 import Serializer from './data/serializer';
+import Parser, { ParsedRequest } from './data/parser';
 import FlatSerializer from './data/serializers/flat';
 import JSONAPISerializer from './data/serializers/json-api';
 
@@ -42,6 +43,7 @@ import MockRequest from './test/mock-request';
 import MockResponse from './test/mock-response';
 
 export {
+  // Data
   attr,
   hasMany,
   hasOne,
@@ -49,6 +51,8 @@ export {
   Attribute,
   Model,
   ORMAdapter,
+  Parser,
+  ParsedRequest,
   Serializer,
   FlatSerializer,
   JSONAPISerializer,
