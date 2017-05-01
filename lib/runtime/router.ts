@@ -9,8 +9,7 @@ import Route from './route';
 import Request, { Method } from './request';
 import ensureArray = require('arrify');
 import DenaliObject from '../metal/object';
-import Logger from './logger';
-import Container from './container';
+import Container from '../metal/container';
 import Action from './action';
 import Serializer from '../data/serializer';
 import {
@@ -95,20 +94,9 @@ export default class Router extends DenaliObject implements RouterDSL {
   private middleware: any = (<() => any>ware)();
 
   /**
-   * The application logger instance
-   */
-  private logger: Logger;
-
-  /**
    * The application container
    */
   public container: Container;
-
-  constructor(options: { container: Container, logger: Logger }) {
-    super();
-    this.container = options.container;
-    this.logger = options.logger;
-  }
 
   /**
    * Helper method to invoke the function exported by `config/routes.js` in the context of the
@@ -150,7 +138,6 @@ export default class Router extends DenaliObject implements RouterDSL {
 
       let action: Action = new (<any>request.route.action)({
         request,
-        logger: this.logger,
         container: this.container
       });
 
@@ -186,7 +173,7 @@ export default class Router extends DenaliObject implements RouterDSL {
     if (response.body) {
       debug(`[${ request.id }]: writing response body`);
       res.setHeader('Content-type', response.contentType);
-      if (this.container.config.environment !== 'production') {
+      if (this.container.lookup('app:main').environment !== 'production') {
         res.write(JSON.stringify(response.body, null, 2));
       } else {
         res.write(JSON.stringify(response.body));
@@ -208,7 +195,6 @@ export default class Router extends DenaliObject implements RouterDSL {
     let errorAction = new ErrorAction({
       request,
       response: res,
-      logger: this.logger,
       container: this.container
     });
     return errorAction.run();

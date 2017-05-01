@@ -1,8 +1,3 @@
-import Instrumentation from '../metal/instrumentation';
-import Model from '../data/model';
-import Response from './response';
-import * as http from 'http';
-import * as createDebug from 'debug';
 import {
   assign,
   capitalize,
@@ -12,17 +7,28 @@ import {
   compact,
   map
 } from 'lodash';
+import Instrumentation from '../metal/instrumentation';
+import Model from '../data/model';
+import Response from './response';
+import * as http from 'http';
+import * as createDebug from 'debug';
 import * as assert from 'assert';
 import eachPrototype from '../metal/each-prototype';
 import DenaliObject from '../metal/object';
 import Request from './request';
 import Logger from './logger';
-import Container from './container';
+import Container from '../metal/container';
 import Service from './service';
 import Errors from './errors';
 import Serializer from '../data/serializer';
 
 const debug = createDebug('denali:action');
+
+const cachedFormats = new WeakMap<typeof Action, string[]>();
+const cachedFilters = {
+  before: new WeakMap<typeof Action, string[]>(),
+  after: new WeakMap<typeof Action, string[]>()
+};
 
 /**
  * An error used to break the chain of promises created by running filters. Indicates that a before
@@ -73,28 +79,24 @@ export interface Responder {
 abstract class Action extends DenaliObject {
 
   /**
-   * Cached list of responder formats this action class supports.
-   */
-  private static _formats: string[];
-
-  /**
    * Cache the list of available formats this action can respond to.
    */
   private static formats(): string[] {
-    if (!this._formats) {
+    if (!cachedFormats.has(this)) {
       debug(`caching list of content types accepted by ${ this.name } action`);
-      this._formats = [];
+      let formats: string[] = [];
       eachPrototype(this.prototype, (proto) => {
-        this._formats = this._formats.concat(Object.getOwnPropertyNames(proto));
+        formats = formats.concat(Object.getOwnPropertyNames(proto));
       });
-      this._formats = this._formats.filter((prop) => {
+      formats = formats.filter((prop) => {
         return /^respondWith/.test(prop);
       }).map((responder) => {
         return responder.match(/respondWith(.+)/)[1].toLowerCase();
       });
-      this._formats = uniq(this._formats);
+      formats = uniq(formats);
+      cachedFormats.set(this, formats);
     }
-    return this._formats;
+    return cachedFormats.get(this);
   }
 
   /**
@@ -135,13 +137,6 @@ abstract class Action extends DenaliObject {
   public serializer: string | boolean = null;
 
   /**
-   * The application config
-   *
-   * @since 0.1.0
-   */
-  public config: any;
-
-  /**
    * The incoming Request that this Action is responding to.
    *
    * @since 0.1.0
@@ -170,7 +165,6 @@ abstract class Action extends DenaliObject {
     this.request = options.request;
     this.logger = options.logger;
     this.container = options.container;
-    this.config = this.container.config;
   }
 
   /**
@@ -319,16 +313,6 @@ abstract class Action extends DenaliObject {
   public abstract respond(params: any): Response | { [key: string]: any } | void;
 
   /**
-   * Cached list of before filters that should be executed.
-   */
-  protected static _before: string[];
-
-  /**
-   * Cached list of after filters that should be executed.
-   */
-  protected static _after: string[];
-
-  /**
    * Walk the prototype chain of this Action instance to find all the `before` and `after` arrays to
    * build the complete filter chains.
    *
@@ -339,7 +323,7 @@ abstract class Action extends DenaliObject {
    */
   private _buildFilterChains(): { beforeChain: string[], afterChain: string[] } {
     let ActionClass = <typeof Action>this.constructor;
-    if (!ActionClass._before) {
+    if (!cachedFilters.before.has(ActionClass)) {
       let prototypeChain: Action[] = [];
       eachPrototype(ActionClass, (prototype) => {
         prototypeChain.push(prototype);
@@ -351,12 +335,12 @@ abstract class Action extends DenaliObject {
             throw new Error(`${ filterName } method not found on the ${ ActionClass.name } action.`);
           }
         });
-        (<any>ActionClass)[`_${ stage }`] = filterNames;
+        cachedFilters[stage].set(ActionClass, filterNames);
       });
     }
     return {
-      beforeChain: ActionClass._before,
-      afterChain: ActionClass._after
+      beforeChain: cachedFilters.before.get(ActionClass),
+      afterChain: cachedFilters.after.get(ActionClass)
     };
   }
 
