@@ -1,139 +1,101 @@
 import {
-  camelCase,
   upperFirst,
+  camelCase,
   omitBy
 } from 'lodash';
-import * as path from 'path';
-import * as fs from 'fs';
-import { parseName, ParsedName, ContainerOptions } from './container';
+import { Resolver as GlimmerResolver, FactoryDefinition } from '@glimmer/di';
 import * as tryRequire from 'try-require';
+import * as path from 'path';
 import { pluralize } from 'inflection';
+import * as fs from 'fs';
 import requireDir from '../utils/require-dir';
 
 interface RetrieveMethod {
-  (parsedName: ParsedName): any;
+  (type: string, entry: string): FactoryDefinition<any>;
 }
 
-export interface RetrieveAllMethod {
-  (type: string): { [modulePath: string]: any };
+interface AvailableForTypeMethod {
+  (type: string): string[];
 }
 
-export type Registry = Map<string, any>;
-
-export default class Resolver {
+export default class Resolver implements GlimmerResolver {
 
   [key: string]: any;
 
-  /**
-   * The root directory for this resolver to start from when searching for files
-   */
-  root: string;
-
-  /**
-   * The internal cache of available references
-   */
-  private registry: Registry = new Map();
-
-  constructor(root: string) {
-    this.root = root;
+  identify(specifier: string, referrer?: string) {
+    return '';
   }
 
-  /**
-   * Manually add a member to this resolver. Manually registered members take precedence over any
-   * retrieved from the filesystem.
-   */
-  public register(name: string, value: any) {
-    this.registry.set(parseName(name).fullName, value);
-  }
-
-  /**
-   * Fetch the member matching the given parsedName. First checks for any manually registered
-   * members, then falls back to type specific retrieve methods that typically find the matching
-   * file on the filesystem.
-   */
-  public retrieve(parsedName: ParsedName | string) {
-    if (typeof parsedName === 'string') {
-      parsedName = parseName(parsedName);
-    }
-    if (this.registry.has(parsedName.fullName)) {
-      return this.registry.get(parsedName.fullName);
-    }
-    let retrieveMethod = <RetrieveMethod>this[`retrieve${ upperFirst(camelCase(parsedName.type)) }`];
+  retrieve(specifier: string): FactoryDefinition<any> {
+    let [ type, entry ] = specifier.split(':');
+    let retrieveMethod = <RetrieveMethod>this[`retrieve${ upperFirst(camelCase(type)) }`];
     if (!retrieveMethod) {
       retrieveMethod = this.retrieveOther;
     }
-    let result = retrieveMethod.call(this, parsedName);
+    let result = retrieveMethod.call(this, type, entry);
     return result && result.default || result;
   }
 
   /**
    * Unknown types are assumed to exist underneath the `app/` folder
    */
-  protected retrieveOther(parsedName: ParsedName) {
-    return tryRequire(path.join(this.root, 'app', pluralize(parsedName.type), parsedName.modulePath));
+  protected retrieveOther(type: string, entry: string) {
+    return tryRequire(path.join(this.root, 'app', pluralize(type), entry));
   }
 
   /**
    * App files are found in `app/*`
    */
-  protected retrieveApp(parsedName: ParsedName) {
-    return tryRequire(path.join(this.root, 'app', parsedName.modulePath));
+  protected retrieveApp(type: string, entry: string) {
+    return tryRequire(path.join(this.root, 'app', entry));
   }
 
   /**
    * Config files are found in `config/`
    */
-  protected retrieveConfig(parsedName: ParsedName) {
-    return tryRequire(path.join(this.root, 'config', parsedName.modulePath));
+  protected retrieveConfig(type: string, entry: string) {
+    return tryRequire(path.join(this.root, 'config', entry));
   }
 
   /**
    * Initializer files are found in `config/initializers/`
    */
-  protected retrieveInitializer(parsedName: ParsedName) {
-    return tryRequire(path.join(this.root, 'config', 'initializers', parsedName.modulePath));
+  protected retrieveInitializer(type: string, entry: string) {
+    return tryRequire(path.join(this.root, 'config', 'initializers', entry));
   }
 
   /**
    * Retrieve all the members for a given type. First checks for all manual registrations matching
    * that type, then retrieves all members for that type (typically from the filesystem).
    */
-  public retrieveAll(type: string) {
-    let manualRegistrations: { [modulePath: string]: any } = {};
-    this.registry.forEach((entry, fullName) => {
-      let parsedName = parseName(fullName);
-      if (parsedName.type === type) {
-        manualRegistrations[parsedName.modulePath] = entry;
-      }
-    });
-    let retrieveMethod = <RetrieveAllMethod>this[`retrieveAll${ upperFirst(camelCase(type)) }`];
-    if (!retrieveMethod) {
-      retrieveMethod = this.retrieveAllOther;
+  public availableForType(type: string) {
+    let availableMethod = <AvailableForTypeMethod>this[`availableFor${ upperFirst(camelCase(type)) }`];
+    if (!availableMethod) {
+      availableMethod = this.availableForOther;
     }
-    let resolvedMembers = <{ [modulePath: string]: any }>retrieveMethod.call(this, type);
-    return Object.assign(resolvedMembers, manualRegistrations);
+    return (<string[]>availableMethod.call(this, type)).map((entry) => `${ type }:${ entry}`);;
   }
 
   /**
    * Unknown types are assumed to exist in the `app/` folder
    */
-  protected retrieveAllOther(type: string) {
+  protected availableForOther(type: string) {
     let typeDir = path.join(this.root, 'app', pluralize(type));
     if (fs.existsSync(typeDir)) {
-      return requireDir(typeDir);
+      return Object.keys(requireDir(typeDir));
     }
-    return {};
+    return [];
   }
 
   /**
    * App files are found in `app/*`
    */
-  protected retrieveAllApp(parsedName: ParsedName) {
+  protected retrieveAllApp(type: string) {
     let appDir = path.join(this.root, 'app');
     if (fs.existsSync(appDir)) {
-      return requireDir(appDir, { recurse: false });
+      return Object.keys(requireDir(appDir, { recurse: false }));
     }
-    return {};
+    return [];
   }
 
   /**
@@ -142,11 +104,12 @@ export default class Resolver {
   protected retrieveAllConfig(type: string) {
     let configDir = path.join(this.root, 'config');
     if (fs.existsSync(configDir)) {
-      return omitBy(requireDir(configDir), (mod, modulePath) => {
-        return modulePath.startsWith('initializers');
+      let entries = Object.keys(requireDir(configDir));
+      return entries.filter((entry) => {
+        return !entry.startsWith('initializers');
       });
     }
-    return {};
+    return [];
   }
 
   /**
@@ -155,9 +118,9 @@ export default class Resolver {
   protected retrieveAllInitializer(type: string) {
     let initializersDir = path.join(this.root, 'config', 'initializers');
     if (fs.existsSync(initializersDir)) {
-      return requireDir(initializersDir);
+      return Object.keys(requireDir(initializersDir));
     }
-    return {};
+    return [];
   }
 
 }
