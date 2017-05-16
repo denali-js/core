@@ -20,20 +20,21 @@ a red herring_.
 
 If your app can swap databases with zero refactoring, that either means:
 
-1. The underlying databases are equivalent in their querying and storage
+1. The underlying databases are identical in their querying and storage
 semantics (rarely the case), or
-2. You were using some lowest common denominator of the two database that is
-equivalent (which means you weren't using the strengths of your original
+2. You were using some lowest common denominator of querying and storage semantics for tthe two databases that is
+equivalent across both (which means you weren't using the strengths of your original
 database)
 
 Denali is built around the assumption that different databases have different
-tradeoffs, and the future of data storage is polyglot. Thus, it doesn't make
-sense to mask these differences behind a lowest common denominator.
+tradeoffs, and that you should pick the data store best suited to your use case.
+This means a good data layer should highlight the unique strengths of choice of
+data store, rather than trying to hide any differences behind a universal
+interface.
 
-Instead, Denali's Models aim to provide a simple interface for basic data
-persistence operations primarly _for addons_. This allows addons to interact
-with your data store without needing to write their own adapters for every
-possbility.
+So then why have a data layer at all for Denali? It's primarly _for addons_.
+Having some common data interface allows addons to persist and query data
+without needing to write their own adapters for every possible data store.
 
 So if you find yourself skipping past Denali's Model API (as we'll explore
 below) in your application, and using lots of database specific features and
@@ -90,7 +91,9 @@ Keep in mind that each ORM adapter decides for itself how best to implement
 these common data types, and it may be more performant to go with an
 ORM-specific type in some cases. For example, ORMs for SQL based data stores
 should implement the `number` data type as a `float` or `double` rather than an
-`integer`, since JavaScript numbers are floating point.
+`integer`, since JavaScript numbers are floating point. But if you know the
+field should only container integers, you should use `integer` (assuming your
+ORM adapter supports it).
 
 The value of the common base set of data types is that it allows addons that
 manage data attributes to safely assume a certain subset of data types.

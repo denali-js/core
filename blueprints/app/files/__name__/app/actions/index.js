@@ -2,10 +2,8 @@ import ApplicationAction from './application';
 
 export default class IndexAction extends ApplicationAction {
 
-  serializer = false;
-
   respond() {
-    return { message: 'Welcome to Denali!' };
+    this.render(200, { message: 'Welcome to Denali!' }, { serializer: 'raw' });
   }
 
 }

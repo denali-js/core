@@ -13,9 +13,19 @@
 import { attr, hasMany, hasOne, RelationshipDescriptor, Attribute } from './data/descriptors';
 import Model from './data/model';
 import ORMAdapter from './data/orm-adapter';
-import Serializer from './data/serializer';
-import FlatSerializer from './data/serializers/flat';
-import JSONAPISerializer from './data/serializers/json-api';
+import MemoryAdapter from './data/memory';
+
+// Render
+import Serializer from './render/serializer';
+import FlatSerializer from './render/flat';
+import RawSerializer from './render/raw';
+import JSONAPISerializer from './render/json-api';
+import View from './render/view';
+
+// Parse
+import Parser from './parse/parser';
+import FlatParser from './parse/flat';
+import JSONAPIParser from './parse/json-api';
 
 // Metal
 import Instrumentation from './metal/instrumentation';
@@ -23,6 +33,7 @@ import mixin, { createMixin, MixinFactory, MixinApplicator } from './metal/mixin
 import eachPrototype from './metal/each-prototype';
 import Container from './metal/container';
 import Resolver from './metal/resolver';
+import inject from './metal/inject';
 
 // Runtime
 import Action from './runtime/action';
@@ -31,7 +42,6 @@ import Application from './runtime/application';
 import Errors from './runtime/errors';
 import Logger from './runtime/logger';
 import Request from './runtime/request';
-import Response from './runtime/response';
 import Router from './runtime/router';
 import Service from './runtime/service';
 
@@ -43,6 +53,7 @@ import MockRequest from './test/mock-request';
 import MockResponse from './test/mock-response';
 
 export {
+  // Data
   attr,
   hasMany,
   hasOne,
@@ -50,9 +61,19 @@ export {
   Attribute,
   Model,
   ORMAdapter,
+  MemoryAdapter,
+
+  // Render
+  View,
   Serializer,
+  RawSerializer,
   FlatSerializer,
   JSONAPISerializer,
+
+  // Parse
+  Parser,
+  FlatParser,
+  JSONAPIParser,
 
   // Metal
   Instrumentation,
@@ -63,6 +84,7 @@ export {
   eachPrototype,
   Container,
   Resolver,
+  inject,
 
   // Runtime
   Action,
@@ -71,7 +93,6 @@ export {
   Errors,
   Logger,
   Request,
-  Response,
   Router,
   Service,
 

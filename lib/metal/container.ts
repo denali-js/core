@@ -1,213 +1,320 @@
 import {
-  camelCase,
-  forOwn,
-  isObject,
-  forEach,
   defaults,
-  forIn
+  forEach,
+  forOwn,
+  uniq,
+  zipObject
 } from 'lodash';
-import * as dedent from 'dedent-js';
-import { Dict, Constructor } from '../utils/types';
-import DenaliObject from './object';
+import * as assert from 'assert';
 import Resolver from './resolver';
-import { assign, mapValues } from 'lodash';
-
-export interface ParsedName {
-  fullName: string;
-  type: string;
-  modulePath: string;
-  moduleName: string;
-}
+import { Dict, Constructor } from '../utils/types';
+import { isInjection } from './inject';
 
 export interface ContainerOptions {
-  containerize?: boolean;
+  /**
+   * The container should treat the member as a singleton. If paired with `instantiate`, the
+   * container will create that singleton on the first lookup. If not, then the container will
+   * assume to member is already a singleton
+   */
   singleton?: boolean;
+  /**
+   * The container should create an instance on lookup. If `singleton` is also true, only one
+   * instance will be created
+   */
+  instantiate?: boolean;
 }
-
-const DEFAULT_CONTAINER_OPTIONS = {
-  containerize: true,
-  singleton: false
-}
-
 
 /**
- * The Container houses all the various classes that makeup a Denali app's
+ * A Factory is a wrapper object around a containered class. It includes the original class, plus a
+ * `create()` method that is responsible for creating a new instance and applying any appropriate
+ * injections.
  *
- * runtime. It holds references to the modules themselves, as well as managing lookup logic (i.e.
- * some types of classes fall back to a generic "application" class if a more specific one is not
- * found.
+ * The Factory object is used to isolate this injection logic to a single spot. The container uses
+ * this Factory object internally when instantiating during a `lookup` call. Users can also fetch
+ * this Factory via `factoryFor()` if they want to control instantiation. A good example here is
+ * Models. We could allow the container to instantiate models by setting `instantiate: true`, but
+ * that is inconvenient - Models typically take constructor arguments (container instantiation
+ * doesn't support that), and we frequently want to fetch the Model class itself, which is
+ * cumbersome with `instantiate: true`.
  *
- * @package runtime
- * @since 0.1.0
+ * Instead, users can simply use `factoryFor` to fetch this Factory wrapper. Then they can
+ * instantiate the object however they like.
  */
-export default class Container extends DenaliObject {
+export interface Factory<T> {
+  class: Constructor<T>;
+  create(...args: any[]): T;
+}
 
-  constructor(root: string | Resolver = process.cwd()) {
-    super();
-    this.resolvers.push(typeof root === 'string' ? new Resolver(root) : root);
-  }
+/**
+ * The container is the dependency injection solution for Denali. It is responsible for abstracting
+ * away where a class came from. This allows several things:
+ *
+ *   * Apps can consume classes that originate from anywhere in the addon dependency tree, without
+ *     needing to care/specify where.
+ *   * We can more easily test parts of the framework by mocking out container entries instead of
+ *     dealing with hardcoding dependencies
+ *   * Support clean injection syntax, i.e. `mailer = service();`.
+ *
+ * In order to do these, the container must control creating instances of any classes it holds. This
+ * allows us to ensure injections are applied to every instance. If you need to create your own
+ * instance of a class, you can use the `factoryFor` method which allows you to create your own
+ * instance with injections properly applied.
+ *
+ * However, this should be relatiely rare - most of the time you'll be dealing with objects that
+ * are controlled by the framework.
+ */
+export default class Container {
 
   /**
-   * An internal cache of lookups and their resolved values
+   * Manual registrations that should override resolver retrieved values
    */
-  private lookups: Map<string, any> = new Map();
+  private registry: Dict<Constructor<any>> = {};
 
   /**
-   * Optional resolvers to use as a fallback if the default resolver is unable to resolve a lookup.
-   * Usually these are the resolvers for child addons, but you could also use a fallback resolver
-   * to support an alternative directory structure for your app. NOTE: this is NOT recommended, and
-   * may break compatibility with poorly designed addons as well as certainly CLI features.
+   * An array of resolvers used to retrieve container members. Resolvers are tried in order, first
+   * to find the member wins. Normally, each addon will supply it's own resolver, allowing for
+   * addon order and precedence when looking up container entries.
    */
   private resolvers: Resolver[] = [];
 
   /**
-   * Holds options for how to handle constructing member objects
+   * Internal cache of lookup values
    */
-  private memberOptions: Map<string, ContainerOptions> = new Map([
-    [ 'app', { singleton: true } ],
-    [ 'orm-adapter', { singleton: true } ],
-    [ 'serializer', { singleton: true } ],
-    [ 'service', { singleton: true } ]
-  ]);
+  private lookups: Dict<{ factory: Factory<any>, instance: any }> = {};
 
   /**
-   * Add a fallback resolver to the bottom of the fallback queue.
-   *
-   * @since 0.1.0
+   * Internal cache of classes
    */
-  public addResolver(resolver: Resolver) {
+  private classLookups: Dict<Constructor<any>> = {};
+
+  /**
+   * Internal cache of factories
+   */
+  private factoryLookups: Dict<Factory<any>> = {};
+
+  /**
+   * Options for container entries. Keyed on specifier or type. See ContainerOptions.
+   */
+  private options: Dict<ContainerOptions> = {
+    action: { singleton: false, instantiate: true },
+    config: { singleton: true, instantiate: false },
+    initializer: { singleton: true, instantiate: false },
+    'orm-adapter': { singleton: true, instantiate: true },
+    model: { singleton: false, instantiate: false },
+    serializer: { singleton: true, instantiate: true },
+    service: { singleton: true, instantiate: true }
+  };
+
+  /**
+   * Internal cache of injections per class, so we can avoid redoing expensive for..in loops on,
+   * every instance, and instead do a fast Object.assign
+   */
+  private injectionsCache: Map<any, Dict<any>> = new Map();
+
+  /**
+   * Internal metadata store. See `metaFor()`
+   */
+  private meta: Map<any, Dict<any>> = new Map();
+
+  /**
+   * Create a new container with a base (highest precedence) resolver at the given directory.
+   */
+  constructor(root: string) {
+    this.resolvers.push(new Resolver(root));
+  }
+
+  /**
+   * Add a resolver to the container to use for lookups. New resolvers are added at lowest priority,
+   * so all previously added resolvers will take precedence.
+   */
+  addResolver(resolver: Resolver) {
     this.resolvers.push(resolver);
   }
 
   /**
-   * Register a value under the given `fullName` for later use.
-   *
-   * @since 0.1.0
+   * Add a manual registration that will take precedence over any resolved lookups.
    */
-  public register(name: string, value: any, options?: ContainerOptions): void {
-    this.resolvers[0].register(name, value);
+  register(specifier: string, entry: any, options?: ContainerOptions) {
+    this.registry[specifier] = entry;
     if (options) {
-      this.registerOptions(name, options);
-    }
-  }
-
-  /**
-   * Set options for how the given member will be constructed. Options passed in are merged with any
-   * existing options - they do not replace them entirely.
-   *
-   * @since 0.1.0
-   */
-  public registerOptions(name: string, options: ContainerOptions = {}): void {
-    let { fullName } = parseName(name);
-    let currentOptions = this.memberOptions.get(fullName);
-    this.memberOptions.set(fullName, assign(currentOptions, options));
-  }
-
-  /**
-   * Get the given option for the given member of the container
-   *
-   * @since 0.1.0
-   */
-  public optionFor(name: string, option?: keyof ContainerOptions): any {
-    let { type, fullName } = parseName(name);
-    let options = this.memberOptions.get(fullName);
-    let typeOptions = this.memberOptions.get(type);
-    let combinedOptions = defaults(defaults(options, typeOptions), DEFAULT_CONTAINER_OPTIONS);
-    if (!option) {
-      return combinedOptions;
-    }
-    return combinedOptions[option];
-  }
-
-  /**
-   * Lookup a value in the container. Uses type specific lookup logic if available.
-   *
-   * @since 0.1.0
-   */
-  public lookup(name: string, lookupOptions: { loose?: boolean, raw?: boolean } = {}): any {
-    let parsedName = parseName(name);
-
-    if (!this.lookups.has(parsedName.fullName)) {
-
-      // Find the member with the top level resolver
-      let object: any;
-      forEach(this.resolvers, (resolver) => {
-        object = resolver.retrieve(parsedName);
-        return !object; // Break loop if we found something
+      forOwn(options, (value, key: keyof ContainerOptions) => {
+        this.setOption(specifier, key, value);
       });
+    }
+  }
 
-      // Handle a bad lookup
-      if (!object) {
-        // Allow failed lookups (opt-in)
-        if (lookupOptions.loose) {
-          this.lookups.set(parsedName.fullName, null);
-          return null;
+  /**
+   * Return the factory for the given specifier. Typically only used when you need to control when
+   * an object is instantiated.
+   */
+  factoryFor<T = any>(specifier: string, options: { loose?: boolean } = {}): Factory<T> {
+    let factory = this.factoryLookups[specifier];
+    if (!factory) {
+      let klass = this.classLookups[specifier];
+
+      if (!klass) {
+        klass = this.registry[specifier];
+
+        if (!klass) {
+          forEach(this.resolvers, (resolver) => {
+            klass = resolver.retrieve(specifier);
+            if (klass) {
+              return false;
+            }
+          });
         }
-        throw new Error(`No such ${ parsedName.type } found: '${ parsedName.moduleName }'`);
-      }
 
-      // Make the singleton if needed
-      if (this.optionFor(parsedName.fullName, 'singleton')) {
-        object = new object();
-      }
-
-      // Inject container references
-      if (this.optionFor(parsedName.fullName, 'containerize')) {
-        object.container = this;
-        if (object.prototype) {
-          object.prototype.container = this;
+        if (klass) {
+          this.classLookups[specifier] = klass;
         }
       }
 
-      // Freeze the actual containered value to avoid allowing mutations. If `object` here is the
-      // direct result of a require() call, then any mutations to it will be shared with other
-      // containers that require() it (i.e. when running concurrent tests). If it's a singleton,
-      // this isn't necessary since each container gets it's own instance. But if it's not, then we
-      // freeze it to prevent mutations which can lead to extremely difficult to trace bugs.
-      if (!this.optionFor(parsedName.fullName, 'singleton')) {
-        object = Object.freeze(object);
+      if (!klass) {
+        if (options.loose) {
+          return;
+        }
+        throw new Error(`No class found for ${ specifier }`);
       }
 
-      this.lookups.set(parsedName.fullName, object);
+      factory = this.factoryLookups[specifier] = this.buildFactory(specifier, klass);
+    }
+    return factory;
+  }
+
+  /**
+   * Lookup the given specifier in the container. If options.loose is true, failed lookups will
+   * return undefined rather than throw.
+   */
+  lookup<T = any>(specifier: string, options: { loose?: boolean } = {}): T {
+    let singleton = this.getOption(specifier, 'singleton') !== false;
+
+    if (singleton) {
+      let lookup = this.lookups[specifier];
+      if (lookup) {
+        return lookup.instance;
+      }
     }
 
-    return this.lookups.get(parsedName.fullName);
+    let factory = this.factoryFor<T>(specifier, options);
+    if (!factory) { return; }
+
+    if (this.getOption(specifier, 'instantiate') === false) {
+      return (<any>factory).class;
+    }
+
+    let instance = factory.create();
+
+    if (singleton && instance) {
+      this.lookups[specifier] = { factory, instance };
+    }
+
+    return instance;
   }
 
   /**
-   * Lookup all modules of a specific type in the container. Returns an object of all the modules
-   * keyed by their module path (i.e. `role:employees/manager` would be found under
-   * `lookupAll('role')['employees/manager']`
+   * Lookup all the entries for a given type in the container. This will ask all resolvers to
+   * eagerly load all classes for this type. Returns an object whose keys are container specifiers
+   * and values are the looked up values for those specifiers.
    */
-  public lookupAll(type: string): { [modulePath: string]: any } {
-    let resolverResultsets = this.resolvers.map((resolver) => {
-      return resolver.retrieveAll(type);
-    });
-    let mergedResultset = <{ [modulePath: string]: any }>(<any>assign)(...resolverResultsets.reverse());
-    return mapValues(mergedResultset, (rawResolvedObject, modulePath) => {
-      return this.lookup(`${ type }:${ modulePath }`);
-    });
+  lookupAll<T = any>(type: string): Dict<T> {
+    let entries = this.availableForType(type);
+    let values = entries.map((entry) => this.lookup(`${ type }:${ entry }`));
+    return <Dict<T>>zipObject(entries, values);
   }
 
   /**
-   * For a given type, returns the names of all the available modules under that
-   * type. Primarily used for debugging purposes (i.e. to show available modules
-   * when a lookup of that type fails).
+   * Returns an array of entry names for all entries under this type. Entries are eagerly looked up,
+   * so resolvers will actively scan for all matching files, for example. Use sparingly.
    */
   availableForType(type: string): string[] {
-    return Object.keys(this.lookupAll(type));
+    let registrations = Object.keys(this.registry).filter((specifier) => {
+      return specifier.startsWith(type);
+    });
+    let resolved = this.resolvers.reduce((entries, resolver) => {
+      return entries.concat(resolver.availableForType(type));
+    }, []);
+    return uniq(registrations.concat(resolved)).map((specifier) => specifier.split(':')[1]);
   }
-}
 
-/**
- * Take the supplied name which can come in several forms, and normalize it.
- */
-export function parseName(name: string): ParsedName {
-  let [ type, modulePath ] = name.split(':');
-  return {
-    fullName: name,
-    type,
-    modulePath,
-    moduleName: camelCase(modulePath)
-  };
+  /**
+   * Return the value for the given option on the given specifier. Specifier may be a full specifier
+   * or just a type.
+   */
+  getOption(specifier: string, optionName: keyof ContainerOptions): any {
+    let [ type ] = specifier.split(':');
+    let options = defaults(this.options[specifier], this.options[type]);
+    return options[optionName];
+  }
+
+  /**
+   * Set the give option for the given specifier or type.
+   */
+  setOption(specifier: string, optionName: keyof ContainerOptions, value: any): void {
+    if (!this.options[specifier]) {
+      this.options[specifier] = { singleton: false, instantiate: false };
+    }
+    this.options[specifier][optionName] = value;
+  }
+
+  /**
+   * Allow consumers to store metadata on the container. This is useful if you want to store data
+   * tied to the lifetime of the container. For example, you may have an expensive calculation that
+   * you can cache once per class. Rather than storing that cached value on `this.constructor`,
+   * which is shared across containers, you can store it on `container.metaFor(this.constructor)`,
+   * ensuring that your container doesn't pollute others.
+   */
+  metaFor(key: any) {
+    if (!this.meta.has(key)) {
+      this.meta.set(key, {});
+    }
+    return this.meta.get(key);
+  }
+
+  /**
+   * Given an instance, iterate through all it's properties, lookup any injections, and apply them.
+   * Cache injections discovered for classes so we can avoid the expensive property search on every
+   * instance. We can't just apply injections to the class prototype because injections are created
+   * via class properties, which are not enumerable.
+   */
+  private applyInjections(instance: any) {
+    if (instance.constructor) {
+      if (!this.injectionsCache.has(instance.constructor)) {
+        let injections: Dict<any> = {};
+        for (let key in instance) {
+          let value = instance[key];
+          if (isInjection(value)) {
+            injections[key] = this.lookup(value.lookup);
+          }
+        }
+        this.injectionsCache.set(instance.constructor, injections);
+      }
+      Object.assign(instance, this.injectionsCache.get(instance.constructor));
+    } else {
+      for (let key in instance) {
+        let value = instance[key];
+        if (isInjection(value)) {
+          (<any>instance)[key] = this.lookup(value.lookup);
+        }
+      }
+    }
+  }
+
+  /**
+   * Build the factory wrapper for a given container member
+   */
+  private buildFactory<T>(specifier: string, klass: Constructor<T>): Factory<T> {
+    // Static injections
+    this.applyInjections(klass);
+    let container = this;
+    return {
+      class: klass,
+      create(...args: any[]) {
+        assert(typeof klass === 'function', `Unable to instantiate ${ specifier } (it's not a constructor). Try setting the 'instantiate: false' option on this container entry to avoid instantiating it`);
+        let instance = new klass(...args);
+        (<any>instance).container = container;
+        container.applyInjections(instance);
+        return instance;
+      }
+    };
+  }
 }

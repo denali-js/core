@@ -9,9 +9,14 @@ To add individual routes, just invoke the appropriate method on the router and
 supply the URL and action to route to:
 
 ```js
-// Routes requests to /foo to the FooAction at `app/actions/foo.js`
+// Routes GET requests to /foo to the FooAction at `app/actions/foo.js`
 router.get('/foo', 'foo');
 ```
+
+All the common HTTP verbs are supported.
+
+
+## Resourceful Routing
 
 The router also exposes a `resource()` method for quickly adding an entire suite
 of endpoints for a given resource (it follows the [JSON-API recommendations for
@@ -36,6 +41,18 @@ will generate the following routes:
 | `POST    /posts/:id/relationships/:relation`  | `posts/add-related`       |
 | `DELETE  /posts/:id/relationships/:relation`  | `posts/remove-related`    |
 
+You can limit the generated routes using the `only` or `except` options:
+
+```js
+// Generates only the list and show actions from the table above
+router.resource('post', { only: [ 'list', 'show' ] });
+
+// Generates all the routes from the table above, except for the destroy route
+router.resource('post', { except: [ 'destroy' ] });
+
+// Shorthand for except: [ 'related', 'fetch-related', 'replace-related', 'add-related', 'remove-related' ]
+router.resource('post', { related: false });
+```
 
 ## Namespacing
 

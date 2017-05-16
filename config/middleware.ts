@@ -1,6 +1,5 @@
 import {
-  defaults,
-  defaultsDeep
+  defaults
 } from 'lodash';
 import * as timing from 'response-time';
 import * as compression from 'compression';
@@ -86,7 +85,7 @@ export default function baseMiddleware(router: Router, application: Application)
   }
 
   if (isEnabled('bodyParser')) {
-    router.use(json({ type: (config.bodyParser && config.bodyParser.type) || 'application/json' }));
+    router.use(json({ type: config.bodyParser && config.bodyParser.type }));
   }
 
 }

@@ -1,13 +1,13 @@
 import {
-  dropRight,
-  uniq,
-  isArray
+  dropRight
 } from 'lodash';
 import * as accepts from 'accepts';
-import typeis from 'type-is';
+import * as typeis from 'type-is';
 import * as url from 'url';
 import * as http from 'http';
 import * as uuid from 'uuid';
+import { Socket } from 'net';
+import { Readable, Writable } from 'stream';
 import DenaliObject from '../metal/object';
 import Route from './route';
 
@@ -34,7 +34,7 @@ export default class Request extends DenaliObject {
    *
    * @since 0.1.0
    */
-  public id: string;
+  id: string;
 
   /**
    * The parsed URL of the IncomingMessage
@@ -51,38 +51,38 @@ export default class Request extends DenaliObject {
    *
    * @since 0.1.0
    */
-  public route: Route;
+  route: Route;
 
   /**
    * The requests params extracted from the route parser (i.e. just the URL segement params)
    *
    * @since 0.1.0
    */
-  public params: any;
+  params: any;
 
   /**
    * baseUrl of the app, needed to simulate Express request api
    *
    * @since 0.1.0
    */
-  public baseUrl = '/';
+  baseUrl = '/';
 
   /**
    * Url of the request -> can be modified
    *
    * @since 0.1.0
    */
-  public url: string;
+  url: string;
 
   /**
    * The incoming request body, buffered and parsed by the serializer (if applicable)
    *
    * @since 0.1.0
    */
-  public get body(): object {
+  get body(): any {
     return (<any>this._incomingMessage).body;
   }
-  public set body(value) {
+  set body(value) {
     (<any>this._incomingMessage).body = value;
   }
 
@@ -90,7 +90,7 @@ export default class Request extends DenaliObject {
    * The name of the original action that was invoked for this request. Used when an error occurs
    * so the error action can see the original action that was invoked.
    */
-  public _originalAction: string;
+  _originalAction: string;
 
   constructor(incomingMessage: http.IncomingMessage) {
     super();
@@ -105,7 +105,7 @@ export default class Request extends DenaliObject {
    *
    * @since 0.1.0
    */
-  public get method(): Method {
+  get method(): Method {
     return <Method>this._incomingMessage.method.toLowerCase();
   }
 
@@ -114,8 +114,8 @@ export default class Request extends DenaliObject {
    *
    * @since 0.1.0
    */
-  public get hostname(): string {
-    let host = this._incomingMessage.headers.Host;
+  get hostname(): string {
+    let host = this.get('host');
     return (host || '').split(':')[0];
   }
 
@@ -124,7 +124,7 @@ export default class Request extends DenaliObject {
    *
    * @since 0.1.0
    */
-  public get ip(): string {
+  get ip(): string {
     return this._incomingMessage.socket.remoteAddress;
   }
 
@@ -138,7 +138,7 @@ export default class Request extends DenaliObject {
    *
    * @since 0.1.0
    */
-  public get originalUrl(): string {
+  get originalUrl(): string {
     return this.parsedUrl.pathname;
   }
 
@@ -147,7 +147,7 @@ export default class Request extends DenaliObject {
    *
    * @since 0.1.0
    */
-  public get path(): string {
+  get path(): string {
     return this.parsedUrl.pathname;
   }
 
@@ -156,7 +156,7 @@ export default class Request extends DenaliObject {
    *
    * @since 0.1.0
    */
-  public get protocol(): string {
+  get protocol(): string {
     return this.parsedUrl.protocol.toLowerCase();
   }
 
@@ -165,7 +165,7 @@ export default class Request extends DenaliObject {
    *
    * @since 0.1.0
    */
-  public get query(): { [key: string]: string } {
+  get query(): { [key: string]: string } {
     return this.parsedUrl.query;
   }
 
@@ -174,8 +174,8 @@ export default class Request extends DenaliObject {
    *
    * @since 0.1.0
    */
-  public get secure(): boolean {
-    return this.protocol === 'https';
+  get secure(): boolean {
+    return this.protocol === 'https:';
   }
 
   /**
@@ -183,7 +183,7 @@ export default class Request extends DenaliObject {
    *
    * @since 0.1.0
    */
-  public get xhr(): boolean {
+  get xhr(): boolean {
     return this.get('x-requested-with') === 'XMLHttpRequest';
   }
 
@@ -192,7 +192,7 @@ export default class Request extends DenaliObject {
    *
    * @since 0.1.0
    */
-  public get headers(): { [key: string]: string } {
+  get headers(): { [key: string]: string } {
     return this._incomingMessage.headers;
   }
 
@@ -203,9 +203,41 @@ export default class Request extends DenaliObject {
    *
    * @since 0.1.0
    */
-  public get subdomains(): string[] {
+  get subdomains(): string[] {
     // Drop the tld and root domain name
     return dropRight(this.hostname.split('.'), 2);
+  }
+
+  /*
+   * Additional public properties of the IncomingMessage object
+   */
+
+  get httpVersion(): string {
+    return this._incomingMessage.httpVersion;
+  }
+
+  get rawHeaders(): string[] {
+    return this._incomingMessage.rawHeaders;
+  }
+
+  get rawTrailers(): string[] {
+    return this._incomingMessage.rawTrailers;
+  }
+
+  get socket(): Socket {
+    return this._incomingMessage.socket;
+  }
+
+  get statusCode(): number {
+    return this._incomingMessage.statusCode;
+  }
+
+  get statusMessage(): string {
+    return this._incomingMessage.statusMessage;
+  }
+
+  get trailers(): { [key: string]: string } {
+    return this._incomingMessage.trailers;
   }
 
   /**
@@ -214,7 +246,7 @@ export default class Request extends DenaliObject {
    *
    * @since 0.1.0
    */
-  public accepts(serverAcceptedTypes: string[]): string | boolean {
+  accepts(serverAcceptedTypes: string[]): string | boolean {
     return accepts(this._incomingMessage).type(serverAcceptedTypes);
   }
 
@@ -223,7 +255,7 @@ export default class Request extends DenaliObject {
    *
    * @since 0.1.0
    */
-  public get(header: string): string {
+  get(header: string): string {
     return this._incomingMessage.headers[header.toLowerCase()];
   }
 
@@ -232,8 +264,132 @@ export default class Request extends DenaliObject {
    *
    * @since 0.1.0
    */
-  public is(...types: string[]): string | boolean {
+  is(...types: string[]): string | boolean {
     return <string|boolean>typeis(this._incomingMessage, types);
   }
 
+  /*
+   * Below are methods from the IncomingMessage class, which includes the public methods
+   * of the Readable & EventEmitter interfaces as well
+   */
+
+  /*
+   * EventEmitter methods
+   */
+
+  addListener(eventName: any, listener: Function): Request {
+    this._incomingMessage.addListener(eventName, listener);
+    return this;
+  }
+
+  emit(eventName: any, ...args: any[]): boolean {
+    return this._incomingMessage.emit(eventName, ...args);
+  }
+
+  eventNames(): any[] {
+    return this._incomingMessage.eventNames();
+  }
+
+  getMaxListeners(): number {
+    return this._incomingMessage.getMaxListeners();
+  }
+
+  listenerCount(eventName: any): number {
+    return this._incomingMessage.listenerCount(eventName);
+  }
+
+  listeners(eventName: any): Function[] {
+    return this._incomingMessage.listeners(eventName);
+  }
+
+  on(eventName: any, listener: Function): Request {
+    this._incomingMessage.on(eventName, listener);
+    return this;
+  }
+
+  once(eventName: any, listener: Function): Request {
+    this._incomingMessage.once(eventName, listener);
+    return this;
+  }
+
+  prependListener(eventName: any, listener: Function): Request {
+    this._incomingMessage.prependListener(eventName, listener);
+    return this;
+  }
+
+  prependOnceListener(eventName: any, listener: Function): Request {
+    this._incomingMessage.prependOnceListener(eventName, listener);
+    return this;
+  }
+
+  removeAllListeners(eventName?: any): Request {
+    this._incomingMessage.removeAllListeners(eventName);
+    return this;
+  }
+
+  removeListener(eventName: any, listener: Function): Request {
+    this._incomingMessage.removeListener(eventName, listener);
+    return this;
+  }
+
+  setMaxListeners(n: number): Request {
+    this._incomingMessage.setMaxListeners(n);
+    return this;
+  }
+
+  /*
+   * Readable methods
+   */
+
+  isPaused(): boolean {
+    return this._incomingMessage.isPaused();
+  }
+
+  pause(): Request {
+    this._incomingMessage.pause();
+    return this;
+  }
+
+  pipe(destination: Writable, options?: Object): Writable {
+    return this._incomingMessage.pipe(destination, options);
+  }
+
+  read(size?: number): string | Buffer | null {
+    return this._incomingMessage.read(size);
+  }
+
+  resume(): Request {
+    this._incomingMessage.resume();
+    return this;
+  }
+
+  setEncoding(encoding: string): Request {
+    this._incomingMessage.setEncoding(encoding);
+    return this;
+  }
+
+  unpipe(destination?: Writable) {
+    return this._incomingMessage.unpipe(destination);
+  }
+
+  unshift(chunk: Buffer | string | any) {
+    return this._incomingMessage.unshift(chunk);
+  }
+
+  wrap(stream: Readable) {
+    return this._incomingMessage.wrap(stream);
+  }
+
+  /*
+   * IncomingMessage methods
+   */
+
+  destroy(error: Error) {
+    return this._incomingMessage.destroy(error);
+  }
+
+  setTimeout(msecs: number, callback: Function): Request {
+    this._incomingMessage.setTimeout(msecs, callback);
+    return this;
+  }
 }

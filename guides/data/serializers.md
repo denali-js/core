@@ -23,9 +23,9 @@ Serializers address all of these problems. They select what data to send, apply
 transformations to that data (i.e. renaming keys, serializing values), and
 structure the result according to a particular output format.
 
-Typically, your API will have a standard output format (i.e. JSON-API 1.0). A
-good approach is to pick (or create) a base ApplicationSerializer class that
-renders that structure, much like we used a base ApplicationAction class.
+Typically, your API will have a standard output format (i.e. JSON-API 1.0) for all response. A
+good approach is to pick (or create) a base ApplicationSerializer class that renders that
+structure, much like we used a base ApplicationAction class.
 
 With a base ApplicationSerializer class in place, you'll then create a subclass
 for each model you have (PostSerializer, UserSerializer, etc). These subclasses

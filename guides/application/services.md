@@ -2,8 +2,8 @@
 title: Services
 ---
 
-Services are long lived objects in your app that usually expose app-wide
-functionality. Some good examples might be a cache service, which maintains a
+Services are long lived singletons in your app that usually expose app-wide
+functionality. Some good examples might be a caching service, which maintains a
 persistent connection to a Redis database; or a mailer service, which
 centralizes the logic for formatting and sending emails.
 
@@ -27,18 +27,19 @@ export default class CacheService extends Service {
 }
 ```
 
-Within an action, you can get a reference to a service's singleton using the
-`this.service(serviceName)` method. Continuing with our `CacheService` example:
+Once you have defined your service, you can use it via injection in any of your
+Denali classes:
 
 ```js
-import { Action } from 'denali';
+import { Action, inject } from 'denali';
 
 export default class CachedAction extends Action {
 
+  cache = inject('service:cache');
+
   respond() {
-    let cache = this.service('cache');
-    if (cache.has(cacheKey)) {
-      return cache.read(cacheKey);
+    if (this.cache.has(cacheKey)) {
+      return this.cache.read(cacheKey);
     }
     // ...
   }
