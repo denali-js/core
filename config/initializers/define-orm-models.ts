@@ -14,13 +14,14 @@ export default {
    * any internal model representation necessary.
    */
   async initialize(application: Application): Promise<void> {
+    let container = application.container;
     let models: { [modelName: string]: typeof Model } = application.container.lookupAll('model');
     let modelsGroupedByAdapter = new Map();
-    forEach(models, (ModelClass: typeof Model) => {
+    forEach(models, (ModelClass, modelName) => {
       if (ModelClass.abstract) {
         return;
       }
-      let Adapter = application.container.lookup(`orm-adapter:${ ModelClass.type }`);
+      let Adapter = container.lookup(`orm-adapter:${ modelName }`, { loose: true }) || container.lookup('orm-adapter:application');
       if (!modelsGroupedByAdapter.has(Adapter)) {
         modelsGroupedByAdapter.set(Adapter, []);
       }
