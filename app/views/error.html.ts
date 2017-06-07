@@ -52,13 +52,15 @@ let template = compileTemplate(`
       </div>
     </body>
   </html>
-`);
+`, {
+  variable: 'data'
+});
 
 export default class ErrorView extends View {
 
   async render(action: Action, response: ServerResponse, error: any, options: RenderOptions) {
     response.setHeader('Content-type', 'text/html');
-    response.write(template(error));
+    response.write(template({ error }));
     response.end();
   }
 
