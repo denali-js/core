@@ -1,9 +1,9 @@
 import {
   template as compileTemplate
 } from 'lodash';
-import Action, { RenderOptions } from 'lib/runtime/action';
 import { ServerResponse } from 'http';
-import View from 'lib/render/view';
+import Action, { RenderOptions } from '../../lib/runtime/action';
+import View from '../../lib/render/view';
 
 let template = compileTemplate(`
   <html>
