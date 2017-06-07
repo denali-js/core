@@ -45,7 +45,7 @@ export default class MemoryAdapter extends ORMAdapter {
     return this._cacheFor(type)[id] || null;
   }
 
-  async findOne(type: string, query: any): Promise<any> {
+  async queryOne(type: string, query: any): Promise<any> {
     return find(this._cacheFor(type), query) || null;
   }
 
@@ -99,7 +99,7 @@ export default class MemoryAdapter extends ORMAdapter {
       }
       return related;
     }
-    return this.findOne(descriptor.type, { id: model.record[`${ relationship }_id`] });
+    return this.queryOne(descriptor.type, { id: model.record[`${ relationship }_id`] });
   }
 
   async setRelated(model: Model, relationship: string, descriptor: RelationshipDescriptor, relatedModels: Model|Model[]): Promise<void> {

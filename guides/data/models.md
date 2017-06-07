@@ -137,7 +137,7 @@ Post.all()
 
 // Find the first post that matches the supplied query (an object or
 // ORM-specific function)
-Post.findOne()
+Post.queryOne()
 ```
 
 Once you have a record, you can read attributes directly:

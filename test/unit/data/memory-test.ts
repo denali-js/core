@@ -33,21 +33,21 @@ test('find returns null for non-existent id', async (t) => {
   t.is(await adapter.find('whatever', 0), null);
 });
 
-test('findOne returns the first record that matches the given query', async (t) => {
+test('queryOne returns the first record that matches the given query', async (t) => {
   let adapter: MemoryAdapter = t.context.adapter;
   let type = 'foo';
   let matching = await buildAndSave(adapter, type, { number: 'one', bar: true });
   await buildAndSave(adapter, type, { number: 'two', bar: true });
   await buildAndSave(adapter, type, { number: 'three', bar: false });
 
-  let result = await adapter.findOne(type, { bar: true });
+  let result = await adapter.queryOne(type, { bar: true });
   t.deepEqual(result, matching.record);
 });
 
-test('findOne returns null if query does not match anything', async (t) => {
+test('queryOne returns null if query does not match anything', async (t) => {
   let adapter: MemoryAdapter = t.context.adapter;
 
-  t.is(await adapter.findOne('whatever', { whatever: true }), null);
+  t.is(await adapter.queryOne('whatever', { whatever: true }), null);
 });
 
 test('all returns all records', async (t) => {

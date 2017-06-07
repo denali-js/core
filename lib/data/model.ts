@@ -102,11 +102,11 @@ export default class Model extends DenaliObject {
    * Find a single record that matches the given criteria. The format of the criteria is determined
    * by the ORM adapter used for this model.
    */
-  static async findOne(container: Container, query: any, options?: any): Promise<Model> {
-    debug(`${ this.type } findOne: ${ query }`);
-    assert(query != null, `You must pass a query to Model.findOne(conditions)`);
+  static async queryOne(container: Container, query: any, options?: any): Promise<Model> {
+    debug(`${ this.type } queryOne: ${ query }`);
+    assert(query != null, `You must pass a query to Model.queryOne(conditions)`);
     let adapter = this.getAdapter(container);
-    let record = await adapter.findOne(this.type, query, options);
+    let record = await adapter.queryOne(this.type, query, options);
     if (record) {
       let Factory = container.factoryFor<Model>(`model:${ this.type }`);
       return Factory.create(container, record);
@@ -186,8 +186,12 @@ export default class Model extends DenaliObject {
             }
           }
         }
-        // It's not an attribute or a relationship method, so let the model respond normally
-        return model[property];
+        // We double check getAttribute here because it's possible the user supplied some non-attribute
+        // properties during creation. If so, these were dumped into the `buildRecord` method, which
+        // may have bulk assigned them to the underlying record instance (if the ORM allows it). So
+        // we defer there first, just in case. This is a nasty hack - we need to fix how we handle
+        // this.
+        return model.adapter.getAttribute(model, property) || model[property];
       },
 
       set(model: Model, property: string, value: any): boolean {

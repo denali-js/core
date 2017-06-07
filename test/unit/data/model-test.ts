@@ -79,7 +79,7 @@ test('adapter falls back to application if model specific not found', async (t) 
 
 test(finderInvokesAdapter, 'find', {}, 1);
 
-test(finderInvokesAdapter, 'findOne', {}, { foo: true });
+test(finderInvokesAdapter, 'queryOne', {}, { foo: true });
 
 test(finderInvokesAdapter, 'all', []);
 
@@ -103,8 +103,8 @@ test('find returns null if adapter does', finderReturns, {
   }
 });
 
-test('findOne returns model instance', finderReturns, {
-  finder: 'findOne',
+test('queryOne returns model instance', finderReturns, {
+  finder: 'queryOne',
   arg: { foo: true },
   adapterMethod() { return {}; },
   assert(t: TestContext, result: any) {
@@ -112,8 +112,8 @@ test('findOne returns model instance', finderReturns, {
   }
 });
 
-test('findOne returns null if adapter does', finderReturns, {
-  finder: 'findOne',
+test('queryOne returns null if adapter does', finderReturns, {
+  finder: 'queryOne',
   arg: { foo: true },
   adapterMethod(): null { return null; },
   assert(t: TestContext, result: any) {

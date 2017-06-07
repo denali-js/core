@@ -11,7 +11,7 @@ export default class <%= className %>Adapter extends ORMAdapter {
   /**
    * Find a single record that matches the given query.
    */
-  async findOne(type, query, options) {
+  async queryOne(type, query, options) {
   }
 
   /**

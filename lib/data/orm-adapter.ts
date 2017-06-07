@@ -25,7 +25,7 @@ abstract class ORMAdapter extends DenaliObject {
   /**
    * Find a single record that matches the given query.
    */
-  abstract async findOne(type: string, query: any, options: any): Promise<any>;
+  abstract async queryOne(type: string, query: any, options: any): Promise<any>;
 
   /**
    * Find all records of this type.
