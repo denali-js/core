@@ -49,7 +49,7 @@ export default class ErrorAction extends Action {
       }
       delete error.stack;
     }
-    if (this.request.accepts([ 'html' ]) && this.container.lookup('application:main').environment !== 'production') {
+    if (this.request.accepts([ 'html' ]) && this.container.lookup('config:environment').environment !== 'production') {
       this.render(error.status, error, { view: 'error.html' });
     } else {
       this.render(error.status, error);
