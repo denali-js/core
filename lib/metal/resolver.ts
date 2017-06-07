@@ -70,9 +70,6 @@ export default class Resolver {
    * Unknown types are assumed to exist underneath the `app/` folder
    */
   protected retrieveOther(type: string, entry: string) {
-    if (type === 'service') {
-      console.log(path.join(this.root, 'app', pluralize(type), entry));
-    }
     return tryRequire(path.join(this.root, 'app', pluralize(type), entry));
   }
 
