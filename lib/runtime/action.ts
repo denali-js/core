@@ -20,7 +20,7 @@ import { ServerResponse } from 'http';
 import { Dict } from '../utils/types';
 import inject from '../metal/inject';
 import Serializer from '../render/serializer';
-// import DatabaseService from '../data/database';
+import DatabaseService from '../data/database';
 
 const debug = createDebug('denali:action');
 
@@ -125,6 +125,13 @@ export default abstract class Action extends DenaliObject {
    * @since 0.1.0
    */
   parser = inject<Parser>('parser:application');
+
+  /**
+   * Automatically inject the db service into all actions
+   *
+   * @since 0.1.0
+   */
+  db = inject<DatabaseService>('service:db');
 
   /**
    * The incoming Request that this Action is responding to.
