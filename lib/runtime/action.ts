@@ -21,6 +21,7 @@ import { Dict } from '../utils/types';
 import inject from '../metal/inject';
 import Serializer from '../render/serializer';
 import DatabaseService from '../data/database';
+import Logger from './logger';
 
 const debug = createDebug('denali:action');
 
@@ -132,6 +133,13 @@ export default abstract class Action extends DenaliObject {
    * @since 0.1.0
    */
   db = inject<DatabaseService>('service:db');
+
+  /**
+   * Automatically inject the logger into all actions
+   *
+   * @since 0.1.0
+   */
+  logger = inject<Logger>('app:logger');
 
   /**
    * The incoming Request that this Action is responding to.
