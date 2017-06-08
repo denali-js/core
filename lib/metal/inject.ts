@@ -1,3 +1,6 @@
+import { Dict } from '../utils/types';
+import Container from './container';
+
 export interface Injection {
   lookup: string;
 }
@@ -13,4 +16,19 @@ export default function inject<T = any>(lookup: string): T {
     [IS_INJECTION]: true,
     lookup
   };
+}
+
+export function injectInstance(instance: any, container: Container) {
+  let classMeta = container.metaFor(instance.constructor);
+  if (!classMeta.injectionsCache) {
+    let injections: Dict<any> = {};
+    for (let key in instance) {
+      let value = instance[key];
+      if (isInjection(value)) {
+        injections[key] = container.lookup(value.lookup);
+      }
+      classMeta.injectionsCache = injections;
+    }
+  }
+  Object.assign(instance, classMeta.injectionsCache);
 }

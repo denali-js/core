@@ -10,7 +10,7 @@
  */
 
 // Data
-import { attr, hasMany, hasOne, RelationshipDescriptor, Attribute } from './data/descriptors';
+import { attr, hasMany, hasOne, RelationshipDescriptor, AttributeDescriptor } from './data/descriptors';
 import Model from './data/model';
 import ORMAdapter from './data/orm-adapter';
 import MemoryAdapter from './data/memory';
@@ -58,7 +58,7 @@ export {
   hasMany,
   hasOne,
   RelationshipDescriptor,
-  Attribute,
+  AttributeDescriptor,
   Model,
   ORMAdapter,
   MemoryAdapter,

@@ -1,11 +1,9 @@
-import DenaliObject from '../metal/object';
-
 /**
  * Base Descriptor class
  *
  * @package data
  */
-export class Descriptor extends DenaliObject {
+export class Descriptor {
 
   /**
    * What kind of descriptor is this? Used by subclasses to differentiate easily between types.
@@ -21,7 +19,6 @@ export class Descriptor extends DenaliObject {
    * Creates an instance of Descriptor.
    */
   constructor(type: string, options?: any) {
-    super();
     this.type = type;
     this.options = options;
   }
@@ -53,7 +50,7 @@ export class Descriptor extends DenaliObject {
  * @package data
  * @since 0.1.0
  */
-export class Attribute extends Descriptor {
+export class AttributeDescriptor extends Descriptor {
 
   /**
    * Convenience flag for checking if this is an attribute
@@ -68,8 +65,8 @@ export class Attribute extends Descriptor {
  * @package data
  * @since 0.1.0
  */
-export function attr(type: string, options?: any): Attribute {
-  return new Attribute(type, options);
+export function attr(type: string, options?: any): AttributeDescriptor {
+  return new AttributeDescriptor(type, options);
 }
 
 
@@ -97,7 +94,7 @@ export function attr(type: string, options?: any): Attribute {
  * @package data
  * @since 0.1.0
  */
-export class HasManyRelationship extends Descriptor {
+export class HasManyRelationshipDescriptor extends Descriptor {
 
   /**
    * Convenience flag for checking if this is a relationship
@@ -117,8 +114,8 @@ export class HasManyRelationship extends Descriptor {
  * @package data
  * @since 0.1.0
  */
-export function hasMany(type: string, options?: any): HasManyRelationship {
-  return new HasManyRelationship(type, options);
+export function hasMany(type: string, options?: any): HasManyRelationshipDescriptor {
+  return new HasManyRelationshipDescriptor(type, options);
 }
 
 /**
@@ -145,7 +142,7 @@ export function hasMany(type: string, options?: any): HasManyRelationship {
  * @package data
  * @since 0.1.0
  */
-export class HasOneRelationship extends Descriptor {
+export class HasOneRelationshipDescriptor extends Descriptor {
 
   /**
    * Convenience flag for checking if this is a relationship
@@ -165,8 +162,8 @@ export class HasOneRelationship extends Descriptor {
  * @package data
  * @since 0.1.0
  */
-export function hasOne(type: string, options?: any): HasOneRelationship {
-  return new HasOneRelationship(type, options);
+export function hasOne(type: string, options?: any): HasOneRelationshipDescriptor {
+  return new HasOneRelationshipDescriptor(type, options);
 }
 
-export type RelationshipDescriptor = HasManyRelationship | HasOneRelationship;
+export type RelationshipDescriptor = HasManyRelationshipDescriptor | HasOneRelationshipDescriptor;

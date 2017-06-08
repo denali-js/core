@@ -106,12 +106,6 @@ export default class Container {
   };
 
   /**
-   * Internal cache of injections per class, so we can avoid redoing expensive for..in loops on,
-   * every instance, and instead do a fast Object.assign
-   */
-  private injectionsCache: Map<any, Dict<any>> = new Map();
-
-  /**
    * Internal metadata store. See `metaFor()`
    */
   private meta: Map<any, Dict<any>> = new Map();
@@ -271,49 +265,15 @@ export default class Container {
   }
 
   /**
-   * Given an instance, iterate through all it's properties, lookup any injections, and apply them.
-   * Cache injections discovered for classes so we can avoid the expensive property search on every
-   * instance. We can't just apply injections to the class prototype because injections are created
-   * via class properties, which are not enumerable.
-   */
-  private applyInjections(instance: any) {
-    if (instance.constructor) {
-      if (!this.injectionsCache.has(instance.constructor)) {
-        let injections: Dict<any> = {};
-        for (let key in instance) {
-          let value = instance[key];
-          if (isInjection(value)) {
-            injections[key] = this.lookup(value.lookup);
-          }
-        }
-        this.injectionsCache.set(instance.constructor, injections);
-      }
-      Object.assign(instance, this.injectionsCache.get(instance.constructor));
-    } else {
-      for (let key in instance) {
-        let value = instance[key];
-        if (isInjection(value)) {
-          (<any>instance)[key] = this.lookup(value.lookup);
-        }
-      }
-    }
-  }
-
-  /**
    * Build the factory wrapper for a given container member
    */
   private buildFactory<T>(specifier: string, klass: Constructor<T>): Factory<T> {
-    // Static injections
-    this.applyInjections(klass);
     let container = this;
     return {
       class: klass,
       create(...args: any[]) {
         assert(typeof klass === 'function', `Unable to instantiate ${ specifier } (it's not a constructor). Try setting the 'instantiate: false' option on this container entry to avoid instantiating it`);
-        let instance = new klass(...args);
-        (<any>instance).container = container;
-        container.applyInjections(instance);
-        return instance;
+        return new klass(container, ...args);
       }
     };
   }
