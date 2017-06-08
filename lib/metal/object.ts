@@ -36,6 +36,15 @@ export default class DenaliObject {
   constructor(container: Container) {
     assert(container instanceof Container, 'You must supply a container whenever you instantiate a DenaliObject');
     injectInstance(this, container);
+    this.init();
+  }
+
+  /**
+   * A hook that users should override for constructor-time logic so they don't have to worry about
+   * correctly handling super and container references.
+   */
+  init() {
+    // Default is no-op
   }
 
 }
