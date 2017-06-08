@@ -88,11 +88,10 @@ export default class Addon extends DenaliObject {
   container: Container;
 
   constructor(options: AddonOptions) {
-    super();
+    super(options.container);
     this.environment = options.environment;
     this.dir = options.dir;
     this.pkg = options.pkg || tryRequire(findup('package.json', { cwd: this.dir }));
-    this.container = options.container;
 
     this.resolver = this.resolver || new Resolver(this.dir);
     this.container.addResolver(this.resolver);

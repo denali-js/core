@@ -2,8 +2,7 @@ const { Service } = require('denali');
 
 module.exports = class ConfigService extends Service {
 
-  constructor() {
-    super(...arguments);
+  init() {
     this.name = 'dummy';
   }
 

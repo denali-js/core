@@ -18,7 +18,7 @@ import Application from '../runtime/application';
  * @package test
  * @since 0.1.0
  */
-export class AppAcceptance extends DenaliObject {
+export class AppAcceptance {
 
   /**
    * The application instance under test
@@ -42,7 +42,6 @@ export class AppAcceptance extends DenaliObject {
   protected _injections: { [fullName: string]: any } = {};
 
   constructor() {
-    super();
     let compiledPath = process.cwd();
     let ApplicationClass: typeof Application = require(path.join(compiledPath, 'app/application')).default;
     let environment = process.env.NODE_ENV || 'test';

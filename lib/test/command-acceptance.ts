@@ -18,7 +18,7 @@ const MINUTE = 60 * 1000;
  *
  * @package test
  */
-export default class CommandAcceptanceTest extends DenaliObject {
+export default class CommandAcceptanceTest {
 
   /**
    * The command to invoke, i.e. 'build' would test the invocation of '$ denali build'
@@ -78,7 +78,6 @@ export default class CommandAcceptanceTest extends DenaliObject {
    *                                  dummy app?
    */
   constructor(command: string, options: { dir?: string, environment?: string, name?: string, populateWithDummy?: boolean } = {}) {
-    super();
     this.command = command;
     this.dir = options.dir || (<any>tmp.dirSync({
       unsafeCleanup: !process.env.DENALI_LEAVE_TMP,

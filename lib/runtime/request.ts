@@ -8,7 +8,6 @@ import * as http from 'http';
 import * as uuid from 'uuid';
 import { Socket } from 'net';
 import { Readable, Writable } from 'stream';
-import DenaliObject from '../metal/object';
 import Route from './route';
 
 /**
@@ -27,7 +26,7 @@ export type Method = 'get' | 'post' | 'put' | 'patch' | 'delete' | 'head' | 'opt
  * @package runtime
  * @since 0.1.0
  */
-export default class Request extends DenaliObject {
+export default class Request {
 
   /**
    * A UUID generated unqiue to this request. Useful for tracing a request through the application.
@@ -93,7 +92,6 @@ export default class Request extends DenaliObject {
   _originalAction: string;
 
   constructor(incomingMessage: http.IncomingMessage) {
-    super();
     this._incomingMessage = incomingMessage;
     this.parsedUrl = url.parse(incomingMessage.url, true);
     this.url = this.parsedUrl.pathname;
