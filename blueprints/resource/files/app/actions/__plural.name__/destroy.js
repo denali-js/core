@@ -1,4 +1,3 @@
-import { Response } from 'denali';
 import ApplicationAction from '../application';
 
 export default class Destroy<%= singular.className %> extends ApplicationAction {
