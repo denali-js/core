@@ -14,7 +14,6 @@ export default function environmentConfig(environment) {
     //     connection: {}
     //   }
     // },
-    ormAdapter: 'memory',
     database: {
 
     }
