@@ -161,6 +161,7 @@ export default class Container {
 
         if (klass) {
           this.classLookups[specifier] = klass;
+          this.metaFor(klass).containerName = specifier.split(':')[1];
         }
       }
 
