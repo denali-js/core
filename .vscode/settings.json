@@ -3,5 +3,6 @@
   "typescript.tsdk": "./node_modules/typescript/lib",
   "markdown.styles": [
     "./.vscode/markdown-preview.css"
-  ]
+  ],
+  "gitlens.codeLens.enabled": false
 }

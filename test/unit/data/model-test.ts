@@ -64,8 +64,8 @@ test('adapter uses model-specific one if found', async (t) => {
   let PostAdapter = {};
   container.register('orm-adapter:post', PostAdapter, { instantiate: false, singleton: true });
 
-  let klass = <typeof Model>container.factoryFor<Model>('model:post').class
-  t.is(klass.getAdapter(container), PostAdapter);
+  let klass = <typeof Model>container.factoryFor<Model>('model:post').class;
+  t.is(klass.lookupAdapter(container), PostAdapter);
 });
 
 test('adapter falls back to application if model specific not found', async (t) => {
@@ -76,7 +76,7 @@ test('adapter falls back to application if model specific not found', async (t) 
   container.register('orm-adapter:application', ApplicationAdapter, { instantiate: false, singleton: true });
 
   let klass = <typeof Model>container.factoryFor<Model>('model:post').class;
-  t.is(klass.getAdapter(container), ApplicationAdapter);
+  t.is(klass.lookupAdapter(container), ApplicationAdapter);
 });
 
 test(finderInvokesAdapter, 'find', {}, 1);

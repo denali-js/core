@@ -1,7 +1,5 @@
-import * as assert from 'assert';
 import mixin, { MixinApplicator } from './mixin';
 import Container from './container';
-import { injectInstance } from './inject';
 
 /**
  * The base object class for Denali classes. Adds mixin support.
@@ -31,19 +29,10 @@ export default class DenaliObject {
   protected container: Container;
 
   /**
-   * Apply injections to this instance
-   */
-  constructor(container: Container) {
-    assert(container instanceof Container, 'You must supply a container whenever you instantiate a DenaliObject');
-    injectInstance(this, container);
-    this.init();
-  }
-
-  /**
    * A hook that users should override for constructor-time logic so they don't have to worry about
    * correctly handling super and container references.
    */
-  init() {
+  init(...args: any[]): void {
     // Default is no-op
   }
 

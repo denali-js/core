@@ -8,7 +8,8 @@ import {
 import * as assert from 'assert';
 import Resolver from './resolver';
 import { Dict, Constructor } from '../utils/types';
-import { isInjection } from './inject';
+import DenaliObject from './object';
+import { injectInstance } from './inject';
 
 export interface ContainerOptions {
   /**
@@ -193,7 +194,14 @@ export default class Container {
     if (!factory) { return; }
 
     if (this.getOption(specifier, 'instantiate') === false) {
-      return (<any>factory).class;
+      let klass = (<any>factory).class;
+      if (!singleton) {
+        return klass;
+      }
+      let instance = klass;
+      injectInstance(instance, this);
+      this.lookups[specifier] = { factory, instance };
+      return klass;
     }
 
     let instance = factory.create();
@@ -267,13 +275,16 @@ export default class Container {
   /**
    * Build the factory wrapper for a given container member
    */
-  private buildFactory<T>(specifier: string, klass: Constructor<T>): Factory<T> {
+  private buildFactory<T extends DenaliObject>(specifier: string, klass: Constructor<T>): Factory<T> {
     let container = this;
     return {
       class: klass,
       create(...args: any[]) {
         assert(typeof klass === 'function', `Unable to instantiate ${ specifier } (it's not a constructor). Try setting the 'instantiate: false' option on this container entry to avoid instantiating it`);
-        return new klass(container, ...args);
+        let instance = <T>new klass();
+        injectInstance(instance, container);
+        instance.init(...args);
+        return instance;
       }
     };
   }

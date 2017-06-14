@@ -9,8 +9,11 @@ import {
   MockRequest,
   MockResponse,
   FlatParser,
-  RawSerializer } from 'denali';
-import { RenderOptions, ResponderParams } from 'lib/runtime/action';
+  RawSerializer,
+  RenderOptions,
+  ResponderParams,
+  DatabaseService,
+  Logger } from 'denali';
 
 function mockRequest(options?: any) {
   return new Request(<any>new MockRequest(options));
@@ -18,6 +21,8 @@ function mockRequest(options?: any) {
 
 test.beforeEach((t) => {
   let container = t.context.container = new Container(__dirname);
+  container.register('app:logger', Logger);
+  container.register('service:db', DatabaseService);
   container.register('parser:application', FlatParser);
   container.register('serializer:application', RawSerializer);
   container.register('service:db', {}, { instantiate: false });

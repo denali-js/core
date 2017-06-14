@@ -56,11 +56,19 @@ export default class Model extends DenaliObject {
   static abstract = false;
 
   /**
+   * Lookup the adapter for this model on a given container
+   */
+  static lookupAdapter(container: Container): ORMAdapter {
+    return container.lookup<ORMAdapter>(`orm-adapter:${ this.type }`) || container.lookup<ORMAdapter>('orm-adapter:application');
+  }
+
+  /**
    * Find a single record by it's id.
    */
-  static async find(container: Container, adapter: ORMAdapter, id: any, options?: any): Promise<Model> {
+  static async find(container: Container, id: any, options?: any): Promise<Model> {
     debug(`${ this.type } find: ${ id }`);
     assert(id != null, `You must pass an id to Model.find(id)`);
+    let adapter = this.lookupAdapter(container);
     let result = await adapter.find(this.type, id, options);
     if (!result) {
       return null;
@@ -72,8 +80,9 @@ export default class Model extends DenaliObject {
   /**
    * Find all records of this type.
    */
-  static async all(container: Container, adapter: ORMAdapter, options?: any): Promise<Model[]> {
+  static async all(container: Container, options?: any): Promise<Model[]> {
     debug(`${ this.type } all`);
+    let adapter = this.lookupAdapter(container);
     let result = await adapter.all(this.type, options);
     let Factory = container.factoryFor<Model>(`model:${ this.type }`);
     return result.map((record) => {
@@ -85,9 +94,10 @@ export default class Model extends DenaliObject {
    * Query for records of this type that match the given criteria. The format of the criteria is
    * determined by the ORM adapter used for this model.
    */
-  static async query(container: Container, adapter: ORMAdapter, query: any, options?: any): Promise<Model[]> {
+  static async query(container: Container, query: any, options?: any): Promise<Model[]> {
     debug(`${ this.type } query: ${ query }`);
     assert(query != null, `You must pass a query to Model.query(conditions)`);
+    let adapter = this.lookupAdapter(container);
     let result = await adapter.query(this.type, query, options);
     let Factory = container.factoryFor<Model>(`model:${ this.type }`);
     return result.map((record) => {
@@ -99,9 +109,10 @@ export default class Model extends DenaliObject {
    * Find a single record that matches the given criteria. The format of the criteria is determined
    * by the ORM adapter used for this model.
    */
-  static async queryOne(container: Container, adapter: ORMAdapter, query: any, options?: any): Promise<Model> {
+  static async queryOne(container: Container, query: any, options?: any): Promise<Model> {
     debug(`${ this.type } queryOne: ${ query }`);
     assert(query != null, `You must pass a query to Model.queryOne(conditions)`);
+    let adapter = this.lookupAdapter(container);
     let record = await adapter.queryOne(this.type, query, options);
     if (record) {
       let Factory = container.factoryFor<Model>(`model:${ this.type }`);
@@ -133,16 +144,12 @@ export default class Model extends DenaliObject {
   record: any = null;
 
   /**
-   * Creates an instance of Model.
+   * Creates an instance of Model. We don't use init() here because we want do some sleight of hand
+   * and actually return a Proxy of the ORM's record, rather than a true Model instance.
    */
-  constructor(container: Container, adapter: ORMAdapter, data: any = {}, options?: any) {
-    super(container);
-    this.adapter = adapter;
-    this.record = this.adapter.buildRecord(this.type, data, options);
-
-    // tslint:disable:completed-docs
+  constructor() {
+    super();
     return new Proxy(this, {
-
       get(model: Model, property: string): any {
         if (typeof property === 'string') {
           // Return the attribute value if that's what is requested
@@ -189,9 +196,13 @@ export default class Model extends DenaliObject {
         // Otherwise just delete the model property directly
         return delete model[property];
       }
-
     });
-    // tslint:enable:completed-docs
+  }
+
+  init(data: any, options: any) {
+    super.init(...arguments);
+    this.adapter = this.container.lookup(`orm-adapter:${ this.type }`) || this.container.lookup('orm-adapter:application');
+    this.record = this.adapter.buildRecord(this.type, data, options);
   }
 
   /**
@@ -312,3 +323,4 @@ export default class Model extends DenaliObject {
   }
 
 }
+

@@ -21,7 +21,7 @@ export default class ErrorAction extends Action {
   }
 
   logger = inject<Logger>('app:logger');
-  parser = new FlatParser();
+  parser = inject<FlatParser>('parser:flat');
 
   /**
    * Respond with JSON by default

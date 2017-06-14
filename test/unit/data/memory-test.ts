@@ -1,6 +1,6 @@
 /* tslint:disable:completed-docs no-empty no-invalid-this member-access */
 import test from 'ava';
-import { MemoryAdapter, hasMany } from 'denali';
+import { Container, MemoryAdapter, hasMany } from 'denali';
 
 async function buildAndSave(adapter: MemoryAdapter, type: string, data: any) {
   let record = adapter.buildRecord(type, data);
@@ -16,6 +16,7 @@ async function buildAndSave(adapter: MemoryAdapter, type: string, data: any) {
 }
 
 test.beforeEach(async (t) => {
+  t.context.container = new Container(__dirname);
   t.context.adapter = new MemoryAdapter();
 });
 

@@ -1,10 +1,11 @@
 /* tslint:disable:completed-docs no-empty no-invalid-this member-access */
 import test from 'ava';
 import { isArray } from 'lodash';
-import { JSONAPISerializer, Model, attr, Container, MemoryAdapter, Router, Action, hasMany, Errors, hasOne } from 'denali';
+import { JSONAPISerializer, Model, attr, Container, MemoryAdapter, Router, Action, hasMany, Errors, hasOne, DatabaseService } from 'denali';
 
 test.beforeEach(async (t) => {
   let container = t.context.container = new Container(__dirname);
+  container.register('service:db', DatabaseService);
   container.register('action:posts/show', Action);
   container.register('action:comments/show', Action);
   container.register('app:router', class extends Router {});
@@ -89,12 +90,11 @@ test('sideloads related records', async (t) => {
   container.register('model:comment', class Comment extends Model {
     static text = attr('string');
   });
-  let Post = container.factoryFor('model:post');
-  let Comment = container.factoryFor('model:comment');
-  let serializer = container.lookup('serializer:post');
+  let db = container.lookup('service:db');
+  let serializer = container.lookup('serializer:application');
 
-  let post = await Post.create(container, { title: 'foo' }).save();
-  let comment = await Comment.create(container, { text: 'bar' }).save();
+  let post = await db.create('post', { title: 'foo' }).save();
+  let comment = await db.create('comment', { text: 'bar' }).save();
   await post.addComment(comment);
   let result = await serializer.serialize(<any>{}, post, {});
 
@@ -309,11 +309,11 @@ test('dasherizes field names', async (t) => {
   container.register('model:post', class Post extends Model {
     static publishedAt = attr('string');
   });
-  let Post = container.factoryFor('model:post');
+  let db = container.lookup('service:db');
   let serializer = container.lookup('serializer:post');
 
-  let payload = await Post.create(container, { publishedAt: 'foo' }).save();
-  let result = await serializer.serialize(<any>{}, payload, {});
+  let post = await db.create('post', { publishedAt: 'foo' }).save();
+  let result = await serializer.serialize(<any>{}, post, {});
 
   t.is(result.data.attributes['published-at'], 'foo');
 });

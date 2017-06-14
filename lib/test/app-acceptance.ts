@@ -6,7 +6,6 @@ import {
 } from 'lodash';
 import MockRequest from './mock-request';
 import MockResponse from './mock-response';
-import DenaliObject from '../metal/object';
 import Application from '../runtime/application';
 
 /**

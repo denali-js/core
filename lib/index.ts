@@ -14,6 +14,7 @@ import { attr, hasMany, hasOne, RelationshipDescriptor, AttributeDescriptor } fr
 import Model from './data/model';
 import ORMAdapter from './data/orm-adapter';
 import MemoryAdapter from './data/memory';
+import DatabaseService from './data/database';
 
 // Render
 import Serializer from './render/serializer';
@@ -36,7 +37,7 @@ import Resolver from './metal/resolver';
 import inject from './metal/inject';
 
 // Runtime
-import Action from './runtime/action';
+import Action, { RenderOptions, ResponderParams } from './runtime/action';
 import Addon from './runtime/addon';
 import Application from './runtime/application';
 import Errors from './runtime/errors';
@@ -62,6 +63,7 @@ export {
   Model,
   ORMAdapter,
   MemoryAdapter,
+  DatabaseService,
 
   // Render
   View,
@@ -95,6 +97,8 @@ export {
   Request,
   Router,
   Service,
+  RenderOptions,
+  ResponderParams,
 
   // Test
   AppAcceptance,

@@ -5,7 +5,6 @@ import { exec, spawn, ChildProcess } from 'child_process';
 import * as tmp from 'tmp';
 import * as dedent from 'dedent-js';
 import * as createDebug from 'debug';
-import DenaliObject from '../metal/object';
 
 const debug = createDebug('denali:test:command-acceptance');
 
