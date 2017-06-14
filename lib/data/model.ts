@@ -29,24 +29,10 @@ export default class Model extends DenaliObject {
   [key: string]: any;
 
   /**
-   * The type of the Model class. This string is used as the container name for the model, as well
-   * as in several other areas of Denali (i.e. serializers, ORM adapters, etc). Conventionally,
-   * types are dasherized versions of the model name (i.e. the BlogPost model's type would be
-   * `"blog-post"`).
-   */
-  static get type(): string {
-    let name = this.name;
-    if (name.endsWith('Model')) {
-      name = name.slice(0, -('Model').length);
-    }
-    return kebabCase(name);
-  }
-
-  /**
    * Alias for this.constructor.type
    */
   get type(): string {
-    return (<typeof Model>this.constructor).type;
+    return this.container.metaFor(this.constructor).containerName;
   }
 
   /**
