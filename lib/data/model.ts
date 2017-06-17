@@ -1,14 +1,11 @@
 import * as assert from 'assert';
 import * as createDebug from 'debug';
-import { pluralize } from 'inflection';
-import {
-  kebabCase,
-  startCase,
-  lowerFirst } from 'lodash';
+import { pluralize, singularize } from 'inflection';
+import { startCase } from 'lodash';
 import DenaliObject from '../metal/object';
+import { onLoad } from '../metal/container';
 import ORMAdapter from './orm-adapter';
 import { RelationshipDescriptor, AttributeDescriptor } from './descriptors';
-import Container from '../metal/container';
 
 const debug = createDebug('denali:model');
 
@@ -26,15 +23,6 @@ const debug = createDebug('denali:model');
  */
 export default class Model extends DenaliObject {
 
-  [key: string]: any;
-
-  /**
-   * Alias for this.constructor.type
-   */
-  get type(): string {
-    return this.container.metaFor(this.constructor).containerName;
-  }
-
   /**
    * Marks the Model as an abstract base model, so ORM adapters can know not to create tables or
    * other supporting infrastructure.
@@ -42,10 +30,109 @@ export default class Model extends DenaliObject {
   static abstract = false;
 
   /**
+   * When this class is loaded into a container, inspect the class defintion and add the appropriate
+   * getters and setters for each attribute defined, and the appropriate relationship methods for
+   * each relationship defined. These will delegate activity to the underlying ORM instance.
+   */
+  static [onLoad](ModelClass: typeof Model) {
+    let proto = ModelClass.prototype;
+    // Define attribute getter/settters
+    ModelClass.mapAttributeDescriptors((descriptor, attributeName) => {
+      Object.defineProperty(proto, attributeName, {
+        get() {
+          return this.adapter.getAttribute(this, attributeName);
+        },
+        set(newValue) {
+          return this.adapter.setAttribute(this, attributeName, newValue);
+        }
+      });
+    });
+    // Define relationship operations
+    ModelClass.mapRelationshipDescriptors((descriptor, relationshipName) => {
+      let methodRoot = startCase(relationshipName);
+      // getAuthor(options?)
+      Object.defineProperty(proto, `get${methodRoot}`, {
+        value(options?: any) {
+          return (<Model>this).getRelated(relationshipName, options);
+        }
+      });
+      // setAuthor(comments, options?)
+      Object.defineProperty(proto, `set${methodRoot}`, {
+        value(relatedModels: Model | Model[], options?: any) {
+          return (<Model>this).setRelated(relationshipName, relatedModels, options);
+        }
+      });
+      if (descriptor.mode === 'hasMany') {
+        let singularRoot = singularize(methodRoot);
+        // addComment(comment, options?)
+        Object.defineProperty(proto, `add${singularRoot}`, {
+          value(relatedModel: Model, options?: any) {
+            return (<Model>this).addRelated(relationshipName, relatedModel, options);
+          }
+        });
+        // removeComment(comment, options?)
+        Object.defineProperty(proto, `remove${singularRoot}`, {
+          value(relatedModel: Model, options?: any) {
+            return (<Model>this).removeRelated(relationshipName, relatedModel, options);
+          }
+        });
+      }
+    });
+  }
+
+  /**
+   * Call the supplied callback function for each attribute on this model, passing in the attribute
+   * name and attribute descriptor.
+   */
+  static mapAttributeDescriptors<T>(fn: (descriptor: AttributeDescriptor, name: string) => T): T[] {
+    let klass = <any>this;
+    let result: T[] = [];
+    for (let key in klass) {
+      if (klass[key] && klass[key].isAttribute) {
+        result.push(fn(klass[key], key));
+      }
+    }
+    return result;
+  }
+
+  /**
+   * Call the supplied callback function for each relationship on this model, passing in the
+   * relationship name and relationship descriptor.
+   */
+  static mapRelationshipDescriptors<T>(fn: (descriptor: RelationshipDescriptor, name: string) => T): T[] {
+    let klass = <any>this;
+    let result: T[] = [];
+    for (let key in klass) {
+      if (klass[key] && klass[key].isRelationship) {
+        result.push(fn(klass[key], key));
+      }
+    }
+    return result;
+  }
+
+  [key: string]: any;
+
+  /**
+   * The underlying ORM adapter record. An opaque value to Denali, handled entirely by the ORM
+   * adapter.
+   */
+  record: any = null;
+
+  /**
+   * Get the type of this model based on the container name for it
+   */
+  get type(): string {
+    return this.container.metaFor(this.constructor).containerName;
+  }
+
+  /**
    * The ORM adapter specific to this model type. Defaults to the application's ORM adapter if none
    * for this specific model type is found.
    */
-  adapter: ORMAdapter;
+  get adapter(): ORMAdapter {
+    return this.container.lookup(`orm-adapter:${ this.type }`, { loose: true })
+        || this.container.lookup('orm-adapter:application');
+  }
 
   /**
    * The id of the record
@@ -58,70 +145,10 @@ export default class Model extends DenaliObject {
   }
 
   /**
-   * The underlying ORM adapter record. An opaque value to Denali, handled entirely by the ORM
-   * adapter.
+   * Tell the underlying ORM to build this record
    */
-  record: any = null;
-
-  /**
-   * Creates an instance of Model. We don't use init() here because we want do some sleight of hand
-   * and actually return a Proxy of the ORM's record, rather than a true Model instance.
-   */
-  constructor() {
-    super();
-    return new Proxy(this, {
-      get(model: Model, property: string): any {
-        if (typeof property === 'string') {
-          // Return the attribute value if that's what is requested
-          let descriptor = (<any>model.constructor)[property];
-          if (descriptor && descriptor.isAttribute) {
-            return model.adapter.getAttribute(model, property);
-          }
-          // Forward relationship related methods to their generic counterparts
-          let relatedMethodParts = property.match(/^(get|set|add|remove)(\w+)/);
-          if (relatedMethodParts) {
-            let [ , operation, relationshipName ] = relatedMethodParts;
-            relationshipName = lowerFirst(relationshipName);
-            descriptor = (<any>model.constructor)[relationshipName] || (<any>model.constructor)[pluralize(relationshipName)];
-            if (descriptor && descriptor.isRelationship) {
-              return model[`${ operation }Related`].bind(model, relationshipName);
-            }
-          }
-        }
-        // We double check getAttribute here because it's possible the user supplied some non-attribute
-        // properties during creation. If so, these were dumped into the `buildRecord` method, which
-        // may have bulk assigned them to the underlying record instance (if the ORM allows it). So
-        // we defer there first, just in case. This is a nasty hack - we need to fix how we handle
-        // this.
-        return model.adapter.getAttribute(model, property) || model[property];
-      },
-
-      set(model: Model, property: string, value: any): boolean {
-        // Set attribute values
-        let descriptor = <RelationshipDescriptor & AttributeDescriptor>(<any>model.constructor)[property];
-        if (descriptor && descriptor.isAttribute) {
-          return model.adapter.setAttribute(model, property, value);
-        }
-        // Otherwise just set the model property directly
-        model[property] = value;
-        return true;
-      },
-
-      deleteProperty(model: Model, property: string): boolean {
-        // Delete the attribute
-        let descriptor = (<any>model.constructor)[property];
-        if (descriptor && descriptor.isAttribute) {
-          return model.adapter.deleteAttribute(model, property);
-        }
-        // Otherwise just delete the model property directly
-        return delete model[property];
-      }
-    });
-  }
-
   init(data: any, options: any) {
     super.init(...arguments);
-    this.adapter = this.container.lookup(`orm-adapter:${ this.type }`) || this.container.lookup('orm-adapter:application');
     this.record = this.adapter.buildRecord(this.type, data, options);
   }
 
@@ -144,20 +171,17 @@ export default class Model extends DenaliObject {
   /**
    * Returns the related record(s) for the given relationship.
    */
-  async getRelated(relationshipName: string, query?: any, options?: any): Promise<Model|Model[]> {
+  async getRelated(relationshipName: string, options?: any): Promise<Model|Model[]> {
     let descriptor = (<any>this.constructor)[relationshipName];
     assert(descriptor && descriptor.isRelationship, `You tried to fetch related ${ relationshipName }, but no such relationship exists on ${ this.type }`);
-    if (descriptor.mode === 'hasOne') {
-      options = query;
-      query = null;
-    }
-    let results = await this.adapter.getRelated(this, relationshipName, descriptor, query, options);
     let RelatedModel = this.container.factoryFor<Model>(`model:${ descriptor.type }`);
-    if (!Array.isArray(results)) {
-      assert(descriptor.mode === 'hasOne', 'The ORM adapter returned an array for a hasOne relationship - it should return either the record or null');
-      return results ? RelatedModel.create(this.container, results) : null;
+    let results = await this.adapter.getRelated(this, relationshipName, descriptor, options);
+    if (descriptor.mode === 'hasOne') {
+      assert(!Array.isArray(results), `The ${ this.type } ORM adapter returned an array for the hasOne '${ relationshipName }' relationship - it should return either an ORM record or null.`);
+      return results ? RelatedModel.create(results) : null;
     }
-    return results.map((record) => RelatedModel.create(this.container, record));
+    assert(Array.isArray(results), `The ${ this.type } ORM adapter did not return an array for the hasMany '${ relationshipName }' relationship - it should return an array (empty if no related records exist).`);
+    return results.map((record: any) => RelatedModel.create(record));
   }
 
   /**
@@ -189,8 +213,8 @@ export default class Model extends DenaliObject {
    * attributes
    */
   inspect(): string {
-    let attributesSummary: string[] = this.mapAttributes((value, attributeName) => {
-      return `${ attributeName }=${ JSON.stringify(value) }`;
+    let attributesSummary: string[] = (<typeof Model>this.constructor).mapAttributeDescriptors((descriptor, attributeName) => {
+      return `${ attributeName }=${ JSON.stringify(this[attributeName]) }`;
     });
     return `<${ startCase(this.type) }:${ this.id == null ? '-new-' : this.id } ${ attributesSummary.join(', ') }>`;
   }
@@ -200,46 +224,6 @@ export default class Model extends DenaliObject {
    */
   toString(): string {
     return `<${ startCase(this.type) }:${ this.id == null ? '-new-' : this.id }>`;
-  }
-
-  /**
-   * Call the supplied callback function for each attribute on this model, passing in the attribute
-   * name and attribute instance.
-   */
-  mapAttributes<T>(fn: (value: any, attributeName: string) => T): T[] {
-    let meta = this.container.metaFor(this.constructor);
-    if (meta.attributesCache == null) {
-      meta.attributesCache = [];
-      let klass = <any>this.constructor;
-      for (let key in klass) {
-        if (klass[key] && klass[key].isAttribute) {
-          meta.attributesCache.push(key);
-        }
-      }
-    }
-    return meta.attributesCache.map((attributeName: string) => {
-      return fn((<any>this)[attributeName], attributeName);
-    });
-  }
-
-  /**
-   * Call the supplied callback function for each relationship on this model, passing in the
-   * relationship name and relationship instance.
-   */
-  mapRelationships<T>(fn: (descriptor: RelationshipDescriptor, relationshipName: string) => T): T[] {
-    let meta = this.container.metaFor(this.constructor);
-    let klass = <any>this.constructor;
-    if (meta.relationshipsCache == null) {
-      meta.relationshipsCache = [];
-      for (let key in klass) {
-        if (klass[key] && klass[key].isRelationship) {
-          meta.relationshipsCache.push(key);
-        }
-      }
-    }
-    return meta.relationshipsCache.map((relationshipName: string) => {
-      return fn((<any>this)[relationshipName], relationshipName);
-    });
   }
 
 }

@@ -83,7 +83,7 @@ abstract class ORMAdapter extends DenaliObject {
    * @param descriptor The RelationshipDescriptor of the relationship being fetch
    * @param query An optional query to filter the related records by
    */
-  abstract async getRelated(model: Model, relationship: string, descriptor: RelationshipDescriptor, query: any, options: any): Promise<any|any[]>;
+  abstract async getRelated(model: Model, relationship: string, descriptor: RelationshipDescriptor, options: any): Promise<any|any[]>;
 
   /**
    * Set the related record(s) for the given relationship. Note: for has-many relationships, the
