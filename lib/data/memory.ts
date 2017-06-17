@@ -57,7 +57,7 @@ export default class MemoryAdapter extends ORMAdapter {
     return filter(this._cacheFor(type), query);
   }
 
-  buildRecord(type: string, data: any): any {
+  buildRecord(type: string, data: any = {}): any {
     this._cacheFor(type);
     return data;
   }
