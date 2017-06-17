@@ -91,17 +91,6 @@ test('lookupAll(type) returns an object with all the modules of the given type',
   t.true(type.buzz.isBuzz);
 });
 
-test('instantiates a singleton', async (t) => {
-  let container = new Container(dummyAppPath);
-  class Class {}
-  container.register('foo:bar', Class, { singleton: true, instantiate: true });
-
-  let classInstance = container.lookup('foo:bar');
-  let classInstanceTwo = container.lookup('foo:bar');
-  t.true(classInstance instanceof Class);
-  t.is(classInstanceTwo, classInstance);
-});
-
 test('lazily instantiates singletons (i.e. on lookup)', async (t) => {
   let container = new Container(dummyAppPath);
   function Class() {

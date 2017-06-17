@@ -11,6 +11,22 @@ import { Dict, Constructor } from '../utils/types';
 import DenaliObject from './object';
 import { injectInstance } from './inject';
 
+/**
+ * Anytime the container first looks up a particular entry, if that entry defines a method under the
+ * `onLoad` symbol, it will invoke that method with the looked up entry value.
+ *
+ * This is useful for simulating pseudo-design-time logic. For example, Model classes use this to
+ * create getter and setter methods for attributes which forward to the underlying ORM instance. The
+ * result is that we can programmatically customize the class prototype based on static
+ * declarations, loosely analagous to Ruby's `included` hook.
+ *
+ * Warning: this is a very low-level API, and should be used sparingly! Since the onLoad hook is
+ * invoked with the _static_ class, take care to avoid sharing any container-specific state on that
+ * static class, lest you pollute across containers (since containers share the static class
+ * reference)
+ */
+export const onLoad = Symbol('container onLoad method');
+
 export interface ContainerOptions {
   /**
    * The container should treat the member as a singleton. If paired with `instantiate`, the
@@ -161,7 +177,7 @@ export default class Container {
 
         if (klass) {
           this.classLookups[specifier] = klass;
-          this.metaFor(klass).containerName = specifier.split(':')[1];
+          this.onFirstLookup(specifier, klass);
         }
       }
 
@@ -175,6 +191,18 @@ export default class Container {
       factory = this.factoryLookups[specifier] = this.buildFactory(specifier, klass);
     }
     return factory;
+  }
+
+  /**
+   * Run some logic anytime an entry is first looked up in the container. Here, we add some metadata
+   * so the class can know what specifier it was looked up under, as well as running the special
+   * onLoad hook, allowing classes to run some psuedo-design-time logic.
+   */
+  onFirstLookup(specifier: string, klass: any) {
+    this.metaFor(klass).containerName = specifier.split(':')[1];
+    if (klass[onLoad]) {
+      klass[onLoad](klass);
+    }
   }
 
   /**
