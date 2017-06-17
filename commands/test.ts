@@ -92,9 +92,14 @@ export default class TestCommand extends Command {
   tests: ChildProcess;
 
   async run(argv: any) {
-    let files = argv.files;
+    let files = <string[]>argv.files;
     if (files.length === 0) {
       files.push('test/**/*.js');
+    } else {
+      // Swap common file extensions out with `.js` so ava will find the actual, built files This
+      // doesn't cover every possible edge case, hence the `isValidJsPattern` below, but it should
+      // cover the common use cases.
+      files = files.map((pattern) => pattern.replace(/\.[A-z0-9]{1,4}$/, '.js'));
     }
     // Filter for .js files only
     files = files.filter((pattern: string) => {
