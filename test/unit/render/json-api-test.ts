@@ -28,7 +28,7 @@ test('renders models as JSON-API resource objects', async (t) => {
   let Post = container.factoryFor('model:post');
   let serializer = container.lookup('serializer:post');
 
-  let payload = await Post.create(container, { title: 'foo' }).save();
+  let payload = await Post.create({ title: 'foo' }).save();
   let result = await serializer.serialize(<any>{}, payload, {});
 
   t.is(result.data.attributes.title, 'foo');
@@ -91,7 +91,7 @@ test('sideloads related records', async (t) => {
     static text = attr('string');
   });
   let db = container.lookup('service:db');
-  let serializer = container.lookup('serializer:application');
+  let serializer = container.lookup('serializer:post');
 
   let post = await db.create('post', { title: 'foo' }).save();
   let comment = await db.create('comment', { text: 'bar' }).save();
@@ -129,8 +129,8 @@ test('embeds related records as resource linkage objects', async (t) => {
   let Comment = container.factoryFor('model:comment');
   let serializer = container.lookup('serializer:post');
 
-  let post = await Post.create(container, { title: 'foo' }).save();
-  let comment = await Comment.create(container, { text: 'bar' }).save();
+  let post = await Post.create({ title: 'foo' }).save();
+  let comment = await Comment.create({ text: 'bar' }).save();
   await post.addComment(comment);
   let result = await serializer.serialize(<any>{}, post, {});
 
@@ -149,7 +149,7 @@ test('renders document meta', async (t) => {
   let Post = container.factoryFor('model:post');
   let serializer = container.lookup('serializer:post');
 
-  let payload = await Post.create(container, {}).save();
+  let payload = await Post.create({}).save();
   let result = await serializer.serialize(<any>{}, payload, { meta: { foo: true }});
 
   t.true(result.meta.foo);
@@ -165,7 +165,7 @@ test('renders document links', async (t) => {
   let Post = container.factoryFor('model:post');
   let serializer = container.lookup('serializer:post');
 
-  let payload = await Post.create(container, {}).save();
+  let payload = await Post.create({}).save();
   let result = await serializer.serialize(<any>{}, payload, { links: { foo: true }});
 
   t.true(result.links.foo);
@@ -181,7 +181,7 @@ test('renders jsonapi version', async (t) => {
   let Post = container.factoryFor('model:post');
   let serializer = container.lookup('serializer:post');
 
-  let payload = await Post.create(container, {}).save();
+  let payload = await Post.create({}).save();
   let result = await serializer.serialize(<any>{}, payload, {});
 
   t.is(result.jsonapi.version, '1.0');
@@ -199,8 +199,8 @@ test('renders an array of models as an array under `data`', async (t) => {
   let Post = container.factoryFor('model:post');
   let serializer = container.lookup('serializer:post');
 
-  let postOne = await Post.create(container, { title: 'foo' }).save();
-  let postTwo = await Post.create(container, { title: 'bar' }).save();
+  let postOne = await Post.create({ title: 'foo' }).save();
+  let postTwo = await Post.create({ title: 'bar' }).save();
   let result = await serializer.serialize(<any>{}, [ postOne, postTwo ], {});
 
   t.true(isArray(result.data));
@@ -221,7 +221,7 @@ test('only renders whitelisted attributes', async (t) => {
   let Post = container.factoryFor('model:post');
   let serializer = container.lookup('serializer:post');
 
-  let post = await Post.create(container, { title: 'foo', content: 'bar' }).save();
+  let post = await Post.create({ title: 'foo', content: 'bar' }).save();
   let result = await serializer.serialize(<any>{}, post, {});
 
   t.is(result.data.attributes.title, 'foo');
@@ -254,7 +254,7 @@ test('only renders whitelisted relationships', async (t) => {
   let Post = container.factoryFor('model:post');
   let serializer = container.lookup('serializer:post');
 
-  let post = await Post.create(container, { title: 'foo' }).save();
+  let post = await Post.create({ title: 'foo' }).save();
   let result = await serializer.serialize(<any>{}, post, {});
 
   t.true(isArray(result.data.relationships.comments.data));
@@ -287,8 +287,8 @@ test('uses related serializers to render related records', async (t) => {
   let Comment = container.factoryFor('model:comment');
   let serializer = container.lookup('serializer:post');
 
-  let post = await Post.create(container, { title: 'foo' }).save();
-  await post.addComment(await Comment.create(container, { text: 'bar', publishedAt: 'fizz' }).save());
+  let post = await Post.create({ title: 'foo' }).save();
+  await post.addComment(await Comment.create({ text: 'bar', publishedAt: 'fizz' }).save());
   let result = await serializer.serialize(<any>{}, post, {});
 
   t.true(isArray(result.included));
