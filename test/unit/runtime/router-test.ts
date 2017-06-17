@@ -7,7 +7,8 @@ import {
   MockResponse,
   Container,
   Action,
-  FlatParser} from 'denali';
+  FlatParser,
+  Logger } from 'denali';
 
 const dummyAppPath = path.join(__dirname, '..', 'dummy');
 
@@ -26,6 +27,7 @@ test('runs middleware before determining routing', async (t) => {
   let count = 0;
   let container = new Container(dummyAppPath);
   container.register('app:router', Router);
+  container.register('app:logger', Logger);
   container.register('parser:application', FlatParser);
   container.register('config:environment', { environment: 'development' });
   container.register('service:db', {}, { instantiate: false });
