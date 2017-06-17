@@ -312,7 +312,9 @@ export default class Container {
         assert(typeof klass === 'function', `Unable to instantiate ${ specifier } (it's not a constructor). Try setting the 'instantiate: false' option on this container entry to avoid instantiating it`);
         let instance = <T>new klass();
         injectInstance(instance, container);
-        instance.init(...args);
+        if (typeof instance.init === 'function') {
+          instance.init(...args);
+        }
         return instance;
       }
     };
