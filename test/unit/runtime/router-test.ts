@@ -36,7 +36,7 @@ test('runs middleware before determining routing', async (t) => {
       count += 1;
       t.is(count, 2);
     }
-  }, { singleton: false, instantiate: true });
+  });
   let router = container.lookup<Router>('app:router');
   router.use((req, res, next) => {
     count += 1;

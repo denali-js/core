@@ -68,6 +68,15 @@ test('instantiate: true, singleton: false', async (t) => {
   t.not(result, container.lookup('foo:main'));
 });
 
+test('should default unknown types to instantiate: false, singleton: true', async (t) => {
+  let container = new Container(dummyAppPath);
+
+  container.register('foo:main', { foo: true });
+  let result = container.lookup('foo:main');
+
+  t.true(result.foo);
+});
+
 test('register(type, value) registers a value on the container', async (t) => {
   let container = new Container(dummyAppPath);
   container.register('foo:bar', { buzz: true }, { singleton: true, instantiate: false });

@@ -13,7 +13,7 @@ export default class DenaliObject {
    * state statically
    */
   protected static set container(value: any) {
-    throw new Error('You tried to set a `container` property on a class directly - this is generally a bad idea, since static references to containers')
+    throw new Error('You tried to set a `container` property on a class directly - this is generally a bad idea, since the static class is shared across multiple containers, likely resulting in leaky state and bizarre test failures.');
   }
 
   /**

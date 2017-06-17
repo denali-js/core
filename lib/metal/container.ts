@@ -11,6 +11,11 @@ import { Dict, Constructor } from '../utils/types';
 import DenaliObject from './object';
 import { injectInstance } from './inject';
 
+const DEFAULT_OPTIONS = {
+  instantiate: false,
+  singleton: true
+};
+
 /**
  * Anytime the container first looks up a particular entry, if that entry defines a method under the
  * `onLoad` symbol, it will invoke that method with the looked up entry value.
@@ -113,11 +118,13 @@ export default class Container {
    * Options for container entries. Keyed on specifier or type. See ContainerOptions.
    */
   private options: Dict<ContainerOptions> = {
+    app: { singleton: true, instantiate: true },
     action: { singleton: false, instantiate: true },
     config: { singleton: true, instantiate: false },
     initializer: { singleton: true, instantiate: false },
     'orm-adapter': { singleton: true, instantiate: true },
     model: { singleton: false, instantiate: false },
+    parser: { singleton: true, instantiate: true },
     serializer: { singleton: true, instantiate: true },
     service: { singleton: true, instantiate: true }
   };
@@ -273,7 +280,7 @@ export default class Container {
    */
   getOption(specifier: string, optionName: keyof ContainerOptions): any {
     let [ type ] = specifier.split(':');
-    let options = defaults(this.options[specifier], this.options[type]);
+    let options = defaults(this.options[specifier], this.options[type], DEFAULT_OPTIONS);
     return options[optionName];
   }
 
