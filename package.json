@@ -1,6 +1,6 @@
 {
   "name": "denali",
-  "version": "0.0.26",
+  "version": "0.0.27",
   "description": "An opinionated Node framework for building robust JSON APIs",
   "homepage": "http://denalijs.org",
   "repository": "denali-js/denali",

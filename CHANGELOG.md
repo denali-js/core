@@ -2,6 +2,55 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.0.27"></a>
+# [0.0.27](https://github.com/denali-js/denali/compare/v0.0.26...v0.0.27) (2017-06-19)
+
+
+### Bug Fixes
+
+* **addon-blueprint:** dedupe package.json scripts ([9aa0811](https://github.com/denali-js/denali/commit/9aa0811))
+* **blueprint:** set travis node versions at 6 & 7 for new apps/addons (#292) ([f26434f](https://github.com/denali-js/denali/commit/f26434f))
+* **blueprints:** add orm-adapters dir to addon (#328) ([dd385a5](https://github.com/denali-js/denali/commit/dd385a5))
+* **blueprints:** Define a default application orm-adapter (#327) ([abf1367](https://github.com/denali-js/denali/commit/abf1367)), closes [#320](https://github.com/denali-js/denali/issues/320)
+* **blueprints:** remove ormAdapter option from app blueprint (#323) ([18b72bd](https://github.com/denali-js/denali/commit/18b72bd))
+* **build:** ensure denali works correctly as a child addon (#340) ([153257c](https://github.com/denali-js/denali/commit/153257c))
+* **build:** use dir rather than process.cwd() (#301) ([7a17876](https://github.com/denali-js/denali/commit/7a17876))
+* remove extraneous console.log ([84027c3](https://github.com/denali-js/denali/commit/84027c3))
+* **commands:** fix server port env default ([cad2ab5](https://github.com/denali-js/denali/commit/cad2ab5))
+* **data:** default new memory adapter records to empty object if no data is provided ([fed7f95](https://github.com/denali-js/denali/commit/fed7f95))
+* **data:** don't throw if model-specific orm-adapter not found (#342) ([cb6ba67](https://github.com/denali-js/denali/commit/cb6ba67))
+* **descriptors:** descriptor options should default to an empty object (#336) ([71b3788](https://github.com/denali-js/denali/commit/71b3788))
+* **json-api-parser:** don't try to parse if no body exists (#309) ([d9dbd88](https://github.com/denali-js/denali/commit/d9dbd88))
+* **metal:** default unknown container types to { singleton: true, instantiate: false }; fixes #322 ([7f754b9](https://github.com/denali-js/denali/commit/7f754b9)), closes [#322](https://github.com/denali-js/denali/issues/322)
+* **metal:** only run init hook if it is defined ([2d46c81](https://github.com/denali-js/denali/commit/2d46c81))
+* **request:** pass through socket connection from incoming message (#306) ([b1035bb](https://github.com/denali-js/denali/commit/b1035bb))
+* **runtime:** get environment from config, not app ([f89b0bd](https://github.com/denali-js/denali/commit/f89b0bd))
+* **view:** add view container options (#343) ([186d89e](https://github.com/denali-js/denali/commit/186d89e))
+* add fallback logic for adapter lookup ([7310e6d](https://github.com/denali-js/denali/commit/7310e6d))
+* add missing variable scope to error action template ([fc45cd6](https://github.com/denali-js/denali/commit/fc45cd6))
+* fix import paths ([ed8f66d](https://github.com/denali-js/denali/commit/ed8f66d))
+* only use DenaliObject as base class for containered objects ([338c758](https://github.com/denali-js/denali/commit/338c758))
+
+
+### Features
+
+* automatically include all built-in parsers and serializers in the container ([94ec908](https://github.com/denali-js/denali/commit/94ec908)), closes [#314](https://github.com/denali-js/denali/issues/314)
+* **command:** allow simple non-js file patterns for test command ([5f739b2](https://github.com/denali-js/denali/commit/5f739b2))
+* **data:** derive model.type from container name; fix #333 ([a900cbf](https://github.com/denali-js/denali/commit/a900cbf)), closes [#333](https://github.com/denali-js/denali/issues/333)
+* **database:** pass through additional query options to model methods (#330) ([d2c77b1](https://github.com/denali-js/denali/commit/d2c77b1)), closes [#329](https://github.com/denali-js/denali/issues/329)
+* **metal:** add init hook ([8528f99](https://github.com/denali-js/denali/commit/8528f99))
+* **metal:** add onLoad hook ([f7fa03b](https://github.com/denali-js/denali/commit/f7fa03b))
+* **metal:** store container name lookups on class meta; fix #334 ([af3db6b](https://github.com/denali-js/denali/commit/af3db6b)), closes [#334](https://github.com/denali-js/denali/issues/334)
+* **middleware:** extend Request class to match express api (#293) ([c713bdc](https://github.com/denali-js/denali/commit/c713bdc)), closes [#291](https://github.com/denali-js/denali/issues/291)
+* **runtime:** add resolver, refactor container ([a4894d7](https://github.com/denali-js/denali/commit/a4894d7)), closes [#285](https://github.com/denali-js/denali/issues/285) [#284](https://github.com/denali-js/denali/issues/284)
+* **runtime:** drain server connections on app shutdown (#290) ([94e2025](https://github.com/denali-js/denali/commit/94e2025)), closes [#263](https://github.com/denali-js/denali/issues/263)
+* **runtime:** inject db service into base action class; fixes #313 ([dd93340](https://github.com/denali-js/denali/commit/dd93340)), closes [#313](https://github.com/denali-js/denali/issues/313)
+* **runtime:** move dotenv config loading to cli (#289) ([c63883b](https://github.com/denali-js/denali/commit/c63883b))
+* automatically inject logger into base action class ([ec971cd](https://github.com/denali-js/denali/commit/ec971cd))
+* container injections, parser, docs update, add view ([0133631](https://github.com/denali-js/denali/commit/0133631))
+
+
+
 <a name="0.0.26"></a>
 ## [0.0.26](https://github.com/denali-js/denali/compare/v0.0.25...v0.0.26) (2017-03-13)
 
