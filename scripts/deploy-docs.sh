@@ -2,6 +2,15 @@
 
 set -e
 
+if ! hash aws 2>/dev/null; then
+    echo "AWS CLI not found, installing locally"
+    curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+    unzip awscli-bundle.zip
+    ./awscli-bundle/install -b ~/bin/aws
+    export PATH=~/bin:$PATH
+    aws configure set preview.cloudfront true
+fi
+
 # Adapted from https://gist.github.com/domenic/ec8b0fc8ab45f39403dd
 
 SOURCE_BRANCH="master"
