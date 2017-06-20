@@ -34,11 +34,6 @@ module.exports = class ExtractTypedocs extends Plugin {
   normalizeData(data, root) {
     let packages = data.packages = {};
     let exportedItems = data.exportedItems = [];
-    // The input dir for this broccoli tree is a symlink to the output dir of the previous tree.
-    // Typedoc seems to create duplicate top-level file entries in the extracted json, one with
-    // the symlinked path and one with the real path. So here we filter it down to one or the other
-    // (doesn't matter which).
-    data.children = data.children.filter((file) => file.name.includes('extract_typedocs-input'));
     data.children.forEach((file) => {
       (file.children || []).forEach((item) => {
         if (item.flags.isExported) {
