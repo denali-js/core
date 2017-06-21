@@ -53,7 +53,7 @@ export default class InstallCommand extends Command {
     await spinner.start(`Installing ${ pkg.name }@${ pkg.version }`);
     let installCommand = pkgManager === 'yarn' ? 'yarn add --mutex network' : 'npm install --save';
     try {
-      run(`${ installCommand } ${ addonName }`);
+      run(`${ installCommand } ${ addonName }`, { stdio: 'pipe' });
     } catch (e) {
       this.fail('Install failed: ' + e.stack);
     }
