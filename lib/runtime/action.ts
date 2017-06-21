@@ -173,7 +173,18 @@ export default abstract class Action extends DenaliObject {
   /**
    * Render the response body
    */
-  async render(status: number, body?: any, options: RenderOptions = {}) {
+
+  async render(body: any, options?: RenderOptions): Promise<void>;
+  async render(status: number, body?: any, options?: RenderOptions): Promise<void> {
+    if (typeof status !== 'number') {
+      options = body;
+      body = status;
+      status = 200;
+    }
+    if (!options) {
+      options = {};
+    }
+
     this.hasRendered = true;
 
     debug(`[${ this.request.id }]: rendering`);
