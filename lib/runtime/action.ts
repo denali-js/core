@@ -33,12 +33,19 @@ export interface Responder {
  * The parser determines the exact shape and structure of the arguments object passed into your
  * Action's respond method. However, the common convention is to at least expose the properties
  * listed below.
+ *
+ * *Note for Typescript users:*
+ *
+ * It's possible to have a parser that returns a query object with non-string properties (i.e. your
+ * parser automatically converts the `page=4` query param into a number). In that case, you should
+ * probably define your own interface that extends from this, and use that interface to type your
+ * respond method argument.
  */
 export interface ResponderParams {
   body?: any;
-  query?: Dict<any>;
-  headers?: Dict<any>;
-  params?: Dict<any>;
+  query?: Dict<string>;
+  headers?: Dict<string>;
+  params?: Dict<string>;
   [key: string]: any;
 }
 
