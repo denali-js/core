@@ -43,6 +43,7 @@ export default class Model extends DenaliObject {
     // Define attribute getter/settters
     ModelClass.mapAttributeDescriptors((descriptor, attributeName) => {
       Object.defineProperty(proto, attributeName, {
+        configurable: true,
         get() {
           return this.adapter.getAttribute(this, attributeName);
         },
@@ -56,12 +57,14 @@ export default class Model extends DenaliObject {
       let methodRoot = startCase(relationshipName);
       // getAuthor(options?)
       Object.defineProperty(proto, `get${methodRoot}`, {
+        configurable: true,
         value(options?: any) {
           return (<Model>this).getRelated(relationshipName, options);
         }
       });
       // setAuthor(comments, options?)
       Object.defineProperty(proto, `set${methodRoot}`, {
+        configurable: true,
         value(relatedModels: Model | Model[], options?: any) {
           return (<Model>this).setRelated(relationshipName, relatedModels, options);
         }
@@ -70,12 +73,14 @@ export default class Model extends DenaliObject {
         let singularRoot = singularize(methodRoot);
         // addComment(comment, options?)
         Object.defineProperty(proto, `add${singularRoot}`, {
+          configurable: true,
           value(relatedModel: Model, options?: any) {
             return (<Model>this).addRelated(relationshipName, relatedModel, options);
           }
         });
         // removeComment(comment, options?)
         Object.defineProperty(proto, `remove${singularRoot}`, {
+          configurable: true,
           value(relatedModel: Model, options?: any) {
             return (<Model>this).removeRelated(relationshipName, relatedModel, options);
           }
