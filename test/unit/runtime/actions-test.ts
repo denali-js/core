@@ -208,6 +208,22 @@ test('before filters that render block the responder', async (t) => {
   t.deepEqual(response, { hello: 'world' });
 });
 
+test('before filters that return block the responder', async (t) => {
+  t.plan(1);
+  let container: Container = t.context.container;
+  container.register('action:test', class TestAction extends Action {
+    static before = [ 'preempt' ];
+    respond() {
+      t.fail('Filter should have preempted this responder method');
+    }
+    preempt() {
+       return { hello: 'world' };
+    }
+  });
+  let response = await t.context.runAction();
+  t.deepEqual(response, { hello: 'world' });
+});
+
 test('after filters run after responder, even if responder renders', async (t) => {
   t.plan(1);
   let container: Container = t.context.container;

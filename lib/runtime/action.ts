@@ -307,8 +307,8 @@ export default abstract class Action extends DenaliObject {
       debug(`[${ this.request.id }]: running '${ filterName }' filter`);
       let filterResult = await filter.call(this, parsedRequest);
       instrumentation.finish();
-      if (this.hasRendered || filterResult) {
-        return filterResult;
+      if (!this.hasRendered && filterResult) {
+        return this.render(200, filterResult);
       }
     }
   }
