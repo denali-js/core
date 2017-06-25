@@ -35,6 +35,10 @@ export default class Model extends DenaliObject {
    * each relationship defined. These will delegate activity to the underlying ORM instance.
    */
   static [onLoad](ModelClass: typeof Model) {
+    // Skip defining on abstract classes
+    if (ModelClass.hasOwnProperty('abstract') && ModelClass.abstract) {
+      return;
+    }
     let proto = ModelClass.prototype;
     // Define attribute getter/settters
     ModelClass.mapAttributeDescriptors((descriptor, attributeName) => {
