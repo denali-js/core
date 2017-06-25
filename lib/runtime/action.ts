@@ -182,6 +182,7 @@ export default abstract class Action extends DenaliObject {
    */
 
   async render(body: any, options?: RenderOptions): Promise<void>;
+  async render(status: number, body?: any, options?: RenderOptions): Promise<void>;
   async render(status: number, body?: any, options?: RenderOptions): Promise<void> {
     if (typeof status !== 'number') {
       options = body;
@@ -266,7 +267,7 @@ export default abstract class Action extends DenaliObject {
       // Autorender if render has not been manually called and a value was returned
       if (!this.hasRendered) {
         debug(`[${ this.request.id }]: autorendering`);
-        await this.render(200, result);
+        await this.render(result);
       }
     }
 
