@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.0.28"></a>
+# [0.0.28](https://github.com/denali-js/denali/compare/v0.0.27...v0.0.28) (2017-06-25)
+
+
+### Bug Fixes
+
+* **blueprint:** fix serializer relationships property ([3ec309b](https://github.com/denali-js/denali/commit/3ec309b))
+* **blueprints:** Make resource test comments two spaces, not 4 (#353) ([730d1a1](https://github.com/denali-js/denali/commit/730d1a1))
+* **command:** hide package manager output from install command ([4dc6f12](https://github.com/denali-js/denali/commit/4dc6f12))
+* **data:** allow models to overwrite previous augmentations ([62bd914](https://github.com/denali-js/denali/commit/62bd914))
+* **data:** do not try to augment abstract models ([4208b14](https://github.com/denali-js/denali/commit/4208b14))
+* **runtime:** add correct overload signature to render method ([ee3fd16](https://github.com/denali-js/denali/commit/ee3fd16))
+* **runtime:** ensure that autorenders happen for filters ([dc18197](https://github.com/denali-js/denali/commit/dc18197))
+* **runtime:** tighten up typing for ResponderParams, since users can define and use their own interface if their parser differs ([6bd11a4](https://github.com/denali-js/denali/commit/6bd11a4))
+* **runtime:** use the status code of any rendered errors as the response status code ([8c01dff](https://github.com/denali-js/denali/commit/8c01dff))
+
+
+### Features
+
+* remove unhandled promise rejection handler to avoid potential memory leaks ([b156303](https://github.com/denali-js/denali/commit/b156303))
+* **metal:** add low-level clearCache method to container ([efb39c4](https://github.com/denali-js/denali/commit/efb39c4))
+* **parse:** add raw parser for consistency (spoiler: it is just the flat parser) ([b03aefd](https://github.com/denali-js/denali/commit/b03aefd))
+* **runtime:** allow this.render(data) and assume 200 status code ([72260b2](https://github.com/denali-js/denali/commit/72260b2))
+
+
+
 <a name="0.0.27"></a>
 # [0.0.27](https://github.com/denali-js/denali/compare/v0.0.26...v0.0.27) (2017-06-19)
 
