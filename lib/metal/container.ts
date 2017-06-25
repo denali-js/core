@@ -310,6 +310,17 @@ export default class Container {
   }
 
   /**
+   * Clear any cached lookups for this specifier. You probably don't want to use this. The only
+   * significant use case is for testing to allow test containers to override an already looked up
+   * value.
+   */
+  clearCache(specifier: string) {
+    delete this.lookups[specifier];
+    delete this.classLookups[specifier];
+    delete this.factoryLookups[specifier];
+  }
+
+  /**
    * Build the factory wrapper for a given container member
    */
   private buildFactory<T extends DenaliObject>(specifier: string, klass: Constructor<T>): Factory<T> {

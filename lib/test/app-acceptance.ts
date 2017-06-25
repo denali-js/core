@@ -7,6 +7,7 @@ import {
 import MockRequest from './mock-request';
 import MockResponse from './mock-response';
 import Application from '../runtime/application';
+import { ContainerOptions } from '../metal/container';
 
 /**
  * The AppAcceptance class represents an app acceptance test. It spins up an in-memory instance of
@@ -197,9 +198,11 @@ export class AppAcceptance {
    *
    * @since 0.1.0
    */
-  inject(name: string, value: any): void {
-    this._injections[name] = this.application.container.lookup(name);
-    this.application.container.register(name, value);
+  inject(name: string, value: any, options: ContainerOptions): void {
+    let container = this.application.container;
+    this._injections[name] = container.lookup(name);
+    container.register(name, value, options || { singleton: false, instantiate: false });
+    container.clearCache(name);
   }
 
   /**
