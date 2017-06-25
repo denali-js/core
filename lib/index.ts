@@ -25,6 +25,7 @@ import View from './render/view';
 
 // Parse
 import Parser from './parse/parser';
+import RawParser from './parse/raw';
 import FlatParser from './parse/flat';
 import JSONAPIParser from './parse/json-api';
 
@@ -72,6 +73,7 @@ export {
 
   // Parse
   Parser,
+  RawParser,
   FlatParser,
   JSONAPIParser,
 
