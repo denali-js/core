@@ -1,6 +1,7 @@
 import View from './view';
 import { ServerResponse } from 'http';
 import Action, { RenderOptions } from '../runtime/action';
+import Errors from '../runtime/errors';
 
 export interface RelationshipConfig {
   strategy?: 'embed' | 'id' | string;
@@ -44,6 +45,9 @@ export default abstract class Serializer extends View {
 
   async render(action: Action, response: ServerResponse, body: any, options: RenderOptions): Promise<void> {
     response.setHeader('Content-type', this.contentType);
+    if (body instanceof Errors.HttpError) {
+      response.statusCode = body.status;
+    }
     body = await this.serialize(action, body, options);
     let isProduction = this.container.lookup('config:environment').environment === 'production';
     response.write(JSON.stringify(body , null, isProduction ? 0 : 2) || '');
