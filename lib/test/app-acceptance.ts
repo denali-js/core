@@ -198,7 +198,7 @@ export class AppAcceptance {
    *
    * @since 0.1.0
    */
-  inject(name: string, value: any, options: ContainerOptions): void {
+  inject(name: string, value: any, options?: ContainerOptions): void {
     let container = this.application.container;
     this._injections[name] = container.lookup(name);
     container.register(name, value, options || { singleton: false, instantiate: false });
