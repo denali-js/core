@@ -3,7 +3,7 @@ import * as createDebug from 'debug';
 import { pluralize, singularize } from 'inflection';
 import { startCase } from 'lodash';
 import DenaliObject from '../metal/object';
-import { onLoad } from '../metal/container';
+import Container, { onLoad } from '../metal/container';
 import ORMAdapter from './orm-adapter';
 import { RelationshipDescriptor, AttributeDescriptor } from './descriptors';
 
@@ -117,6 +117,14 @@ export default class Model extends DenaliObject {
       }
     }
     return result;
+  }
+
+  /**
+   * Get the type string for this model class. You must supply a container instance so we can lookup
+   * the container name for this model class.
+   */
+  static getType(container: Container): string {
+    return container.metaFor(this).containerName;
   }
 
   [key: string]: any;
