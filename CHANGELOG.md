@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.0.29"></a>
+# [0.0.29](https://github.com/denali-js/denali/compare/v0.0.28...v0.0.29) (2017-07-02)
+
+
+### Bug Fixes
+
+* **test:** make options argument to test container inject method optional ([f5083bd](https://github.com/denali-js/denali/commit/f5083bd))
+
+
+### Features
+
+* **data:** add getType convenience method ([c00de67](https://github.com/denali-js/denali/commit/c00de67))
+
+
+
 <a name="0.0.28"></a>
 # [0.0.28](https://github.com/denali-js/denali/compare/v0.0.27...v0.0.28) (2017-06-25)
 
