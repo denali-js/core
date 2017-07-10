@@ -139,6 +139,7 @@ export default class Container {
    * Create a new container with a base (highest precedence) resolver at the given directory.
    */
   constructor(root: string) {
+    assert(root, 'You must supply a valid path as the root directory for the container to load from');
     this.resolvers.push(new Resolver(root));
   }
 

@@ -35,6 +35,7 @@ export default class Resolver {
   private registry: Registry = new Map();
 
   constructor(root: string) {
+    assert(root, 'You must supply a valid root path that the resolve should use to load from');
     this.root = root;
   }
 

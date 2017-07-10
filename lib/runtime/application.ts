@@ -3,6 +3,8 @@ import {
   constant,
   noop
 } from 'lodash';
+import * as assert from 'assert';
+import * as fs from 'fs';
 import * as path from 'path';
 import * as http from 'http';
 import * as https from 'https';
@@ -93,6 +95,7 @@ export default class Application extends Addon {
   addons: Addon[];
 
   constructor(options: ApplicationOptions) {
+    assert(fs.existsSync(options.dir), '`options.dir` must contain a valid path to the directory containing this application');
     let container = new Container(options.dir);
     super(Object.assign(options, { container }));
 
