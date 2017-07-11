@@ -20,7 +20,7 @@ test('renders models as flat json structures', async (t) => {
   let serializer = container.lookup('serializer:application');
   let Post = container.factoryFor('model:post');
   let post = await Post.create({ title: 'foo' }).save();
-  let result = await serializer.serialize(<any>{}, post, {});
+  let result = await serializer.serialize(post, <any>{}, {});
 
   t.is(result.title, 'foo');
 });
@@ -52,7 +52,7 @@ test('renders related records as embedded objects', async (t) => {
 
   let post = await Post.create({ title: 'foo' }).save();
   await post.addComment(await Comment.create({ text: 'bar' }).save());
-  let result = await serializer.serialize(<any>{}, post, {});
+  let result = await serializer.serialize(post, <any>{}, {});
 
   t.true(isArray(result.comments));
   t.is(result.comments[0].text, 'bar');
@@ -86,7 +86,7 @@ test('renders related records as embedded ids', async (t) => {
   let post = await Post.create({ title: 'foo' }).save();
   let comment = await Comment.create({ text: 'bar' }).save();
   await post.addComment(comment);
-  let result = await serializer.serialize(<any>{}, post, {});
+  let result = await serializer.serialize(post, <any>{}, {});
 
   t.true(isArray(result.comments));
   t.is(result.comments[0], comment.id);
@@ -100,7 +100,7 @@ test('renders errors', async (t) => {
   });
   let serializer = container.lookup('serializer:application');
 
-  let result = await serializer.serialize(<any>{}, new Errors.InternalServerError('foo'), {});
+  let result = await serializer.serialize(new Errors.InternalServerError('foo'), <any>{}, {});
   t.is(result.status, 500);
   t.is(result.code, 'InternalServerError');
   t.is(result.message, 'foo');
@@ -120,7 +120,7 @@ test('only renders whitelisted attributes', async (t) => {
   let serializer = container.lookup('serializer:post');
 
   let post = await Post.create({ title: 'foo', content: 'bar' }).save();
-  let result = await serializer.serialize(<any>{}, post, {});
+  let result = await serializer.serialize(post, <any>{}, {});
 
   t.is(result.title, 'foo');
   t.falsy(result.content);
@@ -153,7 +153,7 @@ test('only renders whitelisted relationships', async (t) => {
   let serializer = container.lookup('serializer:post');
 
   let post = await Post.create({ title: 'foo' }).save();
-  let result = await serializer.serialize(<any>{}, post, {});
+  let result = await serializer.serialize(post, <any>{}, {});
 
   t.true(isArray(result.comments));
   t.falsy(result.author);
@@ -187,7 +187,7 @@ test('uses related serializers to render related records', async (t) => {
 
   let post = await Post.create({ title: 'foo' }).save();
   await post.addComment(await Comment.create({ text: 'bar', publishedAt: 'fizz' }).save());
-  let result = await serializer.serialize(<any>{}, post, {});
+  let result = await serializer.serialize(post, <any>{}, {});
 
   t.true(isArray(result.comments));
   t.is(result.comments[0].text, 'bar');

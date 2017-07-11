@@ -29,7 +29,7 @@ test('renders models as JSON-API resource objects', async (t) => {
   let serializer = container.lookup('serializer:post');
 
   let payload = await Post.create({ title: 'foo' }).save();
-  let result = await serializer.serialize(<any>{}, payload, {});
+  let result = await serializer.serialize(payload, <any>{}, {});
 
   t.is(result.data.attributes.title, 'foo');
 });
@@ -42,7 +42,7 @@ test('renders errors according to spec', async (t) => {
   });
   let serializer = container.lookup('serializer:application');
 
-  let result = await serializer.serialize(<any>{}, new Errors.InternalServerError('foo'), {});
+  let result = await serializer.serialize(new Errors.InternalServerError('foo'), <any>{}, {});
 
   t.is(result.errors[0].status, 500);
   t.is(result.errors[0].code, 'InternalServerError');
@@ -60,7 +60,7 @@ test('renders validation errors with additional details', async (t) => {
   let error = <any>new Errors.UnprocessableEntity('Email cannot be blank');
   error.title = 'presence';
   error.source = '/data/attributes/email';
-  let result = await serializer.serialize(<any>{}, error, {});
+  let result = await serializer.serialize(error, <any>{}, {});
 
   t.is(result.errors[0].status, 422);
   t.is(result.errors[0].code, 'UnprocessableEntityError');
@@ -96,7 +96,7 @@ test('sideloads related records', async (t) => {
   let post = await db.create('post', { title: 'foo' }).save();
   let comment = await db.create('comment', { text: 'bar' }).save();
   await post.addComment(comment);
-  let result = await serializer.serialize(<any>{}, post, {});
+  let result = await serializer.serialize(post, <any>{}, {});
 
   t.true(isArray(result.included));
   t.is(result.included[0].attributes.text, 'bar');
@@ -132,7 +132,7 @@ test('embeds related records as resource linkage objects', async (t) => {
   let post = await Post.create({ title: 'foo' }).save();
   let comment = await Comment.create({ text: 'bar' }).save();
   await post.addComment(comment);
-  let result = await serializer.serialize(<any>{}, post, {});
+  let result = await serializer.serialize(post, <any>{}, {});
 
   t.true(isArray(result.included));
   t.is(result.included[0].id, comment.id);
@@ -150,7 +150,7 @@ test('renders document meta', async (t) => {
   let serializer = container.lookup('serializer:post');
 
   let payload = await Post.create({}).save();
-  let result = await serializer.serialize(<any>{}, payload, { meta: { foo: true }});
+  let result = await serializer.serialize(payload, <any>{}, { meta: { foo: true }});
 
   t.true(result.meta.foo);
 });
@@ -166,7 +166,7 @@ test('renders document links', async (t) => {
   let serializer = container.lookup('serializer:post');
 
   let payload = await Post.create({}).save();
-  let result = await serializer.serialize(<any>{}, payload, { links: { foo: true }});
+  let result = await serializer.serialize(payload, <any>{}, { links: { foo: true }});
 
   t.true(result.links.foo);
 });
@@ -182,7 +182,7 @@ test('renders jsonapi version', async (t) => {
   let serializer = container.lookup('serializer:post');
 
   let payload = await Post.create({}).save();
-  let result = await serializer.serialize(<any>{}, payload, {});
+  let result = await serializer.serialize(payload, <any>{}, {});
 
   t.is(result.jsonapi.version, '1.0');
 });
@@ -201,7 +201,7 @@ test('renders an array of models as an array under `data`', async (t) => {
 
   let postOne = await Post.create({ title: 'foo' }).save();
   let postTwo = await Post.create({ title: 'bar' }).save();
-  let result = await serializer.serialize(<any>{}, [ postOne, postTwo ], {});
+  let result = await serializer.serialize([ postOne, postTwo ], <any>{}, {});
 
   t.true(isArray(result.data));
   t.is(result.data[0].id, postOne.id);
@@ -222,7 +222,7 @@ test('only renders whitelisted attributes', async (t) => {
   let serializer = container.lookup('serializer:post');
 
   let post = await Post.create({ title: 'foo', content: 'bar' }).save();
-  let result = await serializer.serialize(<any>{}, post, {});
+  let result = await serializer.serialize(post, <any>{}, {});
 
   t.is(result.data.attributes.title, 'foo');
   t.falsy(result.data.attributes.content);
@@ -255,7 +255,7 @@ test('only renders whitelisted relationships', async (t) => {
   let serializer = container.lookup('serializer:post');
 
   let post = await Post.create({ title: 'foo' }).save();
-  let result = await serializer.serialize(<any>{}, post, {});
+  let result = await serializer.serialize(post, <any>{}, {});
 
   t.true(isArray(result.data.relationships.comments.data));
   t.falsy(result.data.relationships.author);
@@ -289,7 +289,7 @@ test('uses related serializers to render related records', async (t) => {
 
   let post = await Post.create({ title: 'foo' }).save();
   await post.addComment(await Comment.create({ text: 'bar', publishedAt: 'fizz' }).save());
-  let result = await serializer.serialize(<any>{}, post, {});
+  let result = await serializer.serialize(post, <any>{}, {});
 
   t.true(isArray(result.included));
   t.is(result.included[0].attributes.text, 'bar');
@@ -313,7 +313,7 @@ test('dasherizes field names', async (t) => {
   let serializer = container.lookup('serializer:post');
 
   let post = await db.create('post', { publishedAt: 'foo' }).save();
-  let result = await serializer.serialize(<any>{}, post, {});
+  let result = await serializer.serialize(post, <any>{}, {});
 
   t.is(result.data.attributes['published-at'], 'foo');
 });
