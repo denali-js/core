@@ -1,4 +1,4 @@
-import Serializer from './serializer';
+import Serializer, { RelationshipConfigs } from './serializer';
 import Action, { RenderOptions } from 'lib/runtime/action';
 
 /**
@@ -17,7 +17,7 @@ export default abstract class RawSerializer extends Serializer {
   /**
    * Renders the payload, either a primary data model(s) or an error payload.
    */
-  async serialize(body: any, action: Action, options: RenderOptions = {}): Promise<any> {
+  async serialize(body: any, attributes: string[], relationships: RelationshipConfigs, action: Action, options: RenderOptions = {}): Promise<any> {
     return body;
   }
 

@@ -311,6 +311,15 @@ export default class Container {
   }
 
   /**
+   * Returns the container name for the given object. If the object is an instance of a containered
+   * class, it will return the containered class name. If the object and it's constructor are not
+   * found in the container, it will return 'anonymous';
+   */
+  nameFor(obj: any) {
+    return this.metaFor(obj).containerName || this.metaFor(obj.constructor).containerNaem || 'anonymous';
+  }
+
+  /**
    * Clear any cached lookups for this specifier. You probably don't want to use this. The only
    * significant use case is for testing to allow test containers to override an already looked up
    * value.

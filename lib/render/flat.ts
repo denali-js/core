@@ -5,7 +5,7 @@ import {
 } from 'lodash';
 import * as assert from 'assert';
 import { all } from 'bluebird';
-import Serializer, { RelationshipConfig } from './serializer';
+import Serializer, { RelationshipConfig, RelationshipConfigs } from './serializer';
 import Model from '../data/model';
 import Action, { RenderOptions } from '../runtime/action';
 import { RelationshipDescriptor } from '../data/descriptors';
@@ -26,41 +26,40 @@ export default abstract class FlatSerializer extends Serializer {
   /**
    * Renders the payload, either a primary data model(s) or an error payload.
    */
-  async serialize(body: any, action: Action, options: RenderOptions = {}): Promise<any> {
+  async serialize(body: any, attributes: string[], relationships: RelationshipConfigs, action: Action, options: RenderOptions = {}): Promise<any> {
     if (body instanceof Error) {
       return this.renderError(body, action, options);
     }
-    return this.renderPrimary(body, action, options);
+    return this.renderPrimary(body, attributes, relationships, action, options);
   }
 
   /**
    * Renders a primary data payload (a model or array of models).
    */
-  protected async renderPrimary(payload: Model|Model[], action: Action, options: RenderOptions): Promise<any> {
+  protected async renderPrimary(payload: Model|Model[], attributes: string[], relationships: RelationshipConfigs, action: Action, options: RenderOptions): Promise<any> {
     if (isArray(payload)) {
       return await all(payload.map(async (model) => {
-        return await this.renderModel(model, action, options);
+        return await this.renderModel(model, attributes, relationships, action, options);
       }));
     }
-    return await this.renderModel(payload, action, options);
+    return await this.renderModel(payload, attributes, relationships, action, options);
   }
 
   /**
    * Renders an individual model
    */
-  async renderModel(model: Model, action: Action, options: RenderOptions): Promise<any> {
+  async renderModel(model: Model, attributes: string[], relationships: RelationshipConfigs, action: Action, options: RenderOptions): Promise<any> {
     let id = model.id;
-    let attributes = this.serializeAttributes(model, action, options);
-    let relationships = await this.serializeRelationships(model, action, options);
+    let attributes = this.serializeAttributes(model, attributes, action, options);
+    let relationships = await this.serializeRelationships(model, relationships, action, options);
     return assign({ id }, attributes, relationships);
   }
 
   /**
    * Serialize the attributes for a given model
    */
-  protected serializeAttributes(model: Model, action: Action, options: RenderOptions): any {
+  protected serializeAttributes(model: Model, attributes: string[], action: Action, options: RenderOptions): any {
     let serializedAttributes: any = {};
-    let attributes = this.attributesToSerialize(action, options); 
     attributes.forEach((attributeName) => {
       let key = this.serializeAttributeName(attributeName);
       let rawValue = model[attributeName];
@@ -93,9 +92,8 @@ export default abstract class FlatSerializer extends Serializer {
   /**
    * Serialize the relationships for a given model
    */
-  protected async serializeRelationships(model: any, action: Action, options: RenderOptions): Promise<{ [key: string]: any }> {
+  protected async serializeRelationships(model: any, relationships: RelationshipConfigs, action: Action, options: RenderOptions): Promise<{ [key: string]: any }> {
     let serializedRelationships: { [key: string ]: any } = {};
-    let relationships = this.relationshipsToSerialize(action, options); 
 
     // The result of this.relationships is a whitelist of which relationships
     // should be serialized, and the configuration for their serialization

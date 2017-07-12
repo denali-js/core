@@ -13,7 +13,7 @@ import Model from '../data/model';
 import Router from '../runtime/router';
 import Action, { RenderOptions } from '../runtime/action';
 import { RelationshipDescriptor } from '../data/descriptors';
-import { RelationshipConfig } from './serializer';
+import { RelationshipConfig, RelationshipConfigs } from './serializer';
 import { map } from 'bluebird';
 import setIfNotEmpty from '../utils/set-if-not-empty';
 
@@ -158,8 +158,10 @@ export interface Options extends RenderOptions {
  * Used internally to simplify passing arguments required by all functions.
  */
 export interface Context {
-  action: Action;
   body: any;
+  attributes: string[];
+  relationships: RelationshipConfigs;
+  action: Action;
   options: Options;
   document: JsonApiDocument;
 }
@@ -181,10 +183,12 @@ export default abstract class JSONAPISerializer extends Serializer {
    * Take a response body (a model, an array of models, or an Error) and render it as a JSONAPI
    * compliant document
    */
-  async serialize(body: any, action: Action, options: RenderOptions): Promise<JsonApiDocument> {
+  async serialize(body: any, attributes: string[], relationships: RelationshipConfigs, action: Action, options: RenderOptions): Promise<JsonApiDocument> {
     let context: Context = {
-      action,
       body,
+      attributes,
+      relationships,
+      action,
       options,
       document: {}
     };
@@ -299,8 +303,7 @@ export default abstract class JSONAPISerializer extends Serializer {
    */
   protected attributesForRecord(context: Context, record: Model): JsonApiAttributes {
     let serializedAttributes: JsonApiAttributes = {};
-    let attributes = this.attributesToSerialize(context.action, context.options);
-    attributes.forEach((attributeName) => {
+    context.attributes.forEach((attributeName) => {
       let key = this.serializeAttributeName(context, attributeName);
       let rawValue = record[attributeName];
       if (!isUndefined(rawValue)) {
@@ -335,13 +338,12 @@ export default abstract class JSONAPISerializer extends Serializer {
    */
   protected async relationshipsForRecord(context: Context, record: Model): Promise<JsonApiRelationships> {
     let serializedRelationships: JsonApiRelationships = {};
-    let relationships = this.relationshipsToSerialize(context.action, context.options);
 
     // The result of this.relationships is a whitelist of which relationships should be serialized,
     // and the configuration for their serialization
-    let relationshipNames = Object.keys(relationships);
+    let relationshipNames = Object.keys(context.relationships);
     for (let name of relationshipNames) {
-      let config = relationships[name];
+      let config = context.relationships[name];
       let key = config.key || this.serializeRelationshipName(context, name);
       let descriptor = (<any>record.constructor)[name];
       assert(descriptor, `You specified a '${ name }' relationship in your ${ record.type } serializer, but no such relationship is defined on the ${ record.type } model`);
