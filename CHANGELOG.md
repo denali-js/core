@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.0.30"></a>
+# [0.0.30](https://github.com/denali-js/denali/compare/v0.0.29...v0.0.30) (2017-07-13)
+
+
+### Bug Fixes
+
+* **metal:** use global symbol for container injection flags to allow multiple denali versions to work with a single container ([ea7d0e6](https://github.com/denali-js/denali/commit/ea7d0e6))
+* **model:** use upperFirst instead for dynamic model methods (#357) ([58b2184](https://github.com/denali-js/denali/commit/58b2184))
+* add sanity checks ([c57ed30](https://github.com/denali-js/denali/commit/c57ed30))
+
+
+### Features
+
+* **metal:** add teardown hooks (#360) ([7b5d15e](https://github.com/denali-js/denali/commit/7b5d15e)), closes [#351](https://github.com/denali-js/denali/issues/351)
+* **render:** allow dynamic attributes and relationships on serializers (#359) ([03c1683](https://github.com/denali-js/denali/commit/03c1683)), closes [#347](https://github.com/denali-js/denali/issues/347)
+* **render:** allow this.render() calls to override serializer attribute and relationship whitelists (#362) ([e19a795](https://github.com/denali-js/denali/commit/e19a795)), closes [#347](https://github.com/denali-js/denali/issues/347)
+
+
+
 <a name="0.0.29"></a>
 # [0.0.29](https://github.com/denali-js/denali/compare/v0.0.28...v0.0.29) (2017-07-02)
 
