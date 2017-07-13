@@ -16,6 +16,7 @@ import { RelationshipDescriptor } from '../data/descriptors';
 import { RelationshipConfig } from './serializer';
 import { map } from 'bluebird';
 import setIfNotEmpty from '../utils/set-if-not-empty';
+import result from '../utils/result';
 
 /**
  * Ensures that the value is only set if it exists, so we avoid creating iterable keys on obj for
@@ -185,7 +186,7 @@ export default abstract class JSONAPISerializer extends Serializer {
    * Take a response body (a model, an array of models, or an Error) and render it as a JSONAPI
    * compliant document
    */
-  async serialize(action: Action, body: any, options: RenderOptions): Promise<JsonApiDocument> {
+  async serialize(body: any, action: Action, options: RenderOptions): Promise<JsonApiDocument> {
     let context: Context = {
       action,
       body,
@@ -303,7 +304,8 @@ export default abstract class JSONAPISerializer extends Serializer {
    */
   protected attributesForRecord(context: Context, record: Model): JsonApiAttributes {
     let serializedAttributes: JsonApiAttributes = {};
-    this.attributes.forEach((attributeName) => {
+    let attributes = result(this.attributes, context.action);
+    attributes.forEach((attributeName) => {
       let key = this.serializeAttributeName(context, attributeName);
       let rawValue = record[attributeName];
       if (!isUndefined(rawValue)) {
@@ -338,12 +340,13 @@ export default abstract class JSONAPISerializer extends Serializer {
    */
   protected async relationshipsForRecord(context: Context, record: Model): Promise<JsonApiRelationships> {
     let serializedRelationships: JsonApiRelationships = {};
+    let relationships = result(this.relationships, context.action);
 
     // The result of this.relationships is a whitelist of which relationships should be serialized,
     // and the configuration for their serialization
     let relationshipNames = Object.keys(this.relationships);
     for (let name of relationshipNames) {
-      let config = this.relationships[name];
+      let config = relationships[name];
       let key = config.key || this.serializeRelationshipName(context, name);
       let descriptor = (<any>record.constructor)[name];
       assert(descriptor, `You specified a '${ name }' relationship in your ${ record.type } serializer, but no such relationship is defined on the ${ record.type } model`);

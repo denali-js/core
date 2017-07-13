@@ -9,6 +9,10 @@ export interface RelationshipConfig {
   serializer?: string;
 }
 
+export interface RelationshipConfigs {
+  [relationshipName: string]: RelationshipConfig;
+}
+
 /**
  * Serializers allow you to customize what data is returned in the response and apply simple
  * transformations to it. They allow you to decouple what data is sent from how that data is
@@ -24,7 +28,7 @@ export default abstract class Serializer extends View {
    * The list of attribute names that should be serialized. Attributes not included in this list
    * will be omitted from the final rendered payload.
    */
-  protected abstract attributes: string[];
+  protected abstract attributes: ((...args: any[]) => string[]) | string[];
 
   /**
    * An object with configuration on how to serialize relationships. Relationships that have no
@@ -41,14 +45,14 @@ export default abstract class Serializer extends View {
    *
    * What the embedded records or ids look like is up to each serializer to determine.
    */
-  protected abstract relationships: { [ relationshipName: string ]: RelationshipConfig };
+  protected abstract relationships: ((...args: any[]) => RelationshipConfigs) | RelationshipConfigs;
 
   async render(action: Action, response: ServerResponse, body: any, options: RenderOptions): Promise<void> {
     response.setHeader('Content-type', this.contentType);
     if (body instanceof Errors.HttpError) {
       response.statusCode = body.status;
     }
-    body = await this.serialize(action, body, options);
+    body = await this.serialize(body, action, options);
     let isProduction = this.container.lookup('config:environment').environment === 'production';
     response.write(JSON.stringify(body , null, isProduction ? 0 : 2) || '');
     response.end();

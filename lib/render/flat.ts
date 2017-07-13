@@ -1,11 +1,13 @@
 import {
   isArray,
   assign,
-  isUndefined } from 'lodash';
+  isUndefined
+} from 'lodash';
 import * as assert from 'assert';
 import { all } from 'bluebird';
 import Serializer, { RelationshipConfig } from './serializer';
 import Model from '../data/model';
+import result from '../utils/result';
 import Action, { RenderOptions } from '../runtime/action';
 import { RelationshipDescriptor } from '../data/descriptors';
 
@@ -25,41 +27,42 @@ export default abstract class FlatSerializer extends Serializer {
   /**
    * Renders the payload, either a primary data model(s) or an error payload.
    */
-  async serialize(action: Action, body: any, options: RenderOptions = {}): Promise<any> {
+  async serialize(body: any, action: Action, options: RenderOptions = {}): Promise<any> {
     if (body instanceof Error) {
-      return this.renderError(body);
+      return this.renderError(body, action, options);
     }
-    return this.renderPrimary(body, options);
+    return this.renderPrimary(body, action, options);
   }
 
   /**
    * Renders a primary data payload (a model or array of models).
    */
-  protected async renderPrimary(payload: Model|Model[], options?: any): Promise<any> {
+  protected async renderPrimary(payload: Model|Model[], action: Action, options?: any): Promise<any> {
     if (isArray(payload)) {
       return await all(payload.map(async (model) => {
-        return await this.renderModel(model, options);
+        return await this.renderModel(model, action, options);
       }));
     }
-    return await this.renderModel(payload, options);
+    return await this.renderModel(payload, action, options);
   }
 
   /**
    * Renders an individual model
    */
-  async renderModel(model: Model, options?: any): Promise<any> {
+  async renderModel(model: Model, action: Action, options?: any): Promise<any> {
     let id = model.id;
-    let attributes = this.serializeAttributes(model, options);
-    let relationships = await this.serializeRelationships(model, options);
+    let attributes = this.serializeAttributes(model, action, options);
+    let relationships = await this.serializeRelationships(model, action, options);
     return assign({ id }, attributes, relationships);
   }
 
   /**
    * Serialize the attributes for a given model
    */
-  protected serializeAttributes(model: Model, options?: any): any {
+  protected serializeAttributes(model: Model, action: Action, options?: any): any {
     let serializedAttributes: any = {};
-    this.attributes.forEach((attributeName) => {
+    let attributes = result(this.attributes, action);
+    attributes.forEach((attributeName) => {
       let key = this.serializeAttributeName(attributeName);
       let rawValue = model[attributeName];
       if (!isUndefined(rawValue)) {
@@ -91,13 +94,14 @@ export default abstract class FlatSerializer extends Serializer {
   /**
    * Serialize the relationships for a given model
    */
-  protected async serializeRelationships(model: any, options?: any): Promise<{ [key: string]: any }> {
+  protected async serializeRelationships(model: any, action: Action, options?: any): Promise<{ [key: string]: any }> {
     let serializedRelationships: { [key: string ]: any } = {};
+    let relationships = result(this.relationships, action);
 
     // The result of this.relationships is a whitelist of which relationships
     // should be serialized, and the configuration for their serialization
     for (let relationshipName in this.relationships) {
-      let config = this.relationships[relationshipName];
+      let config = relationships[relationshipName];
       let key = config.key || this.serializeRelationshipName(relationshipName);
       let descriptor = model.constructor[relationshipName];
       assert(descriptor, `You specified a '${ relationshipName }' relationship in your ${ model.constructor.type } serializer, but no such relationship is defined on the ${ model.constructor.type } model`);
@@ -147,7 +151,7 @@ export default abstract class FlatSerializer extends Serializer {
   /**
    * Render an error payload
    */
-  protected renderError(error: any): any {
+  protected renderError(error: any, action: Action, options: any): any {
     return {
       status: error.status || 500,
       code: error.code || 'InternalServerError',

@@ -17,7 +17,7 @@ export default abstract class RawSerializer extends Serializer {
   /**
    * Renders the payload, either a primary data model(s) or an error payload.
    */
-  async serialize(action: Action, body: any, options: RenderOptions = {}): Promise<any> {
+  async serialize(body: any, action: Action, options: RenderOptions = {}): Promise<any> {
     return body;
   }
 
