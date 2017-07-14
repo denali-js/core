@@ -59,7 +59,7 @@ export interface RouterDSL {
   delete(pattern: string, action: string, params: {}): void;
   head(pattern: string, action: string, params: {}): void;
   options(pattern: string, action: string, params: {}): void;
-  resource(resourceName: string, options: ResourceOptions): void;
+  resource(resourceName: string, options?: ResourceOptions): void;
 }
 
 /**
