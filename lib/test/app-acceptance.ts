@@ -4,9 +4,11 @@ import {
   assign,
   forEach
 } from 'lodash';
+import ava, { RegisterContextual } from 'ava';
 import MockRequest from './mock-request';
 import MockResponse from './mock-response';
 import Application from '../runtime/application';
+import ORMAdapter from '../data/orm-adapter';
 import { ContainerOptions } from '../metal/container';
 
 /**
@@ -235,12 +237,14 @@ export class AppAcceptance {
  * @package test
  * @since 0.1.0
  */
-export default function appAcceptanceTest(ava: any) {
+export default function appAcceptanceTest() {
 
-  ava.beforeEach(async (t: any) => {
+  let test = <RegisterContextual<{ app: AppAcceptance }>>ava;
+
+  test.beforeEach(async (t) => {
     let app = t.context.app = new AppAcceptance();
     await app.start();
-    let adapters = app.application.container.lookupAll('orm-adapter');
+    let adapters = app.application.container.lookupAll<ORMAdapter>('orm-adapter');
     let transactionInitializers: Promise<void>[] = [];
     forEach(adapters, (Adapter) => {
       if (typeof Adapter.startTestTransaction === 'function') {
@@ -250,10 +254,10 @@ export default function appAcceptanceTest(ava: any) {
     await all(transactionInitializers);
   });
 
-  ava.afterEach.always(async (t: any) => {
+  test.afterEach.always(async (t) => {
     let app = t.context.app;
     let transactionRollbacks: Promise<void>[] = [];
-    let adapters = app.application.container.lookupAll('orm-adapter');
+    let adapters = app.application.container.lookupAll<ORMAdapter>('orm-adapter');
     forEach(adapters, (Adapter) => {
       if (typeof Adapter.rollbackTestTransaction === 'function') {
         transactionRollbacks.push(Adapter.rollbackTestTransaction());
@@ -262,5 +266,7 @@ export default function appAcceptanceTest(ava: any) {
     await all(transactionRollbacks);
     await app.shutdown();
   });
+
+  return test;
 
 }
