@@ -29,7 +29,9 @@ export default {
     });
     let definitions: any[] = [];
     modelsGroupedByAdapter.forEach((modelsForThisAdapter: typeof Model[], Adapter: ORMAdapter): void => {
-      definitions.push(Adapter.defineModels(modelsForThisAdapter));
+      if (Adapter.defineModels) {
+        definitions.push(Adapter.defineModels(modelsForThisAdapter));
+      }
     });
     await all(definitions);
   }
