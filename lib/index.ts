@@ -10,7 +10,15 @@
  */
 
 // Data
-import { attr, hasMany, hasOne, RelationshipDescriptor, AttributeDescriptor } from './data/descriptors';
+import {
+  attr,
+  hasMany,
+  hasOne,
+  RelationshipDescriptor,
+  HasOneRelationshipDescriptor,
+  HasManyRelationshipDescriptor,
+  AttributeDescriptor
+} from './data/descriptors';
 import Model from './data/model';
 import ORMAdapter from './data/orm-adapter';
 import MemoryAdapter from './data/memory';
@@ -31,14 +39,21 @@ import JSONAPIParser from './parse/json-api';
 
 // Metal
 import Instrumentation from './metal/instrumentation';
-import mixin, { createMixin, MixinFactory, MixinApplicator } from './metal/mixin';
+import mixin, {
+  createMixin,
+  MixinFactory,
+  MixinApplicator
+} from './metal/mixin';
 import eachPrototype from './metal/each-prototype';
 import Container from './metal/container';
 import Resolver from './metal/resolver';
 import inject from './metal/inject';
 
 // Runtime
-import Action, { RenderOptions, ResponderParams } from './runtime/action';
+import Action, {
+  RenderOptions,
+  ResponderParams
+} from './runtime/action';
 import Addon from './runtime/addon';
 import Application from './runtime/application';
 import Errors from './runtime/errors';
@@ -58,6 +73,8 @@ export {
   hasMany,
   hasOne,
   RelationshipDescriptor,
+  HasOneRelationshipDescriptor,
+  HasManyRelationshipDescriptor,
   AttributeDescriptor,
   Model,
   ORMAdapter,
