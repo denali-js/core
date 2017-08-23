@@ -48,7 +48,12 @@ export default function baseMiddleware(router: Router, application: Application)
     // Patch morgan to read from our non-express response
     morgan.token('res', (req: IncomingMessage, res: ServerResponse, field: string) => {
       let header = res.getHeader(field);
-      return Array.isArray(header) ? header.join(', ') : header;
+      if (typeof header === 'number') {
+        header = String(header);
+      } else if (Array.isArray(header)) {
+        header = header.join(', ');
+      }
+      return header;
     });
   }
 

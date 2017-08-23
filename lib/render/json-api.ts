@@ -447,7 +447,7 @@ export default abstract class JSONAPISerializer extends Serializer {
       context.document.included = [];
     }
     let relatedOptions = (context.options.relationships && context.options.relationships[name]) || context.options;
-    let relatedSerializer: JSONAPISerializer = config.serializer || this.container.lookup(`serializer:${ relatedRecord.type }`);
+    let relatedSerializer: JSONAPISerializer = this.container.lookup(`serializer:${ config.serializer || relatedRecord.type }`);
     let relatedContext: Context = assign({}, context, { options: relatedOptions });
     context.document.included.push(await relatedSerializer.renderRecord(relatedContext, relatedRecord));
   }

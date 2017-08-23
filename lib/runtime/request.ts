@@ -8,6 +8,7 @@ import * as http from 'http';
 import * as uuid from 'uuid';
 import { Socket } from 'net';
 import { Readable, Writable } from 'stream';
+import { Dict } from '../utils/types';
 import Route from './route';
 
 /**
@@ -190,7 +191,7 @@ export default class Request {
    *
    * @since 0.1.0
    */
-  get headers(): { [key: string]: string } {
+  get headers(): Dict<string | string[]> {
     return this._incomingMessage.headers;
   }
 
@@ -258,7 +259,12 @@ export default class Request {
    * @since 0.1.0
    */
   get(header: string): string {
-    return this._incomingMessage.headers[header.toLowerCase()];
+    let value = this._incomingMessage.headers[header.toLowerCase()];
+    if (Array.isArray(value)) {
+      // see https://www.w3.org/Protocols/rfc2616/rfc2616-sec4.html#sec4.2
+      return value.join(',');
+    }
+    return value;
   }
 
   /**
@@ -279,7 +285,7 @@ export default class Request {
    * EventEmitter methods
    */
 
-  addListener(eventName: any, listener: Function): Request {
+  addListener(eventName: any, listener: (...args: any[]) => void): Request {
     this._incomingMessage.addListener(eventName, listener);
     return this;
   }
@@ -304,22 +310,22 @@ export default class Request {
     return this._incomingMessage.listeners(eventName);
   }
 
-  on(eventName: any, listener: Function): Request {
+  on(eventName: any, listener: (...args: any[]) => void): Request {
     this._incomingMessage.on(eventName, listener);
     return this;
   }
 
-  once(eventName: any, listener: Function): Request {
+  once(eventName: any, listener: (...args: any[]) => void): Request {
     this._incomingMessage.once(eventName, listener);
     return this;
   }
 
-  prependListener(eventName: any, listener: Function): Request {
+  prependListener(eventName: any, listener: (...args: any[]) => void): Request {
     this._incomingMessage.prependListener(eventName, listener);
     return this;
   }
 
-  prependOnceListener(eventName: any, listener: Function): Request {
+  prependOnceListener(eventName: any, listener: (...args: any[]) => void): Request {
     this._incomingMessage.prependOnceListener(eventName, listener);
     return this;
   }
@@ -329,7 +335,7 @@ export default class Request {
     return this;
   }
 
-  removeListener(eventName: any, listener: Function): Request {
+  removeListener(eventName: any, listener: (...args: any[]) => void): Request {
     this._incomingMessage.removeListener(eventName, listener);
     return this;
   }
@@ -390,7 +396,7 @@ export default class Request {
     return this._incomingMessage.destroy(error);
   }
 
-  setTimeout(msecs: number, callback: Function): Request {
+  setTimeout(msecs: number, callback: (...args: any[]) => void): Request {
     this._incomingMessage.setTimeout(msecs, callback);
     return this;
   }

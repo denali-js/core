@@ -42,7 +42,7 @@ export default class Logger extends DenaliObject {
   /**
    * Color map for the available levels.
    */
-  colors: { [level: string]: chalk.ChalkChain } = {
+  colors: { [level: string]: (...text: string[]) => string } = {
     info: chalk.white,
     warn: chalk.yellow,
     error: chalk.red
@@ -78,7 +78,7 @@ export default class Logger extends DenaliObject {
   /**
    * Log a message to the logger at a specific log level.
    */
-  log(level: LogLevel, msg: any): void {
+  log(level: LogLevel, msg: string): void {
     if (this.levels.indexOf(level) === -1) {
       level = this.loglevel;
     }
