@@ -1,3 +1,5 @@
+import 'main-dir';
+
 /**
  *
  * This is the main module exported by Denali when it is loaded via
