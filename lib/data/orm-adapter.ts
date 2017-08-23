@@ -138,9 +138,7 @@ abstract class ORMAdapter extends DenaliObject {
    * Takes an array of Denali Models and defines an ORM specific model class, and/or any other ORM
    * specific setup that might be required for that Model.
    */
-  async defineModels(models: typeof Model[]): Promise<void> {
-    // defaults to no-op
-  }
+  async defineModels?<T extends typeof Model>(models: T[]): Promise<void>;
 
   /**
    * Start a transaction that will wrap a test, and be rolled back afterwards. If the data store
