@@ -174,7 +174,7 @@ export default abstract class Action extends DenaliObject {
   /**
    * Track whether or not we have rendered yet
    */
-  private hasRendered = false;
+  protected hasRendered = false;
 
   /**
    * The path to this action, i.e. 'users/create'
@@ -303,7 +303,7 @@ export default abstract class Action extends DenaliObject {
   /**
    * Invokes the filters in the supplied chain in sequence.
    */
-  private async _invokeFilters(chain: string[], parsedRequest: ResponderParams): Promise<any> {
+  protected async _invokeFilters(chain: string[], parsedRequest: ResponderParams): Promise<any> {
     chain = clone(chain);
     while (chain.length > 0) {
       let filterName = chain.shift();
@@ -331,7 +331,7 @@ export default abstract class Action extends DenaliObject {
    *
    * Throws if it encounters the name of a filter method that doesn't exist.
    */
-  private _buildFilterChains(): { beforeChain: string[], afterChain: string[] } {
+  protected _buildFilterChains(): { beforeChain: string[], afterChain: string[] } {
     let meta = this.container.metaFor(this.constructor);
     if (!meta.beforeFiltersCache) {
       let prototypeChain: Action[] = [];

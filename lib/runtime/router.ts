@@ -89,7 +89,7 @@ export default class Router extends DenaliObject implements RouterDSL {
    * The internal generic middleware handler, responsible for building and executing the middleware
    * chain.
    */
-  private middleware: any = (<() => any>ware)();
+  protected middleware: any = (<() => any>ware)();
 
   /**
    * The application container
@@ -153,7 +153,7 @@ export default class Router extends DenaliObject implements RouterDSL {
    * Takes a request, response, and an error and hands off to the generic application level error
    * action.
    */
-  private async handleError(request: Request, res: ServerResponse, error: Error) {
+  protected async handleError(request: Request, res: ServerResponse, error: Error) {
     request.params = request.params || {};
     request.params.error = error;
     let errorAction = this.container.lookup('action:error');

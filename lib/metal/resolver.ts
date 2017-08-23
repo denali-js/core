@@ -32,7 +32,7 @@ export default class Resolver {
   /**
    * The internal cache of available references
    */
-  private registry: Registry = new Map();
+  protected registry: Registry = new Map();
 
   constructor(root: string) {
     assert(root, 'You must supply a valid root path that the resolve should use to load from');

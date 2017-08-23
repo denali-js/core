@@ -38,12 +38,12 @@ export default class Request {
   /**
    * The parsed URL of the IncomingMessage
    */
-  private parsedUrl: url.Url;
+  protected parsedUrl: url.Url;
 
   /**
    * The original IncomingMessage from the HTTP library.
    */
-  private _incomingMessage: http.IncomingMessage;
+  protected _incomingMessage: http.IncomingMessage;
 
   /**
    * The route parser route that was matched

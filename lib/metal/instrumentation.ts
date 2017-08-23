@@ -25,7 +25,7 @@ export default class InstrumentationEvent {
   /**
    * The internal event emitter used for notifications
    */
-  private static _emitter = new EventEmitter();
+  protected static _emitter = new EventEmitter();
 
   /**
    * Subscribe to be notified when a particular instrumentation block completes.
@@ -76,7 +76,7 @@ export default class InstrumentationEvent {
   /**
    * High resolution start time of this event
    */
-  private startTime: [ number, number ];
+  protected startTime: [ number, number ];
 
   constructor(eventName: string, data: any) {
     this.eventName = eventName;

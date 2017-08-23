@@ -119,7 +119,7 @@ export default class Application extends Addon {
   /**
    * Given a directory that contains an addon, load that addon and instantiate it's Addon class.
    */
-  private buildAddons(preseededAddons: string[]): Addon[] {
+  protected buildAddons(preseededAddons: string[]): Addon[] {
     return findPlugins({
       dir: this.dir,
       keyword: 'denali-addon',
@@ -162,7 +162,7 @@ export default class Application extends Addon {
    * - Addons are given a chance to modify the application config, so it must be loaded before they
    *   are.
    */
-  private generateConfig(): any {
+  protected generateConfig(): any {
     let appConfig = this.resolver.retrieve('config:environment') || constant({});
     let config = appConfig(this.environment);
     config.environment = this.environment;
@@ -179,7 +179,7 @@ export default class Application extends Addon {
   /**
    * Assemble middleware and routes
    */
-  private compileRouter(): void {
+  protected compileRouter(): void {
     // Load addon middleware first
     this.addons.forEach((addon) => {
       let addonMiddleware = addon.resolver.retrieve('config:middleware') || noop;
@@ -222,7 +222,7 @@ export default class Application extends Addon {
    * Creates an HTTP or HTTPS server, depending on whether or not SSL configuration is present in
    * config/environment.js
    */
-  private async createServer(port: number): Promise<void> {
+  protected async createServer(port: number): Promise<void> {
     await new Promise((resolve) => {
       let handler = this.router.handle.bind(this.router);
       let server: any;

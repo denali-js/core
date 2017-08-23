@@ -70,7 +70,7 @@ export default class InstallCommand extends Command {
 
   }
 
-  private async fail(msg: string) {
+  protected async fail(msg: string) {
     await spinner.fail(`Install failed: ${ msg }`);
     await process.exit(1);
   }
