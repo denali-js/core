@@ -10,38 +10,14 @@ module.exports = class DenaliBuilder extends Builder {
   }
 
   transpileTree(tree, dir) {
-    const Funnel = require('broccoli-funnel');
-    const MergeTree = require('broccoli-merge-trees');
-    const Plugin = require('broccoli-plugin');
-    class TypescriptTree extends Plugin {
-      constructor(tree, options) {
-        return super([tree], options);
-      }
-      build() {
-        return new Promise((resolve, reject) => {
-          exec(path.join(dir, 'node_modules/.bin/tsc') + ' --outDir ' + this.outputPath, {
-            cwd: dir,
-            stdio: 'inherit'
-          }, (err, stdout, stderr) => {
-            if (err) {
-              if (stdout.match(/error TS\d+/)) {
-                ui.warn(`\n===> ${ stdout.split('\n').length } Typescript Errors:`);
-                ui.warn(stdout.replace(/^\.\.\/\.\.\//mg, ''));
-              } else {
-                return reject(err);
-              }
-            }
-            resolve();
-          });
-        });
-      }
-    }
-    let tsconfig = require(path.join(dir, 'tsconfig.json'));
-    let transpiled = new TypescriptTree(tree, { tsconfig });
+    let transpiledTS = new Typescript(tree, {
+      tsconfig: require(path.join(dir, 'tsconfig.json')),
+      annotation: 'compile typescript'
+    });
     let withoutTS = new Funnel(tree, {
       exclude: [ '**/*.ts' ]
     });
-    return new MergeTree([ withoutTS, transpiled ], { overwrite: true, annotation: 'merge typescript outptu' });
+    return new MergeTree([ withoutTS, transpiledTS ], { overwrite: true, annotation: 'merge typescript output' });
   }
 
 };
