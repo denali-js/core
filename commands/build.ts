@@ -35,8 +35,9 @@ export default class BuildCommand extends Command {
       default: false,
       type: <any>'boolean'
     },
-    skipAudit: {
-      description: 'Skip auditing your package.json for vulnerabilites',
+    // TODO this should default to true if building for production
+    audit: {
+      description: 'Auditing your package.json for vulnerabilites',
       default: false,
       type: <any>'boolean'
     },
@@ -54,7 +55,7 @@ export default class BuildCommand extends Command {
       environment: argv.environment,
       printSlowTrees: argv.printSlowTrees,
       lint: !argv.skipLint,
-      audit: !argv.skipAudit
+      audit: argv.audit
     });
 
     if (argv.watch) {
