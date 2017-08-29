@@ -126,8 +126,12 @@ export default class Application extends Addon {
       include: preseededAddons
     }).map((plugin) => {
       let AddonClass;
+      let distDir = plugin.dir;
+      if (plugin.pkg.mainDir) {
+        distDir = path.join(plugin.dir, plugin.pkg.mainDir);
+      }
       try {
-        AddonClass = tryRequire(path.join(plugin.dir, 'app', 'addon.js'));
+        AddonClass = tryRequire(path.join(distDir, 'app', 'addon.js'));
         AddonClass = AddonClass || Addon;
       } catch (e) {
         /* tslint:disable:no-console */
@@ -140,7 +144,7 @@ export default class Application extends Addon {
       let addon = new AddonClass({
         environment: this.environment,
         container: this.container,
-        dir: plugin.dir,
+        dir: distDir,
         pkg: plugin.pkg
       });
       debug(`Addon: ${ addon.pkg.name }@${ addon.pkg.version } (${ addon.dir }) `);
