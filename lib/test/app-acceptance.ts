@@ -4,7 +4,7 @@ import {
   assign,
   forEach
 } from 'lodash';
-import ava, { RegisterContextual } from 'ava';
+import { RegisterContextual } from 'ava';
 import MockRequest from './mock-request';
 import MockResponse from './mock-response';
 import Application from '../runtime/application';
@@ -239,7 +239,7 @@ export class AppAcceptance {
  */
 export default function appAcceptanceTest() {
 
-  let test = <RegisterContextual<{ app: AppAcceptance }>>ava;
+  let test = <RegisterContextual<{ app: AppAcceptance }>>require('ava');
 
   test.beforeEach(async (t) => {
     let app = t.context.app = new AppAcceptance();
