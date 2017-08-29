@@ -10,6 +10,7 @@ import Resolver from './resolver';
 import { Dict, Constructor } from '../utils/types';
 import DenaliObject from './object';
 import { injectInstance } from './inject';
+import * as dedent from 'dedent-js';
 
 const DEFAULT_OPTIONS = {
   instantiate: false,
@@ -194,7 +195,18 @@ export default class Container {
         if (options.loose) {
           return;
         }
-        throw new Error(`No class found for ${ specifier }`);
+        console.error(dedent`
+          \n\nUnable to find factory source for ${ specifier }.
+
+          Available registrations:
+            - ${ Object.keys(this.registry).join('\n  - ') }
+
+          Available resolvers:
+            - ${ this.resolvers.map((r) => r.root).join('\n  - ') }
+
+          Run with DEBUG=denali:resolver:<path> to trace a specific resolver's resolution
+        `);
+        throw new Error(`No class found for ${ specifier }.`);
       }
 
       factory = this.factoryLookups[specifier] = this.buildFactory(specifier, klass);

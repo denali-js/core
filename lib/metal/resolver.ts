@@ -9,6 +9,7 @@ import * as tryRequire from 'try-require';
 import { pluralize } from 'inflection';
 import requireDir from '../utils/require-dir';
 import * as assert from 'assert';
+import * as createDebug from 'debug';
 
 interface RetrieveMethod {
   (type: string, entry: string): any;
@@ -36,6 +37,7 @@ export default class Resolver {
 
   constructor(root: string) {
     assert(root, 'You must supply a valid root path that the resolve should use to load from');
+    this.debug = createDebug(`denali:resolver:${ root }`);
     this.root = root;
   }
 
@@ -55,14 +57,17 @@ export default class Resolver {
    */
   retrieve(specifier: string) {
     assert(specifier.includes(':'), 'Container specifiers must be in "type:entry" format');
+    this.debug(`retrieving ${ specifier }`);
     let [ type, entry ] = specifier.split(':');
     if (this.registry.has(specifier)) {
+      this.debug(`cache hit, returning cached value`);
       return this.registry.get(specifier);
     }
     let retrieveMethod = <RetrieveMethod>this[`retrieve${ upperFirst(camelCase(type)) }`];
     if (!retrieveMethod) {
       retrieveMethod = this.retrieveOther;
     }
+    this.debug(`retrieving via retrieve${ upperFirst(camelCase(type)) }`);
     let result = retrieveMethod.call(this, type, entry);
     return result && result.default || result;
   }
