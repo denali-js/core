@@ -2,6 +2,38 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.0.31"></a>
+## [0.0.31](https://github.com/denali-js/denali/compare/v0.0.29...v0.0.31) (2017-08-30)
+
+
+### Bug Fixes
+
+* **build:** use broccoli-typescript-compiler now that PRs have merged ([a964741](https://github.com/denali-js/denali/commit/a964741))
+* **data:** improve typing for defineModels stub ([716d3d7](https://github.com/denali-js/denali/commit/716d3d7))
+* **data:** only try to defineModels if the adapter supports it ([5539006](https://github.com/denali-js/denali/commit/5539006))
+* **metal:** use global symbol for container injection flags to allow multiple denali versions to work with a single container ([ea7d0e6](https://github.com/denali-js/denali/commit/ea7d0e6))
+* **model:** use upperFirst instead for dynamic model methods ([#357](https://github.com/denali-js/denali/issues/357)) ([58b2184](https://github.com/denali-js/denali/commit/58b2184))
+* **runtime:** make options optional on resource route ([#367](https://github.com/denali-js/denali/issues/367)) ([96b1205](https://github.com/denali-js/denali/commit/96b1205))
+* **runtime:** use main dir as base dir for addons at runtime ([f98e3f4](https://github.com/denali-js/denali/commit/f98e3f4))
+* add missing imports to denali-build.js ([277ad8f](https://github.com/denali-js/denali/commit/277ad8f))
+* add sanity checks ([c57ed30](https://github.com/denali-js/denali/commit/c57ed30))
+* **test:** wait to require ava until we are sure we are in tests, because it hard exits the process otherwise ([6d09ad2](https://github.com/denali-js/denali/commit/6d09ad2))
+* default to no audit for build only, since the build often finishes faster than the nsp request, which makes it look like a hang (and the audit is less useful for standard build invocations ([e1f84e7](https://github.com/denali-js/denali/commit/e1f84e7))
+* export relationship descriptor subclasses ([accbe4b](https://github.com/denali-js/denali/commit/accbe4b))
+* point to dist for types so typescript can resolve module ([42f80d0](https://github.com/denali-js/denali/commit/42f80d0))
+* switch to protected from private, since private causes problems and protected is often the better choice regardlesss ([059e57d](https://github.com/denali-js/denali/commit/059e57d))
+
+
+### Features
+
+* **metal:** add teardown hooks ([#360](https://github.com/denali-js/denali/issues/360)) ([7b5d15e](https://github.com/denali-js/denali/commit/7b5d15e)), closes [#351](https://github.com/denali-js/denali/issues/351)
+* **render:** allow dynamic attributes and relationships on serializers ([#359](https://github.com/denali-js/denali/issues/359)) ([03c1683](https://github.com/denali-js/denali/commit/03c1683)), closes [#347](https://github.com/denali-js/denali/issues/347)
+* **render:** allow this.render() calls to override serializer attribute and relationship whitelists ([#362](https://github.com/denali-js/denali/issues/362)) ([e19a795](https://github.com/denali-js/denali/commit/e19a795)), closes [#347](https://github.com/denali-js/denali/issues/347)
+* **test:** typed acceptance test contexts! ([5241884](https://github.com/denali-js/denali/commit/5241884))
+* use main-dir package and publish project root; see [#371](https://github.com/denali-js/denali/issues/371) ([3c67fba](https://github.com/denali-js/denali/commit/3c67fba))
+
+
+
 <a name="0.0.30"></a>
 # [0.0.30](https://github.com/denali-js/denali/compare/v0.0.29...v0.0.30) (2017-07-13)
 
