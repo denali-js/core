@@ -1,3 +1,4 @@
+require('main-dir');
 const path = require('path');
 const Application = require('./application');
 
