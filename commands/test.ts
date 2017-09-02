@@ -189,7 +189,8 @@ export default class TestCommand extends Command {
         PORT: argv.port,
         DENALI_LEAVE_TMP: argv.litter,
         NODE_ENV: project.environment,
-        DEBUG_COLORS: 1
+        DEBUG_COLORS: 1,
+        DENALI_TEST_BUILD_DIR: argv.output
       })
     });
     ui.info(`===> Running ${ project.pkg.name } tests ...`);

@@ -44,7 +44,7 @@ export class AppAcceptance {
   protected _injections: { [fullName: string]: any } = {};
 
   constructor() {
-    let compiledPath = process.cwd();
+    let compiledPath = process.env.DENALI_TEST_BUILD_DIR;
     let ApplicationClass: typeof Application = require(path.join(compiledPath, 'app/application')).default;
     let environment = process.env.NODE_ENV || 'test';
     this.application = new ApplicationClass({
