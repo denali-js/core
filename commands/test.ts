@@ -166,7 +166,7 @@ export default class TestCommand extends Command {
     let args = files.concat([ '--concurrency', argv.concurrency ]);
     if (argv.debug) {
       avaPath = process.execPath;
-      args = [ '--inspect', '--debug-brk', path.join(process.cwd(), 'node_modules', 'ava', 'profile.js'), argv.debug ];
+      args = [ '--inspect', '--inspect-brk', path.join(process.cwd(), 'node_modules', 'ava', 'profile.js'), argv.debug ];
     }
     if (argv.match) {
       args.push('--match', argv.match);
