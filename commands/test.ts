@@ -56,11 +56,6 @@ export default class TestCommand extends Command {
       default: process.env.CI,
       type: <any>'boolean'
     },
-    output: {
-      description: 'The directory to write the compiled app to. Defaults to a tmp directory',
-      default: path.join('tmp', 'test'),
-      type: <any>'string'
-    },
     printSlowTrees: {
       description: 'Print out an analysis of the build process, showing the slowest nodes.',
       default: false,
@@ -121,6 +116,8 @@ export default class TestCommand extends Command {
       buildDummy: true
     });
 
+    let outputDir = path.join('tmp', `${ project.rootBuilder.pkg.name }-test`);
+
     process.on('exit', this.cleanExit.bind(this));
     process.on('SIGINT', this.cleanExit.bind(this));
     process.on('SIGTERM', this.cleanExit.bind(this));
@@ -144,14 +141,15 @@ export default class TestCommand extends Command {
             });
           }
         },
-        onBuild: this.runTests.bind(this, files, project, argv)
+        onBuild: this.runTests.bind(this, files, project, outputDir, argv)
       });
     } else {
       try {
-        await project.build(argv.output);
-        this.runTests(files, project, argv);
+        await project.build(outputDir);
+        this.runTests(files, project, outputDir, argv);
       } catch (error) {
         process.exitCode = 1;
+        throw error;
       }
     }
   }
@@ -162,9 +160,10 @@ export default class TestCommand extends Command {
     }
   }
 
-  protected runTests(files: string[], project: Project, argv: any) {
+  protected runTests(files: string[], project: Project, outputDir: string, argv: any) {
     let avaPath = path.join(process.cwd(), 'node_modules', '.bin', 'ava');
-    let args = files.concat([ '!test/dummy/**/*', '--concurrency', argv.concurrency ]);
+    files = files.map((pattern) => path.join(outputDir, pattern));
+    let args = files.concat([ '--concurrency', argv.concurrency ]);
     if (argv.debug) {
       avaPath = process.execPath;
       args = [ '--inspect', '--debug-brk', path.join(process.cwd(), 'node_modules', 'ava', 'profile.js'), argv.debug ];
@@ -185,7 +184,6 @@ export default class TestCommand extends Command {
       args.unshift('--serial');
     }
     this.tests = spawn(avaPath, args, {
-      cwd: argv.output,
       stdio: [ 'pipe', process.stdout, process.stderr ],
       env: assign({}, process.env, {
         PORT: argv.port,
