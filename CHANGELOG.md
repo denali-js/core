@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.0.32"></a>
+## [0.0.32](https://github.com/denali-js/denali/compare/v0.0.31...v0.0.32) (2017-09-02)
+
+
+### Bug Fixes
+
+* fix debug arguments for test command; use --inspect-brk instead of deprecated --debug-brk ([95d6fc1](https://github.com/denali-js/denali/commit/95d6fc1))
+* **test:** ensure ava and dummy app use main-dir ([0748916](https://github.com/denali-js/denali/commit/0748916))
+
+
+### Features
+
+* pass along test build output dir to tests, use as base dir for app acceptance test helper ([00d64ac](https://github.com/denali-js/denali/commit/00d64ac))
+* remove outputdir option for test command, everything goes in tmp ([8b2bd9d](https://github.com/denali-js/denali/commit/8b2bd9d))
+
+
+
 <a name="0.0.31"></a>
 ## [0.0.31](https://github.com/denali-js/denali/compare/v0.0.29...v0.0.31) (2017-08-30)
 
