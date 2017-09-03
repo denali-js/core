@@ -6,7 +6,7 @@ import * as cmdExists from 'command-exists';
 import * as Bluebird from 'bluebird';
 import { exec } from 'child_process';
 
-const run = Bluebird.promisify<[ string, string ], string>(exec);
+const run = Bluebird.promisify<string, string>(exec);
 const commandExists = Bluebird.promisify<boolean, string>(cmdExists);
 
 /**
