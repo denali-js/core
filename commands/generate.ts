@@ -1,5 +1,5 @@
 import { Command, Blueprint, unwrap } from 'denali-cli';
-import { Argv } from 'denali-cli/node_modules/@types/yargs/index';
+import { Argv } from 'yargs';
 
 /**
  * Scaffold code for your app.
