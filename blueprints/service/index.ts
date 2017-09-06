@@ -1,4 +1,5 @@
 import { Blueprint, unwrap } from 'denali-cli';
+import { upperFirst, camelCase } from 'lodash';
 
 /**
  * Generates a blank service
@@ -19,5 +20,11 @@ export default class ServiceBlueprint extends Blueprint {
   `;
 
   static params = '<name>';
+
+  locals(argv: any) {
+    let name = argv.name;
+    let className = upperFirst(camelCase(name));
+    return { name, className };
+  }
 
 }
