@@ -256,7 +256,7 @@ export default abstract class Action extends DenaliObject {
     // Parse the incoming request based on the action's chosen parser
     debug(`[${ request.id }]: parsing request`);
     assert(typeof this.parser.parse === 'function', 'The parser you supply must define a `parse(request)` method. See the parser docs for details');
-    let parsedRequest: ResponderParams = this.parser.parse(request);
+    let parsedRequest = await this.parser.parse(request);
 
     // Build the before and after filter chains
     let { beforeChain, afterChain } = this._buildFilterChains();

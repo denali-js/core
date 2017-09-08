@@ -5,7 +5,7 @@ import {
 } from 'lodash';
 import * as assert from 'assert';
 import * as typeis from 'type-is';
-import Parser from './parser';
+import JSONParser from './json';
 import Errors from '../runtime/errors';
 import { ResponderParams } from '../runtime/action';
 import Request from '../runtime/request';
@@ -17,16 +17,13 @@ import {
   JsonApiRelationships
 } from '../render/json-api';
 
-export default class JSONAPIParser extends Parser {
+export default class JSONAPIParser extends JSONParser {
 
-  /**
-   * Unlike the other serializers, the default parse implementation does modify the incoming
-   * payload. It converts the default dasherized attribute names into camelCase.
-   *
-   * The parse method here retains the JSONAPI document structure (i.e. data, included, links, meta,
-   * etc), only modifying resource objects in place.
-   */
-  parse(request: Request): ResponderParams {
+  type = 'application/vnd.api+json';
+
+  async parse(request: Request) {
+    await this.bufferAndParseBody(request);
+
     let result: ResponderParams = {
       query: request.query,
       headers: request.headers,

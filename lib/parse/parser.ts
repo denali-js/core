@@ -4,6 +4,6 @@ import { ResponderParams } from '../runtime/action';
 
 export default abstract class Parser extends DenaliObject {
 
-  abstract parse(request: Request): ResponderParams;
+  abstract async parse(request: Request): Promise<ResponderParams>;
 
 }

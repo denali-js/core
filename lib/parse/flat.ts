@@ -1,11 +1,13 @@
-import Parser from './parser';
+import JSONParser from './json';
 import Request from '../runtime/request';
 import { ResponderParams } from '../runtime/action';
 
-export default class FlatParser extends Parser {
+export default class FlatParser extends JSONParser {
 
-  parse(request: Request): ResponderParams {
-    return {
+  async parse(request: Request) {
+    await this.bufferAndParseBody(request);
+
+    return <ResponderParams>{
       body: request.body,
       query: request.query,
       headers: request.headers,
