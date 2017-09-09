@@ -1,5 +1,4 @@
 import { Command, Blueprint, unwrap } from 'denali-cli';
-import { Argv } from 'yargs';
 
 /**
  * Scaffold code for your app.
@@ -29,7 +28,7 @@ export default class GenerateCommand extends Command {
     }
   };
 
-  protected static configureSubcommands(commandName: string, yargs: any, projectPkg: any): Argv {
+  protected static configureSubcommands(commandName: string, yargs: any, projectPkg: any): any {
     return Blueprint.findAndConfigureBlueprints(yargs, 'generate', projectPkg);
   }
 

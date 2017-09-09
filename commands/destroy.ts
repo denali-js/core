@@ -1,5 +1,4 @@
 import { Command, Blueprint, unwrap } from 'denali-cli';
-import { Argv } from 'yargs';
 
 /**
  * Remove scaffolded code from your app
@@ -26,7 +25,7 @@ export default class DestroyCommand extends Command {
     }
   };
 
-  protected static configureSubcommands(commandName: string, yargs: any, projectPkg: any): Argv {
+  protected static configureSubcommands(commandName: string, yargs: any, projectPkg: any): any {
     return Blueprint.findAndConfigureBlueprints(yargs, 'destroy', projectPkg);
   }
 
