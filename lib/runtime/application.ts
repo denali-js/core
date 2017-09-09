@@ -13,6 +13,7 @@ import Addon from './addon';
 import topsort from '../utils/topsort';
 import Router from './router';
 import Logger from './logger';
+import { AppConfig } from './config';
 import Container from '../metal/container';
 import findPlugins from 'find-plugins';
 import * as tryRequire from 'try-require';
@@ -21,77 +22,12 @@ import { Vertex } from '../utils/topsort';
 
 const debug = createDebug('denali:application');
 
-export interface Config {
-  /**
-   * THe name of the current environment, i.e. 'developement', 'test', 'production'
-   */
-  environment: string;
-  logging?: {
-    /**
-     * Should logs show debug information? If true, errors will log out as much detail as possible.
-     */
-    showDebuggingInfo?: boolean;
-    /**
-     * A morgan log format string to use
-     */
-    format?: string;
-    /**
-     * A function to determine whether or not logging should be skipped for a given request - see
-     * morgan docs for details
-     */
-    skip?(): boolean;
-  };
-  /**
-   * Cookie parser configuration - see cookie-parser for details
-   */
-  cookies?: any;
-  /**
-   * CORS configuration - see cors middleware package for details
-   */
-  cors?: any;
-  bodyParser?: {
-    /**
-     * What content-types should the body parser try to parse as JSON?
-     */
-    type?: string;
-  };
-  migrations?: {
-    /**
-     * Knex configuration information for running migrations
-     */
-    db?: any;
-  }
-  server: {
-    /**
-     * THe port number that the application should start up on
-     */
-    port: number;
-    /**
-     * Should the application start in detached mode? I.e. without attaching to a port?
-     */
-    detached?: boolean;
-    /**
-     * SSL/TLS certificate files. Note these should be the file contents, not the file paths
-     */
-    ssl?: {
-      key: Buffer | string;
-      cert: Buffer | string;
-    }
-  },
-  /**
-   * Connection and configuration for your ORM adapter - see your ORM adapter docs for
-   * details
-   */
-  database?: any;
-  [key: string]: any;
-}
-
 export interface AppConfigBuilder {
-  (environment: string, container: Container): Config;
+  (environment: string, container: Container): AppConfig;
 }
 
 export interface AddonConfigBuilder {
-  (environment: string, container: Container, config: any): void;
+  (environment: string, container: Container, config: AppConfig): void;
 }
 
 export interface MiddlewareBuilder {
