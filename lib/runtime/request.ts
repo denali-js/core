@@ -27,6 +27,11 @@ import * as uuid from 'uuid';
 /* tslint:disable:member-ordering */
 export default class Request extends ReadableStream implements ExpressRequest, http.IncomingMessage, https.IncomingMessage {
 
+  constructor(incomingMessage: http.IncomingMessage | https.IncomingMessage) {
+    super();
+    this._incomingMessage = incomingMessage;
+  }
+
   //
   // Denali extensions
   //
@@ -52,7 +57,7 @@ export default class Request extends ReadableStream implements ExpressRequest, h
   /**
    * The name of the original action that was invoked - useful for error actions to create
    * helpful debug messages.
-   * 
+   *
    * @since 0.1.0
    */
   _originalAction: string;
