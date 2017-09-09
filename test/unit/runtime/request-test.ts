@@ -153,7 +153,8 @@ test('is returns correct values', (t) => {
   });
 
   t.is(request.is('html'), false);
-  t.is(request.is('json'), 'json');
+  t.is(request.is('json'), true);
+  t.is(request2.is('html'), true);
   t.is(request2.is('json'), false);
 });
 
@@ -236,4 +237,4 @@ normalReturningMethods.forEach((method, i) => {
 
     t.is(req[method](), i, `${ method } returns the value from the passed through method`);
   });
-})
+});
