@@ -1,4 +1,5 @@
 const path = require('path');
+const chalk = require('chalk');
 const { Builder, ui } = require(`denali-cli`);
 const { exec } = require('child_process');
 const Funnel = require('broccoli-funnel');
@@ -16,6 +17,10 @@ module.exports = class DenaliBuilder extends Builder {
     let transpiledTS = new Typescript(tree, {
       tsconfig: require(path.join(dir, 'tsconfig.json')),
       annotation: 'compile typescript'
+    });
+    transpiledTS.setDiagnosticWriter((message) => {
+      ui.warn(chalk.bold(`==> [denali] Typescript compilation errors: `));
+      ui.warn(message);
     });
     let withoutTS = new Funnel(tree, {
       exclude: [ '**/*.ts' ]
