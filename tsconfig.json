@@ -11,10 +11,10 @@
       "inlineSourceMap": true,
       "inlineSources": true,
       "outDir": "dist",
-      "baseUrl": ".",
       "skipLibCheck": true,
       "sourceRoot": ".",
       "noUnusedLocals": true,
+      "baseUrl": ".",
       "paths": {
         "denali": [ "lib/index.ts" ]
       }
