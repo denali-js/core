@@ -1,7 +1,8 @@
 import { Dict } from '../utils/types';
-import inject from '../metal/inject';
+// import inject from '../metal/inject';
 import Route from './route';
 import ConfigService from './config';
+import Container from '../metal/container';
 import { constant } from 'lodash';
 import { Request as ExpressRequest } from 'express';
 import * as accepts from 'accepts';
@@ -27,8 +28,9 @@ import * as uuid from 'uuid';
 /* tslint:disable:member-ordering */
 export default class Request extends ReadableStream implements ExpressRequest, http.IncomingMessage, https.IncomingMessage {
 
-  constructor(incomingMessage: http.IncomingMessage | https.IncomingMessage) {
+  constructor(container: Container, incomingMessage: http.IncomingMessage | https.IncomingMessage) {
     super();
+    this.container = container;
     this._incomingMessage = incomingMessage;
   }
 
@@ -38,7 +40,12 @@ export default class Request extends ReadableStream implements ExpressRequest, h
 
   _incomingMessage: http.IncomingMessage | https.IncomingMessage;
 
-  config = inject<ConfigService>('service:config');
+  container: Container;
+
+  // TODO this should ideally use the inject helper
+  get config(): ConfigService {
+    return this.container.lookup('config:service');
+  }
 
   /**
    * A UUID generated unqiue to this request. Useful for tracing a request through the application.

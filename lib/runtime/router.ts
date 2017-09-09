@@ -113,7 +113,7 @@ export default class Router extends DenaliObject implements RouterDSL {
    * finally renders the response.
    */
   async handle(req: IncomingMessage, res: ServerResponse): Promise<void> {
-    let request = new Request(req);
+    let request = new Request(this.container, req);
     try {
 
       debug(`[${ request.id }]: ${ request.method.toUpperCase() } ${ request.path }`);
