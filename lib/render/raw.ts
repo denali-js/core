@@ -1,5 +1,5 @@
 import Serializer from './serializer';
-import Action, { RenderOptions } from 'lib/runtime/action';
+import Action, { RenderOptions } from '../runtime/action';
 
 /**
  * Renders the payload as a flat JSON object or array at the top level. Related
