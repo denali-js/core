@@ -5,7 +5,7 @@ import { fromNode } from 'bluebird';
 import * as createDebug from 'debug';
 import Errors from './errors';
 import Route from './route';
-import Request, { Method } from './request';
+import Request from './request';
 import ensureArray = require('arrify');
 import DenaliObject from '../metal/object';
 import Container from '../metal/container';
@@ -26,7 +26,7 @@ export interface RoutesCache {
   head: Route[];
   options: Route[];
   [method: string]: Route[];
-};
+}
 
 export interface MiddlewareFn {
   (req: IncomingMessage, res: ServerResponse, next: Function): void;
@@ -124,6 +124,7 @@ export default class Router extends DenaliObject implements RouterDSL {
       // Find the matching route
       debug(`[${ request.id }]: routing request`);
       let routes = this.routes[request.method];
+      /* tslint:disable-next-line prefer-for-of */
       for (let i = 0; i < routes.length; i += 1) {
         request.params = routes[i].match(request.path);
         if (request.params) {
@@ -183,7 +184,7 @@ export default class Router extends DenaliObject implements RouterDSL {
    *
    * @since 0.1.0
    */
-  route(method: Method, rawPattern: string, actionPath: string, params?: any) {
+  route(method: string, rawPattern: string, actionPath: string, params?: any) {
     // Ensure leading slashes
     let normalizedPattern = rawPattern.replace(/^([^/])/, '/$1');
     // Remove hardcoded trailing slashes
@@ -351,7 +352,7 @@ export default class Router extends DenaliObject implements RouterDSL {
       [ 'replace-related', 'patch', relationship ],
       [ 'add-related', 'post', relationship ],
       [ 'remove-related', 'delete', relationship ]
-    ].forEach((routeTemplate: [ string, Method, string ]) => {
+    ].forEach((routeTemplate: [ string, string, string ]) => {
       let [ action, method, url ] = routeTemplate;
       if (include(action)) {
         let routeMethod = <(url: string, action: string) => void>this[method];
