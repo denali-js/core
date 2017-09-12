@@ -11,15 +11,14 @@ function mockRequest(options?: any): Request {
 function mockBasic(mockMessage?: any): Request {
   // Create a stub url so that the Request instantiation won't fail
   mockMessage.url = 'example.com';
-  // Cast object to an IncomingMessage to satisfy tsc
   return new Request((<IncomingMessage>mockMessage));
 }
 
 test('method returns correct method', (t) => {
   let request = mockRequest({
-    method: 'put'
+    method: 'PUT'
   });
-  t.is(request.method, 'put');
+  t.is(request.method, 'PUT');
 });
 
 test('hostname returns Host header without port number', (t) => {

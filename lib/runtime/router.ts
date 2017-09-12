@@ -19,13 +19,13 @@ import {
 const debug = createDebug('denali:router');
 
 export interface RoutesCache {
-  get: Route[];
-  post: Route[];
-  put: Route[];
-  patch: Route[];
-  delete: Route[];
-  head: Route[];
-  options: Route[];
+  GET: Route[];
+  POST: Route[];
+  PUT: Route[];
+  PATCH: Route[];
+  DELETE: Route[];
+  HEAD: Route[];
+  OPTIONS: Route[];
   [method: string]: Route[];
 }
 
@@ -77,13 +77,13 @@ export default class Router extends DenaliObject implements RouterDSL {
    * The cache of available routes.
    */
   routes: RoutesCache = {
-    get: [],
-    post: [],
-    put: [],
-    patch: [],
-    delete: [],
-    head: [],
-    options: []
+    GET: [],
+    POST: [],
+    PUT: [],
+    PATCH: [],
+    DELETE: [],
+    HEAD: [],
+    OPTIONS: []
   };
 
   /**
