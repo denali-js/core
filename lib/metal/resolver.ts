@@ -37,7 +37,7 @@ export default class Resolver {
 
   constructor(root: string) {
     assert(root, 'You must supply a valid root path that the resolve should use to load from');
-    this.debug = createDebug(`denali:resolver:${ root }`);
+    this.debug = createDebug(`silly-denali:resolver:${ root }`);
     this.root = root;
   }
 
