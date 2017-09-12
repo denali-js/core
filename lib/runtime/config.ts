@@ -91,7 +91,7 @@ export interface AppConfig {
     /**
      * THe port number that the application should start up on
      */
-    port: number;
+    port?: number;
 
     /**
      * Should the application start in detached mode? I.e. without attaching to a port?
