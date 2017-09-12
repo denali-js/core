@@ -1,8 +1,6 @@
 import { Dict } from '../utils/types';
-// import inject from '../metal/inject';
 import Route from './route';
-import ConfigService from './config';
-import Container from '../metal/container';
+import { AppConfig } from './config';
 import { constant } from 'lodash';
 import { Request as ExpressRequest } from 'express';
 import * as accepts from 'accepts';
@@ -28,9 +26,9 @@ import * as uuid from 'uuid';
 /* tslint:disable:member-ordering */
 export default class Request extends ReadableStream implements ExpressRequest, http.IncomingMessage, https.IncomingMessage {
 
-  constructor(container: Container, incomingMessage: http.IncomingMessage | https.IncomingMessage) {
+  constructor(incomingMessage: http.IncomingMessage | https.IncomingMessage, serverConfig?: AppConfig['server']) {
     super();
-    this.container = container;
+    this.serverConfig = serverConfig || {};
     this._incomingMessage = incomingMessage;
   }
 
@@ -40,12 +38,7 @@ export default class Request extends ReadableStream implements ExpressRequest, h
 
   _incomingMessage: http.IncomingMessage | https.IncomingMessage;
 
-  container: Container;
-
-  // TODO this should ideally use the inject helper
-  get config(): ConfigService {
-    return this.container.lookup('config:service');
-  }
+  serverConfig: AppConfig['server'];
 
   /**
    * A UUID generated unqiue to this request. Useful for tracing a request through the application.
@@ -161,7 +154,7 @@ export default class Request extends ReadableStream implements ExpressRequest, h
     }
 
     let lc = name.toLowerCase();
-    let headers = <Dict<string>>this.headers;
+    let headers = this.headers;
 
     switch (lc) {
       case 'referer':
@@ -352,7 +345,7 @@ export default class Request extends ReadableStream implements ExpressRequest, h
    */
   get protocol(): 'http' | 'https' {
     let rawProtocol: 'http' | 'https' = (<TLSSocket>this.connection).encrypted ? 'https' : 'http';
-    let trustProxyConfig = this.config.getWithDefault('server', 'trustProxy', constant(false));
+    let trustProxyConfig = this.serverConfig.trustProxy || constant(false);
     let ip = this.connection.remoteAddress;
 
     if (trustProxyConfig) {
@@ -384,7 +377,7 @@ export default class Request extends ReadableStream implements ExpressRequest, h
    */
 
   get ip(): string {
-    let trustProxyConfig = this.config.getWithDefault('server', 'trustProxy', constant(false));
+    let trustProxyConfig = this.serverConfig.trustProxy || constant(false);
     return proxyaddr(this._incomingMessage, trustProxyConfig);
   }
 
@@ -397,7 +390,7 @@ export default class Request extends ReadableStream implements ExpressRequest, h
    * "proxy2" were trusted.
    */
   get ips(): string[] {
-    let trustProxyConfig = this.config.getWithDefault('server', 'trustProxy', constant(false));
+    let trustProxyConfig = this.serverConfig.trustProxy || constant(false);
     let ips = proxyaddr.all(this._incomingMessage, trustProxyConfig);
     ips.reverse().pop();
     return ips;
@@ -421,9 +414,9 @@ export default class Request extends ReadableStream implements ExpressRequest, h
       return [];
     }
 
-    let offset = this.config.getWithDefault('server', 'subdomainOffset', 2);
+    let offset = this.serverConfig.subdomainOffset;
     let subdomains = !isIP(hostname) ? hostname.split('.').reverse() : [ hostname ];
-    return subdomains.slice(offset);
+    return subdomains.slice(offset == null ? 2 : offset);
   }
 
   /**
@@ -442,8 +435,8 @@ export default class Request extends ReadableStream implements ExpressRequest, h
    */
   get hostname(): string {
     let host = this.get('X-Forwarded-Host');
-    let ip = this.connection.remoteAddress;
-    let trustProxyConfig = this.config.getWithDefault('server', 'trustProxy', constant(false));
+    let ip = this.socket.remoteAddress;
+    let trustProxyConfig = this.serverConfig.trustProxy || constant(false);
 
     if (typeof trustProxyConfig !== 'function') {
       trustProxyConfig = proxyaddr.compile(trustProxyConfig);

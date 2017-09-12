@@ -9,6 +9,7 @@ import Request from './request';
 import ensureArray = require('arrify');
 import DenaliObject from '../metal/object';
 import Container from '../metal/container';
+import inject from '../metal/inject';
 import Action from './action';
 import {
   find,
@@ -96,6 +97,8 @@ export default class Router extends DenaliObject implements RouterDSL {
    */
   container: Container;
 
+  config = inject('service:config');
+
   /**
    * Helper method to invoke the function exported by `config/routes.js` in the context of the
    * current router instance.
@@ -113,7 +116,8 @@ export default class Router extends DenaliObject implements RouterDSL {
    * finally renders the response.
    */
   async handle(req: IncomingMessage, res: ServerResponse): Promise<void> {
-    let request = new Request(this.container, req);
+    let serverConfig = this.config.get('server');
+    let request = new Request(req, serverConfig);
     try {
 
       debug(`[${ request.id }]: ${ request.method.toUpperCase() } ${ request.path }`);

@@ -4,7 +4,7 @@ import { FlatParser, MockRequest, Request } from 'denali';
 
 function mockRequest(options?: any, body?: any) {
   let mocked = new MockRequest(options);
-  let req = new Request(<any>mocked);
+  let req = new Request(<any>mocked, <any>{});
   req.body = body;
   return req;
 }

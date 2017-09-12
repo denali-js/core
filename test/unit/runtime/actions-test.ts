@@ -16,7 +16,7 @@ import {
   Logger } from 'denali';
 
 function mockRequest(options?: any) {
-  return new Request(<any>new MockRequest(options));
+  return new Request(<any>new MockRequest(options), <any>{});
 }
 
 test.beforeEach((t) => {

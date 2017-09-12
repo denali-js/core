@@ -9,7 +9,7 @@ function mockRequest(body?: any) {
       'Content-type': 'application/vnd.api+json'
     }
   });
-  let req = new Request(<any>mocked);
+  let req = new Request(<any>mocked, <any>{});
   req.body = body;
   return req;
 }
@@ -54,7 +54,7 @@ test('doesn\'t attempt to parse and returns no body if request body empty', (t) 
   let mocked = new MockRequest({
     method: 'GET'
   });
-  let req = new Request(<any>mocked);
+  let req = new Request(<any>mocked, <any>{});
   let result = parser.parse(req);
   t.true(typeof result.body === 'undefined');
 });
