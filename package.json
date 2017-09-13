@@ -74,6 +74,7 @@
     "@types/rimraf": "^2.0.2",
     "@types/route-parser": "^0.1.1",
     "@types/tmp": "^0.0.33",
+    "@types/type-is": "^1.6.0",
     "@types/uuid": "^3.4.1",
     "@types/yargs": "^8.0.2",
     "accepts": "^1.3.4",

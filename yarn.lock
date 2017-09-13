@@ -243,6 +243,12 @@
   version "0.0.33"
   resolved "https://registry.yarnpkg.com/@types/tmp/-/tmp-0.0.33.tgz#1073c4bc824754ae3d10cfab88ab0237ba964e4d"
 
+"@types/type-is@^1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@types/type-is/-/type-is-1.6.0.tgz#66b4af6115374f86c041bceb6f3824b17cb5c28b"
+  dependencies:
+    "@types/node" "*"
+
 "@types/uuid@^3.4.1":
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-3.4.1.tgz#1b8d5e318ba733f63042b7e58bbf5b8552eaa43f"

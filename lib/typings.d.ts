@@ -6,7 +6,6 @@ declare module "broccoli-plugin";
 declare module "dedent-js";
 declare module "ware";
 declare module "arrify";
-declare module "type-is";
 declare module "try-require";
 declare module "is-directory";
 declare module "strip-extension";
