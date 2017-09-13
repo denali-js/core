@@ -32,12 +32,12 @@ test('hostname returns Host header without port number', (t) => {
 
 test('hostname doesn\'t fail when host header is not defined', (t) => {
   let request = mockRequest();
-  t.is(request.hostname, '');
+  t.is(request.hostname, undefined);
 });
 
 test('ip returns remote address of socket', (t) => {
   let request = mockRequest();
-  t.is(request.ip, '123.45.67.89');
+  t.is(request.ip, '192.168.1.1');
 });
 
 test('originalUrl returns the pathname of the url', (t) => {
@@ -48,15 +48,15 @@ test('originalUrl returns the pathname of the url', (t) => {
 });
 
 test('protocol', (t) => {
-  let request = mockRequest({
-    url: 'https://example.com/'
-  });
-  let request2 = mockRequest({
+  let httpRequest = mockRequest({
     url: 'http://example.com/'
   });
+  let httpsRequest = mockRequest({
+    url: 'https://example.com/'
+  });
 
-  t.is(request.protocol, 'https:');
-  t.is(request2.protocol, 'http:');
+  t.is(httpRequest.protocol, 'http', 'http protocol');
+  t.is(httpsRequest.protocol, 'https', 'https protocol');
 });
 
 test('secure returns true for https', (t) => {
@@ -90,7 +90,7 @@ test('subdomains return an array of subdomains from request url', (t) => {
   });
 
   t.deepEqual(request.subdomains, ['a']);
-  t.deepEqual(request2.subdomains, ['a', 'b', 'c']);
+  t.deepEqual(request2.subdomains, ['c', 'b', 'a']);
 });
 
 test('get returns header value', (t) => {
@@ -136,14 +136,14 @@ test('accepts returns correct type', (t) => {
 });
 
 test('is returns correct values', (t) => {
-  let request = mockRequest({
+  let jsonRequest = mockRequest({
     method: 'post',
     headers: {
       'content-type': 'application/json',
       'content-length': 2
     }
   });
-  let request2 = mockRequest({
+  let htmlRequest = mockRequest({
     method: 'post',
     headers: {
       'content-type': 'text/html',
@@ -151,10 +151,10 @@ test('is returns correct values', (t) => {
     }
   });
 
-  t.is(request.is('html'), false);
-  t.is(request.is('json'), true);
-  t.is(request2.is('html'), true);
-  t.is(request2.is('json'), false);
+  t.is(jsonRequest.is('html'), false, 'json request is not html');
+  t.is(jsonRequest.is('json'), 'json', 'json request is json');
+  t.is(htmlRequest.is('html'), 'html', 'html request is html');
+  t.is(htmlRequest.is('json'), false, 'html request is not json');
 });
 
 // The following tests are basic coverage-boosting tests for the Request class
