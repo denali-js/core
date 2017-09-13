@@ -326,7 +326,7 @@ export default class Request extends ReadableStream implements ExpressRequest, h
    *      req.is('html');
    *      // => false
    */
-  is(...types: string[]): boolean {
+  is(...types: string[]): string | false {
     if (Array.isArray(types[0])) {
       types = <any>types[0];
     }
