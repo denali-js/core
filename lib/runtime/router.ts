@@ -130,18 +130,23 @@ export default class Router extends DenaliObject implements RouterDSL {
       // Find the matching route
       debug(`[${ request.id }]: routing request`);
       let routes = this.routes[request.method];
-      /* tslint:disable-next-line prefer-for-of */
-      for (let i = 0; i < routes.length; i += 1) {
-        request.params = routes[i].match(request.path);
-        if (request.params) {
-          request.route = routes[i];
-          break;
+      if (routes) {
+        /* tslint:disable-next-line prefer-for-of */
+        for (let i = 0; i < routes.length; i += 1) {
+          request.params = routes[i].match(request.path);
+          if (request.params) {
+            request.route = routes[i];
+            break;
+          }
         }
       }
       // Handle 404s
       if (!request.route) {
-        debug(`[${ request.id }]: ${ request.method } ${ request.path } did match any route. Available ${ request.method } routes:\n${ routes.map((r) => r.spec).join(',\n') }`);
-        throw new Errors.NotFound('Route not recognized');
+        let availableRoutes =  routes && routes.map((r) => r.spec);
+        debug(`[${ request.id }]: ${ request.method } ${ request.path } did match any route. Available ${ request.method } routes:\n${ availableRoutes.join(',\n') || 'none' }`);
+        let error = new Errors.NotFound('Route not recognized');
+        error.meta = { availableRoutesForMethod: routes || [] };
+        throw error;
       }
 
       // Create our action to handle the response
