@@ -204,7 +204,7 @@ export default class Container {
           Available resolvers:
             - ${ this.resolvers.map((r) => r.root).join('\n  - ') }
 
-          Run with DEBUG=denali:resolver:<path> to trace a specific resolver's resolution
+          Run with DEBUG=silly-denali:resolver:<path> to trace a specific resolver's resolution
         `);
         throw new Error(`No class found for ${ specifier }.`);
       }
