@@ -37,11 +37,12 @@ export default class ErrorAction extends Action {
     error.status = error.statusCode = error.statusCode || 500;
     // If debugging info is allowed, attach some debugging info to standard
     // locations.
-    if (this.config.logging && this.config.logging.showDebuggingInfo) {
-      error.meta = {
-        stack: error.stack,
+    if (this.config.getWithDefault('logging', 'showDebuggingInfo', this.config.environment !== 'production')) {
+      error.meta = error.meta || {};
+      Object.assign(error.meta, {
+        stack: error.stack.split('\n'),
         action: this.originalAction
-      };
+      });
     // Otherwise, sanitize the output
     } else {
       if (error.statusCode === 500) {
@@ -49,7 +50,7 @@ export default class ErrorAction extends Action {
       }
       delete error.stack;
     }
-    if (this.request.accepts([ 'html' ]) && this.container.lookup('config:environment').environment !== 'production') {
+    if (this.request.accepts('html') && this.config.environment !== 'production') {
       this.render(error.status, error, { view: 'error.html' });
     } else {
       this.render(error.status, error);
