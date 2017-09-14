@@ -1,6 +1,5 @@
 /* tslint:disable:completed-docs no-empty no-invalid-this member-access */
 import test from 'ava';
-import { IncomingMessage } from 'http';
 import { Request, MockRequest } from 'denali';
 import { cloneDeep } from 'lodash';
 
@@ -8,17 +7,19 @@ function mockRequest(options?: any): Request {
   return new Request(<any>new MockRequest(options));
 }
 
-function mockBasic(mockMessage?: any): Request {
-  // Create a stub url so that the Request instantiation won't fail
-  mockMessage.url = 'example.com';
-  return new Request((<IncomingMessage>mockMessage));
-}
-
 test('method returns correct method', (t) => {
   let request = mockRequest({
     method: 'PUT'
   });
   t.is(request.method, 'PUT');
+});
+
+test('query returns parsed query params', (t) => {
+  let request = mockRequest({
+    url: 'http://example.com?foo=bar&fizz=bat'
+  });
+  t.is(request.query.foo, 'bar');
+  t.is(request.query.fizz, 'bat');
 });
 
 test('hostname returns Host header without port number', (t) => {
@@ -162,78 +163,17 @@ test('is returns correct values', (t) => {
 // to the IncomingMessage object
 
 test('incoming message properties are passed through', (t) => {
-  t.plan(8);
-
   let props = {
     httpVersion: 0,
     rawHeaders: 1,
     rawTrailers: 2,
-    socket: 3,
-    statusCode: 4,
-    statusMessage: 5,
-    trailers: 6,
-    connection: 7
+    connection: 3,
+    trailers: 4
   };
   // Use cloneDeep because props is mutated
-  let req = (<any>mockBasic(cloneDeep(props)));
+  let request = new Request(<any>cloneDeep(props));
 
-  Object.keys(props).forEach((prop, i) => {
-    t.is(req[prop], i);
-  });
-});
-
-// self-returning methods
-const selfReturningMethods = [
-  'addListener',
-  'on',
-  'once',
-  'prependListener',
-  'prependOnceListener',
-  'removeAllListeners',
-  'removeListener',
-  'setMaxListeners',
-  'pause',
-  'resume',
-  'setEncoding',
-  'setTimeout'
-];
-
-// Normal-returning methods
-const normalReturningMethods = [
-  'emit',
-  'eventNames',
-  'getMaxListeners',
-  'listenerCount',
-  'listeners',
-  'isPaused',
-  'pipe',
-  'read',
-  'unpipe',
-  'unshift',
-  'wrap',
-  'destroy'
-];
-
-selfReturningMethods.forEach((method) => {
-  test(`self-returning pass through method > ${ method }`, (t) => {
-    t.plan(2);
-
-    let req = (<any>mockBasic({
-      [method]() { t.pass(); }
-    }));
-
-    t.deepEqual(req[method](), req, `${ method } returns the Request object`);
-  });
-});
-
-normalReturningMethods.forEach((method, i) => {
-  test(`pass through method > ${ method }`, (t) => {
-    t.plan(2);
-
-    let req = (<any>mockBasic({
-      [method]() { t.pass(); return i; }
-    }));
-
-    t.is(req[method](), i, `${ method } returns the value from the passed through method`);
+  Object.keys(props).forEach((prop: keyof Request, i) => {
+    t.is(request[prop], i, `${ prop } passes through from IncomingMessage`);
   });
 });

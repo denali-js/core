@@ -64,7 +64,7 @@ test('launches a server based on the dummy app in an addon', async (t) => {
   return server.spawn({
     failOnStderr: true,
     checkOutput(stdout, stderr) {
-      let started = stdout.indexOf('my-denali-addon@0.0.1 server up') > -1;
+      let started = stdout.indexOf('dummy@0.0.0 server up') > -1;
       if (started) {
         t.pass();
       }

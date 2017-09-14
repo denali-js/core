@@ -1,10 +1,24 @@
 /* tslint:disable:completed-docs no-empty no-invalid-this member-access */
 import test from 'ava';
 import { isArray } from 'lodash';
-import { JSONAPISerializer, Model, attr, Container, MemoryAdapter, Router, Action, hasMany, Errors, hasOne, DatabaseService } from 'denali';
+import {
+  JSONAPISerializer,
+  Model,
+  attr,
+  Container,
+  MemoryAdapter,
+  Router,
+  Action,
+  hasMany,
+  Errors,
+  hasOne,
+  DatabaseService,
+  ConfigService } from 'denali';
 
 test.beforeEach(async (t) => {
   let container = t.context.container = new Container(__dirname);
+  container.register('config:environment', {}, { instantiate: false, singleton: false });
+  container.register('service:config', ConfigService);
   container.register('service:db', DatabaseService);
   container.register('action:posts/show', Action);
   container.register('action:comments/show', Action);

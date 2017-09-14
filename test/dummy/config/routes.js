@@ -1,6 +1,7 @@
 module.exports = function drawRoutes(router) {
 
   router.get('/', 'index');
+  router.get('/throws-an-exception', 'throws-an-exception');
 
   /*
    * # Single routes

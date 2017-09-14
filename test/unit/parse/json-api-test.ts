@@ -2,16 +2,15 @@
 import test from 'ava';
 import { JSONAPIParser, MockRequest, Request } from 'denali';
 
-function mockRequest(body?: any) {
+function mockRequest(json?: any) {
   let mocked = new MockRequest({
     method: 'POST',
     headers: {
       'Content-type': 'application/vnd.api+json'
-    }
+    },
+    json
   });
-  let req = new Request(<any>mocked, <any>{});
-  req.body = body;
-  return req;
+  return new Request(mocked, <any>{});
 }
 
 test('returns responder params with primary request data flattened', async (t) => {
@@ -24,6 +23,7 @@ test('returns responder params with primary request data flattened', async (t) =
       }
     }
   }));
+  t.truthy(result.body);
   t.true(result.body.foo);
 });
 
@@ -45,7 +45,9 @@ test('returns responder params with included records', async (t) => {
       }
     ]
   }));
+  t.truthy(result.body);
   t.true(result.body.foo);
+  t.truthy(result.included);
   t.true(result.included[0].buzz);
 });
 
