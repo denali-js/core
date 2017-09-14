@@ -196,6 +196,7 @@ export default class Router extends DenaliObject implements RouterDSL {
    * @since 0.1.0
    */
   route(method: string, rawPattern: string, actionPath: string, params?: any) {
+    method = method.toUpperCase();
     // Ensure leading slashes
     let normalizedPattern = rawPattern.replace(/^([^/])/, '/$1');
     // Remove hardcoded trailing slashes
