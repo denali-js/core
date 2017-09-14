@@ -63,6 +63,7 @@ import Logger from './runtime/logger';
 import Request from './runtime/request';
 import Router from './runtime/router';
 import Service from './runtime/service';
+import ConfigService from './runtime/config';
 
 // Test
 import appAcceptanceTest, { AppAcceptance } from './test/app-acceptance';
@@ -118,6 +119,7 @@ export {
   Service,
   RenderOptions,
   ResponderParams,
+  ConfigService,
 
   // Test
   AppAcceptance,
