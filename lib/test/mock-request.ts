@@ -82,18 +82,16 @@ export default class MockRequest extends PassThrough implements IncomingHttpMess
     }
 
     let body = options.body;
-    process.nextTick(() => {
-      if (body) {
-        if (isReadableStream(body)) {
-          body.pipe(this._mockBodyStream);
-        } else {
-          if (!this.headers['content-length']) {
-            this.headers['content-length'] = String(body.length);
-          }
-          this._mockBodyStream.write(body);
+    if (body) {
+      if (isReadableStream(body)) {
+        body.pipe(this._mockBodyStream);
+      } else {
+        if (!this.headers['content-length']) {
+          this.headers['content-length'] = String(body.length);
         }
+        this._mockBodyStream.write(body);
       }
-    });
+    }
   }
 
   _read(size: number) {
