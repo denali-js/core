@@ -14,6 +14,7 @@ import * as parseRange from 'range-parser';
 import * as parse from 'parseurl';
 import * as proxyaddr from 'proxy-addr';
 import * as uuid from 'uuid';
+import * as qs from 'querystring';
 
 /**
  * The Request class represents an incoming HTTP request (specifically, Node's IncomingMessage).
@@ -68,7 +69,7 @@ export default class Request extends ReadableStream implements ExpressRequest, h
   // http.IncomingMessage interface
   //
 
-  get method(): string { return this._incomingMessage.method; }
+  get method(): string { return this._incomingMessage.method.toUpperCase(); }
 
   get httpVersion(): string { return this._incomingMessage.httpVersion; }
   get httpVersionMajor(): number { return this._incomingMessage.httpVersionMajor; }
@@ -101,7 +102,9 @@ export default class Request extends ReadableStream implements ExpressRequest, h
 
   params: any;
 
-  query: any;
+  get query(): Dict<string> {
+    return qs.parse(parse(this._incomingMessage).query);
+  }
 
   cookies: Dict<string> = {};
 
