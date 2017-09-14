@@ -22,6 +22,7 @@ import inject from '../metal/inject';
 import Serializer from '../render/serializer';
 import DatabaseService from '../data/database';
 import Logger from './logger';
+import ConfigService from './config';
 import { RelationshipConfigs } from '../render/serializer';
 
 const debug = createDebug('denali:action');
@@ -131,7 +132,7 @@ export default abstract class Action extends DenaliObject {
   /**
    * Application config
    */
-  config = inject<any>('config:environment');
+  config = inject<ConfigService>('service:config');
 
   /**
    * Force which parser should be used for parsing the incoming request.
