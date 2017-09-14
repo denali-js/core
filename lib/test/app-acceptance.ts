@@ -84,17 +84,11 @@ export class AppAcceptance {
       headers: assign({}, this.headers, options.headers)
     });
     return new Promise<{ status: number, body: any }>((resolve, reject) => {
-      let res = new MockResponse(() => {
-        let resBody = res._getString();
-        if (res.statusCode < 500) {
-          try {
-            resBody = res._getJSON();
-          } finally {
-            resolve({ status: res.statusCode, body: resBody });
-          }
+      let res = new MockResponse(({ status, body, json }) => {
+        if (status < 500) {
+          resolve({ status: res.statusCode, body: json || body });
         } else {
-          resBody = resBody.replace(/\\n/g, '\n');
-          reject(new Error(`Request failed - ${ req.method.toUpperCase() } ${ req.url } returned a ${ res.statusCode }:\n${ resBody }`));
+          reject({ response: res, status, body, json });
         }
       });
 
