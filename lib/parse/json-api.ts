@@ -38,7 +38,7 @@ export default class JSONAPIParser extends Parser {
     }
 
     try {
-      assert(request.get('content-type') === 'application/vnd.api+json', 'Invalid content type - must have `application/vnd.api+json` as the request content type');
+      assert(request.getHeader('content-type') === 'application/vnd.api+json', 'Invalid content type - must have `application/vnd.api+json` as the request content type');
       assert(request.body.data, 'Invalid JSON-API document (missing top level `data` object - see http://jsonapi.org/format/#document-top-level)');
 
       let parseResource = this.parseResource.bind(this);
