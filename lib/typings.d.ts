@@ -7,8 +7,6 @@ declare module "dedent-js";
 declare module "ware";
 declare module "arrify";
 declare module "try-require";
-declare module "is-directory";
-declare module "strip-extension";
 declare module "wordwrap";
 declare module "command-exists";
 declare module "cli-table2";
