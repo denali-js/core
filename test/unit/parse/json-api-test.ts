@@ -1,6 +1,8 @@
 /* tslint:disable:completed-docs no-empty no-invalid-this member-access */
-import test from 'ava';
+import ava, { RegisterContextual } from 'ava';
 import { JSONAPIParser, MockRequest, Request } from 'denali';
+
+const test = <RegisterContextual<{ parser: JSONAPIParser }>>ava;
 
 function mockRequest(json?: any) {
   let mocked = new MockRequest({
@@ -13,9 +15,14 @@ function mockRequest(json?: any) {
   return new Request(mocked, <any>{});
 }
 
+// Fake the container initialization
+test.beforeEach(async (t) => {
+  let parser = t.context.parser = new JSONAPIParser(<any>{});
+  parser.init();
+});
+
 test('returns responder params with primary request data flattened', async (t) => {
-  let parser = new JSONAPIParser();
-  let result = parser.parse(mockRequest({
+  let result = await t.context.parser.parse(mockRequest({
     data: {
       type: 'bar',
       attributes: {
@@ -28,8 +35,7 @@ test('returns responder params with primary request data flattened', async (t) =
 });
 
 test('returns responder params with included records', async (t) => {
-  let parser = new JSONAPIParser();
-  let result = parser.parse(mockRequest({
+  let result = await t.context.parser.parse(mockRequest({
     data: {
       type: 'bar',
       attributes: {
@@ -51,12 +57,11 @@ test('returns responder params with included records', async (t) => {
   t.true(result.included[0].buzz);
 });
 
-test('doesn\'t attempt to parse and returns no body if request body empty', (t) => {
-  let parser = new JSONAPIParser();
+test("doesn't attempt to parse and returns no body if request body empty", async (t) => {
   let mocked = new MockRequest({
     method: 'GET'
   });
   let req = new Request(<any>mocked, <any>{});
-  let result = parser.parse(req);
+  let result = await t.context.parser.parse(req);
   t.true(typeof result.body === 'undefined');
 });
