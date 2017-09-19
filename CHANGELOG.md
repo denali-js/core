@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.0.33"></a>
+## [0.0.33](https://github.com/denali-js/denali/compare/v0.0.32...v0.0.33) (2017-09-19)
+
+
+### Bug Fixes
+
+* **blueprints:** fix service blueprint naming; fixes [#380](https://github.com/denali-js/denali/issues/380) ([90ecd25](https://github.com/denali-js/denali/commit/90ecd25))
+* add back constructor for request object so it actually can get the IncomingMessage :facepalm: ([477b942](https://github.com/denali-js/denali/commit/477b942))
+* fix type issues with yargs argv in generate/destory commands ([93ba779](https://github.com/denali-js/denali/commit/93ba779))
+* fix typo in import path ([1c94468](https://github.com/denali-js/denali/commit/1c94468))
+* make resolution paths for non-relative imports start at denali source directory, not the consuming app/addon directory ([eccfedd](https://github.com/denali-js/denali/commit/eccfedd))
+* use getter and container.lookup for now since request object cannot use inject helper (yet) ([a39de10](https://github.com/denali-js/denali/commit/a39de10))
+* use local yargs import rather than reaching into denali-cli ([504c936](https://github.com/denali-js/denali/commit/504c936))
+* **runtime:** changing ResponderParams to be more loosely typed ([#391](https://github.com/denali-js/denali/issues/391)) ([19935f4](https://github.com/denali-js/denali/commit/19935f4))
+
+
+### Features
+
+* add config service ([#386](https://github.com/denali-js/denali/issues/386)) ([8a349c2](https://github.com/denali-js/denali/commit/8a349c2))
+* express compatible requests ([#387](https://github.com/denali-js/denali/issues/387)) ([c20a5ef](https://github.com/denali-js/denali/commit/c20a5ef))
+* pass container to config to allow per-environment container overrides ([#363](https://github.com/denali-js/denali/issues/363)); fix [#361](https://github.com/denali-js/denali/issues/361) ([d42d85d](https://github.com/denali-js/denali/commit/d42d85d))
+* **runtime:** Parsers do body parsing ([#392](https://github.com/denali-js/denali/issues/392)) ([15d9e8d](https://github.com/denali-js/denali/commit/15d9e8d))
+
+
+
 <a name="0.0.32"></a>
 ## [0.0.32](https://github.com/denali-js/denali/compare/v0.0.31...v0.0.32) (2017-09-02)
 
