@@ -26,7 +26,7 @@ export default class TestCommand extends Command {
   static flags = {
     debug: {
       description: 'The test file you want to debug. Can only debug one file at a time.',
-      type: <any>'string'
+      type: <any>'boolean'
     },
     watch: {
       description: 'Re-run the tests when the source files change',
@@ -124,7 +124,7 @@ export default class TestCommand extends Command {
 
     if (argv.watch) {
       project.watch({
-        outputDir: argv.output,
+        outputDir,
         // Don't let broccoli rebuild while tests are still running, or else
         // we'll be removing the test files while in progress leading to cryptic
         // errors.
@@ -166,7 +166,7 @@ export default class TestCommand extends Command {
     let args = files.concat([ '--concurrency', argv.concurrency ]);
     if (argv.debug) {
       avaPath = process.execPath;
-      args = [ '--inspect', '--inspect-brk', path.join(process.cwd(), 'node_modules', 'ava', 'profile.js'), argv.debug ];
+      args = [ '--inspect', '--inspect-brk', path.join(process.cwd(), 'node_modules', 'ava', 'profile.js'), ...files ];
     }
     if (argv.match) {
       args.push('--match', argv.match);
@@ -190,7 +190,7 @@ export default class TestCommand extends Command {
         DENALI_LEAVE_TMP: argv.litter,
         NODE_ENV: project.environment,
         DEBUG_COLORS: 1,
-        DENALI_TEST_BUILD_DIR: argv.output
+        DENALI_TEST_BUILD_DIR: outputDir
       })
     });
     ui.info(`===> Running ${ project.pkg.name } tests ...`);

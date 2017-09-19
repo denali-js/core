@@ -8,23 +8,26 @@ import {
   Request,
   MockRequest,
   MockResponse,
-  FlatParser,
-  RawSerializer,
+  JSONParser,
+  JSONSerializer,
   RenderOptions,
   ResponderParams,
   DatabaseService,
-  Logger } from 'denali';
+  Logger,
+  ConfigService } from 'denali';
 
 function mockRequest(options?: any) {
-  return new Request(<any>new MockRequest(options));
+  return new Request(<any>new MockRequest(options), <any>{});
 }
 
 test.beforeEach((t) => {
   let container = t.context.container = new Container(__dirname);
+  container.register('config:environment', {}, { instantiate: false, singleton: false });
+  container.register('service:config', ConfigService);
   container.register('app:logger', Logger);
   container.register('service:db', DatabaseService);
-  container.register('parser:application', FlatParser);
-  container.register('serializer:application', RawSerializer);
+  container.register('parser:application', JSONParser);
+  container.register('serializer:application', JSONSerializer);
   container.register('service:db', {}, { instantiate: false });
   container.register('config:environment', {});
   t.context.runAction = async (options?: any) => {
@@ -32,13 +35,7 @@ test.beforeEach((t) => {
     let action = await container.lookup<Action>('action:test');
     action.actionPath = 'test';
     await action.run(mockRequest(options), <any>response);
-    // If we can parse a response, return that, otherwise just return false (lots of these tests
-    // don't care about the response bod);
-    try {
-      return response._getJSON();
-    } catch (e) {
-      return false;
-    }
+    return response._json;
   };
 });
 
@@ -50,8 +47,8 @@ test('invokes respond() with params', async (t) => {
   let container: Container = t.context.container;
   container.register('action:test', class TestAction extends Action {
     async respond({ query }: ResponderParams) {
+      t.truthy(query);
       t.is(query.foo, 'bar');
-      t.pass();
       return {};
     }
   });

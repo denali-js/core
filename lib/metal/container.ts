@@ -204,7 +204,7 @@ export default class Container {
           Available resolvers:
             - ${ this.resolvers.map((r) => r.root).join('\n  - ') }
 
-          Run with DEBUG=denali:resolver:<path> to trace a specific resolver's resolution
+          Run with DEBUG=silly-denali:resolver:<path> to trace a specific resolver's resolution
         `);
         throw new Error(`No class found for ${ specifier }.`);
       }
@@ -354,7 +354,7 @@ export default class Container {
       class: klass,
       create(...args: any[]) {
         assert(typeof klass === 'function', `Unable to instantiate ${ specifier } (it's not a constructor). Try setting the 'instantiate: false' option on this container entry to avoid instantiating it`);
-        let instance = <T>new klass();
+        let instance = <T>new klass(container);
         injectInstance(instance, container);
         if (typeof instance.init === 'function') {
           instance.init(...args);

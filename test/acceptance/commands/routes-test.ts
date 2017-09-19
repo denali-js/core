@@ -7,10 +7,12 @@ test('prints list of configured routes', async (t) => {
 
   let result = await generate.run({ failOnStderr: true });
   t.true(result.stdout.trim().endsWith(dedent`
-┌───────┬────────┐
-│ URL   │ ACTION │
-├───────┼────────┤
-│ GET / │ index  │
-└───────┴────────┘
+  ┌───────────────────────────┬─────────────────────┐
+  │ URL                       │ ACTION              │
+  ├───────────────────────────┼─────────────────────┤
+  │ GET /                     │ index               │
+  ├───────────────────────────┼─────────────────────┤
+  │ GET /throws-an-exception/ │ throws-an-exception │
+  └───────────────────────────┴─────────────────────┘
   `.trim()));
 });

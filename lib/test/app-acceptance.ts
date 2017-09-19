@@ -2,7 +2,8 @@ import * as path from 'path';
 import { all } from 'bluebird';
 import {
   assign,
-  forEach
+  forEach,
+  mapKeys
 } from 'lodash';
 import { RegisterContextual } from 'ava';
 import MockRequest from './mock-request';
@@ -34,8 +35,8 @@ export class AppAcceptance {
    * @since 0.1.0
    */
   headers: { [name: string]: string } = {
-    Accept: 'application/json',
-    'Content-Type': 'application/json'
+    accept: 'application/json',
+    'content-type': 'application/json'
   };
 
   /**
@@ -44,8 +45,9 @@ export class AppAcceptance {
   protected _injections: { [fullName: string]: any } = {};
 
   constructor() {
-    let compiledPath = process.env.DENALI_TEST_BUILD_DIR;
-    let ApplicationClass: typeof Application = require(path.join(compiledPath, 'app/application')).default;
+    let compiledPath = path.join(process.cwd(), process.env.DENALI_TEST_BUILD_DIR);
+    let ApplicationModule = require(path.join(compiledPath, 'app', 'application'));
+    let ApplicationClass: typeof Application = ApplicationModule.default || ApplicationModule;
     let environment = process.env.NODE_ENV || 'test';
     this.application = new ApplicationClass({
       environment,
@@ -71,28 +73,22 @@ export class AppAcceptance {
    */
   async request(options: { method: string, url: string, body?: any, headers?: { [key: string]: string } }): Promise<{ status: number, body: any }> {
     let body: any = null;
+    options.headers = mapKeys(options.headers, (value, key) => key.toLowerCase()) || {};
     if (options.body) {
       body = typeof options.body === 'string' ? options.body : JSON.stringify(options.body);
-      options.headers = options.headers || {};
-      options.headers['Transfer-Encoding'] = 'chunked';
+      options.headers['transfer-encoding'] = 'chunked';
     }
     let req = new MockRequest({
-      method: options.method,
+      method: options.method.toUpperCase(),
       url: options.url,
       headers: assign({}, this.headers, options.headers)
     });
     return new Promise<{ status: number, body: any }>((resolve, reject) => {
-      let res = new MockResponse(() => {
-        let resBody = res._getString();
-        if (res.statusCode < 500) {
-          try {
-            resBody = res._getJSON();
-          } finally {
-            resolve({ status: res.statusCode, body: resBody });
-          }
+      let res = new MockResponse(({ status, body, json }) => {
+        if (status < 500) {
+          resolve({ status: res.statusCode, body: json || body });
         } else {
-          resBody = resBody.replace(/\\n/g, '\n');
-          reject(new Error(`Request failed - ${ req.method.toUpperCase() } ${ req.url } returned a ${ res.statusCode }:\n${ resBody }`));
+          reject({ response: res, status, body, json });
         }
       });
 
@@ -115,7 +111,7 @@ export class AppAcceptance {
    * @since 0.1.0
    */
   async get(url: string, options = {}): Promise<{ status: number, body: any }> {
-    return this.request(Object.assign(options, { url, method: 'get' }));
+    return this.request(Object.assign(options, { url, method: 'GET' }));
   }
   /**
    * Send a simulated HEAD request
@@ -123,7 +119,7 @@ export class AppAcceptance {
    * @since 0.1.0
    */
   async head(url: string, options = {}): Promise<{ status: number, body: any }> {
-    return this.request(Object.assign(options, { url, method: 'head' }));
+    return this.request(Object.assign(options, { url, method: 'HEAD' }));
   }
   /**
    * Send a simulated DELETE request
@@ -131,7 +127,7 @@ export class AppAcceptance {
    * @since 0.1.0
    */
   async delete(url: string, options = {}): Promise<{ status: number, body: any }> {
-    return this.request(Object.assign(options, { url, method: 'delete' }));
+    return this.request(Object.assign(options, { url, method: 'DELETE' }));
   }
   /**
    * Send a simulated POST request
@@ -139,7 +135,7 @@ export class AppAcceptance {
    * @since 0.1.0
    */
   async post(url: string, body: any, options = {}): Promise<{ status: number, body: any }> {
-    return this.request(Object.assign(options, { url, body, method: 'post' }));
+    return this.request(Object.assign(options, { url, body, method: 'POST' }));
   }
   /**
    * Send a simulated PUT request
@@ -147,7 +143,7 @@ export class AppAcceptance {
    * @since 0.1.0
    */
   async put(url: string, body: any, options = {}): Promise<{ status: number, body: any }> {
-    return this.request(Object.assign(options, { url, body, method: 'put' }));
+    return this.request(Object.assign(options, { url, body, method: 'PUT' }));
   }
   /**
    * Send a simulated PATCH request
@@ -155,7 +151,7 @@ export class AppAcceptance {
    * @since 0.1.0
    */
   async patch(url: string, body: string, options = {}): Promise<{ status: number, body: any }> {
-    return this.request(Object.assign(options, { url, body, method: 'patch' }));
+    return this.request(Object.assign(options, { url, body, method: 'PATCH' }));
   }
 
   /**
@@ -164,7 +160,7 @@ export class AppAcceptance {
    * @since 0.1.0
    */
   getHeader(name: string): string {
-    return this.headers[name];
+    return this.headers[name.toLowerCase()];
   }
 
   /**
@@ -173,7 +169,7 @@ export class AppAcceptance {
    * @since 0.1.0
    */
   setHeader(name: string, value: string): void {
-    this.headers[name] = value;
+    this.headers[name.toLowerCase()] = value;
   }
 
   /**
@@ -182,7 +178,7 @@ export class AppAcceptance {
    * @since 0.1.0
    */
   removeHeader(name: string): void {
-    delete this.headers[name];
+    delete this.headers[name.toLowerCase()];
   }
 
   /**

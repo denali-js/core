@@ -48,7 +48,7 @@ let template = compileTemplate(`
           <h2 class='source'>from <%= data.error.action %></h2>
         <% } %>
         <h5>Stacktrace:</h5>
-        <pre><code><%= data.error.stack %></code></pre>
+        <pre><code><%= data.error.stack.replace('\\n', '\n') %></code></pre>
       </div>
     </body>
   </html>

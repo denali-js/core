@@ -28,15 +28,13 @@ import DatabaseService from './data/database';
 
 // Render
 import Serializer from './render/serializer';
-import FlatSerializer from './render/flat';
-import RawSerializer from './render/raw';
+import JSONSerializer from './render/json';
 import JSONAPISerializer from './render/json-api';
 import View from './render/view';
 
 // Parse
 import Parser from './parse/parser';
-import RawParser from './parse/raw';
-import FlatParser from './parse/flat';
+import JSONParser from './parse/json';
 import JSONAPIParser from './parse/json-api';
 
 // Metal
@@ -63,6 +61,7 @@ import Logger from './runtime/logger';
 import Request from './runtime/request';
 import Router from './runtime/router';
 import Service from './runtime/service';
+import ConfigService from './runtime/config';
 
 // Test
 import appAcceptanceTest, { AppAcceptance } from './test/app-acceptance';
@@ -86,14 +85,12 @@ export {
   // Render
   View,
   Serializer,
-  RawSerializer,
-  FlatSerializer,
+  JSONSerializer,
   JSONAPISerializer,
 
   // Parse
   Parser,
-  RawParser,
-  FlatParser,
+  JSONParser,
   JSONAPIParser,
 
   // Metal
@@ -118,6 +115,7 @@ export {
   Service,
   RenderOptions,
   ResponderParams,
+  ConfigService,
 
   // Test
   AppAcceptance,

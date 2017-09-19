@@ -4,8 +4,7 @@ import {
   camelCase
 } from 'lodash';
 import * as assert from 'assert';
-import * as typeis from 'type-is';
-import Parser from './parser';
+import JSONParser from './json';
 import Errors from '../runtime/errors';
 import { ResponderParams } from '../runtime/action';
 import Request from '../runtime/request';
@@ -17,42 +16,39 @@ import {
   JsonApiRelationships
 } from '../render/json-api';
 
-export default class JSONAPIParser extends Parser {
+export default class JSONAPIParser extends JSONParser {
 
-  /**
-   * Unlike the other serializers, the default parse implementation does modify the incoming
-   * payload. It converts the default dasherized attribute names into camelCase.
-   *
-   * The parse method here retains the JSONAPI document structure (i.e. data, included, links, meta,
-   * etc), only modifying resource objects in place.
-   */
-  parse(request: Request): ResponderParams {
+  type = 'application/vnd.api+json';
+
+  async parse(request: Request) {
+    let body = await this.bufferAndParseBody(request);
+
     let result: ResponderParams = {
       query: request.query,
       headers: request.headers,
       params: request.params
     };
 
-    if (!typeis.hasBody(request) || !request.body) {
+    if (!request.hasBody) {
       return result;
     }
 
     try {
-      assert(request.get('content-type') === 'application/vnd.api+json', 'Invalid content type - must have `application/vnd.api+json` as the request content type');
-      assert(request.body.data, 'Invalid JSON-API document (missing top level `data` object - see http://jsonapi.org/format/#document-top-level)');
+      assert(request.getHeader('content-type') === 'application/vnd.api+json', 'Invalid content type - must have `application/vnd.api+json` as the request content type');
+      assert(body.data, 'Invalid JSON-API document (missing top level `data` object - see http://jsonapi.org/format/#document-top-level)');
 
       let parseResource = this.parseResource.bind(this);
 
-      if (request.body.data) {
-        if (!isArray(request.body.data)) {
-          result.body = parseResource(request.body.data);
+      if (body.data) {
+        if (!isArray(body.data)) {
+          result.body = parseResource(body.data);
         } else {
-          result.body = request.body.data.map(parseResource);
+          result.body = body.data.map(parseResource);
         }
       }
 
-      if (request.body.included) {
-        result.included = request.body.included.map(parseResource);
+      if (body.included) {
+        result.included = body.included.map(parseResource);
       }
 
       return result;

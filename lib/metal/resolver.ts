@@ -37,7 +37,7 @@ export default class Resolver {
 
   constructor(root: string) {
     assert(root, 'You must supply a valid root path that the resolve should use to load from');
-    this.debug = createDebug(`denali:resolver:${ root }`);
+    this.debug = createDebug(`silly-denali:resolver:${ root }`);
     this.root = root;
   }
 
@@ -69,13 +69,16 @@ export default class Resolver {
     }
     this.debug(`retrieving via retrieve${ upperFirst(camelCase(type)) }`);
     let result = retrieveMethod.call(this, type, entry);
-    return result && result.default || result;
+    result = result && result.default || result;
+    this.debug('retrieved %o', result);
+    return result;
   }
 
   /**
    * Unknown types are assumed to exist underneath the `app/` folder
    */
   protected retrieveOther(type: string, entry: string) {
+    this.debug(`attempting to retrieve ${ type }:${ entry } from ${ path.join(this.root, 'app', pluralize(type), entry) }`);
     return tryRequire(path.join(this.root, 'app', pluralize(type), entry));
   }
 
@@ -83,6 +86,7 @@ export default class Resolver {
    * App files are found in `app/*`
    */
   protected retrieveApp(type: string, entry: string) {
+    this.debug(`attempting to retrieve ${ type }:${ entry } from ${ path.join(this.root, 'app', entry) }`);
     return tryRequire(path.join(this.root, 'app', entry));
   }
 
@@ -90,6 +94,7 @@ export default class Resolver {
    * Config files are found in `config/`
    */
   protected retrieveConfig(type: string, entry: string) {
+    this.debug(`attempting to retrieve ${ type }:${ entry } from ${ path.join(this.root, 'config', entry) }`);
     return tryRequire(path.join(this.root, 'config', entry));
   }
 
@@ -97,6 +102,7 @@ export default class Resolver {
    * Initializer files are found in `config/initializers/`
    */
   protected retrieveInitializer(type: string, entry: string) {
+    this.debug(`attempting to retrieve ${ type }:${ entry } from ${ path.join(this.root, 'config', 'initializers', entry) }`);
     return tryRequire(path.join(this.root, 'config', 'initializers', entry));
   }
 

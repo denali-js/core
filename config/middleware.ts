@@ -7,7 +7,6 @@ import * as cookies from 'cookie-parser';
 import * as cors from 'cors';
 import * as helmet from 'helmet';
 import * as morgan from 'morgan';
-import { json } from 'body-parser';
 import { IncomingMessage, ServerResponse } from 'http';
 import Router from '../lib/runtime/router';
 import Application from '../lib/runtime/application';
@@ -87,10 +86,6 @@ export default function baseMiddleware(router: Router, application: Application)
 
   if (isEnabled('noSniff')) {
     router.use(helmet.noSniff());
-  }
-
-  if (isEnabled('bodyParser')) {
-    router.use(json({ type: config.bodyParser && config.bodyParser.type }));
   }
 
 }

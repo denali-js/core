@@ -1,7 +1,7 @@
 /* tslint:disable:completed-docs no-empty no-invalid-this member-access */
 import test from 'ava';
 import { isArray } from 'lodash';
-import { FlatSerializer, Model, attr, Container, MemoryAdapter, hasMany, Errors, hasOne } from 'denali';
+import { JSONSerializer, Model, attr, Container, MemoryAdapter, hasMany, Errors, hasOne } from 'denali';
 
 test.beforeEach((t) => {
   t.context.container = new Container(__dirname);
@@ -10,7 +10,7 @@ test.beforeEach((t) => {
 
 test('renders models as flat json structures', async (t) => {
   let container = <Container>t.context.container;
-  container.register('serializer:application', class TestSerializer extends FlatSerializer {
+  container.register('serializer:application', class TestSerializer extends JSONSerializer {
     attributes = [ 'title' ];
     relationships = {};
   });
@@ -27,7 +27,7 @@ test('renders models as flat json structures', async (t) => {
 
 test('renders related records as embedded objects', async (t) => {
   let container = <Container>t.context.container;
-  container.register('serializer:post', class PostSerializer extends FlatSerializer {
+  container.register('serializer:post', class PostSerializer extends JSONSerializer {
     attributes = [ 'title' ];
     relationships = {
       comments: {
@@ -35,7 +35,7 @@ test('renders related records as embedded objects', async (t) => {
       }
     };
   });
-  container.register('serializer:comment', class CommentSerializer extends FlatSerializer {
+  container.register('serializer:comment', class CommentSerializer extends JSONSerializer {
     attributes = [ 'text' ];
     relationships = {};
   });
@@ -60,7 +60,7 @@ test('renders related records as embedded objects', async (t) => {
 
 test('renders related records as embedded ids', async (t) => {
   let container = <Container>t.context.container;
-  container.register('serializer:post', class PostSerializer extends FlatSerializer {
+  container.register('serializer:post', class PostSerializer extends JSONSerializer {
     attributes = [ 'title' ];
     relationships = {
       comments: {
@@ -68,7 +68,7 @@ test('renders related records as embedded ids', async (t) => {
       }
     };
   });
-  container.register('serializer:comment', class CommentSerializer extends FlatSerializer {
+  container.register('serializer:comment', class CommentSerializer extends JSONSerializer {
     attributes = [ 'text' ];
     relationships = {};
   });
@@ -94,7 +94,7 @@ test('renders related records as embedded ids', async (t) => {
 
 test('renders errors', async (t) => {
   let container = <Container>t.context.container;
-  container.register('serializer:application', class PostSerializer extends FlatSerializer {
+  container.register('serializer:application', class PostSerializer extends JSONSerializer {
     attributes: string[] = [];
     relationships = {};
   });
@@ -108,7 +108,7 @@ test('renders errors', async (t) => {
 
 test('only renders whitelisted attributes', async (t) => {
   let container = <Container>t.context.container;
-  container.register('serializer:post', class PostSerializer extends FlatSerializer {
+  container.register('serializer:post', class PostSerializer extends JSONSerializer {
     attributes = [ 'title' ];
     relationships = {};
   });
@@ -128,7 +128,7 @@ test('only renders whitelisted attributes', async (t) => {
 
 test('only renders whitelisted relationships', async (t) => {
   let container = <Container>t.context.container;
-  container.register('serializer:post', class PostSerializer extends FlatSerializer {
+  container.register('serializer:post', class PostSerializer extends JSONSerializer {
     attributes = [ 'title' ];
     relationships = {
       comments: {
@@ -136,7 +136,7 @@ test('only renders whitelisted relationships', async (t) => {
       }
     };
   });
-  container.register('serializer:comment', class CommentSerializer extends FlatSerializer {
+  container.register('serializer:comment', class CommentSerializer extends JSONSerializer {
     attributes = [ 'text' ];
     relationships = {};
   });
@@ -161,7 +161,7 @@ test('only renders whitelisted relationships', async (t) => {
 
 test('uses related serializers to render related records', async (t) => {
   let container = <Container>t.context.container;
-  container.register('serializer:post', class PostSerializer extends FlatSerializer {
+  container.register('serializer:post', class PostSerializer extends JSONSerializer {
     attributes = [ 'title' ];
     relationships = {
       comments: {
@@ -169,7 +169,7 @@ test('uses related serializers to render related records', async (t) => {
       }
     };
   });
-  container.register('serializer:comment', class CommentSerializer extends FlatSerializer {
+  container.register('serializer:comment', class CommentSerializer extends JSONSerializer {
     attributes = [ 'text' ];
     relationships = {};
   });

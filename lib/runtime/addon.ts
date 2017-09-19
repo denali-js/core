@@ -1,6 +1,5 @@
 import findup = require('findup-sync');
 import * as tryRequire from 'try-require';
-import DenaliObject from '../metal/object';
 import Container from '../metal/container';
 import Application from './application';
 import Resolver from '../metal/resolver';
@@ -50,7 +49,7 @@ export interface AddonOptions {
  * @package runtime
  * @since 0.1.0
  */
-export default class Addon extends DenaliObject {
+export default class Addon {
 
   /**
    * The current environment for the app, i.e. 'development'
@@ -88,7 +87,6 @@ export default class Addon extends DenaliObject {
   container: Container;
 
   constructor(options: AddonOptions) {
-    super();
     this.container = options.container;
     this.environment = options.environment;
     this.dir = options.dir;

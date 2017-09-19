@@ -1,13 +1,14 @@
 /* tslint:disable:completed-docs no-empty no-invalid-this member-access */
 import test from 'ava';
 import * as path from 'path';
+import { constant } from 'lodash';
 import {
   Router,
   MockRequest,
   MockResponse,
   Container,
   Action,
-  FlatParser,
+  JSONParser,
   Logger } from 'denali';
 
 const dummyAppPath = path.join(__dirname, '..', 'dummy');
@@ -26,9 +27,10 @@ test('runs middleware before determining routing', async (t) => {
   t.plan(2);
   let count = 0;
   let container = new Container(dummyAppPath);
+  container.register('service:config', { get: constant({}) }, { instantiate: false, singleton: false });
   container.register('app:router', Router);
   container.register('app:logger', Logger);
-  container.register('parser:application', FlatParser);
+  container.register('parser:application', JSONParser);
   container.register('config:environment', { environment: 'development' });
   container.register('service:db', {}, { instantiate: false });
   container.register('action:error', class TestAction extends Action {
@@ -50,6 +52,7 @@ test('#urlFor works with string argument', (t) => {
   let container = new Container(dummyAppPath);
 
   container.register('app:router', Router);
+  container.register('service:config', {}, { instantiate: false, singleton: false });
   container.register('action:index', class TestAction extends Action {
     serializer = false;
     respond() {
