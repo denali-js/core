@@ -43,8 +43,7 @@
     "bootstrap": "tsc && cp package.json dist/",
     "coverage": "scripts/coverage.sh",
     "deploy-docs": "scripts/deploy-docs.sh",
-    "preversion": "scripts/preversion.sh",
-    "release": "scripts/release.sh",
+    "prepublishOnly": "npm run bootstrap && npm run build",
     "test": "scripts/test.sh"
   },
   "license": "MIT",
