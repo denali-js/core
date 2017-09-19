@@ -4,7 +4,6 @@ import {
   camelCase
 } from 'lodash';
 import * as assert from 'assert';
-import * as typeis from 'type-is';
 import JSONParser from './json';
 import Errors from '../runtime/errors';
 import { ResponderParams } from '../runtime/action';
@@ -22,7 +21,7 @@ export default class JSONAPIParser extends JSONParser {
   type = 'application/vnd.api+json';
 
   async parse(request: Request) {
-    await this.bufferAndParseBody(request);
+    let body = await this.bufferAndParseBody(request);
 
     let result: ResponderParams = {
       query: request.query,
@@ -30,26 +29,26 @@ export default class JSONAPIParser extends JSONParser {
       params: request.params
     };
 
-    if (!typeis.hasBody(request) || !request.body) {
+    if (!request.hasBody) {
       return result;
     }
 
     try {
       assert(request.getHeader('content-type') === 'application/vnd.api+json', 'Invalid content type - must have `application/vnd.api+json` as the request content type');
-      assert(request.body.data, 'Invalid JSON-API document (missing top level `data` object - see http://jsonapi.org/format/#document-top-level)');
+      assert(body.data, 'Invalid JSON-API document (missing top level `data` object - see http://jsonapi.org/format/#document-top-level)');
 
       let parseResource = this.parseResource.bind(this);
 
-      if (request.body.data) {
-        if (!isArray(request.body.data)) {
-          result.body = parseResource(request.body.data);
+      if (body.data) {
+        if (!isArray(body.data)) {
+          result.body = parseResource(body.data);
         } else {
-          result.body = request.body.data.map(parseResource);
+          result.body = body.data.map(parseResource);
         }
       }
 
-      if (request.body.included) {
-        result.included = request.body.included.map(parseResource);
+      if (body.included) {
+        result.included = body.included.map(parseResource);
       }
 
       return result;

@@ -219,6 +219,13 @@ export default class Request {
     return ips;
   }
 
+  /**
+   * Does this request have a request body?
+   */
+  get hasBody(): boolean {
+    return typeis.hasBody(this.incomingMessage);
+  }
+
   constructor(incomingMessage: http.IncomingMessage | https.IncomingMessage, serverConfig?: AppConfig['server']) {
     this.incomingMessage = incomingMessage;
     this.config = serverConfig || {};

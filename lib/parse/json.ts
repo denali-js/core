@@ -3,6 +3,7 @@ import Request from '../runtime/request';
 import { json } from 'body-parser';
 import { Response, RequestHandler } from 'express';
 import { fromNode } from 'bluebird';
+import { ResponderParams } from '../runtime/action';
 
 declare module 'body-parser' {
   interface OptionsJson {
@@ -10,7 +11,7 @@ declare module 'body-parser' {
   }
 }
 
-export default abstract class JSONParser extends Parser {
+export default class JSONParser extends Parser {
 
   /**
    * When set to true, then deflated (compressed) bodies will be inflated; when
@@ -59,7 +60,6 @@ export default abstract class JSONParser extends Parser {
   protected jsonParserMiddleware: RequestHandler;
 
   init() {
-    // Cache the middleware parser function on startup
     this.jsonParserMiddleware = json({
       inflate: this.inflate,
       limit: this.limit,
@@ -71,8 +71,20 @@ export default abstract class JSONParser extends Parser {
   }
 
   async bufferAndParseBody(request: Request) {
-    await fromNode((cb) => this.jsonParserMiddleware(request, <any>{}, cb));
-    return request.body;
+    await fromNode((cb) => this.jsonParserMiddleware(<any>request.incomingMessage, <any>{}, cb));
+    return (<any>request.incomingMessage).body;
   }
+
+  async parse(request: Request) {
+    let body = await this.bufferAndParseBody(request);
+
+    return <ResponderParams>{
+      body,
+      query: request.query,
+      headers: request.headers,
+      params: request.params
+    };
+  }
+
 
 }
