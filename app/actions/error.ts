@@ -1,7 +1,7 @@
 import * as assert from 'assert';
 import Action from '../../lib/runtime/action';
 import Logger from '../../lib/runtime/logger';
-import FlatParser from '../../lib/parse/flat';
+import JSONParser from '../../lib/parse/json';
 import inject from '../../lib/metal/inject';
 
 /**
@@ -21,7 +21,7 @@ export default class ErrorAction extends Action {
   }
 
   logger = inject<Logger>('app:logger');
-  parser = inject<FlatParser>('parser:flat');
+  parser = inject<JSONParser>('parser:json');
 
   /**
    * Respond with JSON by default

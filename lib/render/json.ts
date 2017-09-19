@@ -16,7 +16,7 @@ import { RelationshipDescriptor } from '../data/descriptors';
  *
  * @package data
  */
-export default abstract class FlatSerializer extends Serializer {
+export default abstract class JSONSerializer extends Serializer {
 
   /**
    * The default content type to apply to responses formatted by this serializer
@@ -36,13 +36,23 @@ export default abstract class FlatSerializer extends Serializer {
   /**
    * Renders a primary data payload (a model or array of models).
    */
-  protected async renderPrimary(payload: Model|Model[], action: Action, options: RenderOptions): Promise<any> {
+  protected async renderPrimary(payload: any, action: Action, options: RenderOptions): Promise<any> {
     if (isArray(payload)) {
-      return await all(payload.map(async (model) => {
-        return await this.renderModel(model, action, options);
+      return await all(payload.map(async (item) => {
+        return await this.renderItem(item, action, options);
       }));
     }
-    return await this.renderModel(payload, action, options);
+    return await this.renderItem(payload, action, options);
+  }
+
+  /**
+   * If the primary data isn't a model, just render whatever it is directly
+   */
+  async renderItem(item: any, action: Action, options: RenderOptions) {
+    if (item instanceof Model) {
+      return await this.renderModel(item, action, options);
+    }
+    return item;
   }
 
   /**
@@ -114,7 +124,7 @@ export default abstract class FlatSerializer extends Serializer {
    * Serializes a relationship
    */
   protected async serializeRelationship(relationship: string, config: RelationshipConfig, descriptor: RelationshipDescriptor, model: Model, action: Action, options: RenderOptions) {
-    let relatedSerializer = this.container.lookup<FlatSerializer>(`serializer:${ descriptor.type }`, { loose: true }) || this.container.lookup<FlatSerializer>(`serializer:application`, { loose: true });
+    let relatedSerializer = this.container.lookup<JSONSerializer>(`serializer:${ descriptor.type }`, { loose: true }) || this.container.lookup<JSONSerializer>(`serializer:application`, { loose: true });
     assert(relatedSerializer, `No serializer found for ${ descriptor.type }, and no fallback application serializer found either`);
     if (descriptor.mode === 'hasMany') {
       let relatedModels = <Model[]>await model.getRelated(relationship);

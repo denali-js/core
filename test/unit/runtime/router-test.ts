@@ -8,7 +8,7 @@ import {
   MockResponse,
   Container,
   Action,
-  FlatParser,
+  JSONParser,
   Logger } from 'denali';
 
 const dummyAppPath = path.join(__dirname, '..', 'dummy');
@@ -30,7 +30,7 @@ test('runs middleware before determining routing', async (t) => {
   container.register('service:config', { get: constant({}) }, { instantiate: false, singleton: false });
   container.register('app:router', Router);
   container.register('app:logger', Logger);
-  container.register('parser:application', FlatParser);
+  container.register('parser:application', JSONParser);
   container.register('config:environment', { environment: 'development' });
   container.register('service:db', {}, { instantiate: false });
   container.register('action:error', class TestAction extends Action {

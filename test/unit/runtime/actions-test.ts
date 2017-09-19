@@ -8,8 +8,8 @@ import {
   Request,
   MockRequest,
   MockResponse,
-  FlatParser,
-  RawSerializer,
+  JSONParser,
+  JSONSerializer,
   RenderOptions,
   ResponderParams,
   DatabaseService,
@@ -26,8 +26,8 @@ test.beforeEach((t) => {
   container.register('service:config', ConfigService);
   container.register('app:logger', Logger);
   container.register('service:db', DatabaseService);
-  container.register('parser:application', FlatParser);
-  container.register('serializer:application', RawSerializer);
+  container.register('parser:application', JSONParser);
+  container.register('serializer:application', JSONSerializer);
   container.register('service:db', {}, { instantiate: false });
   container.register('config:environment', {});
   t.context.runAction = async (options?: any) => {

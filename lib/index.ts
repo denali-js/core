@@ -28,15 +28,13 @@ import DatabaseService from './data/database';
 
 // Render
 import Serializer from './render/serializer';
-import FlatSerializer from './render/flat';
-import RawSerializer from './render/raw';
+import JSONSerializer from './render/json';
 import JSONAPISerializer from './render/json-api';
 import View from './render/view';
 
 // Parse
 import Parser from './parse/parser';
-import RawParser from './parse/raw';
-import FlatParser from './parse/flat';
+import JSONParser from './parse/json';
 import JSONAPIParser from './parse/json-api';
 
 // Metal
@@ -87,14 +85,12 @@ export {
   // Render
   View,
   Serializer,
-  RawSerializer,
-  FlatSerializer,
+  JSONSerializer,
   JSONAPISerializer,
 
   // Parse
   Parser,
-  RawParser,
-  FlatParser,
+  JSONParser,
   JSONAPIParser,
 
   // Metal
