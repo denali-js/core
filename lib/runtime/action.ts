@@ -17,7 +17,6 @@ import Request from './request';
 import Errors from './errors';
 import View from '../render/view';
 import { ServerResponse } from 'http';
-import { Dict } from '../utils/types';
 import inject from '../metal/inject';
 import Serializer from '../render/serializer';
 import DatabaseService from '../data/database';
