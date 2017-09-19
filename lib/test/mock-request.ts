@@ -1,11 +1,10 @@
-
 import { IncomingMessage as IncomingHttpMessage, IncomingHttpHeaders } from 'http';
 import { IncomingMessage as IncomingHttpsMessage } from 'https';
 import { PassThrough, Readable } from 'stream';
 import * as url from 'url';
 import { Socket } from 'net';
 import { Dict } from '../utils/types';
-import { toPairs, flatten } from 'lodash';
+import { mapKeys, toPairs, flatten } from 'lodash';
 
 
 export interface MockMessageOptions {
@@ -39,7 +38,7 @@ export default class MockRequest extends PassThrough implements IncomingHttpMess
     return this.connection;
   }
 
-  headers: IncomingHttpHeaders;
+  headers: IncomingHttpHeaders = {};
   get rawHeaders(): string[] {
     return flatten(toPairs(this.headers));
   }
@@ -47,12 +46,12 @@ export default class MockRequest extends PassThrough implements IncomingHttpMess
   method = 'GET';
   url = '/';
 
-  trailers: Dict<string>;
-  rawTrailers: string[];
+  trailers: Dict<string> = {};
+  get rawTrailers(): string[] {
+    return flatten(toPairs(this.trailers));
+  }
 
   readable = true;
-
-  _mockBodyStream = new PassThrough();
 
   constructor(options: MockMessageOptions = {}) {
     super();
@@ -62,8 +61,12 @@ export default class MockRequest extends PassThrough implements IncomingHttpMess
     let parsedUrl = url.parse(options.url || this.url);
     this.url = parsedUrl.path;
 
-    this.headers = options.headers || {};
-    this.trailers = options.trailers || {};
+    if (options.headers) {
+      this.headers = mapKeys(options.headers, (value, key) => key.toLowerCase());
+    }
+    if (options.trailers) {
+      this.trailers = mapKeys(options.trailers, (value, key) => key.toLowerCase());
+    }
 
     this.httpVersion = options.httpVersion || this.httpVersion;
     this.connection = new Socket();
@@ -79,23 +82,21 @@ export default class MockRequest extends PassThrough implements IncomingHttpMess
     let json = options.json;
     if (json) {
       options.body = JSON.stringify(options.json);
+      this.headers['content-type'] = this.headers['content-type'] || 'application/json';
     }
 
     let body = options.body;
     if (body) {
       if (isReadableStream(body)) {
-        body.pipe(this._mockBodyStream);
+        body.pipe(this);
       } else {
         if (!this.headers['content-length']) {
           this.headers['content-length'] = String(body.length);
         }
-        this._mockBodyStream.write(body);
+        this.write(body);
+        this.end();
       }
     }
-  }
-
-  _read(size: number) {
-    return this._mockBodyStream.read(size);
   }
 
   setTimeout(msecs: number, callback: () => void): this {
