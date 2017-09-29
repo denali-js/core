@@ -53,13 +53,13 @@ export interface ResourceOptions {
 }
 
 export interface RouterDSL {
-  get(pattern: string, action: string, params: {}): void;
-  post(pattern: string, action: string, params: {}): void;
-  put(pattern: string, action: string, params: {}): void;
-  patch(pattern: string, action: string, params: {}): void;
-  delete(pattern: string, action: string, params: {}): void;
-  head(pattern: string, action: string, params: {}): void;
-  options(pattern: string, action: string, params: {}): void;
+  get(pattern: string, action: string, params?: {}): void;
+  post(pattern: string, action: string, params?: {}): void;
+  put(pattern: string, action: string, params?: {}): void;
+  patch(pattern: string, action: string, params?: {}): void;
+  delete(pattern: string, action: string, params?: {}): void;
+  head(pattern: string, action: string, params?: {}): void;
+  options(pattern: string, action: string, params?: {}): void;
   resource(resourceName: string, options?: ResourceOptions): void;
 }
 
