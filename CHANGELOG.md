@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.0.34"></a>
+## [0.0.34](https://github.com/denali-js/denali/compare/v0.0.33...v0.0.34) (2017-10-01)
+
+
+### Bug Fixes
+
+* **runtime:** make fixed route params argument on route-defining methods optional ([#394](https://github.com/denali-js/denali/issues/394)) ([f26039a](https://github.com/denali-js/denali/commit/f26039a))
+
+
+
 <a name="0.0.33"></a>
 ## [0.0.33](https://github.com/denali-js/denali/compare/v0.0.32...v0.0.33) (2017-09-19)
 
