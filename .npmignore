@@ -1,0 +1,6 @@
+test/
+guides/
+lib/
+tmp/
+.editorconfig
+.travis.yml
