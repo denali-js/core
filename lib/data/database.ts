@@ -3,6 +3,7 @@ import * as createDebug from 'debug';
 import Service from '../runtime/service';
 import Model from './model';
 import ORMAdapter from './orm-adapter';
+import * as util from 'util';
 
 const debug = createDebug('denali:database-service');
 
@@ -21,7 +22,7 @@ export default class DatabaseService extends Service {
   }
 
   async queryOne(modelType: string, query: any, options?: any): Promise<Model|null> {
-    debug(`${ modelType } queryOne: ${ query }`);
+    debug(`${ modelType } queryOne: ${ util.inspect(query) }`);
     assert(query != null, `You must pass a query to Model.queryOne(conditions)`);
     let adapter = this.lookupAdapter(modelType);
     let record = await adapter.queryOne(modelType, query, options);
@@ -33,10 +34,11 @@ export default class DatabaseService extends Service {
   }
 
   async query(modelType: string, query: any, options?: any): Promise<Model[]> {
-    debug(`${ modelType } query: ${ query }`);
     assert(query != null, `You must pass a query to Model.query(conditions)`);
     let adapter = this.lookupAdapter(modelType);
+    debug(`${ modelType } query: ${ util.inspect(query) }`);
     let result = await adapter.query(modelType, query, options);
+    debug(`${ modelType } query found ${result.length} records`);
     let ModelFactory = this.container.factoryFor<Model>(`model:${ modelType }`);
     return result.map((record) => {
       return ModelFactory.create(record);
@@ -44,10 +46,10 @@ export default class DatabaseService extends Service {
   }
 
   async all(modelType: string, options?: any): Promise<Model[]> {
-    debug(`${ modelType } all`);
     let adapter = this.lookupAdapter(modelType);
     let result = await adapter.all(modelType, options);
     let ModelFactory = this.container.factoryFor<Model>(`model:${ modelType }`);
+    debug(`${ modelType } all: found ${result.length} records`);
     return result.map((record) => {
       return ModelFactory.create(record);
     });
@@ -60,5 +62,4 @@ export default class DatabaseService extends Service {
   protected lookupAdapter(modelType: string) {
     return this.container.lookup<ORMAdapter>(`orm-adapter:${ modelType }`, { loose: true }) || this.container.lookup<ORMAdapter>('orm-adapter:application');
   }
-
 }
