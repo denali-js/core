@@ -1,10 +1,7 @@
 const path = require('path');
 const chalk = require('chalk');
-const { Builder, ui } = require(`denali-cli`);
 const { exec } = require('child_process');
-const Funnel = require('broccoli-funnel');
-const MergeTree = require('broccoli-merge-trees');
-const { typescript: Typescript } = require('broccoli-typescript-compiler');
+const { Builder, ui } = require('denali-cli');
 
 module.exports = class DenaliBuilder extends Builder {
 
@@ -14,6 +11,11 @@ module.exports = class DenaliBuilder extends Builder {
   }
 
   transpileTree(tree, dir) {
+    // Lazy load these to avoid needing them as a full dep (this way we can keep them as devDeps)
+    const { typescript: Typescript } = require('broccoli-typescript-compiler');
+    const Funnel = require('broccoli-funnel');
+    const MergeTree = require('broccoli-merge-trees');
+
     let tsconfig = require(path.join(dir, 'tsconfig.json'));
     tsconfig.baseUrl = __dirname;
     let transpiledTS = new Typescript(tree, {
