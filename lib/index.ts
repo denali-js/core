@@ -48,6 +48,7 @@ import eachPrototype from './metal/each-prototype';
 import Container from './metal/container';
 import Resolver from './metal/resolver';
 import inject from './metal/inject';
+import DenaliObject from './metal/object';
 
 // Runtime
 import Action, {
@@ -103,6 +104,7 @@ export {
   Container,
   Resolver,
   inject,
+  DenaliObject,
 
   // Runtime
   Action,
