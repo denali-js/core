@@ -13,7 +13,7 @@
   "mainDir": "dist",
   "types": "dist/lib/index.d.ts",
   "engines": {
-    "node": ">=7"
+    "node": ">=7.6"
   },
   "keywords": [
     "jsonapi",
