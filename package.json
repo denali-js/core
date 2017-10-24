@@ -1,7 +1,7 @@
 {
   "name": "denali",
   "version": "0.0.39",
-  "description": "An opinionated Node framework for building robust JSON APIs",
+  "description": "A batteries-included Node.js API framework",
   "homepage": "http://denalijs.org",
   "repository": "denali-js/denali",
   "author": {
