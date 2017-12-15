@@ -1,6 +1,5 @@
-import test from 'ava';
 import { appAcceptanceTest } from 'denali';
 
-appAcceptanceTest(test);
+const test = appAcceptanceTest();
 
 test.todo('<%= humanizedName %>');
