@@ -1,16 +1,16 @@
 import { Writable } from 'stream';
 import { Socket } from 'net';
 import { ServerResponse as HttpServerResponse, OutgoingHttpHeaders, STATUS_CODES } from 'http';
-import { ServerResponse as HttpsServerResponse } from 'https';
 
 /**
- * A mock response used to simluate the server response to mock requests during tests. You shouldn't
- * need to instantiate these directly - instead, use an AppAcceptance test.
+ * A mock response used to simluate the server response to mock requests during
+ * tests. You shouldn't need to instantiate these directly - instead, use an
+ * AppAcceptance test.
  *
  * @package test
  */
 // tslint:disable:completed-docs member-access
-export default class MockResponse extends Writable implements HttpServerResponse, HttpsServerResponse {
+export default class MockResponse extends Writable implements HttpServerResponse, Foobar {
 
   // Response data
   statusCode: number;

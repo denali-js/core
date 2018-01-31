@@ -7,15 +7,15 @@ import { isIP } from 'net';
 import { TLSSocket } from 'tls';
 import * as typeis from 'type-is';
 import * as http from 'http';
-import * as https from 'https';
 import * as parseRange from 'range-parser';
 import * as parse from 'parseurl';
 import * as proxyaddr from 'proxy-addr';
 import * as uuid from 'uuid';
-import * as qs from 'querystring';
+import * as url from 'url';
 
 /**
- * The Request class represents an incoming HTTP request (specifically, Node's IncomingMessage).
+ * The Request class represents an incoming HTTP request (specifically, Node's
+ * IncomingMessage).
  *
  * @package runtime
  * @since 0.1.0
@@ -23,7 +23,8 @@ import * as qs from 'querystring';
 export default class Request {
 
   /**
-   * A UUID generated unqiue to this request. Useful for tracing a request through the application.
+   * A UUID generated unqiue to this request. Useful for tracing a request
+   * through the application.
    *
    * @since 0.1.0
    */
@@ -37,8 +38,8 @@ export default class Request {
   route: Route;
 
   /**
-   * The name of the original action that was invoked - useful for error actions to create
-   * helpful debug messages.
+   * The name of the original action that was invoked - useful for error
+   * actions to create helpful debug messages.
    *
    * @since 0.1.0
    */
@@ -49,7 +50,7 @@ export default class Request {
    *
    * @since 0.1.0
    */
-  incomingMessage: http.IncomingMessage | https.IncomingMessage;
+  incomingMessage: http.IncomingMessage;
 
   /**
    * A subset of the app config, the `config.server` namespace
@@ -88,8 +89,8 @@ export default class Request {
    *
    * @since 0.1.0
    */
-  get query(): Dict<string> {
-    return qs.parse(parse(this.incomingMessage).query);
+  get query(): Dict<string | string[]> {
+    return url.parse(this.incomingMessage.url, true).query;
   }
 
   /**
@@ -226,7 +227,7 @@ export default class Request {
     return typeis.hasBody(this.incomingMessage);
   }
 
-  constructor(incomingMessage: http.IncomingMessage | https.IncomingMessage, serverConfig?: AppConfig['server']) {
+  constructor(incomingMessage: http.IncomingMessage, serverConfig?: AppConfig['server']) {
     this.incomingMessage = incomingMessage;
     this.config = serverConfig || {};
   }
