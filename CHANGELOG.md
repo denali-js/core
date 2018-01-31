@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.0.40"></a>
+## [0.0.40](https://github.com/denali-js/denali/compare/v0.0.39...v0.0.40) (2018-01-31)
+
+
+### Bug Fixes
+
+* **blueprints:** acceptance test setup ([#421](https://github.com/denali-js/denali/issues/421)) ([bc734ec](https://github.com/denali-js/denali/commit/bc734ec))
+* remove debug code, simplify package.json scripts ([40d15b8](https://github.com/denali-js/denali/commit/40d15b8))
+
+
+### Features
+
+* bundled builds ([#423](https://github.com/denali-js/denali/issues/423)) ([2e2c852](https://github.com/denali-js/denali/commit/2e2c852))
+* set min Node version to 7.6 for async/await support ([f583306](https://github.com/denali-js/denali/commit/f583306))
+
+
+
 <a name="0.0.39"></a>
 ## [0.0.39](https://github.com/denali-js/denali/compare/v0.0.38...v0.0.39) (2017-10-13)
 
