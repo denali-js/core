@@ -43,7 +43,7 @@
     "bootstrap": "tsc",
     "coverage": "scripts/coverage.sh",
     "deploy-docs": "scripts/deploy-docs.sh",
-    "prepublishOnly": "npm run bootstrap && npm run build",
+    "prepublishOnly": "npm run firstbuild",
     "test": "scripts/test.sh"
   },
   "license": "Apache-2.0",

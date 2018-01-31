@@ -10,7 +10,7 @@ import { ServerResponse as HttpServerResponse, OutgoingHttpHeaders, STATUS_CODES
  * @package test
  */
 // tslint:disable:completed-docs member-access
-export default class MockResponse extends Writable implements HttpServerResponse, Foobar {
+export default class MockResponse extends Writable implements HttpServerResponse  {
 
   // Response data
   statusCode: number;
