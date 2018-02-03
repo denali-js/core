@@ -8,6 +8,7 @@ import Router from './router';
 import Logger from './logger';
 import ConfigService, { AppConfig } from './config';
 import container, { Container } from '../metal/container';
+import Resolver from '../metal/resolver';
 import { Vertex } from '../utils/topsort';
 import Loader from '@denali-js/loader';
 
@@ -82,12 +83,12 @@ export default class Application extends Addon {
    */
   addons: Addon[] = [];
 
-  constructor(loader: Loader, options: { environment?: string }) {
+  constructor(loader: Loader, options: { environment: string }) {
     super(loader, defaults(options, { environment: 'development' }));
 
     this.loader.children.forEach((addonLoader, addonName) => {
-      let Addon = addonLoader.resolver.retrieve('app:addon');
-      this.addons.push(new Addon(addonLoader, options));
+      let AddonClass = (<Resolver>addonLoader.resolver).retrieve<typeof Addon>('app:addon') || Addon;
+      this.addons.push(new AddonClass(addonLoader, options));
     });
 
     this.drainers = [];
