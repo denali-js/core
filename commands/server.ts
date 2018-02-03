@@ -107,8 +107,8 @@ export default class ServerCommand extends Command {
     });
 
     process.on('exit', this.cleanExit.bind(this));
-    process.on('SIGINT', this.cleanExit.bind(this));
-    process.on('SIGTERM', this.cleanExit.bind(this));
+    process.on('SIGINT', this.cleanExit.bind(this, true));
+    process.on('SIGTERM', this.cleanExit.bind(this, true));
 
     if (argv.watch) {
       debug('starting watcher');
@@ -129,9 +129,12 @@ export default class ServerCommand extends Command {
     }
   }
 
-  protected cleanExit() {
+  protected cleanExit(resumeExit: boolean) {
     if (this.server) {
       this.server.kill();
+    }
+    if (resumeExit) {
+      process.exit();
     }
   }
 

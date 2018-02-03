@@ -203,7 +203,6 @@ export default class TestCommand extends Command {
         ui.info('===> Waiting for changes to re-run ...\n\n');
        } else {
          process.exitCode = code == null ? 1 : code;
-         ui.info(`===> exiting with ${ process.exitCode }`);
        }
     });
   }
