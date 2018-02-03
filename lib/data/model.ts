@@ -51,14 +51,18 @@ export default class Model extends DenaliObject {
    * Returns the schema filtered down to just the attribute fields
    */
   static get attributes(): Dict<AttributeDescriptor> {
-    return pickBy(this.schema, (descriptor: AttributeDescriptor) => descriptor.isAttribute);
+    // <any> is needed here because pickBy doesn't properly act as a type guard
+    // see: https://github.com/Microsoft/TypeScript/issues/7657
+    return <any>pickBy(this.schema, (descriptor: AttributeDescriptor) => descriptor.isAttribute);
   }
 
   /**
    * Returns the schema filtered down to just the relationship fields
    */
   static get relationships(): Dict<RelationshipDescriptor> {
-    return pickBy(this.schema, (descriptor: RelationshipDescriptor) => descriptor.isRelationship);
+    // <any> is needed here because pickBy doesn't properly act as a type guard
+    // see: https://github.com/Microsoft/TypeScript/issues/7657
+    return <any>pickBy(this.schema, (descriptor: RelationshipDescriptor) => descriptor.isRelationship);
   }
 
   private static _augmentWithSchemaAccessors() {
@@ -266,7 +270,7 @@ export default class Model extends DenaliObject {
    * Tell the underlying ORM to build this record
    */
   constructor(data?: any, options?: any) {
-    super(...arguments);
+    super();
     (<typeof Model>this.constructor)._augmentWithSchemaAccessors();
     this.record = (<typeof Model>this.constructor).adapter.buildRecord(this.modelName, data, options);
   }

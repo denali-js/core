@@ -2,7 +2,7 @@ import {
   identity,
   padStart
 } from 'lodash';
-import * as chalk from 'chalk';
+import chalk from 'chalk';
 import DenaliObject from '../metal/object';
 
 export type LogLevel = 'info' | 'warn' | 'error';

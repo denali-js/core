@@ -78,7 +78,7 @@ const afterFiltersCache = new Map<typeof Action, Filter[]>();
 export interface Filter {
   (params: ResponderParams): boolean | void;
 }
-export type FilterDefinition = string | Filter;
+export type FilterSpecifier = string | Filter;
 
 /**
  * Actions form the core of interacting with a Denali application. They are the
@@ -120,7 +120,7 @@ export default abstract class Action extends DenaliObject {
    *
    * @since 0.1.0
    */
-  static before: string[] = [];
+  static before: FilterSpecifier[] = [];
 
   /**
    * Invoked after the `respond()` method. The framework will invoke filters
@@ -136,7 +136,7 @@ export default abstract class Action extends DenaliObject {
    *
    * @since 0.1.0
    */
-  static after: string[] = [];
+  static after: FilterSpecifier[] = [];
 
   /**
    * Application config
@@ -347,19 +347,18 @@ export default abstract class Action extends DenaliObject {
     };
   }
 
-  protected _buildFilterChain(stageName: string, cache: Map<typeof Action, FilterDefinition[]>, prototypes: typeof Action[]) {
+  protected _buildFilterChain(stageName: 'before' | 'after', cache: Map<typeof Action, Filter[]>, prototypes: typeof Action[]) {
     let ActionClass = <typeof Action>this.constructor;
     let compiledFilterList = flatMap(prototypes, (prototype) => {
-      let filters = get<FilterDefinition[] | FilterDefinition>(prototype, stageName, []);
+      let filters = get(prototype, stageName, <FilterSpecifier[]>[]);
       filters = castArray(filters);
-      filters = filters.map((filter) => {
+      return filters.map((filter) => {
         if (typeof filter === 'string') {
           assert(typeof get(this, filter) === 'function', `${ filter } method not found on the ${ this.actionPath } action.`);
-          return (<any>this)[filter];
+          return <Filter>(<any>this)[filter];
         }
         return filter;
       });
-      return filters;
     });
     cache.set(ActionClass, compiledFilterList);
   }

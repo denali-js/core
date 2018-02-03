@@ -396,7 +396,7 @@ export default abstract class JSONAPISerializer extends Serializer {
    * @since 0.1.0
    */
   protected renderError(context: Context, error: any): JSONAPI.ErrorObject {
-    let renderedError = {
+    let renderedError: JSONAPI.ErrorObject = {
       status: String(error.status) || '500',
       code: error.code || error.name || 'InternalServerError',
       detail: error.message

@@ -138,14 +138,17 @@ export default class Request {
    */
   get protocol(): 'http' | 'https' {
     let rawProtocol: 'http' | 'https' = (<TLSSocket>this.incomingMessage.connection).encrypted ? 'https' : 'http';
-    let trustProxyConfig = this.config.trustProxy || constant(false);
     let ip = this.incomingMessage.connection.remoteAddress;
+    let trustProxyConfig = this.config.trustProxy || constant(false);
 
     if (trustProxyConfig) {
+      let trustProxy: (addr?: string, i?: number) => boolean;
       if (typeof trustProxyConfig !== 'function') {
-        trustProxyConfig = proxyaddr.compile(trustProxyConfig);
+        trustProxy = proxyaddr.compile(trustProxyConfig);
+      } else {
+        trustProxy = trustProxyConfig;
       }
-      if (trustProxyConfig(ip, 0)) {
+      if (trustProxy(ip, 0)) {
         let proxyClaimedProtocol = this.getHeader('X-Forwarded-Proto') || rawProtocol;
         return <'http' | 'https'>proxyClaimedProtocol.split(/\s*,\s*/)[0];
       }
@@ -158,7 +161,7 @@ export default class Request {
    *
    * @since 0.1.0
    */
-  get xhr(): boolean{
+  get xhr(): boolean {
     let val = this.getHeader('X-Requested-With') || '';
     return val.toLowerCase() === 'xmlhttprequest';
   }
@@ -176,10 +179,13 @@ export default class Request {
     let ip = this.incomingMessage.socket.remoteAddress;
     let trustProxyConfig = this.config.trustProxy || constant(false);
 
+    let trustProxy: (addr?: string, i?: number) => boolean;
     if (typeof trustProxyConfig !== 'function') {
-      trustProxyConfig = proxyaddr.compile(trustProxyConfig);
+      trustProxy = proxyaddr.compile(trustProxyConfig);
+    } else {
+      trustProxy = trustProxyConfig;
     }
-    if (!host || !trustProxyConfig(ip, 0)) {
+    if (!host || !trustProxy(ip, 0)) {
       host = this.getHeader('Host');
     }
     if (!host) {
@@ -311,7 +317,9 @@ export default class Request {
   acceptsEncodings(...encoding: string[]): string | false;
   acceptsEncodings(...encoding: string[]): string[] | string | false {
     let accept = accepts(this.incomingMessage);
-    return accept.encodings(...encoding);
+    // <any> is needed here because of incorrect types
+    // see https://github.com/DefinitelyTyped/DefinitelyTyped/pull/23395
+    return (<any>accept.encodings)(...encoding);
   }
 
   /**
@@ -324,7 +332,9 @@ export default class Request {
   acceptsCharsets(...charset: string[]): string | false;
   acceptsCharsets(...charset: string[]): string[] | string | false {
     let accept = accepts(this.incomingMessage);
-    return accept.charsets(...charset);
+    // <any> is needed here because of incorrect types
+    // see https://github.com/DefinitelyTyped/DefinitelyTyped/pull/23395
+    return (<any>accept.charsets)(...charset);
   }
 
   /**
@@ -337,7 +347,9 @@ export default class Request {
   acceptsLanguages(...lang: string[]): string | false;
   acceptsLanguages(...lang: string[]): string[] | string | false {
     let accept = accepts(this.incomingMessage);
-    return accept.languages(...lang);
+    // <any> is needed here because of incorrect types
+    // see https://github.com/DefinitelyTyped/DefinitelyTyped/pull/23395
+    return (<any>accept.languages)(...lang);
   }
 
   /**

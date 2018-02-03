@@ -3,7 +3,7 @@ import {
 } from 'lodash';
 import * as repl from 'repl';
 import rewrap from '../lib/utils/rewrap';
-import * as chalk from 'chalk';
+import chalk from 'chalk';
 import { ui, Command, Project, unwrap } from 'denali-cli';
 
 /**

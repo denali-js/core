@@ -15,6 +15,7 @@ import {
   AttributesObject as JSONAPIAttributesObject,
   RelationshipsObject as JSONAPIRelationshipsObject
 } from 'jsonapi-typescript';
+import { Dict } from '../utils/types';
 
 /**
  * Parses incoming request bodies according to the JSON-API specification. For
@@ -81,7 +82,7 @@ export default class JSONAPIParser extends JSONParser {
    * @since 0.1.0
    */
   protected parseResource(resource: JSONAPIResourceObject): any {
-    let parsedResource = {};
+    let parsedResource: Dict<any> = {};
     setIfNotEmpty(parsedResource, 'id', this.parseId(resource.id));
     Object.assign(parsedResource, this.parseAttributes(resource.attributes));
     Object.assign(parsedResource, this.parseRelationships(resource.relationships));
