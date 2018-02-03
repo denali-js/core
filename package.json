@@ -9,7 +9,7 @@
     "email": "davewasmer@gmail.com",
     "url": "http://davewasmer.com"
   },
-  "main": "lib/index.js",
+  "main": "dist/lib/index.js",
   "types": "dist/lib/index.d.ts",
   "engines": {
     "node": ">=7.6"
@@ -91,8 +91,7 @@
     "dag-map": "^2.0.2",
     "debug": "^3.1.0",
     "dedent-js": "^1.0.1",
-    "denali-cli": "0.0.17",
-    "find-plugins": "^1.1.3",
+    "denali-cli": "0.0.x",
     "findup-sync": "^2.0.0",
     "fs-extra": "^4.0.2",
     "helmet": "^3.8.2",
