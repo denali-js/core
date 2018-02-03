@@ -2542,7 +2542,7 @@ delegates@^1.0.0:
 
 denali-cli@0.0.x:
   version "0.0.20"
-  resolved "http://localhost:4873/denali-cli/-/denali-cli-0.0.20.tgz#9b6d1e8f2c037b18ffc6f3bfc18364b4ce4041b2"
+  resolved "http://localhost:4873/denali-cli/-/denali-cli-0.0.20.tgz#21f3fd088b500201938a6a683059add2a17fdf40"
   dependencies:
     "@types/bluebird" "^3.5.8"
     "@types/debug" "^0.0.30"
