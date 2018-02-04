@@ -113,7 +113,7 @@ export default class TestCommand extends Command {
       printSlowTrees: argv.printSlowTrees
     });
 
-    let outputDir = path.join('tmp', '-dummy');
+    let outputDir = project.isAddon ? path.join('tmp', '-dummy') : 'dist';
 
     process.on('exit', this.cleanExit.bind(this));
     process.on('SIGINT', this.cleanExit.bind(this));

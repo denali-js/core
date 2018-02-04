@@ -3,6 +3,7 @@ import {
   merge
 } from 'lodash';
 import * as fs from 'fs-extra';
+import * as path from 'path';
 import { spawn, ChildProcess } from 'child_process';
 import { ui, Command, Project, unwrap } from 'denali-cli';
 import * as createDebug from 'debug';
@@ -96,36 +97,40 @@ export default class ServerCommand extends Command {
     }
     argv.watch = argv.watch || argv.environment === 'development';
 
-    if (argv.skipBuild) {
-      this.startServer(argv);
-      return;
-    }
-
     let project = new Project({
       environment: argv.environment,
       printSlowTrees: argv.printSlowTrees
     });
 
+    if (argv.skipBuild) {
+      this.startServer(argv, project);
+      return;
+    }
+
     process.on('exit', this.cleanExit.bind(this));
     process.on('SIGINT', this.cleanExit.bind(this, true));
     process.on('SIGTERM', this.cleanExit.bind(this, true));
 
+    let outputDir = project.isAddon ? path.join('tmp', '-dummy') : 'dist';
+
     if (argv.watch) {
       debug('starting watcher');
-      project.watch({
+      let watch: typeof project.watch = project.isAddon ? project.watchDummy.bind(project) : project.watch.bind(project);
+      watch({
+        destDir: outputDir,
         afterBuild: () => {
           if (this.server) {
             debug('killing existing server');
             this.server.removeAllListeners('exit');
             this.server.kill();
           }
-          this.startServer(argv);
+          this.startServer(argv, project);
         }
       });
     } else {
       debug('building project');
-      await project.build();
-      this.startServer(argv);
+      project.isAddon ? await project.buildDummy(outputDir) : await project.build(outputDir);
+      this.startServer(argv, project);
     }
   }
 
@@ -138,13 +143,14 @@ export default class ServerCommand extends Command {
     }
   }
 
-  protected startServer(argv: any) {
-    let args = [ 'index.js' ];
+  protected startServer(argv: any, project: Project) {
+    let bootstrapPath = project.isAddon ? path.join('test/dummy/index.js') : 'index.js';
+    let args = [ bootstrapPath ];
     if (argv.debug) {
       args.unshift('--inspect', '--debug-brk');
     }
-    if (!fs.existsSync('index.js')) {
-      throw new Error(`Unable to start your application: missing /index.js file`);
+    if (!fs.existsSync(bootstrapPath)) {
+      throw new Error(`Unable to start your application: missing ${ bootstrapPath } file`);
     }
     debug(`starting server process: ${ process.execPath } ${ args.join(' ') }`);
     this.server = spawn(process.execPath, args, {
