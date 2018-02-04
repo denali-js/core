@@ -1,4 +1,4 @@
-const bundle = require('./dist/dummy.bundle.js');
+const bundle = require('../../tmp/-dummy/dummy.bundle');
 const container = bundle();
 
 const Application = container.lookup('app:application');

@@ -2576,7 +2576,7 @@ denali-cli@0.0.x:
     dedent-js "^1.0.1"
     dotenv "^4.0.0"
     fast-sourcemap-concat "^1.2.3"
-    find-plugins "^1.1.4"
+    find-plugins "^1.1.5"
     fs-extra "^4.0.1"
     glob "^7.1.2"
     inline-source-map-comment "^1.0.5"
@@ -3026,9 +3026,9 @@ find-index@^1.1.0:
   version "1.1.0"
   resolved "http://localhost:4873/find-index/-/find-index-1.1.0.tgz#53007c79cd30040d6816d79458e8837d5c5705ef"
 
-find-plugins@^1.1.4:
-  version "1.1.4"
-  resolved "http://localhost:4873/find-plugins/-/find-plugins-1.1.4.tgz#5329e71227f3e13d22d90194f0e456d44de7c6d0"
+find-plugins@^1.1.5:
+  version "1.1.5"
+  resolved "http://localhost:4873/find-plugins/-/find-plugins-1.1.5.tgz#31de5220943de82ab8f1e56d381243e59d29e690"
   dependencies:
     dag-map "^2.0.2"
     debug "^3.0.1"
