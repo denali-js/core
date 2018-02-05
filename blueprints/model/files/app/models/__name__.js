@@ -2,4 +2,7 @@
 import ApplicationModel from './application';
 
 export default class <%= className %>Model extends ApplicationModel {
+
+  static schema = {};
+
 }
