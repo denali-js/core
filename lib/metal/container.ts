@@ -81,7 +81,7 @@ export class Container {
     parser: { singleton: true, fallbacks: [ 'parser:application' ] },
     serializer: { singleton: true, fallbacks: [ 'serializer:application' ] },
     service: { singleton: true },
-    view: { singleton: true, fallbacks: [ 'view:application' ] }
+    view: { singleton: true }
   };
 
   /**
