@@ -86,7 +86,7 @@ export default class TestCommand extends Command {
   tests: ChildProcess;
 
   async run(argv: any) {
-    let files = <string[]>argv.files;
+    let files = (<string[] | void>argv.files) || [];
     if (files.length === 0) {
       files.push('test/**/*.js');
     } else {
