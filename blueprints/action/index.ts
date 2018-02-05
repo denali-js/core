@@ -51,16 +51,4 @@ export default class ActionBlueprint extends Blueprint {
       nesting
     };
   }
-
-  async postInstall(argv: any): Promise<void> {
-    let name = argv.name;
-    let method = argv.method || 'post';
-    this.addRoute(method.toLowerCase(), `/${ name }`, name);
-  }
-
-  async postUninstall(argv: any): Promise<void> {
-    let name = argv.name;
-    let method = argv.method || 'post';
-    this.removeRoute(method.toLowerCase(), `/${ name }`, name);
-  }
 }

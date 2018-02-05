@@ -48,12 +48,4 @@ export default class ResourceBlueprint extends Blueprint {
     return { plural, singular };
   }
 
-  async postInstall(argv: any) {
-    this.addRoute('resource', singularize(argv.name));
-  }
-
-  async postUninstall(argv: any) {
-    this.removeRoute('resource', singularize(argv.name));
-  }
-
 }
