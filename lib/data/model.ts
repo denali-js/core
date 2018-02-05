@@ -6,7 +6,7 @@ import { forEach, startCase, kebabCase, upperFirst, pickBy } from 'lodash';
 import DenaliObject from '../metal/object';
 import { lookup } from '../metal/container';
 import ORMAdapter from './orm-adapter';
-import { AttributeDescriptor, Descriptor, RelationshipDescriptor, SchemaDescriptor } from './descriptors';
+import { AttributeDescriptor, RelationshipDescriptor, SchemaDescriptor } from './descriptors';
 import { Dict } from '../utils/types';
 
 const debug = createDebug('denali:model');
@@ -70,11 +70,7 @@ export default class Model extends DenaliObject {
       return;
     }
     this.prototype[augmentedWithAccessors] = true;
-    forEach(this, (descriptor, name) => {
-      if (!(descriptor instanceof Descriptor)) {
-        return;
-      }
-
+    forEach(this.schema, (descriptor, name) => {
       if ((<any>descriptor).isAttribute) {
         Object.defineProperty(this.prototype, name, {
           configurable: true,
@@ -302,7 +298,7 @@ export default class Model extends DenaliObject {
    * @since 0.1.0
    */
   async getRelated(relationshipName: string, options?: any): Promise<Model|Model[]> {
-    let descriptor: RelationshipDescriptor = (<any>this.constructor)[relationshipName];
+    let descriptor: RelationshipDescriptor = <RelationshipDescriptor>(<typeof Model>this.constructor).schema[relationshipName];
     assert(descriptor && descriptor.isRelationship, `You tried to fetch related ${ relationshipName }, but no such relationship exists on ${ this.modelName }`);
     let RelatedModel = lookup<typeof Model>(`model:${ descriptor.relatedModelName }`);
     let results = await (<typeof Model>this.constructor).adapter.getRelated(this, relationshipName, descriptor, options);
@@ -321,7 +317,7 @@ export default class Model extends DenaliObject {
    * @since 0.1.0
    */
   async setRelated(relationshipName: string, relatedModels: Model|Model[], options?: any): Promise<void> {
-    let descriptor = (<any>this.constructor)[relationshipName];
+    let descriptor: RelationshipDescriptor = <RelationshipDescriptor>(<typeof Model>this.constructor).schema[relationshipName];
     await (<typeof Model>this.constructor).adapter.setRelated(this, relationshipName, descriptor, relatedModels, options);
   }
 
@@ -331,7 +327,7 @@ export default class Model extends DenaliObject {
    * @since 0.1.0
    */
   async addRelated(relationshipName: string, relatedModel: Model, options?: any): Promise<void> {
-    let descriptor = (<any>this.constructor)[pluralize(relationshipName)];
+    let descriptor: RelationshipDescriptor = <RelationshipDescriptor>(<typeof Model>this.constructor).schema[pluralize(relationshipName)];
     await (<typeof Model>this.constructor).adapter.addRelated(this, relationshipName, descriptor, relatedModel, options);
   }
 
@@ -341,7 +337,7 @@ export default class Model extends DenaliObject {
    * @since 0.1.0
    */
   async removeRelated(relationshipName: string, relatedModel: Model, options?: any): Promise<void> {
-    let descriptor = (<any>this.constructor)[pluralize(relationshipName)];
+    let descriptor: RelationshipDescriptor = <RelationshipDescriptor>(<typeof Model>this.constructor).schema[pluralize(relationshipName)];
     await (<typeof Model>this.constructor).adapter.removeRelated(this, relationshipName, descriptor, relatedModel, options);
   }
 
