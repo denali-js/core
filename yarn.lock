@@ -45,8 +45,8 @@
     arrify "^1.0.1"
 
 "@denali-js/loader@*":
-  version "0.0.1"
-  resolved "http://localhost:4873/@denali-js%2floader/-/loader-0.0.1.tgz#485d1b25b84d730a178aad8bf3ca7526c671c9e1"
+  version "0.0.2"
+  resolved "http://localhost:4873/@denali-js%2floader/-/loader-0.0.2.tgz#4db6753242b8e12856a7caab2f76dc0120ab50a5"
   dependencies:
     "@types/node" "^8.0.53"
     "@types/resolve" "^0.0.4"
@@ -2327,7 +2327,7 @@ delegates@^1.0.0:
 
 denali-cli@0.0.x:
   version "0.0.20"
-  resolved "http://localhost:4873/denali-cli/-/denali-cli-0.0.20.tgz#34cc19dfd48539c38a0a389decdd753ff27ac587"
+  resolved "http://localhost:4873/denali-cli/-/denali-cli-0.0.20.tgz#6e64b47f0880acf28b2bb4a5f21d9b16ddef0269"
   dependencies:
     "@types/bluebird" "^3.5.20"
     "@types/debug" "^0.0.30"
