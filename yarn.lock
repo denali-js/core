@@ -46,7 +46,7 @@
 
 "@denali-js/loader@*":
   version "0.0.2"
-  resolved "http://localhost:4873/@denali-js%2floader/-/loader-0.0.2.tgz#4db6753242b8e12856a7caab2f76dc0120ab50a5"
+  resolved "http://localhost:4873/@denali-js%2floader/-/loader-0.0.2.tgz#fdbee7073d36842d38e34d457ee02ac8332c50e6"
   dependencies:
     "@types/node" "^8.0.53"
     "@types/resolve" "^0.0.4"
@@ -171,8 +171,8 @@
   resolved "http://localhost:4873/@types%2finflection/-/inflection-1.5.28.tgz#43d55e0d72cf333a2dffd9c4ec0407455a1b0931"
 
 "@types/lodash@^4.14.100", "@types/lodash@^4.14.76":
-  version "4.14.100"
-  resolved "http://localhost:4873/@types%2flodash/-/lodash-4.14.100.tgz#f353dd9d3a9785638b6cb8023e6639097bd31969"
+  version "4.14.101"
+  resolved "http://localhost:4873/@types%2flodash/-/lodash-4.14.101.tgz#512f6c9e1749890f4d024e98cb995a63f562d458"
 
 "@types/mime@*":
   version "2.0.0"
@@ -1882,8 +1882,8 @@ commander@2.9.0:
     graceful-readlink ">= 1.0.0"
 
 commander@^2.12.1, commander@^2.2.0, commander@^2.5.0, commander@^2.9.0:
-  version "2.13.0"
-  resolved "http://localhost:4873/commander/-/commander-2.13.0.tgz#6964bca67685df7c1f1430c584f07d7597885b9c"
+  version "2.14.0"
+  resolved "http://localhost:4873/commander/-/commander-2.14.0.tgz#7b25325963e6aace20d3a9285b09379b0c2208b5"
 
 common-path-prefix@^1.0.0:
   version "1.0.0"
@@ -4562,8 +4562,8 @@ mem@^1.1.0:
     mimic-fn "^1.0.0"
 
 memory-streams@^0.1.0:
-  version "0.1.2"
-  resolved "http://localhost:4873/memory-streams/-/memory-streams-0.1.2.tgz#273ff777ab60fec599b116355255282cca2c50c2"
+  version "0.1.3"
+  resolved "http://localhost:4873/memory-streams/-/memory-streams-0.1.3.tgz#d9b0017b4b87f1d92f55f2745c9caacb1dc93ceb"
   dependencies:
     readable-stream "~1.0.2"
 

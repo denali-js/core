@@ -3,6 +3,7 @@ import { sync as glob } from 'glob';
 import { all } from 'bluebird';
 import { assign, forEach, mapKeys } from 'lodash';
 import { RegisterContextual } from 'ava';
+import { IncomingHttpHeaders } from 'http';
 import MockRequest from './mock-request';
 import MockResponse from './mock-response';
 import Application from '../runtime/application';
@@ -63,7 +64,7 @@ export class AcceptanceTest {
    *
    * @since 0.1.0
    */
-  headers: { [name: string]: string } = {
+  headers: IncomingHttpHeaders = {
     accept: 'application/json',
     'content-type': 'application/json'
   };
@@ -201,7 +202,7 @@ export class AcceptanceTest {
    *
    * @since 0.1.0
    */
-  async patch(url: string, body: string, options = {}): Promise<{ status: number, body: any }> {
+  async patch(url: string, body: any, options = {}): Promise<{ status: number, body: any }> {
     return this.request(Object.assign(options, { url, body, method: 'PATCH' }));
   }
 
@@ -210,8 +211,9 @@ export class AcceptanceTest {
    *
    * @since 0.1.0
    */
-  getHeader(name: string): string {
-    return this.headers[name.toLowerCase()];
+  getHeader<T extends keyof IncomingHttpHeaders>(name: T) {
+    name = <T>name.toLowerCase();
+    return this.headers[name];
   }
 
   /**
@@ -219,7 +221,7 @@ export class AcceptanceTest {
    *
    * @since 0.1.0
    */
-  setHeader(name: string, value: string): void {
+  setHeader<T extends keyof IncomingHttpHeaders, U extends IncomingHttpHeaders[T]>(name: T, value: U): void {
     this.headers[name.toLowerCase()] = value;
   }
 
