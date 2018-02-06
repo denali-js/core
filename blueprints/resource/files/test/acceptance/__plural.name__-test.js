@@ -1,6 +1,6 @@
-import { appAcceptanceTest } from 'denali';
+import { setupAcceptanceTest } from 'denali';
 
-const test = appAcceptanceTest();
+const test = setupAcceptanceTest();
 
 test('POST /<%= plural.dasherized %> > creates a <%= singular.humanized %>', async (t) => {
   let result = await t.context.app.post('/<%= plural.name %>', {
