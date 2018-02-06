@@ -245,7 +245,7 @@ export class Container {
     let registrations = Object.keys(this.registry).filter((specifier) => {
       return specifier.startsWith(type);
     });
-    let resolved = this.resolvers.reduce((entries, resolver) => {
+    let resolved = this.resolvers.reverse().reduce((entries, resolver) => {
       return entries.concat(resolver.availableForType(type));
     }, []);
     return uniq(registrations.concat(resolved)).map((specifier) => specifier.split(':')[1]);
