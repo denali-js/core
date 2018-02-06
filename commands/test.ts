@@ -121,8 +121,8 @@ export default class TestCommand extends Command {
     let outputDir = project.isAddon ? path.join('tmp', '-dummy') : 'dist';
 
     process.on('exit', this.cleanExit.bind(this));
-    process.on('SIGINT', this.cleanExit.bind(this));
-    process.on('SIGTERM', this.cleanExit.bind(this));
+    process.on('SIGINT', this.cleanExit.bind(this, true));
+    process.on('SIGTERM', this.cleanExit.bind(this, true));
 
     if (argv.watch) {
       let watch: typeof project.watch = project.isAddon ? project.watchDummy.bind(project) : project.watch.bind(project);
@@ -157,9 +157,12 @@ export default class TestCommand extends Command {
     }
   }
 
-  protected cleanExit() {
+  protected cleanExit(resumeExit: boolean) {
     if (this.tests) {
       this.tests.kill();
+    }
+    if (resumeExit) {
+      process.exit();
     }
   }
 
