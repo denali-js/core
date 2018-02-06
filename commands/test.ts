@@ -24,6 +24,11 @@ export default class TestCommand extends Command {
   static params = '[files...]';
 
   static flags = {
+    environment: {
+      description: 'The target environment to build for.',
+      default: process.env.NODE_ENV || 'test',
+      type: <any>'string'
+    },
     debug: {
       description: 'The test file you want to debug. Can only debug one file at a time.',
       type: <any>'boolean'
@@ -109,7 +114,7 @@ export default class TestCommand extends Command {
     });
 
     let project = new Project({
-      environment: 'test',
+      environment: argv.environment,
       printSlowTrees: argv.printSlowTrees
     });
 
