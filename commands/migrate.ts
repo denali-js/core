@@ -63,7 +63,7 @@ export default class MigrateCommand extends Command {
     let application: Application = await project.createApplication();
     assert(application.config.get('migrations', 'db'), 'DB connection info is missing. You must supply the knex connection info in config.migrations.db.');
     let db = knex(application.config.get('migrations', 'db'));
-    let migrationsDir = path.join(process.cwd(), 'config', 'migrations');
+    let migrationsDir = path.join(process.cwd(), 'dist', 'config', 'migrations');
     try {
       if (argv.rollback) {
         await spinner.start('Rolling back last migration');
