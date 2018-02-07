@@ -1,3 +1,6 @@
-import test from 'ava';
+import { setupUnitTest } from 'denali';
+import <%= singular.className %> from '../models/<%= singular.dasherized %>';
 
-test.todo('<%= className %>Model');
+const test = setupUnitTest();
+
+test.todo('<%= className %>');

@@ -1,12 +1,14 @@
 import { Blueprint, unwrap } from 'denali-cli';
-import { singularize } from 'inflection';
 import {
   upperFirst,
-  camelCase
+  camelCase,
+  kebabCase
 } from 'lodash';
 
 /**
  * Generates a blank ORM adapter with stubs for all the required methods
+ *
+ * TODO: generate with denali orm adapter test suite module, and install the module on postinstall
  *
  * @package blueprints
  */
@@ -29,11 +31,9 @@ export default class ORMAdapterBlueprint extends Blueprint {
 
   locals(argv: any) {
     let name = argv.name;
-    name = singularize(name);
-    return {
-      name,
-      className: upperFirst(camelCase(name))
-    };
+    let className = upperFirst(camelCase(name));
+    let dasherized = kebabCase(name);
+    return { name, className, dasherized };
   }
 
 }

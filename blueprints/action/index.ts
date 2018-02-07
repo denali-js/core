@@ -1,6 +1,7 @@
 import {
   upperFirst,
-  camelCase
+  camelCase,
+  kebabCase
 } from 'lodash';
 import { Blueprint, unwrap } from 'denali-cli';
 
@@ -48,6 +49,7 @@ export default class ActionBlueprint extends Blueprint {
     return {
       name,
       className: upperFirst(camelCase(name)),
+      dasherized: kebabCase(name),
       nesting
     };
   }
