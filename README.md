@@ -1,11 +1,10 @@
 # Denali
 
-[![NPM version][npm-image]][npm-url]
-[![Build Status][travis-image]][travis-url]
-[![Coverage][coverage-image]][coverage-url]
-[![Dependency Status][depstat-image]][depstat-url]
-[![Downloads][download-image]][npm-url]
-[![Standard Version][sv-image]][sv-url]
+[![CircleCI](https://img.shields.io/circleci/project/github/denali-js/denali.svg?style=flat-square)](https://circleci.com/gh/denali-js/denali)
+[![Coverage](https://img.shields.io/codeclimate/coverage/github/denali-js/denali.svg?style=flat-square)](https://codeclimate.com/github/denali-js/denali)
+[![Dependencies](https://img.shields.io/david/denali-js/denali.svg?style=flat-square)](https://david-dm.org/denali-js/denali)
+[![npm downloads](https://img.shields.io/npm/dm/denali.svg?style=flat-square)](https://www.npmjs.com/package/denali)
+![latest version](https://img.shields.io/npm/v/denali.svg?style=flat-square)
 
 > An opinionated Node framework for building robust JSON APIs
 
@@ -79,24 +78,3 @@ To learn more, check out [the docs](http://denalijs.org/) or join us on [Slack](
 ## License
 
 MIT © [Dave Wasmer](http://davewasmer.com)
-
-
-[npm-url]: https://npmjs.org/package/denali
-[npm-image]: https://img.shields.io/npm/v/denali.svg?style=flat-square
-
-[travis-url]: https://travis-ci.org/denali-js/denali
-[travis-image]: https://img.shields.io/travis/denali-js/denali/master.svg?style=flat-square
-
-[coverage-url]: https://codeclimate.com/github/denali-js/denali
-[coverage-image]: https://img.shields.io/codeclimate/coverage/github/denali-js/denali.svg?style=flat-square
-
-[depstat-url]: https://david-dm.org/denali-js/denali
-[depstat-image]: https://david-dm.org/denali-js/denali/status.svg?style=flat-square
-
-[download-image]: https://img.shields.io/npm/dm/denali.svg?style=flat-square
-
-[sv-url]: https://github.com/conventional-changelog/standard-version
-[sv-image]: https://img.shields.io/badge/release-standard%20version-brightgreen.svg?style=flat-square
-
-[greenkeeper-image]: https://badges.greenkeeper.io/denali-js/denali.svg
-[greenkeeper-url]: https://greenkeeper.io
