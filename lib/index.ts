@@ -60,7 +60,7 @@ import Service from './runtime/service';
 import ConfigService from './runtime/config';
 
 // Test
-import setupAcceptanceTest, { AcceptanceTest } from './test/acceptance-test';
+import setupAcceptanceTest, { AcceptanceTest, AcceptanceTestContext } from './test/acceptance-test';
 import setupUnitTest, { UnitTest } from './test/unit-test';
 import MockRequest from './test/mock-request';
 import MockResponse from './test/mock-response';
@@ -118,6 +118,7 @@ export {
   // Test
   setupAcceptanceTest,
   AcceptanceTest,
+  AcceptanceTestContext,
   setupUnitTest,
   UnitTest,
   MockRequest,
