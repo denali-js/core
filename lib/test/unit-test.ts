@@ -8,11 +8,11 @@ export interface ContainerOverrideConfig {
   [containerSpecifier: string]: true | any;
 }
 
-export interface UnitTestContext {
+export interface UnitTestContext<Subject> {
   unit: UnitTest;
   container: Container;
   lookup: typeof Container.prototype.lookup;
-  subject(): any;
+  subject(): Subject;
   inject(injections: { [specifier: string]: any }): void;
   inject(name: string, value: any, options?: ContainerOptions): void;
   restore(...specifiers: string[]): void;
@@ -57,8 +57,8 @@ export class UnitTest<Subject = any> {
    *
    * @since 0.1.0
    */
-  static setupTest<Subject, AdditionalContext = {}>(subject: string | (() => any) = () => null, overrides: ContainerOverrideConfig = {}, options: UnitTestOptions = {}): RegisterContextual<UnitTestContext & AdditionalContext> {
-    let ava = <RegisterContextual<UnitTestContext & AdditionalContext>>require('ava');
+  static setupTest<Subject, AdditionalContext = {}>(subject: string | (() => Subject) = () => null, overrides: ContainerOverrideConfig = {}, options: UnitTestOptions = {}): RegisterContextual<UnitTestContext<Subject> & AdditionalContext> {
+    let ava = <RegisterContextual<UnitTestContext<Subject> & AdditionalContext>>require('ava');
     let unitTest = new this<Subject>(subject, overrides, options);
     ava.beforeEach(async (t) => await unitTest.setup(t.context));
     ava.afterEach.always(async (t) => await unitTest.teardown());
@@ -95,7 +95,7 @@ export class UnitTest<Subject = any> {
     this.applyContainerOverrideConfig(overrideConfig, options.clearContainer);
   }
 
-  async setup(context: UnitTestContext) {
+  async setup(context: UnitTestContext<any>) {
     // Setup the container with the "allowed world" for this test suite
     forEach(this.startingContainerValues, (value, specifier) => {
       this.container.register(specifier, value);
