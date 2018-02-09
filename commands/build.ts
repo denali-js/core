@@ -30,12 +30,11 @@ export default class BuildCommand extends Command {
       default: false,
       type: <any>'boolean'
     },
-    skipLint: {
-      description: 'Skip linting the app source files',
+    docs: {
+      description: 'Build the documentation as well?',
       default: false,
       type: <any>'boolean'
     },
-    // TODO this should default to true if building for production
     audit: {
       description: 'Auditing your package.json for vulnerabilites',
       default: false,
@@ -53,6 +52,7 @@ export default class BuildCommand extends Command {
   async run(argv: any) {
     let project = new Project({
       environment: argv.environment,
+      docs: argv.docs,
       printSlowTrees: argv.printSlowTrees
     });
 

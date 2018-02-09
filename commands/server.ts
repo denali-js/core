@@ -60,8 +60,8 @@ export default class ServerCommand extends Command {
       default: false,
       type: <any>'boolean'
     },
-    skipLint: {
-      description: 'Skip linting the app source files',
+    docs: {
+      description: 'Build the documentation as well?',
       default: false,
       type: <any>'boolean'
     },
@@ -99,6 +99,7 @@ export default class ServerCommand extends Command {
 
     let project = new Project({
       environment: argv.environment,
+      docs: argv.docs,
       printSlowTrees: argv.printSlowTrees
     });
 
