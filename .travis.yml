@@ -8,11 +8,6 @@ before_script:
   - git config --global user.name "Dave Wasmer"
 after_success:
   - npm run coverage
-jobs:
-  include:
-    - stage: build & deploy docs
-      node_js: "7"
-      script: npm run deploy-docs
 sudo: false
 cache:
   directories:

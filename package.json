@@ -46,7 +46,6 @@
     "lint": "tslint --project tsconfig.json -c tslint.json --type-check | sed \"s|$PWD/||\"",
     "bootstrap": "tsc",
     "coverage": "scripts/coverage.sh",
-    "deploy-docs": "scripts/deploy-docs.sh",
     "prepublishOnly": "npm run firstbuild",
     "test": "scripts/test.sh"
   },
