@@ -256,7 +256,7 @@ export default abstract class JSONAPISerializer extends Serializer {
     for (let name of relationshipNames) {
       let config = relationships[name];
       let key = config.key || this.serializeRelationshipName(context, name);
-      let descriptor = (<any>record.constructor)[name];
+      let descriptor = <RelationshipDescriptor>(<typeof Model>record.constructor).schema[name];
       assert(descriptor, `You specified a '${ name }' relationship in your ${ record.modelName } serializer, but no such relationship is defined on the ${ record.modelName } model`);
       serializedRelationships[key] = await this.serializeRelationship(context, name, config, descriptor, record);
     }

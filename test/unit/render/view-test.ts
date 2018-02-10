@@ -1,12 +1,6 @@
 /* tslint:disable:completed-docs no-empty no-invalid-this member-access */
 import test from 'ava';
-// import ErrorView from '../../../app/views/error.html';
-import { /*Container,*/ MockResponse } from 'denali';
-
-test.beforeEach(async (t) => {
-  // let container = t.context.container = new Container(__dirname);
-  // t.context.view = new ErrorView(container);
-});
+import { MockResponse } from 'denali';
 
 test.skip('it renders the error view correctly', (t) => {
   let response = new MockResponse();

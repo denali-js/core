@@ -124,7 +124,7 @@ export default abstract class JSONSerializer extends Serializer {
    *
    * @since 0.1.0
    */
-  protected async serializeRelationships(model: any, action: Action, options: RenderOptions): Promise<{ [key: string]: any }> {
+  protected async serializeRelationships(model: Model, action: Action, options: RenderOptions): Promise<{ [key: string]: any }> {
     let serializedRelationships: { [key: string ]: any } = {};
     let relationships = this.relationshipsToSerialize(action, options);
 
@@ -133,8 +133,8 @@ export default abstract class JSONSerializer extends Serializer {
     for (let relationshipName in this.relationships) {
       let config = relationships[relationshipName];
       let key = config.key || this.serializeRelationshipName(relationshipName);
-      let descriptor = model.constructor[relationshipName];
-      assert(descriptor, `You specified a '${ relationshipName }' relationship in your ${ model.constructor.type } serializer, but no such relationship is defined on the ${ model.constructor.type } model`);
+      let descriptor = <RelationshipDescriptor>(<typeof Model>model.constructor).schema[relationshipName];
+      assert(descriptor, `You specified a '${ relationshipName }' relationship in your ${ this.constructor.name } serializer, but no such relationship is defined on the ${ model.modelName } model`);
       serializedRelationships[key] = await this.serializeRelationship(relationshipName, config, descriptor, model, action, options);
     }
 

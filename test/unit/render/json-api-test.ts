@@ -11,18 +11,22 @@ import {
 import { ResourceObject, RelationshipsWithData } from 'jsonapi-typescript';
 
 class Post extends Model {
-  static title = attr('string');
-  static content = attr('string');
-  static publishedAt = attr('date');
-  static author = hasOne('user');
-  static comments = hasMany('comment');
+  static schema = {
+    title: attr('string'),
+    content: attr('string'),
+    publishedAt: attr('date'),
+    author: hasOne('user'),
+    comments: hasMany('comment')
+  };
 }
 
 class User extends Model {}
 
 class Comment extends Model {
-  static text = attr('string');
-  static publishedAt = attr('string');
+  static schema = {
+    text: attr('string'),
+    publishedAt: attr('string')
+  };
 }
 
 const test = setupUnitTest('serializer:json-api', {
@@ -92,11 +96,15 @@ test('sideloads related records', async (t) => {
     relationships = {};
   });
   inject('model:post', class Post extends Model {
-    static title = attr('string');
-    static comments = hasMany('comment');
+    static schema = {
+      title: attr('string'),
+      comments: hasMany('comment')
+    };
   });
   inject('model:comment', class Comment extends Model {
-    static text = attr('string');
+    static schema = {
+      text: attr('string')
+    };
   });
   let serializer = new PostSerializer();
 
@@ -285,12 +293,15 @@ test('uses related serializers to render related records', async (t) => {
     relationships = {};
   });
   inject('model:comment', class Comment extends Model {
-    static text = attr('string');
-    static publishedAt = attr('string');
+    static schema = {
+      text: attr('string'),
+      publishedAt: attr('string')
+    };
   });
   let serializer = new PostSerializer();
   let post = await Post.create({ title: 'foo' });
-  await post.addComment(await Comment.create({ text: 'bar', publishedAt: 'fizz' }));
+  let comment = await Comment.create({ text: 'bar', publishedAt: 'fizz' });
+  await post.addComment(comment);
 
   let result = await serializer.serialize(post, <any>{}, {});
   t.true(isArray(result.included));
@@ -308,7 +319,6 @@ test('dasherizes field names', async (t) => {
     relationships = {};
   }
   let serializer = new TestSerializer();
-  debugger;
   let post = await Post.create({ publishedAt: 'foo' });
 
   let result = await serializer.serialize(post, <any>{}, {});

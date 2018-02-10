@@ -2,21 +2,20 @@
 import { isArray } from 'lodash';
 import { setupUnitTest, JSONSerializer, Model, attr, hasMany, Errors, hasOne } from 'denali';
 
-// test.beforeEach((t) => {
-//   t.context.container = new Container();
-//   t.context.container.register('orm-adapter:application', MemoryAdapter);
-// });
-
 class Post extends Model {
-  static title = attr('string');
-  static content = attr('string');
-  static author = hasOne('user');
-  static comments = hasMany('comment');
+  static schema = {
+    title: attr('string'),
+    content: attr('string'),
+    author: hasOne('user'),
+    comments: hasMany('comment')
+  };
 }
 
 class Comment extends Model {
-  static text = attr('string');
-  static publishedAt = attr('string');
+  static schema = {
+    text: attr('string'),
+    publishedAt: attr('string')
+  };
 }
 
 const test = setupUnitTest('serializer:json-api', {

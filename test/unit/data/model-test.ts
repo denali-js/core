@@ -3,11 +3,15 @@ import { isArray } from 'lodash';
 import { setupUnitTest, Model, hasOne, hasMany, MemoryAdapter } from 'denali';
 
 class Post extends Model {
-  static comments = hasMany('comment');
+  static schema = {
+    comments: hasMany('comment')
+  };
 }
 
 class Comment extends Model {
-  static post = hasOne('post');
+  static schema = {
+    post: hasOne('post')
+  };
 }
 
 const test = setupUnitTest(() => null, {

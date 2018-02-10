@@ -2,14 +2,18 @@
 import { setupUnitTest, MemoryAdapter, hasOne, hasMany, Model, attr } from 'denali';
 
 class BlogPost extends Model {
-  static text = attr('string');
-  static published = attr('boolean');
-  static comments = hasMany('comment');
+  static schema = {
+    text: attr('string'),
+    published: attr('boolean'),
+    comments: hasMany('comment')
+  };
 }
 
 class Comment extends Model {
-  static text = attr('string');
-  static blogPost = hasOne('blog-post');
+  static schema = {
+    text: attr('string'),
+    blogPost: hasOne('blog-post')
+  };
 }
 
 const test = setupUnitTest(() => {}, {
@@ -94,9 +98,9 @@ test('getRelated returns related records', async (t) => {
   let adapter = lookup<MemoryAdapter>('orm-adapter:application');
   let blogPost = await BlogPost.create();
   let comments = [ await Comment.create({ text: 'alpha' }), await Comment.create({ text: 'bravo' }) ];
-  adapter.setRelated(blogPost, 'comments', BlogPost.comments, comments);
+  adapter.setRelated(blogPost, 'comments', BlogPost.schema.comments, comments);
 
-  let result = await adapter.getRelated(blogPost, 'comments', BlogPost.comments, null);
+  let result = await adapter.getRelated(blogPost, 'comments', BlogPost.schema.comments, null);
   t.deepEqual(result, [ comments[0].record, comments[1].record ]);
 });
 
@@ -105,15 +109,15 @@ test('setRelated replaces related records', async (t) => {
   let adapter = lookup<MemoryAdapter>('orm-adapter:application');
   let blogPost = await BlogPost.create();
   let comments = [ await Comment.create({ text: 'alpha' }), await Comment.create({ text: 'bravo' }) ];
-  adapter.setRelated(blogPost, 'comments', BlogPost.comments, comments);
+  adapter.setRelated(blogPost, 'comments', BlogPost.schema.comments, comments);
 
-  let sanityCheck = await adapter.getRelated(blogPost, 'comments', BlogPost.comments, null);
+  let sanityCheck = await adapter.getRelated(blogPost, 'comments', BlogPost.schema.comments, null);
   t.deepEqual(sanityCheck, comments.map((c) => c.record));
 
   let newComment = await Comment.create({ text: 'charlie' });
-  adapter.setRelated(blogPost, 'comments', BlogPost.comments, [ newComment ]);
+  adapter.setRelated(blogPost, 'comments', BlogPost.schema.comments, [ newComment ]);
 
-  let result = await adapter.getRelated(blogPost, 'comments', BlogPost.comments, null);
+  let result = await adapter.getRelated(blogPost, 'comments', BlogPost.schema.comments, null);
   t.deepEqual(result, [ newComment.record ]);
 });
 
@@ -122,15 +126,15 @@ test('addRelated adds a related record to a has many relationship', async (t) =>
   let adapter = lookup<MemoryAdapter>('orm-adapter:application');
   let blogPost = await BlogPost.create();
   let comments = [ await Comment.create({ text: 'alpha' }), await Comment.create({ text: 'bravo' }) ];
-  adapter.setRelated(blogPost, 'comments', BlogPost.comments, comments);
+  adapter.setRelated(blogPost, 'comments', BlogPost.schema.comments, comments);
 
-  let sanityCheck = await adapter.getRelated(blogPost, 'comments', BlogPost.comments, null);
+  let sanityCheck = await adapter.getRelated(blogPost, 'comments', BlogPost.schema.comments, null);
   t.deepEqual(sanityCheck, comments.map((c) => c.record));
 
   let newComment = await Comment.create({ text: 'charlie' });
-  adapter.addRelated(blogPost, 'comments', BlogPost.comments, newComment);
+  adapter.addRelated(blogPost, 'comments', BlogPost.schema.comments, newComment);
 
-  let result = await adapter.getRelated(blogPost, 'comments', BlogPost.comments, null);
+  let result = await adapter.getRelated(blogPost, 'comments', BlogPost.schema.comments, null);
   t.deepEqual(result, comments.concat(newComment).map((c) => c.record));
 });
 
@@ -139,13 +143,13 @@ test('removeRelated destroys a relationship between related records', async (t) 
   let adapter = lookup<MemoryAdapter>('orm-adapter:application');
   let blogPost = await BlogPost.create();
   let comments = [ await Comment.create({ text: 'alpha' }), await Comment.create({ text: 'bravo' }) ];
-  adapter.setRelated(blogPost, 'comments', BlogPost.comments, comments);
+  adapter.setRelated(blogPost, 'comments', BlogPost.schema.comments, comments);
 
-  let sanityCheck = await adapter.getRelated(blogPost, 'comments', BlogPost.comments, null);
+  let sanityCheck = await adapter.getRelated(blogPost, 'comments', BlogPost.schema.comments, null);
   t.deepEqual(sanityCheck, comments.map((c) => c.record));
 
-  adapter.removeRelated(blogPost, 'comments', BlogPost.comments, comments[0]);
+  adapter.removeRelated(blogPost, 'comments', BlogPost.schema.comments, comments[0]);
 
-  let result = await adapter.getRelated(blogPost, 'comments', BlogPost.comments, null);
+  let result = await adapter.getRelated(blogPost, 'comments', BlogPost.schema.comments, null);
   t.deepEqual(result, [ comments[1].record ]);
 });
