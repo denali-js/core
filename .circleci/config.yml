@@ -2,31 +2,39 @@
 #
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
+
+default-test-config: &default-test-config
+  working_directory: ~/repo
+  steps:
+    - checkout
+    - restore_cache:
+        key: dependencies-{{ checksum "yarn.lock" }}
+    - run: yarn install
+    - save_cache:
+        paths:
+          - node_modules
+        key: dependencies-{{ checksum "yarn.lock" }}
+    - run: yarn test
+
 version: 2
 jobs:
-  build:
+  test-node-7:
+    <<: *default-test-config
     docker:
-      # specify the version you desire here
+      - image: circleci/node:7.6.0
+  test-node-8:
+    <<: *default-test-config
+    docker:
       - image: circleci/node:8.9.4
+  test-node-9:
+    <<: *default-test-config
+    docker:
+      - image: circleci/node:9.5.0
 
-    working_directory: ~/repo
-
-    steps:
-      - checkout
-
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-
-      - run: yarn install
-
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-
-      # run tests!
-      - run: yarn test
+workflows:
+  version: 2
+  build:
+    jobs:
+      - "test-node-7"
+      - "test-node-8"
+      - "test-node-9"
