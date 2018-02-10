@@ -2062,9 +2062,9 @@ delegates@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/delegates/-/delegates-1.0.0.tgz#84c6e159b81904fdca59a0ef44cd870d31250f9a"
 
-denali-cli@0.0.23:
-  version "0.0.23"
-  resolved "https://registry.yarnpkg.com/denali-cli/-/denali-cli-0.0.23.tgz#7e89c67ef0397029ecb6fa278c1030ea606faf76"
+denali-cli@0.0.24:
+  version "0.0.24"
+  resolved "https://registry.yarnpkg.com/denali-cli/-/denali-cli-0.0.24.tgz#e7620bfde871b7d19896fa015dd49b97f50b058f"
   dependencies:
     "@denali-js/documenter" "^1.0.1"
     "@types/bluebird" "^3.5.20"

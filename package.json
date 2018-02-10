@@ -93,7 +93,7 @@
     "dag-map": "^2.0.2",
     "debug": "^3.1.0",
     "dedent-js": "^1.0.1",
-    "denali-cli": "0.0.23",
+    "denali-cli": "0.0.24",
     "findup-sync": "^2.0.0",
     "fs-extra": "^5.0.0",
     "helmet": "^3.8.2",
