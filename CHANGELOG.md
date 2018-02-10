@@ -2,6 +2,45 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.0.41"></a>
+## [0.0.41](https://github.com/denali-js/denali/compare/v0.0.40...v0.0.41) (2018-02-10)
+
+
+### Bug Fixes
+
+* add files config to package json to ensure correct files are published ([3fc1fe5](https://github.com/denali-js/denali/commit/3fc1fe5))
+* add logic to support dummy app server cmd ([d614d8a](https://github.com/denali-js/denali/commit/d614d8a))
+* do not fallback for views ([26c2082](https://github.com/denali-js/denali/commit/26c2082))
+* don't assume variadic args will be an array, remove unused types dep ([a5a4c5b](https://github.com/denali-js/denali/commit/a5a4c5b))
+* drop html extension from error view ([73f76e2](https://github.com/denali-js/denali/commit/73f76e2))
+* enforce header types via node type def import ([b4946ac](https://github.com/denali-js/denali/commit/b4946ac))
+* ensure server command exits properly on SIGINT ([54f5ab1](https://github.com/denali-js/denali/commit/54f5ab1))
+* export AcceptanceTestContext type ([3af961e](https://github.com/denali-js/denali/commit/3af961e))
+* finish change to pull fields from Model.schema ([67a56a9](https://github.com/denali-js/denali/commit/67a56a9))
+* fix clean exits from test command ([21d4177](https://github.com/denali-js/denali/commit/21d4177))
+* fix dummy bundle load path, upgrade find-plugins ([63764b6](https://github.com/denali-js/denali/commit/63764b6))
+* fix main path, remove unused find-plugins dep, float denali-cli on patch version ([d655b13](https://github.com/denali-js/denali/commit/d655b13))
+* fix migrations path ([3ebe062](https://github.com/denali-js/denali/commit/3ebe062))
+* fix naming variable references in blueprints ([e05ec24](https://github.com/denali-js/denali/commit/e05ec24))
+* fix some blueprint issues, add missing initializer blueprint ([a4e4bdc](https://github.com/denali-js/denali/commit/a4e4bdc))
+* fix type issues exposed after typescript & lodash type upgrade ([a98fa76](https://github.com/denali-js/denali/commit/a98fa76))
+* fix types and config accessors in migrate command ([1c507ed](https://github.com/denali-js/denali/commit/1c507ed))
+* fix unit test .subject() typing ([ac2f390](https://github.com/denali-js/denali/commit/ac2f390))
+* fix uses of old schema definitions in tests & serializers ([a168a99](https://github.com/denali-js/denali/commit/a168a99))
+* improve typing ([6ad7d09](https://github.com/denali-js/denali/commit/6ad7d09))
+* remove add/removeRoute calls from blueprints, since it was removed ([6ba45d9](https://github.com/denali-js/denali/commit/6ba45d9))
+* run initializers in reverse natural order to ensure naturally later addons are run later ([b6ec5c2](https://github.com/denali-js/denali/commit/b6ec5c2))
+* update resource blueprint ([66396e2](https://github.com/denali-js/denali/commit/66396e2))
+* **blueprints:** update blueprints to use new unit test syntax ([591d09e](https://github.com/denali-js/denali/commit/591d09e))
+
+
+### Features
+
+* Add support for docs build flags ([9aba6ea](https://github.com/denali-js/denali/commit/9aba6ea))
+* ensure publish command runs under prod env ([670f66e](https://github.com/denali-js/denali/commit/670f66e))
+
+
+
 <a name="0.0.40"></a>
 ## [0.0.40](https://github.com/denali-js/denali/compare/v0.0.39...v0.0.40) (2018-01-31)
 

@@ -1,6 +1,6 @@
 {
   "name": "denali",
-  "version": "0.0.40",
+  "version": "0.0.41",
   "description": "A batteries-included Node.js API framework",
   "homepage": "http://denalijs.org",
   "repository": "denali-js/denali",
