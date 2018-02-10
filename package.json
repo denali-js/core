@@ -123,7 +123,12 @@
     "yargs": "^11.0.0"
   },
   "ava": {
-    "plugins": [],
-    "presets": []
+    "babel": "inherit"
+  },
+  "babel": {
+    "ignore": [
+      "blueprints/*/files/**",
+      "test/dummy/**"
+    ]
   }
 }
