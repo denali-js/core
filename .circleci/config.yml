@@ -31,6 +31,5 @@ workflows:
   version: 2
   test:
     jobs:
-      - "test-node-7"
       - "test-node-8"
       - "test-node-9"
