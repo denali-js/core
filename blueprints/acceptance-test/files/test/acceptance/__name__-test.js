@@ -1,5 +1,5 @@
-import { appAcceptanceTest } from 'denali';
+import { setupAcceptanceTest } from 'denali';
 
-const test = appAcceptanceTest();
+const test = setupAcceptanceTest();
 
 test.todo('<%= humanizedName %>');

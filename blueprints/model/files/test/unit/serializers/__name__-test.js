@@ -1,5 +1,5 @@
 import { setupUnitTest } from 'denali';
-import <%= singular.className %> from '../serializers/<%= singular.dasherized %>';
+import <%= className %> from '../serializers/<%= dasherized %>';
 
 const test = setupUnitTest();
 
