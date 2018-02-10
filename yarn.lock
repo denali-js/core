@@ -2062,9 +2062,9 @@ delegates@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/delegates/-/delegates-1.0.0.tgz#84c6e159b81904fdca59a0ef44cd870d31250f9a"
 
-denali-cli@0.0.x:
-  version "0.0.22"
-  resolved "https://registry.yarnpkg.com/denali-cli/-/denali-cli-0.0.22.tgz#278e104e31111a249cdcd441f06913047dbc1c39"
+denali-cli@0.0.23:
+  version "0.0.23"
+  resolved "https://registry.yarnpkg.com/denali-cli/-/denali-cli-0.0.23.tgz#7e89c67ef0397029ecb6fa278c1030ea606faf76"
   dependencies:
     "@denali-js/documenter" "^1.0.1"
     "@types/bluebird" "^3.5.20"
@@ -2072,7 +2072,6 @@ denali-cli@0.0.x:
     "@types/dotenv" "^4.0.2"
     "@types/flat" "^0.0.28"
     "@types/fs-extra" "^5.0.0"
-    "@types/glob" "^5.0.35"
     "@types/lodash" "^4.14.100"
     "@types/mkdirp" "^0.5.2"
     "@types/node" "^9.4.0"
@@ -2100,7 +2099,7 @@ denali-cli@0.0.x:
     fast-sourcemap-concat "^1.2.3"
     find-plugins "^1.1.6"
     fs-extra "^5.0.0"
-    glob "^7.1.2"
+    globby "^7.1.1"
     is-directory "^0.3.1"
     lodash "^4.17.5"
     mkdirp "^0.5.1"
@@ -2154,6 +2153,13 @@ detect-libc@^1.0.2:
 diff@^3.2.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/diff/-/diff-3.4.0.tgz#b1d85507daf3964828de54b37d0d73ba67dda56c"
+
+dir-glob@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/dir-glob/-/dir-glob-2.0.0.tgz#0b205d2b6aef98238ca286598a8204d29d0a0034"
+  dependencies:
+    arrify "^1.0.1"
+    path-type "^3.0.0"
 
 dns-prefetch-control@0.1.0:
   version "0.1.0"
@@ -2885,6 +2891,17 @@ globby@^6.0.0:
     pify "^2.0.0"
     pinkie-promise "^2.0.0"
 
+globby@^7.1.1:
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/globby/-/globby-7.1.1.tgz#fb2ccff9401f8600945dfada97440cca972b8680"
+  dependencies:
+    array-union "^1.0.1"
+    dir-glob "^2.0.0"
+    glob "^7.1.2"
+    ignore "^3.3.5"
+    pify "^3.0.0"
+    slash "^1.0.0"
+
 got@^6.7.1:
   version "6.7.1"
   resolved "https://registry.yarnpkg.com/got/-/got-6.7.1.tgz#240cd05785a9a18e561dc1b44b41c763ef1e8db0"
@@ -3167,6 +3184,10 @@ ienoopen@1.0.0:
 ignore-by-default@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/ignore-by-default/-/ignore-by-default-1.0.1.tgz#48ca6d72f6c6a3af00a9ad4ae6876be3889e2b09"
+
+ignore@^3.3.5:
+  version "3.3.7"
+  resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.3.7.tgz#612289bfb3c220e186a58118618d5be8c1bab021"
 
 import-lazy@^2.1.0:
   version "2.1.0"
