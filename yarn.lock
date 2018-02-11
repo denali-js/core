@@ -63,9 +63,9 @@
     walk-sync "^0.3.2"
     yuidocjs "^0.10.2"
 
-"@denali-js/loader@*":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@denali-js/loader/-/loader-0.0.1.tgz#485d1b25b84d730a178aad8bf3ca7526c671c9e1"
+"@denali-js/loader@0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@denali-js/loader/-/loader-0.0.3.tgz#f028efad9a74be6f2737d98fdc4f0e92a60c2d24"
   dependencies:
     "@types/node" "^8.0.53"
     "@types/resolve" "^0.0.4"
