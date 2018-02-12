@@ -208,7 +208,7 @@ export default abstract class JSONAPISerializer extends Serializer {
     let attributes = this.attributesToSerialize(context.action, context.options);
     attributes.forEach((attributeName) => {
       let key = this.serializeAttributeName(context, attributeName);
-      let rawValue = record[attributeName];
+      let rawValue = (<any>record)[attributeName];
       if (!isUndefined(rawValue)) {
         let value = this.serializeAttributeValue(context, rawValue, key, record);
         serializedAttributes[key] = value;

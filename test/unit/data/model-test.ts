@@ -6,6 +6,10 @@ class Post extends Model {
   static schema = {
     comments: hasMany('comment')
   };
+  getComments: (query?: any) => Promise<Comment[]>;
+  setComments: (comments: Comment[]) => Promise<void>;
+  addComment: (comment: Comment) => Promise<void>;
+  removeComment: (comment: Comment) => Promise<void>;
 }
 
 class Comment extends Model {
@@ -37,7 +41,7 @@ test('get<RelationshipName> throws for non-existent relationships', async (t) =>
   t.plan(1);
   let post = await Post.create();
   t.throws(function() {
-    post.getAuthors();
+    (<any>post).getAuthors();
   });
 });
 
@@ -67,7 +71,7 @@ test('set<RelationshipName> throws for non-existent relationships', async (t) =>
   t.plan(1);
   let post = new Post();
   t.throws(function() {
-    post.setAuthors();
+    (<any>post).setAuthors();
   });
 });
 
@@ -89,7 +93,7 @@ test('add<RelationshipName> throws for non-existent relationships', async (t) =>
   t.plan(1);
   let post = new Post();
   t.throws(function() {
-    post.addAuthor();
+    (<any>post).addAuthor();
   });
 });
 
@@ -112,6 +116,6 @@ test('remove<RelationshipName> throws for non-existent relationships', async (t)
   t.plan(1);
   let post = new Post();
   t.throws(function() {
-    post.removeAuthor();
+    (<any>post).removeAuthor();
   });
 });

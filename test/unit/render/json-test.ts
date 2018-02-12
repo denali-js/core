@@ -9,6 +9,10 @@ class Post extends Model {
     author: hasOne('user'),
     comments: hasMany('comment')
   };
+
+  title: string;
+  content: string;
+  addComment: (comment: Comment) => Promise<void>;
 }
 
 class Comment extends Model {
@@ -16,6 +20,9 @@ class Comment extends Model {
     text: attr('string'),
     publishedAt: attr('string')
   };
+
+  text: string;
+  publishedAt: string;
 }
 
 const test = setupUnitTest('serializer:json-api', {

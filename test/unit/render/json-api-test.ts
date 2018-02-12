@@ -18,6 +18,7 @@ class Post extends Model {
     author: hasOne('user'),
     comments: hasMany('comment')
   };
+  addComment: (comment: Comment) => Promise<void>;
 }
 
 class User extends Model {}

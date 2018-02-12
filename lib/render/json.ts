@@ -88,7 +88,7 @@ export default abstract class JSONSerializer extends Serializer {
     let attributes = this.attributesToSerialize(action, options);
     attributes.forEach((attributeName) => {
       let key = this.serializeAttributeName(attributeName);
-      let rawValue = model[attributeName];
+      let rawValue = (<any>model)[attributeName];
       if (!isUndefined(rawValue)) {
         let value = this.serializeAttributeValue(rawValue, key, model);
         serializedAttributes[key] = value;
