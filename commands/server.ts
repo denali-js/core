@@ -148,7 +148,7 @@ export default class ServerCommand extends Command {
     let bootstrapPath = project.isAddon ? path.join('test/dummy/index.js') : 'index.js';
     let args = [ bootstrapPath ];
     if (argv.debug) {
-      args.unshift('--inspect', '--debug-brk');
+      args.unshift('--inspect-brk');
     }
     if (!fs.existsSync(bootstrapPath)) {
       throw new Error(`Unable to start your application: missing ${ bootstrapPath } file`);
