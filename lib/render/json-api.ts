@@ -312,7 +312,9 @@ export default abstract class JSONAPISerializer extends Serializer {
    * @since 0.1.0
    */
   protected async dataForRelatedRecord(context: Context, name: string, relatedRecord: Model, config: RelationshipConfig, descriptor: RelationshipDescriptor, record: Model): Promise<JSONAPI.ResourceIdentifier> {
-    await this.includeRecord(context, name, relatedRecord, config, descriptor);
+    if (config.strategy === 'embed') {
+      await this.includeRecord(context, name, relatedRecord, config, descriptor);
+    }
     return {
       type: pluralize(relatedRecord.modelName),
       id: relatedRecord.id
