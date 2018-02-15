@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.0.45"></a>
+## [0.0.45](https://github.com/denali-js/denali/compare/v0.0.44...v0.0.45) (2018-02-15)
+
+
+### Bug Fixes
+
+* **blueprints:** fix relationships config typo ([fa54cd3](https://github.com/denali-js/denali/commit/fa54cd3))
+* **commands:** use --inspect-brk for debugging servers ([8f7d167](https://github.com/denali-js/denali/commit/8f7d167))
+* only sideload records if strategy is embed ([c048471](https://github.com/denali-js/denali/commit/c048471))
+
+
+### Features
+
+* remove index signature from Model ([c95a60a](https://github.com/denali-js/denali/commit/c95a60a))
+
+
+
 <a name="0.0.44"></a>
 ## [0.0.44](https://github.com/denali-js/denali/compare/v0.0.43...v0.0.44) (2018-02-11)
 
