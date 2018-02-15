@@ -9,10 +9,13 @@ a basic blogging application!
 
 ## Installation
 
-First off, make sure you install Denali globally via npm:
+First off, let's install the Denali CLI.
 
 ```sh
-$ npm install -g denali-cli denali
+# Installing with npm
+$ npm install -g @denali-js/cli
+# or, install with yarn
+$ yarn global add @denali-js/cli
 ```
 
 ## Scaffolding our application
@@ -23,52 +26,53 @@ Next, let's use Denali's handy scaffolding tools to create a blank slate for us
 to start from:
 
 ```sh
-$ denali new blog
-create blog/.babelrc
-create blog/.editorconfig
-create blog/.env
-create blog/.eslintignore
-create blog/.eslintrc
-create blog/.gitattributes
-create blog/.nvmrc
-create blog/.travis.yml
-create blog/CHANGELOG.md
-create blog/README.md
-create blog/app/actions/application.js
-create blog/app/actions/index.js
-create blog/app/application.js
-create blog/app/index.js
-create blog/app/models/application.js
-create blog/app/serializers/application.js
-create blog/app/services/.gitkeep
-create blog/config/environment.js
-create blog/config/initializers/.gitkeep
-create blog/config/middleware.js
-create blog/config/routes.js
-create blog/denali-build.js
-create blog/.gitignore
-create blog/package.json
-create blog/test/.eslintrc
-create blog/test/acceptance/index-test.js
-create blog/test/helpers/.gitkeep
-create blog/test/unit/.gitkeep
+$ denali new my-blog
+cli v0.0.25 [global]
+
+create my-blog/.babelrc
+create my-blog/.editorconfig
+create my-blog/.env
+create my-blog/.eslintignore
+create my-blog/.eslintrc
+create my-blog/.gitattributes
+create my-blog/.nvmrc
+create my-blog/.travis.yml
+create my-blog/CHANGELOG.md
+create my-blog/README.md
+create my-blog/app/actions/application.js
+create my-blog/app/actions/index.js
+create my-blog/app/application.js
+create my-blog/app/models/application.js
+create my-blog/app/parsers/application.js
+create my-blog/app/serializers/application.js
+create my-blog/config/environment.js
+create my-blog/config/initializers/.gitkeep
+create my-blog/config/middleware.js
+create my-blog/config/routes.js
+create my-blog/denali-build.js
+create my-blog/.gitignore
+create my-blog/index.js
+create my-blog/package.json
+create my-blog/test/acceptance/index-test.js
+create my-blog/test/unit/.gitkeep
 ✔ Dependencies installed
 ✔ Git repo initialized
-📦  blog created!
+📦  my-blog created!
 
 To launch your application, just run:
 
-  $ cd blog && denali server
+  $ cd my-blog && denali server
 
 ```
 
 Go ahead and follow that last instruction:
 
 ```sh
-$ cd blog
+$ cd my-blog
 $ denali server
-✔ blog build complete (1.829s)
-[2017-01-12T17:36:52.437Z] INFO - blog@0.0.1 server up on port 3000
+cli v0.1.0 [local] | core v0.1.0 [local]
+✔ my-blog build complete (1.829s)
+[2017-01-12T17:36:52.437Z] INFO - my-blog@0.0.1 server up on port 3000
 ```
 
 Perfect! You've got your first Denali app up and running. Now let's see it in
@@ -82,9 +86,10 @@ $ curl localhost:3000
 ```
 
 > **Heads up!** Notice that we didn't visit that localhost URL in the browser.
-> That's because Denali is designed to build **APIs** rather than HTML rendering
-> applications. If you are looking for Node framework to build a server rendered
-> web application, you might want to try something like Sails.js or Express.
+> That's because Denali is designed to build **APIs** rather than HTML
+> rendering applications. If you are looking for Node framework to build a
+> server rendered web application, you might want to try something like
+> Sails.js or Express.
 
 Great, we got an app up and running! Now that's cool, but it's not _that_ cool.
 Let's crack open the scaffolded code to see how we got that welcome message, and
@@ -97,18 +102,18 @@ The `denali new` command did a lot of setup for us. It created the following
 directory structure:
 
 ```txt
-blog/
+my-blog/
   app/
     actions/
       application.js
       index.js
     models/
       application.js
+    parsers/
+      application.js
     serializers/
       application.js
-    services/
     application.js
-    index.js
   config/
     initializers/
     environment.js
@@ -130,7 +135,7 @@ blog/
   .nvmrc
   .travis.yml
   CHANGELOG.md
-  denali-build.js
+  index.js
   package.json
   README.md
 ```
@@ -147,9 +152,9 @@ export default function drawRoutes(router) {
 }
 ```
 
-This should look somewhat familiar if you used frameworks like Rails before. The
-`router.get('/', 'index')` method tells Denali to respond to `GET /` with the
-`index` action.
+This should look somewhat familiar if you used other web frameworks before.
+The `router.get('/', 'index')` method tells Denali to respond to `GET /` with
+the `index` action.
 
 In `app/actions/index.js`, we can see how that is handled:
 
@@ -170,16 +175,15 @@ Let's break down what's going on here:
 
   * `import ApplicationAction from './application';` - we import the
     `ApplicationAction` to use as our common base class. You could import the
-    base `Action` class from the `denali` module directly, but having a base
-    class for all actions in your app is handy (and common convention).
+    base `Action` class from the `@denali-js/core` module directly, but having
+    a base class for all actions in your app is handy (and common convention).
 
   * `respond()` - the `respond()` method is the meat of any action. It defines
     how the action responds to an incoming request.
 
   * `this.render(...)` - tells Denali to render the follow as the response. In
     this case, it says to render an HTTP 200 status code, with the `message`
-    object as the payload, and use the `'json'` serializer to format the response
-    body (which in this case, simply `JSON.stringify()`s the payload).
+    object as the response body payload.
 
 The end result here is an action which will always respond with the same JSON
 object that we saw above: `{ "message": "Welcome to Denali!" }`.
@@ -188,12 +192,6 @@ object that we saw above: `{ "message": "Welcome to Denali!" }`.
 
 Now let's get a bit more creative. Our blog API is going to need to store and
 retrieve our blog posts. Let's create a `post` resource to enable that.
-
-> Normally, you'd probably store these in some kind of database (i.e. Mongo,
-> Postgres, MySQL, etc). Denali is **database agnostic** though. So for now,
-> we'll use plain ol' JS objects (a.k.a. POJOs). But you can easily substitute
-> your own models in later. For more details, check out the [Data
-> guides](../../data/models).
 
 To start, let's use that handy scaffolding tool again:
 
@@ -211,7 +209,7 @@ This scaffold creates several files:
   * A **serializer** to determine how your posts will be rendered in the
     response. We'll learn more about this in a bit.
 
-  * A **model** to represent your posts.
+  * A **model** to represent your post data structure.
 
   * A placeholder **acceptance test suite** for this resource. Denali comes with
     a first-class testing environment ready to go.
@@ -221,46 +219,32 @@ actions:
 
 ```js
   // app/actions/posts/list.js
+  import Post from '../../models/post';
+
   export default class ListPosts extends ApplicationAction {
 
     async respond() {
-      return this.db.all('post');
+      return Post.all();
     }
 
   }
 ```
 
+Great! So we've got basic CRUD operations ready for our `Post` model. But -
+where is all this data going to be stored?
+
 ## Working with a database
 
-You'll notice that the stubbed out actions reference `this.db`. This is a
-service automatically injected into actions that handles querying your database
-via ORM adapters. There's a few key methods to know, all of which return a
-promise that resolves with the query results (except for `db.create`):
+Denali takes a somewhat unique approach to handling databases. Most
+frameworks ship with some kind of Object Relational Mapper (ORM) baked right
+in, which handles talking to the database for you.
 
-* `db.find(id)` - look up a single record by it's id
-* `db.queryOne(query)` - lookup up a single record that matches the given query
-* `db.query(query)` - find all records that match the given query
-* `db.all()` - find all records of a given type
-* `db.create(type, data)` - create a new Model instance of the given type (note:
-   this method is synchronous, and does not immediately persist the newly
-   created record)
+For a variety of reasons, Denali doesn't ship with it's own ORM. Instead, you
+supply your own, and you can teach Denali how to use it by installing an ORM
+adapter addon. There's a variety of these for popular Node ORMs, and it's
+easy to make your own as well.
 
-##### A quick diversion about how Denali handles models and data
-
-Denali takes a somewhat unique approach. Most frameworks ship with some kind of
-Object Relational Mapper (ORM) baked right in. It transforms rows from a
-database into objects you can manipulate.
-
-Here's the thing: **ORMs are hard. _Really hard._** To make matters worse,
-there's **no generally accepted "good" ORM for Node.js that covers all the
-commonly used databases**.
-
-With this in mind, Denali purposefully **does not ship with an ORM**. Instead,
-Denali's Models are essentially a thin shim layer that lets you plug your own
-ORM in instead, using ORM adapters.
-
-There's lots of reasons why this is a powerful approach, but those are covered
-in the Data guides. For now, let's forge ahead and setup our data store.
+For now, to make things easier, we'll use the built-in MemoryAdapter.
 
 ### The Memory Adapter
 
@@ -278,7 +262,7 @@ When you are ready to integrate with a real database, take a look at the various
 [ORM adapters available for Denali](../../data/orm-adapters) for details on
 installing and configuring each.
 
-## Adding a model
+## Working with models
 
 The resource generator we ran above already added a blank Post model for us in
 `app/models/post.js`. Let's open that up, and add a `title` attribute so we can
@@ -286,12 +270,14 @@ store the title of each blog post:
 
 ```js
 
-import { attr /* , hasOne, hasMany */ } from 'denali';
+import { attr } from '@denali-js/core';
 import ApplicationModel from './application';
 
 export default class Post extends ApplicationModel {
 
-  static title = attr('text'); // <- add this
+  static schema = {
+    title: attr('strign') // <- add this
+  };
 
 }
 ```
@@ -299,7 +285,7 @@ export default class Post extends ApplicationModel {
 Okay, let's break this one down.
 
 ```js
-import { attr /* , hasOne, hasMany */ } from 'denali';
+import { attr } from '@denali-js/core';
 import ApplicationModel from './application';
 ```
 
@@ -308,28 +294,23 @@ we did with Actions. We also import the `attr()` helper from Denali, which is
 used to define an attribute on the model:
 
 ```js
-  static title = attr('text');
+  static schema = {
+    title: attr('string') // <- add this
+  };
 ```
 
-Here, we create our `title` attribute. Note that attributes are declared as
-static properties. Now, back in our actions, we can see that the resource
-scaffold added code that will lookup all posts via `this.db.all('post')`:
+The static `schema` property defines what attributes and relationships exist
+on a Denali model. Here, we add a single attribute, `title`, and tell Denali
+to expect a string value for it.
+
+Over in our `actions/posts/create.js` action, we can let the user create new
+blog posts too. Notice how here we are taking the body of the incoming
+request and using that to populate our new Post record.
 
 ```js
-// app/actions/posts/list.js
-  respond() {
-    return this.db.all('post');
-  }
-```
-
-Over in our create action, we can let the user create new blog posts too. Notice
-how here we are taking the body of the incoming request and using that to
-populate our new Post record.
-
-```js
-// app/actions/posts/create.js
+  // app/actions/posts/create.js
   respond({ body }) {
-    return this.db.create('post', body);
+    return Post.create({ body });
   }
 ```
 

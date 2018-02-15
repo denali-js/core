@@ -7,17 +7,19 @@ controller layer in the MVC architecture, taking in incoming requests,
 performing business logic, and handing off to the view or serializer to send the
 response.
 
-When a request comes in, Denali's [Router](latest/guides/application/routing) will map the method
-and URL to a particular Action. It will invoke the `respond()` method on that
-class, which is where your application logic lives:
+When a request comes in, Denali's [Router](latest/guides/application/routing)
+will map the method and URL to a particular Action. It will invoke the
+`respond()` method on that class, which is where your application logic
+lives:
 
 ```js
 import ApplicationAction from './application';
+import Post from '../models/post';
 
 export default class ShowPost extends ApplicationAction {
 
   respond({ params }) {
-    return this.db.find('post', params.id);
+    return Post.find(params.id);
   }
 
 }
@@ -52,38 +54,49 @@ this.render(200, post);
 // <...serialized post...>
 ```
 
-The above scenario is common enough (respond with HTTP 200 and some data) that
+You can also pass options to the serializer layer as a third argument. Denali
+doesn't care about the contents or structure of this options object - it's
+handed off directly to your serializer.
+
+```js
+this.render(200, post);
+// HTTP/1.1 200 OK
+// <...serialized post...>
+```
+
+One scenario is common enough (respond with HTTP 200 and some data) that
 Denali provides a shortcut: just return the data (or a promise that resolves
 with that data) from your respond method:
 
 ```js
 respond() {
-  return this.db.find('post', 1);
+  return Post.find(1);
 }
 // is the same as:
 respond() {
-  let post = this.db.find('post', 1);
+  let post = Post.find(1);
   this.render(200, post);
 }
 ```
 
-> **Actions as controllers**
->
-> Actions are probably a bit different than most controllers you might be used to.
-> Rather than a single controller class that handles multiple different HTTP
-> endpoints, Actions represent just one endpoint (HTTP method + URL).
->
-> This might seem like overkill at first, but it enables powerful declarative
-> abstractions now that there is a 1:1 relationship between a class and
-> endpoint, as you'll see soon.
+### Actions as controllers
+
+Actions are probably a bit different than most controllers you might be used
+to. Rather than a single controller class that handles multiple different
+HTTP endpoints, Actions represent just one endpoint (HTTP method + URL).
+
+This might seem like overkill at first, but it enables powerful declarative
+abstractions now that there is a 1:1 relationship between a class and
+endpoint, as you'll see soon. For a deeper dive into the rationale for Actions
+over traditional controllers, check out the [blog post](FIXME);
 
 ## Parameters, request body, and query strings
 
-An inbound HTTP request carries several different types of data that you might
-want to access in your action's responder method. Denali makes each of these
-types of data available under a single object, passed as the sole argument to
-your responder method. Combined with destructuring syntax, this lets you quickly
-and easily get to the data you need:
+An inbound HTTP request carries several different types of data that you
+might want to access in your action's responder method. Denali makes each of
+these types of data available under a single object, passed as the sole
+argument to your responder method. Combined with destructuring syntax, this
+lets you quickly and easily get to the data you need:
 
 ```js
 respond({ body, params, query, headers }) {
@@ -94,21 +107,22 @@ respond({ body, params, query, headers }) {
 }
 ```
 
-This object is the return value of the Parser that was used to parse the
-incoming request. Parsers should return at least the above properties, but may
-add additional fields as well. For example, the JSON-API parser adds a
-`included` property containing any sideloaded records sent with the primary data
-in the request body.
+This object passed to your `respond()` method is actually the return value of
+the Parser that was used to parse the incoming request. The properties show
+in the example above are the convetional ones to include, but Parsers may add
+additional fields as well. For example, the JSON-API parser adds a `included`
+property containing any sideloaded records sent with the primary data in the
+request body.
 
 ## Filters
 
 Actions also support the concept of before and after filters. These are methods
 that run before or after your responder method. Before filters also have the
 ability to render a response and abort the rest of the action handling (i.e.
-skip subsequent before filters and the responder).
+skip subsequent before filters and the responder). After filters do not have this ability.
 
-To add a filter, simply add the method name to the static `before` or `after` array on your
- Action:
+To add a filter, simply add the method name to the static `before` or `after`
+array on your Action:
 
 ```js
 class CreatePurchase extends Action {
@@ -135,10 +149,11 @@ class CreatePurchase extends Action {
 }
 ```
 
-Filters are inherited from parent classes and mixins. This lets you combine and
-reuse sets of filters, either through a base class or a mixin. For example, want
-to authenticate all requests against your API? Just add an authentication before
-filter to your base ApplicationAction, and it will run on all requests:
+Filters are inherited and accumulated from parent classes and mixins. This
+lets you combine and reuse sets of filters, either through a base class or a
+mixin. For example, want to authenticate all requests against your API? Just
+add an authentication before filter to your base ApplicationAction, and it
+will run on all requests:
 
 ```js
 class ApplicationAction extends Action {
@@ -160,7 +175,7 @@ handful don't. We could use a mixin to apply authentication to only the routes
 that need it:
 
 ```js
-class ApplicationAction extends Action.mixin(Authenticate) {
+class TransferMoneyAction extends Action.mixin(Authenticate) {
 }
 ```
 
@@ -193,10 +208,23 @@ require authentication.
 But we also check the `this.protected` flag, which lets an individual action
 opt out of authentication if needed, but in an explicit manner. Much better!
 
-Filters behave much like responders: they receive the request data argument, and if
-they return any value other than null, undefined, or a Promise that resolves
-something other than null or undefined, Denali will halt the request processing
-and attempt to render that value as the response.
+This example might seem a bit trivial, but it becomes more compelling as we add complexity; imagine we now need to support access based on different roles. With one-class-per-endpoint Actions, it's easy and concise:
+
+```js
+class TransferMoney extends ApplicationAction {
+
+  allowedRoles = [ 'admin', 'owner' ];
+
+  respond() { /* ... */ }
+
+}
+```
+
+Filters method themselves behave much like responders: they receive the
+parsed request argument, and if they return any value other than null,
+undefined, or a Promise that resolves something other than null or undefined,
+Denali will halt the request processing and attempt to render that value as
+the response.
 
 > **Note:** this means that you should take extra care with the return values of
 > your filter methods. Accidentally returning a value will cause the request
