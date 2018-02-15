@@ -2,54 +2,52 @@
 title: Acceptance
 ---
 
-# Acceptance Testing
-
 Denali comes with some testing helpers out of the box to make acceptance
 testing simpler. Here's a quick sample of what an acceptance test might look
 like:
 
 ```js
-import { appAcceptanceTest } from 'denali';
+import { setupAcceptanceTest } from 'denali';
 
-const test = appAcceptanceTest();
+const test = setupAcceptanceTest();
 
 test('GET /posts/:id returns the requested post', async (t) => {
   let app = t.context.app;
-  let db = app.lookup('service:db');
-  await db.create('post', { title: 'Hello World' }).save();
+  let { status, body } = await app.post('/posts', {
+    title: 'Climb the mountain!'
+  });
 
-  let { status, body } = await app.get('/posts/1');
-
-  t.is(body.title, 'Hello World');
+  t.is(body.title, 'Climb the mountain!');
 });
 ```
 
-## `appAcceptanceTest()`
+## `setupAcceptanceTest()`
 
 This is the starting point of the Denali test helpers. When defining an
-acceptance test suite, just add `const test = appAcceptanceTest()` to the top of the test file
-to set up your test suite:
+acceptance test suite, just add `const test = setupAcceptanceTest()` to the
+top of the test file to set up your test suite:
 
 ```js
-import { appAcceptanceTest } from 'denali';
+import { setupAcceptanceTest } from 'denali';
 
-const test = appAcceptanceTest();
+const test = setupAcceptanceTest();
 
 test('GET /posts/:id returns the requested post', async (t) => {
   // ...
 ```
 
-`appAcceptanceTest()` will automatically handle the setup, initialization, and teardown
-of an instance of your Application. It also adds the `t.context.app` property to the
-test suite, and if your ORM adapters support test transactions, will automatically
-start and rollback a transaction around your test.
+`setupAcceptanceTest()` will automatically handle the setup, initialization,
+and teardown of an instance of your Application. It also adds the
+`t.context.app` property to the test suite, and if your ORM adapters support
+test transactions, will automatically start and rollback a transaction around
+your test.
 
 ## Making test requests
 
-In your tests, `t.context.app` provides a simple API for interacting with your app in
-the test environment. In particular, it exposes methods for each HTTP verb (i.e.
-`app.get()`, `app.post()`, etc) which let you simulate a request to
-your app.
+In your tests, `t.context.app` provides a simple API for interacting with
+your app in the test environment. In particular, it exposes methods for each
+HTTP verb (i.e. `app.get()`, `app.post()`, etc) which let you simulate a
+request to your app.
 
 To make a test request, it's as simple as:
 

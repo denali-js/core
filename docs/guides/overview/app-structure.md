@@ -71,11 +71,11 @@ your own router is **highly discouraged**. This is one of the most core
 components of the Denali framework, and many addons may depend on it's
 existing behavior. Override with caution.
 
-## `actions/`
+### `app/actions/`
 
 Your Actions are defined here, representing the controller layer of your application.
 
-## `orm-adapters/`
+### `app/orm-adapters/`
 
 ORM Adapters teach Denali how to talk to an ORM library. Most applications
 won't need to add any files here. When determining which ORM adapter to use,
@@ -90,9 +90,31 @@ different models (i.e. you have multiple databases), or you want to customize
 a community provided adapter, you can define your own here that will take
 precedence.
 
-## `parsers/`
+### `app/parsers/`
 
-LEFT OFF
+Parsers are responsible for taking incoming requests and transforming them
+into a consistent format for the rest of your application to use.
+
+### `app/serializers/`
+
+Serializers are responsible for taking the result of your actions and
+transforming it into a consistent format to send "over the wire" to the
+client.
+
+Typically, you'll have a base ApplicationSerializer, and one Serializer for
+each Model in your application (all inheriting from that base
+ApplicationSerializer). This approach allows you to tweak the app-wide
+serializer settings in one place (the base ApplicationSerializer) while
+customizing the attribute and relationship whitelists for each Model as
+needed.
+
+### `app/services/`
+
+TODO ...
+
+### `app/views/`
+
+TODO ...
 
 # `config/`
 
@@ -111,22 +133,22 @@ Third party addons can add their own configuration files this way as well.
 
 ## `config/environment.js`
 
-This file holds the configuration that varies per environment (i.e. development vs.
-staging vs. production database details).
+This file holds the configuration that varies per environment (i.e.
+development vs. staging vs. production database details).
 
 ## `config/middleware.js`
 
-This file exports a function which is invoked with the application's Router as
-its first argument. It lets you add generic Connect-compatible middleware to
-your application that will run _before_ the Router hands off to the appropriate
-action.
+This file exports a function which is invoked with the application's Router
+as its first argument. It lets you add generic Connect-compatible middleware
+to your application that will run _before_ the Router hands off to the
+appropriate action.
 
 ## `config/routes.js`
 
 You define your application's routes in this file. See the [Routing
-guide](../../application/routing) for more details.
+guide](fixme) for more details.
 
 # `test/`
 
 The test suite for your app. See the [integration](../../testing/integration)
-and [unit](../../testing/unit) testing guides for more details.
+and [unit](fixme) testing guides for more details.
