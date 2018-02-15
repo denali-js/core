@@ -140,9 +140,11 @@ test('embeds related records as resource linkage objects', async (t) => {
   await post.addComment(comment);
 
   let result = await serializer.serialize(post, <any>{}, {});
-  t.true(isArray(result.included));
-  t.is(result.included[0].id, comment.id);
-  t.is(result.included[0].type, 'comments');
+  t.falsy(result.included);
+  let comments = (<any>result).data.relationships.comments;
+  t.truthy(comments);
+  t.true(Array.isArray(comments.data));
+  t.truthy(comments.data[0].id);
 });
 
 test('renders document meta', async (t) => {

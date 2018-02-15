@@ -44,9 +44,9 @@
   dependencies:
     arrify "^1.0.1"
 
-"@denali-js/documenter@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@denali-js/documenter/-/documenter-1.0.1.tgz#69d27ee75a01a698649713ab3119f9c0a5815f71"
+"@denali-js/documenter@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@denali-js/documenter/-/documenter-1.0.2.tgz#0a55d1ade28fdd6ec116cc2fa77a62580223e90b"
   dependencies:
     "@types/debug" "^0.0.30"
     "@types/glob" "^5.0.35"
@@ -2062,11 +2062,11 @@ delegates@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/delegates/-/delegates-1.0.0.tgz#84c6e159b81904fdca59a0ef44cd870d31250f9a"
 
-denali-cli@0.0.24:
-  version "0.0.24"
-  resolved "https://registry.yarnpkg.com/denali-cli/-/denali-cli-0.0.24.tgz#e7620bfde871b7d19896fa015dd49b97f50b058f"
+denali-cli@0.0.26:
+  version "0.0.26"
+  resolved "https://registry.yarnpkg.com/denali-cli/-/denali-cli-0.0.26.tgz#d02f9cad1f9f2bdd5d7cfefc94ed9299e9ae9a57"
   dependencies:
-    "@denali-js/documenter" "^1.0.1"
+    "@denali-js/documenter" "^1.0.2"
     "@types/bluebird" "^3.5.20"
     "@types/debug" "^0.0.30"
     "@types/dotenv" "^4.0.2"
