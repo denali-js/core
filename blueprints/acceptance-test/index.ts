@@ -1,7 +1,7 @@
 import {
   lowerCase
 } from 'lodash';
-import { Blueprint, unwrap } from 'denali-cli';
+import { Blueprint, unwrap } from '@denali-js/cli';
 
 /**
  * Generates a model, serializer, CRUD actions, and tests for a resource

@@ -1,6 +1,6 @@
 /* tslint:disable:completed-docs no-empty no-invalid-this member-access */
 import { isArray } from 'lodash';
-import { setupUnitTest, JSONSerializer, Model, attr, hasMany, Errors, hasOne } from 'denali';
+import { setupUnitTest, JSONSerializer, Model, attr, hasMany, Errors, hasOne } from '@denali-js/core';
 
 class Post extends Model {
   static schema = {

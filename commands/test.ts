@@ -3,7 +3,7 @@ import {
 } from 'lodash';
 import * as path from 'path';
 import { spawn, ChildProcess } from 'child_process';
-import { ui, Command, Project, unwrap } from 'denali-cli';
+import { ui, Command, Project, unwrap } from '@denali-js/cli';
 
 /**
  * Run your app's test suite

@@ -1,5 +1,5 @@
 import * as Bluebird from 'bluebird';
-import { spinner, Command, unwrap } from 'denali-cli';
+import { spinner, Command, unwrap } from '@denali-js/cli';
 import { exec, ExecOptions } from 'child_process';
 import { sync as readPkg } from 'read-pkg';
 

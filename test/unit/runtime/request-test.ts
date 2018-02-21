@@ -1,6 +1,6 @@
 /* tslint:disable:completed-docs no-empty no-invalid-this member-access */
 import test from 'ava';
-import { Request, MockRequest } from 'denali';
+import { Request, MockRequest } from '@denali-js/core';
 
 function mockRequest(options?: any): Request {
   return new Request(<any>new MockRequest(options));

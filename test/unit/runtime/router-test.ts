@@ -4,7 +4,7 @@ import {
   Router,
   MockRequest,
   MockResponse,
-  Action } from 'denali';
+  Action } from '@denali-js/core';
 
 const test = setupUnitTest(() => new Router(), {
   'app:logger': true,

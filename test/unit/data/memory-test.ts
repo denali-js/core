@@ -1,5 +1,5 @@
 /* tslint:disable:completed-docs no-empty no-invalid-this member-access */
-import { setupUnitTest, MemoryAdapter, hasOne, hasMany, Model, attr } from 'denali';
+import { setupUnitTest, MemoryAdapter, hasOne, hasMany, Model, attr } from '@denali-js/core';
 
 class BlogPost extends Model {
   static schema = {

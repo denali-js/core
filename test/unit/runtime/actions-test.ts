@@ -8,7 +8,7 @@ import {
   MockRequest,
   MockResponse,
   RenderOptions,
-  ResponderParams } from 'denali';
+  ResponderParams } from '@denali-js/core';
 
 function mockRequest(options?: any) {
   return new Request(<any>new MockRequest(options), <any>{});

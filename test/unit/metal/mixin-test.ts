@@ -1,6 +1,6 @@
 /* tslint:disable:completed-docs no-empty no-invalid-this member-access */
-import { mixin, createMixin } from 'denali';
-import { setupUnitTest } from 'denali';
+import { mixin, createMixin } from '@denali-js/core';
+import { setupUnitTest } from '@denali-js/core';
 
 const test = setupUnitTest();
 

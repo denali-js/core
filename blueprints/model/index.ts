@@ -3,7 +3,7 @@ import {
   camelCase,
   kebabCase
 } from 'lodash';
-import { Blueprint, unwrap } from 'denali-cli';
+import { Blueprint, unwrap } from '@denali-js/cli';
 
 /**
  * Generates a blank model

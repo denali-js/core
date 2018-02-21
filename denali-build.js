@@ -1,7 +1,7 @@
 const path = require('path');
 const chalk = require('chalk');
 const { exec } = require('child_process');
-const { AddonBuilder, ui } = require('denali-cli');
+const { AddonBuilder, ui } = require('@denali-js/cli');
 
 module.exports = class DenaliBuilder extends AddonBuilder {
 

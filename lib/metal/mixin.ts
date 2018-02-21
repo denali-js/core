@@ -14,7 +14,7 @@ export interface MixinFactory<T, U extends T> {
  * ES6 classes don't provide any native syntax or support for compositional
  * mixins. This helper method provides that support:
  *
- *     import { mixin } from 'denali';
+ *     import { mixin } from '@denali-js/core';
  *     import MyMixin from '../mixins/my-mixin';
  *     import ApplicationAction from './application';
  *

@@ -1,6 +1,6 @@
 import * as Bluebird from 'bluebird';
 import * as cmdExists from 'command-exists';
-import { ui, spinner, Command, Blueprint, unwrap } from 'denali-cli';
+import { ui, spinner, Command, Blueprint, unwrap } from '@denali-js/cli';
 import { execSync as run } from 'child_process';
 import * as createDebug from 'debug';
 

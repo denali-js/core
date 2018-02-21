@@ -1,4 +1,4 @@
-import { Command, Blueprint, unwrap } from 'denali-cli';
+import { Command, Blueprint, unwrap } from '@denali-js/cli';
 
 /**
  * Scaffold code for your app.

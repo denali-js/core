@@ -1,4 +1,4 @@
-import { ui, spinner, Command, Project, unwrap } from 'denali-cli';
+import { ui, spinner, Command, Project, unwrap } from '@denali-js/cli';
 
 /**
  * Compile your app

@@ -1,6 +1,6 @@
 /* tslint:disable:completed-docs no-empty no-invalid-this member-access */
 import test from 'ava';
-import { MockResponse } from 'denali';
+import { MockResponse } from '@denali-js/core';
 
 test.skip('it renders the error view correctly', (t) => {
   let response = new MockResponse();

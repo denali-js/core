@@ -2,7 +2,7 @@
 import test from 'ava';
 import * as fs from 'fs-extra';
 import * as path from 'path';
-import { CommandAcceptanceTest } from 'denali-cli';
+import { CommandAcceptanceTest } from '@denali-js/cli';
 
 test('generates a blueprint', async (t) => {
   let generate = new CommandAcceptanceTest('generate action foobar --skip-post-install', { name: 'generate-command' });

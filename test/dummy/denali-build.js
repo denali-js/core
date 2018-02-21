@@ -1,3 +1,3 @@
-const { DummyBuilder } = require('denali-cli');
+const { DummyBuilder } = require('@denali-js/cli');
 
 module.exports = class extends DummyBuilder {};

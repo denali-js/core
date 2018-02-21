@@ -1,4 +1,4 @@
-import { ORMAdapter } from 'denali';
+import { ORMAdapter } from '@denali-js/core';
 
 export default class <%= className %>Adapter extends ORMAdapter {
 

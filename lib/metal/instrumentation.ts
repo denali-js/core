@@ -9,7 +9,7 @@ import { merge } from 'lodash';
  * For example, if you wanted to instrument how long a particular action was
  * taking:
  *
- *     import { Instrumentation, Action } from 'denali';
+ *     import { Instrumentation, Action } from '@denali-js/core';
  *     export default class MyAction extends Action {
  *       respond() {
  *         let Post = this.modelFor('post');

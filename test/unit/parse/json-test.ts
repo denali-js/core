@@ -1,6 +1,6 @@
 /* tslint:disable:completed-docs no-empty no-invalid-this member-access */
 import ava, { RegisterContextual } from 'ava';
-import { JSONParser, MockRequest, Request } from 'denali';
+import { JSONParser, MockRequest, Request } from '@denali-js/core';
 
 const test = <RegisterContextual<{ parser: JSONParser }>>ava;
 

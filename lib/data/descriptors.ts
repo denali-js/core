@@ -21,7 +21,7 @@ export type BaseAttributeTypes = 'number' | 'string' | 'boolean' | 'date';
  * on your Model. You shouldn't use the Attribute class directly; instead,
  * import the `attr()` method from Denali, and use it to define an attribute:
  *
- *     import { attr } from 'denali';
+ *     import { attr } from '@denali-js/core';
  *     class Post extends ApplicationModel {
  *       static title = attr('text');
  *     }
@@ -73,7 +73,7 @@ export function attr(datatype: BaseAttributeTypes, options?: any): AttributeDesc
  * class directly; instead, import the `hasMany()` method from Denali, and use
  * it to define a relationship:
  *
- *     import { hasMany } from 'denali';
+ *     import { hasMany } from '@denali-js/core';
  *     class Post extends ApplicationModel {
  *       static comments = hasMany('comment');
  *     }
@@ -129,7 +129,7 @@ export function hasMany(relatedModelName: string, options?: any): HasManyRelatio
  * directly; instead, import the `hasOne()` method from Denali, and use it to
  * define a relationship:
  *
- *     import { hasOne } from 'denali';
+ *     import { hasOne } from '@denali-js/core';
  *     class Post extends ApplicationModel {
  *       static author = hasOne('user');
  *     }

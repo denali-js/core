@@ -1,4 +1,4 @@
-import { Blueprint, unwrap } from 'denali-cli';
+import { Blueprint, unwrap } from '@denali-js/cli';
 import { upperFirst, camelCase, kebabCase } from 'lodash';
 
 /**

@@ -1,4 +1,4 @@
-import { setupUnitTest } from 'denali';
+import { setupUnitTest } from '@denali-js/core';
 import <%= className %> from '../actions/<%= dasherized %>';
 
 const test = setupUnitTest();

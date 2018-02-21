@@ -5,7 +5,7 @@ import {
 import * as fs from 'fs-extra';
 import * as path from 'path';
 import { spawn, ChildProcess } from 'child_process';
-import { ui, Command, Project, unwrap } from 'denali-cli';
+import { ui, Command, Project, unwrap } from '@denali-js/cli';
 import * as createDebug from 'debug';
 
 const debug = createDebug('denali:commands:server');

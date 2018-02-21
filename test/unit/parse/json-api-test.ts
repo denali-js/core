@@ -1,5 +1,5 @@
 /* tslint:disable:completed-docs no-empty no-invalid-this member-access */
-import { setupUnitTest, JSONAPIParser, MockRequest, Request } from 'denali';
+import { setupUnitTest, JSONAPIParser, MockRequest, Request } from '@denali-js/core';
 
 const test = setupUnitTest<JSONAPIParser>('parser:json-api');
 

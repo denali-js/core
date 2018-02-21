@@ -1,6 +1,6 @@
 import * as assert from 'assert';
 import * as path from 'path';
-import { spinner, Command, Project, unwrap } from 'denali-cli';
+import { spinner, Command, Project, unwrap } from '@denali-js/cli';
 import * as tryRequire from 'try-require';
 import * as cmdExists from 'command-exists';
 import * as Bluebird from 'bluebird';

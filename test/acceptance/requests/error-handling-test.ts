@@ -1,4 +1,4 @@
-import { setupAcceptanceTest } from 'denali';
+import { setupAcceptanceTest } from '@denali-js/core';
 import { inspect } from 'util';
 
 const test = setupAcceptanceTest();

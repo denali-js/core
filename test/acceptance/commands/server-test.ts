@@ -5,7 +5,7 @@ import * as fs from 'fs-extra';
 import * as mkdirp from 'mkdirp';
 import * as rimraf from 'rimraf';
 import { execSync as run } from 'child_process';
-import { CommandAcceptanceTest } from 'denali-cli';
+import { CommandAcceptanceTest } from '@denali-js/cli';
 import * as tmp from 'tmp';
 
 function linkDependency(pkgDir: string, dependencyName: string, dependencyDir: string) {
@@ -35,7 +35,7 @@ test('launches a server', async (t) => {
 });
 
 // This test has caused more problems than it has caught, and needs to be rethought.
-// For example, if we make a change to denali-cli and we want to propagate it through
+// For example, if we make a change to @denali-js/cli and we want to propagate it through
 // the ecosystem, we can't. Because we would need to upgrade core first so we don't
 // have to "double-bump" the addons (once for CLI, then again for core), which means
 // this test needs to pass. But this test installs a new addon, which uses the registry
@@ -46,7 +46,7 @@ test.skip('launches a server based on the dummy app in an addon', async (t) => {
   // Generate a new, blank addon. Do it outisde our normal tmp folder so that
   // we don't hit problems with the addon blueprint thinking it's inside an
   // existing project
-  let denaliBin = path.join(process.cwd(), 'node_modules', 'denali-cli', 'dist', 'bin', 'denali');
+  let denaliBin = path.join(process.cwd(), 'node_modules', '@denali-js', 'cli', 'dist', 'bin', 'denali');
   let dir = tmp.dirSync({
     unsafeCleanup: true,
     prefix: `denali-server-command-launches-dummy-app-from-inside-addon-`
@@ -54,13 +54,13 @@ test.skip('launches a server based on the dummy app in an addon', async (t) => {
   await run(`${ denaliBin } addon my-denali-addon`, { cwd: dir });
   dir = path.join(dir, 'my-denali-addon');
 
-  // Use local copies of denali-cli and denali, not whatever npm installed. Copy,
+  // Use local copies of @denali-js/cli and denali, not whatever npm installed. Copy,
   // don't symlink, Denali itself. If it was symlinked, the addon would try to build
   // Denali itself, which hits concurrency issues as other tests might be trying
   // to access the built files as they are removed by the addon for rebuild. Copying
   // Denali itself means the addon won't try to build it, and even if it does, will
   // build it's own copy
-  linkDependency(dir, 'denali-cli', path.join(process.cwd(), 'node_modules', 'denali-cli'));
+  linkDependency(dir, '@denali-js/cli', path.join(process.cwd(), 'node_modules', '@denali-js', 'cli'));
   fs.removeSync(path.join(dir, 'node_modules', 'denali'));
   fs.copySync(process.cwd(), path.join(dir, 'node_modules', 'denali'));
 

@@ -4,7 +4,7 @@ import {
 import * as repl from 'repl';
 import rewrap from '../lib/utils/rewrap';
 import chalk from 'chalk';
-import { ui, Command, Project, unwrap } from 'denali-cli';
+import { ui, Command, Project, unwrap } from '@denali-js/cli';
 
 /**
  * Launch a REPL with your application loaded

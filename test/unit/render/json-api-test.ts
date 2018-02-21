@@ -7,7 +7,7 @@ import {
   attr,
   hasMany,
   Errors,
-  hasOne } from 'denali';
+  hasOne } from '@denali-js/core';
 import { ResourceObject, RelationshipsWithData } from 'jsonapi-typescript';
 
 class Post extends Model {
