@@ -16,7 +16,7 @@
       "noUnusedLocals": true,
       "baseUrl": ".",
       "paths": {
-        "denali": [ "lib/index.ts" ]
+        "@denali-js/core": [ "lib/index.ts" ]
       }
   },
   "include": [
