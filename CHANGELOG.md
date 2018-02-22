@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.1.0"></a>
+# [0.1.0](https://github.com/denali-js/core/compare/v0.0.46...v0.1.0) (2018-02-22)
+
+
+
 <a name="0.0.46"></a>
 ## [0.0.46](https://github.com/denali-js/denali/compare/v0.0.45...v0.0.46) (2018-02-15)
 
