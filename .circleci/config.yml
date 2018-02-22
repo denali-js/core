@@ -15,6 +15,7 @@ default-test-config: &default-test-config
           - node_modules
         key: dependencies-{{ checksum "yarn.lock" }}
     - run: yarn test
+    - run: yarn run coverage
 
 version: 2
 jobs:
