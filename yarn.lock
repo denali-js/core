@@ -44,11 +44,11 @@
   dependencies:
     arrify "^1.0.1"
 
-"@denali-js/cli@0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@denali-js/cli/-/cli-0.1.1.tgz#d0273af5f8b561352542c073f1f0edb3a9e29fa1"
+"@denali-js/cli@0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@denali-js/cli/-/cli-0.1.2.tgz#743b2547762cd5ed1c570e01a1b57dbeecec68bf"
   dependencies:
-    "@denali-js/documenter" "^1.0.3"
+    "@denali-js/documenter" "^1.0.4"
     "@types/bluebird" "^3.5.20"
     "@types/debug" "^0.0.30"
     "@types/dotenv" "^4.0.2"
@@ -102,9 +102,9 @@
     walk-sync "^0.3.2"
     yargs "^11.0.0"
 
-"@denali-js/documenter@^1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@denali-js/documenter/-/documenter-1.0.3.tgz#cbb174ec8614a0f41f95345013ca3b6600acd392"
+"@denali-js/documenter@^1.0.4":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@denali-js/documenter/-/documenter-1.0.5.tgz#4196e444c020877bf7406a3fe95d2f4b795c302d"
   dependencies:
     "@types/debug" "^0.0.30"
     "@types/glob" "^5.0.35"
