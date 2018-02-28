@@ -92,7 +92,7 @@ export class Container {
     crawl(loader, this.loadBundleScope.bind(this), {
       order: 'bfs',
       getChildren(loader: Loader) {
-        return Array.from(loader.children.values());
+        return Array.from(loader.children.values()).reverse();
       }
     });
   }
@@ -245,7 +245,7 @@ export class Container {
     let registrations = Object.keys(this.registry).filter((specifier) => {
       return specifier.startsWith(type);
     });
-    let resolved = this.resolvers.reverse().reduce((entries, resolver) => {
+    let resolved = this.resolvers.reduce((entries, resolver) => {
       return entries.concat(resolver.availableForType(type));
     }, []);
     return uniq(registrations.concat(resolved)).map((specifier) => specifier.split(':')[1]);

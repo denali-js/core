@@ -1,5 +1,6 @@
 /* tslint:disable:completed-docs no-empty no-invalid-this member-access */
-import { setupUnitTest, Container } from '@denali-js/core';
+import { setupUnitTest, Container, Resolver } from '@denali-js/core';
+import { constant } from 'lodash';
 
 const test = setupUnitTest(() => new Container());
 
@@ -82,4 +83,26 @@ test('availableForType() returns all registered instances of a type', async (t) 
   t.deepEqual(container.availableForType('foo'), ['a', 'b', 'c', 'd']);
 });
 
-test.todo('fallsback to `fallbacks` specifiers if original specifier is not found');
+test('falls back to `fallbacks` specifiers if original specifier is not found', async (t) => {
+  let container: Container = t.context.subject();
+  container.setOption('foo', 'fallbacks', [ 'foo:application' ]);
+  container.register('foo:application', 'application', { singleton: false });
+
+  t.is(container.lookup('foo:non-existent-entry'), 'application');
+});
+
+test('the container adds a resolver for each loader bundle scope, in breadth-first search order', async (t) => {
+  let container: Container = t.context.subject();
+  function mockLoader(name: string, ...children: any[]) {
+    let childrenMap = new Map(<any>children.map((c: any) => [ c._name, c ]));
+    return { load: constant(constant({ name })), children: childrenMap, _name: name };
+  }
+  let barLoader = mockLoader('bar');
+  let fooLoader = mockLoader('foo', barLoader);
+  let quuxLoader = mockLoader('quux');
+  let topLoader = mockLoader('top', fooLoader, quuxLoader);
+  container.loadBundle(<any>topLoader);
+
+  let resolvers = <Resolver[]>(<any>container).resolvers;
+  t.deepEqual(resolvers.map((r) => r.name), [ 'top', 'quux', 'foo', 'bar' ]);
+});
