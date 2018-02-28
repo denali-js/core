@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.1.2"></a>
+## [0.1.2](https://github.com/denali-js/core/compare/v0.1.1...v0.1.2) (2018-02-28)
+
+
+### Bug Fixes
+
+* fix resolver ordering, add test ([b4ae232](https://github.com/denali-js/core/commit/b4ae232))
+
+
+
 <a name="0.1.1"></a>
 ## [0.1.1](https://github.com/denali-js/core/compare/v0.1.0...v0.1.1) (2018-02-22)
 

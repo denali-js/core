@@ -1,6 +1,6 @@
 {
   "name": "@denali-js/core",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A batteries-included Node.js API framework",
   "homepage": "http://denalijs.org",
   "repository": "denali-js/core",
