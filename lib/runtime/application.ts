@@ -51,6 +51,8 @@ export interface Initializer {
  */
 export default class Application extends Addon {
 
+  container: Container;
+
   /**
    * The Router instance for this Application.
    */
@@ -92,6 +94,8 @@ export default class Application extends Addon {
     });
 
     this.drainers = [];
+
+    this.container = container;
 
     // Setup some helpful container shortcuts
     container.register('app:main', this);
