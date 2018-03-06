@@ -1,36 +1,59 @@
-# Javascript Node CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
-#
-
-default-test-config: &default-test-config
-  working_directory: ~/repo
-  steps:
-    - checkout
-    - restore_cache:
-        key: dependencies-{{ checksum "yarn.lock" }}
-    - run: yarn install
-    - save_cache:
-        paths:
-          - node_modules
-        key: dependencies-{{ checksum "yarn.lock" }}
-    - run: yarn test
-    - run: yarn run coverage
-
 version: 2
-jobs:
-  test-node-8:
-    <<: *default-test-config
-    docker:
-      - image: circleci/node:8.9.4
-  test-node-9:
-    <<: *default-test-config
-    docker:
-      - image: circleci/node:9.5.0
 
 workflows:
   version: 2
   test:
     jobs:
-      - "test-node-8"
-      - "test-node-9"
+      - test-node-8
+      - test-node-9
+      - release:
+          requires:
+            - test-node-8
+            - test-node-9
+jobs:
+  test-node-8:
+    docker:
+      - image: circleci/node:8
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependencies-{{ checksum "yarn.lock" }}
+      - run: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: dependencies-{{ checksum "yarn.lock" }}
+      - run: yarn test
+      - run: yarn run coverage
+
+  test-node-9:
+    docker:
+      - image: circleci/node:9
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependencies-{{ checksum "yarn.lock" }}
+      - run: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: dependencies-{{ checksum "yarn.lock" }}
+      - run: yarn test
+      - run: yarn run coverage
+
+  release:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependencies-{{ checksum "yarn.lock" }}
+      - run: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: dependencies-{{ checksum "yarn.lock" }}
+      - run: npm run semantic-release || true
