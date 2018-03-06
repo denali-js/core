@@ -31,6 +31,13 @@ export default class Logger extends DenaliObject {
   colorize = true;
 
   /**
+   * Specify if logs should be colorized.
+   *
+   * @since 0.1.3
+   */
+  timestamps = true;
+
+  /**
    * Available log levels that can be used.
    */
   levels: LogLevel[] = [
@@ -82,7 +89,6 @@ export default class Logger extends DenaliObject {
     if (this.levels.indexOf(level) === -1) {
       level = this.loglevel;
     }
-    let timestamp = (new Date()).toISOString();
     let padLength = this.levels.reduce((n: number, label) => Math.max(n, label.length), null);
     let levelLabel = padStart(level.toUpperCase(), padLength);
     if (this.colorize) {
@@ -90,8 +96,14 @@ export default class Logger extends DenaliObject {
       msg = colorizer(msg);
       levelLabel = colorizer(levelLabel);
     }
+    let parts: string[] = [];
+    if (this.timestamps) {
+      parts.push(`[${ (new Date()).toISOString() }]`);
+    }
+    parts.push(levelLabel);
+    parts.push(msg);
     /* tslint:disable:no-console no-debugger */
-    console.log(`[${ timestamp }] ${ levelLabel } - ${ msg }`);
+    console.log(parts.join(' '));
     if (level === 'error') {
       debugger;
     }
