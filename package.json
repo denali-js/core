@@ -59,8 +59,8 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@denali-js/cli": "0.1.2",
-    "@denali-js/loader": "0.0.3",
+    "@denali-js/cli": "^0.1.2",
+    "@denali-js/loader": "0.0.x",
     "@types/accepts": "^1.3.3",
     "@types/bluebird": "^3.5.8",
     "@types/body-parser": "^1.16.5",
