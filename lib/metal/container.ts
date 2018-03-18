@@ -78,8 +78,8 @@ export class Container {
     initializer: { singleton: false },
     'orm-adapter': { singleton: true, fallbacks: [ 'orm-adapter:application' ] },
     model: { singleton: false },
-    parser: { singleton: true, fallbacks: [ 'parser:application' ] },
-    serializer: { singleton: true, fallbacks: [ 'serializer:application' ] },
+    parser: { singleton: false, fallbacks: [ 'parser:application' ] },
+    serializer: { singleton: false, fallbacks: [ 'serializer:application' ] },
     service: { singleton: true },
     view: { singleton: true }
   };

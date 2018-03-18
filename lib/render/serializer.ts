@@ -1,9 +1,9 @@
 import View from './view';
-import { ServerResponse } from 'http';
-import Action, { RenderOptions } from '../runtime/action';
+import { RenderOptions } from '../runtime/action';
 import Errors from '../runtime/errors';
 import result from '../utils/result';
-import { lookup } from '../metal/container';
+import container, { lookup } from '../metal/container';
+import ORMAdapter from '../data/orm-adapter';
 
 export interface RelationshipConfig {
   strategy?: 'embed' | 'id' | string;
@@ -24,6 +24,24 @@ export interface RelationshipConfigs {
  * @since 0.1.0
  */
 export default abstract class Serializer extends View {
+
+  /**
+   * Use as the value for any Serializer's `attributes` static property to ensure
+   * all attributes are included. This is effectively an opt-in to bypass the the
+   * default whitelisting behavior of Denali's Serializers.
+   */
+  static ALL_ATTRIBUTES = Symbol('all attributes');
+
+  /**
+   * Use as a key in any Serializer's `relationships` static property to ensure
+   * all relationships are serialized with the options found under this key. This
+   * is effectively an opt-in to bypass the the default whitelisting behavior of
+   * Denali's Serializers.
+   *
+   * Note: if other relationship configs are found as well, those will override
+   * any settings found under the ALL_RELATIONSHIPS key.
+   */
+  static ALL_RELATIONSHIPS = Symbol('all relationships');
 
   /**
    * The content type header to send back with the response
@@ -61,6 +79,8 @@ export default abstract class Serializer extends View {
    */
   protected abstract relationships: ((...args: any[]) => RelationshipConfigs) | RelationshipConfigs;
 
+  protected options: RenderOptions;
+
   /**
    * Convenience method to encapsulate standard attribute whitelist behavior -
    * render options take precedence, then allow this.attributes to be a
@@ -68,8 +88,8 @@ export default abstract class Serializer extends View {
    *
    * @since 0.1.0
    */
-  protected attributesToSerialize(action: Action, options: RenderOptions) {
-    return options.attributes || result(this.attributes, action);
+  protected attributesToSerialize() {
+    return result(this.attributes);
   }
 
   /**
@@ -79,21 +99,33 @@ export default abstract class Serializer extends View {
    *
    * @since 0.1.0
    */
-  protected relationshipsToSerialize(action: Action, options: RenderOptions) {
-    return options.relationships || result(this.relationships, action);
+  protected relationshipsToSerialize() {
+    return result(this.relationships);
   }
 
-  async render(action: Action, response: ServerResponse, body: any, options: RenderOptions): Promise<void> {
-    response.setHeader('Content-type', this.contentType);
+  async render(body: any, options: RenderOptions): Promise<void> {
+    this.options = options;
+    this.response.setHeader('Content-type', this.contentType);
     if (body instanceof Errors) {
-      response.statusCode = body.status;
+      this.response.statusCode = body.status;
     }
-    body = await this.serialize(body, action, options);
+    let serialized = await this.serialize(body);
     let isProduction = lookup('config:environment').environment === 'production';
-    response.write(JSON.stringify(body , null, isProduction ? 0 : 2) || '');
-    response.end();
+    this.response.write(JSON.stringify(serialized , null, isProduction ? 0 : 2) || '');
+    this.response.end();
   }
 
-  protected abstract async serialize(body: any, action: Action, options: RenderOptions): Promise<any>;
+  protected abstract async serialize(body: any): Promise<any>;
+
+  protected findAdapterFor(model: {}): ORMAdapter | null {
+    let adapters = container.lookupAll<ORMAdapter>('orm-adapter');
+    for (let adapterName in adapters) {
+      let adapter = adapters[adapterName];
+      if (adapter.isModelInstance(model)) {
+        return adapter;
+      }
+    }
+    return null;
+  }
 
 }

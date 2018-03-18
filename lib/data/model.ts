@@ -65,62 +65,6 @@ export default class Model extends DenaliObject {
     return <any>pickBy(this.schema, (descriptor: RelationshipDescriptor) => descriptor.isRelationship);
   }
 
-  private static _augmentWithSchemaAccessors() {
-    if ((<any>this.prototype)[augmentedWithAccessors]) {
-      return;
-    }
-    (<any>this.prototype)[augmentedWithAccessors] = true;
-    forEach(this.schema, (descriptor, name) => {
-      if ((<any>descriptor).isAttribute) {
-        Object.defineProperty(this.prototype, name, {
-          configurable: true,
-          get() {
-            return (<typeof Model>this.constructor).adapter.getAttribute(this, name);
-          },
-          set(newValue) {
-            return (<typeof Model>this.constructor).adapter.setAttribute(this, name, newValue);
-          }
-        });
-
-      } else {
-
-        // author => "Author"
-        let methodRoot = upperFirst(name);
-        // getAuthor(options?)
-        Object.defineProperty(this.prototype, `get${methodRoot}`, {
-          configurable: true,
-          value(options?: any) { return (<Model>this).getRelated(name, options); }
-        });
-        // setAuthor(comments, options?)
-        Object.defineProperty(this.prototype, `set${methodRoot}`, {
-          configurable: true,
-          value(relatedModels: Model | Model[], options?: any) {
-            return (<Model>this).setRelated(name, relatedModels, options);
-          }
-        });
-
-        if ((<any>descriptor).mode === 'hasMany') {
-          let singularRoot = singularize(methodRoot);
-          // addComment(comment, options?)
-          Object.defineProperty(this.prototype, `add${singularRoot}`, {
-            configurable: true,
-            value(relatedModel: Model, options?: any) {
-              return (<Model>this).addRelated(name, relatedModel, options);
-            }
-          });
-          // removeComment(comment, options?)
-          Object.defineProperty(this.prototype, `remove${singularRoot}`, {
-            configurable: true,
-            value(relatedModel: Model, options?: any) {
-              return (<Model>this).removeRelated(name, relatedModel, options);
-            }
-          });
-        }
-
-      }
-    });
-  }
-
   /**
    * Builds a new Model instance from an already existing ORM record reference
    *

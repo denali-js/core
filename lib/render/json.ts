@@ -1,15 +1,11 @@
-import {
-  isArray,
-  assign,
-  isUndefined
-} from 'lodash';
+import { isArray, assign, isUndefined } from 'lodash';
 import * as assert from 'assert';
 import { all } from 'bluebird';
 import Serializer, { RelationshipConfig } from './serializer';
 import Model from '../data/model';
-import Action, { RenderOptions } from '../runtime/action';
 import { RelationshipDescriptor } from '../data/descriptors';
 import { lookup } from '../metal/container';
+import { Dict } from '../utils/types';
 
 /**
  * Renders the payload as a flat JSON object or array at the top level. Related
@@ -33,11 +29,11 @@ export default abstract class JSONSerializer extends Serializer {
    *
    * @since 0.1.0
    */
-  async serialize(body: any, action: Action, options: RenderOptions = {}): Promise<any> {
+  async serialize(body: any): Promise<any> {
     if (body instanceof Error) {
-      return this.renderError(body, action, options);
+      return this.renderError(body);
     }
-    return this.renderPrimary(body, action, options);
+    return this.renderPrimary(body);
   }
 
   /**
@@ -45,13 +41,13 @@ export default abstract class JSONSerializer extends Serializer {
    *
    * @since 0.1.0
    */
-  protected async renderPrimary(payload: any, action: Action, options: RenderOptions): Promise<any> {
+  protected async renderPrimary(payload: any): Promise<any> {
     if (isArray(payload)) {
       return await all(payload.map(async (item) => {
-        return await this.renderItem(item, action, options);
+        return await this.renderItem(item);
       }));
     }
-    return await this.renderItem(payload, action, options);
+    return await this.renderItem(payload);
   }
 
   /**
@@ -59,9 +55,10 @@ export default abstract class JSONSerializer extends Serializer {
    *
    * @since 0.1.0
    */
-  async renderItem(item: any, action: Action, options: RenderOptions) {
-    if (item instanceof Model) {
-      return await this.renderModel(item, action, options);
+  async renderItem(item: any) {
+    let adapter = this.findAdapterFor(item);
+    if (adapter) {
+      return await this.renderModel(adapter.wrap(item));
     }
     return item;
   }
@@ -71,10 +68,10 @@ export default abstract class JSONSerializer extends Serializer {
    *
    * @since 0.1.0
    */
-  async renderModel(model: Model, action: Action, options: RenderOptions): Promise<any> {
+  async renderModel(model: Model): Promise<any> {
     let id = model.id;
-    let attributes = this.serializeAttributes(model, action, options);
-    let relationships = await this.serializeRelationships(model, action, options);
+    let attributes = this.serializeAttributes(model);
+    let relationships = await this.serializeRelationships(model);
     return assign({ id }, attributes, relationships);
   }
 
@@ -83,9 +80,9 @@ export default abstract class JSONSerializer extends Serializer {
    *
    * @since 0.1.0
    */
-  protected serializeAttributes(model: Model, action: Action, options: RenderOptions): any {
+  protected serializeAttributes(model: Model): any {
     let serializedAttributes: any = {};
-    let attributes = this.attributesToSerialize(action, options);
+    let attributes = this.attributesToSerialize();
     attributes.forEach((attributeName) => {
       let key = this.serializeAttributeName(attributeName);
       let rawValue = (<any>model)[attributeName];
@@ -124,9 +121,9 @@ export default abstract class JSONSerializer extends Serializer {
    *
    * @since 0.1.0
    */
-  protected async serializeRelationships(model: Model, action: Action, options: RenderOptions): Promise<{ [key: string]: any }> {
+  protected async serializeRelationships(model: Model): Promise<Dict<any>> {
     let serializedRelationships: { [key: string ]: any } = {};
-    let relationships = this.relationshipsToSerialize(action, options);
+    let relationships = this.relationshipsToSerialize();
 
     // The result of this.relationships is a whitelist of which relationships
     // should be serialized, and the configuration for their serialization
@@ -135,7 +132,7 @@ export default abstract class JSONSerializer extends Serializer {
       let key = config.key || this.serializeRelationshipName(relationshipName);
       let descriptor = <RelationshipDescriptor>(<typeof Model>model.constructor).schema[relationshipName];
       assert(descriptor, `You specified a '${ relationshipName }' relationship in your ${ this.constructor.name } serializer, but no such relationship is defined on the ${ model.modelName } model`);
-      serializedRelationships[key] = await this.serializeRelationship(relationshipName, config, descriptor, model, action, options);
+      serializedRelationships[key] = await this.serializeRelationship(relationshipName, config, descriptor, model);
     }
 
     return serializedRelationships;
@@ -146,7 +143,7 @@ export default abstract class JSONSerializer extends Serializer {
    *
    * @since 0.1.0
    */
-  protected async serializeRelationship(relationship: string, config: RelationshipConfig, descriptor: RelationshipDescriptor, model: Model, action: Action, options: RenderOptions) {
+  protected async serializeRelationship(relationship: string, config: RelationshipConfig, descriptor: RelationshipDescriptor, model: Model) {
     let relatedSerializer = lookup<JSONSerializer>(`serializer:${ descriptor.relatedModelName }`, { loose: true }) || lookup<JSONSerializer>(`serializer:application`, { loose: true });
     if (typeof relatedSerializer === 'boolean') {
       throw new Error(`No serializer found for ${ descriptor.relatedModelName }, and no fallback application serializer found either`);
@@ -155,7 +152,7 @@ export default abstract class JSONSerializer extends Serializer {
       let relatedModels = <Model[]>await model.getRelated(relationship);
       return await all(relatedModels.map(async (relatedModel: Model) => {
         if (config.strategy === 'embed') {
-          return await (<JSONSerializer>relatedSerializer).renderModel(relatedModel, action, options);
+          return await (<JSONSerializer>relatedSerializer).renderModel(relatedModel);
         } else if (config.strategy === 'id') {
           return relatedModel.id;
         }
@@ -163,7 +160,7 @@ export default abstract class JSONSerializer extends Serializer {
     } else {
       let relatedModel = <Model>await model.getRelated(relationship);
       if (config.strategy === 'embed') {
-        return await relatedSerializer.renderModel(relatedModel, action, options);
+        return await relatedSerializer.renderModel(relatedModel);
       } else if (config.strategy === 'id') {
         return relatedModel.id;
       }
@@ -185,7 +182,7 @@ export default abstract class JSONSerializer extends Serializer {
    *
    * @since 0.1.0
    */
-  protected renderError(error: any, action: Action, options: any): any {
+  protected renderError(error: any): any {
     return {
       status: error.status || 500,
       code: error.code || 'InternalServerError',

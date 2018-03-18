@@ -204,7 +204,7 @@ export default abstract class ORMAdapter extends DenaliObject {
    *
    * @since 0.1.0
    */
-  async defineModels?<T extends typeof Model>(models: T[]): Promise<void>;
+  abstract async defineModel<T extends typeof Model>(models: T[]): Promise<void>;
 
   /**
    * Start a transaction that will wrap a test, and be rolled back afterwards.

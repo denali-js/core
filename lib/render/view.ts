@@ -1,9 +1,11 @@
-import DenaliObject from '../metal/object';
 import { ServerResponse } from 'http';
-import Action, { RenderOptions } from '../runtime/action';
+import { RenderOptions } from '../runtime/action';
+import { Dict } from '../utils/types';
 
-export default abstract class View extends DenaliObject {
+export default abstract class View {
 
-  abstract async render(action: Action, response: ServerResponse, body: any, options: RenderOptions): Promise<void>;
+  constructor(protected request: Request, protected response: ServerResponse, protected context: Dict<any>) {}
+
+  abstract async render(body: any, options: RenderOptions): Promise<void>;
 
 }
